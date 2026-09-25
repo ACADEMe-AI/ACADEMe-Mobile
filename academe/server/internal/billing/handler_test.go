@@ -8,7 +8,6 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"strings"
-	"sync"
 	"testing"
 	"time"
 
@@ -23,52 +22,8 @@ const (
 	webhook = "Bearer hook-secret"
 )
 
-type fakeRevenueCat struct {
-	mu          sync.Mutex
-	subscribers map[string]string
-	status      int
-	deleted     []string
-}
-
-func (f *fakeRevenueCat) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	f.mu.Lock()
-	defer f.mu.Unlock()
-	id, ok := strings.CutPrefix(r.URL.Path, "/v1/subscribers/")
-	switch {
-	case r.Header.Get("Authorization") != "Bearer sk_test":
-		w.WriteHeader(http.StatusUnauthorized)
-	case !ok:
-		w.WriteHeader(http.StatusNotFound)
-	case f.status != 0:
-		w.WriteHeader(f.status)
-	case r.Method == http.MethodDelete:
-		f.deleted = append(f.deleted, id)
-		_, _ = fmt.Fprint(w, `{"deleted":true}`)
-	default:
-		body, ok := f.subscribers[id]
-		if !ok {
-			body = `{"subscriber":{"entitlements":{},"subscriptions":{}}}`
-		}
-		_, _ = fmt.Fprint(w, body)
-	}
-}
-
-func (f *fakeRevenueCat) set(id, body string, status int) {
-	f.mu.Lock()
-	defer f.mu.Unlock()
-	f.subscribers[id], f.status = body, status
-}
-
-func subscriberJSON(expires time.Time, unsubscribed bool) string {
-	unsubscribe := "null"
-	if unsubscribed {
-		unsubscribe = `"2026-09-20T00:00:00Z"`
-	}
-	return fmt.Sprintf(`{"request_date":"2026-09-25T00:00:00Z","subscriber":{"entitlements":{"pro":{"expires_date":%q,"grace_period_expires_date":null,"product_identifier":"academe_pro:monthly","purchase_date":"2026-09-01T00:00:00Z"}},"subscriptions":{"academe_pro":{"store":"play_store","product_plan_identifier":"monthly","store_transaction_id":"GPA.1","unsubscribe_detected_at":%s,"billing_issues_detected_at":null,"is_sandbox":true}}}}`,
-		expires.UTC().Format(time.RFC3339), unsubscribe)
-}
-
 type testServer struct {
+	service    *Service
 	revenueCat *fakeRevenueCat
 	store      *fakeStore
 	url        string
@@ -76,7 +31,7 @@ type testServer struct {
 
 func newTestServer(t *testing.T, withKey bool, webhookAuth string) testServer {
 	t.Helper()
-	rc := &fakeRevenueCat{subscribers: map[string]string{}}
+	rc := &fakeRevenueCat{customers: map[string]rcCustomer{}}
 	rcServer := httptest.NewServer(rc)
 	t.Cleanup(rcServer.Close)
 	var client *RevenueCat
@@ -102,7 +57,7 @@ func newTestServer(t *testing.T, withKey bool, webhookAuth string) testServer {
 	})))
 	api := httptest.NewServer(mux)
 	t.Cleanup(api.Close)
-	return testServer{revenueCat: rc, store: store, url: api.URL}
+	return testServer{service: service, revenueCat: rc, store: store, url: api.URL}
 }
 
 func (ts testServer) do(t *testing.T, method, path string, header http.Header, body string) (int, map[string]any) {
@@ -179,11 +134,11 @@ func TestSync(t *testing.T) {
 	if _, body := ts.do(t, http.MethodPost, "/billing/sync", as(riya), ""); body["plan"] != "pro" || body["state"] != "canceled" || body["autoRenew"] != false {
 		t.Errorf("sync after cancelling = %v, want pro, canceled, not renewing", body)
 	}
-	ts.revenueCat.set(riya, `{"subscriber":{"entitlements":{},"subscriptions":{}}}`, 0)
+	ts.revenueCat.set(riya, rcCustomer{}, 0)
 	if _, body := ts.do(t, http.MethodPost, "/billing/sync", as(riya), ""); body["plan"] != "free" {
 		t.Errorf("sync with no entitlement = %v, want free", body)
 	}
-	ts.revenueCat.set(riya, "", http.StatusInternalServerError)
+	ts.revenueCat.set(riya, rcCustomer{}, http.StatusInternalServerError)
 	if status, body := ts.do(t, http.MethodPost, "/billing/sync", as(riya), ""); status != http.StatusBadGateway || errorCode(body) != "billing_failed" {
 		t.Errorf("sync when RevenueCat fails = %d %v, want 502 billing_failed", status, body)
 	}
@@ -195,13 +150,15 @@ type testEvent struct {
 	at             time.Time
 }
 
-func (e testEvent) body() string {
+func (e testEvent) body() string { return e.bodyIn("PRODUCTION") }
+
+func (e testEvent) bodyIn(environment string) string {
 	expiration := "null"
 	if !e.expires.IsZero() {
 		expiration = fmt.Sprint(e.expires.UnixMilli())
 	}
-	return fmt.Sprintf(`{"api_version":"1.0","event":{"id":%q,"type":%q,"app_user_id":%q,"original_app_user_id":%q,"aliases":[],"product_id":"academe_pro:monthly","entitlement_ids":["pro"],"period_type":"NORMAL","purchased_at_ms":1,"expiration_at_ms":%s,"event_timestamp_ms":%d,"store":"PLAY_STORE","environment":"SANDBOX","original_transaction_id":"GPA.1"}}`,
-		e.id, e.kind, e.user, e.user, expiration, e.at.UnixMilli())
+	return fmt.Sprintf(`{"api_version":"1.0","event":{"id":%q,"type":%q,"app_user_id":%q,"original_app_user_id":%q,"aliases":[],"product_id":"academe_pro:monthly","entitlement_ids":["academe_pro"],"period_type":"NORMAL","purchased_at_ms":1,"expiration_at_ms":%s,"event_timestamp_ms":%d,"store":"PLAY_STORE","environment":%q,"original_transaction_id":"GPA.1"}}`,
+		e.id, e.kind, e.user, e.user, expiration, e.at.UnixMilli(), environment)
 }
 
 func TestWebhookAuth(t *testing.T) {
@@ -281,23 +238,4 @@ func TestWebhookEvents(t *testing.T) {
 			t.Errorf("arjun after the transfer = %v, want pro", body["plan"])
 		}
 	})
-}
-
-func TestDeleteSubscriber(t *testing.T) {
-	rc := &fakeRevenueCat{subscribers: map[string]string{}}
-	server := httptest.NewServer(rc)
-	t.Cleanup(server.Close)
-	client := NewRevenueCat("sk_test", server.URL, server.Client())
-	if err := client.DeleteSubscriber(t.Context(), riya); err != nil {
-		t.Fatalf("DeleteSubscriber() = %v, want nil", err)
-	}
-	rc.set(arjun, "", http.StatusInternalServerError)
-	if err := client.DeleteSubscriber(t.Context(), arjun); err == nil {
-		t.Error("DeleteSubscriber() when RevenueCat fails = nil, want an error")
-	}
-	rc.mu.Lock()
-	defer rc.mu.Unlock()
-	if len(rc.deleted) != 1 || rc.deleted[0] != riya {
-		t.Errorf("deleted %v, want [%s]", rc.deleted, riya)
-	}
 }

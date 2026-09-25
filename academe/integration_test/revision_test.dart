@@ -13,7 +13,7 @@ void main() {
     await tester.tapText('Flashcards');
     await tester.waitFor(find.text('Nothing to revise'));
     await tester.shot('empty-revision');
-    await tester.tapOn(find.byTooltip('Back'));
+    await tester.tapText('Done');
     await openFirstChapter(tester);
     await tester.tapText('Next lesson');
     await playDeck(tester);

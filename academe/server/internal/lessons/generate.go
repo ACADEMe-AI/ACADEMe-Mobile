@@ -91,7 +91,7 @@ func (g *Generator) Run(ctx context.Context, jobs []Job, workers int) (Summary, 
 		wg.Go(func() {
 			for j := range queue {
 				start := time.Now()
-				status, err := g.one(ctx, j)
+				status, err := g.guarded(ctx, j)
 				took := time.Since(start)
 				mu.Lock()
 				sum.Busy += took
@@ -123,6 +123,15 @@ func (g *Generator) Run(ctx context.Context, jobs []Job, workers int) (Summary, 
 	wg.Wait()
 	sum.Elapsed = time.Since(began)
 	return sum, ctx.Err()
+}
+
+func (g *Generator) guarded(ctx context.Context, j Job) (status string, err error) {
+	defer func() {
+		if r := recover(); r != nil {
+			err = fmt.Errorf("lesson crashed: %v", r)
+		}
+	}()
+	return g.one(ctx, j)
 }
 
 func (g *Generator) one(ctx context.Context, j Job) (string, error) {

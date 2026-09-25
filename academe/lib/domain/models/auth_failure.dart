@@ -11,6 +11,9 @@ enum AuthFailure {
   codeExpired,
   resetExpired,
   tooManyRequests,
+  wrongPassword,
+  googleTaken,
+  passwordRequired,
   unknown,
 }
 

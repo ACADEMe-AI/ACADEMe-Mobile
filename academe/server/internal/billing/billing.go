@@ -51,6 +51,7 @@ type Entitlement struct {
 	AutoRenew  bool
 	Raw        json.RawMessage
 	EventAt    time.Time
+	Sandbox    bool
 }
 
 func (e Entitlement) active(now time.Time) bool {
@@ -84,13 +85,32 @@ type Store interface {
 }
 
 type Service struct {
-	store      Store
-	free       map[string]int
-	revenueCat *RevenueCat
+	store       Store
+	free        map[string]int
+	revenueCat  *RevenueCat
+	testers     map[string]bool
+	entitlement string
+}
+
+func (s *Service) SetEntitlement(id string) {
+	if id != "" {
+		s.entitlement = id
+	}
+}
+
+func (s *Service) SetTesters(ids []string) {
+	s.testers = map[string]bool{}
+	for _, id := range ids {
+		s.testers[id] = true
+	}
+}
+
+func (s *Service) allowed(accountID string, sandbox bool) bool {
+	return !sandbox || s.testers["*"] || s.testers[accountID]
 }
 
 func NewService(store Store, free map[string]int, revenueCat *RevenueCat) *Service {
-	return &Service{store: store, free: free, revenueCat: revenueCat}
+	return &Service{store: store, free: free, revenueCat: revenueCat, entitlement: EntitlementID}
 }
 
 func today(now time.Time) (day, next time.Time) {
@@ -165,24 +185,24 @@ func (s *Service) Refund(ctx context.Context, accountID string, f Feature) {
 }
 
 func (s *Service) Sync(ctx context.Context, accountID string) (Plan, error) {
-	if err := s.sync(ctx, accountID); err != nil {
+	if err := s.sync(ctx, "", accountID); err != nil {
 		return Plan{}, err
 	}
 	return s.Plan(ctx, accountID)
 }
 
-func (s *Service) sync(ctx context.Context, accountID string) error {
+func (s *Service) sync(ctx context.Context, eventID, accountID string) error {
 	if s.revenueCat == nil {
 		return ErrUnavailable
 	}
-	e, err := s.revenueCat.Subscriber(ctx, accountID)
+	e, err := s.revenueCat.Subscriber(ctx, accountID, s.entitlement)
 	if err != nil {
 		return err
 	}
-	if e == nil {
+	if e == nil || !s.allowed(accountID, e.Sandbox) {
 		e = &Entitlement{State: "expired", Raw: json.RawMessage("{}"), EventAt: time.Now()}
 	}
-	if _, err := s.store.Apply(ctx, "", []Change{{AccountID: accountID, Entitlement: e}}); err != nil && !errors.Is(err, ErrUnknownAccount) {
+	if _, err := s.store.Apply(ctx, eventID, []Change{{AccountID: accountID, Entitlement: e}}); err != nil && !errors.Is(err, ErrUnknownAccount) {
 		return fmt.Errorf("save entitlement: %w", err)
 	}
 	return nil
@@ -200,19 +220,23 @@ func (s *Service) HandleEvent(ctx context.Context, body []byte) error {
 			if !isUUID(id) || s.revenueCat == nil {
 				continue
 			}
-			if err := s.sync(ctx, id); err != nil {
+			if err := s.sync(ctx, "", id); err != nil {
 				return err
 			}
 		}
 		for _, id := range ev.TransferredFrom {
 			if isUUID(id) {
-				changes = append(changes, Change{AccountID: id})
+				gone := Entitlement{State: "expired", Raw: ev.raw, EventAt: time.UnixMilli(ev.EventTimestampMs)}
+				changes = append(changes, Change{AccountID: id, Entitlement: &gone})
 			}
 		}
-	case ev.grantsPro() && isUUID(ev.AppUserID):
+	case ev.grants(s.entitlement) && isUUID(ev.AppUserID):
 		e, ok := ev.entitlement()
-		if !ok {
+		if !ok || !s.allowed(ev.AppUserID, e.Sandbox) {
 			return nil
+		}
+		if ev.Type == "EXPIRATION" && s.revenueCat != nil {
+			return s.sync(ctx, ev.ID, ev.AppUserID)
 		}
 		changes = append(changes, Change{AccountID: ev.AppUserID, Entitlement: &e})
 	}

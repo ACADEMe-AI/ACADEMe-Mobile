@@ -35,12 +35,9 @@ type fakeMailer struct {
 	sent []string
 }
 
-func (f *fakeMailer) SendNotice(_ context.Context, to, _, text string) error {
+func (f *fakeMailer) SendDeletionNotice(_ context.Context, to string) error {
 	f.mu.Lock()
 	defer f.mu.Unlock()
-	if !strings.Contains(text, "Delete my account") {
-		return nil
-	}
 	f.sent = append(f.sent, to)
 	return nil
 }
@@ -49,7 +46,7 @@ func newSite(t *testing.T) (*http.ServeMux, *fakeStore, *fakeMailer) {
 	t.Helper()
 	mux := http.NewServeMux()
 	store, mailer := &fakeStore{}, &fakeMailer{}
-	if err := RegisterRoutes(mux, slog.New(slog.DiscardHandler), store, mailer); err != nil {
+	if err := RegisterRoutes(mux, slog.New(slog.DiscardHandler), Options{Store: store, Mailer: mailer, Resets: &fakeResetter{}, FormKey: []byte("0123456789abcdef0123456789abcdef")}); err != nil {
 		t.Fatalf("RegisterRoutes() = %v", err)
 	}
 	return mux, store, mailer
@@ -66,6 +63,7 @@ func TestPages(t *testing.T) {
 		{"/terms", "Terms of use"},
 		{"/delete-account", "Request deletion"},
 		{"/support", "Grievance Officer"},
+		{"/open", "intent://open#Intent;scheme=academe;package=com.academe.flutter"},
 	}
 	for _, tc := range tests {
 		t.Run(tc.path, func(t *testing.T) {

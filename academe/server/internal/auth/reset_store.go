@@ -9,7 +9,7 @@ import (
 	"github.com/jackc/pgx/v5"
 )
 
-func (s *PostgresStore) CreateResetCode(ctx context.Context, accountID string, codeHash []byte, expires time.Time) error {
+func (s *PostgresStore) CreateResetCode(ctx context.Context, accountID string, codeHash, linkHash []byte, expires time.Time) error {
 	tx, err := s.pool.Begin(ctx)
 	if err != nil {
 		return fmt.Errorf("begin create reset code: %w", err)
@@ -21,8 +21,8 @@ func (s *PostgresStore) CreateResetCode(ctx context.Context, accountID string, c
 		return fmt.Errorf("replace reset codes: %w", err)
 	}
 	if _, err := tx.Exec(ctx, `
-		INSERT INTO password_reset_codes (account_id, code_hash, expires_at)
-		VALUES ($1, $2, $3)`, accountID, codeHash, expires); err != nil {
+		INSERT INTO password_reset_codes (account_id, code_hash, link_hash, expires_at)
+		VALUES ($1, $2, $3, $4)`, accountID, codeHash, linkHash, expires); err != nil {
 		return fmt.Errorf("insert reset code: %w", err)
 	}
 	if err := tx.Commit(ctx); err != nil {
@@ -47,6 +47,22 @@ func (s *PostgresStore) ClaimResetAttempt(ctx context.Context, accountID string)
 	}
 	if err != nil {
 		return ResetCode{}, fmt.Errorf("claim reset attempt: %w", err)
+	}
+	return c, nil
+}
+
+func (s *PostgresStore) ClaimResetLink(ctx context.Context, linkHash []byte) (ResetCode, error) {
+	var c ResetCode
+	err := s.pool.QueryRow(ctx, `
+		UPDATE password_reset_codes SET attempts = attempts + 1
+		WHERE link_hash = $1 AND used_at IS NULL
+		RETURNING id::text, code_hash, attempts, expires_at`, linkHash,
+	).Scan(&c.ID, &c.Hash, &c.Attempts, &c.Expires)
+	if errors.Is(err, pgx.ErrNoRows) {
+		return ResetCode{}, ErrResetTokenExpired
+	}
+	if err != nil {
+		return ResetCode{}, fmt.Errorf("claim reset link: %w", err)
 	}
 	return c, nil
 }

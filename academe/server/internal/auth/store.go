@@ -34,6 +34,7 @@ func (s *PostgresStore) CreateAccount(ctx context.Context, a Account, passwordHa
 	if err != nil {
 		return Account{}, fmt.Errorf("insert account: %w", err)
 	}
+	a.HasPassword = passwordHash != ""
 	return a, nil
 }
 
@@ -41,26 +42,27 @@ func (s *PostgresStore) AccountByEmail(ctx context.Context, email string) (Accou
 	var a Account
 	var hash string
 	err := s.pool.QueryRow(ctx, `
-		SELECT id::text, first_name, last_name, email, COALESCE(password_hash, '')
+		SELECT id::text, first_name, last_name, email, COALESCE(password_hash, ''), COALESCE(google_email, '')
 		FROM accounts WHERE email = $1`,
 		email,
-	).Scan(&a.ID, &a.FirstName, &a.LastName, &a.Email, &hash)
+	).Scan(&a.ID, &a.FirstName, &a.LastName, &a.Email, &hash, &a.GoogleEmail)
 	if errors.Is(err, pgx.ErrNoRows) {
 		return Account{}, "", ErrNotFound
 	}
 	if err != nil {
 		return Account{}, "", fmt.Errorf("select account by email: %w", err)
 	}
+	a.HasPassword = hash != ""
 	return a, hash, nil
 }
 
 func (s *PostgresStore) AccountByID(ctx context.Context, id string) (Account, error) {
 	var a Account
 	err := s.pool.QueryRow(ctx, `
-		SELECT id::text, first_name, last_name, email
+		SELECT id::text, first_name, last_name, email, password_hash IS NOT NULL, COALESCE(google_email, '')
 		FROM accounts WHERE id = $1`,
 		id,
-	).Scan(&a.ID, &a.FirstName, &a.LastName, &a.Email)
+	).Scan(&a.ID, &a.FirstName, &a.LastName, &a.Email, &a.HasPassword, &a.GoogleEmail)
 	if errors.Is(err, pgx.ErrNoRows) {
 		return Account{}, ErrNotFound
 	}
@@ -85,10 +87,10 @@ func (s *PostgresStore) TokensValidAfter(ctx context.Context, accountID string) 
 func (s *PostgresStore) AccountByGoogleSubject(ctx context.Context, subject string) (Account, error) {
 	var a Account
 	err := s.pool.QueryRow(ctx, `
-		SELECT id::text, first_name, last_name, email
+		SELECT id::text, first_name, last_name, email, password_hash IS NOT NULL, COALESCE(google_email, '')
 		FROM accounts WHERE google_subject = $1`,
 		subject,
-	).Scan(&a.ID, &a.FirstName, &a.LastName, &a.Email)
+	).Scan(&a.ID, &a.FirstName, &a.LastName, &a.Email, &a.HasPassword, &a.GoogleEmail)
 	if errors.Is(err, pgx.ErrNoRows) {
 		return Account{}, ErrNotFound
 	}
@@ -100,8 +102,8 @@ func (s *PostgresStore) AccountByGoogleSubject(ctx context.Context, subject stri
 
 func (s *PostgresStore) CreateGoogleAccount(ctx context.Context, a Account, subject string) (Account, error) {
 	err := s.pool.QueryRow(ctx, `
-		INSERT INTO accounts (first_name, last_name, email, google_subject)
-		VALUES ($1, $2, $3, $4)
+		INSERT INTO accounts (first_name, last_name, email, google_subject, google_email)
+		VALUES ($1, $2, $3, $4, $3)
 		RETURNING id::text`,
 		a.FirstName, a.LastName, a.Email, subject,
 	).Scan(&a.ID)
@@ -111,19 +113,20 @@ func (s *PostgresStore) CreateGoogleAccount(ctx context.Context, a Account, subj
 	if err != nil {
 		return Account{}, fmt.Errorf("insert google account: %w", err)
 	}
+	a.GoogleEmail = a.Email
 	return a, nil
 }
 
-func (s *PostgresStore) LinkGoogle(ctx context.Context, accountID, subject string, at time.Time) error {
+func (s *PostgresStore) LinkGoogle(ctx context.Context, accountID, subject, email string, at time.Time) error {
 	tx, err := s.pool.Begin(ctx)
 	if err != nil {
 		return fmt.Errorf("begin link google: %w", err)
 	}
 	defer tx.Rollback(ctx) //nolint:errcheck
 	if _, err := tx.Exec(ctx, `
-		UPDATE accounts SET google_subject = $2, password_hash = NULL, tokens_valid_after = $3
+		UPDATE accounts SET google_subject = $2, google_email = $4, password_hash = NULL, tokens_valid_after = $3
 		WHERE id = $1`,
-		accountID, subject, at,
+		accountID, subject, at, email,
 	); err != nil {
 		if pgErr, ok := errors.AsType[*pgconn.PgError](err); ok && pgErr.Code == uniqueViolation {
 			return ErrEmailTaken
@@ -190,9 +193,9 @@ func (s *PostgresStore) UpdateName(ctx context.Context, id, firstName, lastName 
 	err := s.pool.QueryRow(ctx, `
 		UPDATE accounts SET first_name = $2, last_name = $3
 		WHERE id = $1
-		RETURNING first_name, last_name, email`,
+		RETURNING first_name, last_name, email, password_hash IS NOT NULL, COALESCE(google_email, '')`,
 		id, firstName, lastName,
-	).Scan(&a.FirstName, &a.LastName, &a.Email)
+	).Scan(&a.FirstName, &a.LastName, &a.Email, &a.HasPassword, &a.GoogleEmail)
 	if errors.Is(err, pgx.ErrNoRows) {
 		return Account{}, ErrNotFound
 	}

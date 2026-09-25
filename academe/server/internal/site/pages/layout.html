@@ -6,6 +6,8 @@
 <title>{{template "title" .}} · ACADEMe</title>
 <meta name="description" content="ACADEMe: a study app for Class 6 to 12, CBSE and ICSE, in your own language.">
 <style>
+@font-face{font-family:"Baloo 2";font-weight:800;font-display:swap;src:url(/email/baloo2-800.ttf) format("truetype")}
+@font-face{font-family:"Archivo";font-weight:700;font-display:swap;src:url(/email/archivo-700.ttf) format("truetype")}
 :root{--brand:#564CF1;--brand-soft:#EEEDFE;--bg:#F6F7FA;--card:#FFFFFF;--text:#12141A;--muted:#5C6578;--line:#D8DCE6;--fill:#FFF4D6}
 @media (prefers-color-scheme:dark){:root{--brand:#8B8CF5;--brand-soft:#1C1F28;--bg:#0B0C0F;--card:#14161C;--text:#F2F3F5;--muted:#8B93A7;--line:#2A2E38;--fill:#2A2410}}
 *{box-sizing:border-box}
@@ -19,7 +21,7 @@ nav{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:15px}
 nav a{color:var(--muted);text-decoration:none}
 nav a:hover{color:var(--brand)}
 main{padding-bottom:40px}
-h1{font-size:30px;line-height:1.2;margin:24px 0 8px}
+h1{font:800 32px/1.15 "Baloo 2","Arial Rounded MT Bold","Trebuchet MS",system-ui,sans-serif;margin:24px 0 8px}
 h2{font-size:21px;margin:32px 0 8px}
 h3{font-size:17px;margin:20px 0 4px}
 .lead{font-size:18px;color:var(--muted)}
@@ -34,6 +36,16 @@ th{font-weight:600}
 .grid .card{margin:0}
 .grid h3{margin-top:0}
 label{display:block;font-weight:600;margin-bottom:4px}
+.keycap{display:block;width:100%;background:#564CF1;color:#fff;border:2px solid #12141A;border-bottom-width:8px;border-radius:16px;padding:14px 24px;font:700 18px/24px "Archivo",system-ui,sans-serif;text-align:center;text-decoration:none;cursor:pointer}
+.keycap:active{border-bottom-width:2px;margin-top:6px}
+.keycap.quiet{background:var(--card);color:var(--text)}
+.stack{display:grid;gap:12px;max-width:420px}
+.hero{display:flex;align-items:center;gap:16px;margin-top:16px}
+.hero img{width:96px;height:96px;flex:none}
+.hero h1{margin:0}
+@media (prefers-color-scheme:dark){.keycap{border-color:#45476F}}
+input[type=password]{width:100%;font:inherit;padding:12px;border:2px solid var(--line);border-radius:12px;background:var(--card);color:var(--text);margin-bottom:12px}
+input[type=password]:focus{outline:none;border-color:var(--brand)}
 input[type=email]{width:100%;font:inherit;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--text);margin-bottom:12px}
 .error{color:#C4323F;font-weight:600}
 footer{border-top:1px solid var(--line);padding-top:16px;padding-bottom:32px;font-size:14px;color:var(--muted)}

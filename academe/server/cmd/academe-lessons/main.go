@@ -45,7 +45,7 @@ func run(ctx context.Context, logger *slog.Logger, args []string) error {
 	report := flags.String("html", "content-review/index.html", "where -review writes the report")
 	source := flags.String("syllabus", "", "read the syllabus from this folder instead of the embedded data")
 	model := flags.String("model", "sarvam-105b", "Sarvam chat model")
-	maxTokens := flags.Int("max-tokens", 24000, "Sarvam completion budget, reasoning included")
+	maxTokens := flags.Int("max-tokens", 24000, "Sarvam completion budget for a reasoning call; calls without reasoning get at most 8000")
 	authorReasoning := flags.String("author-reasoning", "none", "Sarvam reasoning effort when writing: none, low, medium, high")
 	reviewReasoning := flags.String("review-reasoning", "medium", "Sarvam reasoning effort when reviewing: none, low, medium, high")
 	timeout := flags.Duration("timeout", 180*time.Second, "limit for one Sarvam request")
@@ -76,9 +76,9 @@ func run(ctx context.Context, logger *slog.Logger, args []string) error {
 	}
 	client := func(reasoning string) *sarvam.Client {
 		c := sarvam.New(key, *model, &http.Client{})
-		c.MaxTokens, c.JSON = *maxTokens, true
-		c.Reasoning = json.RawMessage(`null`)
+		c.MaxTokens, c.Reasoning = min(*maxTokens, 8000), json.RawMessage(`null`)
 		if reasoning != "none" {
+			c.MaxTokens = *maxTokens
 			c.Reasoning, _ = json.Marshal(reasoning)
 		}
 		return c

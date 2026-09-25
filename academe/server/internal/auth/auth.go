@@ -6,8 +6,10 @@ import (
 	"crypto/sha256"
 	"errors"
 	"fmt"
+	"log/slog"
 	"net/mail"
 	"strings"
+	"sync"
 	"time"
 	"unicode/utf8"
 )
@@ -30,10 +32,12 @@ const (
 )
 
 type Account struct {
-	ID        string `json:"id"`
-	FirstName string `json:"firstName"`
-	LastName  string `json:"lastName"`
-	Email     string `json:"email"`
+	ID          string `json:"id"`
+	FirstName   string `json:"firstName"`
+	LastName    string `json:"lastName"`
+	Email       string `json:"email"`
+	HasPassword bool   `json:"hasPassword"`
+	GoogleEmail string `json:"googleEmail,omitempty"`
 }
 
 type Tokens struct {
@@ -62,7 +66,11 @@ type Store interface {
 	AccountByID(ctx context.Context, id string) (Account, error)
 	AccountByGoogleSubject(ctx context.Context, subject string) (Account, error)
 	CreateGoogleAccount(ctx context.Context, a Account, subject string) (Account, error)
-	LinkGoogle(ctx context.Context, accountID, subject string, at time.Time) error
+	LinkGoogle(ctx context.Context, accountID, subject, email string, at time.Time) error
+	AddGoogle(ctx context.Context, accountID, subject, email string) error
+	RemoveGoogle(ctx context.Context, accountID string) error
+	PasswordHash(ctx context.Context, accountID string) (string, error)
+	ChangePassword(ctx context.Context, accountID, oldHash, newHash string, at time.Time) error
 	UpdateName(ctx context.Context, id, firstName, lastName string) (Account, error)
 	ScheduleDeletion(ctx context.Context, id, reason string, at time.Time) error
 	CancelDeletion(ctx context.Context, id string) error
@@ -70,7 +78,8 @@ type Store interface {
 	CreateSession(ctx context.Context, accountID string, tokenHash []byte, expires time.Time) error
 	RotateSession(ctx context.Context, oldHash, newHash []byte, expires time.Time) (string, error)
 	DeleteSession(ctx context.Context, tokenHash []byte) error
-	CreateResetCode(ctx context.Context, accountID string, codeHash []byte, expires time.Time) error
+	CreateResetCode(ctx context.Context, accountID string, codeHash, linkHash []byte, expires time.Time) error
+	ClaimResetLink(ctx context.Context, linkHash []byte) (ResetCode, error)
 	ClaimResetAttempt(ctx context.Context, accountID string) (ResetCode, error)
 	MarkResetCodeUsed(ctx context.Context, codeID string, tokenHash []byte, at time.Time) error
 	CompleteReset(ctx context.Context, tokenHash []byte, verifiedAfter time.Time, passwordHash string, at time.Time) (string, error)
@@ -85,16 +94,18 @@ type Service struct {
 	store       Store
 	tokenKey    []byte
 	google      GoogleVerifier
-	mailer      ResetMailer
+	mailer      Mailer
 	limits      resetLimits
 	dummyHash   string
 	subscribers SubscriberDeleter
 	revoked     *revocations
+	logger      *slog.Logger
+	background  sync.WaitGroup
 }
 
 func (s *Service) SetSubscriberDeleter(d SubscriberDeleter) { s.subscribers = d }
 
-func NewService(store Store, tokenKey []byte, google GoogleVerifier, mailer ResetMailer) *Service {
+func NewService(store Store, tokenKey []byte, google GoogleVerifier, mailer Mailer) *Service {
 	return &Service{
 		store:     store,
 		tokenKey:  tokenKey,
@@ -103,6 +114,7 @@ func NewService(store Store, tokenKey []byte, google GoogleVerifier, mailer Rese
 		limits:    newResetLimits(),
 		dummyHash: hashPassword(rand.Text()),
 		revoked:   newRevocations(),
+		logger:    slog.New(slog.DiscardHandler),
 	}
 }
 
@@ -125,6 +137,7 @@ func (s *Service) SignUp(ctx context.Context, in SignUpInput) (Account, Tokens, 
 	if err != nil {
 		return Account{}, Tokens{}, fmt.Errorf("sign up: %w", err)
 	}
+	s.welcome(ctx, a)
 	return a, tokens, nil
 }
 
@@ -174,6 +187,9 @@ func (s *Service) SignInWithGoogle(ctx context.Context, idToken string) (Account
 	if err != nil {
 		return Account{}, Tokens{}, false, fmt.Errorf("google sign-in: %w", err)
 	}
+	if created {
+		s.welcome(ctx, a)
+	}
 	return a, tokens, created, nil
 }
 
@@ -185,10 +201,11 @@ func (s *Service) googleAccount(ctx context.Context, identity GoogleIdentity) (A
 	a, _, err = s.store.AccountByEmail(ctx, identity.Email)
 	if err == nil {
 		at := revocationTime()
-		if err := s.store.LinkGoogle(ctx, a.ID, identity.Subject, at); err != nil {
+		if err := s.store.LinkGoogle(ctx, a.ID, identity.Subject, identity.Email, at); err != nil {
 			return Account{}, false, err
 		}
 		s.revokeAccessTokens(a.ID, at)
+		a.HasPassword, a.GoogleEmail = false, identity.Email
 		return a, false, nil
 	}
 	if !errors.Is(err, ErrNotFound) {

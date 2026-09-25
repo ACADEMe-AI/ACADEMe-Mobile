@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../utils/result.dart';
 import '../../auth/widgets/auth_failure_text.dart';
@@ -20,6 +21,10 @@ class DeleteAccountScreen extends StatefulWidget {
   final VoidCallback onDeleted;
 
   static const confirmWord = 'DELETE';
+  static const subscriptionNotice =
+      'Deleting your account doesn’t cancel an ACADEMe Pro subscription '
+      'bought on Google Play. Cancel it in Google Play so you aren’t '
+      'charged again.';
   static const reasons = [
     'I don’t use it enough',
     'It didn’t help with my studies',
@@ -45,6 +50,15 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
   bool get _isConfirmed =>
       _confirm.text.trim().toUpperCase() == DeleteAccountScreen.confirmWord;
 
+  Future<void> _manageSubscription() async {
+    final url = Uri.parse(widget.viewModel.manageSubscriptionUrl);
+    final opened = await launchUrl(url, mode: LaunchMode.externalApplication);
+    if (opened || !mounted) return;
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(SnackBar(content: Text('Open $url in your browser')));
+  }
+
   Future<void> _delete() async {
     final command = widget.viewModel.deleteAccount;
     await command.execute(_reason);
@@ -65,7 +79,7 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
   Widget build(BuildContext context) {
     final deleting = widget.viewModel.deleteAccount;
     return ListenableBuilder(
-      listenable: deleting,
+      listenable: widget.viewModel,
       builder: (context, _) => SettingsPage(
         title: 'Delete account',
         bottom: Keycap(
@@ -99,6 +113,30 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
               color: context.palette.textMuted,
               height: 1.5,
             ),
+          ),
+          SettingsGroup(
+            title: 'Subscription',
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: Text(
+                  DeleteAccountScreen.subscriptionNotice,
+                  style: AppTextStyles.label.copyWith(
+                    color: context.palette.text,
+                    height: 1.5,
+                  ),
+                ),
+              ),
+              if (widget.viewModel.isPro)
+                SettingsRow(
+                  label: 'Manage subscription',
+                  onTap: _manageSubscription,
+                  trailing: Icon(
+                    Icons.open_in_new_rounded,
+                    color: context.palette.textMuted,
+                  ),
+                ),
+            ],
           ),
           SettingsGroup(
             title: 'Why are you leaving? (optional)',

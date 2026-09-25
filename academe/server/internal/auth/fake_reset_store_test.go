@@ -9,13 +9,14 @@ import (
 
 type fakeReset struct {
 	code      ResetCode
+	linkHash  []byte
 	accountID string
 	usedAt    time.Time
 	tokenHash []byte
 	completed bool
 }
 
-func (f *fakeStore) CreateResetCode(_ context.Context, accountID string, codeHash []byte, expires time.Time) error {
+func (f *fakeStore) CreateResetCode(_ context.Context, accountID string, codeHash, linkHash []byte, expires time.Time) error {
 	f.mu.Lock()
 	defer f.mu.Unlock()
 	for _, r := range f.resets {
@@ -26,8 +27,21 @@ func (f *fakeStore) CreateResetCode(_ context.Context, accountID string, codeHas
 	f.resets = append(f.resets, &fakeReset{
 		code:      ResetCode{ID: "reset-" + strconv.Itoa(len(f.resets)+1), Hash: codeHash, Expires: expires},
 		accountID: accountID,
+		linkHash:  linkHash,
 	})
 	return nil
+}
+
+func (f *fakeStore) ClaimResetLink(_ context.Context, linkHash []byte) (ResetCode, error) {
+	f.mu.Lock()
+	defer f.mu.Unlock()
+	for _, r := range f.resets {
+		if bytes.Equal(r.linkHash, linkHash) && r.usedAt.IsZero() {
+			r.code.Attempts++
+			return r.code, nil
+		}
+	}
+	return ResetCode{}, ErrResetTokenExpired
 }
 
 func (f *fakeStore) ClaimResetAttempt(_ context.Context, accountID string) (ResetCode, error) {

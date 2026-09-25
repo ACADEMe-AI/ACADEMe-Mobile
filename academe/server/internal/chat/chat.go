@@ -192,6 +192,19 @@ func (s *Service) Retry(ctx context.Context, accountID, threadID string, mode Mo
 	if _, err := s.store.Thread(ctx, accountID, threadID); err != nil {
 		return Message{}, err
 	}
+	if s.limiter != nil {
+		if err := s.limiter.Take(ctx, accountID, billing.AskMe); err != nil {
+			return Message{}, err
+		}
+	}
+	reply, err := s.retry(ctx, accountID, threadID, mode)
+	if err != nil && s.limiter != nil {
+		s.limiter.Refund(ctx, accountID, billing.AskMe)
+	}
+	return reply, err
+}
+
+func (s *Service) retry(ctx context.Context, accountID, threadID string, mode Mode) (Message, error) {
 	if err := s.store.DeleteLastReply(ctx, threadID); err != nil {
 		return Message{}, err
 	}

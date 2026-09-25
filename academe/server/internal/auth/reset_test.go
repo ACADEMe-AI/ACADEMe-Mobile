@@ -3,6 +3,7 @@ package auth
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"log/slog"
 	"net/http"
 	"net/http/httptest"
@@ -20,13 +21,25 @@ import (
 )
 
 type fakeMailer struct {
-	mu   sync.Mutex
-	sent []email.Reset
+	mu       sync.Mutex
+	sent     []email.Reset
+	welcomed []email.Welcome
+	down     bool
+}
+
+func (f *fakeMailer) SendWelcome(_ context.Context, w email.Welcome) error {
+	f.mu.Lock()
+	defer f.mu.Unlock()
+	f.welcomed = append(f.welcomed, w)
+	return nil
 }
 
 func (f *fakeMailer) SendReset(_ context.Context, r email.Reset) error {
 	f.mu.Lock()
 	defer f.mu.Unlock()
+	if f.down {
+		return errors.New("mail provider down")
+	}
 	f.sent = append(f.sent, r)
 	return nil
 }
@@ -195,7 +208,7 @@ func TestPasswordResetIsEnumerationSafe(t *testing.T) {
 		}
 	}
 	want2 := []email.Reset{
-		{AccountID: "account-1", To: "maya.rao@example.com", Code: e.mailer.sent[0].Code},
+		{AccountID: "account-1", To: "maya.rao@example.com", Code: e.mailer.sent[0].Code, LinkToken: e.mailer.sent[0].LinkToken},
 		{AccountID: "account-2", To: "ada@gmail.com", GoogleOnly: true},
 	}
 	if diff := cmp.Diff(want2, e.mailer.sent); diff != "" {
@@ -285,4 +298,18 @@ func TestPasswordResetExpiry(t *testing.T) {
 			t.Errorf("complete after the token expired = %d %q, want 410 reset_expired", status, errorCode(body))
 		}
 	})
+}
+
+func TestResetStillAcceptedWhenMailFails(t *testing.T) {
+	env := newResetEnv(t)
+	env.signUp(t)
+	env.mailer.mu.Lock()
+	env.mailer.down = true
+	env.mailer.mu.Unlock()
+	for _, address := range []string{"maya.rao@example.com", "nobody@example.com"} {
+		status, body := env.post(t, "/auth/password-reset", `{"email":"`+address+`"}`)
+		if status != http.StatusAccepted {
+			t.Errorf("POST /auth/password-reset %s with mail down = %d %v, want 202", address, status, body)
+		}
+	}
 }

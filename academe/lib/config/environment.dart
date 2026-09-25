@@ -22,6 +22,11 @@ abstract final class Environment {
     'REVENUECAT_APPLE_API_KEY',
   );
 
+  static const revenueCatEntitlement = String.fromEnvironment(
+    'REVENUECAT_ENTITLEMENT',
+    defaultValue: 'academe_pro',
+  );
+
   static String get revenueCatApiKey => switch (defaultTargetPlatform) {
     TargetPlatform.android when !kIsWeb => revenueCatGoogleApiKey,
     TargetPlatform.iOS when !kIsWeb => revenueCatAppleApiKey,

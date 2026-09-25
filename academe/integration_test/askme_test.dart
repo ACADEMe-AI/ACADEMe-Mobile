@@ -14,11 +14,11 @@ void main() {
     await tester.shot('askme-empty');
     await tester.fill(
       'Ask anything…',
-      'Why is the sky blue? Answer in two lines.',
+      'What is photosynthesis? Answer in two lines.',
     );
     await tester.tapIcon(Icons.arrow_upward_rounded);
     await tester.waitFor(
-      find.text('Why is the sky blue? Answer in two lines.'),
+      find.text('What is photosynthesis? Answer in two lines.'),
     );
     await tester.shot('asked');
     await tester.waitFor(
@@ -27,7 +27,7 @@ void main() {
     );
     expect(
       find.textContaining(
-        RegExp('scatter|Rayleigh|blue', caseSensitive: false),
+        RegExp('sunlight|chlorophyll|glucose|food', caseSensitive: false),
       ),
       findsWidgets,
     );

@@ -114,6 +114,7 @@ func TestSessionLifecycle(t *testing.T) {
 	}
 	wantAccount := map[string]any{
 		"id": "account-1", "firstName": "Maya", "lastName": "Rao", "email": "maya.rao@example.com",
+		"hasPassword": true,
 	}
 	if diff := cmp.Diff(wantAccount, body["account"]); diff != "" {
 		t.Errorf("sign-up account mismatch (-want +got):\n%s", diff)
@@ -180,7 +181,10 @@ func TestGoogleSignIn(t *testing.T) {
 	if status != http.StatusOK || body["created"] != true {
 		t.Fatalf("first google sign-in = %d %v, want 200 created", status, body)
 	}
-	wantAccount := map[string]any{"id": "account-1", "firstName": "Ada", "lastName": "Lovelace", "email": "ada@gmail.com"}
+	wantAccount := map[string]any{
+		"id": "account-1", "firstName": "Ada", "lastName": "Lovelace", "email": "ada@gmail.com",
+		"hasPassword": false, "googleEmail": "ada@gmail.com",
+	}
 	if diff := cmp.Diff(wantAccount, body["account"]); diff != "" {
 		t.Errorf("google account mismatch (-want +got):\n%s", diff)
 	}

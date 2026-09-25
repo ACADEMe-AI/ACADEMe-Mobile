@@ -93,12 +93,17 @@ class SettingsRow extends StatelessWidget {
                 ),
               ),
               if (value case final text?)
-                Padding(
-                  padding: const EdgeInsets.only(left: 8),
-                  child: Text(
-                    text,
-                    style: AppTextStyles.label.copyWith(
-                      color: context.palette.textMuted,
+                ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 200),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 8),
+                    child: Text(
+                      text,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: AppTextStyles.label.copyWith(
+                        color: context.palette.textMuted,
+                      ),
                     ),
                   ),
                 ),

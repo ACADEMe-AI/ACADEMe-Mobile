@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"errors"
 	"fmt"
 	"log/slog"
@@ -68,13 +69,15 @@ func run(ctx context.Context, logger *slog.Logger) error {
 	} else {
 		logger.Warn("google sign-in disabled", "reason", "ACADEME_GOOGLE_CLIENT_IDS is not set")
 	}
-	var mailer auth.ResetMailer = email.Log{Logger: logger, ShowCode: cfg.EmailDev}
+	var mailer auth.Mailer = email.Log{Logger: logger, ShowCode: cfg.EmailDev}
 	if cfg.ResendAPIKey != "" {
 		mailer = email.NewResend(cfg.ResendAPIKey, cfg.EmailFrom, &http.Client{Timeout: 10 * time.Second})
 	} else {
 		logger.Warn("reset emails are only logged", "reason", "ACADEME_RESEND_API_KEY is not set")
 	}
 	authService := auth.NewService(auth.NewPostgresStore(pool), cfg.TokenKey, google, mailer)
+	authService.SetLogger(logger)
+	defer authService.Wait()
 	auth.RegisterRoutes(mux, logger, authService)
 	profiles := profile.NewService(profile.NewPostgresStore(pool))
 	profile.RegisterRoutes(mux, logger, profiles, authService.RequireAccount)
@@ -83,6 +86,7 @@ func run(ctx context.Context, logger *slog.Logger) error {
 	var model scan.Model
 	if cfg.SarvamAPIKey != "" {
 		client := sarvam.New(cfg.SarvamAPIKey, cfg.SarvamModel, &http.Client{Timeout: 60 * time.Second})
+		client.Reasoning = json.RawMessage(`null`)
 		tutor, reader, model = chat.NewSarvam(client), client, client
 	} else {
 		logger.Warn("askme and scan disabled", "reason", "ACADEME_SARVAM_API_KEY is not set")
@@ -95,6 +99,8 @@ func run(ctx context.Context, logger *slog.Logger) error {
 		logger.Warn("purchase sync disabled", "reason", "ACADEME_REVENUECAT_SECRET_KEY is not set")
 	}
 	plans := billing.NewService(billing.NewPostgresStore(pool), cfg.FreeLimits, revenueCat)
+	plans.SetTesters(cfg.BillingTesters)
+	plans.SetEntitlement(cfg.RevenueCatEntitlement)
 	billing.RegisterRoutes(mux, logger, plans, authService.RequireAccount, cfg.RevenueCatWebhookAuth)
 	chats := chat.NewService(chat.NewPostgresStore(pool), tutor, profiles, authService)
 	chats.SetLimiter(plans)
@@ -115,7 +121,10 @@ func run(ctx context.Context, logger *slog.Logger) error {
 	scans.SetLimiter(plans)
 	scan.RegisterRoutes(mux, logger, scans, authService.RequireAccount)
 	notices, _ := mailer.(site.Mailer)
-	if err := site.RegisterRoutes(mux, logger, site.NewPostgresStore(pool), notices); err != nil {
+	if err := site.RegisterRoutes(mux, logger, site.Options{
+		Store: site.NewPostgresStore(pool), Mailer: notices, Resets: authService,
+		FormKey: cfg.TokenKey, AndroidCerts: cfg.AndroidCerts,
+	}); err != nil {
 		return fmt.Errorf("load site: %w", err)
 	}
 

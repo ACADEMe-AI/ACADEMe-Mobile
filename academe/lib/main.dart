@@ -34,13 +34,14 @@ import 'data/services/scan_api_service.dart';
 import 'data/services/session_store.dart';
 import 'data/services/study_api_service.dart';
 import 'domain/models/account.dart';
+import 'routing/deep_links.dart';
 import 'routing/router.dart';
 import 'ui/core/themes/app_theme.dart';
 import 'ui/scan/scan_factory.dart';
 import 'utils/result.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized().addObserver(DeepLinkFilter());
   await SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
   final api = ApiClient(baseUrl: Environment.apiBaseUrl);
   final authRepository = AuthRepositoryRemote(

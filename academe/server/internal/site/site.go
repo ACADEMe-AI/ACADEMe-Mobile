@@ -18,6 +18,9 @@ import (
 //go:embed pages/*.html
 var pages embed.FS
 
+//go:embed email
+var emailAssets embed.FS
+
 const maxEmailLength = 254
 
 type Store interface {
@@ -25,24 +28,40 @@ type Store interface {
 }
 
 type Mailer interface {
-	SendNotice(ctx context.Context, to, subject, text string) error
+	SendDeletionNotice(ctx context.Context, to string) error
+}
+
+type Options struct {
+	Store        Store
+	Mailer       Mailer
+	Resets       Resetter
+	FormKey      []byte
+	AndroidCerts []string
 }
 
 type view struct {
-	Sent    bool
-	Invalid bool
-	Email   string
+	Sent      bool
+	Invalid   bool
+	Email     string
+	Link      string
+	FormToken string
+	Problem   string
+	Broken    bool
+	Expired   bool
+	Done      bool
 }
 
 type site struct {
-	logger *slog.Logger
-	store  Store
-	mailer Mailer
-	pages  map[string]*template.Template
+	logger  *slog.Logger
+	store   Store
+	mailer  Mailer
+	resets  Resetter
+	formKey []byte
+	pages   map[string]*template.Template
 }
 
-func RegisterRoutes(mux *http.ServeMux, logger *slog.Logger, store Store, mailer Mailer) error {
-	s := &site{logger: logger, store: store, mailer: mailer, pages: map[string]*template.Template{}}
+func RegisterRoutes(mux *http.ServeMux, logger *slog.Logger, o Options) error {
+	s := &site{logger: logger, store: o.Store, mailer: o.Mailer, resets: o.Resets, formKey: o.FormKey, pages: map[string]*template.Template{}}
 	layout, err := template.ParseFS(pages, "pages/layout.html")
 	if err != nil {
 		return fmt.Errorf("parse layout: %w", err)
@@ -53,6 +72,8 @@ func RegisterRoutes(mux *http.ServeMux, logger *slog.Logger, store Store, mailer
 		"/terms":          "terms.html",
 		"/delete-account": "delete.html",
 		"/support":        "support.html",
+		"/open":           "open.html",
+		"/reset-password": "reset.html",
 	}
 	for path, file := range routes {
 		t, err := layout.Clone()
@@ -63,11 +84,22 @@ func RegisterRoutes(mux *http.ServeMux, logger *slog.Logger, store Store, mailer
 			return fmt.Errorf("parse %s: %w", file, err)
 		}
 		s.pages[file] = t
+		if file == "reset.html" {
+			continue
+		}
 		mux.HandleFunc("GET "+path, func(w http.ResponseWriter, r *http.Request) {
 			s.render(w, r, http.StatusOK, file, view{})
 		})
 	}
 	mux.HandleFunc("POST /delete-account", s.requestDeletion)
+	mux.HandleFunc("GET /reset-password", s.resetForm)
+	mux.HandleFunc("POST /reset-password", s.resetPassword)
+	mux.HandleFunc("GET /email/{name}", serveEmailAsset)
+	links, err := assetLinks(o.AndroidCerts)
+	if err != nil {
+		return err
+	}
+	mux.HandleFunc("GET /.well-known/assetlinks.json", links)
 	return nil
 }
 
@@ -89,7 +121,7 @@ func (s *site) requestDeletion(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if fresh && s.mailer != nil {
-		if err := s.mailer.SendNotice(r.Context(), address, confirmSubject, confirmText); err != nil {
+		if err := s.mailer.SendDeletionNotice(r.Context(), address); err != nil {
 			s.logger.ErrorContext(r.Context(), "deletion confirmation not sent", "requestID", httpx.RequestID(r.Context()), "error", err)
 		}
 	}
@@ -105,7 +137,7 @@ func (s *site) render(w http.ResponseWriter, r *http.Request, status int, file s
 	}
 	h := w.Header()
 	h.Set("Content-Type", "text/html; charset=utf-8")
-	h.Set("Content-Security-Policy", "default-src 'none'; style-src 'unsafe-inline'; img-src 'self' data:; form-action 'self'; frame-ancestors 'none'; base-uri 'none'")
+	h.Set("Content-Security-Policy", "default-src 'none'; style-src 'unsafe-inline'; img-src 'self' data:; font-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'")
 	h.Set("X-Content-Type-Options", "nosniff")
 	h.Set("Referrer-Policy", "no-referrer")
 	w.WriteHeader(status)
@@ -136,18 +168,3 @@ func clientIP(r *http.Request) string {
 	}
 	return ip.String()
 }
-
-const confirmSubject = "Your ACADEMe account deletion request"
-
-const confirmText = `We received a request to delete the ACADEMe account that uses this email address.
-
-If you can open the app, the quickest way is: Me > Account > Delete my account. Your account is closed straight away and everything is erased after 30 days. Logging in again within those 30 days cancels the deletion.
-
-If you can't open the app, reply to this email from this address to confirm. We will delete the account and its data and write back within 30 days.
-
-If you didn't ask for this, ignore this email. Nothing will be deleted.
-
-ACADEMe support
-support@academe.cc
-https://academe.cc/delete-account
-`

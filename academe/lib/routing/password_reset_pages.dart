@@ -36,9 +36,14 @@ class ResetCodePage extends StatelessWidget {
 }
 
 class NewPasswordPage extends StatelessWidget {
-  const NewPasswordPage({super.key, required this.viewModel});
+  const NewPasswordPage({
+    super.key,
+    required this.viewModel,
+    this.isFromLink = false,
+  });
 
   final NewPasswordViewModel viewModel;
+  final bool isFromLink;
 
   @override
   Widget build(BuildContext context) => NewPasswordScreen(
@@ -46,6 +51,9 @@ class NewPasswordPage extends StatelessWidget {
     onDone: () => Navigator.of(
       context,
     ).pushNamedAndRemoveUntil(Routes.home, (_) => false, arguments: false),
-    onStartOver: () => Navigator.of(context).pop(),
+    onStartOver: isFromLink
+        ? () =>
+              Navigator.of(context).pushReplacementNamed(Routes.forgotPassword)
+        : () => Navigator.of(context).pop(),
   );
 }

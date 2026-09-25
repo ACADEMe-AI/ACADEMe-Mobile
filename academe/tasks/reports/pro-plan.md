@@ -7,7 +7,7 @@ Purchases run through **RevenueCat** (needed for Shipaton 2026). Google Play is 
 - One Play subscription, `academe_pro`, with two base plans:
   - `monthly`: ₹200/month, with an intro offer `first-month` at ₹100 for the first month.
   - `annual`: ₹1,999/year. The paywall headline is "₹1,999/year". "About ₹167/month · save 17%" appears only as smaller secondary text, as Play's subscriptions policy requires.
-- RevenueCat entitlement `pro`. Offering `default` with packages `$rc_monthly` and `$rc_annual`.
+- RevenueCat entitlement `academe_pro` (server `ACADEME_REVENUECAT_ENTITLEMENT`, app `--dart-define=REVENUECAT_ENTITLEMENT`, both default `academe_pro`). Offering `default` with packages `$rc_monthly` and `$rc_annual`; the paywall shows only those two even if the offering also has lifetime.
 - **Free** includes all lessons, revision, folders and reminders, plus ASKMe 10 messages a day, Scan 3 reads a day and Check my answer once a day. "Just keep the notes" is free; lessons made from notes are Pro only.
 - **Pro** is unlimited, and future Pro features (mock exams, weekly parent report) come with it.
 - The day resets at midnight in India. The server uses a fixed UTC+05:30 zone (India has no DST), so it doesn't need tzdata.
@@ -22,12 +22,13 @@ Purchases run through **RevenueCat** (needed for Shipaton 2026). Google Play is 
 
 **Routes** (all in `openapi.yaml`)
 - `GET /me/plan` returns plan, expiresAt, autoRenew, productId, basePlanId, platform, state, limits, usedToday and resetsAt. In `limits`, `null` means unlimited and `0` means Pro only.
-- `POST /billing/sync` (signed in): calls RevenueCat `GET /v1/subscribers/{accountId}` with the secret key, stores the `pro` entitlement and returns the plan. Without `ACADEME_REVENUECAT_SECRET_KEY` it returns 503 `billing_unavailable`.
+- `POST /billing/sync` (signed in, 10 a minute per account, then 429 `too_many_requests`): reads the customer from the RevenueCat **REST API v2** with the secret key (project found from the key, entitlement and product catalogue cached 10 minutes; `GET /customers/{id}`, then `/subscriptions` or `/purchases` for the store details), stores the entitlement and returns the plan. Without `ACADEME_REVENUECAT_SECRET_KEY` it returns 503 `billing_unavailable`. The key must be a v2 secret key with customer read/write permissions (v1 keys are refused by v2 and v2 keys by v1).
 - `POST /billing/revenuecat/webhook`: the `Authorization` header must equal `ACADEME_REVENUECAT_WEBHOOK_AUTH` (constant-time compare). If that variable is unset, the route returns 503.
-  - Handled events: INITIAL_PURCHASE, RENEWAL, PRODUCT_CHANGE, UNCANCELLATION (active), CANCELLATION (canceled; Pro stays until it expires), BILLING_ISSUE (billing_issue; Pro stays through the grace period), SUBSCRIPTION_PAUSED (paused; Pro stays until the period ends) and EXPIRATION (expired).
-  - TRANSFER removes Pro from the `transferred_from` accounts and re-syncs the `transferred_to` accounts from RevenueCat.
+  - Handled events: INITIAL_PURCHASE, RENEWAL, PRODUCT_CHANGE, UNCANCELLATION, SUBSCRIPTION_EXTENDED, NON_RENEWING_PURCHASE (promotional grants and lifetime), TEMPORARY_ENTITLEMENT_GRANT (active), CANCELLATION (canceled; Pro stays until it expires), BILLING_ISSUE (billing_issue; Pro stays until `grace_period_expiration_at_ms`), SUBSCRIPTION_PAUSED (paused; Pro stays until the period ends) and EXPIRATION (re-read from RevenueCat when the secret key is set, so a lifetime grant survives a subscription expiring; otherwise expired).
+  - SANDBOX events and sandbox purchases found by sync count only for accounts listed in `ACADEME_BILLING_TESTERS` (comma-separated account UUIDs, or `*` for everyone on a staging server). Default: none, so a TestFlight or license-tester purchase never gives Pro in production.
+  - TRANSFER marks the `transferred_from` accounts expired as of the event time (so a late older event can't bring Pro back) and re-syncs the `transferred_to` accounts from RevenueCat.
   - Idempotency: a repeated event id is ignored, and so is an event older than the stored one (compared by `event_timestamp_ms`).
-  - Anonymous or unknown `app_user_id`s, events without the `pro` entitlement, and TEST events get a 200 and are ignored.
+  - Anonymous or unknown `app_user_id`s, events without the `academe_pro` entitlement, and TEST events get a 200 and are ignored.
 
 **Limiter**
 - `chat.Send` and `scan.Read`/`Check`/`SaveNotes(makeLesson)` call a small `Limiter` interface through `SetLimiter`.
@@ -36,7 +37,7 @@ Purchases run through **RevenueCat** (needed for Shipaton 2026). Google Play is 
 - The notes aren't saved when the lesson is refused, so the app can offer "Just keep the notes".
 
 **Account deletion**
-- `auth.PurgeDeleted` now gets the purged account ids back from the store. It calls RevenueCat `DELETE /v1/subscribers/{id}` through `auth.SubscriberDeleter`, which is wired only when the secret key is set.
+- `auth.PurgeDeleted` now gets the purged account ids back from the store. It calls RevenueCat `DELETE /v2/projects/{project}/customers/{id}` through `auth.SubscriberDeleter`, which is wired only when the secret key is set.
 - A failed delete is returned as an error with the account id, and `PurgeEvery` logs it. The account row is already gone at that point, so retry by hand.
 
 **Tests** (all pass)
@@ -63,7 +64,7 @@ Purchases run through **RevenueCat** (needed for Shipaton 2026). Google Play is 
 - `PurchasesService` (`RevenueCatPurchasesService` plus a fake).
 - `BillingApiService`.
 - `BillingRepository`/`BillingRepositoryRemote`:
-  - Pro means `/me/plan` says Pro, or `CustomerInfo` has an active `pro`. The CustomerInfo listener switches the UI at once.
+  - Pro means `/me/plan` says Pro, or `CustomerInfo` has an active `academe_pro`. The CustomerInfo listener switches the UI at once.
   - A purchase or restore then calls `/billing/sync`.
   - Manage uses `customerInfo.managementURL`, falling back to `https://play.google.com/store/account/subscriptions?sku=academe_pro&package=com.academe.flutter`.
 
@@ -127,23 +128,23 @@ Purchases run through **RevenueCat** (needed for Shipaton 2026). Google Play is 
 
 1. Create a project called "ACADEMe". Add a **Play Store app** with package `com.academe.flutter` and upload the service-account JSON from step 5.
 2. **Products**: import `academe_pro:monthly` and `academe_pro:annual`.
-3. **Entitlement** `pro`: attach both products.
+3. **Entitlement** `academe_pro`: attach both products.
 4. **Offering** `default` (mark it current):
    - Package `$rc_monthly` gets `academe_pro:monthly`.
    - Package `$rc_annual` gets `academe_pro:annual`.
 5. **Webhook** (Integrations → Webhooks): URL `https://api.academe.cc/billing/revenuecat/webhook`. Set the Authorization header to a long random value, for example `Bearer <openssl rand -hex 32>`, and put the identical string in the server's `ACADEME_REVENUECAT_WEBHOOK_AUTH`. Send all events for production and sandbox.
 6. **API keys**:
    - Public Android key `goog_…` goes into the app build as `--dart-define=REVENUECAT_GOOGLE_API_KEY=goog_…`. It's safe to ship.
-   - The secret key `sk_…` (a v1 secret API key) goes into the server env as `ACADEME_REVENUECAT_SECRET_KEY` and nowhere else. It's used for `/billing/sync` and for deleting customers when an account is purged.
+   - The secret key `sk_…` (a **v2** secret API key) goes into the server env as `ACADEME_REVENUECAT_SECRET_KEY` and nowhere else. It's used for `/billing/sync` and for deleting customers when an account is purged.
    - Public iOS key `appl_…` goes in `REVENUECAT_APPLE_API_KEY` later.
 7. **Shipaton judges**, either of:
-   - (a) RevenueCat → Customers → find the judge's ACADEMe account UUID (the app user id; they sign up first) → **Grant promotional entitlement** `pro` for 1 month or lifetime. RevenueCat sends a webhook, and the judge can also tap Restore purchases (or the app syncs), and Pro turns on. This is the simplest option and involves no payment.
+   - (a) RevenueCat → Customers → find the judge's ACADEMe account UUID (the app user id; they sign up first) → **Grant promotional entitlement** `academe_pro` for 1 month or lifetime. RevenueCat sends a NON_RENEWING_PURCHASE webhook (store PROMOTIONAL, production), and the judge can also tap Restore purchases (or the app syncs), and Pro turns on. This is the simplest option and involves no payment.
    - (b) Play Console → Promo codes → create a subscription promo code for `academe_pro` (a free trial period). The judge redeems it in the paywall's Play sheet.
    - Or add judges as license testers, so they can buy with test cards on the internal track.
 
 ## Known limits
 
-- Anyone can POST to `/billing/sync` for their own account; it only reads RevenueCat. There's no rate limit yet.
+- `/billing/sync` is limited to 10 a minute per account (in memory, per server instance).
 - The count check is atomic per feature. Concurrent requests can't go over the limit; a failed call is refunded.
 - An account with a RevenueCat entitlement but no server row gets one on the next webhook or sync.
 - If RevenueCat is down during a purge, that customer must be deleted by hand; the error log names the account id.
@@ -152,7 +153,7 @@ Purchases run through **RevenueCat** (needed for Shipaton 2026). Google Play is 
 ## What's left for iOS
 
 - Create an App Store Connect subscription group with `academe_pro` monthly and annual (the intro offer is "Pay up front"/"Pay as you go" at ₹100 for 1 month).
-- Add the App Store app in RevenueCat with the in-app purchase key (the StoreKit 2 `.p8`), attach the products to `pro` and `default`, and build with `REVENUECAT_APPLE_API_KEY`.
+- Add the App Store app in RevenueCat with the in-app purchase key (the StoreKit 2 `.p8`), attach the products to `academe_pro` and `default`, and build with `REVENUECAT_APPLE_API_KEY`.
 - The app already picks the Apple key on iOS.
 - Copy: the paywall's "Google Play" text and the Manage fallback URL become App Store ones (`https://apps.apple.com/account/subscriptions`); `managementURL` from RevenueCat already covers Manage.
 - Enable the In-App Purchase capability in Xcode.
@@ -162,5 +163,9 @@ Purchases run through **RevenueCat** (needed for Shipaton 2026). Google Play is 
 
 - A Pro badge in ASKMe and Scan, and "3 of 10 left today" hints from `usedToday`.
 - A Pro price A/B test via RevenueCat Experiments.
-- Mock exams and the weekly parent report behind `pro`.
+- Mock exams and the weekly parent report behind `academe_pro`.
 - A retry queue for failed RevenueCat customer deletions.
+
+## Tester follow-up
+
+Independent verification, fixes and the RevenueCat v2 move are in `tasks/reports/pro-plan-test.md`.

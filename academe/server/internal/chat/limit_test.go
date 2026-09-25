@@ -43,3 +43,27 @@ func TestSendIsLimited(t *testing.T) {
 		t.Errorf("tutor asked %d times, want 1", len(tutor.briefs))
 	}
 }
+
+func TestRetryIsLimited(t *testing.T) {
+	store := newFakeStore()
+	limiter := &fakeLimiter{left: 1}
+	s := NewService(store, &fakeTutor{}, fakeProfiles{}, fakeAccounts{})
+	s.SetLimiter(limiter)
+	ex, err := s.Send(t.Context(), "riya", Send{Mode: Explain, Text: "Why?"})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if _, err := s.Retry(t.Context(), "riya", ex.Thread.ID, Explain); err == nil {
+		t.Fatal("Retry() over the limit = nil, want a LimitError")
+	}
+	if messages, _ := store.Messages(t.Context(), ex.Thread.ID); len(messages) != 2 || messages[1].ID != ex.Reply.ID {
+		t.Errorf("after a refused Retry() messages = %+v, want the answer kept", messages)
+	}
+	limiter.left = 1
+	if _, err := s.Retry(t.Context(), "riya", ex.Thread.ID, Explain); err != nil || limiter.left != 0 {
+		t.Fatalf("Retry() = %v, left %d; want nil and one use taken", err, limiter.left)
+	}
+	if _, err := s.Retry(t.Context(), "riya", "missing", Explain); !errors.Is(err, ErrNotFound) || limiter.refunds != 0 {
+		t.Errorf("Retry(missing thread) = %v, refunds %d; want ErrNotFound before any use", err, limiter.refunds)
+	}
+}

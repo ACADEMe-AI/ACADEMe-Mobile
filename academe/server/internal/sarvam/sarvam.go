@@ -39,7 +39,6 @@ type Client struct {
 	Deadline  time.Duration
 	MaxTokens int
 	Reasoning json.RawMessage
-	JSON      bool
 }
 
 func New(key, model string, client *http.Client) *Client {
@@ -57,11 +56,6 @@ type chatRequest struct {
 	Temperature float64         `json:"temperature"`
 	MaxTokens   int             `json:"max_tokens,omitempty"`
 	Reasoning   json.RawMessage `json:"reasoning_effort,omitempty"`
-	Format      *responseFormat `json:"response_format,omitempty"`
-}
-
-type responseFormat struct {
-	Type string `json:"type"`
 }
 
 type chatResponse struct {
@@ -88,11 +82,7 @@ func (c *Client) do(req *http.Request, out any) error {
 }
 
 func (c *Client) Chat(ctx context.Context, messages []Message, temperature float64) (string, error) {
-	payload := chatRequest{Model: c.Model, Messages: messages, Temperature: temperature, MaxTokens: c.MaxTokens, Reasoning: c.Reasoning}
-	if c.JSON {
-		payload.Format = &responseFormat{Type: "json_object"}
-	}
-	body, err := json.Marshal(payload)
+	body, err := json.Marshal(chatRequest{Model: c.Model, Messages: messages, Temperature: temperature, MaxTokens: c.MaxTokens, Reasoning: c.Reasoning})
 	if err != nil {
 		return "", fmt.Errorf("encode sarvam request: %w", err)
 	}

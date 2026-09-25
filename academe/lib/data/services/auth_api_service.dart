@@ -59,6 +59,13 @@ class AuthApiService {
     parse: (json) => json['resetToken']! as String,
   );
 
+  Future<Result<String>> redeemResetLink(String linkToken) => _api.send(
+    'POST',
+    '/auth/password-reset/link',
+    body: {'linkToken': linkToken},
+    parse: (json) => json['resetToken']! as String,
+  );
+
   Future<Result<ApiSession>> completePasswordReset({
     required String resetToken,
     required String password,
@@ -95,6 +102,34 @@ class AuthApiService {
     '/me',
     accessToken: accessToken,
     body: {'firstName': firstName, 'lastName': lastName},
+    parse: accountFromJson,
+  );
+
+  Future<Result<ApiSession>> changePassword(
+    String accessToken, {
+    String? currentPassword,
+    required String newPassword,
+  }) => _api.send(
+    'POST',
+    '/me/password',
+    accessToken: accessToken,
+    body: {'currentPassword': ?currentPassword, 'newPassword': newPassword},
+    parse: ApiSession.fromJson,
+  );
+
+  Future<Result<Account>> linkGoogle(String accessToken, String idToken) =>
+      _api.send(
+        'POST',
+        '/me/google',
+        accessToken: accessToken,
+        body: {'idToken': idToken},
+        parse: accountFromJson,
+      );
+
+  Future<Result<Account>> unlinkGoogle(String accessToken) => _api.send(
+    'DELETE',
+    '/me/google',
+    accessToken: accessToken,
     parse: accountFromJson,
   );
 

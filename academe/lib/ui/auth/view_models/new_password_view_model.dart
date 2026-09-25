@@ -11,13 +11,16 @@ import 'sign_up_view_model.dart';
 class NewPasswordViewModel extends ChangeNotifier {
   NewPasswordViewModel({
     required AuthRepository authRepository,
-    required this.resetToken,
-  }) : _authRepository = authRepository {
+    String? resetToken,
+    this.linkToken,
+  }) : _authRepository = authRepository,
+       _resetToken = resetToken {
     save = Command0(_save)..addListener(notifyListeners);
   }
 
   final AuthRepository _authRepository;
-  final String resetToken;
+  final String? linkToken;
+  String? _resetToken;
 
   late final Command0<Account> save;
 
@@ -26,7 +29,9 @@ class NewPasswordViewModel extends ChangeNotifier {
   bool get isPasswordLongEnough =>
       _password.length >= SignUpViewModel.minPasswordLength;
 
-  bool get hasExpired => failure == AuthFailure.resetExpired;
+  bool get hasExpired =>
+      failure == AuthFailure.resetExpired ||
+      failure == AuthFailure.tooManyAttempts;
 
   bool get canSave =>
       isPasswordLongEnough &&
@@ -46,10 +51,21 @@ class NewPasswordViewModel extends ChangeNotifier {
     }
   }
 
-  Future<Result<Account>> _save() => _authRepository.completePasswordReset(
-    resetToken: resetToken,
-    password: _password,
-  );
+  Future<Result<Account>> _save() async {
+    var resetToken = _resetToken;
+    if (resetToken == null) {
+      switch (await _authRepository.redeemResetLink(linkToken ?? '')) {
+        case Ok(:final value):
+          resetToken = _resetToken = value;
+        case Error(:final error):
+          return Result.error(error);
+      }
+    }
+    return _authRepository.completePasswordReset(
+      resetToken: resetToken,
+      password: _password,
+    );
+  }
 
   @override
   void dispose() {

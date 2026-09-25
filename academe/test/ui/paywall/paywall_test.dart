@@ -166,6 +166,14 @@ void main() {
       find.text('No connection. Check your internet and try again.'),
       findsOneWidget,
     );
+
+    billing.failure = BillingFailure.alreadyOwned;
+    await tester.tap(find.text('Continue'));
+    await tester.pumpAndSettle();
+    expect(
+      find.text('This Google account already has Pro. Tap Restore purchases.'),
+      findsOneWidget,
+    );
   });
 
   testWidgets('the Pro card opens the paywall, then Manage', (tester) async {

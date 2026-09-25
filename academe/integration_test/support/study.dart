@@ -16,12 +16,12 @@ class DeckRun {
 
 Future<void> openFirstChapter(WidgetTester tester) async {
   await tester.tapText('Study');
-  await tester.waitFor(
-    find.byType(ChapterRow),
-    timeout: const Duration(seconds: 30),
+  final playable = find.byWidgetPredicate(
+    (w) => w is ChapterRow && !w.chapter.isComingSoon,
   );
+  await tester.waitFor(playable, timeout: const Duration(seconds: 30));
   await tester.shot('courses');
-  await tester.tapOn(find.byType(ChapterRow).first);
+  await tester.tapOn(playable.first);
   await tester.waitFor(find.text('Chapter test'));
 }
 

@@ -127,8 +127,8 @@ paths:
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
   /auth/password-reset:
     post:
-      summary: Email a 6-digit reset code. Google-only accounts get an email saying to use Continue with Google. Same answer whether or not the email has an account.
-      description: At most 3 requests per email and 10 per IP address an hour. The code lasts 15 minutes; asking again replaces it.
+      summary: Email a 6-digit reset code and a Reset password link. Google-only accounts get an email saying to use Continue with Google. Same answer whether or not the email has an account.
+      description: At most 3 requests per email and 10 per IP address an hour. The code and the link last 15 minutes and share the code's 5 tries; asking again replaces both. The link is https://academe.cc/reset-password?c=<linkToken>, where linkToken is 128 random bits in unpadded base64url (stored hashed, single use).
       requestBody:
         required: true
         content:
@@ -216,6 +216,38 @@ paths:
         "422":
           description: "`invalid_password`"
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+  /auth/password-reset/link:
+    post:
+      summary: Trade the link token from a reset email (the c parameter of https://academe.cc/reset-password or academe://reset) for a single-use reset token, then call /auth/password-reset/complete.
+      description: Single use; the emailed code stops working too. Counts as one of the code's 5 tries and against the 30 tries per IP address an hour.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [linkToken]
+              additionalProperties: false
+              properties:
+                linkToken: { type: string, maxLength: 64 }
+      responses:
+        "200":
+          description: A reset token for /auth/password-reset/complete.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [resetToken, expiresIn]
+                properties:
+                  resetToken: { type: string }
+                  expiresIn: { type: integer, description: Token lifetime in seconds. }
+        "400": { $ref: "#/components/responses/Error" }
+        "410":
+          description: "`reset_expired` — the link is unknown, expired, used, or replaced by a newer email."
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "429":
+          description: "`too_many_attempts` (the code's tries are used up) or `too_many_requests`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
   /me:
     patch:
       summary: Change the logged-in student's name.
@@ -283,6 +315,85 @@ paths:
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
         "422":
           description: "`invalid_reason`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+  /me/password:
+    post:
+      summary: Change the password, or set the first one on a Google-only account (then email log-in works too). Every other session and access token is revoked; the response carries fresh tokens for this device.
+      security: [{ bearer: [] }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [newPassword]
+              additionalProperties: false
+              properties:
+                currentPassword: { type: string, description: Required when the account has a password; ignored when it has none. }
+                newPassword: { type: string, minLength: 8, maxLength: 128 }
+      responses:
+        "200":
+          description: Changed. Replace the stored tokens with these.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Session" }
+        "400": { $ref: "#/components/responses/Error" }
+        "401":
+          description: "`invalid_token`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "403":
+          description: "`wrong_password` — the current password is wrong."
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "422":
+          description: "`invalid_password` — the new password breaks the sign-up rules."
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "429":
+          description: "`too_many_requests` — five current-password checks an hour per account."
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+  /me/google:
+    post:
+      summary: Link a Google account to the logged-in account. The password and sessions are kept.
+      security: [{ bearer: [] }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [idToken]
+              additionalProperties: false
+              properties:
+                idToken: { type: string, description: A Google ID token, as for /auth/google. }
+      responses:
+        "200":
+          description: Linked.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Account" }
+        "400": { $ref: "#/components/responses/Error" }
+        "401":
+          description: "`invalid_token` or `invalid_google_token`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "409":
+          description: "`google_taken` — that Google account is linked to another account."
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "503":
+          description: "`google_unavailable` — the server has no Google client IDs."
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+    delete:
+      summary: Unlink Google. Only allowed when the account has a password.
+      security: [{ bearer: [] }]
+      responses:
+        "200":
+          description: Unlinked.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Account" }
+        "401":
+          description: "`invalid_token`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "409":
+          description: "`password_required` — set a password first."
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
   /me/profile:
     get:
@@ -432,7 +543,7 @@ paths:
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
   /chat/threads/{id}/retry:
     post:
-      summary: Replace Pebby's last answer in a chat with a new one.
+      summary: Replace Pebby's last answer in a chat with a new one. Counts as one ASKMe message against the free daily limit.
       security: [{ bearer: [] }]
       parameters:
         - { name: id, in: path, required: true, schema: { type: string, format: uuid } }
@@ -455,6 +566,9 @@ paths:
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
         "409":
           description: "`nothing_to_retry`: the last message isn't Pebby's."
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "402":
+          description: "`limit_reached` (feature askme): out of free messages today; the last answer is kept — `error.details` has feature, limit and resetsAt."
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
         "503":
           description: "`askme_unavailable`"
@@ -1110,7 +1224,7 @@ paths:
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
   /billing/sync:
     post:
-      summary: Ask RevenueCat for the student's "pro" entitlement now (app_user_id is the account ID) and store it. Call after a purchase or a restore.
+      summary: Ask RevenueCat (REST API v2) for the student's Pro entitlement (ACADEME_REVENUECAT_ENTITLEMENT, default academe_pro; app_user_id is the account ID) and store it. Call after a purchase or a restore. Sandbox purchases count only for accounts in ACADEME_BILLING_TESTERS. At most 10 calls a minute per account.
       security: [{ bearer: [] }]
       responses:
         "200":
@@ -1118,6 +1232,9 @@ paths:
           content: { application/json: { schema: { $ref: "#/components/schemas/Plan" } } }
         "401":
           description: "`invalid_token`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "429":
+          description: "`too_many_requests`: more than 10 syncs in a minute."
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
         "502":
           description: "`billing_failed`: RevenueCat didn't answer."
@@ -1127,7 +1244,7 @@ paths:
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
   /billing/revenuecat/webhook:
     post:
-      summary: RevenueCat webhook. The Authorization header must equal ACADEME_REVENUECAT_WEBHOOK_AUTH. Handles INITIAL_PURCHASE, RENEWAL, PRODUCT_CHANGE, CANCELLATION, UNCANCELLATION, BILLING_ISSUE, SUBSCRIPTION_PAUSED, EXPIRATION and TRANSFER for the "pro" entitlement; other events are acknowledged and ignored. Idempotent on event.id; an event older than the stored one is ignored.
+      summary: RevenueCat webhook. The Authorization header must equal ACADEME_REVENUECAT_WEBHOOK_AUTH. Handles INITIAL_PURCHASE, RENEWAL, PRODUCT_CHANGE, UNCANCELLATION, SUBSCRIPTION_EXTENDED, NON_RENEWING_PURCHASE (promotional grants), TEMPORARY_ENTITLEMENT_GRANT, CANCELLATION, BILLING_ISSUE (Pro kept to grace_period_expiration_at_ms), SUBSCRIPTION_PAUSED, EXPIRATION (re-read from RevenueCat when the secret key is set) and TRANSFER for the Pro entitlement (ACADEME_REVENUECAT_ENTITLEMENT, default academe_pro); other events are acknowledged and ignored. SANDBOX events count only for accounts in ACADEME_BILLING_TESTERS. Idempotent on event.id; an event older than the stored one is ignored.
       requestBody:
         required: true
         content:
@@ -1137,7 +1254,7 @@ paths:
               required: [event]
               properties:
                 api_version: { type: string }
-                event: { type: object, description: "RevenueCat event: id, type, app_user_id, product_id, entitlement_ids, expiration_at_ms, event_timestamp_ms, store, transferred_from, transferred_to" }
+                event: { type: object, description: "RevenueCat event: id, type, app_user_id, product_id, entitlement_ids, expiration_at_ms, grace_period_expiration_at_ms, event_timestamp_ms, environment, store, transferred_from, transferred_to" }
       responses:
         "200": { description: Handled or ignored. }
         "400":
@@ -1147,7 +1264,7 @@ paths:
           description: "`invalid_token`: wrong Authorization header."
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
         "502":
-          description: "`billing_failed`: a TRANSFER couldn't be synced; RevenueCat retries."
+          description: "`billing_failed`: a TRANSFER or EXPIRATION couldn't be re-read from RevenueCat; RevenueCat retries."
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
         "503":
           description: "`billing_unavailable`: no ACADEME_REVENUECAT_WEBHOOK_AUTH on the server."
@@ -1171,6 +1288,56 @@ paths:
         "422":
           description: The page again, saying the email address isn't valid.
           content: { text/html: { schema: { type: string } } }
+  /reset-password:
+    get:
+      summary: Web page behind the Reset password button in the reset email. Shows a new-password form and an Open in the app link (academe://reset?c=…). Does not use up the link.
+      description: Sets a `__Host-academe-reset` cookie (Secure, HttpOnly, SameSite=Strict, 1 hour) over HTTPS (TLS or `X-Forwarded-Proto: https`), or a plain `academe-reset` cookie (HttpOnly, SameSite=Strict) over local http, and puts a form token in the page, an HMAC of the cookie and the link token. Cache-Control no-store, Referrer-Policy no-referrer.
+      parameters:
+        - { name: c, in: query, required: true, schema: { type: string, maxLength: 64 }, description: The link token. }
+      responses:
+        "200": { description: The form., content: { text/html: { schema: { type: string } } } }
+        "400": { description: No or malformed link; asks to open the email link again., content: { text/html: { schema: { type: string } } } }
+    post:
+      summary: Set the new password from the web form. Same rules and effects as the app flow — every session ends and every earlier access token answers 401. The student is not logged in on the web.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required: [c, t, password, confirm]
+              properties:
+                c: { type: string, description: The link token. }
+                t: { type: string, description: The form token from the page. }
+                password: { type: string, minLength: 8, maxLength: 128 }
+                confirm: { type: string }
+      responses:
+        "200": { description: Password changed., content: { text/html: { schema: { type: string } } } }
+        "403": { description: Missing cookie or a form token that doesn't match this cookie and link., content: { text/html: { schema: { type: string } } } }
+        "410": { description: The link expired, was used, or its tries are used up., content: { text/html: { schema: { type: string } } } }
+        "422": { description: The passwords differ or aren't 8 to 128 characters; the link is not used up., content: { text/html: { schema: { type: string } } } }
+        "429": { description: Too many tries from this IP address., content: { text/html: { schema: { type: string } } } }
+  /open:
+    get:
+      summary: Page behind the Open ACADEMe button in emails. With verified Android App Links the app opens straight away; otherwise the page offers an intent:// link that opens the app or falls back to the Play Store.
+      responses:
+        "200": { description: The page., content: { text/html: { schema: { type: string } } } }
+  /email/{name}:
+    get:
+      summary: Images and fonts used by emails (logo.png, pebby-wave.png, pebby-shy.png, baloo2-800.ttf, archivo-700.ttf, wordmark-500.ttf, wordmark-600.ttf). Cached for a week.
+      parameters:
+        - { name: name, in: path, required: true, schema: { type: string } }
+      responses:
+        "200": { description: The file. }
+        "404": { description: No such file. }
+  /.well-known/assetlinks.json:
+    get:
+      summary: Android App Links statement for com.academe.flutter, built from ACADEME_ANDROID_CERT_SHA256 (comma-separated SHA-256 certificate fingerprints). 404 while it is unset.
+      responses:
+        "200":
+          description: The statement list.
+          content: { application/json: { schema: { type: array, items: { type: object } } } }
+        "404": { description: No certificate configured. }
 components:
   securitySchemes:
     bearer:
@@ -1223,7 +1390,7 @@ components:
         autoRenew: { type: boolean }
         productId: { type: string, nullable: true, description: e.g. academe_pro }
         basePlanId: { type: string, nullable: true, description: monthly or annual }
-        platform: { type: string, nullable: true, description: "RevenueCat store, lowercase: play_store, app_store, promotional" }
+        platform: { type: string, nullable: true, description: "RevenueCat store, lowercase: play_store, app_store, test_store, promotional" }
         state: { type: string, nullable: true, enum: [active, canceled, billing_issue, paused, null] }
         limits:
           type: object
@@ -1439,6 +1606,8 @@ components:
         firstName: { type: string }
         lastName: { type: string }
         email: { type: string }
+        hasPassword: { type: boolean, description: "False for a Google-only account: Account settings offers \"Set a password\" instead of \"Change password\", and Google can't be unlinked." }
+        googleEmail: { type: string, description: The linked Google account's email. Absent when Google isn't linked. }
     Tokens:
       type: object
       required: [accessToken, refreshToken, expiresIn]

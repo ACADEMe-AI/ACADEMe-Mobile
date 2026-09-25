@@ -1,6 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
+import '../../config/environment.dart';
 import '../../domain/models/pro.dart';
 import '../../utils/result.dart';
 
@@ -21,12 +22,15 @@ abstract interface class PurchasesService {
 }
 
 class RevenueCatPurchasesService implements PurchasesService {
-  RevenueCatPurchasesService({required String apiKey}) : _apiKey = apiKey;
+  RevenueCatPurchasesService({
+    required String apiKey,
+    this.entitlement = Environment.revenueCatEntitlement,
+  }) : _apiKey = apiKey;
 
-  static const entitlement = 'pro';
   static const offering = 'default';
 
   final String _apiKey;
+  final String entitlement;
   Future<void>? _configured;
   void Function(StoreCustomer customer)? _onChanged;
   final Map<ProPeriod, Package> _packages = {};
@@ -52,7 +56,7 @@ class RevenueCatPurchasesService implements PurchasesService {
       ).then((_) {
         if (_onChanged case final onChanged?) {
           Purchases.addCustomerInfoUpdateListener(
-            (info) => onChanged(_customer(info)),
+            (info) => onChanged(customerOf(info)),
           );
         }
       });
@@ -63,16 +67,33 @@ class RevenueCatPurchasesService implements PurchasesService {
         PurchasesErrorCode.purchaseNotAllowedError ||
         PurchasesErrorCode.insufficientPermissionsError =>
           BillingFailure.notAllowed,
+        PurchasesErrorCode.productAlreadyPurchasedError =>
+          BillingFailure.alreadyOwned,
         PurchasesErrorCode.storeProblemError ||
         PurchasesErrorCode.productNotAvailableForPurchaseError ||
         PurchasesErrorCode.configurationError => BillingFailure.store,
         _ => BillingFailure.unknown,
       };
 
-  static StoreCustomer _customer(CustomerInfo info) => StoreCustomer(
+  StoreCustomer customerOf(CustomerInfo info) => StoreCustomer(
     isPro: info.entitlements.active.containsKey(entitlement),
     managementUrl: info.managementURL,
   );
+
+  static Map<ProPeriod, Package> packagesOf(Offering? offering) => {
+    for (final package in offering?.availablePackages ?? const <Package>[])
+      ?_periodOf(package): package,
+  };
+
+  static ProPeriod? _periodOf(Package package) => switch ((
+    package.packageType,
+    package.storeProduct.subscriptionPeriod,
+  )) {
+    (PackageType.monthly, _) ||
+    (PackageType.custom, 'P1M') => ProPeriod.monthly,
+    (PackageType.annual, _) || (PackageType.custom, 'P1Y') => ProPeriod.annual,
+    _ => null,
+  };
 
   static ProOffer _offer(ProPeriod period, StoreProduct product) {
     final intro = product.defaultOption?.introPhase?.price.formatted;
@@ -94,10 +115,10 @@ class RevenueCatPurchasesService implements PurchasesService {
       } on PlatformException catch (error) {
         return Result.error(BillingException(_failureOf(error)));
       }
-      return _run(() async => _customer(await Purchases.getCustomerInfo()));
+      return _run(() async => customerOf(await Purchases.getCustomerInfo()));
     }
     return _run(
-      () async => _customer((await Purchases.logIn(appUserId)).customerInfo),
+      () async => customerOf((await Purchases.logIn(appUserId)).customerInfo),
     );
   }
 
@@ -115,13 +136,9 @@ class RevenueCatPurchasesService implements PurchasesService {
   Future<Result<List<ProOffer>>> offers() => _run(() async {
     final offerings = await Purchases.getOfferings();
     final current = offerings.getOffering(offering) ?? offerings.current;
-    _packages.clear();
-    if (current?.monthly case final monthly?) {
-      _packages[ProPeriod.monthly] = monthly;
-    }
-    if (current?.annual case final annual?) {
-      _packages[ProPeriod.annual] = annual;
-    }
+    _packages
+      ..clear()
+      ..addAll(packagesOf(current));
     return [
       for (final MapEntry(:key, :value) in _packages.entries)
         _offer(key, value.storeProduct),
@@ -144,7 +161,7 @@ class RevenueCatPurchasesService implements PurchasesService {
       final result = await Purchases.purchase(PurchaseParams.package(package));
       return Result.ok((
         PurchaseOutcome.purchased,
-        _customer(result.customerInfo),
+        customerOf(result.customerInfo),
       ));
     } on PlatformException catch (error) {
       return switch (PurchasesErrorHelper.getErrorCode(error)) {
@@ -163,7 +180,7 @@ class RevenueCatPurchasesService implements PurchasesService {
 
   @override
   Future<Result<StoreCustomer>> restore() =>
-      _run(() async => _customer(await Purchases.restorePurchases()));
+      _run(() async => customerOf(await Purchases.restorePurchases()));
 
   @override
   void listen(void Function(StoreCustomer customer) onChanged) =>

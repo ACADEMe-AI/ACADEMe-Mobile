@@ -76,7 +76,14 @@ class ProOffer {
 
 enum PurchaseOutcome { purchased, pending, cancelled }
 
-enum BillingFailure { unavailable, network, notAllowed, store, unknown }
+enum BillingFailure {
+  unavailable,
+  network,
+  notAllowed,
+  alreadyOwned,
+  store,
+  unknown,
+}
 
 class BillingException implements Exception {
   const BillingException(this.failure);

@@ -61,6 +61,7 @@ http.Response _limit(String code, String feature) => http.Response(
 void main() {
   final requests = <String>[];
   var synced = false;
+  var syncStatus = 200;
   late FakePurchasesService purchases;
   late BillingRepositoryRemote repository;
 
@@ -70,11 +71,22 @@ void main() {
       requests.add('${request.method} ${request.url.path}');
       return switch ('${request.method} ${request.url.path}') {
         'GET /me/plan' => http.Response(jsonEncode(_plan(isPro: false)), 200),
+        'POST /billing/sync' when syncStatus == 429 => http.Response(
+          jsonEncode({
+            'error': {
+              'code': 'too_many_requests',
+              'message': 'Wait',
+              'requestId': 'r1',
+            },
+          }),
+          429,
+        ),
         'POST /billing/sync' => http.Response(
           jsonEncode(_plan(isPro: synced)),
           200,
         ),
-        'POST /chat/messages' => _limit('limit_reached', 'askme'),
+        'POST /chat/messages' ||
+        'POST /chat/threads/t1/retry' => _limit('limit_reached', 'askme'),
         'POST /scans/s1/check' => _limit('limit_reached', 'check'),
         'POST /scans/s1/notes' => _limit('pro_only', 'lessons'),
         _ => http.Response('{}', 404),
@@ -85,6 +97,7 @@ void main() {
   setUp(() {
     requests.clear();
     synced = true;
+    syncStatus = 200;
     purchases = FakePurchasesService();
     repository = BillingRepositoryRemote(
       api: BillingApiService(client()),
@@ -115,6 +128,15 @@ void main() {
     expect(repository.plan.limitOf(ProFeature.askme), isNull);
     expect(repository.manageUrl, contains('play.google.com'));
     expect(notified, greaterThan(0));
+  });
+
+  test('a throttled sync still leaves the store\'s Pro on', () async {
+    syncStatus = 429;
+    final result = await repository.purchase(ProPeriod.monthly);
+    expect((result as Ok<PurchaseOutcome>).value, PurchaseOutcome.purchased);
+    expect(repository.isPro, isTrue);
+    final restored = await repository.restore();
+    expect((restored as Ok<bool>).value, isTrue);
   });
 
   test('cancelled and pending purchases do not sync', () async {
@@ -162,6 +184,16 @@ void main() {
     expect(repository.plan.isPro, isFalse);
   });
 
+  test('switching accounts drops the last account\'s Pro', () async {
+    await repository.identify('acct-1');
+    purchases.listener!(const StoreCustomer(isPro: true));
+    expect(repository.isPro, isTrue);
+    purchases.failure = BillingFailure.network;
+    await repository.identify('acct-2');
+    expect(purchases.loggedIn, ['acct-1', 'acct-2']);
+    expect(repository.isPro, isFalse);
+  });
+
   test('limit errors map to the ASKMe and Scan failures', () async {
     final chats = ChatRepositoryRemote(
       api: ChatApiService(client()),
@@ -174,6 +206,11 @@ void main() {
     );
     expect(
       ((sent as Error).error as ChatException).failure,
+      ChatFailure.limitReached,
+    );
+    final retried = await chats.regenerate('t1', ChatMode.explain);
+    expect(
+      ((retried as Error).error as ChatException).failure,
       ChatFailure.limitReached,
     );
     final scans = ScanRepositoryRemote(

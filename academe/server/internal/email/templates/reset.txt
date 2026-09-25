@@ -1,0 +1,11 @@
+{{define "content"}}Reset your password
+
+Open this link to choose a new password for your ACADEMe account. It works once and expires in 15 minutes:
+
+{{.Button.URL}}
+
+Already in the app? Type this code:
+
+    {{.Code}}
+
+Didn't ask for this? You can ignore this email. Your password stays the same.{{end}}

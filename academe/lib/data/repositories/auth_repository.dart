@@ -29,6 +29,8 @@ abstract class AuthRepository {
     required String code,
   });
 
+  Future<Result<String>> redeemResetLink(String linkToken);
+
   Future<Result<Account>> completePasswordReset({
     required String resetToken,
     required String password,
@@ -38,6 +40,15 @@ abstract class AuthRepository {
     required String firstName,
     required String lastName,
   });
+
+  Future<Result<Account>> changePassword({
+    String? currentPassword,
+    required String newPassword,
+  });
+
+  Future<Result<Account>> linkGoogle();
+
+  Future<Result<Account>> unlinkGoogle();
 
   Future<Result<void>> logOut();
 

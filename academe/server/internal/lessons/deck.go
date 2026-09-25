@@ -24,6 +24,8 @@ var (
 	ErrNoJSON  = errors.New("no JSON object in the reply")
 	ErrBadDeck = errors.New("lesson breaks the generator rules")
 	thinking   = regexp.MustCompile(`(?s)<think>.*?</think>`)
+	caretPower = regexp.MustCompile(`\^\(?(-?[0-9]+)\)?`)
+	superDigit = strings.NewReplacer("0", "⁰", "1", "¹", "2", "²", "3", "³", "4", "⁴", "5", "⁵", "6", "⁶", "7", "⁷", "8", "⁸", "9", "⁹", "-", "⁻")
 	byPosition = regexp.MustCompile(`(?i)\b(options?|choices?)\s*\(?([a-d]|[0-9])\)?(\W|$)|\b(first|second|third|fourth|last)\s+(option|choice)`)
 )
 
@@ -52,7 +54,10 @@ func parseDeck(j Job, reply string) (study.Deck, error) {
 	d := study.Deck{
 		ID: j.ID(), Board: j.Board, Class: j.Class, Subject: j.Subject.Subject,
 		ChapterNumber: j.Chapter.Number, ChapterTitle: j.Chapter.Title, Position: j.Position,
-		Title: j.Lesson().Title, Language: "en", Cards: cards,
+		Title: j.Lesson().Title, Language: j.Language(), Cards: cards,
+	}
+	for i := range d.Cards {
+		rewrite(&d.Cards[i], superscripts)
 	}
 	if err := check(d); err != nil {
 		return study.Deck{}, err
@@ -80,10 +85,14 @@ func decodeCards(raw []byte) ([]study.Card, error) {
 			continue
 		}
 		options, _ := c["options"].([]any)
+		text = strings.TrimSpace(text)
+		c["answer"] = -1
 		if i := slices.IndexFunc(options, func(o any) bool { return o == text }); i >= 0 {
 			c["answer"] = i
-		} else if n, err := strconv.Atoi(strings.TrimSpace(text)); err == nil {
+		} else if n, err := strconv.Atoi(text); err == nil {
 			c["answer"] = n
+		} else if len(text) == 1 && strings.Contains("ABCD", strings.ToUpper(text)) {
+			c["answer"] = strings.Index("ABCD", strings.ToUpper(text))
 		}
 	}
 	fixed, err := json.Marshal(loose)
@@ -129,6 +138,26 @@ func positionalReference(c study.Card) string {
 		}
 	}
 	return ""
+}
+
+func superscripts(s string) string {
+	return caretPower.ReplaceAllStringFunc(s, func(m string) string {
+		return superDigit.Replace(caretPower.FindStringSubmatch(m)[1])
+	})
+}
+
+func rewrite(c *study.Card, f func(string) string) {
+	for _, p := range []*string{&c.Title, &c.Body, &c.Remember, &c.Question, &c.Why} {
+		*p = f(*p)
+	}
+	for _, list := range [][]string{c.Goals, c.Steps, c.Points, c.Options} {
+		for i := range list {
+			list[i] = f(list[i])
+		}
+	}
+	for i := range c.Rows {
+		c.Rows[i].Term, c.Rows[i].Value = f(c.Rows[i].Term), f(c.Rows[i].Value)
+	}
 }
 
 func texts(c study.Card) []string {

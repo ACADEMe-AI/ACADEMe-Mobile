@@ -248,6 +248,7 @@ The app reads its settings from `--dart-define`s (`lib/config/environment.dart`)
 | `GOOGLE_SERVER_CLIENT_ID` | empty | the **web** OAuth client ID; empty = Google shows "isn't ready yet" |
 | `REVENUECAT_GOOGLE_API_KEY` | empty | RevenueCat public Android key (`goog_…`); empty = the paywall says purchases aren't available |
 | `REVENUECAT_APPLE_API_KEY` | empty | RevenueCat public iOS key (`appl_…`), for the iOS release |
+| `REVENUECAT_ENTITLEMENT` | `academe_pro` | the RevenueCat entitlement that means Pro |
 
 Sessions: the refresh token and the account live in `flutter_secure_storage`
 (`SecureSessionStore`); the access token only in memory. `AuthRepositoryRemote`

@@ -20,9 +20,13 @@ func RegisterRoutes(mux *http.ServeMux, logger *slog.Logger, s *Service) {
 	mux.Handle("POST /auth/password-reset", httpx.Handle(logger, h.requestReset))
 	mux.Handle("POST /auth/password-reset/verify", httpx.Handle(logger, h.verifyReset))
 	mux.Handle("POST /auth/password-reset/complete", httpx.Handle(logger, h.completeReset))
+	mux.Handle("POST /auth/password-reset/link", httpx.Handle(logger, h.redeemResetLink))
 	mux.Handle("GET /me", httpx.Handle(logger, s.RequireAccount(h.me)))
 	mux.Handle("PATCH /me", httpx.Handle(logger, s.RequireAccount(h.updateMe)))
 	mux.Handle("DELETE /me", httpx.Handle(logger, s.RequireAccount(h.deleteMe)))
+	mux.Handle("POST /me/password", httpx.Handle(logger, s.RequireAccount(h.changePassword)))
+	mux.Handle("POST /me/google", httpx.Handle(logger, s.RequireAccount(h.linkGoogle)))
+	mux.Handle("DELETE /me/google", httpx.Handle(logger, s.RequireAccount(h.unlinkGoogle)))
 }
 
 type handler struct {
@@ -190,6 +194,15 @@ func toHTTP(err error) error {
 	case errors.Is(err, ErrThrottled):
 		return &httpx.Error{Status: http.StatusTooManyRequests, Code: "too_many_requests",
 			Message: "Too many tries. Wait a while and try again."}
+	case errors.Is(err, ErrWrongPassword):
+		return &httpx.Error{Status: http.StatusForbidden, Code: "wrong_password",
+			Message: "That isn't your current password."}
+	case errors.Is(err, ErrGoogleTaken):
+		return &httpx.Error{Status: http.StatusConflict, Code: "google_taken",
+			Message: "This Google account is linked to another account."}
+	case errors.Is(err, ErrPasswordRequired):
+		return &httpx.Error{Status: http.StatusConflict, Code: "password_required",
+			Message: "Set a password before unlinking Google."}
 	case errors.Is(err, ErrWrongCode):
 		return &httpx.Error{Status: http.StatusUnprocessableEntity, Code: "wrong_code",
 			Message: "That code isn't right."}

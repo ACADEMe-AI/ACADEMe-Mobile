@@ -50,6 +50,8 @@ class ProViewModel extends ChangeNotifier {
             'No connection. Check your internet and try again.',
           BillingException(failure: BillingFailure.notAllowed) =>
             'Purchases are turned off for this Google account.',
+          BillingException(failure: BillingFailure.alreadyOwned) =>
+            'This Google account already has Pro. Tap Restore purchases.',
           BillingException(failure: BillingFailure.unavailable) =>
             'Purchases aren’t available on this device.',
           _ => 'Google Play couldn’t finish that. Try again.',

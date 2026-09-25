@@ -7,6 +7,8 @@ import (
 	"net/url"
 	"os"
 	"strings"
+	"sync"
+	"sync/atomic"
 	"testing"
 	"time"
 
@@ -128,5 +130,53 @@ func TestPostgresStore(t *testing.T) {
 	used, err := store.Usage(ctx, riya, day)
 	if err != nil || used[AskMe] != 2 || used[Scan] != 1 {
 		t.Errorf("Usage() = %v, %v; want askme 2, scan 1", used, err)
+	}
+}
+
+func TestPostgresTakeIsAtomic(t *testing.T) {
+	pool := openTestPool(t)
+	store := NewPostgresStore(pool)
+	riya := newAccount(t, pool, "riya@example.com")
+	day := time.Date(2026, 9, 25, 0, 0, 0, 0, time.UTC)
+	var taken atomic.Int32
+	var wg sync.WaitGroup
+	for range 40 {
+		wg.Go(func() {
+			ok, err := store.Take(t.Context(), riya, day, AskMe, 10)
+			if err != nil {
+				t.Error(err)
+			}
+			if ok {
+				taken.Add(1)
+			}
+		})
+	}
+	wg.Wait()
+	if taken.Load() != 10 {
+		t.Fatalf("%d parallel Take(askme, 10) succeeded, want exactly 10", taken.Load())
+	}
+	for range 40 {
+		wg.Go(func() {
+			if err := store.Refund(t.Context(), riya, day, AskMe); err != nil {
+				t.Error(err)
+			}
+		})
+	}
+	wg.Wait()
+	if used, err := store.Usage(t.Context(), riya, day); err != nil || used[AskMe] != 0 {
+		t.Errorf("Usage() after 40 refunds of 10 uses = %v, %v; want 0, never negative", used, err)
+	}
+	s := NewService(store, map[string]int{"askme": 10}, nil)
+	var allowed atomic.Int32
+	for range 30 {
+		wg.Go(func() {
+			if s.Take(t.Context(), riya, AskMe) == nil {
+				allowed.Add(1)
+			}
+		})
+	}
+	wg.Wait()
+	if allowed.Load() != 10 {
+		t.Errorf("%d parallel Service.Take(askme) allowed, want 10", allowed.Load())
 	}
 }

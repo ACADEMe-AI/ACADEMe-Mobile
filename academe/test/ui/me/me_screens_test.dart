@@ -168,6 +168,7 @@ void main() {
 
     await tester.tap(find.text('I don’t use it enough'));
     await tester.pump();
+    await tester.scrollUntilVisible(find.byType(TextField), 200);
     await tester.enterText(find.byType(TextField), 'delete');
     await tester.pump();
     await tester.tap(find.text('Delete my account'));

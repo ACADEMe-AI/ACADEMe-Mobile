@@ -22,10 +22,15 @@ class FakeAuthRepository implements AuthRepository {
   var logOuts = 0;
   var deletions = 0;
   static const resetCode = '482913';
+  static const resetLink = 'link-token';
+  final linkRedemptions = <String>[];
   final resetRequests = <String>[];
   final codeChecks = <(String, String)>[];
   final passwordResets = <(String, String)>[];
   final deletionReasons = <String?>[];
+  final passwordChanges = <(String?, String)>[];
+  var googleLinks = 0;
+  var googleUnlinks = 0;
 
   @override
   Account? get account => _account;
@@ -114,6 +119,15 @@ class FakeAuthRepository implements AuthRepository {
   }
 
   @override
+  Future<Result<String>> redeemResetLink(String linkToken) async {
+    linkRedemptions.add(linkToken);
+    if (nextFailure == null && linkToken != resetLink) {
+      return Result.error(const AuthException(AuthFailure.resetExpired));
+    }
+    return _answer('link-reset-token');
+  }
+
+  @override
   Future<Result<Account>> completePasswordReset({
     required String resetToken,
     required String password,
@@ -140,6 +154,58 @@ class FakeAuthRepository implements AuthRepository {
     final result = _answer(
       (_account ?? ada).copyWith(firstName: firstName, lastName: lastName),
     );
+    if (result case Ok(:final value)) _account = value;
+    return result;
+  }
+
+  @override
+  Future<Result<Account>> changePassword({
+    String? currentPassword,
+    required String newPassword,
+  }) async {
+    passwordChanges.add((currentPassword, newPassword));
+    return _update(
+      (account) => Account(
+        id: account.id,
+        firstName: account.firstName,
+        lastName: account.lastName,
+        email: account.email,
+        googleEmail: account.googleEmail,
+      ),
+    );
+  }
+
+  @override
+  Future<Result<Account>> linkGoogle() async {
+    googleLinks++;
+    return _update(
+      (account) => Account(
+        id: account.id,
+        firstName: account.firstName,
+        lastName: account.lastName,
+        email: account.email,
+        hasPassword: account.hasPassword,
+        googleEmail: ada.email,
+      ),
+    );
+  }
+
+  @override
+  Future<Result<Account>> unlinkGoogle() async {
+    googleUnlinks++;
+    return _update(
+      (account) => Account(
+        id: account.id,
+        firstName: account.firstName,
+        lastName: account.lastName,
+        email: account.email,
+        hasPassword: account.hasPassword,
+      ),
+    );
+  }
+
+  Result<Account> _update(Account Function(Account account) change) {
+    final result = _answer(change(_account ?? ada));
     if (result case Ok(:final value)) _account = value;
     return result;
   }

@@ -138,6 +138,10 @@ func TestParseDeckRules(t *testing.T) {
 	if _, err := parseDeck(j, numbers); err != nil {
 		t.Errorf("parseDeck(why naming a numeric option by its value) error = %v, want none", err)
 	}
+	powers := strings.Replace(goodCards, "Count atoms", "12 = 2^2 × 3 and 10^(-3)", 1)
+	if d, err := parseDeck(j, powers); err != nil || d.Cards[4].Rows[0].Value != "12 = 2² × 3 and 10⁻³" {
+		t.Errorf("parseDeck(caret powers) = %v, %v; want superscripts", d.Cards[4].Rows, err)
+	}
 	named := strings.Replace(strings.Replace(goodCards, `"answer": 0, "why": "Atoms`, `"answer": "Atoms are conserved", "why": "Atoms`, 1), `"answer": 0, "why": "Two`, `"answer": "0", "why": "Two`, 1)
 	if d, err := parseDeck(j, named); err != nil || d.Cards[3].Options[*d.Cards[3].Answer] != "Atoms are conserved" || d.Cards[5].Options[*d.Cards[5].Answer] != "H₂ + Cl₂ → 2HCl" {
 		t.Errorf("parseDeck(answers as text) = %v, want answers mapped to their options", err)
@@ -266,5 +270,24 @@ func TestWriteReport(t *testing.T) {
 		if !strings.Contains(string(raw), want) {
 			t.Errorf("report is missing %q", want)
 		}
+	}
+}
+
+func TestReadableSurvivesBadAnswers(t *testing.T) {
+	bad := -1
+	got := readable([]study.Card{{Kind: study.Concept, Title: "t", Answer: &bad}, {Kind: study.Quiz, Question: "q", Options: []string{"a", "b"}, Answer: new(1)}})
+	if !strings.Contains(got, "Marked correct: b") || strings.Count(got, "Marked correct") != 1 {
+		t.Errorf("readable() = %q, want only the quiz's marked answer", got)
+	}
+}
+
+func TestHindiSubjectsAreWrittenInHindi(t *testing.T) {
+	j := fixtureJobs(t, Filter{Subject: "science", Lesson: 1})[0]
+	if j.Language() != "en" || strings.Contains(authorPrompt(j), "Devanagari") {
+		t.Errorf("science lesson language = %q, want English with no Hindi instruction", j.Language())
+	}
+	j.Subject = syllabus.Subject{Subject: "sanskrit", Name: "Sanskrit"}
+	if j.Language() != "hi" || !strings.Contains(authorPrompt(j), "Devanagari") || !strings.Contains(reviewPrompt(j, nil), "Devanagari") {
+		t.Errorf("sanskrit lesson language = %q, want hi with the Hindi-medium instruction for writer and reviewer", j.Language())
 	}
 }

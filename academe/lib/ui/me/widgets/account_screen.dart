@@ -8,6 +8,7 @@ import '../../core/ui/light_field.dart';
 import '../view_models/me_view_model.dart';
 import 'settings_list.dart';
 import 'settings_page.dart';
+import 'sign_in_group.dart';
 
 class AccountScreen extends StatefulWidget {
   const AccountScreen({
@@ -41,10 +42,6 @@ class _AccountScreenState extends State<AccountScreen> {
   bool get _isChanged =>
       _first.text.trim() != (widget.viewModel.account?.firstName ?? '') ||
       _last.text.trim() != (widget.viewModel.account?.lastName ?? '');
-
-  void _soon(String what) => ScaffoldMessenger.of(context)
-    ..hideCurrentSnackBar()
-    ..showSnackBar(SnackBar(content: Text('$what is coming soon.')));
 
   Future<void> _save() async {
     FocusScope.of(context).unfocus();
@@ -93,24 +90,7 @@ class _AccountScreenState extends State<AccountScreen> {
             isEnabled: _isChanged && !saving.isRunning,
             onTap: _save,
           ),
-          SettingsGroup(
-            title: 'Sign-in',
-            children: [
-              SettingsRow(
-                label: 'Email',
-                value: widget.viewModel.account?.email ?? '',
-              ),
-              SettingsRow(
-                label: 'Change password',
-                onTap: () => _soon('Changing your password'),
-              ),
-              SettingsRow(
-                label: 'Google',
-                value: 'Not linked',
-                onTap: () => _soon('Linking Google'),
-              ),
-            ],
-          ),
+          SignInGroup(viewModel: widget.viewModel),
           SettingsGroup(
             title: 'Danger zone',
             children: [

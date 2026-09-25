@@ -1,0 +1,30 @@
+{{define "title"}}Reset your password{{end}}
+{{define "content"}}
+{{if .Done}}
+<div class="hero"><img src="/email/pebby-wave.png" alt=""><h1>Password changed</h1></div>
+<p class="lead">You're logged out on every device. Open ACADEMe and log in with your new password.</p>
+<div class="stack"><a class="keycap" href="/open">Open ACADEMe</a></div>
+{{else if .Expired}}
+<div class="hero"><img src="/email/pebby-shy.png" alt=""><h1>This link has expired</h1></div>
+<p class="lead">Reset links work once and only for 15 minutes. Open ACADEMe, tap <strong>Forgot password?</strong> and we'll send you a new one.</p>
+<div class="stack"><a class="keycap" href="/open">Open ACADEMe</a></div>
+{{else if .Broken}}
+<div class="hero"><img src="/email/pebby-shy.png" alt=""><h1>Open the link again</h1></div>
+<p class="lead">This page needs the link from your reset email. Tap <strong>Reset password</strong> in the email again, or ask for a new one in the app.</p>
+<div class="stack"><a class="keycap" href="/open">Open ACADEMe</a></div>
+{{else}}
+<div class="hero"><img src="/email/pebby-shy.png" alt=""><h1>Choose a new password</h1></div>
+<p class="lead">Use at least 8 characters. You'll be logged out on every device.</p>
+<form class="card stack" method="post" action="/reset-password">
+{{if .Problem}}<p class="error" role="alert">{{.Problem}}</p>{{end}}
+<input type="hidden" name="c" value="{{.Link}}">
+<input type="hidden" name="t" value="{{.FormToken}}">
+<div><label for="password">New password</label>
+<input id="password" name="password" type="password" required minlength="8" maxlength="128" autocomplete="new-password" autofocus></div>
+<div><label for="confirm">Type it again</label>
+<input id="confirm" name="confirm" type="password" required minlength="8" maxlength="128" autocomplete="new-password"></div>
+<button class="keycap" type="submit">Save new password</button>
+</form>
+<p>Have ACADEMe on this phone? <a href="academe://reset?c={{.Link}}">Open in the app</a> instead.</p>
+{{end}}
+{{end}}

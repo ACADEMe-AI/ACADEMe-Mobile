@@ -22,10 +22,10 @@ func TestPostgresStoreReset(t *testing.T) {
 	}
 
 	expires := time.Now().Add(resetCodeTTL).Truncate(time.Microsecond)
-	if err := store.CreateResetCode(ctx, maya.ID, []byte("first"), expires); err != nil {
+	if err := store.CreateResetCode(ctx, maya.ID, []byte("first"), hashToken("link-first"), expires); err != nil {
 		t.Fatalf("CreateResetCode = %v", err)
 	}
-	if err := store.CreateResetCode(ctx, maya.ID, []byte("second"), expires); err != nil {
+	if err := store.CreateResetCode(ctx, maya.ID, []byte("second"), hashToken("link-second"), expires); err != nil {
 		t.Fatalf("CreateResetCode = %v", err)
 	}
 	var code ResetCode
@@ -73,7 +73,7 @@ func TestPostgresStoreReset(t *testing.T) {
 		t.Errorf("CompleteReset twice = %v, want ErrResetTokenExpired", err)
 	}
 
-	if err := store.CreateResetCode(ctx, maya.ID, []byte("third"), expires); err != nil {
+	if err := store.CreateResetCode(ctx, maya.ID, []byte("third"), hashToken("link-third"), expires); err != nil {
 		t.Fatal(err)
 	}
 	third, err := store.ClaimResetAttempt(ctx, maya.ID)
@@ -83,7 +83,7 @@ func TestPostgresStoreReset(t *testing.T) {
 	if err := store.MarkResetCodeUsed(ctx, third.ID, hashToken("linked"), time.Now()); err != nil {
 		t.Fatal(err)
 	}
-	if err := store.LinkGoogle(ctx, maya.ID, "g-maya", time.Now()); err != nil {
+	if err := store.LinkGoogle(ctx, maya.ID, "g-maya", "maya@example.com", time.Now()); err != nil {
 		t.Fatal(err)
 	}
 	if _, err := store.CompleteReset(ctx, hashToken("linked"), time.Now().Add(-resetTokenTTL), "hash", time.Now()); !errors.Is(err, ErrResetTokenExpired) {

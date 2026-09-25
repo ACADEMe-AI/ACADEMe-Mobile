@@ -7,6 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 import '../../../testing/fakes/fake_appearance_store.dart';
 import '../../../testing/fakes/fake_auth_repository.dart';
+import '../../../testing/fakes/fake_billing_repository.dart';
 import '../../../testing/fakes/fake_preferences_store.dart';
 import '../../../testing/fakes/fake_profile_repository.dart';
 
@@ -84,5 +85,35 @@ void main() {
     expect(auth.deletions, 1);
     expect(auth.deletionReasons.single, 'Too many notifications');
     expect(viewModel.deleteAccount.isCompleted, isTrue);
+  });
+
+  test('password and Google go through the account', () async {
+    expect(viewModel.hasPassword, isTrue);
+    expect(viewModel.googleEmail, isNull);
+    expect(viewModel.isPro, isFalse);
+
+    await viewModel.linkGoogle.execute();
+    expect(viewModel.googleEmail, 'ada@gmail.com');
+    await viewModel.unlinkGoogle.execute();
+    expect(viewModel.googleEmail, isNull);
+
+    await viewModel.changePassword.execute((
+      current: 'sunflower',
+      next: 'marigold1',
+    ));
+    expect(auth.passwordChanges.single, ('sunflower', 'marigold1'));
+    expect(viewModel.changePassword.isCompleted, isTrue);
+  });
+
+  test('Pro comes from billing', () {
+    final pro = MeViewModel(
+      authRepository: auth,
+      profileRepository: profiles,
+      preferencesStore: store,
+      appearance: AppearanceRepository(store: appearanceStore),
+      billing: FakeBillingRepository(plan: FakeBillingRepository.proPlan),
+    );
+    addTearDown(pro.dispose);
+    expect(pro.isPro, isTrue);
   });
 }

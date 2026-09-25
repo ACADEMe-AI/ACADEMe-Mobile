@@ -23,6 +23,11 @@ extension AuthFailureText on AuthFailure {
       'This reset link timed out. Start again from Forgot password.',
     AuthFailure.tooManyRequests =>
       "That's a lot of tries. Wait a little and try again.",
+    AuthFailure.wrongPassword => "That isn't your current password.",
+    AuthFailure.googleTaken =>
+      'That Google account is linked to another ACADEMe account.',
+    AuthFailure.passwordRequired =>
+      'Set a password first, so you can still log in without Google.',
     AuthFailure.unknown => 'Something went wrong. Try again.',
   };
 }

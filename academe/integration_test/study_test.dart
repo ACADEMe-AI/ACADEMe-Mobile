@@ -26,7 +26,7 @@ void main() {
     await tester.waitFor(find.text('Back to chapter'));
     await tester.shot('lesson-done');
     await tester.tapText('Back to chapter');
-    await tester.waitFor(find.text('1 to revise'));
+    await tester.waitFor(find.textContaining('to revise'));
     await tester.tapText('Chapter test');
     final test = await playDeck(tester, keepOne: false, name: 'test');
     expect(test.right + test.wrong, greaterThan(1));

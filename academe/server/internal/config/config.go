@@ -21,10 +21,13 @@ type Config struct {
 	ResendAPIKey    string
 	EmailFrom       string
 	EmailDev        bool
+	AndroidCerts    []string
 
 	RevenueCatSecretKey   string
 	RevenueCatWebhookAuth string
 	FreeLimits            map[string]int
+	BillingTesters        []string
+	RevenueCatEntitlement string
 }
 
 func FromEnv() (Config, error) {
@@ -55,6 +58,11 @@ func FromEnv() (Config, error) {
 			c.GoogleClientIDs = append(c.GoogleClientIDs, id)
 		}
 	}
+	for cert := range strings.SplitSeq(os.Getenv("ACADEME_ANDROID_CERT_SHA256"), ",") {
+		if cert = strings.ToUpper(strings.TrimSpace(cert)); cert != "" {
+			c.AndroidCerts = append(c.AndroidCerts, cert)
+		}
+	}
 	if err := c.billing(); err != nil {
 		return Config{}, err
 	}
@@ -64,7 +72,13 @@ func FromEnv() (Config, error) {
 func (c *Config) billing() error {
 	c.RevenueCatSecretKey = os.Getenv("ACADEME_REVENUECAT_SECRET_KEY")
 	c.RevenueCatWebhookAuth = os.Getenv("ACADEME_REVENUECAT_WEBHOOK_AUTH")
+	c.RevenueCatEntitlement = os.Getenv("ACADEME_REVENUECAT_ENTITLEMENT")
 	c.FreeLimits = map[string]int{"askme": 10, "scan": 3, "check": 1, "lessons": 0}
+	for id := range strings.SplitSeq(os.Getenv("ACADEME_BILLING_TESTERS"), ",") {
+		if id = strings.TrimSpace(id); id != "" {
+			c.BillingTesters = append(c.BillingTesters, id)
+		}
+	}
 	for pair := range strings.SplitSeq(os.Getenv("ACADEME_FREE_LIMITS"), ",") {
 		if pair = strings.TrimSpace(pair); pair == "" {
 			continue

@@ -42,6 +42,7 @@ import '../ui/study/study_factory.dart';
 import '../ui/study/view_models/folders_view_model.dart';
 import '../ui/study/view_models/study_view_model.dart';
 import '../utils/result.dart';
+import 'deep_links.dart';
 import 'password_reset_pages.dart';
 import 'routes.dart';
 
@@ -149,6 +150,21 @@ Route<Object?> _route(
   Future<Result<Account>> restoredSession,
 ) {
   final authRepository = dependencies.authRepository;
+  final linkToken = resetLinkToken(settings.name);
+  if (linkToken != null) {
+    return _RiseRoute<void>(
+      settings: settings,
+      page: _Light(
+        child: NewPasswordPage(
+          viewModel: NewPasswordViewModel(
+            authRepository: authRepository,
+            linkToken: linkToken,
+          ),
+          isFromLink: true,
+        ),
+      ),
+    );
+  }
   return switch (settings.name) {
     Routes.welcome => PageRouteBuilder<void>(
       settings: settings,
@@ -295,6 +311,7 @@ class _HomePageState extends State<_HomePage> {
     preferencesStore: _dependencies.preferencesStore,
     appearance: _dependencies.appearance,
     reminders: _dependencies.reminders,
+    billing: _dependencies.billingRepository,
   );
   late final _pro = ProViewModel(
     billingRepository: _dependencies.billingRepository,

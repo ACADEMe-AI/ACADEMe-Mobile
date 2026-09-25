@@ -101,6 +101,13 @@ class AuthRepositoryRemote implements AuthRepository, Authorizer {
   };
 
   @override
+  Future<Result<String>> redeemResetLink(String linkToken) async =>
+      switch (await _api.redeemResetLink(linkToken)) {
+        Ok(:final value) => Result.ok(value),
+        Error(:final error) => Result.error(_authError(error)),
+      };
+
+  @override
   Future<Result<Account>> completePasswordReset({
     required String resetToken,
     required String password,
@@ -120,6 +127,45 @@ class AuthRepositoryRemote implements AuthRepository, Authorizer {
       (token) =>
           _api.updateName(token, firstName: firstName, lastName: lastName),
     );
+    switch (updated) {
+      case Ok(:final value):
+        await _save(value);
+        return Result.ok(value);
+      case Error(:final error):
+        return Result.error(_authError(error));
+    }
+  }
+
+  @override
+  Future<Result<Account>> changePassword({
+    String? currentPassword,
+    required String newPassword,
+  }) async => _start(
+    await authorized(
+      (token) => _api.changePassword(
+        token,
+        currentPassword: currentPassword,
+        newPassword: newPassword,
+      ),
+    ),
+  );
+
+  @override
+  Future<Result<Account>> linkGoogle() async {
+    final idToken = await _google.idToken();
+    if (idToken case Error(:final error)) return Result.error(error);
+    final token = (idToken as Ok<String>).value;
+    return _saved(await authorized((access) => _api.linkGoogle(access, token)));
+  }
+
+  @override
+  Future<Result<Account>> unlinkGoogle() async {
+    final unlinked = await _saved(await authorized(_api.unlinkGoogle));
+    if (unlinked case Ok()) await _google.signOut();
+    return unlinked;
+  }
+
+  Future<Result<Account>> _saved(Result<Account> updated) async {
     switch (updated) {
       case Ok(:final value):
         await _save(value);
@@ -236,6 +282,9 @@ class AuthRepositoryRemote implements AuthRepository, Authorizer {
       'code_expired' => const AuthException(AuthFailure.codeExpired),
       'reset_expired' => const AuthException(AuthFailure.resetExpired),
       'too_many_requests' => const AuthException(AuthFailure.tooManyRequests),
+      'wrong_password' => const AuthException(AuthFailure.wrongPassword),
+      'google_taken' => const AuthException(AuthFailure.googleTaken),
+      'password_required' => const AuthException(AuthFailure.passwordRequired),
       ApiException.network => const AuthException(AuthFailure.network),
       final code
           when code.startsWith('invalid_') &&

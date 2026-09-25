@@ -54,6 +54,8 @@ Account accountFromJson(Map<String, Object?> json) => Account(
   firstName: json['firstName']! as String,
   lastName: json['lastName']! as String,
   email: json['email']! as String,
+  hasPassword: json['hasPassword'] as bool? ?? true,
+  googleEmail: json['googleEmail'] as String?,
 );
 
 Map<String, Object?> accountToJson(Account account) => {
@@ -61,6 +63,8 @@ Map<String, Object?> accountToJson(Account account) => {
   'firstName': account.firstName,
   'lastName': account.lastName,
   'email': account.email,
+  'hasPassword': account.hasPassword,
+  'googleEmail': ?account.googleEmail,
 };
 
 Profile profileFromJson(Map<String, Object?> json) => Profile(

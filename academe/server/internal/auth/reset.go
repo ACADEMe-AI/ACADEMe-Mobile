@@ -30,8 +30,9 @@ const (
 	verifiesPerIPHour = 30
 )
 
-type ResetMailer interface {
+type Mailer interface {
 	SendReset(ctx context.Context, r email.Reset) error
+	SendWelcome(ctx context.Context, w email.Welcome) error
 }
 
 type ResetCode struct {
@@ -42,16 +43,18 @@ type ResetCode struct {
 }
 
 type resetLimits struct {
-	perEmail  *limiter
-	requestIP *limiter
-	verifyIP  *limiter
+	perEmail      *limiter
+	requestIP     *limiter
+	verifyIP      *limiter
+	passwordCheck *limiter
 }
 
 func newResetLimits() resetLimits {
 	return resetLimits{
-		perEmail:  newLimiter(codesPerEmailHour, time.Hour),
-		requestIP: newLimiter(requestsPerIPHour, time.Hour),
-		verifyIP:  newLimiter(verifiesPerIPHour, time.Hour),
+		perEmail:      newLimiter(codesPerEmailHour, time.Hour),
+		requestIP:     newLimiter(requestsPerIPHour, time.Hour),
+		verifyIP:      newLimiter(verifiesPerIPHour, time.Hour),
+		passwordCheck: newLimiter(passwordChecksPerHour, time.Hour),
 	}
 }
 
@@ -75,7 +78,7 @@ func (s *Service) RequestPasswordReset(ctx context.Context, address, ip string) 
 	}
 	if hash == "" {
 		if err := s.mailer.SendReset(ctx, email.Reset{AccountID: a.ID, To: a.Email, GoogleOnly: true}); err != nil {
-			return fmt.Errorf("send google reset notice: %w", err)
+			s.logger.ErrorContext(ctx, "google reset notice not sent", "accountID", a.ID, "error", err)
 		}
 		return nil
 	}
@@ -83,11 +86,12 @@ func (s *Service) RequestPasswordReset(ctx context.Context, address, ip string) 
 	if err != nil {
 		return fmt.Errorf("request reset: %w", err)
 	}
-	if err := s.store.CreateResetCode(ctx, a.ID, s.resetCodeHash(a.ID, code), time.Now().Add(resetCodeTTL)); err != nil {
+	link := newLinkToken()
+	if err := s.store.CreateResetCode(ctx, a.ID, s.resetCodeHash(a.ID, code), hashToken(link), time.Now().Add(resetCodeTTL)); err != nil {
 		return fmt.Errorf("request reset: %w", err)
 	}
-	if err := s.mailer.SendReset(ctx, email.Reset{AccountID: a.ID, To: a.Email, Code: code}); err != nil {
-		return fmt.Errorf("send reset code: %w", err)
+	if err := s.mailer.SendReset(ctx, email.Reset{AccountID: a.ID, To: a.Email, Code: code, LinkToken: link}); err != nil {
+		s.logger.ErrorContext(ctx, "reset code not sent", "accountID", a.ID, "error", err)
 	}
 	return nil
 }
@@ -128,15 +132,10 @@ func (s *Service) VerifyResetCode(ctx context.Context, address, code, ip string)
 }
 
 func (s *Service) CompletePasswordReset(ctx context.Context, resetToken, password string) (Account, Tokens, error) {
-	if err := validatePassword(password); err != nil {
+	accountID, err := s.setPassword(ctx, resetToken, password)
+	if err != nil {
 		return Account{}, Tokens{}, err
 	}
-	now := revocationTime()
-	accountID, err := s.store.CompleteReset(ctx, hashToken(resetToken), now.Add(-resetTokenTTL), hashPassword(password), now)
-	if err != nil {
-		return Account{}, Tokens{}, fmt.Errorf("complete reset: %w", err)
-	}
-	s.revokeAccessTokens(accountID, now)
 	a, err := s.store.AccountByID(ctx, accountID)
 	if err != nil {
 		return Account{}, Tokens{}, fmt.Errorf("complete reset: %w", err)
@@ -146,6 +145,19 @@ func (s *Service) CompletePasswordReset(ctx context.Context, resetToken, passwor
 		return Account{}, Tokens{}, fmt.Errorf("complete reset: %w", err)
 	}
 	return a, tokens, nil
+}
+
+func (s *Service) setPassword(ctx context.Context, resetToken, password string) (string, error) {
+	if err := validatePassword(password); err != nil {
+		return "", err
+	}
+	now := revocationTime()
+	accountID, err := s.store.CompleteReset(ctx, hashToken(resetToken), now.Add(-resetTokenTTL), hashPassword(password), now)
+	if err != nil {
+		return "", fmt.Errorf("complete reset: %w", err)
+	}
+	s.revokeAccessTokens(accountID, now)
+	return accountID, nil
 }
 
 func (s *Service) resetCodeHash(accountID, code string) []byte {

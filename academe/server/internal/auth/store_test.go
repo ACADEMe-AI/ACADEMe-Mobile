@@ -101,7 +101,7 @@ func TestPostgresStore(t *testing.T) {
 	if _, err := store.UpdateName(ctx, maya.ID, "Maya", "Rao-Iyer"); err != nil {
 		t.Errorf("UpdateName = %v", err)
 	}
-	if err := store.LinkGoogle(ctx, maya.ID, "g-maya", time.Now()); err != nil {
+	if err := store.LinkGoogle(ctx, maya.ID, "g-maya", "maya@example.com", time.Now()); err != nil {
 		t.Fatalf("LinkGoogle = %v", err)
 	}
 	if got, err := store.AccountByGoogleSubject(ctx, "g-maya"); err != nil || got.LastName != "Rao-Iyer" {

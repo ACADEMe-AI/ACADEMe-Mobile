@@ -90,3 +90,39 @@ func TestPasswordResetRacesPostgres(t *testing.T) {
 		t.Errorf("%d parallel completes: %d reset_expired, want %d", racers, got, racers-1)
 	}
 }
+
+func TestResetCodeAndLinkRacePostgres(t *testing.T) {
+	store := NewPostgresStore(openTestPool(t))
+	mailer := &fakeMailer{}
+	s := NewService(store, []byte("0123456789abcdef0123456789abcdef"), nil, mailer)
+	ctx := t.Context()
+	for round := range 20 {
+		address := "maya" + strconv.Itoa(round) + "@example.com"
+		if _, _, err := s.SignUp(ctx, SignUpInput{FirstName: "Maya", LastName: "Rao", Email: address, Password: "correct horse"}); err != nil {
+			t.Fatal(err)
+		}
+		if err := s.RequestPasswordReset(ctx, address, "198.51.100."+strconv.Itoa(round)); err != nil {
+			t.Fatal(err)
+		}
+		sent := mailer.last(t)
+		tokens := make([]string, 2)
+		errs := parallel(2, func(i int) error {
+			var err error
+			ip := "203.0.113." + strconv.Itoa(round*2+i)
+			if i == 0 {
+				tokens[i], err = s.VerifyResetCode(ctx, address, sent.Code, ip)
+			} else {
+				tokens[i], err = s.RedeemResetLink(ctx, sent.LinkToken, ip)
+			}
+			return err
+		})
+		if got := count(errs, nil); got != 1 {
+			t.Fatalf("round %d: code and link raced: %d reset tokens, want exactly 1 (errors %v)", round, got, errs)
+		}
+		for i, err := range errs {
+			if err != nil && !errors.Is(err, ErrCodeExpired) && !errors.Is(err, ErrResetTokenExpired) {
+				t.Errorf("round %d: loser %d = %v, want an expired error", round, i, err)
+			}
+		}
+	}
+}

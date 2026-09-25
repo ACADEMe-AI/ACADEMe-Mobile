@@ -19,6 +19,13 @@ type Job struct {
 
 func (j Job) Lesson() syllabus.Lesson { return j.Chapter.Lessons[j.Position-1] }
 
+func (j Job) Language() string {
+	if j.Subject.Subject == "hindi" || j.Subject.Subject == "sanskrit" {
+		return "hi"
+	}
+	return "en"
+}
+
 func (j Job) ChapterID() string {
 	return study.ChapterID(j.Board, j.Class, j.Subject.Subject, j.Chapter.Number)
 }

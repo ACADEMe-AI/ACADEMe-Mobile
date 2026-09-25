@@ -341,5 +341,24 @@ void main() {
       expect(short?.field, 'password');
       expect(store.session, isNull);
     });
+
+    test('a reset link becomes a reset token', () async {
+      server.reply('POST /auth/password-reset/link', 200, {
+        'resetToken': 'reset-2',
+        'expiresIn': 900,
+      });
+      final redeemed = await repository.redeemResetLink('link-1');
+      expect((redeemed as Ok<String>).value, 'reset-2');
+      expect(server.bodyOf(0), {'linkToken': 'link-1'});
+
+      server.replies.clear();
+      server.reply(
+        'POST /auth/password-reset/link',
+        410,
+        failure('reset_expired'),
+      );
+      final expired = await repository.redeemResetLink('link-1');
+      expect(failureOf(expired)?.failure, AuthFailure.resetExpired);
+    });
   });
 }

@@ -24,7 +24,7 @@ Card rules, all of them required:
 - 6 to 12 cards in total.
 - Card 1 is the start card: 2 to 4 goals, each starting with a verb, and minutes = about two thirds of the card count.
 - The second-to-last card is a quiz and the last card is the summary (3 to 5 points).
-- Between them, teaching cards (concept, table, example) and quizzes. Never more than 3 teaching cards in a row: put a quiz after at most 3 of them.
+- Between them, teaching cards (concept, table, example) and quizzes. Never more than 3 teaching cards in a row: put a quiz after at most 3 of them. A good order: start, concept, table, quiz, concept, example, quiz, concept, quiz, summary.
 - 2 to 4 quizzes in the lesson. Each quiz has exactly 4 options, exactly one of them correct. "answer" is the zero-based index of the correct option (0 = first). Wrong options are mistakes students really make. Never "all of the above" or "none of the above". The app shuffles the options, so the "why" names options by their words, never by number, letter or position ("option 2", "B", "the first option" are all wrong).
 - Every quiz tests what earlier cards of this lesson taught.
 - A concept body is at most 70 words. A table has 2 to 6 short rows. An example has 2 to 5 steps and ends with the answer.
@@ -82,8 +82,17 @@ func lessonBrief(j Job) string {
 	return b.String()
 }
 
+const hindiMedium = `Language: this is a %s lesson, so write every card's text in simple standard Hindi in Devanagari script, the way a Class %d teacher explains it. Quote %s words, lines and forms exactly in Devanagari. Keep the JSON keys and "kind" values in English.`
+
+func medium(j Job) string {
+	if j.Language() != "hi" {
+		return ""
+	}
+	return "\n\n" + fmt.Sprintf(hindiMedium, j.Subject.Name, j.Class, j.Subject.Name)
+}
+
 func authorPrompt(j Job) string {
-	return fmt.Sprintf("Write the lesson described below.\n\n%s\n%s\n\n%s\n\n%s", lessonBrief(j), cardFormat, fmt.Sprintf(styleRules, j.Class, j.Board, j.Class), exampleDeck)
+	return fmt.Sprintf("Write the lesson described below.\n\n%s\n%s\n\n%s%s\n\n%s", lessonBrief(j), cardFormat, fmt.Sprintf(styleRules, j.Class, j.Board, j.Class), medium(j), exampleDeck)
 }
 
 func revisePrompt(issues []string) string {
@@ -95,7 +104,7 @@ func invalidPrompt(err error) string {
 }
 
 func reviewPrompt(j Job, cards []study.Card) string {
-	return fmt.Sprintf("%s\n%s\n\nThe lesson, card by card:\n\n%s", lessonBrief(j), fmt.Sprintf(reviewRules, j.Class, j.Board), readable(cards))
+	return fmt.Sprintf("%s\n%s%s\n\nThe lesson, card by card:\n\n%s", lessonBrief(j), fmt.Sprintf(reviewRules, j.Class, j.Board), medium(j), readable(cards))
 }
 
 func readable(cards []study.Card) string {
@@ -118,7 +127,7 @@ func readable(cards []study.Card) string {
 			line(fmt.Sprintf("Step %d", k+1), s)
 		}
 		line("Options", strings.Join(c.Options, " | "))
-		if c.Answer != nil && *c.Answer < len(c.Options) {
+		if c.Answer != nil && *c.Answer >= 0 && *c.Answer < len(c.Options) {
 			line("Marked correct", c.Options[*c.Answer])
 		}
 		line("Why", c.Why)

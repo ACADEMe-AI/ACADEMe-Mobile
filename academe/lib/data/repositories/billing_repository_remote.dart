@@ -21,6 +21,7 @@ class BillingRepositoryRemote extends BillingRepository {
   final Authorizer _authorizer;
   final PurchasesService _purchases;
 
+  String? _accountId;
   ProPlan _plan = ProPlan.free;
   StoreCustomer _customer = StoreCustomer.none;
 
@@ -99,9 +100,12 @@ class BillingRepositoryRemote extends BillingRepository {
 
   @override
   Future<void> identify(String? accountId) async {
-    if (accountId == null) {
+    if (accountId != _accountId) {
+      _accountId = accountId;
       _plan = ProPlan.free;
       _setCustomer(StoreCustomer.none);
+    }
+    if (accountId == null) {
       await _purchases.logOut();
       return;
     }
