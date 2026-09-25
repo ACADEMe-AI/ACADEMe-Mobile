@@ -4,6 +4,8 @@ import (
 	"archive/zip"
 	"bytes"
 	"encoding/json"
+	"errors"
+	"fmt"
 	"io"
 	"net/http"
 	"net/http/httptest"
@@ -83,5 +85,25 @@ func TestChat(t *testing.T) {
 	got, err := c.Chat(t.Context(), []Message{{Role: "system", Content: "s"}, {Role: "user", Content: "u"}}, 0.2)
 	if err != nil || !strings.EqualFold(got, "hi") {
 		t.Fatalf("Chat() = %q, %v", got, err)
+	}
+}
+
+func TestStatusErrorUnavailable(t *testing.T) {
+	tests := []struct {
+		code int
+		want bool
+	}{
+		{http.StatusPaymentRequired, true},
+		{http.StatusTooManyRequests, true},
+		{http.StatusUnauthorized, true},
+		{http.StatusBadGateway, true},
+		{http.StatusBadRequest, false},
+		{http.StatusUnprocessableEntity, false},
+	}
+	for _, tc := range tests {
+		err := fmt.Errorf("tutor reply: %w", &StatusError{Code: tc.code})
+		if got := errors.Is(err, ErrUnavailable); got != tc.want {
+			t.Errorf("errors.Is(status %d, ErrUnavailable) = %v, want %v", tc.code, got, tc.want)
+		}
 	}
 }

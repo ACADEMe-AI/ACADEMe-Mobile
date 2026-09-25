@@ -29,6 +29,13 @@ type StatusError struct {
 
 func (e *StatusError) Error() string { return fmt.Sprintf("sarvam status %d: %s", e.Code, e.Detail) }
 
+var ErrUnavailable = errors.New("sarvam unavailable")
+
+func (e *StatusError) Is(target error) bool {
+	return target == ErrUnavailable && (e.Code == http.StatusUnauthorized || e.Code == http.StatusPaymentRequired ||
+		e.Code == http.StatusForbidden || e.Code == http.StatusTooManyRequests || e.Code >= http.StatusInternalServerError)
+}
+
 type Client struct {
 	ChatURL   string
 	DocURL    string

@@ -11,10 +11,8 @@ void main() {
     await newStudent(tester, 'notifyallow');
     await createFolder(tester, 'Maths test', dismissPrimer: false);
     await tester.waitFor(find.text(primerTitle));
-    await tester.tapText('Allow');
-    await tester.pause(const Duration(seconds: 2));
-    bridge('shot os-dialog');
     bridge('allow');
+    await tester.tapText('Allow');
     await tester.waitGone(find.text(primerTitle));
     await tester.pause(const Duration(seconds: 3));
     await tester.tapOn(find.byTooltip('Back'));

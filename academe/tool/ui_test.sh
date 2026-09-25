@@ -89,14 +89,25 @@ handle() {
     shot) "${adb[@]}" shell dumpsys power | grep -q "mWakefulness=Awake" || wake
       "${adb[@]}" exec-out screencap -p >"$out/$journey/$(date +%H%M%S)-$arg.png" ;;
     push) push_image "$arg" ;;
-    pick-photo) tap_node 'package="com\.(google\.)?android\.(providers\.media\.module|photopicker)"[^>]*content-desc="Photo taken[^"]*"' 40 ;;
-    allow) tap_node 'text="Allow"|resource-id="com.android.permissioncontroller:id/permission_allow_button"' 15 ;;
-    deny) tap_node "text=\"Don.t allow\"|resource-id=\"com.android.permissioncontroller:id/permission_deny_button\"" 15 ;;
+    pick-photo)
+      sleep 3
+      "${adb[@]}" exec-out screencap -p >"$out/$journey/$(date +%H%M%S)-photo-picker.png"
+      tap_node 'package="com\.(google\.)?android\.(providers\.media\.module|photopicker)"[^>]*content-desc="Photo taken[^"]*"' 40 ;;
+    allow)
+      sleep 2
+      "${adb[@]}" exec-out screencap -p >"$out/$journey/$(date +%H%M%S)-os-dialog.png"
+      tap_node 'text="Allow"|resource-id="com.android.permissioncontroller:id/permission_allow_button"' 15 ;;
+    deny)
+      sleep 2
+      "${adb[@]}" exec-out screencap -p >"$out/$journey/$(date +%H%M%S)-os-dialog.png"
+      tap_node "text=\"Don.t allow\"|resource-id=\"com.android.permissioncontroller:id/permission_deny_button\"" 15 ;;
     back) "${adb[@]}" shell input keyevent KEYCODE_BACK ;;
     type-reset-code) type_reset_code ;;
     open-reset-link) open_reset_link "$arg" ;;
     reopen-reset-link) reopen_reset_link ;;
     rc-buy)
+      sleep 4
+      "${adb[@]}" exec-out screencap -p >"$out/$journey/$(date +%H%M%S)-test-store.png"
       "${adb[@]}" shell uiautomator dump /sdcard/uitest-ui.xml >/dev/null 2>&1
       "${adb[@]}" shell cat /sdcard/uitest-ui.xml | tr '>' '\n' | grep -oE 'text="[^"]+"' >"$out/$journey/test-store-dialog.txt"
       tap_node 'text="[^"]*([Vv]alid|[Ss]uccess)[^"]*"' 20
@@ -114,6 +125,13 @@ handle() {
       fi
       "${adb[@]}" exec-out screencap -p >"$out/$journey/$(date +%H%M%S)-browser.png"
       "${adb[@]}" shell am start -n com.academe.flutter/com.academe.flutter_app.MainActivity >/dev/null 2>&1
+      ;;
+    grant-from-settings)
+      sleep 4
+      "${adb[@]}" exec-out screencap -p >"$out/$journey/$(date +%H%M%S)-system-settings.png"
+      "${adb[@]}" shell pm grant com.academe.flutter android.permission.POST_NOTIFICATIONS
+      sleep 1
+      "${adb[@]}" shell input keyevent KEYCODE_BACK
       ;;
     grant-notifications) "${adb[@]}" shell pm grant com.academe.flutter android.permission.POST_NOTIFICATIONS ;;
   esac

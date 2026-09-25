@@ -17,6 +17,7 @@ import (
 	"academe/server/internal/auth"
 	"academe/server/internal/httpx"
 	"academe/server/internal/profile"
+	"academe/server/internal/sarvam"
 )
 
 type fakeStore struct {
@@ -312,4 +313,12 @@ func TestUnavailableWithoutATutor(t *testing.T) {
 func idText(id int64) string {
 	b, _ := json.Marshal(id)
 	return string(b)
+}
+
+func TestSarvamOutageIsUnavailable(t *testing.T) {
+	err := toHTTP(fmt.Errorf("tutor reply: %w", &sarvam.StatusError{Code: http.StatusPaymentRequired, Detail: "No credits available."}))
+	var e *httpx.Error
+	if !errors.As(err, &e) || e.Status != http.StatusServiceUnavailable || e.Code != "askme_unavailable" {
+		t.Errorf("toHTTP(sarvam 402) = %v, want 503 askme_unavailable", err)
+	}
 }

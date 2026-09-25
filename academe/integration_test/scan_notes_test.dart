@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'support/driver.dart';
 import 'support/flows.dart';
 import 'support/folders.dart';
+import 'support/scan.dart';
 
 void main() {
   setUpJourney();
@@ -11,12 +12,7 @@ void main() {
     await newStudent(tester, 'notes');
     await createFolder(tester, 'Light notes');
     await tester.tapText('Scan notes');
-    await tester.waitFor(find.text('Gallery'));
-    bridge('push notes.png');
-    await tester.pause(const Duration(seconds: 5));
-    await tester.tapText('Gallery');
-    await tester.pause(const Duration(seconds: 2));
-    bridge('pick-photo');
+    await pickFromGallery(tester, 'notes.png');
     await tester.waitFor(
       find.text('Read 1 page'),
       timeout: const Duration(seconds: 60),

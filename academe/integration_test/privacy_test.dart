@@ -21,8 +21,8 @@ void main() {
     };
     for (final MapEntry(key: label, value: url) in links.entries) {
       await tester.scrollTo(find.text(label));
+      bridge('check-url $url');
       await tester.tapText(label);
-      await tester.host('check-url $url');
       await tester.pause(const Duration(seconds: 6));
       await tester.waitFor(find.text('Privacy policy'));
     }

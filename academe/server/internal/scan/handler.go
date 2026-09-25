@@ -180,7 +180,7 @@ func toHTTP(err error) error {
 		return &httpx.Error{Status: http.StatusNotFound, Code: "scan_not_found", Message: "That scan doesn't exist."}
 	case errors.Is(err, folder.ErrNotFound):
 		return &httpx.Error{Status: http.StatusNotFound, Code: "folder_not_found", Message: "That folder doesn't exist."}
-	case errors.Is(err, ErrUnavailable):
+	case errors.Is(err, ErrUnavailable), errors.Is(err, sarvam.ErrUnavailable):
 		return &httpx.Error{Status: http.StatusServiceUnavailable, Code: "scan_unavailable", Message: "Scanning isn't set up yet."}
 	case errors.Is(err, ErrFailed):
 		return &httpx.Error{Status: http.StatusBadGateway, Code: "scan_failed", Message: "Pebby couldn't read that. Try again."}
