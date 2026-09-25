@@ -54,7 +54,7 @@ type Lesson struct {
 
 var ErrInvalid = errors.New("invalid syllabus")
 
-//go:embed all:data
+//go:embed data/*.json
 var dataFiles embed.FS
 
 func Load() ([]Syllabus, error) {
@@ -182,7 +182,10 @@ func Plan(syllabi []Syllabus) []study.PlannedChapter {
 	for _, s := range syllabi {
 		for _, sub := range s.Subjects {
 			for _, c := range sub.Chapters {
-				p := study.PlannedChapter{Board: s.Board, Class: s.Class, Subject: sub.Subject, Number: c.Number, Title: c.Title, Unit: c.Unit}
+				p := study.PlannedChapter{
+					Board: s.Board, Class: s.Class, Subject: sub.Subject, Number: c.Number, Title: c.Title, Unit: c.Unit,
+					FormativeOnly: strings.Contains(strings.ToLower(c.Unit), "formative assessment only"),
+				}
 				for _, l := range c.Lessons {
 					p.Lessons = append(p.Lessons, l.Title)
 				}

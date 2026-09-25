@@ -48,6 +48,9 @@ Future<void> newStudent(WidgetTester tester, String journey) async {
   await signUpWithEmail(tester, email: uniqueEmail(journey));
   await completeSetup(tester);
   await tester.waitFor(find.text('Class 10 · CBSE'));
+  if (await tester.appears(find.text('Got it'))) {
+    await tester.tapText('Got it');
+  }
 }
 
 extension Passwords on WidgetTester {

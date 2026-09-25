@@ -1,6 +1,7 @@
 package httpx
 
 import (
+	"compress/gzip"
 	"context"
 	"crypto/rand"
 	"log/slog"
@@ -83,3 +84,52 @@ func (s *statusRecorder) WriteHeader(status int) {
 }
 
 func (s *statusRecorder) Unwrap() http.ResponseWriter { return s.ResponseWriter }
+
+func Gzip(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Add("Vary", "Accept-Encoding")
+		if !strings.Contains(r.Header.Get("Accept-Encoding"), "gzip") {
+			next.ServeHTTP(w, r)
+			return
+		}
+		gw := &gzipWriter{ResponseWriter: w}
+		defer gw.close()
+		next.ServeHTTP(gw, r)
+	})
+}
+
+type gzipWriter struct {
+	http.ResponseWriter
+	zw      *gzip.Writer
+	started bool
+}
+
+func (g *gzipWriter) WriteHeader(status int) {
+	if !g.started {
+		g.started = true
+		if status != http.StatusNoContent && status != http.StatusNotModified && status >= http.StatusOK {
+			g.Header().Set("Content-Encoding", "gzip")
+			g.Header().Del("Content-Length")
+			g.zw = gzip.NewWriter(g.ResponseWriter)
+		}
+	}
+	g.ResponseWriter.WriteHeader(status)
+}
+
+func (g *gzipWriter) Write(b []byte) (int, error) {
+	if !g.started {
+		g.WriteHeader(http.StatusOK)
+	}
+	if g.zw == nil {
+		return g.ResponseWriter.Write(b)
+	}
+	return g.zw.Write(b)
+}
+
+func (g *gzipWriter) close() {
+	if g.zw != nil {
+		_ = g.zw.Close()
+	}
+}
+
+func (g *gzipWriter) Unwrap() http.ResponseWriter { return g.ResponseWriter }

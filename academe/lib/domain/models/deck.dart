@@ -180,6 +180,7 @@ class PlannedChapter {
     required this.title,
     this.unit = '',
     this.lessons = const [],
+    this.isFormativeOnly = false,
   });
 
   final String id;
@@ -189,6 +190,7 @@ class PlannedChapter {
   final String title;
   final String unit;
   final List<PlannedLesson> lessons;
+  final bool isFormativeOnly;
 }
 
 typedef StudyCatalogue = ({

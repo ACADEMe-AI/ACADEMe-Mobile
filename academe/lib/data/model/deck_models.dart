@@ -93,6 +93,7 @@ PlannedChapter plannedChapterFromJson(Map<String, Object?> json) =>
       number: json['number']! as int,
       title: json['title']! as String,
       unit: json['unit'] as String? ?? '',
+      isFormativeOnly: json['formativeOnly'] as bool? ?? false,
       lessons: [
         for (final l in (json['lessons'] as List<Object?>?) ?? const [])
           PlannedLesson(

@@ -193,25 +193,43 @@ var deckFiles embed.FS
 
 func Library() ([]Deck, error) {
 	decks, err := ReadDecks(deckFiles)
-	if err != nil {
-		return nil, err
+	problems := []error{err}
+	seen := map[string]bool{}
+	var out []Deck
+	for _, d := range decks {
+		if !d.Approved() {
+			continue
+		}
+		if err := Validate(d); err != nil {
+			problems = append(problems, fmt.Errorf("skip deck %s: %w", d.ID, err))
+			continue
+		}
+		if seen[d.ID] {
+			problems = append(problems, fmt.Errorf("skip deck %s: the id appears twice", d.ID))
+			continue
+		}
+		seen[d.ID] = true
+		out = append(out, d)
 	}
-	return slices.DeleteFunc(decks, func(d Deck) bool { return !d.Approved() }), nil
+	return out, errors.Join(problems...)
 }
 
 func ReadDecks(fsys fs.FS) ([]Deck, error) {
 	var decks []Deck
+	var problems []error
 	err := fs.WalkDir(fsys, ".", func(p string, e fs.DirEntry, err error) error {
 		if err != nil || e.IsDir() || path.Ext(p) != ".json" || strings.HasSuffix(p, ReviewSuffix) {
 			return err
 		}
 		raw, err := fs.ReadFile(fsys, p)
 		if err != nil {
-			return fmt.Errorf("read %s: %w", p, err)
+			problems = append(problems, fmt.Errorf("read %s: %w", p, err))
+			return nil
 		}
 		var d Deck
 		if err := json.Unmarshal(raw, &d); err != nil {
-			return fmt.Errorf("parse %s: %w", p, err)
+			problems = append(problems, fmt.Errorf("parse %s: %w", p, err))
+			return nil
 		}
 		decks = append(decks, d)
 		return nil
@@ -222,7 +240,7 @@ func ReadDecks(fsys fs.FS) ([]Deck, error) {
 	slices.SortFunc(decks, func(a, b Deck) int {
 		return cmp.Or(cmp.Compare(a.Board, b.Board), cmp.Compare(a.Class, b.Class), cmp.Compare(a.Subject, b.Subject), cmp.Compare(a.ChapterNumber, b.ChapterNumber), cmp.Compare(a.Position, b.Position))
 	})
-	return decks, nil
+	return decks, errors.Join(problems...)
 }
 
 const ReviewSuffix = ".review.json"

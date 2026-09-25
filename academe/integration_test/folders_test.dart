@@ -17,7 +17,7 @@ void main() {
     await tester.tapText('Add chapters');
     await tester.waitFor(find.text('Pick chapters'));
     await tester.tapText('Maths');
-    await tester.tapOn(find.textContaining('Ch 1 ·'));
+    await tester.tapOn(find.textContaining(RegExp(r'^Ch \d+ ·')).first);
     await tester.tapText('Add 1 chapter');
     await tester.waitFor(find.textContaining('lessons done'));
     await tester.shot('folder-chapters');

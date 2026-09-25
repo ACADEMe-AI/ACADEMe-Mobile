@@ -2,11 +2,14 @@ package syllabus
 
 import (
 	"errors"
+	"fmt"
 	"os"
+	"slices"
 	"strings"
 	"testing"
 	"testing/fstest"
 
+	"academe/server/internal/profile"
 	"academe/server/internal/study"
 )
 
@@ -15,12 +18,32 @@ func TestRealDataIsValid(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Load() error:\n%v", err)
 	}
+	if len(syllabi) != 14 {
+		t.Errorf("Load() = %d syllabi, want CBSE and ICSE for classes 6 to 12", len(syllabi))
+	}
 	seen := map[string]bool{}
+	var formative []string
+	taught := map[string]bool{}
 	for _, p := range Plan(syllabi) {
 		if seen[p.ID()] {
 			t.Errorf("chapter %s appears twice", p.ID())
 		}
 		seen[p.ID()] = true
+		taught[fmt.Sprint(p.Board, p.Class, p.Subject)] = true
+		if p.FormativeOnly {
+			formative = append(formative, p.ID())
+		}
+	}
+	if len(formative) != 13 || !slices.Contains(formative, "cbse-10-science-14") || !slices.Contains(formative, "cbse-12-chemistry-13") {
+		t.Errorf("formative-only chapters = %v, want the 13 CBSE reading-material chapters", formative)
+	}
+	for _, s := range syllabi {
+		subjects, _ := profile.Subjects(s.Class, s.Board)
+		for _, sub := range subjects {
+			if !taught[fmt.Sprint(s.Board, s.Class, sub.ID)] {
+				t.Errorf("%s class %d: subject %s has no chapters", s.Board, s.Class, sub.ID)
+			}
+		}
 	}
 	decks, err := study.Library()
 	if err != nil {

@@ -119,10 +119,12 @@ class _ChapterHeader extends StatelessWidget {
         ),
         const SizedBox(height: 4),
         Text(
-          chapter.lessonsComing == 0
-              ? '${chapter.lessonsDone} of ${chapter.lessons.length} lessons done'
-              : '${chapter.lessonsDone} of ${chapter.lessons.length} lessons done'
-                    ' · ${chapter.lessonsComing} coming soon',
+          [
+            '${chapter.lessonsDone} of ${chapter.lessons.length} lessons done',
+            if (chapter.lessonsComing > 0)
+              '${chapter.lessonsComing} coming soon',
+            if (chapter.isFormativeOnly) 'Not in board exam',
+          ].join(' · '),
           style: AppTextStyles.caption.copyWith(color: palette.textMuted),
         ),
         const SizedBox(height: 8),

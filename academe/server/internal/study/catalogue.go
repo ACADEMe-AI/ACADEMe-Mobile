@@ -17,6 +17,8 @@ type PlannedChapter struct {
 	Title   string
 	Unit    string
 	Lessons []string
+
+	FormativeOnly bool
 }
 
 func (p PlannedChapter) ID() string { return ChapterID(p.Board, p.Class, p.Subject, p.Number) }
@@ -33,6 +35,8 @@ type ChapterSummary struct {
 	Title       string          `json:"title"`
 	Unit        string          `json:"unit"`
 	Lessons     []PlannedLesson `json:"lessons"`
+
+	FormativeOnly bool `json:"formativeOnly,omitempty"`
 }
 
 type PlannedLesson struct {
@@ -69,7 +73,7 @@ func (s *Service) Chapters(ctx context.Context, accountID, subject string) ([]Ch
 		if !wanted(p.Board, p.Class, p.Subject) {
 			continue
 		}
-		c := add(ChapterSummary{ID: p.ID(), Subject: p.Subject, SubjectName: names[p.Subject], Number: p.Number, Title: p.Title, Unit: p.Unit, Lessons: []PlannedLesson{}})
+		c := add(ChapterSummary{ID: p.ID(), Subject: p.Subject, SubjectName: names[p.Subject], Number: p.Number, Title: p.Title, Unit: p.Unit, Lessons: []PlannedLesson{}, FormativeOnly: p.FormativeOnly})
 		for i, title := range p.Lessons {
 			c.Lessons = append(c.Lessons, PlannedLesson{ID: LessonID(c.ID, i+1), Position: i + 1, Title: title})
 		}

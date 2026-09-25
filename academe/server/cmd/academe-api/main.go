@@ -107,7 +107,7 @@ func run(ctx context.Context, logger *slog.Logger) error {
 	chat.RegisterRoutes(mux, logger, chats, authService.RequireAccount)
 	decks, err := study.Library()
 	if err != nil {
-		return fmt.Errorf("load decks: %w", err)
+		logger.Error("some lesson decks were skipped", "error", err, "served", len(decks))
 	}
 	syllabi, err := syllabus.Load()
 	if err != nil {

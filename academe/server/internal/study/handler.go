@@ -17,7 +17,7 @@ func RegisterRoutes(mux *http.ServeMux, logger *slog.Logger, s *Service, require
 	route := func(pattern string, f httpx.HandlerFunc) {
 		mux.Handle(pattern, httpx.Handle(logger, requireAccount(f)))
 	}
-	route("GET /study/decks", h.list)
+	mux.Handle("GET /study/decks", httpx.Gzip(httpx.Handle(logger, requireAccount(h.list))))
 	route("GET /study/decks/{id}", h.deck)
 	route("POST /study/decks/{id}/answers", h.answer)
 	route("PUT /study/decks/{id}/completion", h.complete)

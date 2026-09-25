@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"log/slog"
+	"net/http"
 	"os"
 	"path/filepath"
 	"strings"
@@ -90,6 +91,11 @@ func TestExtractJSON(t *testing.T) {
 		{"fenced", "```json\n{\"ok\": true}\n```", `{"ok": true}`},
 		{"prose around", "Here it is:\n{\"a\": {\"b\": 1}}\nHope that helps.", `{"a": {"b": 1}}`},
 		{"thinking first", "<think>maybe {\"x\": 1}</think>{\"ok\": false}", `{"ok": false}`},
+		{"trailing commas", `{"a": [1, 2,], "b": {"c": 3,},}`, `{"a": [1, 2], "b": {"c": 3}}`},
+		{"braces in prose after", "{\"ok\": true}\nNote: {braces} are fine.", `{"ok": true}`},
+		{"braces in prose before", "Using {x} notation: {\"ok\": true}", `{"ok": true}`},
+		{"fence then text", "```json\n{\"ok\": true}\n``` done {x}", `{"ok": true}`},
+		{"comma in a string kept", `{"a": "1, ]"}`, `{"a": "1, ]"}`},
 	} {
 		t.Run(tc.name, func(t *testing.T) {
 			got, err := extractJSON(tc.reply)
@@ -97,6 +103,9 @@ func TestExtractJSON(t *testing.T) {
 				t.Errorf("extractJSON(%q) = %s, %v; want %s", tc.reply, got, err, tc.want)
 			}
 		})
+	}
+	if _, err := extractJSON(`{"a": "say "hi" now"}`); err == nil || !strings.Contains(err.Error(), "near") {
+		t.Errorf("extractJSON(unescaped quote) error = %v, want the spot named", err)
 	}
 	for _, reply := range []string{"no json here", "{broken", `{"a": }`} {
 		if _, err := extractJSON(reply); !errors.Is(err, ErrNoJSON) {
@@ -125,6 +134,9 @@ func TestParseDeckRules(t *testing.T) {
 		{"why by position", "Two H and two Cl on each side.", "Option 0 is right."},
 		{"why by letter", "Two H and two Cl on each side.", "So (B) is wrong and choice c too."},
 		{"why by order", "Two H and two Cl on each side.", "The first option balances."},
+		{"option naming letters", `"It looks neater"`, `"Both A and D"`},
+		{"all of the above", `"It looks neater"`, `"All of the above"`},
+		{"why naming a reaction by letter", "Two H and two Cl on each side.", "Reaction D is a displacement."},
 		{"no summary last", `{"kind": "summary"`, `{"kind": "concept"`},
 	} {
 		if _, err := parseDeck(j, strings.Replace(goodCards, tc.from, tc.to, 1)); err == nil {
@@ -138,13 +150,21 @@ func TestParseDeckRules(t *testing.T) {
 	if _, err := parseDeck(j, numbers); err != nil {
 		t.Errorf("parseDeck(why naming a numeric option by its value) error = %v, want none", err)
 	}
-	powers := strings.Replace(goodCards, "Count atoms", "12 = 2^2 × 3 and 10^(-3)", 1)
-	if d, err := parseDeck(j, powers); err != nil || d.Cards[4].Rows[0].Value != "12 = 2² × 3 and 10⁻³" {
+	powers := strings.Replace(goodCards, "Count atoms", "12 = 2^2 × 3 and 10^(-3), root 2 and 3 + 2 root 5", 1)
+	if d, err := parseDeck(j, powers); err != nil || d.Cards[4].Rows[0].Value != "12 = 2² × 3 and 10⁻³, √2 and 3 + 2√5" {
 		t.Errorf("parseDeck(caret powers) = %v, %v; want superscripts", d.Cards[4].Rows, err)
+	}
+	labelled := strings.Replace(goodCards, `"Oxygen: 2 on`, `"Step 1: Step 1: Oxygen: 2 on`, 1)
+	if d, err := parseDeck(j, labelled); err != nil || !strings.HasPrefix(d.Cards[2].Steps[0], "Oxygen") {
+		t.Errorf("parseDeck(step labels) = %v, want the labels stripped", err)
 	}
 	named := strings.Replace(strings.Replace(goodCards, `"answer": 0, "why": "Atoms`, `"answer": "Atoms are conserved", "why": "Atoms`, 1), `"answer": 0, "why": "Two`, `"answer": "0", "why": "Two`, 1)
 	if d, err := parseDeck(j, named); err != nil || d.Cards[3].Options[*d.Cards[3].Answer] != "Atoms are conserved" || d.Cards[5].Options[*d.Cards[5].Answer] != "H₂ + Cl₂ → 2HCl" {
 		t.Errorf("parseDeck(answers as text) = %v, want answers mapped to their options", err)
+	}
+	stray := strings.Replace(goodCards, `"steps": ["Oxygen`, `"answer": "x", "steps": ["Oxygen`, 1)
+	if d, err := parseDeck(j, stray); err != nil || d.Cards[2].Answer != nil {
+		t.Errorf("parseDeck(answer on an example) = %v, want it dropped", err)
 	}
 	short := `{"cards": [{"kind": "start", "goals": ["a"], "minutes": 2}, {"kind": "concept", "title": "t", "body": "b"}, {"kind": "quiz", "question": "q", "options": ["x", "y"], "answer": 0, "why": "w"}, {"kind": "summary", "points": ["p"]}]}`
 	if _, err := parseDeck(j, short); !errors.Is(err, ErrBadDeck) {
@@ -248,6 +268,24 @@ func TestAskBacksOff(t *testing.T) {
 	g = newGenerator(t, chat)
 	if _, err := g.ask(t.Context(), chat, []sarvam.Message{{Role: "user", Content: "x"}}, 0); err == nil || len(chat.messages) != 1 {
 		t.Errorf("ask() on 400 = %v after %d calls, want an error without retrying", err, len(chat.messages))
+	}
+}
+
+func TestStopsWhenSarvamRefuses(t *testing.T) {
+	for _, code := range []int{http.StatusUnauthorized, http.StatusPaymentRequired, http.StatusForbidden} {
+		t.Run(http.StatusText(code), func(t *testing.T) {
+			chat := &fakeChat{authors: []string{goodCards}, reviews: []string{`{"ok": true, "issues": []}`}, errs: []error{nil, nil, &sarvam.StatusError{Code: code}}}
+			g := newGenerator(t, chat)
+			jobs := fixtureJobs(t, Filter{})
+			sum, err := g.Run(t.Context(), jobs, 1)
+			if se, ok := errors.AsType[*sarvam.StatusError](err); !ok || se.Code != code || sum.Approved != 1 || sum.Failed != 1 || len(chat.messages) != 3 {
+				t.Fatalf("Run() refused with %d = %+v, %v after %d calls; want one approved, then a stop", code, sum, err, len(chat.messages))
+			}
+			sum, err = g.Run(t.Context(), jobs, 3)
+			if err != nil || sum.Skipped != 1 || sum.Approved != len(jobs)-1 {
+				t.Errorf("rerun = %+v, %v; want the approved lesson skipped and the rest generated", sum, err)
+			}
+		})
 	}
 }
 

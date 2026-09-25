@@ -32,6 +32,7 @@ class StudyChapter {
     required this.result,
     this.unit = '',
     this.plan = const [],
+    this.isFormativeOnly = false,
   });
 
   final String id;
@@ -42,6 +43,7 @@ class StudyChapter {
   final List<DeckSummary> lessons;
   final List<PlannedLesson> plan;
   final ChapterResult? result;
+  final bool isFormativeOnly;
 
   int get lessonsDone => lessons.where((l) => l.isDone).length;
   int get kept => lessons.fold(0, (sum, l) => sum + l.kept);
@@ -134,6 +136,7 @@ class StudyViewModel extends ChangeNotifier {
         title: c.title,
         unit: c.unit,
         plan: c.lessons,
+        isFormativeOnly: c.isFormativeOnly,
         lessons: [],
         result: _results[c.id],
       );

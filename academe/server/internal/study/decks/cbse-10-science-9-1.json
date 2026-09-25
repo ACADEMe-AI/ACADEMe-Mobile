@@ -6,121 +6,137 @@
   "chapterNumber": 9,
   "chapterTitle": "Light – Reflection and Refraction",
   "position": 1,
-  "title": "Reflection of light",
+  "title": "Spherical mirrors",
   "language": "en",
   "cards": [
     {
       "kind": "start",
       "goals": [
-        "Say what reflection is",
-        "Use the two laws of reflection",
-        "Describe the image in a plane mirror"
+        "Tell a concave mirror from a convex one",
+        "Use pole, centre of curvature, focus and focal length",
+        "Say where each mirror is used"
       ],
-      "minutes": 6
+      "minutes": 7
     },
     {
       "kind": "concept",
-      "title": "Light travels in straight lines",
-      "body": "Light moves in straight lines. That's why an object in its path casts a sharp shadow.\n\nWhen light hits a surface, some of it bounces back. This bouncing back is called **reflection**."
+      "title": "Two kinds of spherical mirror",
+      "body": "A spherical mirror is part of a hollow sphere.\n- **Concave**: the shiny side curves inwards, like the inside of a spoon.\n- **Convex**: the shiny side bulges outwards, like the back of a spoon."
     },
     {
       "kind": "table",
-      "title": "The two laws of reflection",
+      "title": "Words you'll need",
       "rows": [
         {
-          "term": "First law",
-          "value": "Angle of incidence = angle of reflection"
+          "term": "Pole (P)",
+          "value": "The centre of the mirror's surface"
         },
         {
-          "term": "Second law",
-          "value": "The incident ray, the reflected ray and the normal all lie in the same plane"
+          "term": "Centre of curvature (C)",
+          "value": "The centre of the sphere the mirror is part of"
         },
         {
-          "term": "Normal",
-          "value": "The line at 90° to the mirror where the ray hits it"
+          "term": "Radius of curvature (R)",
+          "value": "The distance from P to C"
+        },
+        {
+          "term": "Principal focus (F)",
+          "value": "Where rays parallel to the axis meet, or seem to come from"
+        },
+        {
+          "term": "Focal length (f)",
+          "value": "The distance from P to F"
         }
       ],
-      "remember": "Angles are always measured from the normal, not from the mirror."
+      "remember": "f = R/2 for spherical mirrors."
     },
     {
       "kind": "quiz",
-      "question": "A ray strikes a plane mirror making an angle of 35° with the normal. What is the angle of reflection?",
+      "question": "A spherical mirror has a radius of curvature of 20 cm. What is its focal length?",
       "options": [
-        "55°",
-        "35°",
-        "70°",
-        "90°"
+        "40 cm",
+        "20 cm",
+        "10 cm",
+        "5 cm"
+      ],
+      "answer": 2,
+      "why": "The focus lies halfway between the pole and the centre of curvature, so f = R/2 = 20/2 = 10 cm."
+    },
+    {
+      "kind": "concept",
+      "title": "Concave mirrors bring light together",
+      "body": "Rays parallel to the principal axis reflect off a concave mirror and meet at the principal focus F, in front of the mirror.\n\nThat's why a concave mirror is called a **converging** mirror."
+    },
+    {
+      "kind": "concept",
+      "title": "Convex mirrors spread light out",
+      "body": "Parallel rays reflect off a convex mirror and spread out. Traced backwards, they seem to come from a focus F **behind** the mirror.\n\nThat's why a convex mirror is called a **diverging** mirror."
+    },
+    {
+      "kind": "quiz",
+      "question": "Which mirror is used as the rear-view mirror in vehicles?",
+      "options": [
+        "Concave",
+        "Convex",
+        "Plane",
+        "Any of these"
       ],
       "answer": 1,
-      "why": "Angles are measured from the normal. The angle of incidence is 35°, and by the first law of reflection the angle of reflection equals it: 35°. 55° is the angle with the mirror's surface, not with the normal."
+      "why": "A convex mirror always gives an erect, smaller image and shows a much wider view than a plane mirror, so the driver sees more of the road behind."
     },
     {
       "kind": "table",
-      "title": "The image in a plane mirror",
+      "title": "Images from a concave mirror",
       "rows": [
         {
-          "term": "Kind",
-          "value": "Virtual: it can't be caught on a screen"
+          "term": "Object at infinity",
+          "value": "Real, inverted, point-sized, at F"
         },
         {
-          "term": "Way up",
-          "value": "Erect"
+          "term": "Beyond C",
+          "value": "Real, inverted, smaller, between F and C"
         },
         {
-          "term": "Size",
-          "value": "Same as the object"
+          "term": "At C",
+          "value": "Real, inverted, same size, at C"
         },
         {
-          "term": "Distance",
-          "value": "As far behind the mirror as the object is in front"
+          "term": "Between C and F",
+          "value": "Real, inverted, larger, beyond C"
         },
         {
-          "term": "Sides",
-          "value": "Laterally inverted: left and right swap"
+          "term": "At F",
+          "value": "Image at infinity"
+        },
+        {
+          "term": "Between F and P",
+          "value": "Virtual, erect, larger, behind the mirror"
         }
       ]
     },
     {
       "kind": "concept",
-      "title": "Lateral inversion",
-      "body": "Raise your right hand in front of a mirror and your image raises its left. This left–right swap is **lateral inversion**.\n\nIt's why AMBULANCE is written in reverse on the front of ambulances: drivers ahead read it the right way round in their mirrors."
+      "title": "Concave mirrors at work",
+      "body": "- **Shaving and make-up mirrors** and **dentists' mirrors**: held close, they give a larger, erect image.\n- **Torches and car headlights**: a bulb at F sends out a parallel beam.\n- **Solar furnaces**: they bring sunlight together at one point to make heat."
     },
     {
       "kind": "quiz",
-      "question": "You stand 2 m in front of a plane mirror. How far are you from your image?",
+      "question": "Where should an object be placed in front of a concave mirror to get a virtual, erect and magnified image?",
       "options": [
-        "1 m",
-        "2 m",
-        "4 m",
-        "0 m"
+        "Beyond C",
+        "At C",
+        "Between F and P",
+        "At F"
       ],
       "answer": 2,
-      "why": "The image is as far behind the mirror as you are in front of it, so it's 2 m behind. The distance between you and your image is 2 m + 2 m = 4 m."
-    },
-    {
-      "kind": "concept",
-      "title": "Real and virtual images",
-      "body": "A **real** image forms where light rays actually meet. It can be caught on a screen and is always inverted.\n\nA **virtual** image forms where rays only seem to come from. It can't be caught on a screen.",
-      "remember": "A plane mirror always forms a virtual image."
-    },
-    {
-      "kind": "quiz",
-      "question": "Which is true of the image formed by a plane mirror?",
-      "options": [
-        "Real and inverted",
-        "Virtual and the same size",
-        "Virtual and magnified",
-        "Real and diminished"
-      ],
-      "answer": 1,
-      "why": "A plane mirror's image can't be caught on a screen, so it's virtual, and it is always the same size as the object. Real, inverted images come from concave mirrors."
+      "why": "Only when the object is between the focus and the pole do the reflected rays spread out. They seem to meet behind the mirror, which gives a virtual, erect, magnified image, like a make-up mirror held close."
     },
     {
       "kind": "summary",
       "points": [
-        "Reflection is light bouncing off a surface",
-        "Angle of incidence = angle of reflection, measured from the normal",
-        "A plane mirror's image is virtual, erect, the same size and laterally inverted"
+        "Concave mirrors converge light; convex mirrors diverge it",
+        "f = R/2",
+        "Convex: rear-view mirrors. Concave: make-up mirrors, torches, solar furnaces"
       ]
     }
   ]

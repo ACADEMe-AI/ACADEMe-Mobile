@@ -19,7 +19,7 @@ import (
 )
 
 const (
-	authorAttempts = 4
+	authorAttempts = 5
 	reviewAttempts = 3
 	revisions      = 2
 	authorHeat     = 0.4
@@ -84,12 +84,17 @@ func (g *Generator) Run(ctx context.Context, jobs []Job, workers int) (Summary, 
 		return Summary{}, err
 	}
 	sum := Summary{Skipped: skipped}
+	ctx, stop := context.WithCancelCause(ctx)
+	defer stop(nil)
 	queue := make(chan Job)
 	var mu sync.Mutex
 	var wg sync.WaitGroup
 	for range max(1, workers) {
 		wg.Go(func() {
 			for j := range queue {
+				if ctx.Err() != nil {
+					continue
+				}
 				start := time.Now()
 				status, err := g.guarded(ctx, j)
 				took := time.Since(start)
@@ -105,6 +110,9 @@ func (g *Generator) Run(ctx context.Context, jobs []Job, workers int) (Summary, 
 				}
 				done := sum.Approved + sum.Draft + sum.Failed
 				mu.Unlock()
+				if refused(err) {
+					stop(err)
+				}
 				if err != nil {
 					g.Logger.Error("lesson failed", "id", j.ID(), "seconds", int(took.Seconds()), "done", done, "of", len(pending), "error", err)
 					continue
@@ -122,7 +130,15 @@ func (g *Generator) Run(ctx context.Context, jobs []Job, workers int) (Summary, 
 	close(queue)
 	wg.Wait()
 	sum.Elapsed = time.Since(began)
-	return sum, ctx.Err()
+	if cause := context.Cause(ctx); cause != nil {
+		return sum, fmt.Errorf("stopped: %w", cause)
+	}
+	return sum, nil
+}
+
+func refused(err error) bool {
+	se, ok := errors.AsType[*sarvam.StatusError](err)
+	return ok && (se.Code == http.StatusUnauthorized || se.Code == http.StatusPaymentRequired || se.Code == http.StatusForbidden)
 }
 
 func (g *Generator) guarded(ctx context.Context, j Job) (status string, err error) {

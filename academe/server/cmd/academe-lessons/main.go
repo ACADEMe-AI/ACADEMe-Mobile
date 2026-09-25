@@ -48,7 +48,7 @@ func run(ctx context.Context, logger *slog.Logger, args []string) error {
 	maxTokens := flags.Int("max-tokens", 24000, "Sarvam completion budget for a reasoning call; calls without reasoning get at most 8000")
 	authorReasoning := flags.String("author-reasoning", "none", "Sarvam reasoning effort when writing: none, low, medium, high")
 	reviewReasoning := flags.String("review-reasoning", "medium", "Sarvam reasoning effort when reviewing: none, low, medium, high")
-	timeout := flags.Duration("timeout", 180*time.Second, "limit for one Sarvam request")
+	timeout := flags.Duration("timeout", 300*time.Second, "limit for one Sarvam request")
 	if err := flags.Parse(args); err != nil {
 		return err
 	}

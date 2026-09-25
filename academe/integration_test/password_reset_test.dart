@@ -2,26 +2,9 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'support/driver.dart';
 import 'support/flows.dart';
+import 'support/session.dart';
 
 const newPassword = 'uitest-new-5678';
-
-Future<void> logOut(WidgetTester tester) async {
-  await tester.tapText('Me');
-  await tester.scrollTo(find.text('Log out'));
-  await tester.tapText('Log out');
-  await tester.waitFor(find.text('Log out?'));
-  await tester.tapOn(find.text('Log out'));
-  await tester.waitFor(find.text('Get started'));
-}
-
-Future<void> logIn(WidgetTester tester, String email, String secret) async {
-  await tester.tapText('Log in');
-  await tester.tapText('Continue with email');
-  await tester.waitFor(find.text('Log in to pick up where you left off.'));
-  await tester.fill('Email', email);
-  await tester.enterPassword(secret);
-  await tester.tapText('Log in');
-}
 
 void main() {
   setUpJourney();

@@ -74,10 +74,10 @@ extension Journey on WidgetTester {
     Duration timeout = const Duration(seconds: 4),
   }) async {
     final end = DateTime.now().add(timeout);
-    while (DateTime.now().isBefore(end)) {
+    do {
       await pump(const Duration(milliseconds: 100));
       if (finder.hitTestable().evaluate().isNotEmpty) return true;
-    }
+    } while (DateTime.now().isBefore(end));
     return false;
   }
 

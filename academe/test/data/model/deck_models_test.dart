@@ -39,6 +39,7 @@ void main() {
           'number': 1,
           'title': 'Real Numbers',
           'unit': 'Number Systems',
+          'formativeOnly': true,
           'lessons': [
             {
               'id': 'cbse-10-maths-1-1',
@@ -52,6 +53,7 @@ void main() {
     });
     final chapter = catalogue.chapters.single;
     expect(chapter.unit, 'Number Systems');
+    expect(chapter.isFormativeOnly, isTrue);
     expect(chapter.lessons.single.isAvailable, isFalse);
     expect(studyCatalogueFromJson({'decks': <Object?>[]}).chapters, isEmpty);
   });

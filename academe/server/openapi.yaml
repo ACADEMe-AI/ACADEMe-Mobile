@@ -1545,6 +1545,7 @@ components:
         number: { type: integer }
         title: { type: string }
         unit: { type: string, description: "Syllabus unit, empty when unknown" }
+        formativeOnly: { type: boolean, description: "true for CBSE reading material that is assessed in school only and is not in the board exam; absent otherwise" }
         lessons:
           type: array
           description: Planned lessons in order. Unavailable ones are not written yet; show them as coming soon.

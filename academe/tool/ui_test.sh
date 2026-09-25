@@ -71,6 +71,7 @@ push_image() {
   local file=$1
   "${adb[@]}" shell rm -f /sdcard/Pictures/uitest-*.png >/dev/null
   "${adb[@]}" push "integration_test/assets/$file" "/sdcard/Pictures/uitest-$file" >/dev/null
+  "${adb[@]}" shell touch "/sdcard/Pictures/uitest-$file"
   "${adb[@]}" shell content call --method scan_volume --uri content://media --arg external_primary >/dev/null 2>&1
   "${adb[@]}" shell am broadcast -a android.intent.action.MEDIA_SCANNER_SCAN_FILE -d "file:///sdcard/Pictures/uitest-$file" >/dev/null 2>&1
 }
@@ -82,11 +83,13 @@ handle() {
     shot) "${adb[@]}" shell dumpsys power | grep -q "mWakefulness=Awake" || wake
       "${adb[@]}" exec-out screencap -p >"$out/$journey/$(date +%H%M%S)-$arg.png" ;;
     push) push_image "$arg" ;;
-    pick-photo) tap_node 'content-desc="(Photo|Image)[^"]*"|resource-id="[^"]*icon_thumbnail"' 30 ;;
+    pick-photo) tap_node 'package="com\.(google\.)?android\.(providers\.media\.module|photopicker)"[^>]*content-desc="Photo taken[^"]*"' 40 ;;
     allow) tap_node 'text="Allow"|resource-id="com.android.permissioncontroller:id/permission_allow_button"' 15 ;;
     deny) tap_node "text=\"Don.t allow\"|resource-id=\"com.android.permissioncontroller:id/permission_deny_button\"" 15 ;;
     back) "${adb[@]}" shell input keyevent KEYCODE_BACK ;;
     type-reset-code) type_reset_code ;;
+    open-reset-link) open_reset_link "$arg" ;;
+    reopen-reset-link) reopen_reset_link ;;
     rc-buy)
       "${adb[@]}" shell uiautomator dump /sdcard/uitest-ui.xml >/dev/null 2>&1
       "${adb[@]}" shell cat /sdcard/uitest-ui.xml | tr '>' '\n' | grep -oE 'text="[^"]+"' >"$out/$journey/test-store-dialog.txt"
@@ -128,13 +131,15 @@ wait_for_build() {
 }
 
 server_pid=""
-server_log="$out/server-8099.log"
+reset_base=http://localhost:8099
+server_log="${UI_TEST_SERVER_LOG:-$out/server-8099.log}"
 start_dev_server() {
   [ -n "$server_pid" ] && return
   for _ in $(seq 20); do
     (cd server && go build -o ../build/ui-test-server/academe-api ./cmd/academe-api) && break
     sleep 30
   done
+  server_log="$out/server-8099.log"
   : >"$server_log"
   ACADEME_ADDR=:8099 \
     ACADEME_DATABASE_URL="${ACADEME_DATABASE_URL:-postgres://academe:academe@localhost:5432/academe?sslmode=disable}" \
@@ -148,6 +153,18 @@ start_dev_server() {
   echo "ui_test: dev server on :8099 did not start, see $server_log" >&2
 }
 trap '[ -n "$server_pid" ] && kill "$server_pid"' EXIT
+
+open_reset_link() {
+  local email=$1
+  curl -s -XPOST "$reset_base/auth/password-reset" -H 'content-type: application/json' -d "{\"email\":\"$email\"}" >/dev/null
+  sleep 2
+  grep '"reset code sent"' "$server_log" | tail -1 | sed -nE 's/.*"link":"[^"]*[?&]c=([^"&]+)".*/\1/p' >"$out/reset-token.txt"
+  reopen_reset_link
+}
+
+reopen_reset_link() {
+  "${adb[@]}" shell am start -a android.intent.action.VIEW -d "'academe://reset?c=$(cat "$out/reset-token.txt")'" com.academe.flutter >/dev/null
+}
 
 type_reset_code() {
   local code
@@ -163,7 +180,17 @@ for journey in "${journeys[@]}"; do
   began=$(date +%s)
   journey_defines=()
   case "$journey" in
-    password_reset* | limits*)
+    password_reset* | deeplink* | account*)
+      if [ -n "${UI_TEST_SERVER_LOG:-}" ]; then
+        server_log=$UI_TEST_SERVER_LOG
+        reset_base=http://localhost:8080
+      else
+        start_dev_server
+        journey_defines=(--dart-define=API_BASE_URL=http://10.0.2.2:8099)
+        reset_base=http://localhost:8099
+      fi
+      ;;
+    limits*)
       start_dev_server
       journey_defines=(--dart-define=API_BASE_URL=http://10.0.2.2:8099)
       ;;

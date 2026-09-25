@@ -210,7 +210,7 @@ var testDecks = []Deck{{
 
 var testPlan = []PlannedChapter{
 	{Board: "CBSE", Class: 10, Subject: "science", Number: 9, Title: "Light – Reflection and Refraction", Unit: "Natural Phenomena", Lessons: []string{"Reflection of light", "Spherical mirrors"}},
-	{Board: "CBSE", Class: 10, Subject: "maths", Number: 1, Title: "Real Numbers", Unit: "Number Systems", Lessons: []string{"Prime factors"}},
+	{Board: "CBSE", Class: 10, Subject: "maths", Number: 1, Title: "Real Numbers", Unit: "Number Systems", Lessons: []string{"Prime factors"}, FormativeOnly: true},
 	{Board: "ICSE", Class: 10, Subject: "physics", Number: 1, Title: "Force", Lessons: []string{"Turning effect"}},
 }
 
@@ -279,6 +279,9 @@ func TestRoutes(t *testing.T) {
 	if maths["id"] != "cbse-10-maths-1" || maths["subjectName"] != "Maths" || maths["unit"] != "Number Systems" {
 		t.Errorf("first chapter = %v, want cbse-10-maths-1 Maths in Number Systems", maths)
 	}
+	if maths["formativeOnly"] != true || science["formativeOnly"] != nil {
+		t.Errorf("formativeOnly = %v and %v, want true on maths and absent on science", maths["formativeOnly"], science["formativeOnly"])
+	}
 	if lessons := maths["lessons"].([]any); len(lessons) != 1 || lessons[0].(map[string]any)["available"] != false || lessons[0].(map[string]any)["id"] != "cbse-10-maths-1-1" {
 		t.Errorf("maths lessons = %v, want one unwritten lesson cbse-10-maths-1-1", lessons)
 	}
@@ -288,6 +291,14 @@ func TestRoutes(t *testing.T) {
 	}
 	if first, second := lessons[0].(map[string]any), lessons[1].(map[string]any); first["id"] != "d1" || first["available"] != true || first["title"] != "Reflection" || second["available"] != false || second["id"] != "cbse-10-science-9-2" {
 		t.Errorf("science lessons = %v, want d1 available then an unwritten cbse-10-science-9-2", lessons)
+	}
+	gzipped, err := http.NewRequestWithContext(t.Context(), "GET", srv.URL+"/study/decks", nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	gzipped.Header.Set("Authorization", "Bearer riya")
+	if res, err := srv.Client().Do(gzipped); err != nil || !res.Uncompressed || res.Body.Close() != nil {
+		t.Errorf("GET /study/decks with gzip accepted = %v; want a compressed reply the client unpacks", err)
 	}
 	if status, got := call("GET", "/study/decks", "new", ""); status != http.StatusOK || len(got["decks"].([]any)) != 0 || len(got["chapters"].([]any)) != 0 {
 		t.Errorf("GET /study/decks before setup = %d %v, want an empty list", status, got)
@@ -446,5 +457,16 @@ func TestReadDecksWalksFoldersAndSkipsReviews(t *testing.T) {
 	slices.Sort(approved)
 	if len(decks) != 3 || !slices.Equal(approved, []string{"approved", "seed"}) {
 		t.Errorf("ReadDecks() = %d decks, approved %v; want 3 decks with the seed and the approved one approved", len(decks), approved)
+	}
+}
+
+func TestReadDecksSkipsABrokenFile(t *testing.T) {
+	fsys := fstest.MapFS{
+		"decks/cbse-10-maths-3-3.json":           {Data: []byte(`{"id":"seed","class":10}`)},
+		"decks/cbse-10/cbse-10-science-1-1.json": {Data: []byte(`{"id":"half`)},
+	}
+	decks, err := ReadDecks(fsys)
+	if err == nil || !strings.Contains(err.Error(), "cbse-10-science-1-1.json") || len(decks) != 1 || decks[0].ID != "seed" {
+		t.Errorf("ReadDecks(one broken file) = %v, %v; want the good deck and an error naming the broken file", decks, err)
 	}
 }

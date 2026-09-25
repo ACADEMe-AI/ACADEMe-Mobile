@@ -142,6 +142,7 @@ class ChapterRow extends StatelessWidget {
               : 'Done · test ${result.percent}%$coming'
         : '${chapter.lessonsDone} of ${chapter.lessons.length} lessons$coming';
     final ink = soon ? palette.textMuted : palette.text;
+    final exam = chapter.isFormativeOnly ? ' · Not in board exam' : '';
     return Semantics(
       button: !soon,
       child: InkWell(
@@ -181,7 +182,7 @@ class ChapterRow extends StatelessWidget {
                       style: AppTextStyles.labelStrong.copyWith(color: ink),
                     ),
                     Text(
-                      subtitle,
+                      '$subtitle$exam',
                       style: AppTextStyles.caption.copyWith(
                         color: palette.textMuted,
                       ),

@@ -21,23 +21,45 @@ const (
 )
 
 var (
-	ErrNoJSON  = errors.New("no JSON object in the reply")
-	ErrBadDeck = errors.New("lesson breaks the generator rules")
-	thinking   = regexp.MustCompile(`(?s)<think>.*?</think>`)
-	caretPower = regexp.MustCompile(`\^\(?(-?[0-9]+)\)?`)
-	superDigit = strings.NewReplacer("0", "⁰", "1", "¹", "2", "²", "3", "³", "4", "⁴", "5", "⁵", "6", "⁶", "7", "⁷", "8", "⁸", "9", "⁹", "-", "⁻")
-	byPosition = regexp.MustCompile(`(?i)\b(options?|choices?)\s*\(?([a-d]|[0-9])\)?(\W|$)|\b(first|second|third|fourth|last)\s+(option|choice)`)
+	ErrNoJSON     = errors.New("no JSON object in the reply")
+	ErrBadDeck    = errors.New("lesson breaks the generator rules")
+	thinking      = regexp.MustCompile(`(?s)<think>.*?</think>`)
+	objectStart   = regexp.MustCompile(`\{\s*["}]`)
+	trailingComma = regexp.MustCompile(`,(\s*[}\]])`)
+	stepLabel     = regexp.MustCompile(`^(?i)(\s*step\s*[0-9]+\s*[:.)–-]\s*)+`)
+	wordRoot      = regexp.MustCompile(`\b[Rr]oot ([0-9]+)\b`)
+	spacedRoot    = regexp.MustCompile(`([0-9]) √`)
+	caretPower    = regexp.MustCompile(`\^\(?(-?[0-9]+)\)?`)
+	superDigit    = strings.NewReplacer("0", "⁰", "1", "¹", "2", "²", "3", "³", "4", "⁴", "5", "⁵", "6", "⁶", "7", "⁷", "8", "⁸", "9", "⁹", "-", "⁻")
+	crossOption   = regexp.MustCompile(`\b(Both|Neither|Only)\b.*\b[A-D]\b|(?i)\b(all|none) of the above\b`)
+	byPosition    = regexp.MustCompile(`(?i)\b(options?|choices?|reactions?|statements?|answers?)\s*\(?([a-d]|[0-9])\)?(\W|$)|\b(first|second|third|fourth|last)\s+(option|choice)`)
 )
 
 func extractJSON(reply string) ([]byte, error) {
 	reply = thinking.ReplaceAllString(reply, "")
-	start, end := strings.Index(reply, "{"), strings.LastIndex(reply, "}")
-	if start < 0 || end < start {
+	at := objectStart.FindStringIndex(reply)
+	if at == nil {
 		return nil, ErrNoJSON
 	}
-	raw := []byte(reply[start : end+1])
-	if !json.Valid(raw) {
-		return nil, fmt.Errorf("%w: the object is not valid JSON", ErrNoJSON)
+	rest := reply[at[0]:]
+	raw, err := firstValue(rest)
+	if err == nil {
+		return raw, nil
+	}
+	if fixed, fixErr := firstValue(trailingComma.ReplaceAllString(rest, "$1")); fixErr == nil {
+		return fixed, nil
+	}
+	if se, ok := errors.AsType[*json.SyntaxError](err); ok {
+		at := int(se.Offset)
+		return nil, fmt.Errorf("%w: %w near %q", ErrNoJSON, se, rest[max(0, at-40):min(len(rest), at+20)])
+	}
+	return nil, fmt.Errorf("%w: %w", ErrNoJSON, err)
+}
+
+func firstValue(s string) ([]byte, error) {
+	var raw json.RawMessage
+	if err := json.NewDecoder(strings.NewReader(s)).Decode(&raw); err != nil {
+		return nil, err
 	}
 	return raw, nil
 }
@@ -57,7 +79,10 @@ func parseDeck(j Job, reply string) (study.Deck, error) {
 		Title: j.Lesson().Title, Language: j.Language(), Cards: cards,
 	}
 	for i := range d.Cards {
-		rewrite(&d.Cards[i], superscripts)
+		rewrite(&d.Cards[i], plainMaths)
+		for k, step := range d.Cards[i].Steps {
+			d.Cards[i].Steps[k] = stepLabel.ReplaceAllString(step, "")
+		}
 	}
 	if err := check(d); err != nil {
 		return study.Deck{}, err
@@ -80,6 +105,10 @@ func decodeCards(raw []byte) ([]study.Card, error) {
 		return nil, fmt.Errorf("%w: %w", ErrNoJSON, err)
 	}
 	for _, c := range loose.Cards {
+		if c["kind"] != study.Quiz {
+			delete(c, "answer")
+			continue
+		}
 		text, ok := c["answer"].(string)
 		if !ok {
 			continue
@@ -91,8 +120,8 @@ func decodeCards(raw []byte) ([]study.Card, error) {
 			c["answer"] = i
 		} else if n, err := strconv.Atoi(text); err == nil {
 			c["answer"] = n
-		} else if len(text) == 1 && strings.Contains("ABCD", strings.ToUpper(text)) {
-			c["answer"] = strings.Index("ABCD", strings.ToUpper(text))
+		} else if i := slices.Index([]string{"A", "B", "C", "D"}, strings.ToUpper(text)); i >= 0 {
+			c["answer"] = i
 		}
 	}
 	fixed, err := json.Marshal(loose)
@@ -119,6 +148,9 @@ func check(d study.Deck) error {
 		if c.Kind == study.Quiz && (len(c.Options) > maxOptions || len(slices.Compact(slices.Sorted(slices.Values(c.Options)))) != len(c.Options)) {
 			return fmt.Errorf("%w: card %d: a quiz needs at most %d different options", ErrBadDeck, i+1, maxOptions)
 		}
+		if slices.ContainsFunc(c.Options, crossOption.MatchString) {
+			return fmt.Errorf("%w: card %d: an option points at other options; every option must stand on its own", ErrBadDeck, i+1)
+		}
 		if ref := positionalReference(c); ref != "" {
 			return fmt.Errorf("%w: card %d: the why says %q; the options are shuffled, so name each option by its words", ErrBadDeck, i+1, ref)
 		}
@@ -140,7 +172,8 @@ func positionalReference(c study.Card) string {
 	return ""
 }
 
-func superscripts(s string) string {
+func plainMaths(s string) string {
+	s = spacedRoot.ReplaceAllString(wordRoot.ReplaceAllString(s, "√$1"), "$1√")
 	return caretPower.ReplaceAllStringFunc(s, func(m string) string {
 		return superDigit.Replace(caretPower.FindStringSubmatch(m)[1])
 	})

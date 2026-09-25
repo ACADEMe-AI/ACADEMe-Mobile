@@ -70,6 +70,7 @@ const _numbers = PlannedChapter(
   subjectName: 'Maths',
   number: 1,
   title: 'Real Numbers',
+  isFormativeOnly: true,
 );
 
 void main() {
@@ -162,7 +163,7 @@ void main() {
     await tester.tap(find.text('Maths'));
     await tester.pumpAndSettle();
     expect(find.text('Real Numbers'), findsOneWidget);
-    expect(find.text('Coming soon'), findsOneWidget);
+    expect(find.text('Coming soon · Not in board exam'), findsOneWidget);
     expect(find.text('Start'), findsNothing);
   });
 
@@ -202,5 +203,25 @@ void main() {
     expect(find.text('Coming soon'), findsNWidgets(2));
     expect(find.text('Chapter test'), findsNothing);
     expect(find.text('Next lesson'), findsNothing);
+    expect(find.textContaining('Not in board exam'), findsNothing);
+  });
+
+  testWidgets('a formative-only chapter says it is not in the board exam', (
+    tester,
+  ) async {
+    await viewModel.load.execute();
+    await pump(
+      tester,
+      ChapterScreen(
+        viewModel: viewModel,
+        chapterId: 'cbse-10-maths-1',
+        actions: actions,
+      ),
+    );
+
+    expect(
+      find.text('0 of 0 lessons done · Not in board exam'),
+      findsOneWidget,
+    );
   });
 }
