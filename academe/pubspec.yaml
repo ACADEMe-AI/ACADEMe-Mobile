@@ -1,0 +1,71 @@
+name: academe
+description: "ACADEMe — companion, scan, quiz, plan, notes."
+publish_to: 'none'
+version: 2.0.0+7
+
+environment:
+  sdk: ^3.11.4
+dependencies:
+  flutter:
+    sdk: flutter
+  rive: ^0.14.11
+  cupertino_icons: ^1.0.8
+  http: ^1.2.2
+  shared_preferences: ^2.5.3
+  flutter_secure_storage: ^11.2.0
+  google_sign_in: ^7.2.0
+  flutter_local_notifications: ^22.3.1
+  timezone: ^0.11.1
+  image_picker: ^1.2.3
+  url_launcher: ^6.3.2
+  purchases_flutter: ^10.13.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.4
+
+flutter_launcher_icons:
+  android: "ic_launcher"
+  ios: true
+  macos:
+    generate: true
+  image_path: "web/icons/Icon-512.png"
+  min_sdk_android: 21
+  remove_alpha_ios: true
+  background_color_ios: "#000000"
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/academe/raster/
+    - assets/academe/mascot/animations/
+  fonts:
+    - family: Baloo2
+      fonts: [{asset: assets/fonts/Baloo2-ExtraBold.ttf, weight: 800}]
+    - family: BalooTammudu2
+      fonts: [{asset: assets/fonts/BalooTammudu2-ExtraBold.ttf, weight: 800}]
+    - family: BalooThambi2
+      fonts: [{asset: assets/fonts/BalooThambi2-ExtraBold.ttf, weight: 800}]
+    - family: BalooDa2
+      fonts: [{asset: assets/fonts/BalooDa2-ExtraBold.ttf, weight: 800}]
+    - family: Archivo
+      fonts: [{asset: assets/fonts/Archivo-Bold.ttf, weight: 700}]
+    - family: ArchivoWordmark
+      fonts:
+        [
+          {asset: assets/fonts/ArchivoWordmark-Medium.ttf, weight: 500},
+          {asset: assets/fonts/ArchivoWordmark-SemiBold.ttf, weight: 600},
+        ]
+    - family: NotoSans
+      fonts: [{asset: assets/fonts/NotoSans-Regular.ttf}, {asset: assets/fonts/NotoSans-SemiBold.ttf, weight: 600}]
+    - family: NotoSansDevanagari
+      fonts: [{asset: assets/fonts/NotoSansDevanagari-Regular.ttf}, {asset: assets/fonts/NotoSansDevanagari-SemiBold.ttf, weight: 600}]
+    - family: NotoSansTelugu
+      fonts: [{asset: assets/fonts/NotoSansTelugu-Regular.ttf}, {asset: assets/fonts/NotoSansTelugu-SemiBold.ttf, weight: 600}]
+    - family: NotoSansTamil
+      fonts: [{asset: assets/fonts/NotoSansTamil-Regular.ttf}, {asset: assets/fonts/NotoSansTamil-SemiBold.ttf, weight: 600}]
+    - family: NotoSansBengali
+      fonts: [{asset: assets/fonts/NotoSansBengali-Regular.ttf}, {asset: assets/fonts/NotoSansBengali-SemiBold.ttf, weight: 600}]

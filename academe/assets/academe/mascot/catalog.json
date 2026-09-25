@@ -1,0 +1,16 @@
+{
+  "mascot": "pebby",
+  "version": "5.0.0",
+  "style": "flat-vector-rive",
+  "artSource": "source/pebby_3d_master.png",
+  "runtime": "rive",
+  "riv": "animations/pebby.riv",
+  "stateMachine": "PebbySM",
+  "inputs": {
+    "pose": "number 0-50",
+    "reduceMotion": "bool",
+    "appear": "number 0-100"
+  },
+  "widget": "lib/widgets/pebby.dart \u2014 PebbyView(pose: PebbyPose.idle)",
+  "generator": "design/mascot/rive/"
+}

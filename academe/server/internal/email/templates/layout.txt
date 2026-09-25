@@ -1,0 +1,8 @@
+{{define "layout"}}{{template "content" .}}
+
+--
+{{.Reason}}
+Questions? Write to support@academe.cc
+
+ACADEMe · https://academe.cc
+{{end}}

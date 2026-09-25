@@ -1,0 +1,17 @@
+Subject: Log in to ACADEMe with Google
+
+Continue with Google
+
+Someone asked to reset the password for your ACADEMe account. Your account logs in with Google, so there's no password to reset.
+
+Open ACADEMe and tap "Continue with Google". Use the Google account for this email address.
+
+Open ACADEMe: https://academe.cc/open
+
+Didn't ask for this? You can ignore this email. Nothing has changed.
+
+--
+You're getting this email because someone asked to reset the password for the ACADEMe account that uses this address.
+Questions? Write to support@academe.cc
+
+ACADEMe · https://academe.cc

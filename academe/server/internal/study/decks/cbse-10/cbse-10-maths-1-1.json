@@ -1,0 +1,113 @@
+{
+  "id": "cbse-10-maths-1-1",
+  "board": "CBSE",
+  "class": 10,
+  "subject": "maths",
+  "chapterNumber": 1,
+  "chapterTitle": "Real Numbers",
+  "position": 1,
+  "title": "Prime factorisation and the Fundamental Theorem",
+  "language": "en",
+  "cards": [
+    {
+      "kind": "start",
+      "goals": [
+        "State the Fundamental Theorem of Arithmetic",
+        "Find the prime factors of a composite number",
+        "Find the HCF and LCM using prime factorisation"
+      ],
+      "minutes": 6
+    },
+    {
+      "kind": "concept",
+      "title": "Prime numbers and composites",
+      "body": "A **prime number** is a number greater than 1 that has exactly two factors: 1 and itself. Examples are 2, 3, 5, 7.\n\nA **composite number** is a number greater than 1 that has more than two factors. For example, 12 is composite because its factors are 1, 2, 3, 4, 6, 12.",
+      "remember": "The number 1 is neither prime nor composite."
+    },
+    {
+      "kind": "concept",
+      "title": "The Fundamental Theorem of Arithmetic",
+      "body": "The Fundamental Theorem of Arithmetic states that every integer greater than 1 can be written as a product of prime numbers, and this factorisation is unique up to the order of the factors. For example, 12 = 2 × 2 × 3, which is the same up to order as 2 × 3 × 2.",
+      "remember": "This theorem is the basis for finding HCF and LCM."
+    },
+    {
+      "kind": "quiz",
+      "question": "Which of these is a prime number?",
+      "options": [
+        "12",
+        "9",
+        "17",
+        "1"
+      ],
+      "answer": 2,
+      "why": "1 is neither prime nor composite. 9 = 3 × 3 and 12 = 2 × 2 × 3 are composite. 17 has no factors other than 1 and 17."
+    },
+    {
+      "kind": "table",
+      "title": "How to find HCF and LCM",
+      "remember": "This relation holds only for two positive integers.",
+      "rows": [
+        {
+          "term": "HCF by prime factorisation",
+          "value": "Write the prime factors of both numbers. HCF is the product of the common prime factors raised to the lowest power."
+        },
+        {
+          "term": "LCM by prime factorisation",
+          "value": "Write the prime factors of both numbers. LCM is the product of all prime factors raised to the highest power."
+        },
+        {
+          "term": "Relation",
+          "value": "For two numbers a and b: HCF × LCM = a × b"
+        }
+      ]
+    },
+    {
+      "kind": "example",
+      "steps": [
+        "Prime factorise 12 and 18: 12 = 2² × 3 and 18 = 2 × 3²",
+        "Find HCF by taking common primes to the lowest power: 2 × 3 = 6",
+        "Find LCM by taking all primes to the highest power: 2² × 3² = 4 × 9 = 36",
+        "Check using the relation: HCF × LCM = 6 × 36 = 216 and 12 × 18 = 216"
+      ],
+      "question": "Find the HCF and LCM of 12 and 18 using prime factorisation."
+    },
+    {
+      "kind": "quiz",
+      "question": "What is the prime factorisation of 45?",
+      "options": [
+        "45",
+        "5² × 3",
+        "3² × 5",
+        "3 × 15"
+      ],
+      "answer": 2,
+      "why": "45 = 9 × 5 = 3² × 5. The choice with 5² × 3 equals 75, not 45, because the power of 5 is too high. 3 × 15 is not a prime factorisation because 15 = 3 × 5, and 45 on its own is not factorised at all."
+    },
+    {
+      "kind": "quiz",
+      "question": "The prime factorisation of a number is 2³ × 3². What is the number?",
+      "options": [
+        "18",
+        "36",
+        "54",
+        "72"
+      ],
+      "answer": 3,
+      "why": "2³ is 8 and 3² is 9. Multiplying them gives 8 × 9 = 72. 54 is 2 × 3³, which has a different prime factorisation."
+    },
+    {
+      "kind": "summary",
+      "points": [
+        "Every integer greater than 1 has a unique prime factorisation up to order",
+        "Use common primes for HCF and highest powers for LCM",
+        "The product of the HCF and LCM of two numbers equals their product"
+      ]
+    }
+  ],
+  "status": "approved",
+  "generatedBy": {
+    "model": "sarvam-105b",
+    "promptVersion": "lessons-v2",
+    "checkedAt": "2026-09-25T15:31:07Z"
+  }
+}
