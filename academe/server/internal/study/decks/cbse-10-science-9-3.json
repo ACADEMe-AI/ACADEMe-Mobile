@@ -1,0 +1,121 @@
+{
+  "id": "cbse-10-science-9-3",
+  "board": "CBSE",
+  "class": 10,
+  "subject": "science",
+  "chapterNumber": 9,
+  "chapterTitle": "Light – Reflection and Refraction",
+  "position": 3,
+  "title": "Mirror formula",
+  "language": "en",
+  "cards": [
+    {
+      "kind": "start",
+      "goals": [
+        "Use 1/v + 1/u = 1/f",
+        "Get the signs of u, v and f right",
+        "Find the magnification"
+      ],
+      "minutes": 7
+    },
+    {
+      "kind": "concept",
+      "title": "The mirror formula",
+      "body": "**1/v + 1/u = 1/f**\n\nu is the object distance, v the image distance and f the focal length, all measured from the pole of the mirror."
+    },
+    {
+      "kind": "table",
+      "title": "Signs, in one look",
+      "rows": [
+        {
+          "term": "Distances along the incoming light",
+          "value": "Positive (+)"
+        },
+        {
+          "term": "Distances against the incoming light",
+          "value": "Negative (−)"
+        },
+        {
+          "term": "Object distance u",
+          "value": "Always negative"
+        },
+        {
+          "term": "f of a concave mirror",
+          "value": "Negative"
+        },
+        {
+          "term": "f of a convex mirror",
+          "value": "Positive"
+        }
+      ],
+      "remember": "Measure every distance from the pole."
+    },
+    {
+      "kind": "quiz",
+      "question": "For a concave mirror, what is the sign of the focal length?",
+      "options": [
+        "Positive",
+        "Negative",
+        "It depends on the object"
+      ],
+      "answer": 1,
+      "why": "The focus of a concave mirror is in front of it, against the direction of the incoming light. So f is negative."
+    },
+    {
+      "kind": "example",
+      "question": "An object is 30 cm in front of a concave mirror of focal length 20 cm. Where is the image?",
+      "steps": [
+        "u = −30 cm and f = −20 cm",
+        "1/v = 1/f − 1/u = −1/20 + 1/30",
+        "1/v = (−3 + 2)/60 = −1/60",
+        "v = −60 cm: the image is 60 cm in front of the mirror, so it's real"
+      ]
+    },
+    {
+      "kind": "concept",
+      "title": "Magnification",
+      "body": "**m = −v/u** = image height / object height.\n- m negative: the image is real and inverted.\n- m positive: the image is virtual and erect.\n- |m| > 1: larger; |m| < 1: smaller."
+    },
+    {
+      "kind": "quiz",
+      "question": "A mirror gives a magnification of +0.5. What is the image like?",
+      "options": [
+        "Real, inverted, smaller",
+        "Virtual, erect, smaller",
+        "Virtual, erect, larger",
+        "Real, inverted, larger"
+      ],
+      "answer": 1,
+      "why": "A positive m means virtual and erect, and 0.5 is less than 1, so the image is half the size. That's what a convex mirror always gives."
+    },
+    {
+      "kind": "example",
+      "question": "For the image found earlier (u = −30 cm, v = −60 cm), find the magnification.",
+      "steps": [
+        "m = −v/u",
+        "m = −(−60)/(−30)",
+        "m = −2",
+        "Negative, so real and inverted; 2, so twice as large"
+      ]
+    },
+    {
+      "kind": "quiz",
+      "question": "In the mirror formula, the object distance u is…",
+      "options": [
+        "Always positive",
+        "Always negative",
+        "Positive for convex mirrors"
+      ],
+      "answer": 1,
+      "why": "The object is always placed in front of the mirror, against the direction of the incoming light, so u is always negative."
+    },
+    {
+      "kind": "summary",
+      "points": [
+        "1/v + 1/u = 1/f, all distances from the pole",
+        "u is always negative; f is negative for concave and positive for convex",
+        "m = −v/u: negative means real and inverted"
+      ]
+    }
+  ]
+}

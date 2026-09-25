@@ -1,0 +1,1483 @@
+openapi: 3.1.0
+info:
+  title: academe API
+  version: "1"
+  description: |
+    Every error is {"error": {"code", "message", "requestId"}}. The app
+    switches on `code`; `message` is for people.
+    Access tokens last 15 minutes. When one is rejected with `invalid_token`,
+    call /auth/refresh once; if that is rejected too, log the student out.
+servers:
+  - url: http://localhost:8080
+paths:
+  /healthz:
+    get:
+      summary: The server and its database are up.
+      responses:
+        "200": { description: OK }
+        "500": { $ref: "#/components/responses/Error" }
+  /auth/sign-up:
+    post:
+      summary: Create an account with email and password, and log it in.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/SignUp" }
+      responses:
+        "201":
+          description: Created and logged in.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Session" }
+        "400": { $ref: "#/components/responses/Error" }
+        "409":
+          description: "`email_taken`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "422":
+          description: "`invalid_firstName`, `invalid_lastName`, `invalid_email` or `invalid_password`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+  /auth/log-in:
+    post:
+      summary: Log in with email and password.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              additionalProperties: false
+              properties:
+                email: { type: string }
+                password: { type: string }
+      responses:
+        "200":
+          description: Logged in.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Session" }
+        "400": { $ref: "#/components/responses/Error" }
+        "401":
+          description: "`wrong_credentials` — never says whether the email exists."
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+  /auth/refresh:
+    post:
+      summary: Trade a refresh token for new tokens. The old one stops working.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/RefreshToken" }
+      responses:
+        "200":
+          description: New tokens.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Tokens" }
+        "400": { $ref: "#/components/responses/Error" }
+        "401":
+          description: "`invalid_token` — expired, used or logged out. Log the student out."
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+  /auth/log-out:
+    post:
+      summary: End the session a refresh token belongs to. Unknown tokens are ignored.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/RefreshToken" }
+      responses:
+        "204": { description: Logged out. }
+        "400": { $ref: "#/components/responses/Error" }
+  /auth/google:
+    post:
+      summary: Sign in with a Google ID token. Creates the account on first use; links an existing email account (its password and other sessions are dropped).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [idToken]
+              additionalProperties: false
+              properties:
+                idToken: { type: string }
+      responses:
+        "200":
+          description: Signed in.
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/Session"
+                  - type: object
+                    required: [created]
+                    properties:
+                      created: { type: boolean, description: True when this call created the account. }
+        "400": { $ref: "#/components/responses/Error" }
+        "401":
+          description: "`invalid_google_token`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "409":
+          description: "`email_taken`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "503":
+          description: "`google_unavailable` — the server has no Google client IDs."
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+  /auth/password-reset:
+    post:
+      summary: Email a 6-digit reset code. Google-only accounts get an email saying to use Continue with Google. Same answer whether or not the email has an account.
+      description: At most 3 requests per email and 10 per IP address an hour. The code lasts 15 minutes; asking again replaces it.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email]
+              additionalProperties: false
+              properties:
+                email: { type: string }
+      responses:
+        "202":
+          description: Accepted. Always the same body.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [expiresIn]
+                properties:
+                  expiresIn: { type: integer, description: Code lifetime in seconds. }
+        "400": { $ref: "#/components/responses/Error" }
+        "429":
+          description: "`too_many_requests`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+  /auth/password-reset/verify:
+    post:
+      summary: Check an emailed code and trade it for a single-use reset token. Five tries per code.
+      description: At most 30 tries per IP address an hour.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, code]
+              additionalProperties: false
+              properties:
+                email: { type: string }
+                code: { type: string, description: Six digits; spaces are ignored. }
+      responses:
+        "200":
+          description: The code was right.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [resetToken, expiresIn]
+                properties:
+                  resetToken: { type: string }
+                  expiresIn: { type: integer, description: Reset token lifetime in seconds. }
+        "400": { $ref: "#/components/responses/Error" }
+        "410":
+          description: "`code_expired` — expired, used, replaced, or never sent. Ask for a new code."
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "422":
+          description: "`wrong_code`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "429":
+          description: "`too_many_attempts` — the code is burned, ask for a new one; or `too_many_requests`."
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+  /auth/password-reset/complete:
+    post:
+      summary: Set a new password with a reset token. Ends every other session, makes every earlier access token answer 401, and logs the student in.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [resetToken, password]
+              additionalProperties: false
+              properties:
+                resetToken: { type: string }
+                password: { type: string, minLength: 8, maxLength: 128 }
+      responses:
+        "200":
+          description: Password changed and logged in.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Session" }
+        "400": { $ref: "#/components/responses/Error" }
+        "410":
+          description: "`reset_expired` — the token expired or was used. Start again."
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "422":
+          description: "`invalid_password`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+  /me:
+    patch:
+      summary: Change the logged-in student's name.
+      security: [{ bearer: [] }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [firstName, lastName]
+              additionalProperties: false
+              properties:
+                firstName: { type: string, maxLength: 100 }
+                lastName: { type: string, maxLength: 100 }
+      responses:
+        "200":
+          description: The updated account.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Account" }
+        "400": { $ref: "#/components/responses/Error" }
+        "401":
+          description: "`invalid_token`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "422":
+          description: "`invalid_firstName` or `invalid_lastName`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+    get:
+      summary: The logged-in student's account.
+      security: [{ bearer: [] }]
+      responses:
+        "200":
+          description: The account.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Account" }
+        "401":
+          description: "`invalid_token`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+    delete:
+      summary: Schedule the student's account for deletion. Sessions end now; everything (profile, XP, chats) is erased for good after 30 days. Logging in before then cancels it. The body is optional.
+      security: [{ bearer: [] }]
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                reason: { type: string, maxLength: 500, description: Why they're leaving; optional. }
+      responses:
+        "202":
+          description: Scheduled.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [deletesAt]
+                properties:
+                  deletesAt: { type: string, format: date-time }
+        "401":
+          description: "`invalid_token`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "422":
+          description: "`invalid_reason`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+  /me/profile:
+    get:
+      summary: The student's setup answers, whether setup is done, and total XP. Empty fields are null.
+      security: [{ bearer: [] }]
+      responses:
+        "200":
+          description: The profile.
+          content: { application/json: { schema: { $ref: "#/components/schemas/Profile" } } }
+        "401":
+          description: "`invalid_token`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+    patch:
+      summary: Save one or more setup answers. When all four are set for the first time, setup is marked done and 100 XP is awarded once.
+      security: [{ bearer: [] }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                language: { type: string, enum: [en, hi, te, ta, bn] }
+                birthYear: { type: integer }
+                class: { type: integer, minimum: 6, maximum: 12 }
+                board: { type: string, enum: [CBSE, ICSE] }
+      responses:
+        "200":
+          description: The updated profile.
+          content: { application/json: { schema: { $ref: "#/components/schemas/Profile" } } }
+        "400": { $ref: "#/components/responses/Error" }
+        "401":
+          description: "`invalid_token`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "422":
+          description: "`invalid_profile`, `invalid_language`, `invalid_birthYear`, `invalid_class` or `invalid_board`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+  /catalog/subjects:
+    get:
+      summary: Subjects for a class and board.
+      parameters:
+        - { name: class, in: query, required: true, schema: { type: integer, minimum: 6, maximum: 12 } }
+        - { name: board, in: query, required: true, schema: { type: string, enum: [CBSE, ICSE] } }
+      responses:
+        "200":
+          description: The subjects.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [subjects]
+                properties:
+                  subjects:
+                    type: array
+                    items:
+                      type: object
+                      required: [id, name]
+                      properties:
+                        id: { type: string }
+                        name: { type: string }
+        "400":
+          description: "`invalid_query`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+  /chat/threads:
+    get:
+      summary: The student's ASKMe chats, newest first (up to 200).
+      security: [{ bearer: [] }]
+      responses:
+        "200":
+          description: The chats.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [threads]
+                properties:
+                  threads: { type: array, items: { $ref: "#/components/schemas/ChatThread" } }
+        "401":
+          description: "`invalid_token`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+  /chat/threads/{id}/messages:
+    get:
+      summary: Every message in one chat, oldest first.
+      security: [{ bearer: [] }]
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string, format: uuid } }
+      responses:
+        "200":
+          description: The messages.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [messages]
+                properties:
+                  messages: { type: array, items: { $ref: "#/components/schemas/ChatMessage" } }
+        "401":
+          description: "`invalid_token`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "404":
+          description: "`not_found`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+  /chat/messages:
+    post:
+      summary: Ask Pebby. Without threadId a new chat starts. Pebby answers in the student's app language, for their class and board, in the chosen mode.
+      security: [{ bearer: [] }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [mode, text]
+              properties:
+                threadId: { type: string, format: uuid, nullable: true }
+                mode: { type: string, enum: [explain, solve, quiz] }
+                text: { type: string, maxLength: 2000 }
+      responses:
+        "200":
+          description: The chat, the student's message and Pebby's reply.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [thread, question, reply]
+                properties:
+                  thread: { $ref: "#/components/schemas/ChatThread" }
+                  question: { $ref: "#/components/schemas/ChatMessage" }
+                  reply: { $ref: "#/components/schemas/ChatMessage" }
+        "400": { $ref: "#/components/responses/Error" }
+        "401":
+          description: "`invalid_token`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "404":
+          description: "`not_found`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "422":
+          description: "`invalid_text` or `invalid_mode`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "402":
+          description: "`limit_reached` (feature askme): a free student asked 10 questions today — `error.details` has feature, limit and resetsAt. Show the Go Pro sheet."
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "503":
+          description: "`askme_unavailable`: the server has no tutor configured."
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+  /chat/threads/{id}/retry:
+    post:
+      summary: Replace Pebby's last answer in a chat with a new one.
+      security: [{ bearer: [] }]
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string, format: uuid } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [mode]
+              properties:
+                mode: { type: string, enum: [explain, solve, quiz] }
+      responses:
+        "200":
+          description: The new answer.
+          content: { application/json: { schema: { $ref: "#/components/schemas/ChatMessage" } } }
+        "404":
+          description: "`not_found`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "409":
+          description: "`nothing_to_retry`: the last message isn't Pebby's."
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "503":
+          description: "`askme_unavailable`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+  /chat/messages/{id}/rating:
+    put:
+      summary: Thumbs up (1), thumbs down (-1) or clear (0) on one of Pebby's answers.
+      security: [{ bearer: [] }]
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [rating]
+              properties:
+                rating: { type: integer, enum: [-1, 0, 1] }
+      responses:
+        "204": { description: Saved. }
+        "404":
+          description: "`not_found`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "422":
+          description: "`invalid_rating`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+  /chat/messages/{id}/report:
+    post:
+      summary: Report one of Pebby's answers as wrong, harmful, offensive or other. Reporting again replaces the earlier report.
+      security: [{ bearer: [] }]
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [reason]
+              properties:
+                reason: { type: string, enum: [wrong, harmful, offensive, other] }
+                note: { type: string, maxLength: 500 }
+      responses:
+        "204": { description: Stored. }
+        "404":
+          description: "`not_found`: no such answer from Pebby in the student's chats"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "422":
+          description: "`invalid_report`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+  /study/decks:
+    get:
+      summary: Swipe decks for the student's class and board, with their progress. Empty until class and board are set.
+      security: [{ bearer: [] }]
+      parameters:
+        - { name: subject, in: query, required: false, schema: { type: string }, description: "A subject id from /catalog/subjects" }
+      responses:
+        "200":
+          description: Decks in subject, chapter and position order.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [decks, chapters]
+                properties:
+                  decks: { type: array, items: { $ref: "#/components/schemas/DeckSummary" } }
+                  chapters:
+                    type: array
+                    description: Every syllabus chapter for the student's class and board, including chapters with no lessons written yet, in subject and chapter order.
+                    items: { $ref: "#/components/schemas/ChapterPlan" }
+  /study/decks/{id}:
+    get:
+      summary: One lesson (deck) with all its cards, the student's kept cards and resume position. Every lesson opens on a start card and ends on a summary.
+      security: [{ bearer: [] }]
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string } }
+      responses:
+        "200":
+          description: The deck.
+          content: { application/json: { schema: { $ref: "#/components/schemas/Deck" } } }
+        "404":
+          description: "`deck_not_found`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+  /study/decks/{id}/answers:
+    post:
+      summary: Grade an answer to a quiz card. A right answer pays QuizXP (5) once per card.
+      security: [{ bearer: [] }]
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [card, choice]
+              properties:
+                card: { type: integer, description: "Index of the quiz card in the deck" }
+                choice: { type: integer, description: "Index of the chosen option" }
+      responses:
+        "200":
+          description: Graded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [correct, answer, xpAwarded]
+                properties:
+                  correct: { type: boolean }
+                  answer: { type: integer }
+                  xpAwarded: { type: integer }
+        "404":
+          description: "`deck_not_found`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "422":
+          description: "`invalid_card` or `invalid_choice`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+  /study/decks/{id}/completion:
+    put:
+      summary: Mark a deck finished with its quiz score. The best score is kept.
+      security: [{ bearer: [] }]
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [correct]
+              properties:
+                correct: { type: integer }
+      responses:
+        "204": { description: Saved. }
+        "404":
+          description: "`deck_not_found`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "422":
+          description: "`invalid_score`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+  /study/decks/{id}/position:
+    put:
+      summary: Remember the card the student is on, for Resume.
+      security: [{ bearer: [] }]
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [card]
+              properties:
+                card: { type: integer }
+      responses:
+        "204": { description: Saved. }
+        "404":
+          description: "`deck_not_found`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "422":
+          description: "`invalid_card`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+  /study/kept:
+    put:
+      summary: Keep a card for revision. Missed quiz questions are kept automatically when answered.
+      security: [{ bearer: [] }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [deckId, card]
+              properties:
+                deckId: { type: string }
+                card: { type: integer }
+      responses:
+        "204": { description: Kept. }
+        "404":
+          description: "`deck_not_found`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "422":
+          description: "`invalid_card`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+  /study/kept/{deck}/{card}:
+    delete:
+      summary: Stop keeping a card.
+      security: [{ bearer: [] }]
+      parameters:
+        - { name: deck, in: path, required: true, schema: { type: string } }
+        - { name: card, in: path, required: true, schema: { type: integer } }
+      responses:
+        "204": { description: Removed. }
+  /study/review:
+    get:
+      summary: Kept cards to revise. Without chapter, only the ones due now; with chapter, every kept card in it.
+      security: [{ bearer: [] }]
+      parameters:
+        - { name: chapter, in: query, required: false, schema: { type: string } }
+      responses:
+        "200":
+          description: Cards, soonest due first.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items]
+                properties:
+                  items: { type: array, items: { $ref: "#/components/schemas/ReviewItem" } }
+    post:
+      summary: Rate a revised card. again = tomorrow; almost and knew push it further out.
+      security: [{ bearer: [] }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [deckId, card, rating]
+              properties:
+                deckId: { type: string }
+                card: { type: integer }
+                rating: { type: string, enum: [again, almost, knew] }
+      responses:
+        "204": { description: Rescheduled. }
+        "404":
+          description: "`not_kept`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "422":
+          description: "`invalid_rating`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+  /study/chapter-results:
+    get:
+      summary: The student's latest chapter test score per chapter.
+      security: [{ bearer: [] }]
+      responses:
+        "200":
+          description: Results.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [results]
+                properties:
+                  results: { type: array, items: { $ref: "#/components/schemas/ChapterResult" } }
+  /study/chapter-results/{id}:
+    put:
+      summary: Save a chapter test score. Each question's XP comes from /answers.
+      security: [{ bearer: [] }]
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [correct, total]
+              properties:
+                correct: { type: integer }
+                total: { type: integer }
+      responses:
+        "204": { description: Saved. }
+        "404":
+          description: "`chapter_not_found`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "422":
+          description: "`invalid_score`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+  /folders:
+    get:
+      summary: The student's folders, soonest date first, then undated newest first.
+      security: [{ bearer: [] }]
+      parameters:
+        - { name: today, in: query, required: false, schema: { type: string, format: date }, description: "The phone's local date; defaults to the server's" }
+        - { name: offset, in: query, required: false, schema: { type: integer }, description: "Minutes east of UTC, so done today means the student's today" }
+      responses:
+        "200":
+          description: Folders.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [folders]
+                properties:
+                  folders: { type: array, items: { $ref: "#/components/schemas/FolderSummary" } }
+        "422":
+          description: "`invalid_date`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+    post:
+      summary: Make a folder. Only the name is required.
+      security: [{ bearer: [] }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [name]
+              properties:
+                name: { type: string, minLength: 1, maxLength: 60 }
+                dueOn: { type: string, description: "YYYY-MM-DD, or empty for no date" }
+                reminds: { type: boolean }
+      responses:
+        "201":
+          description: Made.
+          content: { application/json: { schema: { $ref: "#/components/schemas/FolderSummary" } } }
+        "422":
+          description: "`invalid_name` or `invalid_date`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+  /folders/{id}:
+    get:
+      summary: A folder with its chapters, notes, today's checklist and the plan to its date.
+      security: [{ bearer: [] }]
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string } }
+        - { name: today, in: query, required: false, schema: { type: string, format: date }, description: "The phone's local date; defaults to the server's" }
+        - { name: offset, in: query, required: false, schema: { type: integer }, description: "Minutes east of UTC, so done today means the student's today" }
+      responses:
+        "200":
+          description: The folder.
+          content: { application/json: { schema: { $ref: "#/components/schemas/FolderDetail" } } }
+        "404":
+          description: "`folder_not_found`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+    put:
+      summary: Rename, change or clear the date (empty dueOn), switch reminders.
+      security: [{ bearer: [] }]
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [name]
+              properties:
+                name: { type: string }
+                dueOn: { type: string }
+                reminds: { type: boolean }
+      responses:
+        "200":
+          description: Saved.
+          content: { application/json: { schema: { $ref: "#/components/schemas/FolderSummary" } } }
+        "404":
+          description: "`folder_not_found`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+    delete:
+      summary: Delete a folder with its notes and to-dos. Lesson progress stays.
+      security: [{ bearer: [] }]
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string } }
+      responses:
+        "204": { description: Deleted. }
+        "404":
+          description: "`folder_not_found`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+  /folders/{id}/chapters:
+    post:
+      summary: Add syllabus chapters. Chapters already in the folder are skipped.
+      security: [{ bearer: [] }]
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [chapterIds]
+              properties:
+                chapterIds: { type: array, items: { type: string } }
+      responses:
+        "204": { description: Added. }
+        "422":
+          description: "`invalid_chapter`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+  /folders/{id}/notes:
+    post:
+      summary: Add a note.
+      security: [{ bearer: [] }]
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [text]
+              properties:
+                text: { type: string, maxLength: 2000 }
+      responses:
+        "204": { description: Added. }
+        "422":
+          description: "`invalid_text`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+  /folders/{id}/items/{item}:
+    delete:
+      summary: Remove a chapter or note from the folder.
+      security: [{ bearer: [] }]
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string } }
+        - { name: item, in: path, required: true, schema: { type: integer } }
+      responses:
+        "204": { description: Removed. }
+  /folders/{id}/todos:
+    post:
+      summary: Add a to-do; with a day it goes into the plan on that day.
+      security: [{ bearer: [] }]
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [title]
+              properties:
+                title: { type: string, maxLength: 200 }
+                day: { type: string, format: date }
+      responses:
+        "204": { description: Added. }
+        "422":
+          description: "`invalid_title` or `invalid_date`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+  /folders/{id}/todos/{todo}:
+    put:
+      summary: Tick or untick a to-do.
+      security: [{ bearer: [] }]
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string } }
+        - { name: todo, in: path, required: true, schema: { type: integer } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [done]
+              properties:
+                done: { type: boolean }
+      responses:
+        "204": { description: Saved. }
+        "404":
+          description: "`folder_not_found`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+    delete:
+      summary: Delete a to-do.
+      security: [{ bearer: [] }]
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string } }
+        - { name: todo, in: path, required: true, schema: { type: integer } }
+      responses:
+        "204": { description: Deleted. }
+  /today:
+    get:
+      summary: Home's Today card. Revision due first, then every folder's tasks for today (lessons and tests once each), finished ones last.
+      security: [{ bearer: [] }]
+      parameters:
+        - { name: today, in: query, required: false, schema: { type: string, format: date }, description: "The phone's local date; defaults to the server's" }
+        - { name: offset, in: query, required: false, schema: { type: integer }, description: "Minutes east of UTC, so done today means the student's today" }
+      responses:
+        "200":
+          description: Today.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [tasks, reviewDue]
+                properties:
+                  tasks: { type: array, items: { $ref: "#/components/schemas/Task" } }
+                  reviewDue: { type: integer }
+  /scans:
+    post:
+      summary: Read up to 10 photos with Sarvam Document AI. Photos are not kept; only the text is.
+      security: [{ bearer: [] }]
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [mode, page]
+              properties:
+                mode: { type: string, enum: [solve, check, notes, ask] }
+                page:
+                  type: array
+                  minItems: 1
+                  maxItems: 10
+                  items: { type: string, format: binary, description: ".jpg, .jpeg, .png or .pdf, 8 MB each" }
+      responses:
+        "201":
+          description: Read.
+          content: { application/json: { schema: { $ref: "#/components/schemas/Scan" } } }
+        "413":
+          description: "`too_large`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "422":
+          description: "`invalid_mode`, `invalid_pages`, `no_text`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "502":
+          description: "`scan_failed`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "402":
+          description: "`limit_reached` (feature scan): a free student read 3 scans today — `error.details` has feature, limit and resetsAt. Show the Go Pro sheet."
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "503":
+          description: "`scan_unavailable`: no Sarvam key on the server."
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+    get:
+      summary: The 20 newest scans.
+      security: [{ bearer: [] }]
+      responses:
+        "200":
+          description: Newest first.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [scans]
+                properties:
+                  scans: { type: array, items: { $ref: "#/components/schemas/Scan" } }
+  /scans/{id}:
+    get:
+      summary: One scan.
+      security: [{ bearer: [] }]
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string } }
+      responses:
+        "200":
+          description: The scan.
+          content: { application/json: { schema: { $ref: "#/components/schemas/Scan" } } }
+        "404":
+          description: "`scan_not_found`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+  /scans/{id}/thread:
+    put:
+      summary: Link a solve or ask scan to the ASKMe thread it started.
+      security: [{ bearer: [] }]
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [threadId]
+              properties:
+                threadId: { type: string, format: uuid }
+      responses:
+        "204": { description: Linked. }
+        "422":
+          description: "`wrong_mode`, `invalid_thread`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+  /scans/{id}/check:
+    post:
+      summary: Mark a check scan the way the board's marking scheme would.
+      security: [{ bearer: [] }]
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                question: { type: string, description: The question, when the photo doesn't show it. }
+      responses:
+        "200":
+          description: Marked; also saved on the scan as result.
+          content: { application/json: { schema: { $ref: "#/components/schemas/Marking" } } }
+        "422":
+          description: "`wrong_mode`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "502":
+          description: "`scan_failed`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "402":
+          description: "`limit_reached` (feature check): a free student checked 1 answer today — `error.details` has feature, limit and resetsAt. Show the Go Pro sheet."
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+  /scans/{id}/notes:
+    post:
+      summary: Put a notes scan in a folder, optionally with a swipe lesson made from it.
+      security: [{ bearer: [] }]
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [folderId]
+              properties:
+                folderId: { type: string }
+                makeLesson: { type: boolean }
+      responses:
+        "200":
+          description: Saved.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [deckId]
+                properties:
+                  deckId: { type: string, nullable: true }
+        "404":
+          description: "`scan_not_found`, `folder_not_found`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "422":
+          description: "`wrong_mode`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "502":
+          description: "`scan_failed`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "402":
+          description: "`pro_only` (feature lessons, limit 0): lessons from notes are Pro; the notes are not saved, so retry with makeLesson false to just keep them — `error.details` has feature, limit and resetsAt. Show the Go Pro sheet."
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+  /me/plan:
+    get:
+      summary: The student's plan, today's free limits and how much of them is used. Days end at midnight in India (Asia/Kolkata).
+      security: [{ bearer: [] }]
+      responses:
+        "200":
+          description: The plan.
+          content: { application/json: { schema: { $ref: "#/components/schemas/Plan" } } }
+        "401":
+          description: "`invalid_token`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+  /billing/sync:
+    post:
+      summary: Ask RevenueCat for the student's "pro" entitlement now (app_user_id is the account ID) and store it. Call after a purchase or a restore.
+      security: [{ bearer: [] }]
+      responses:
+        "200":
+          description: The plan after the sync.
+          content: { application/json: { schema: { $ref: "#/components/schemas/Plan" } } }
+        "401":
+          description: "`invalid_token`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "502":
+          description: "`billing_failed`: RevenueCat didn't answer."
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "503":
+          description: "`billing_unavailable`: no ACADEME_REVENUECAT_SECRET_KEY on the server."
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+  /billing/revenuecat/webhook:
+    post:
+      summary: RevenueCat webhook. The Authorization header must equal ACADEME_REVENUECAT_WEBHOOK_AUTH. Handles INITIAL_PURCHASE, RENEWAL, PRODUCT_CHANGE, CANCELLATION, UNCANCELLATION, BILLING_ISSUE, SUBSCRIPTION_PAUSED, EXPIRATION and TRANSFER for the "pro" entitlement; other events are acknowledged and ignored. Idempotent on event.id; an event older than the stored one is ignored.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [event]
+              properties:
+                api_version: { type: string }
+                event: { type: object, description: "RevenueCat event: id, type, app_user_id, product_id, entitlement_ids, expiration_at_ms, event_timestamp_ms, store, transferred_from, transferred_to" }
+      responses:
+        "200": { description: Handled or ignored. }
+        "400":
+          description: "`invalid_event`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "401":
+          description: "`invalid_token`: wrong Authorization header."
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "502":
+          description: "`billing_failed`: a TRANSFER couldn't be synced; RevenueCat retries."
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "503":
+          description: "`billing_unavailable`: no ACADEME_REVENUECAT_WEBHOOK_AUTH on the server."
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+  /delete-account:
+    post:
+      summary: Web account deletion request from academe.cc/delete-account. Stores the request and emails a confirmation to the address. At most one request per email and five per IP address a day; over the limit it answers the same without storing or emailing.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required: [email]
+              properties:
+                email: { type: string, format: email, maxLength: 254 }
+      responses:
+        "200":
+          description: The page, saying the request was received.
+          content: { text/html: { schema: { type: string } } }
+        "422":
+          description: The page again, saying the email address isn't valid.
+          content: { text/html: { schema: { type: string } } }
+components:
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+      description: The access token from a Session. Any bearer route answers 401 `invalid_token` when the token has expired (15 minutes) or was issued before a password reset, a Google link or an account deletion request; refresh or log in again. Other server instances may accept a revoked token for up to 30 seconds.
+  responses:
+    Scan:
+      type: object
+      required: [id, mode, title, text, chapter, threadId, folderId, deckId, result, createdAt]
+      properties:
+        id: { type: string, format: uuid }
+        mode: { type: string, enum: [solve, check, notes, ask] }
+        title: { type: string }
+        text: { type: string, description: What Sarvam read, as Markdown. }
+        chapter: { type: string, description: "e.g. Science · Ch 10 · Light; empty when unsure" }
+        threadId: { type: string, nullable: true }
+        folderId: { type: string, nullable: true }
+        deckId: { type: string, nullable: true }
+        result: { allOf: [{ $ref: "#/components/schemas/Marking" }], nullable: true }
+        createdAt: { type: string, format: date-time }
+    Marking:
+      type: object
+      required: [question, marks, awarded, points, fullMarks, modelAnswer]
+      properties:
+        question: { type: string }
+        marks: { type: integer }
+        awarded: { type: integer }
+        points:
+          type: array
+          items:
+            type: object
+            required: [text, marks, awarded]
+            properties:
+              text: { type: string }
+              marks: { type: integer }
+              awarded: { type: integer }
+        fullMarks: { type: string }
+        modelAnswer: { type: string }
+    Error:
+      description: "`invalid_json`, `body_too_large` or `internal`"
+      content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+  schemas:
+    Plan:
+      type: object
+      required: [plan, expiresAt, autoRenew, productId, basePlanId, platform, state, limits, usedToday, resetsAt]
+      properties:
+        plan: { type: string, enum: [free, pro] }
+        expiresAt: { type: string, format: date-time, nullable: true, description: "null on free, and on a lifetime promotional Pro" }
+        autoRenew: { type: boolean }
+        productId: { type: string, nullable: true, description: e.g. academe_pro }
+        basePlanId: { type: string, nullable: true, description: monthly or annual }
+        platform: { type: string, nullable: true, description: "RevenueCat store, lowercase: play_store, app_store, promotional" }
+        state: { type: string, nullable: true, enum: [active, canceled, billing_issue, paused, null] }
+        limits:
+          type: object
+          description: "Daily limits per feature (askme, scan, check, lessons). null = unlimited, 0 = Pro only."
+          additionalProperties: { type: integer, nullable: true }
+        usedToday:
+          type: object
+          additionalProperties: { type: integer }
+        resetsAt: { type: string, format: date-time, description: Next midnight in India. }
+    ReviewItem:
+      type: object
+      required: [deckId, card, reason, lessonTitle, chapterTitle, content]
+      properties:
+        deckId: { type: string }
+        card: { type: integer }
+        reason: { type: string, enum: [kept, missed] }
+        lessonTitle: { type: string }
+        chapterTitle: { type: string }
+        content: { $ref: "#/components/schemas/DeckCard" }
+    ChapterResult:
+      type: object
+      required: [chapterId, correct, total, completedAt]
+      properties:
+        chapterId: { type: string }
+        correct: { type: integer }
+        total: { type: integer }
+        completedAt: { type: string, format: date-time }
+    FolderSummary:
+      type: object
+      required: [id, name, dueOn, reminds, items, todayLeft, progress]
+      properties:
+        id: { type: string }
+        name: { type: string }
+        dueOn: { type: [string, "null"], format: date }
+        reminds: { type: boolean }
+        items: { type: integer }
+        todayLeft: { type: integer, description: tasks left today }
+        progress: { type: integer, description: "percent of the folder's lessons and chapter tests done" }
+    FolderDetail:
+      allOf:
+        - { $ref: "#/components/schemas/FolderSummary" }
+        - type: object
+          required: [chapters, notes, lessons, today, plan]
+          properties:
+            chapters:
+              type: array
+              items:
+                type: object
+                required: [itemId, chapterId, subject, number, title, lessons, lessonsDone]
+                properties:
+                  itemId: { type: integer }
+                  chapterId: { type: string }
+                  subject: { type: string }
+                  number: { type: integer }
+                  title: { type: string }
+                  lessons: { type: integer }
+                  lessonsDone: { type: integer }
+            notes:
+              type: array
+              items:
+                type: object
+                required: [itemId, text, createdAt]
+                properties:
+                  itemId: { type: integer }
+                  text: { type: string }
+                  createdAt: { type: string, format: date-time }
+            lessons:
+              type: array
+              description: Lessons Pebby made from scanned notes; open them with GET /study/decks/{deckId}.
+              items:
+                type: object
+                required: [itemId, deckId, title, minutes, done]
+                properties:
+                  itemId: { type: integer }
+                  deckId: { type: string }
+                  title: { type: string }
+                  minutes: { type: integer }
+                  done: { type: boolean }
+            today: { type: array, items: { $ref: "#/components/schemas/Task" } }
+            plan:
+              type: array
+              description: "One entry per day from today to the date; the last is the date itself. Empty without a date."
+              items:
+                type: object
+                required: [day, tasks]
+                properties:
+                  day: { type: string, format: date }
+                  tasks: { type: array, items: { $ref: "#/components/schemas/Task" } }
+    Task:
+      type: object
+      required: [kind, title, subtitle, minutes, done]
+      properties:
+        kind: { type: string, enum: [lesson, test, review, todo] }
+        title: { type: string }
+        subtitle: { type: string }
+        minutes: { type: integer }
+        done: { type: boolean }
+        deckId: { type: string }
+        chapterId: { type: string }
+        todoId: { type: integer }
+        folderId: { type: string }
+        folderName: { type: string }
+    DeckSummary:
+      type: object
+      required: [id, chapterId, subject, subjectName, chapterNumber, chapterTitle, position, title, cards, quizzes, done, correct, resumeCard, kept]
+      properties:
+        id: { type: string }
+        chapterId: { type: string }
+        resumeCard: { type: integer, description: the card to resume on }
+        kept: { type: integer, description: kept cards in this lesson }
+        subject: { type: string }
+        subjectName: { type: string }
+        chapterNumber: { type: integer }
+        chapterTitle: { type: string }
+        position: { type: integer }
+        title: { type: string }
+        cards: { type: integer }
+        quizzes: { type: integer }
+        done: { type: boolean }
+        correct: { type: integer }
+    Deck:
+      type: object
+      required: [id, board, class, subject, chapterNumber, chapterTitle, position, title, language, cards]
+      properties:
+        id: { type: string }
+        board: { type: string }
+        class: { type: integer }
+        subject: { type: string }
+        chapterNumber: { type: integer }
+        chapterTitle: { type: string }
+        position: { type: integer }
+        title: { type: string }
+        language: { type: string }
+        cards: { type: array, items: { $ref: "#/components/schemas/DeckCard" } }
+        kept: { type: array, items: { type: integer }, description: "indexes of the cards this student kept" }
+        resumeCard: { type: integer }
+        status: { type: string, enum: [approved], description: "Generated lessons only; only approved lessons are served" }
+        generatedBy:
+          type: object
+          description: Generated lessons only.
+          properties:
+            model: { type: string }
+            promptVersion: { type: string }
+            checkedAt: { type: string, format: date-time }
+    ChapterPlan:
+      type: object
+      required: [id, subject, subjectName, number, title, unit, lessons]
+      properties:
+        id: { type: string, example: cbse-10-science-1 }
+        subject: { type: string }
+        subjectName: { type: string }
+        number: { type: integer }
+        title: { type: string }
+        unit: { type: string, description: "Syllabus unit, empty when unknown" }
+        lessons:
+          type: array
+          description: Planned lessons in order. Unavailable ones are not written yet; show them as coming soon.
+          items:
+            type: object
+            required: [id, position, title, available]
+            properties:
+              id: { type: string, example: cbse-10-science-1-1 }
+              position: { type: integer }
+              title: { type: string }
+              available: { type: boolean, description: "true when GET /study/decks/{id} serves this lesson" }
+    DeckCard:
+      type: object
+      required: [kind]
+      properties:
+        kind: { type: string, enum: [start, concept, table, example, quiz, summary] }
+        goals: { type: array, items: { type: string }, description: start only }
+        minutes: { type: integer, description: start only }
+        rows: { type: array, items: { type: object, properties: { term: { type: string }, value: { type: string } } }, description: table only }
+        steps: { type: array, items: { type: string }, description: example only, revealed one at a time }
+        points: { type: array, items: { type: string }, description: summary only }
+        remember: { type: string, description: concept or table, a highlighted line }
+        title: { type: string, description: concept only }
+        body: { type: string, description: "concept only. Lines starting \"- \" or \"1. \" are lists; **text** is bold" }
+        question: { type: string, description: quiz only }
+        options: { type: array, items: { type: string }, description: quiz only }
+        answer: { type: integer, description: quiz only }
+        why: { type: string, description: "quiz only; shown when the answer is wrong" }
+    Profile:
+      type: object
+      required: [language, birthYear, class, board, setupDone, xp]
+      properties:
+        language: { type: [string, "null"] }
+        birthYear: { type: [integer, "null"] }
+        class: { type: [integer, "null"] }
+        board: { type: [string, "null"] }
+        setupDone: { type: boolean }
+        xp: { type: integer }
+    SignUp:
+      type: object
+      required: [firstName, lastName, email, password]
+      additionalProperties: false
+      properties:
+        firstName: { type: string, maxLength: 100, description: Trimmed; must not be blank. }
+        lastName: { type: string, maxLength: 100, description: Trimmed; must not be blank. }
+        email: { type: string, maxLength: 254, description: Trimmed and lower-cased. }
+        password: { type: string, minLength: 8, maxLength: 128 }
+    RefreshToken:
+      type: object
+      required: [refreshToken]
+      additionalProperties: false
+      properties:
+        refreshToken: { type: string }
+    Account:
+      type: object
+      required: [id, firstName, lastName, email]
+      properties:
+        id: { type: string, format: uuid }
+        firstName: { type: string }
+        lastName: { type: string }
+        email: { type: string }
+    Tokens:
+      type: object
+      required: [accessToken, refreshToken, expiresIn]
+      properties:
+        accessToken: { type: string, description: "Send as `Authorization: Bearer …`." }
+        refreshToken: { type: string, description: Keep in secure storage; lasts 30 days. }
+        expiresIn: { type: integer, description: Access token lifetime in seconds. }
+    Session:
+      type: object
+      required: [account, tokens]
+      properties:
+        account: { $ref: "#/components/schemas/Account" }
+        tokens: { $ref: "#/components/schemas/Tokens" }
+    ChatThread:
+      type: object
+      required: [id, mode, title, updatedAt]
+      properties:
+        id: { type: string, format: uuid }
+        mode: { type: string, enum: [explain, solve, quiz] }
+        title: { type: string }
+        updatedAt: { type: string, format: date-time }
+    ChatMessage:
+      type: object
+      required: [id, role, body, rating, createdAt]
+      properties:
+        id: { type: integer }
+        role: { type: string, enum: [student, pebby] }
+        body: { type: string, description: Plain text with simple Markdown. }
+        rating: { type: integer, enum: [-1, 0, 1] }
+        createdAt: { type: string, format: date-time }
+    Error:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: object
+          required: [code, message, requestId]
+          properties:
+            code: { type: string }
+            message: { type: string }
+            requestId: { type: string }
+            details: { type: object, description: "Only on some errors, e.g. limit_reached and pro_only: {feature, limit, resetsAt}." }

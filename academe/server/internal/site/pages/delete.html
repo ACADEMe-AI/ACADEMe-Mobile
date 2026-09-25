@@ -1,0 +1,33 @@
+{{define "title"}}Delete your account{{end}}
+{{define "content"}}
+<h1>Delete your ACADEMe account</h1>
+<p class="lead">You can delete your ACADEMe account and its data at any time.</p>
+
+<h2>In the app (fastest)</h2>
+<ol>
+<li>Open ACADEMe and tap <strong>Me</strong>.</li>
+<li>Tap <strong>Account</strong>, then <strong>Delete my account</strong>.</li>
+<li>Choose a reason if you like, type DELETE and confirm.</li>
+</ol>
+<p>You're logged out straight away. After 30 days everything linked to your account is erased for good: your name, email, password, profile (language, birth year, class, board), study progress and XP, folders, notes and to-dos, chats with Pebby, scans and their results, reports, and subscription records on our server. If you log in again within those 30 days, the deletion is cancelled.</p>
+<p>Deleting your account does not cancel a Google Play subscription. Cancel it in the Google Play app under <strong>Payments and subscriptions</strong>.</p>
+
+<h2>Without the app</h2>
+{{if .Sent}}
+<div class="card note">
+<p><strong>Request received.</strong> If an ACADEMe account uses that address, we've emailed it. Reply to that email from the same address to confirm, and we'll delete the account and write back within 30 days. Didn't get an email? Check spam, or write to <a href="mailto:support@academe.cc">support@academe.cc</a> from the address you signed up with.</p>
+</div>
+{{else}}
+<p>Enter the email address you signed up with. We'll email that address to confirm it's you, then delete the account and its data within 30 days.</p>
+<form class="card" method="post" action="/delete-account">
+{{if .Invalid}}<p class="error">That doesn't look like an email address. Please check it and try again.</p>{{end}}
+<label for="email">Email address</label>
+<input id="email" name="email" type="email" required maxlength="254" autocomplete="email" value="{{.Email}}">
+<button class="button" type="submit">Request deletion</button>
+</form>
+<p>You can also write to <a href="mailto:support@academe.cc">support@academe.cc</a> from the address you signed up with. A parent or guardian can ask on their child's behalf.</p>
+{{end}}
+
+<h2>What we keep</h2>
+<p>We keep the web deletion request itself (the email address, the time and your IP address) for up to one year to show we acted on it and to stop abuse. Google Play and RevenueCat keep records of purchases as payment laws and their own policies require.</p>
+{{end}}
