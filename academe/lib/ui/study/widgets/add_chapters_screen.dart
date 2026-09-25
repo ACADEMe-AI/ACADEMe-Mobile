@@ -34,7 +34,10 @@ class _AddChaptersScreenState extends State<AddChaptersScreen> {
       for (final c in widget.viewModel.allChapters)
         if (!c.isComingSoon) c,
     ];
-    final subjects = widget.viewModel.subjects;
+    final subjects = [
+      for (final s in widget.viewModel.subjects)
+        if (chapters.any((c) => c.subject == s.id)) s,
+    ];
     final subject = _subject ?? subjects.firstOrNull?.id;
     return StudyPage(
       title: 'Add chapters',

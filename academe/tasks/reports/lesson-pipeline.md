@@ -60,7 +60,7 @@ Status: built and tested end to end. The Sarvam account ran out of credits at 21
   - a panic in one lesson only fails that lesson; Ctrl-C stops cleanly
   - one log line per lesson with id, status, title, seconds and done/of, then a final summary (approved, draft, failed, skipped, elapsed, seconds per lesson, lessons per hour)
   - exit code 1 if anything failed, so a wrapper can simply rerun
-- Prompts are Go constants in `internal/lessons/prompts.go`, with `PromptVersion = "lessons-v3"` recorded in every generated deck.
+- Prompts are Go constants in `internal/lessons/prompts.go`, with `PromptVersion = "lessons-v4"` recorded in every generated deck.
 - `internal/sarvam`, additive changes:
   - a typed `StatusError` (same message text as before)
   - `MaxTokens` (Sarvam's default of 2048 truncated every lesson inside the reasoning)

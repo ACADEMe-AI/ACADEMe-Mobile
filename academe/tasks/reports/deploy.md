@@ -113,7 +113,8 @@ directory linked to `academe-cc`.
 
 Unset on purpose: `ACADEME_EMAIL_DEV` (never), `ACADEME_GOOGLE_CLIENT_IDS` (no IDs
 yet, Google sign-in is disabled), `ACADEME_BILLING_TESTERS`, `ACADEME_FREE_LIMITS`
-(the built-in defaults apply), `ACADEME_ADDR`.
+(the built-in defaults apply), `ACADEME_ADDR`, `ACADEME_ANDROID_CERT_SHA256` (no
+release signing certificate yet, so `assetlinks.json` answers 404).
 
 **Not set yet: `ACADEME_REVENUECAT_SECRET_KEY` and `ACADEME_REVENUECAT_WEBHOOK_AUTH`.**
 The permission system blocked writing these secrets and adding

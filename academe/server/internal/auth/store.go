@@ -188,6 +188,16 @@ func (s *PostgresStore) PurgeDeleted(ctx context.Context, requestedBefore time.T
 	return ids, nil
 }
 
+func (s *PostgresStore) PurgeExpired(ctx context.Context, now time.Time) error {
+	if _, err := s.pool.Exec(ctx, "DELETE FROM sessions WHERE expires_at < $1", now); err != nil {
+		return fmt.Errorf("purge sessions: %w", err)
+	}
+	if _, err := s.pool.Exec(ctx, "DELETE FROM password_reset_codes WHERE expires_at < $1", now.Add(-resetRowsKept)); err != nil {
+		return fmt.Errorf("purge reset codes: %w", err)
+	}
+	return nil
+}
+
 func (s *PostgresStore) UpdateName(ctx context.Context, id, firstName, lastName string) (Account, error) {
 	a := Account{ID: id}
 	err := s.pool.QueryRow(ctx, `

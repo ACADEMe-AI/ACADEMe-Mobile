@@ -28,6 +28,7 @@ const (
 	codesPerEmailHour = 3
 	requestsPerIPHour = 10
 	verifiesPerIPHour = 30
+	resetRowsKept     = 24 * time.Hour
 )
 
 type Mailer interface {

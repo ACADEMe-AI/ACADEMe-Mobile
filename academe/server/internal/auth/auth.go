@@ -75,6 +75,7 @@ type Store interface {
 	ScheduleDeletion(ctx context.Context, id, reason string, at time.Time) error
 	CancelDeletion(ctx context.Context, id string) error
 	PurgeDeleted(ctx context.Context, requestedBefore time.Time) ([]string, error)
+	PurgeExpired(ctx context.Context, now time.Time) error
 	CreateSession(ctx context.Context, accountID string, tokenHash []byte, expires time.Time) error
 	RotateSession(ctx context.Context, oldHash, newHash []byte, expires time.Time) (string, error)
 	DeleteSession(ctx context.Context, tokenHash []byte) error
@@ -96,6 +97,7 @@ type Service struct {
 	google      GoogleVerifier
 	mailer      Mailer
 	limits      resetLimits
+	entry       entryLimits
 	dummyHash   string
 	subscribers SubscriberDeleter
 	revoked     *revocations
@@ -112,6 +114,7 @@ func NewService(store Store, tokenKey []byte, google GoogleVerifier, mailer Mail
 		google:    google,
 		mailer:    mailer,
 		limits:    newResetLimits(),
+		entry:     newEntryLimits(),
 		dummyHash: hashPassword(rand.Text()),
 		revoked:   newRevocations(),
 		logger:    slog.New(slog.DiscardHandler),

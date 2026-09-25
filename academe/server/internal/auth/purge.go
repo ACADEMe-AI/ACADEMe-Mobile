@@ -17,6 +17,9 @@ func (s *Service) PurgeEvery(ctx context.Context, logger *slog.Logger, every tim
 		case n > 0:
 			logger.InfoContext(ctx, "accounts purged", "count", n)
 		}
+		if err := s.store.PurgeExpired(ctx, time.Now()); err != nil && ctx.Err() == nil {
+			logger.ErrorContext(ctx, "purge expired sessions failed", "error", err)
+		}
 		select {
 		case <-ctx.Done():
 			return

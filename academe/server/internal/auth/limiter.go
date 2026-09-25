@@ -20,6 +20,10 @@ func newLimiter(maxHits int, window time.Duration) *limiter {
 }
 
 func (l *limiter) allow(key string) bool {
+	return l.wait(key) == 0
+}
+
+func (l *limiter) wait(key string) time.Duration {
 	now := time.Now()
 	l.mu.Lock()
 	defer l.mu.Unlock()
@@ -34,10 +38,10 @@ func (l *limiter) allow(key string) bool {
 	recent := l.recent(l.hits[key], now)
 	if len(recent) >= l.max {
 		l.hits[key] = recent
-		return false
+		return recent[len(recent)-l.max].Add(l.window).Sub(now)
 	}
 	l.hits[key] = append(recent, now)
-	return true
+	return 0
 }
 
 func (l *limiter) recent(times []time.Time, now time.Time) []time.Time {

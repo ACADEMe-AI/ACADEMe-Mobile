@@ -20,7 +20,13 @@ wake() {
   "${adb[@]}" shell wm dismiss-keyguard >/dev/null
 }
 wake
-"${adb[@]}" shell settings put system screen_off_timeout 1800000 >/dev/null
+"${adb[@]}" shell settings put system screen_off_timeout 2147483647 >/dev/null
+(
+  while sleep 20; do
+    "${adb[@]}" shell dumpsys power 2>/dev/null | grep -q "mWakefulness=Awake" || wake
+  done
+) &
+keep_awake_pid=$!
 
 record_pid=""
 start_recording() {
@@ -152,7 +158,7 @@ start_dev_server() {
   for _ in $(seq 30); do curl -sf localhost:8099/healthz >/dev/null && return; sleep 1; done
   echo "ui_test: dev server on :8099 did not start, see $server_log" >&2
 }
-trap '[ -n "$server_pid" ] && kill "$server_pid"' EXIT
+trap 'kill "$keep_awake_pid" 2>/dev/null; [ -n "$server_pid" ] && kill "$server_pid"' EXIT
 
 open_reset_link() {
   local email=$1
@@ -171,6 +177,12 @@ type_reset_code() {
   code=$(grep '"reset code sent"' "$server_log" | tail -1 | sed -nE 's/.*"code":"([0-9]{6})".*/\1/p')
   [ -n "$code" ] && "${adb[@]}" shell input text "$code"
 }
+
+sarvam_status=$(curl -s -m 30 -o /dev/null -w '%{http_code}' https://api.sarvam.ai/v1/chat/completions \
+  -H "api-subscription-key: $(sed -n 's/^SARVAM_API_KEY=//p' .env | tr -d '"\n\r')" \
+  -H 'content-type: application/json' \
+  -d '{"model":"sarvam-105b","messages":[{"role":"user","content":"Say ok"}],"max_tokens":5}')
+echo "ui_test: Sarvam answers HTTP $sarvam_status"
 
 summary=()
 started=$(date +%s)
@@ -215,6 +227,11 @@ for journey in "${journeys[@]}"; do
   result=PASS
   grep -q "All tests passed" "$out/$journey/log.txt" || result=FAIL
   grep -qs "UITEST-HOST FAIL" "$out/$journey/host.txt" && result=FAIL
+  case "$journey" in
+    askme* | scan* | limits*)
+      [ "$result" = FAIL ] && [ "$sarvam_status" != 200 ] && result="BLOCKED(sarvam-$sarvam_status)"
+      ;;
+  esac
   summary+=("$result $journey $(($(date +%s) - began))s")
 done
 

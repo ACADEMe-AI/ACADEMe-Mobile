@@ -79,4 +79,21 @@ void main() {
     await tester.pump();
     expect(find.text("That email and password don't match."), findsNothing);
   });
+
+  testWidgets('a rate limit asks the student to wait', (tester) async {
+    await pumpLogin(tester);
+    repository.nextFailure = const AuthException(AuthFailure.tooManyRequests);
+
+    await tester.enterText(find.byType(TextField).first, 'ada@school.in');
+    await tester.enterText(find.byType(TextField).last, 'one more');
+    await tester.pump();
+    await tester.tap(find.widgetWithText(AppButton, 'Log in'));
+    await tester.pumpAndSettle();
+
+    expect(
+      find.text("That's a lot of tries. Wait a little and try again."),
+      findsOneWidget,
+    );
+    expect(loggedIn, isFalse);
+  });
 }

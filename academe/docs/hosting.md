@@ -53,15 +53,19 @@ TLS 1.2/1.3, HTTP/2. Health checks run only at deploy time, not continuously.
 | `ACADEME_EMAIL_DEV` | leave **unset** in production (`1` logs reset codes) | no |
 | `ACADEME_REVENUECAT_SECRET_KEY` | RevenueCat secret API key (Project settings → API keys) | purchases |
 | `ACADEME_REVENUECAT_WEBHOOK_AUTH` | random string, `openssl rand -hex 32`; same value in RevenueCat webhook "Authorization header" | purchases |
-| `ACADEME_GOOGLE_PLAY_SERVICE_ACCOUNT` | service-account JSON (inline, starts with `{`), only while the config still reads it | legacy billing |
-| `ACADEME_BILLING_RTDN_SECRET` | random string, only while the config still reads it | legacy billing |
-| `ACADEME_FREE_LIMITS` | e.g. `askme=10,scan=3`; unset = built-in defaults | no |
+| `ACADEME_REVENUECAT_ENTITLEMENT` | `academe_pro` (default) | no |
+| `ACADEME_BILLING_TESTERS` | account IDs whose sandbox (test-card) purchases count as Pro, comma-separated, `*` = everyone; unset = sandbox purchases ignored | no |
+| `ACADEME_FREE_LIMITS` | e.g. `askme=10,scan=3`; unset = `askme=10,scan=3,check=1,lessons=0`; `-1` = unlimited | no |
+| `ACADEME_ANDROID_CERT_SHA256` | release signing certificate SHA-256 fingerprints, comma-separated, for `/.well-known/assetlinks.json` | App Links |
 | `ACADEME_ADDR` | leave unset | no |
+
+Test only, never on Railway: `ACADEME_TEST_DATABASE_URL` (store tests) and
+`ACADEME_EMAIL_PREVIEW` (directory the email tests write previews to).
 
 Check the list against the code before each deploy:
 
 ```
-grep -rhoE 'ACADEME_[A-Z_]+' server --include='*.go' | sort -u
+grep -rhoE 'ACADEME_[A-Z0-9_]+' server --include='*.go' | sort -u
 ```
 
 RevenueCat dashboard: webhook URL `https://api.academe.cc/billing/revenuecat/webhook`,

@@ -36,8 +36,7 @@ class _PasswordScreenState extends State<PasswordScreen> {
     super.dispose();
   }
 
-  bool get _isLongEnough =>
-      _next.text.length >= SignUpViewModel.minPasswordLength;
+  bool get _isLongEnough => SignUpViewModel.isLongEnough(_next.text);
 
   bool get _canSave =>
       _isLongEnough &&

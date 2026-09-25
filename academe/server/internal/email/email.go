@@ -162,7 +162,7 @@ func deletionMessage() (message, error) {
 }
 
 func dropControl(r rune) rune {
-	if unicode.IsControl(r) {
+	if unicode.IsControl(r) || unicode.Is(unicode.Bidi_Control, r) {
 		return -1
 	}
 	return r

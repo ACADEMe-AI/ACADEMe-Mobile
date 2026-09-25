@@ -229,9 +229,19 @@ export ACADEME_SARVAM_API_KEY=<key>                   # optional; unset = ASKMe 
 export ACADEME_SARVAM_MODEL=sarvam-105b               # default
 export ACADEME_REVENUECAT_SECRET_KEY=<sk_…>            # optional; unset = /billing/sync returns 503
 export ACADEME_REVENUECAT_WEBHOOK_AUTH='Bearer <long random>' # optional; unset = the webhook returns 503
+export ACADEME_REVENUECAT_ENTITLEMENT=academe_pro           # default
+export ACADEME_BILLING_TESTERS=<id>,<id>                      # optional; sandbox purchases count for these accounts, * = all
 export ACADEME_FREE_LIMITS=askme=10,scan=3,check=1,lessons=0 # default; -1 = unlimited, 0 = Pro only
+export ACADEME_RESEND_API_KEY=<re_…>                          # optional; unset = emails are only logged
+export ACADEME_EMAIL_FROM='ACADEMe <no-reply@academe.cc>'     # default
+export ACADEME_EMAIL_DEV=1                                    # optional; logs reset codes, never in production
+export ACADEME_CLIENT_IP_HEADER=X-Real-IP                     # only behind a proxy that overwrites it (Railway)
+export ACADEME_ANDROID_CERT_SHA256=<AA:BB:…>                  # optional; unset = /.well-known/assetlinks.json is 404
 go run ./cmd/academe-api
 ```
+
+Tests also read `ACADEME_TEST_DATABASE_URL` (store tests) and
+`ACADEME_EMAIL_PREVIEW` (a directory for email previews).
 
 `ACADEME_GOOGLE_CLIENT_IDS` lists the OAuth client IDs whose Google ID tokens
 the server accepts (the `aud` claim). With the `google_sign_in` plugin on

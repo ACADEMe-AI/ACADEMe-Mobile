@@ -30,6 +30,9 @@ class SignUpViewModel extends ChangeNotifier {
   late final Command0<Account> saveName;
 
   static const minPasswordLength = 8;
+
+  static bool isLongEnough(String password) =>
+      password.runes.length >= minPasswordLength;
   static final emailShape = RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$');
 
   List<SignUpStep> get steps => method == AuthMethod.email
@@ -62,7 +65,7 @@ class SignUpViewModel extends ChangeNotifier {
   EmailProblem get emailProblem => _emailProblem;
 
   bool get isEmailValid => emailShape.hasMatch(_email.trim());
-  bool get isPasswordLongEnough => _password.length >= minPasswordLength;
+  bool get isPasswordLongEnough => isLongEnough(_password);
 
   AuthFailure? get failure => switch (step) {
     SignUpStep.hello => _failureOf(connectProvider),

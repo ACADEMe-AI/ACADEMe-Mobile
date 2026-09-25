@@ -4,7 +4,6 @@ import (
 	"errors"
 	"log/slog"
 	"net/http"
-	"net/netip"
 	"time"
 
 	"academe/server/internal/httpx"
@@ -67,6 +66,9 @@ func (h handler) signUp(w http.ResponseWriter, r *http.Request) error {
 	if err := httpx.DecodeJSON(w, r, &in); err != nil {
 		return err
 	}
+	if err := admit(w, gate{h.service.entry.signUpIP, clientIP(r)}); err != nil {
+		return err
+	}
 	a, tokens, err := h.service.SignUp(r.Context(), in)
 	if err != nil {
 		return toHTTP(err)
@@ -78,6 +80,13 @@ func (h handler) signUp(w http.ResponseWriter, r *http.Request) error {
 func (h handler) logIn(w http.ResponseWriter, r *http.Request) error {
 	var in logInRequest
 	if err := httpx.DecodeJSON(w, r, &in); err != nil {
+		return err
+	}
+	ip := clientIP(r)
+	if err := admit(w,
+		gate{h.service.entry.logInIP, ip},
+		gate{h.service.entry.logInEmailIP, logInKey(in.Email, ip)},
+	); err != nil {
 		return err
 	}
 	a, tokens, err := h.service.LogIn(r.Context(), in.Email, in.Password)
@@ -116,6 +125,9 @@ func (h handler) logOut(w http.ResponseWriter, r *http.Request) error {
 func (h handler) google(w http.ResponseWriter, r *http.Request) error {
 	var in googleRequest
 	if err := httpx.DecodeJSON(w, r, &in); err != nil {
+		return err
+	}
+	if err := admit(w, gate{h.service.entry.googleIP, clientIP(r)}); err != nil {
 		return err
 	}
 	a, tokens, created, err := h.service.SignInWithGoogle(r.Context(), in.IDToken)
@@ -278,17 +290,4 @@ func (h handler) completeReset(w http.ResponseWriter, r *http.Request) error {
 	}
 	httpx.WriteJSON(w, http.StatusOK, session{a, tokens})
 	return nil
-}
-
-func clientIP(r *http.Request) string {
-	addr, err := netip.ParseAddrPort(r.RemoteAddr)
-	if err != nil {
-		return r.RemoteAddr
-	}
-	ip := addr.Addr().Unmap()
-	if ip.Is6() {
-		network, _ := ip.Prefix(64)
-		return network.String()
-	}
-	return ip.String()
 }

@@ -5,6 +5,7 @@ import 'package:academe/ui/core/themes/app_theme.dart';
 import 'package:academe/ui/core/ui/pebby.dart';
 import 'package:academe/ui/study/study_actions.dart';
 import 'package:academe/ui/study/view_models/study_view_model.dart';
+import 'package:academe/ui/study/widgets/add_chapters_screen.dart';
 import 'package:academe/ui/study/widgets/chapter_screen.dart';
 import 'package:academe/ui/study/widgets/courses_view.dart';
 import 'package:flutter/material.dart';
@@ -221,6 +222,23 @@ void main() {
 
     expect(
       find.text('0 of 0 lessons done · Not in board exam'),
+      findsOneWidget,
+    );
+  });
+
+  testWidgets('Add chapters offers only subjects with lessons to pick', (
+    tester,
+  ) async {
+    await viewModel.load.execute();
+    await pump(
+      tester,
+      AddChaptersScreen(viewModel: viewModel, alreadyIn: const []),
+    );
+
+    expect(find.text('Maths'), findsNothing);
+    expect(find.text('Science'), findsOneWidget);
+    expect(
+      find.text('Ch 9 · Light – Reflection and Refraction'),
       findsOneWidget,
     );
   });

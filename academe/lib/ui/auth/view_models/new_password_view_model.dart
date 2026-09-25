@@ -26,8 +26,7 @@ class NewPasswordViewModel extends ChangeNotifier {
 
   String _password = '';
 
-  bool get isPasswordLongEnough =>
-      _password.length >= SignUpViewModel.minPasswordLength;
+  bool get isPasswordLongEnough => SignUpViewModel.isLongEnough(_password);
 
   bool get hasExpired =>
       failure == AuthFailure.resetExpired ||

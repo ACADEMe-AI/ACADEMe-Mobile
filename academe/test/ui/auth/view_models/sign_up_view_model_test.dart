@@ -173,4 +173,11 @@ void main() {
       expect(viewModel.firstName, 'Ada');
     });
   });
+
+  test('password length counts characters the way the server does', () {
+    expect(SignUpViewModel.isLongEnough('😀😀😀😀'), isFalse);
+    expect(SignUpViewModel.isLongEnough('पासवर्ड१२'), isTrue);
+    expect(SignUpViewModel.isLongEnough('sunflowe'), isTrue);
+    expect(SignUpViewModel.isLongEnough('sunflow'), isFalse);
+  });
 }

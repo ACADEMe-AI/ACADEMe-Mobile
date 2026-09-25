@@ -221,8 +221,8 @@ IDs: **A** entry · **B** onboarding · **C** shell and companion · **D** captu
 | [x] | A8 | Reset password | 8+ check; lands signed in; all old tokens revoked |
 | [x] | A8b | Reset link | email button → app (App Link / `academe://`) or the web page |
 | [ ] | A9 | Google switched on | client IDs; test on a device |
-| [ ] | A10 | Rate limits on log-in and sign-up | limiter pattern exists; client IP ready |
-| [ ] | A11 | Purge expired sessions and old reset rows | from `PurgeEvery` |
+| [x] | A10 | Rate limits on log-in and sign-up | log-in 10/15 min per email+IP and 50/h per IP; sign-up 10/h and Google 30/h per IP; 429 + `Retry-After` |
+| [x] | A11 | Purge expired sessions and old reset rows | hourly from `PurgeEvery`; reset rows kept a day past expiry |
 | [ ] | A12 | "Your password was changed" / "Google linked" email | Resend mailer |
 | [ ] | A13 | Localised emails | hi, te, ta, bn; Indic web fonts |
 | [ ] | A14 | Reset email from the background queue | removes the timing difference |
@@ -290,7 +290,7 @@ returns 503 `scan_unavailable`.
 | [ ] | E7 | Mock exam (Pro) | past papers, timed, board marking (Class 10 and 12) |
 | [ ] | E8 | Chat with a folder | ASKMe grounded in the folder |
 | [ ] | E9 | Share a folder | link for messaging apps; friends get a copy |
-| [ ] | E10 | Add chapters: default to a subject with lessons | UI finding F2 |
+| [x] | E10 | Add chapters: default to a subject with lessons | UI finding F2; only subjects with lessons are offered |
 | [ ] | E11 | "Coming soon" counts on subject pills | |
 | [ ] | E13 | Edit folder notes | today only delete |
 
@@ -506,23 +506,20 @@ Full order in `docs/play/release-checklist.md`.
 | Content | Gaps: Hindi Course B, Maths/Science Advanced, Class 6 R3 books, practicals and projects, ISC English literature | D12; add when asked |
 | Content | ICSE 6–8 built from publishers' books (CISCE middle-school document not obtained); ICSE Hindi 6–8 low confidence | re-check when the document is available |
 | Content | Syllabus build scripts are not in the repo; edit the JSON directly | |
-| Content | `lesson-pipeline.md` says prompt v3; the code is `lessons-v4` | |
 | Content | Progress on renumbered seed IDs (dev accounts only) attaches to other lessons | harmless before release |
 | ASKMe | Empty answers from `sarvam-105b` reasoning (UI F1, deploy) | fixed in code (reasoning off); verify after redeploy |
 | ASKMe | No output moderation beyond the prompt; Report only on ASKMe | C9, D8 |
-| Study | Add chapters opens on a subject with no lessons (UI F2) | E10 |
 | Study | Streak shows 0 everywhere; streak and level-up toggles schedule nothing | Phase 6 |
 | Study | "Done today" uses the phone's date and UTC offset | fine for India |
 | Study | Folder notes can't be edited | E13 |
 | Auth | Throttles, sync limit and password-check limit live in one process's memory | Postgres/Redis before a second instance |
 | Auth | Revocation cache: another instance may accept a revoked access token for up to 30 s | documented; fine at 1 replica |
-| Auth | No rate limits on log-in and sign-up; expired sessions not purged | A10, A11 |
+| Auth | Log-in, sign-up and Google limits are per instance and per IP; a school behind one IP gets 50 log-ins and 10 sign-ups an hour | Postgres/Redis with the other throttles; raise if schools hit it |
 | Auth | Log-out ends one session; its access token lives ≤15 min; no "log out everywhere" | G3 |
 | Auth | Reset: known accounts answer slower (mail send); verify tells "burned" from "no code"; earlier reset tokens not revoked by a later reset | A14; low risk (sign-up already reveals accounts) |
 | Auth | Google sign-in on log-in with a matching email auto-links and clears the password (pre-hijack defence) | student can set one again |
-| Auth | App counts password length in UTF-16, server in runes | message shown on 422 |
 | Auth | Account screen trusts the account cached at launch | G3 |
-| Email | English only; Gmail shows fallback fonts; Outlook shows square digit boxes; Baloo 2 font file 421 KB; bidi characters survive in subjects | A13; subset the font |
+| Email | English only; Gmail shows fallback fonts; Outlook shows square digit boxes; Baloo 2 font file 421 KB | A13; subset the font |
 | Email | A welcome email in flight is lost on a crash | durable outbox if it matters |
 | Links | App Links unverified until the cert SHA-256 is set and academe.cc is live (links open the browser page meanwhile) | §11 keys |
 | Web | Web deletion finished by hand after the person replies | G7 signed link |
@@ -538,7 +535,6 @@ Full order in `docs/play/release-checklist.md`.
 | Hosting | academe.cc DNS still on parking / the old site host; only `api` records exist | DNS checklist |
 | Hosting | `X-Real-IP` is trusted only while traffic comes through Railway's edge; never add a TCP proxy to `api` | |
 | Hosting | No India region (Singapore ≈ 50–90 ms); Postgres major upgrades need dump/restore | D15 |
-| Hosting | `docs/hosting.md` still lists `ACADEME_GOOGLE_PLAY_SERVICE_ACCOUNT` and `ACADEME_BILLING_RTDN_SECRET`, which the code no longer reads | tidy the doc |
 | Hosting | Profile builds need `--dart-define=API_BASE_URL=https://…` (no cleartext allowance) | |
 | App | Router never disposes Home / ASKMe / Study / Me view models (small listener leak per log-out) | router fix |
 | App | `courses_view.dart` 306 lines (limit 300); `auth_repository_remote.dart` at 300 | split with the UI test agent |

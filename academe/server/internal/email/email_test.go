@@ -91,6 +91,10 @@ func TestResendWelcomeEscapesTheName(t *testing.T) {
 		t.Errorf("html contains a script tag from the name")
 	}
 
+	if err := c.SendWelcome(t.Context(), Welcome{To: "x@example.com", FirstName: "Ma\u202eya\u2066 \u0915\u094d\u200d\u0937"}); err != nil || got.Subject != "Welcome to ACADEMe, Maya \u0915\u094d\u200d\u0937" {
+		t.Errorf("SendWelcome(bidi name) = %v with subject %+q, want bidi controls dropped and the joiner kept", err, got.Subject)
+	}
+
 	if err := c.SendWelcome(t.Context(), Welcome{To: "x@example.com"}); err != nil || got.Subject != "Welcome to ACADEMe" {
 		t.Errorf("SendWelcome(no name) = %v with subject %q, want Welcome to ACADEMe", err, got.Subject)
 	}

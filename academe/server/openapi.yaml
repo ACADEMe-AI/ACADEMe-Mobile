@@ -18,7 +18,7 @@ paths:
         "500": { $ref: "#/components/responses/Error" }
   /auth/sign-up:
     post:
-      summary: Create an account with email and password, and log it in.
+      summary: Create an account with email and password, and log it in. 10 an hour per IP address.
       requestBody:
         required: true
         content:
@@ -37,9 +37,10 @@ paths:
         "422":
           description: "`invalid_firstName`, `invalid_lastName`, `invalid_email` or `invalid_password`"
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "429": { $ref: "#/components/responses/Throttled" }
   /auth/log-in:
     post:
-      summary: Log in with email and password.
+      summary: Log in with email and password. 10 per 15 minutes per email and IP address, 50 an hour per IP address.
       requestBody:
         required: true
         content:
@@ -61,6 +62,7 @@ paths:
         "401":
           description: "`wrong_credentials` — never says whether the email exists."
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "429": { $ref: "#/components/responses/Throttled" }
   /auth/refresh:
     post:
       summary: Trade a refresh token for new tokens. The old one stops working.
@@ -92,7 +94,7 @@ paths:
         "400": { $ref: "#/components/responses/Error" }
   /auth/google:
     post:
-      summary: Sign in with a Google ID token. Creates the account on first use; links an existing email account (its password and other sessions are dropped).
+      summary: Sign in with a Google ID token. Creates the account on first use; links an existing email account (its password and other sessions are dropped). 30 an hour per IP address.
       requestBody:
         required: true
         content:
@@ -125,6 +127,7 @@ paths:
         "503":
           description: "`google_unavailable` — the server has no Google client IDs."
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "429": { $ref: "#/components/responses/Throttled" }
   /auth/password-reset:
     post:
       summary: Email a 6-digit reset code and a Reset password link. Google-only accounts get an email saying to use Continue with Google. Same answer whether or not the email has an account.
@@ -1291,7 +1294,7 @@ paths:
   /reset-password:
     get:
       summary: Web page behind the Reset password button in the reset email. Shows a new-password form and an Open in the app link (academe://reset?c=…). Does not use up the link.
-      description: Sets a `__Host-academe-reset` cookie (Secure, HttpOnly, SameSite=Strict, 1 hour) over HTTPS (TLS or `X-Forwarded-Proto: https`), or a plain `academe-reset` cookie (HttpOnly, SameSite=Strict) over local http, and puts a form token in the page, an HMAC of the cookie and the link token. Cache-Control no-store, Referrer-Policy no-referrer.
+      description: "Sets a `__Host-academe-reset` cookie (Secure, HttpOnly, SameSite=Strict, 1 hour) over HTTPS (TLS or `X-Forwarded-Proto: https`), or a plain `academe-reset` cookie (HttpOnly, SameSite=Strict) over local http, and puts a form token in the page, an HMAC of the cookie and the link token. Cache-Control no-store, Referrer-Policy no-referrer."
       parameters:
         - { name: c, in: query, required: true, schema: { type: string, maxLength: 64 }, description: The link token. }
       responses:
@@ -1379,6 +1382,11 @@ components:
         modelAnswer: { type: string }
     Error:
       description: "`invalid_json`, `body_too_large` or `internal`"
+      content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+    Throttled:
+      description: "`too_many_requests` — this IP address (IPv6 grouped by /64), or this email from this IP address, tried too often."
+      headers:
+        Retry-After: { description: Seconds until the next try is allowed., schema: { type: integer } }
       content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
   schemas:
     Plan:

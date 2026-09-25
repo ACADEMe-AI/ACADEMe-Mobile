@@ -182,6 +182,8 @@ func (f *fakeStore) PurgeDeleted(_ context.Context, requestedBefore time.Time) (
 	return ids, nil
 }
 
+func (f *fakeStore) PurgeExpired(context.Context, time.Time) error { return nil }
+
 func (f *fakeStore) TokensValidAfter(_ context.Context, accountID string) (time.Time, error) {
 	f.mu.Lock()
 	defer f.mu.Unlock()

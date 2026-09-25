@@ -5,6 +5,8 @@ import (
 	"errors"
 	"testing"
 	"time"
+
+	"github.com/jackc/pgx/v5"
 )
 
 func TestPostgresStoreReset(t *testing.T) {
@@ -88,5 +90,49 @@ func TestPostgresStoreReset(t *testing.T) {
 	}
 	if _, err := store.CompleteReset(ctx, hashToken("linked"), time.Now().Add(-resetTokenTTL), "hash", time.Now()); !errors.Is(err, ErrResetTokenExpired) {
 		t.Errorf("CompleteReset after linking Google = %v, want ErrResetTokenExpired", err)
+	}
+}
+
+func TestPurgeExpiredSessionsAndResetCodes(t *testing.T) {
+	pool := openTestPool(t)
+	store := NewPostgresStore(pool)
+	ctx := t.Context()
+	a, err := store.CreateAccount(ctx, Account{FirstName: "M", LastName: "R", Email: "m@example.com"}, "hash")
+	if err != nil {
+		t.Fatal(err)
+	}
+	now := time.Now()
+	for hash, expires := range map[string]time.Time{"live": now.Add(time.Hour), "dead": now.Add(-time.Minute)} {
+		if err := store.CreateSession(ctx, a.ID, []byte(hash), expires); err != nil {
+			t.Fatal(err)
+		}
+	}
+	for link, expires := range map[string]time.Time{"recent": now.Add(-time.Hour), "old": now.Add(-resetRowsKept - time.Hour)} {
+		if _, err := pool.Exec(ctx, `
+			INSERT INTO password_reset_codes (account_id, code_hash, link_hash, expires_at)
+			VALUES ($1, 'c', $2, $3)`, a.ID, []byte(link), expires); err != nil {
+			t.Fatal(err)
+		}
+	}
+
+	if err := store.PurgeExpired(ctx, now); err != nil {
+		t.Fatalf("PurgeExpired() = %v", err)
+	}
+
+	var sessions, codes []string
+	for query, dst := range map[string]*[]string{
+		"SELECT convert_from(token_hash, 'UTF8') FROM sessions":            &sessions,
+		"SELECT convert_from(link_hash, 'UTF8') FROM password_reset_codes": &codes,
+	} {
+		rows, err := pool.Query(ctx, query)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if *dst, err = pgx.CollectRows(rows, pgx.RowTo[string]); err != nil {
+			t.Fatal(err)
+		}
+	}
+	if len(sessions) != 1 || sessions[0] != "live" || len(codes) != 1 || codes[0] != "recent" {
+		t.Errorf("after PurgeExpired sessions = %v, reset codes = %v; want [live], [recent]", sessions, codes)
 	}
 }

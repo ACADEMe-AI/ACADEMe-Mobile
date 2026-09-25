@@ -124,6 +124,26 @@ void main() {
     expect(store.session, isNull);
   });
 
+  test('rate limits on sign-up, log-in and Google ask to wait', () async {
+    server
+      ..reply('POST /auth/sign-up', 429, failure('too_many_requests'))
+      ..reply('POST /auth/log-in', 429, failure('too_many_requests'))
+      ..reply('POST /auth/google', 429, failure('too_many_requests'));
+
+    expect(failureOf(await signUp())?.failure, AuthFailure.tooManyRequests);
+    expect(
+      failureOf(
+        await repository.logInWithEmail(email: 'a@b.co', password: 'nope'),
+      )?.failure,
+      AuthFailure.tooManyRequests,
+    );
+    expect(
+      failureOf(await repository.continueWithGoogle())?.failure,
+      AuthFailure.tooManyRequests,
+    );
+    expect(store.session, isNull);
+  });
+
   test('invalid input names the field', () async {
     server.reply('POST /auth/sign-up', 422, failure('invalid_email'));
 
