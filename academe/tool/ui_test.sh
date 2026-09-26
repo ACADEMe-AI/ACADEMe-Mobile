@@ -170,6 +170,7 @@ start_dev_server() {
     ACADEME_TOKEN_KEY="$(openssl rand -base64 32)" \
     ACADEME_SARVAM_API_KEY="$(sed -n 's/^SARVAM_API_KEY=//p' ../.env .env 2>/dev/null | head -1 | tr -d '"\n\r')" \
     ACADEME_EMAIL_DEV=1 \
+    ACADEME_AUTH_LIMIT_SCALE=100 \
     ACADEME_FREE_LIMITS="${UI_TEST_FREE_LIMITS:-askme=2}" \
     build/ui-test-server/academe-api >>"$server_log" 2>&1 &
   server_pid=$!

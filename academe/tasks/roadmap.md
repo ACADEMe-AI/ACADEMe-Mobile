@@ -553,6 +553,14 @@ Full order in `docs/play/release-checklist.md`.
 
 Newest first. One line per change that landed; details live in git and `tasks/reports/`.
 
+
+**2026-09-26**
+- Public pages and email links move to `https://api.academe.cc` (privacy, terms, delete-account, support, reset-password, open, email images); academe.cc stays the marketing website on Vercel and redirects those paths. No Railway Pro or apex DNS change needed for them.
+- The app's reset App Link host is `api.academe.cc`.
+- Auth pages keep the field and button above the keyboard (the Save button on New password was hidden).
+- `ACADEME_AUTH_LIMIT_SCALE` multiplies the log-in, sign-up and Google limits (UI tests use 100; raise for schools behind one IP).
+- Sarvam 401/402/403/429/5xx now answer 503 askme_unavailable / scan_unavailable.
+
 **2026-09-25**
 - Roadmap rewritten for today's work and `tasks/strategy.md` added (vision, users, USPs with proof, pricing, go-to-market, metrics, risks, 30/60/90).
 - UI test automation: 21 `integration_test/` journeys with shared support flows and `tool/ui_test.sh` (screen recording, screenshots, per-journey logs in `build/ui-test/`). Findings so far: F1 ASKMe empty answers (fixed in code), F2 Add chapters empty subject (open). A 12-journey run is in progress.

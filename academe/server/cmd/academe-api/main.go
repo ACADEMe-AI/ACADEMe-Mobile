@@ -76,6 +76,7 @@ func run(ctx context.Context, logger *slog.Logger) error {
 		logger.Warn("reset emails are only logged", "reason", "ACADEME_RESEND_API_KEY is not set")
 	}
 	authService := auth.NewService(auth.NewPostgresStore(pool), cfg.TokenKey, google, mailer)
+	authService.SetEntryLimitScale(cfg.AuthLimitScale)
 	authService.SetLogger(logger)
 	defer authService.Wait()
 	auth.RegisterRoutes(mux, logger, authService)

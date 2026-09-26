@@ -23,12 +23,13 @@ type entryLimits struct {
 	googleIP     *limiter
 }
 
-func newEntryLimits() entryLimits {
+func newEntryLimits(scale int) entryLimits {
+	scale = max(scale, 1)
 	return entryLimits{
-		logInEmailIP: newLimiter(logInsPerEmailIP, logInEmailIPWindow),
-		logInIP:      newLimiter(logInsPerIPHour, time.Hour),
-		signUpIP:     newLimiter(signUpsPerIPHour, time.Hour),
-		googleIP:     newLimiter(googlePerIPHour, time.Hour),
+		logInEmailIP: newLimiter(logInsPerEmailIP*scale, logInEmailIPWindow),
+		logInIP:      newLimiter(logInsPerIPHour*scale, time.Hour),
+		signUpIP:     newLimiter(signUpsPerIPHour*scale, time.Hour),
+		googleIP:     newLimiter(googlePerIPHour*scale, time.Hour),
 	}
 }
 

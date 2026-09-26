@@ -13,7 +13,7 @@ import (
 )
 
 const (
-	SiteURL        = "https://academe.cc"
+	SiteURL        = "https://api.academe.cc"
 	OpenURL        = SiteURL + "/open"
 	SupportAddress = "support@academe.cc"
 	supportURL     = "mailto:" + SupportAddress + "?subject=Delete%20my%20ACADEMe%20account"

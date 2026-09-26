@@ -33,6 +33,7 @@ void main() {
   test('reads the link token from every reset link shape', () {
     const cases = {
       'https://academe.cc/reset-password?c=abc': 'abc',
+      'https://api.academe.cc/reset-password?c=abc': 'abc',
       '/reset-password?c=abc': 'abc',
       'academe://reset?c=abc': 'abc',
       '/?c=abc': 'abc',

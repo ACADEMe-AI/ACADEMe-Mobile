@@ -26,6 +26,7 @@ type Config struct {
 	RevenueCatSecretKey   string
 	RevenueCatWebhookAuth string
 	FreeLimits            map[string]int
+	AuthLimitScale        int
 	BillingTesters        []string
 	RevenueCatEntitlement string
 }
@@ -62,6 +63,14 @@ func FromEnv() (Config, error) {
 		if cert = strings.ToUpper(strings.TrimSpace(cert)); cert != "" {
 			c.AndroidCerts = append(c.AndroidCerts, cert)
 		}
+	}
+	c.AuthLimitScale = 1
+	if raw := os.Getenv("ACADEME_AUTH_LIMIT_SCALE"); raw != "" {
+		n, err := strconv.Atoi(raw)
+		if err != nil || n < 1 {
+			return Config{}, errors.New("ACADEME_AUTH_LIMIT_SCALE must be a whole number of 1 or more")
+		}
+		c.AuthLimitScale = n
 	}
 	if err := c.billing(); err != nil {
 		return Config{}, err

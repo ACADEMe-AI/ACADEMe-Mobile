@@ -55,6 +55,7 @@ TLS 1.2/1.3, HTTP/2. Health checks run only at deploy time, not continuously.
 | `ACADEME_REVENUECAT_WEBHOOK_AUTH` | random string, `openssl rand -hex 32`; same value in RevenueCat webhook "Authorization header" | purchases |
 | `ACADEME_REVENUECAT_ENTITLEMENT` | `academe_pro` (default) | no |
 | `ACADEME_BILLING_TESTERS` | account IDs whose sandbox (test-card) purchases count as Pro, comma-separated, `*` = everyone; unset = sandbox purchases ignored | no |
+| `ACADEME_AUTH_LIMIT_SCALE` | whole number, default `1`; multiplies the per-IP log-in, sign-up and Google limits (raise for schools behind one IP) | no |
 | `ACADEME_FREE_LIMITS` | e.g. `askme=10,scan=3`; unset = `askme=10,scan=3,check=1,lessons=0`; `-1` = unlimited | no |
 | `ACADEME_ANDROID_CERT_SHA256` | release signing certificate SHA-256 fingerprints, comma-separated, for `/.well-known/assetlinks.json` | App Links |
 | `ACADEME_ADDR` | leave unset | no |

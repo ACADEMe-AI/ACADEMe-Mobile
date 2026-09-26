@@ -84,4 +84,17 @@ void main() {
     expect(startedOver, isTrue);
     expect(isDone, isFalse);
   });
+
+  testWidgets('the save button stays above the keyboard', (tester) async {
+    tester.view.physicalSize = const Size(1080, 2400);
+    tester.view.devicePixelRatio = 2.625;
+    tester.view.viewInsets = const FakeViewPadding(bottom: 900);
+    addTearDown(tester.view.reset);
+    await pumpNewPassword(tester);
+
+    final button = tester.getRect(save());
+    final screen = tester.view.physicalSize / tester.view.devicePixelRatio;
+    expect(button.bottom, lessThanOrEqualTo(screen.height - 900 / 2.625));
+    await tester.tap(save());
+  });
 }

@@ -52,7 +52,7 @@ func TestResendSendsTheReset(t *testing.T) {
 	if diff := cmp.Diff(want, resendRequest{From: got.From, To: got.To, ReplyTo: got.ReplyTo, Subject: got.Subject}); diff != "" {
 		t.Errorf("SendReset() envelope mismatch (-want +got):\n%s", diff)
 	}
-	link := "https://academe.cc/reset-password?c=tok_en-1"
+	link := "https://api.academe.cc/reset-password?c=tok_en-1"
 	containsAll(t, "html", got.HTML, ">0<", ">4<", ">7<", "Reset password", `href="`+link+`"`, "v:roundrect", "Expires in 15 minutes", "pebby-shy.png")
 	containsAll(t, "text", got.Text, "042917", link, "15 minutes", "ignore this email")
 }
@@ -62,8 +62,8 @@ func TestResendGoogleOnly(t *testing.T) {
 	if err := c.SendReset(t.Context(), Reset{To: "ada@gmail.com", GoogleOnly: true}); err != nil {
 		t.Fatalf("SendReset() = %v", err)
 	}
-	containsAll(t, "html", got.HTML, "Continue with Google", `href="https://academe.cc/open"`, "Open ACADEMe")
-	containsAll(t, "text", got.Text, "Continue with Google", "https://academe.cc/open")
+	containsAll(t, "html", got.HTML, "Continue with Google", `href="https://api.academe.cc/open"`, "Open ACADEMe")
+	containsAll(t, "text", got.Text, "Continue with Google", "https://api.academe.cc/open")
 	if strings.Contains(got.Text, "code") || strings.Contains(got.HTML, "reset-password") {
 		t.Errorf("google-only email offers a code or reset link: %q", got.Text)
 	}
@@ -81,7 +81,7 @@ func TestResendWelcomeEscapesTheName(t *testing.T) {
 	if strings.Contains(got.HTML, "<b>&") {
 		t.Errorf("html contains the unescaped name")
 	}
-	containsAll(t, "text", got.Text, "Welcome to ACADEMe, Maya <b>&!", "https://academe.cc/open")
+	containsAll(t, "text", got.Text, "Welcome to ACADEMe, Maya <b>&!", "https://api.academe.cc/open")
 
 	if err := c.SendWelcome(t.Context(), Welcome{To: "x@example.com", FirstName: `<script>alert("x")</script>' "`}); err != nil {
 		t.Fatalf("SendWelcome() = %v", err)

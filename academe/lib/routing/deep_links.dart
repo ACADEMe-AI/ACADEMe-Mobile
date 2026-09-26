@@ -6,7 +6,9 @@ String? resetLinkToken(String? routeName) {
   if (uri == null || token.isEmpty) return null;
   final isWebLink =
       uri.path == '/reset-password' &&
-      (uri.host.isEmpty || uri.host == 'academe.cc');
+      (uri.host.isEmpty ||
+          uri.host == 'api.academe.cc' ||
+          uri.host == 'academe.cc');
   final isAppLink =
       (uri.scheme == 'academe' && uri.host == 'reset') ||
       (!uri.hasScheme && uri.path == '/');

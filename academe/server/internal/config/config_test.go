@@ -30,3 +30,19 @@ func TestAddr(t *testing.T) {
 		})
 	}
 }
+
+func TestAuthLimitScale(t *testing.T) {
+	t.Setenv("ACADEME_DATABASE_URL", "postgres://x")
+	t.Setenv("ACADEME_TOKEN_KEY", "MDEyMzQ1Njc4OWFiY2RlZjAxMjM0NTY3ODlhYmNkZWY=")
+	for raw, want := range map[string]int{"": 1, "50": 50} {
+		t.Setenv("ACADEME_AUTH_LIMIT_SCALE", raw)
+		c, err := config.FromEnv()
+		if err != nil || c.AuthLimitScale != want {
+			t.Errorf("FromEnv() with scale %q = %d, %v; want %d", raw, c.AuthLimitScale, err, want)
+		}
+	}
+	t.Setenv("ACADEME_AUTH_LIMIT_SCALE", "0")
+	if _, err := config.FromEnv(); err == nil {
+		t.Error("FromEnv() with scale 0 succeeded, want an error")
+	}
+}

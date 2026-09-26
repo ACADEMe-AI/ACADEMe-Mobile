@@ -107,6 +107,8 @@ type Service struct {
 
 func (s *Service) SetSubscriberDeleter(d SubscriberDeleter) { s.subscribers = d }
 
+func (s *Service) SetEntryLimitScale(scale int) { s.entry = newEntryLimits(scale) }
+
 func NewService(store Store, tokenKey []byte, google GoogleVerifier, mailer Mailer) *Service {
 	return &Service{
 		store:     store,
@@ -114,7 +116,7 @@ func NewService(store Store, tokenKey []byte, google GoogleVerifier, mailer Mail
 		google:    google,
 		mailer:    mailer,
 		limits:    newResetLimits(),
-		entry:     newEntryLimits(),
+		entry:     newEntryLimits(1),
 		dummyHash: hashPassword(rand.Text()),
 		revoked:   newRevocations(),
 		logger:    slog.New(slog.DiscardHandler),

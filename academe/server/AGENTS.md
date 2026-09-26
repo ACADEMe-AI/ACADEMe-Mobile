@@ -232,6 +232,7 @@ export ACADEME_REVENUECAT_WEBHOOK_AUTH='Bearer <long random>' # optional; unset 
 export ACADEME_REVENUECAT_ENTITLEMENT=academe_pro           # default
 export ACADEME_BILLING_TESTERS=<id>,<id>                      # optional; sandbox purchases count for these accounts, * = all
 export ACADEME_FREE_LIMITS=askme=10,scan=3,check=1,lessons=0 # default; -1 = unlimited, 0 = Pro only
+export ACADEME_AUTH_LIMIT_SCALE=1                    # default; multiplies the log-in, sign-up and Google limits (UI tests use 100)
 export ACADEME_RESEND_API_KEY=<re_…>                          # optional; unset = emails are only logged
 export ACADEME_EMAIL_FROM='ACADEMe <no-reply@academe.cc>'     # default
 export ACADEME_EMAIL_DEV=1                                    # optional; logs reset codes, never in production
