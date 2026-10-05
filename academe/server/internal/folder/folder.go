@@ -4,7 +4,6 @@ import (
 	"cmp"
 	"context"
 	"errors"
-	"fmt"
 	"slices"
 	"strings"
 	"time"
@@ -295,7 +294,7 @@ func (s *Service) Today(ctx context.Context, accountID string, day Day) (Today, 
 	}
 	out := Today{Tasks: []Task{}, ReviewDue: progress.DueReviews}
 	if progress.DueReviews > 0 {
-		out.Tasks = append(out.Tasks, Task{Kind: "review", Title: fmt.Sprintf("Revise %d kept cards", progress.DueReviews), Subtitle: "Revision", Minutes: max(1, (progress.DueReviews+1)/2)})
+		out.Tasks = append(out.Tasks, Task{Kind: "review", Title: reviseTitle(progress.DueReviews), Subtitle: "Revision", Minutes: max(1, (progress.DueReviews+1)/2)})
 	}
 	seen := map[string]bool{}
 	for _, d := range details {

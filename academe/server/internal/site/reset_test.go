@@ -98,10 +98,13 @@ func TestResetPageShowsTheForm(t *testing.T) {
 	if rec.Code != http.StatusOK || token == "" {
 		t.Fatalf("GET /reset-password = %d with form token %q, want 200 and a token", rec.Code, token)
 	}
-	for _, want := range []string{`name="c" value="good-link"`, `type="password"`, "Save new password", `href="academe://reset?c=good-link"`, "support@academe.cc"} {
+	for _, want := range []string{`name="c" value="good-link"`, `type="password"`, "Save new password", "support@academe.cc"} {
 		if !strings.Contains(body, want) {
 			t.Errorf("reset page does not contain %q", want)
 		}
+	}
+	if strings.Contains(body, "academe://") {
+		t.Errorf("reset page links to the academe:// scheme, want only the https form")
 	}
 	if cookie == nil || cookie.Name != "__Host-academe-reset" || !cookie.Secure || !cookie.HttpOnly || cookie.SameSite != http.SameSiteStrictMode || cookie.Path != "/" {
 		t.Errorf("reset cookie = %+v, want __Host- cookie, Secure, HttpOnly, SameSite=Strict, Path=/", cookie)

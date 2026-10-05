@@ -121,3 +121,11 @@ func TestPlanWithoutADateShowsTheNextStepAndTodos(t *testing.T) {
 		t.Errorf("plan days = %v, want none without a date", out.days)
 	}
 }
+
+func TestReviseTitle(t *testing.T) {
+	for n, want := range map[int]string{1: "Revise 1 kept card", 2: "Revise 2 kept cards"} {
+		if got := reviseTitle(n); got != want {
+			t.Errorf("reviseTitle(%d) = %q, want %q", n, got, want)
+		}
+	}
+}

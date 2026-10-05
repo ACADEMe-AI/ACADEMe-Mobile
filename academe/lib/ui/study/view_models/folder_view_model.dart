@@ -4,10 +4,11 @@ import '../../../data/repositories/folder_repository.dart';
 import '../../../domain/models/folder.dart';
 import '../../../utils/command.dart';
 import '../../../utils/result.dart';
+import '../../../utils/safe_notifier.dart';
 
 typedef FolderEdit = ({String name, DateTime? dueOn, bool reminds});
 
-class FolderViewModel extends ChangeNotifier {
+class FolderViewModel extends ChangeNotifier with SafeNotifier {
   FolderViewModel({
     required FolderRepository folderRepository,
     required this.folderId,

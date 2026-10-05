@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../domain/models/scan.dart';
 import '../../../utils/dates.dart';
+import '../../../utils/plural.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/keycap.dart';
 import '../../core/ui/screen_scale.dart';
@@ -151,7 +152,7 @@ class _Recent extends StatelessWidget {
       ScanMode.solve => scan.threadId == null ? 'Read' : 'Solved in ASKMe',
       ScanMode.ask => scan.threadId == null ? 'Read' : 'Asked in ASKMe',
       ScanMode.check => switch (scan.result) {
-        final result? => '${result.awarded}/${result.marks} marks',
+        final result? => '${result.awarded}/${pluralize(result.marks, 'mark')}',
         null => 'Not marked yet',
       },
       ScanMode.notes => switch ((scan.folderId, scan.deckId)) {

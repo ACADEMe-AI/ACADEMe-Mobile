@@ -1,3 +1,5 @@
+import 'plural.dart';
+
 const _weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 const _months = [
   'Jan',
@@ -30,8 +32,10 @@ String dueLabel(DateTime due, {DateTime? now}) {
     0 => 'Today',
     1 => 'Tomorrow',
     -1 => 'Yesterday',
-    < 0 => '${-days} days ago',
-    < 7 => '${_weekdays[due.weekday - 1]} · $days days',
-    _ => '$days days',
+    < 0 => '${pluralize(-days, 'day')} ago',
+    _ => 'in ${pluralize(days, 'day')}',
   };
 }
+
+String dueLine(DateTime due, {DateTime? now}) =>
+    '${shortDay(due)} · ${dueLabel(due, now: now)}';

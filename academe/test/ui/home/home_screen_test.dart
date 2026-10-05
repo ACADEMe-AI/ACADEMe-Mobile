@@ -18,6 +18,7 @@ void main() {
   late FakeProfileRepository profiles;
   late FakeStudyRepository studies;
   late List<String> opened;
+  late List<String> tapped;
 
   Future<HomeViewModel> pumpHome(
     WidgetTester tester, {
@@ -43,6 +44,7 @@ void main() {
     addTearDown(study.dispose);
     await study.load.execute();
     opened = [];
+    tapped = [];
     await tester.pumpWidget(
       MaterialApp(
         theme: AppTheme.dark(),
@@ -52,6 +54,10 @@ void main() {
             opensSetup: opensSetup,
             study: study,
             onOpenSubject: opened.add,
+            onAsk: () => tapped.add('ask'),
+            onSolve: () => tapped.add('solve'),
+            onCheck: () => tapped.add('check'),
+            onFlashcards: () => tapped.add('flashcards'),
           ),
         ),
       ),
@@ -75,23 +81,20 @@ void main() {
     expectOnlyAppFonts(tester);
   });
 
-  testWidgets('the ask field and quick actions say what is coming', (
+  testWidgets('the ask field and quick actions open their features', (
     tester,
   ) async {
     await pumpHome(tester);
 
     expect(find.text('Ask anything…'), findsOneWidget);
+    await tester.tap(find.text('Ask anything…'));
     await tester.tap(find.text('Solve homework'));
-    await tester.pump();
-    expect(find.text('Homework help is coming soon.'), findsOneWidget);
-
     await tester.tap(find.text('Check my answer'));
-    await tester.pump();
-    expect(find.text('Answer checking is coming soon.'), findsOneWidget);
-
     await tester.tap(find.text('Flashcards'));
     await tester.pump();
-    expect(find.text('Flashcards are coming soon.'), findsOneWidget);
+
+    expect(tapped, ['ask', 'solve', 'check', 'flashcards']);
+    expect(find.textContaining('coming soon'), findsNothing);
   });
 
   testWidgets('after sign-up the sheet rises, and Later closes it', (

@@ -1,5 +1,7 @@
 import 'package:academe/data/services/purchases_service.dart';
 import 'package:academe/domain/models/pro.dart';
+import 'package:academe/utils/result.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
@@ -94,5 +96,42 @@ void main() {
       custom.customerOf(_customer({'pro': _entitlement('pro')})).isPro,
       isTrue,
     );
+  });
+
+  test('the store user is the account, never an anonymous one', () async {
+    TestWidgetsFlutterBinding.ensureInitialized();
+    const channel = MethodChannel('purchases_flutter');
+    final calls = <MethodCall>[];
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(channel, (call) async {
+          calls.add(call);
+          if (call.method == 'setupPurchases') return null;
+          throw PlatformException(code: '10');
+        });
+    addTearDown(
+      () => TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+          .setMockMethodCallHandler(channel, null),
+    );
+    final service = RevenueCatPurchasesService(apiKey: 'goog_key');
+
+    expect(await service.offers(), isA<Error<List<ProOffer>>>());
+    expect(await service.restore(), isA<Error<StoreCustomer>>());
+    expect(await service.logOut(), isA<Ok<void>>());
+    expect(calls, isEmpty);
+
+    await service.logIn('account-1');
+    final setup = calls.firstWhere((call) => call.method == 'setupPurchases');
+    expect((setup.arguments as Map)['appUserId'], 'account-1');
+    expect(calls.first.method, 'setupPurchases');
+
+    await service.logOut();
+    expect(await service.offers(), isA<Error<List<ProOffer>>>());
+    await service.logIn('account-2');
+    final methods = calls.map((call) => call.method);
+    expect(methods, isNot(contains('logOut')));
+    expect(methods.where((method) => method == 'setupPurchases'), hasLength(1));
+    expect(calls.lastWhere((call) => call.method == 'logIn').arguments, {
+      'appUserID': 'account-2',
+    });
   });
 }

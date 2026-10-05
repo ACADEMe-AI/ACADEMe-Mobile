@@ -37,11 +37,13 @@ class ResultLine extends StatelessWidget {
                 color: palette.success,
               ),
               const SizedBox(width: 4),
-              Text(
-                praise,
-                style: AppTextStyles.labelStrong.copyWith(
-                  fontSize: 16,
-                  color: palette.success,
+              Flexible(
+                child: Text(
+                  praise,
+                  style: AppTextStyles.labelStrong.copyWith(
+                    fontSize: 16,
+                    color: palette.success,
+                  ),
                 ),
               ),
             ],

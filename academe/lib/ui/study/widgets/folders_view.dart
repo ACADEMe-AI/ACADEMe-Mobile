@@ -29,7 +29,12 @@ class FoldersView extends StatelessWidget {
         color: AppColors.primary,
         onRefresh: viewModel.load.execute,
         child: ListView(
-          padding: EdgeInsets.fromLTRB(padding, 0, padding, 120),
+          padding: EdgeInsets.fromLTRB(
+            padding,
+            0,
+            padding,
+            24 + MediaQuery.paddingOf(context).bottom,
+          ),
           children: [
             if (viewModel.folders.isEmpty && viewModel.load.isRunning)
               const Center(

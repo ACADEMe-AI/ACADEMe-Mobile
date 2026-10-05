@@ -15,6 +15,6 @@ void main() {
     await tester.waitFor(find.text('Unlimited ASKMe questions'));
     await tester.shot('paywall');
     await tester.tapOn(find.byTooltip('Close'));
-    await tester.waitFor(find.text('Learning'));
+    await tester.waitFor(find.text('LEARNING'));
   });
 }

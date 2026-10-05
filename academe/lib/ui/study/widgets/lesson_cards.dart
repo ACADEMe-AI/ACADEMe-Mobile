@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../domain/models/deck.dart';
+import '../../../utils/plural.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/reply_text.dart';
 import 'card_parts.dart';
@@ -59,7 +60,7 @@ class StartCardView extends StatelessWidget {
           ),
         const SizedBox(height: 16),
         Text(
-          '$cards cards · $quizzes quick checks · about ${card.minutes} min',
+          '${pluralize(cards, 'card')} · ${pluralize(quizzes, 'quick check')} · about ${card.minutes} min',
           style: AppTextStyles.caption.copyWith(color: palette.textMuted),
         ),
       ],

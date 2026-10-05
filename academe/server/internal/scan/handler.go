@@ -19,8 +19,8 @@ import (
 type Guard func(httpx.HandlerFunc) httpx.HandlerFunc
 
 const (
-	maxPageBytes   = 8 << 20
-	maxUploadBytes = 40 << 20
+	maxPageBytes   = 4 << 20
+	maxUploadBytes = 24 << 20
 )
 
 func RegisterRoutes(mux *http.ServeMux, logger *slog.Logger, s *Service, requireAccount Guard) {
@@ -71,8 +71,7 @@ func slow(w http.ResponseWriter) {
 
 var pageTypes = map[string]string{".jpg": ".jpg", ".jpeg": ".jpg", ".png": ".png", ".pdf": ".pdf"}
 
-func pages(w http.ResponseWriter, r *http.Request) (Mode, []sarvam.Page, error) {
-	r.Body = http.MaxBytesReader(w, r.Body, maxUploadBytes)
+func pages(r *http.Request) (Mode, []sarvam.Page, error) {
 	if err := r.ParseMultipartForm(maxPageBytes); err != nil {
 		if _, ok := errors.AsType[*http.MaxBytesError](err); ok {
 			return "", nil, &httpx.Error{Status: http.StatusRequestEntityTooLarge, Code: "too_large", Message: "Those photos are too big."}
@@ -101,12 +100,12 @@ func pages(w http.ResponseWriter, r *http.Request) (Mode, []sarvam.Page, error) 
 
 func (h handler) create(w http.ResponseWriter, r *http.Request) error {
 	slow(w)
-	mode, pp, err := pages(w, r)
+	r.Body = http.MaxBytesReader(w, r.Body, maxUploadBytes)
+	sc, err := h.service.ReadUpload(r.Context(), account(r), func() (Mode, []sarvam.Page, error) {
+		return pages(r)
+	})
 	if err != nil {
-		return toHTTP(err)
-	}
-	sc, err := h.service.Read(r.Context(), account(r), mode, pp)
-	if err != nil {
+		_, _ = io.Copy(io.Discard, r.Body)
 		return toHTTP(err)
 	}
 	httpx.WriteJSON(w, http.StatusCreated, sc)

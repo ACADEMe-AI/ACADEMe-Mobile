@@ -6,10 +6,11 @@ import '../../../domain/models/study_stream.dart';
 import '../../../domain/models/subject.dart';
 import '../../../utils/command.dart';
 import '../../../utils/result.dart';
+import '../../../utils/safe_notifier.dart';
 
 enum SubjectsStage { stream, subjects }
 
-class SubjectsViewModel extends ChangeNotifier {
+class SubjectsViewModel extends ChangeNotifier with SafeNotifier {
   SubjectsViewModel({required ProfileRepository profileRepository})
     : _profiles = profileRepository {
     load = Command0(_load)..addListener(notifyListeners);

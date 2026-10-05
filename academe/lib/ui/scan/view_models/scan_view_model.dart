@@ -4,8 +4,9 @@ import '../../../data/repositories/scan_repository.dart';
 import '../../../domain/models/scan.dart';
 import '../../../utils/command.dart';
 import '../../../utils/result.dart';
+import '../../../utils/safe_notifier.dart';
 
-class ScanViewModel extends ChangeNotifier {
+class ScanViewModel extends ChangeNotifier with SafeNotifier {
   ScanViewModel({required ScanRepository scanRepository})
     : _repository = scanRepository {
     load = Command0(_load)..addListener(notifyListeners);

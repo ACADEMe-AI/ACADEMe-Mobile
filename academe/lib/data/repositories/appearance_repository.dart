@@ -1,8 +1,9 @@
 import 'package:flutter/foundation.dart';
 
+import '../../utils/safe_notifier.dart';
 import '../services/appearance_store.dart';
 
-class AppearanceRepository extends ChangeNotifier {
+class AppearanceRepository extends ChangeNotifier with SafeNotifier {
   AppearanceRepository({required AppearanceStore store, bool isDark = false})
     : _store = store,
       _isDark = isDark;

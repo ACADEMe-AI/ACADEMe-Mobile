@@ -5,8 +5,9 @@ import '../../../domain/models/account.dart';
 import '../../../domain/models/auth_failure.dart';
 import '../../../utils/command.dart';
 import '../../../utils/result.dart';
+import '../../../utils/safe_notifier.dart';
 
-class LoginViewModel extends ChangeNotifier {
+class LoginViewModel extends ChangeNotifier with SafeNotifier {
   LoginViewModel({required AuthRepository authRepository})
     : _authRepository = authRepository {
     logIn = Command0(_logIn)..addListener(notifyListeners);

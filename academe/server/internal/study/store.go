@@ -29,8 +29,11 @@ func (s *PostgresStore) AwardXP(ctx context.Context, accountID string, amount in
 	return tag.RowsAffected() == 1, nil
 }
 
+const markStudyDay = `
+	WITH studied AS (INSERT INTO study_days (account_id) VALUES ($1) ON CONFLICT DO NOTHING)`
+
 func (s *PostgresStore) Complete(ctx context.Context, accountID, deckID string, correct int) error {
-	if _, err := s.pool.Exec(ctx, `
+	if _, err := s.pool.Exec(ctx, markStudyDay+`
 		INSERT INTO deck_completions (account_id, deck_id, correct) VALUES ($1, $2, $3)
 		ON CONFLICT (account_id, deck_id) DO UPDATE SET
 			correct      = GREATEST(deck_completions.correct, EXCLUDED.correct),
@@ -152,7 +155,7 @@ func (s *PostgresStore) Reschedule(ctx context.Context, accountID, deckID string
 }
 
 func (s *PostgresStore) SaveChapterResult(ctx context.Context, accountID, chapterID string, correct, total int) error {
-	if _, err := s.pool.Exec(ctx, `
+	if _, err := s.pool.Exec(ctx, markStudyDay+`
 		INSERT INTO chapter_results (account_id, chapter_id, correct, total) VALUES ($1, $2, $3, $4)
 		ON CONFLICT (account_id, chapter_id) DO UPDATE SET
 			correct = EXCLUDED.correct, total = EXCLUDED.total, completed_at = now()`,

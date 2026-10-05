@@ -96,4 +96,21 @@ void main() {
     );
     expect(loggedIn, isFalse);
   });
+
+  testWidgets('the fields and Log in stay above the keyboard', (tester) async {
+    tester.view.physicalSize = const Size(1080, 2400);
+    tester.view.devicePixelRatio = 2.625;
+    tester.view.viewInsets = const FakeViewPadding(bottom: 900);
+    addTearDown(tester.view.reset);
+    await pumpLogin(tester);
+
+    final keyboardTop = tester.view.physicalSize.height / 2.625 - 900 / 2.625;
+    final logIn = find.widgetWithText(AppButton, 'Log in');
+    expect(tester.getRect(logIn).bottom, lessThanOrEqualTo(keyboardTop));
+    expect(
+      tester.getRect(find.byType(TextField).last).bottom,
+      lessThanOrEqualTo(keyboardTop),
+    );
+    expect(tester.getRect(find.byType(TextField).last).top, greaterThan(0));
+  });
 }

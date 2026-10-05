@@ -1,12 +1,14 @@
 import 'package:flutter/foundation.dart';
 
 import 'result.dart';
+import 'safe_notifier.dart';
 
 typedef CommandAction0<T> = Future<Result<T>> Function();
 typedef CommandAction1<T, A> = Future<Result<T>> Function(A argument);
 
-abstract class Command<T> extends ChangeNotifier {
+abstract class Command<T> extends ChangeNotifier with SafeNotifier {
   bool _isRunning = false;
+  bool _isDisposed = false;
   Result<T>? _result;
 
   bool get isRunning => _isRunning;
@@ -28,8 +30,14 @@ abstract class Command<T> extends ChangeNotifier {
       _result = await action();
     } finally {
       _isRunning = false;
-      notifyListeners();
+      if (!_isDisposed) notifyListeners();
     }
+  }
+
+  @override
+  void dispose() {
+    _isDisposed = true;
+    super.dispose();
   }
 }
 

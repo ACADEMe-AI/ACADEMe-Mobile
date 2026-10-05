@@ -10,6 +10,7 @@ import (
 
 const (
 	logInsPerEmailIP   = 10
+	logInsPerEmailHour = 20
 	logInsPerIPHour    = 50
 	signUpsPerIPHour   = 10
 	googlePerIPHour    = 30
@@ -18,6 +19,7 @@ const (
 
 type entryLimits struct {
 	logInEmailIP *limiter
+	logInEmail   *limiter
 	logInIP      *limiter
 	signUpIP     *limiter
 	googleIP     *limiter
@@ -27,6 +29,7 @@ func newEntryLimits(scale int) entryLimits {
 	scale = max(scale, 1)
 	return entryLimits{
 		logInEmailIP: newLimiter(logInsPerEmailIP*scale, logInEmailIPWindow),
+		logInEmail:   newLimiter(logInsPerEmailHour*scale, time.Hour),
 		logInIP:      newLimiter(logInsPerIPHour*scale, time.Hour),
 		signUpIP:     newLimiter(signUpsPerIPHour*scale, time.Hour),
 		googleIP:     newLimiter(googlePerIPHour*scale, time.Hour),
@@ -49,8 +52,12 @@ func admit(w http.ResponseWriter, gates ...gate) error {
 }
 
 func logInKey(email, ip string) string {
+	return emailKey(email) + " " + ip
+}
+
+func emailKey(email string) string {
 	email = normalizeEmail(email)
-	return email[:min(len(email), maxEmailLength)] + " " + ip
+	return email[:min(len(email), maxEmailLength)]
 }
 
 func clientIP(r *http.Request) string {

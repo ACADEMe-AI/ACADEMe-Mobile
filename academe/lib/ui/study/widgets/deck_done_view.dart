@@ -15,6 +15,7 @@ class DeckDoneView extends StatelessWidget {
     required this.kept,
     required this.nextTitle,
     required this.onNext,
+    required this.hasChapter,
     required this.onClose,
   });
 
@@ -25,6 +26,7 @@ class DeckDoneView extends StatelessWidget {
   final int kept;
   final String? nextTitle;
   final VoidCallback? onNext;
+  final bool hasChapter;
   final VoidCallback onClose;
 
   bool get _isPerfect => quizzes > 0 && correct == quizzes;
@@ -99,7 +101,7 @@ class DeckDoneView extends StatelessWidget {
             const SizedBox(height: 12),
           ],
           AppButton(
-            label: 'Back to chapter',
+            label: hasChapter ? 'Back to chapter' : 'Done',
             isPrimary: nextTitle == null,
             onTap: onClose,
           ),

@@ -189,7 +189,9 @@ func fakeGuard(next httpx.HandlerFunc) httpx.HandlerFunc {
 
 func TestRoutes(t *testing.T) {
 	mux := http.NewServeMux()
-	RegisterRoutes(mux, slog.New(slog.DiscardHandler), newService(newFakeStore()), fakeGuard)
+	store := newFakeStore()
+	store.profiles[""] = Profile{days: []time.Time{time.Date(2026, 9, 22, 0, 0, 0, 0, time.UTC), time.Date(2026, 9, 23, 0, 0, 0, 0, time.UTC)}}
+	RegisterRoutes(mux, slog.New(slog.DiscardHandler), newService(store), fakeGuard)
 	srv := httptest.NewServer(httpx.WithRequestID(mux))
 	t.Cleanup(srv.Close)
 
@@ -224,7 +226,9 @@ func TestRoutes(t *testing.T) {
 		t.Errorf("GET /me/profile without a token = %d, want 401", status)
 	}
 	status, body := call("GET", "/me/profile", "maya", "")
-	want := map[string]any{"language": nil, "birthYear": nil, "class": nil, "board": nil, "subjects": nil, "setupDone": false, "xp": float64(0)}
+	want := map[string]any{"language": nil, "birthYear": nil, "class": nil, "board": nil, "subjects": nil, "setupDone": false, "xp": float64(0),
+		"streak": map[string]any{"current": float64(2), "longest": float64(2), "todayCounted": false},
+	}
 	if diff := cmp.Diff(want, body); status != http.StatusOK || diff != "" {
 		t.Errorf("GET /me/profile = %d, diff (-want +got):\n%s", status, diff)
 	}
@@ -235,7 +239,7 @@ func TestRoutes(t *testing.T) {
 		t.Errorf("PATCH unknown field = %d, want 400", status)
 	}
 	status, body = call("PATCH", "/me/profile", "maya", `{"language":"hi","birthYear":2011,"class":9,"board":"CBSE"}`)
-	if status != http.StatusOK || body["setupDone"] != true || body["xp"] != float64(SetupXP) {
+	if status != http.StatusOK || body["setupDone"] != true || body["xp"] != float64(SetupXP) || body["streak"].(map[string]any)["current"] != float64(2) {
 		t.Errorf("PATCH all four = %d %v, want setup done with %d XP", status, body, SetupXP)
 	}
 	status, body = call("PATCH", "/me/profile", "maya", `{"subjects":["maths","english","maths"]}`)

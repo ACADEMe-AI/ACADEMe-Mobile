@@ -1,5 +1,6 @@
 import 'app_language.dart';
 import 'board.dart';
+import 'streak.dart';
 
 class Profile {
   const Profile({
@@ -10,6 +11,7 @@ class Profile {
     this.subjects,
     this.setupDone = false,
     this.xp = 0,
+    this.streak = const Streak(),
   });
 
   static const setupReward = 100;
@@ -25,6 +27,7 @@ class Profile {
   final List<String>? subjects;
   final bool setupDone;
   final int xp;
+  final Streak streak;
 
   bool get hasSyllabus => classLevel != null && board != null;
   bool get hasPicks => subjects != null;

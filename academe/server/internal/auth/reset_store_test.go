@@ -48,6 +48,20 @@ func TestPostgresStoreReset(t *testing.T) {
 		t.Errorf("ClaimResetAttempt after use = %v, want ErrCodeExpired", err)
 	}
 
+	for name, tc := range map[string]struct {
+		token string
+		after time.Time
+	}{
+		"unknown token": {"junk", time.Now().Add(-resetTokenTTL)},
+		"stale token":   {"reset", time.Now()},
+	} {
+		if _, err := store.ResetAccount(ctx, hashToken(tc.token), tc.after); !errors.Is(err, ErrResetTokenExpired) {
+			t.Errorf("ResetAccount(%s) = %v, want ErrResetTokenExpired", name, err)
+		}
+	}
+	if id, err := store.ResetAccount(ctx, hashToken("reset"), time.Now().Add(-resetTokenTTL)); err != nil || id != maya.ID {
+		t.Errorf("ResetAccount(fresh token) = %q, %v, want %q", id, err, maya.ID)
+	}
 	if _, err := store.CompleteReset(ctx, hashToken("reset"), time.Now(), "new-hash", time.Now()); !errors.Is(err, ErrResetTokenExpired) {
 		t.Errorf("CompleteReset with a stale token = %v, want ErrResetTokenExpired", err)
 	}
@@ -73,6 +87,9 @@ func TestPostgresStoreReset(t *testing.T) {
 	}
 	if _, err := store.CompleteReset(ctx, hashToken("reset"), time.Now().Add(-resetTokenTTL), "newer-hash", time.Now()); !errors.Is(err, ErrResetTokenExpired) {
 		t.Errorf("CompleteReset twice = %v, want ErrResetTokenExpired", err)
+	}
+	if _, err := store.ResetAccount(ctx, hashToken("reset"), time.Now().Add(-resetTokenTTL)); !errors.Is(err, ErrResetTokenExpired) {
+		t.Errorf("ResetAccount after completing = %v, want ErrResetTokenExpired", err)
 	}
 
 	if err := store.CreateResetCode(ctx, maya.ID, []byte("third"), hashToken("link-third"), expires); err != nil {

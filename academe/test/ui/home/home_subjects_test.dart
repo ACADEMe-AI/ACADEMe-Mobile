@@ -18,6 +18,7 @@ void main() {
   late FakeProfileRepository profiles;
   late FakeStudyRepository studies;
   late List<String> opened;
+  late List<String> tapped;
 
   Future<HomeViewModel> pumpHome(
     WidgetTester tester, {
@@ -43,6 +44,7 @@ void main() {
     addTearDown(study.dispose);
     await study.load.execute();
     opened = [];
+    tapped = [];
     await tester.pumpWidget(
       MaterialApp(
         theme: AppTheme.dark(),
@@ -52,6 +54,10 @@ void main() {
             opensSetup: opensSetup,
             study: study,
             onOpenSubject: opened.add,
+            onAsk: () => tapped.add('ask'),
+            onSolve: () => tapped.add('solve'),
+            onCheck: () => tapped.add('check'),
+            onFlashcards: () => tapped.add('flashcards'),
           ),
         ),
       ),

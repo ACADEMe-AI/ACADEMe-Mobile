@@ -11,10 +11,10 @@
 <title>{{.Subject}}</title>
 {{officeSettings}}
 <style>
-@font-face{font-family:'Baloo 2';font-weight:800;font-style:normal;src:url(https://academe.cc/email/baloo2-800.ttf) format('truetype')}
-@font-face{font-family:'Archivo';font-weight:700;font-style:normal;src:url(https://academe.cc/email/archivo-700.ttf) format('truetype')}
-@font-face{font-family:'ArchivoWordmark';font-weight:600;font-style:normal;src:url(https://academe.cc/email/wordmark-600.ttf) format('truetype')}
-@font-face{font-family:'ArchivoWordmark';font-weight:500;font-style:normal;src:url(https://academe.cc/email/wordmark-500.ttf) format('truetype')}
+@font-face{font-family:'Baloo 2';font-weight:800;font-style:normal;src:url({{$.Site}}/email/baloo2-800.ttf) format('truetype')}
+@font-face{font-family:'Archivo';font-weight:700;font-style:normal;src:url({{$.Site}}/email/archivo-700.ttf) format('truetype')}
+@font-face{font-family:'ArchivoWordmark';font-weight:600;font-style:normal;src:url({{$.Site}}/email/wordmark-600.ttf) format('truetype')}
+@font-face{font-family:'ArchivoWordmark';font-weight:500;font-style:normal;src:url({{$.Site}}/email/wordmark-500.ttf) format('truetype')}
 :root{color-scheme:light dark;supported-color-schemes:light dark}
 body,table,td,a{-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}
 table,td{mso-table-lspace:0pt;mso-table-rspace:0pt}
@@ -56,13 +56,13 @@ a[x-apple-data-detectors]{color:inherit !important;text-decoration:none !importa
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:600px;">
 <tr><td style="padding:0 4px 20px;">
 <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
-<td valign="middle" style="padding-right:10px;"><a href="https://academe.cc" class="tile" style="display:block;text-decoration:none;border-radius:10px;"><img src="https://academe.cc/email/logo.png" width="40" height="40" alt="" style="display:block;width:40px;height:40px;border:0;"></a></td>
+<td valign="middle" style="padding-right:10px;"><a href="{{.Site}}" class="tile" style="display:block;text-decoration:none;border-radius:10px;"><img src="{{$.Site}}/email/logo.png" width="40" height="40" alt="" style="display:block;width:40px;height:40px;border:0;"></a></td>
 <td valign="middle" class="ink" style="font-family:'ArchivoWordmark','Archivo',Arial,Helvetica,sans-serif;font-size:24px;line-height:28px;font-weight:600;letter-spacing:-0.5px;color:#12141A;">ACADEM<span style="font-weight:500;font-size:22px;">e</span></td>
 </tr></table>
 </td></tr>
 <tr><td class="card" style="background-color:#FFFFFF;border:2px solid #12141A;border-bottom-width:6px;border-radius:24px;">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-{{if .Pebby}}<tr><td align="center" class="band" style="background-color:#E7E6FF;border-radius:22px 22px 0 0;padding:20px 24px 0;"><img src="https://academe.cc/email/{{.Pebby}}" width="132" height="132" alt="Pebby" style="display:block;width:132px;height:132px;border:0;"></td></tr>{{end}}
+{{if .Pebby}}<tr><td align="center" class="band" style="background-color:#E7E6FF;border-radius:22px 22px 0 0;padding:20px 24px 0;"><img src="{{$.Site}}/email/{{.Pebby}}" width="132" height="132" alt="Pebby" style="display:block;width:132px;height:132px;border:0;"></td></tr>{{end}}
 <tr><td class="pad" style="padding:32px 40px 40px;font-family:'Noto Sans','Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
 {{template "content" .}}
 </td></tr>
@@ -71,7 +71,7 @@ a[x-apple-data-detectors]{color:inherit !important;text-decoration:none !importa
 <tr><td align="center" class="muted" style="padding:28px 16px 0;font-family:'Noto Sans','Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:13px;line-height:20px;color:#5C6578;">
 <p style="margin:0 0 10px;">{{.Reason}}</p>
 <p style="margin:0 0 10px;">Questions? Write to <a href="mailto:support@academe.cc" class="link" style="color:#564CF1;text-decoration:underline;">support@academe.cc</a></p>
-<p style="margin:0;font-weight:600;">ACADEMe · <a href="https://academe.cc" class="muted" style="color:#5C6578;text-decoration:underline;">academe.cc</a></p>
+<p style="margin:0;font-weight:600;">ACADEMe · <a href="{{.Site}}" class="muted" style="color:#5C6578;text-decoration:underline;">{{.Host}}</a></p>
 </td></tr>
 </table>
 {{outlookClose}}

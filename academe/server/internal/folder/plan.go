@@ -99,7 +99,7 @@ func makePlan(in planInput) planOutput {
 		out.progress = done * 100 / total
 	}
 	if dueReviews > 0 {
-		out.today = append(out.today, Task{Kind: "review", Title: fmt.Sprintf("Revise %d kept cards", dueReviews), Subtitle: "From this folder", Minutes: max(1, (dueReviews+1)/2)})
+		out.today = append(out.today, Task{Kind: "review", Title: reviseTitle(dueReviews), Subtitle: "From this folder", Minutes: max(1, (dueReviews+1)/2)})
 	}
 	days := 0
 	if in.due != nil {
@@ -163,4 +163,11 @@ func makePlan(in planInput) planOutput {
 		}
 	}
 	return out
+}
+
+func reviseTitle(cards int) string {
+	if cards == 1 {
+		return "Revise 1 kept card"
+	}
+	return fmt.Sprintf("Revise %d kept cards", cards)
 }

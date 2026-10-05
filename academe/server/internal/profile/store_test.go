@@ -8,7 +8,9 @@ import (
 	"slices"
 	"strings"
 	"testing"
+	"time"
 
+	"github.com/google/go-cmp/cmp"
 	"github.com/jackc/pgx/v5/pgxpool"
 
 	"academe/server/internal/postgres"
@@ -114,5 +116,46 @@ func TestPostgresStore(t *testing.T) {
 	var left int
 	if err := pool.QueryRow(ctx, "SELECT (SELECT count(*) FROM profiles) + (SELECT count(*) FROM xp_events)").Scan(&left); err != nil || left != 0 {
 		t.Errorf("rows left after deleting the account = %d, %v, want 0", left, err)
+	}
+}
+
+func TestStreakDays(t *testing.T) {
+	pool := openTestPool(t)
+	store := NewPostgresStore(pool)
+	ctx := t.Context()
+
+	var accountID string
+	if err := pool.QueryRow(ctx, `INSERT INTO accounts (first_name, last_name, email, password_hash)
+		VALUES ('Maya', 'Rao', 'maya@example.com', 'x') RETURNING id::text`).Scan(&accountID); err != nil {
+		t.Fatal(err)
+	}
+	for _, seed := range []string{
+		`INSERT INTO xp_events (account_id, amount, reason, created_at) VALUES
+			($1, 5, 'a', '2026-10-02 18:29:00+00'),
+			($1, 5, 'b', '2026-10-02 18:31:00+00'),
+			($1, 5, 'c', '2026-10-03 10:00:00+00')`,
+		`INSERT INTO study_days (account_id, day) VALUES ($1, '2026-10-01'), ($1, '2026-10-03')`,
+		`INSERT INTO study_days (account_id) VALUES ($1)`,
+	} {
+		if _, err := pool.Exec(ctx, seed, accountID); err != nil {
+			t.Fatal(err)
+		}
+	}
+	p, err := store.Profile(ctx, accountID)
+	if err != nil {
+		t.Fatal(err)
+	}
+	today := dayOf(time.Now().In(india))
+	want := []time.Time{
+		time.Date(2026, 10, 1, 0, 0, 0, 0, time.UTC),
+		time.Date(2026, 10, 2, 0, 0, 0, 0, time.UTC),
+		time.Date(2026, 10, 3, 0, 0, 0, 0, time.UTC),
+	}
+	if !today.After(want[2]) {
+		t.Fatalf("today = %v, want a day after the seeded ones", today)
+	}
+	want = append(want, today)
+	if diff := cmp.Diff(want, p.days); diff != "" {
+		t.Errorf("Profile days (-want +got):\n%s", diff)
 	}
 }

@@ -5,10 +5,11 @@ import '../../../data/repositories/scan_repository.dart';
 import '../../../domain/models/scan.dart';
 import '../../../utils/command.dart';
 import '../../../utils/result.dart';
+import '../../../utils/safe_notifier.dart';
 
 typedef NotesTarget = ({String folderId, bool makeLesson});
 
-class ScanFlowViewModel extends ChangeNotifier {
+class ScanFlowViewModel extends ChangeNotifier with SafeNotifier {
   ScanFlowViewModel({
     required ScanRepository scanRepository,
     required PhotoRepository photoRepository,

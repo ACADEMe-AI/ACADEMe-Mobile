@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../../domain/models/chat.dart';
-import '../../../utils/result.dart';
 import '../../core/themes/app_theme.dart';
-import 'report_sheet.dart';
-
-typedef ReportAnswer = Future<Result<void>> Function(ReportReason reason);
+import '../../core/ui/report_button.dart';
 
 class ReplyActions extends StatelessWidget {
   const ReplyActions({
@@ -21,24 +18,6 @@ class ReplyActions extends StatelessWidget {
   final ValueChanged<int> onRate;
   final VoidCallback? onRetry;
   final ReportAnswer onReport;
-
-  Future<void> _report(BuildContext context) async {
-    final reason = await ReportSheet.show(context);
-    if (reason == null) return;
-    final result = await onReport(reason);
-    if (!context.mounted) return;
-    ScaffoldMessenger.of(context)
-      ..hideCurrentSnackBar()
-      ..showSnackBar(
-        SnackBar(
-          content: Text(
-            result is Ok
-                ? 'Thanks. We’ll review this answer.'
-                : 'Couldn’t send the report. Try again.',
-          ),
-        ),
-      );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -76,10 +55,11 @@ class ReplyActions extends StatelessWidget {
             tooltip: 'Try again',
             onTap: retry,
           ),
-        _ActionIcon(
-          icon: Icons.flag_outlined,
-          tooltip: 'Report',
-          onTap: () => _report(context),
+        ReportButton(
+          title: 'Report this answer',
+          thanks: 'Thanks. We’ll review this answer.',
+          onReport: onReport,
+          iconSize: 18,
         ),
       ],
     );

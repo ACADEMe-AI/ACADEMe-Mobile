@@ -301,7 +301,8 @@ returns 503 `scan_unavailable`.
 
 | | ID | Screen | Notes |
 |---|---|---|---|
-| [ ] | F1 | Streak | real streak days, calendar, freeze, streak saver reminder (the Me toggle schedules nothing yet) |
+| [x] | F1 | Streak (basic) | streak days in India time from XP and finished lessons or chapter tests; current, longest and today on `GET /me/profile`; Home flame and Me show it and Home updates when a lesson ends |
+| [ ] | F1b | Streak extras | calendar, freeze, streak saver reminder (the Me toggle schedules nothing yet) |
 | [ ] | F2 | Level up | full-screen, Pebby (the Me toggle schedules nothing yet) |
 | [ ] | F3 | Leaderboard | weekly, by class |
 | [ ] | F4 | Achievements | badges |
@@ -407,13 +408,21 @@ Full order in `docs/play/release-checklist.md`.
 - [x] Edge-to-edge, no orientation lock
 - [x] Permissions: `INTERNET`, `POST_NOTIFICATIONS`, `RECEIVE_BOOT_COMPLETED`, `ACCESS_NETWORK_STATE`, `BILLING` only; no `AD_ID`
 - [x] Competitor artwork, sounds and animations removed
-- [x] Privacy, terms, support and delete-account pages built; Report on AI answers
+- [x] Privacy, terms, support and delete-account pages built; Report on AI answers, Check my answer marks and lessons made from notes (`POST /reports`, migration 0025)
+- [x] In-app Privacy, Terms and Support links, email links and images, and the Play docs all use `https://api.academe.cc`
+- [x] Release signing reads `android/key.properties`; `bundleRelease` refuses to build without it
+- [x] Advertising-ID library (`play-services-ads-identifier`) excluded from the build; RevenueCat configured with the account UUID only (no anonymous ID)
+- [x] Adaptive launcher icon with a monochrome layer; white status-bar icon `ic_stat_academe`; opaque Play icon `assets/icon/play_store_512.png`
+- [x] Only the verified `https://api.academe.cc/reset-password` App Link opens the app (`academe://` removed)
+- [x] "Coming soon" dead taps removed (ASKMe attach PDF and From Study, Make flashcards)
+- [x] Security review fixes: reset-complete Argon2 DoS, per-account log-in limit, fixed welcome subject, scan quota before upload
+- [x] `server/railway.json`: health check `/healthz`, restart policy `ALWAYS`
 - [x] Data safety, content rating, target audience, listing, subscription and AI answers written (`docs/play/`)
 - [ ] [[FILL]] placeholders filled; lawyer review
-- [ ] academe.cc and www serve the pages; api.academe.cc over HTTPS
-- [ ] Upload keystore wired (`android/key.properties`, never committed), same upload key as 1.0.5
+- [ ] Redeploy the server so api.academe.cc serves this build (migrations 0023–0025)
+- [ ] Upload key copied in (`android/key.properties` + keystore, never committed), SHA-256 `66:40:CE:…:57:CD` matches Play's upload key
 - [ ] `ACADEME_ANDROID_CERT_SHA256` set (upload + app signing) so reset links open the app
-- [ ] Monochrome notification icon
+- [ ] Release bundle built with `GOOGLE_SERVER_CLIENT_ID` and `REVENUECAT_GOOGLE_API_KEY=goog_…`
 - [ ] Large screens: width-capped content, landscape welcome layout
 - [ ] Keyboard focus rings on custom buttons
 - [ ] Reviewer account `play-review@academe.cc` with content
@@ -455,7 +464,6 @@ Full order in `docs/play/release-checklist.md`.
 
 **Railway**
 - [ ] Upgrade the workspace from Hobby trial to **Pro** ($20/month); set `railway usage limit set --target workspace --soft 40 --hard 50`.
-- [ ] Add domains `academe.cc` and `www.academe.cc` (blocked on Hobby: 1 custom domain per service).
 - [ ] Turn on **Daily and Weekly backups** (Pro only; today only PITR), rehearse one restore, keep an encrypted off-platform `pg_dump`.
 - [ ] Redeploy the current build (includes the ASKMe reasoning fix and the reset 202 fix) and re-test ASKMe, Scan solve and a reset email.
 - [ ] External uptime monitor on `/healthz` (Railway checks only at deploy).
@@ -464,7 +472,6 @@ Full order in `docs/play/release-checklist.md`.
 **DNS (Namecheap, academe.cc → Advanced DNS)**
 - [ ] Delete the two apex A records (parking `162.255.119.53`, the old site host `216.198.79.1`) and the old `www` CNAME; keep MX `eforward*` and the SPF TXT.
 - [ ] Add `CNAME api → qk1tncxf.up.railway.app` and `TXT _railway-verify.api` (value in `deploy.md`).
-- [ ] After the Pro upgrade: `ALIAS @` and `CNAME www` to the printed Railway targets, plus their `_railway-verify` TXT records.
 - [ ] Optional: DMARC `TXT _dmarc` `v=DMARC1; p=none; rua=mailto:support@academe.cc`, tighten later.
 
 **Play Console**
@@ -474,7 +481,9 @@ Full order in `docs/play/release-checklist.md`.
 - [ ] Real-time developer notifications topic via RevenueCat.
 - [ ] Payments profile (India payouts).
 - [ ] App content: privacy URL, app access (reviewer account), ads No, content rating, target audience 9–17, Data safety, advertising ID No, other declarations.
-- [ ] Store listing text (`store-listing.md`), icon, feature graphic, 4–8 screenshots; countries India only.
+- [ ] Store listing text (`store-listing.md`), icon `assets/icon/play_store_512.png`, feature graphic, 4–8 screenshots; countries India only.
+- [ ] Privacy policy `https://api.academe.cc/privacy` and Delete account URL `https://api.academe.cc/delete-account`; nothing left pointing at `www.academe.cc/privacy` (the old 13+ policy).
+- [ ] Advertising ID: "No". versionCode above every upload on any track (App bundle explorer).
 - [ ] Reviewer account `play-review@academe.cc` (Class 10 CBSE, one folder, one finished lesson).
 
 **RevenueCat dashboard**
@@ -501,12 +510,6 @@ Full order in `docs/play/release-checklist.md`.
 | Area | Issue | Fix / next step |
 |---|---|---|
 | Content | 6 lessons live, 5,771 to generate | full pipeline run (§6.2) |
-| Folders | A folder's date reads "Fri 9 Oct · fri · 5 days" (weekday shown twice) | show the date once: "Fri 9 Oct · in 5 days" |
-| Study | "1 lessons" instead of "1 lesson" | singular/plural in the lesson counts |
-| Progress | The streak stays at 0 after finishing a lesson | real streak days (F1) |
-| Study | "Back to chapter" after a lesson goes to the course list | return to the chapter screen |
-| Auth | Log in: when the keyboard opens, the Log in button sits below it and the Password field is half covered; one swipe up shows both (checked on the Pixel 10, 2026-10-04) | anchor the log-in page to the bottom like the reset screens (`reverse: true`) |
-| Layout | In landscape the tab bar covers content | pad content by the nav bar height in landscape |
 | Auth | Welcome and log-in still use the old pitch ("Notes, quizzes and flashcards made from what you are actually studying") | rewrite once the lead USP is decided (D-research) |
 | Content | Sarvam 402: no credits | top up; rerun resumes |
 | Content | ~50% approved first pass; drafts mostly "too close to textbook wording" or drift into the next lesson | rerun retries; teacher review |
@@ -518,8 +521,8 @@ Full order in `docs/play/release-checklist.md`.
 | Content | Syllabus build scripts are not in the repo; edit the JSON directly | |
 | Content | Progress on renumbered seed IDs (dev accounts only) attaches to other lessons | harmless before release |
 | ASKMe | Empty answers from `sarvam-105b` reasoning (UI F1, deploy) | fixed in code (reasoning off); verify after redeploy |
-| ASKMe | No output moderation beyond the prompt; Report only on ASKMe | C9, D8 |
-| Study | Streak shows 0 everywhere; streak and level-up toggles schedule nothing | Phase 6 |
+| ASKMe | No output moderation beyond the prompt; Report covers ASKMe answers, Check my answer marks and lessons made from notes | C9, D8 |
+| Study | Streak and level-up toggles schedule nothing; no streak calendar or freeze | F1b, F2 |
 | Study | "Done today" uses the phone's date and UTC offset | fine for India |
 | Study | Folder notes can't be edited | E13 |
 | Auth | Throttles, sync limit and password-check limit live in one process's memory | Postgres/Redis before a second instance |
@@ -531,7 +534,11 @@ Full order in `docs/play/release-checklist.md`.
 | Auth | Account screen trusts the account cached at launch | G3 |
 | Email | English only; Gmail shows fallback fonts; Outlook shows square digit boxes; Baloo 2 font file 421 KB | A13; subset the font |
 | Email | A welcome email in flight is lost on a crash | durable outbox if it matters |
-| Links | App Links unverified until the cert SHA-256 is set and academe.cc is live (links open the browser page meanwhile) | §11 keys |
+| Links | App Links unverified until `ACADEME_ANDROID_CERT_SHA256` is set; reset links open the browser form meanwhile (the `academe://` scheme is gone, so nothing else can catch the token) | §11 keys |
+| Auth | The per-email log-in limit (20 an hour across all IPs) counts every attempt, so anyone can block password log-in for one account for an hour; reset and Google still work | per-account lockout email if it's abused |
+| Auth | At most 4 Argon2 hashes run at once per process (19 MiB each); under a log-in burst requests wait for a slot | raise with more RAM or replicas |
+| Scan | Uploads capped at 4 MB a page and 24 MB in all; the quota is taken before the body is read and refunded on failure | |
+| Release | `bundleRelease` fails on purpose without `android/key.properties`; release APKs still build with the debug key for local checks | |
 | Web | Web deletion finished by hand after the person replies | G7 signed link |
 | Web | Data export by email only; policy pages English only | G6; Stage 2 |
 | Billing | Failed RevenueCat customer delete on purge must be redone by hand | H8 |
@@ -542,13 +549,12 @@ Full order in `docs/play/release-checklist.md`.
 | Play | Google Sign-In and RevenueCat flagged for Families SDK review | re-check at submission |
 | Hosting | Hobby trial: 1 custom domain per service, no scheduled backups, trial credit runs out | Pro upgrade |
 | Hosting | **Backups gap:** PITR only; no scheduled backups, no restore rehearsed, no off-platform copy | Pro + runbook |
-| Hosting | academe.cc DNS still on parking / the old site host; only `api` records exist | DNS checklist |
+| Hosting | `academe.cc` apex still has the parking A record, so `https://academe.cc` fails TLS; nothing the app, emails or Play Console use points there now | delete the parking record |
 | Hosting | `X-Real-IP` is trusted only while traffic comes through Railway's edge; never add a TCP proxy to `api` | |
 | Hosting | No India region (Singapore ≈ 50–90 ms); Postgres major upgrades need dump/restore | D15 |
 | Hosting | Profile builds need `--dart-define=API_BASE_URL=https://…` (no cleartext allowance) | |
 | App | Router never disposes Home / ASKMe / Study / Me view models (small listener leak per log-out) | router fix |
 | App | `courses_view.dart` 306 lines (limit 300); `auth_repository_remote.dart` at 300 | split with the UI test agent |
-| App | Reminders use the launcher icon | monochrome icon |
 | App | Landscape and tablet stretch full width; no focus ring on custom buttons | width cap; `Keycap` focus |
 | App | Rive state-machine inputs deprecated in 0.14 | data binding when Pebby is regenerated |
 | App | No sound (competitor clips removed) | F6 |
@@ -562,6 +568,10 @@ Full order in `docs/play/release-checklist.md`.
 ## 12. Change log
 
 Newest first. One line per change that landed; details live in git and `tasks/reports/`.
+
+**2026-10-05**
+- Pre-launch fixes from the release, backend and security audits (report: `tasks/reports/prod-fixes.md`): release signing from `android/key.properties` with `bundleRelease` refusing the debug key; advertising-ID library excluded; adaptive and themed launcher icon, white notification icon, opaque Play icon; public links, email assets and Play docs on `https://api.academe.cc`; `academe://` scheme and "Open in the app" removed, reset links only via the verified https App Link; reset complete checks the token before hashing, per-IP limit on reset complete and link, at most 4 Argon2 hashes at once; per-account log-in limit (20 an hour); fixed welcome subject; scan quota checked before the upload is read, caps 4 MB a page and 24 MB; Report on Check my answer marks and lessons made from notes (`POST /reports`, `content_reports`, migration 0025); "coming soon" dead taps removed; RevenueCat never makes an anonymous ID; `railway.json` restarts `ALWAYS`; data safety, privacy page, listing, checklist and AI-content docs brought up to date.
+- Bug fixes from §11 (report: `tasks/reports/bugfixes.md`): due dates show the weekday once ("Fri 9 Oct · in 5 days", "Today", "Tomorrow", "3 days ago"); counts are singular or plural through one `pluralize` helper (lessons, cards, quick checks, chapters, pages, minutes, scans, marks; server "Revise 1 kept card"); real streak (F1 basic: `study_days`, migration 0024, `streak` on the profile, Home flame and Me); "Back to chapter" returns to the lesson's chapter from Home, Today, folders and Continue; Log in stays above the keyboard; Courses and Folders pad by the real tab bar height.
 
 **2026-10-04**
 - Recorded six app bugs found while capturing screens, plus the old welcome pitch, in §11 Known issues (not fixed yet).

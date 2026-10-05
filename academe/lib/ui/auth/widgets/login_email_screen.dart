@@ -111,6 +111,7 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
         body: SafeArea(
           child: LayoutBuilder(
             builder: (context, box) => SingleChildScrollView(
+              reverse: true,
               child: ConstrainedBox(
                 constraints: BoxConstraints(minHeight: box.maxHeight),
                 child: Padding(

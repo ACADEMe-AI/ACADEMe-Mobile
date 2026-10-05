@@ -4,8 +4,9 @@ import '../../../data/repositories/chat_repository.dart';
 import '../../../domain/models/chat.dart';
 import '../../../utils/command.dart';
 import '../../../utils/result.dart';
+import '../../../utils/safe_notifier.dart';
 
-class AskMeViewModel extends ChangeNotifier {
+class AskMeViewModel extends ChangeNotifier with SafeNotifier {
   AskMeViewModel({required ChatRepository chatRepository})
     : _repository = chatRepository {
     send = Command1(_send)..addListener(notifyListeners);

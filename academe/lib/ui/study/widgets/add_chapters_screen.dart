@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../utils/plural.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/app_button.dart';
 import '../../core/ui/screen_scale.dart';
@@ -108,7 +109,7 @@ class _AddChaptersScreenState extends State<AddChaptersScreen> {
                     subtitle: Text(
                       widget.alreadyIn.contains(c.id)
                           ? 'Already in this folder'
-                          : '${c.lessons.length} lessons · ${c.lessonsDone} done',
+                          : '${pluralize(c.lessons.length, 'lesson')} · ${c.lessonsDone} done',
                       style: AppTextStyles.caption.copyWith(
                         color: palette.textMuted,
                       ),
@@ -122,7 +123,7 @@ class _AddChaptersScreenState extends State<AddChaptersScreen> {
             child: AppButton(
               label: _picked.isEmpty
                   ? 'Pick chapters'
-                  : 'Add ${_picked.length} chapter${_picked.length == 1 ? '' : 's'}',
+                  : 'Add ${pluralize(_picked.length, 'chapter')}',
               isPrimary: true,
               isEnabled: _picked.isNotEmpty,
               onTap: () => Navigator.of(context).pop(_picked.toList()),

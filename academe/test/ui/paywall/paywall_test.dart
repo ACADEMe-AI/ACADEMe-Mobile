@@ -245,7 +245,6 @@ void main() {
         syllabus: null,
         onBack: () {},
         onHistory: () {},
-        onMakeFlashcards: () {},
       ),
     );
 

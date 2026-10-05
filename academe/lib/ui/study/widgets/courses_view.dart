@@ -31,7 +31,12 @@ class CoursesView extends StatelessWidget {
         color: AppColors.primary,
         onRefresh: viewModel.load.execute,
         child: ListView(
-          padding: EdgeInsets.fromLTRB(padding, 0, padding, 120),
+          padding: EdgeInsets.fromLTRB(
+            padding,
+            0,
+            padding,
+            24 + MediaQuery.paddingOf(context).bottom,
+          ),
           children: [_CoursesBody(viewModel: viewModel, actions: actions)],
         ),
       ),

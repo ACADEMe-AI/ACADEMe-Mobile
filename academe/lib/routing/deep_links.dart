@@ -1,18 +1,16 @@
 import 'package:flutter/widgets.dart';
 
+const _linkHosts = {'api.academe.cc', 'academe.cc'};
+
 String? resetLinkToken(String? routeName) {
   final uri = Uri.tryParse(routeName ?? '');
   final token = uri?.queryParameters['c'] ?? '';
-  if (uri == null || token.isEmpty) return null;
-  final isWebLink =
-      uri.path == '/reset-password' &&
-      (uri.host.isEmpty ||
-          uri.host == 'api.academe.cc' ||
-          uri.host == 'academe.cc');
-  final isAppLink =
-      (uri.scheme == 'academe' && uri.host == 'reset') ||
-      (!uri.hasScheme && uri.path == '/');
-  return isWebLink || isAppLink ? token : null;
+  if (uri == null || token.isEmpty || uri.path != '/reset-password') {
+    return null;
+  }
+  final isRoute = !uri.hasScheme && uri.host.isEmpty;
+  final isWebLink = uri.scheme == 'https' && _linkHosts.contains(uri.host);
+  return isRoute || isWebLink ? token : null;
 }
 
 class DeepLinkFilter with WidgetsBindingObserver {

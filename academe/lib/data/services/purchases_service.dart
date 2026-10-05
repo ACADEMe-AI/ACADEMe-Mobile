@@ -32,6 +32,7 @@ class RevenueCatPurchasesService implements PurchasesService {
   final String _apiKey;
   final String entitlement;
   Future<void>? _configured;
+  String? _appUserId;
   void Function(StoreCustomer customer)? _onChanged;
   final Map<ProPeriod, Package> _packages = {};
 
@@ -39,18 +40,19 @@ class RevenueCatPurchasesService implements PurchasesService {
   bool get isAvailable => _apiKey.isNotEmpty;
 
   Future<Result<T>> _run<T>(Future<T> Function() action) async {
-    if (!isAvailable) {
+    final configured = _configured;
+    if (!isAvailable || _appUserId == null || configured == null) {
       return Result.error(const BillingException(BillingFailure.unavailable));
     }
     try {
-      await _configure(null);
+      await configured;
       return Result.ok(await action());
     } on PlatformException catch (error) {
       return Result.error(BillingException(_failureOf(error)));
     }
   }
 
-  Future<void> _configure(String? appUserId) => _configured ??=
+  Future<void> _configure(String appUserId) => _configured ??=
       Purchases.configure(
         PurchasesConfiguration(_apiKey)..appUserID = appUserId,
       ).then((_) {
@@ -109,10 +111,15 @@ class RevenueCatPurchasesService implements PurchasesService {
 
   @override
   Future<Result<StoreCustomer>> logIn(String appUserId) async {
-    if (isAvailable && _configured == null) {
+    if (!isAvailable) {
+      return Result.error(const BillingException(BillingFailure.unavailable));
+    }
+    _appUserId = appUserId;
+    if (_configured == null) {
       try {
         await _configure(appUserId);
       } on PlatformException catch (error) {
+        _configured = null;
         return Result.error(BillingException(_failureOf(error)));
       }
       return _run(() async => customerOf(await Purchases.getCustomerInfo()));
@@ -124,13 +131,9 @@ class RevenueCatPurchasesService implements PurchasesService {
 
   @override
   Future<Result<void>> logOut() async {
-    if (_configured == null) return Result.ok(null);
-    return _logOut();
+    _appUserId = null;
+    return Result.ok(null);
   }
-
-  Future<Result<void>> _logOut() => _run(() async {
-    if (!await Purchases.isAnonymous) await Purchases.logOut();
-  });
 
   @override
   Future<Result<List<ProOffer>>> offers() => _run(() async {

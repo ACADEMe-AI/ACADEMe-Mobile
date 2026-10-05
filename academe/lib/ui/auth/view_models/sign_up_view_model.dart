@@ -6,12 +6,13 @@ import '../../../domain/models/auth_failure.dart';
 import '../../../domain/models/auth_method.dart';
 import '../../../utils/command.dart';
 import '../../../utils/result.dart';
+import '../../../utils/safe_notifier.dart';
 
 enum SignUpStep { hello, firstName, lastName, email, password, done }
 
 enum EmailProblem { none, notAnEmail, taken }
 
-class SignUpViewModel extends ChangeNotifier {
+class SignUpViewModel extends ChangeNotifier with SafeNotifier {
   SignUpViewModel({
     required AuthRepository authRepository,
     required this.method,

@@ -1,6 +1,7 @@
 package auth
 
 import (
+	"context"
 	"crypto/rand"
 	"crypto/subtle"
 	"encoding/base64"
@@ -18,6 +19,7 @@ const (
 	argonThreads   = 1
 	argonKeyLength = 32
 	saltLength     = 16
+	hashingSlots   = 4
 )
 
 var errMalformedHash = errors.New("malformed password hash")
@@ -32,6 +34,33 @@ func hashPassword(password string) string {
 		argon2.Version, argonMemoryKiB, argonTime, argonThreads,
 		b64.EncodeToString(salt), b64.EncodeToString(key))
 }
+
+func (s *Service) hash(ctx context.Context, password string) (string, error) {
+	if err := s.takeHashingSlot(ctx); err != nil {
+		return "", err
+	}
+	defer s.releaseHashingSlot()
+	return hashPassword(password), nil
+}
+
+func (s *Service) check(ctx context.Context, password, hash string) (bool, error) {
+	if err := s.takeHashingSlot(ctx); err != nil {
+		return false, err
+	}
+	defer s.releaseHashingSlot()
+	return checkPassword(password, hash)
+}
+
+func (s *Service) takeHashingSlot(ctx context.Context) error {
+	select {
+	case s.hashing <- struct{}{}:
+		return nil
+	case <-ctx.Done():
+		return fmt.Errorf("wait to hash a password: %w", ctx.Err())
+	}
+}
+
+func (s *Service) releaseHashingSlot() { <-s.hashing }
 
 func checkPassword(password, hash string) (bool, error) {
 	parts := strings.Split(hash, "$")

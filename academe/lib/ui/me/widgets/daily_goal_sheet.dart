@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../domain/models/study_preferences.dart';
+import '../../../utils/plural.dart';
 import '../../core/ui/number_wheel.dart';
 import 'picker_sheet.dart';
 
@@ -26,7 +27,8 @@ class _DailyGoalSheetState extends State<DailyGoalSheet> {
   Widget build(BuildContext context) {
     return PickerSheet(
       title: 'Daily goal',
-      note: 'Today’s steps on Home will add up to about $_minutes minutes.',
+      note:
+          'Today’s steps on Home will add up to about ${pluralize(_minutes, 'minute')}.',
       onDone: () => Navigator.of(context).pop(_minutes),
       child: NumberWheel(
         values: StudyPreferences.dailyGoalChoices,

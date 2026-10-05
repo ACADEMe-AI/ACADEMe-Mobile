@@ -1,3 +1,4 @@
+import '../../domain/models/chat.dart';
 import '../../domain/models/deck.dart';
 import '../../utils/result.dart';
 
@@ -19,6 +20,8 @@ abstract class StudyRepository {
   Future<Result<void>> keep(String deckId, int card);
 
   Future<Result<void>> unkeep(String deckId, int card);
+
+  Future<Result<void>> reportLesson(String deckId, ReportReason reason);
 
   Future<Result<List<ReviewItem>>> review({String? chapterId});
 

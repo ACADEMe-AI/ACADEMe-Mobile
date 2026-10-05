@@ -7,11 +7,12 @@ import '../../../domain/models/account.dart';
 import '../../../domain/models/profile.dart';
 import '../../../utils/command.dart';
 import '../../../utils/result.dart';
+import '../../../utils/safe_notifier.dart';
 import '../../subjects/view_models/subjects_view_model.dart';
 
 enum SetupTask { language, age, classLevel, board, subjects }
 
-class HomeViewModel extends ChangeNotifier {
+class HomeViewModel extends ChangeNotifier with SafeNotifier {
   HomeViewModel({
     required AuthRepository authRepository,
     required ProfileRepository profileRepository,

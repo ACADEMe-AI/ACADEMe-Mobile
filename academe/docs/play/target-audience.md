@@ -43,7 +43,7 @@ Consequences:
 |---|---|
 | Target audience, Data safety and IARC answers accurate | This folder |
 | Content accessible to children is appropriate for children | Lessons are syllabus content. Pebby's system prompt keeps answers to study topics (`server/internal/chat/sarvam.go`). The Report button exists (see `ai-content.md`). **Gap:** no separate output moderation filter before answers are shown |
-| Must not transmit AAID, SIM serial, build serial, BSSID, MAC, SSID, IMEI, IMSI from children or unknown-age users | None read. `AD_ID` permission removed in `AndroidManifest.xml`. Check the merged manifest of each release: `aapt dump permissions app-release.apk` must not list `AD_ID` |
+| Must not transmit AAID, SIM serial, build serial, BSSID, MAC, SSID, IMEI, IMSI from children or unknown-age users | None read. `AD_ID` permission removed in `AndroidManifest.xml`, and `play-services-ads-identifier` is excluded from every dependency in `android/app/build.gradle.kts`, so the advertising-ID library isn't in the app. Check each release: `aapt dump permissions app-release.apk` must not list `AD_ID`, and `./gradlew :app:dependencies --configuration releaseRuntimeClasspath` must not list `ads-identifier` |
 | Must not request the phone number through `TelephonyManager` | Not used |
 | Location permission / precise location (child-only apps) | No location permission at all |
 | Only SDKs approved for child-directed services; in mixed-audience apps unapproved SDKs only behind a neutral age screen, and sign-in must not *require* an unapproved SDK | **Needs checking, see below** |
@@ -58,7 +58,7 @@ Consequences:
 | SDK | Collects from the phone | Families status |
 |---|---|---|
 | `google_sign_in` (Sign in with Google) | Google account ID token, name, email | Optional: every student can sign up with email and password instead, so sign-in doesn't *require* it. Children under 13 in India need a Family Link supervised Google account for Google sign-in anyway. Keep email sign-up. **Uncertain:** whether Google Identity Services counts as "approved for child-directed services". Google doesn't publish a list for non-ad SDKs; this is a judgement call |
-| `purchases_flutter` (RevenueCat) + Google Play Billing | Purchase data, our account UUID | Runs for every signed-in student, not only buyers: `BillingRepositoryRemote` configures the SDK at app start and calls `logIn(accountId)` whenever the shell opens (`lib/routing/router.dart`), so the SDK talks to RevenueCat on every session. **Check RevenueCat's terms of service for a child-directed clause before release.** If it forbids child-directed use, either keep the paywall behind a parent step or talk to Play Billing directly from our server |
+| `purchases_flutter` (RevenueCat) + Google Play Billing | Purchase data, our account UUID | Runs for every signed-in student, not only buyers: `BillingRepositoryRemote` calls `logIn(accountId)` whenever the shell opens (`lib/routing/router.dart`), which configures the SDK with the account UUID as `appUserID` (never an anonymous ID), so the SDK talks to RevenueCat on every session. **Check RevenueCat's terms of service for a child-directed clause before release.** If it forbids child-directed use, either keep the paywall behind a parent step or talk to Play Billing directly from our server |
 | `flutter_local_notifications`, `flutter_secure_storage`, `shared_preferences`, `image_picker`, `url_launcher`, `http`, `rive`, `timezone` | Nothing sent off the phone | Fine |
 
 Server-side processors (Sarvam, Railway, Resend) aren't SDKs in the app. They

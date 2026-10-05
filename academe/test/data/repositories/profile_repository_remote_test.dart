@@ -54,6 +54,7 @@ void main() {
             'subjects': ['english', 'maths'],
             'setupDone': true,
             'xp': 100,
+            'streak': {'current': 3, 'longest': 5, 'todayCounted': true},
           }),
           200,
         ),
@@ -139,6 +140,17 @@ void main() {
     });
     expect(repository.profile?.subjects, ['english', 'maths']);
     expect(repository.profile?.studies('hindi'), isFalse);
+  });
+
+  test('the streak is read when the server sends it', () async {
+    final loaded = await repository.load();
+    expect((loaded as Ok<Profile>).value.streak.current, 0);
+
+    await repository.update(const ProfileUpdate(birthYear: 2011));
+    final streak = repository.profile!.streak;
+    expect(streak.current, 3);
+    expect(streak.longest, 5);
+    expect(streak.isTodayCounted, isTrue);
   });
 
   test('streams are fetched once per class and board', () async {

@@ -22,6 +22,7 @@ class DeckScreen extends StatefulWidget {
     this.onNext,
     this.onRevise,
     this.onAddToFolder,
+    this.onBackToChapter,
   });
 
   final DeckViewModel viewModel;
@@ -30,6 +31,7 @@ class DeckScreen extends StatefulWidget {
   final VoidCallback? onNext;
   final VoidCallback? onRevise;
   final VoidCallback? onAddToFolder;
+  final VoidCallback? onBackToChapter;
 
   @override
   State<DeckScreen> createState() => _DeckScreenState();
@@ -78,7 +80,7 @@ class _DeckScreenState extends State<DeckScreen> {
                   scores: _viewModel.lessonScores,
                   onRevise: widget.onRevise,
                   onAddToFolder: widget.onAddToFolder,
-                  onClose: _close,
+                  onClose: widget.onBackToChapter ?? _close,
                 );
               }
               if (_viewModel.isFinished) {
@@ -90,7 +92,8 @@ class _DeckScreenState extends State<DeckScreen> {
                   kept: _viewModel.keptCount,
                   nextTitle: widget.nextTitle,
                   onNext: widget.onNext,
-                  onClose: _close,
+                  hasChapter: widget.onBackToChapter != null,
+                  onClose: widget.onBackToChapter ?? _close,
                 );
               }
               return _DeckPlayer(
@@ -127,6 +130,7 @@ class _DeckPlayer extends StatelessWidget {
           total: viewModel.cards.length,
           current: viewModel.step.card,
           onClose: onClose,
+          onReport: viewModel.isFromNotes ? viewModel.report : null,
         ),
         Expanded(
           child: Padding(

@@ -3,9 +3,11 @@ import 'package:flutter/foundation.dart';
 import '../../../data/repositories/folder_repository.dart';
 import '../../../data/repositories/profile_repository.dart';
 import '../../../data/repositories/study_repository.dart';
+import '../../../domain/models/chat.dart';
 import '../../../domain/models/deck.dart';
 import '../../../utils/command.dart';
 import '../../../utils/result.dart';
+import '../../../utils/safe_notifier.dart';
 
 typedef SessionCard = ({
   String deckId,
@@ -16,7 +18,7 @@ typedef SessionCard = ({
 typedef DeckStep = ({int card, bool isWhy});
 typedef LessonScore = ({String title, int correct, int total});
 
-class DeckViewModel extends ChangeNotifier {
+class DeckViewModel extends ChangeNotifier with SafeNotifier {
   DeckViewModel.lesson({
     required StudyRepository studyRepository,
     required ProfileRepository profileRepository,
@@ -64,6 +66,14 @@ class DeckViewModel extends ChangeNotifier {
   final String? chapterId;
 
   late final Command0<void> load;
+
+  static const _notesDeckPrefix = 'u-';
+
+  bool get isFromNotes =>
+      chapterId == null && deckIds.single.startsWith(_notesDeckPrefix);
+
+  Future<Result<void>> report(ReportReason reason) =>
+      _repository.reportLesson(deckIds.single, reason);
 
   String _title;
   List<SessionCard> _cards = const [];

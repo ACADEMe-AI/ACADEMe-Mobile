@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../utils/plural.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/app_button.dart';
 import '../view_models/chapter_filters.dart';
@@ -110,7 +111,7 @@ class _FiltersSheetState extends State<FiltersSheet> {
             ),
             const SizedBox(height: 16),
             AppButton(
-              label: 'Show $count chapter${count == 1 ? '' : 's'}',
+              label: 'Show ${pluralize(count, 'chapter')}',
               isPrimary: true,
               onTap: () => Navigator.of(context).pop(_filters),
             ),

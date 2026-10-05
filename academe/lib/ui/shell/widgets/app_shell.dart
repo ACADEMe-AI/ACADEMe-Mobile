@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../../data/repositories/photo_repository.dart';
 import '../../../domain/models/chat.dart';
 import '../../../domain/models/scan.dart';
 import '../../askme/view_models/askme_view_model.dart';
@@ -131,27 +130,11 @@ class _AppShellState extends State<AppShell>
     _askMe.send.execute(text);
   }
 
-  void _soon(String message) {
-    ScaffoldMessenger.of(context)
-      ..hideCurrentSnackBar()
-      ..showSnackBar(SnackBar(content: Text(message)));
-  }
-
   void _attach() {
     _askFocus.unfocus();
     AttachSheet.show(
       context,
-      onPick: (option) => switch (option) {
-        AttachSheet.camera => startScan(
-          ScanMode.ask,
-          source: PhotoSource.camera,
-        ),
-        AttachSheet.photos => startScan(
-          ScanMode.ask,
-          source: PhotoSource.gallery,
-        ),
-        _ => _soon('$option is coming soon.'),
-      },
+      onPick: (source) => startScan(ScanMode.ask, source: source),
     );
   }
 
@@ -192,7 +175,11 @@ class _AppShellState extends State<AppShell>
   }
 
   @override
-  void showMessage(String message) => _soon(message);
+  void showMessage(String message) {
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(SnackBar(content: Text(message)));
+  }
 
   @override
   void askAbout(String question) {
@@ -239,8 +226,6 @@ class _AppShellState extends State<AppShell>
                     syllabus: _viewModel.syllabusLabel,
                     onBack: () => _select(_returnTab),
                     onHistory: _history,
-                    onMakeFlashcards: () =>
-                        _soon('Flashcards are coming soon.'),
                   ),
                 ),
                 ScanScreen(

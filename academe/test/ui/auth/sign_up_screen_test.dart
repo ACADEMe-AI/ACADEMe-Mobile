@@ -81,4 +81,36 @@ void main() {
     expect(pose(), PebbyPose.celebrateBig);
     expect(find.text("Let's go"), findsOneWidget);
   });
+
+  testWidgets('the field and Continue stay above the keyboard', (tester) async {
+    tester.view.physicalSize = const Size(1080, 2400);
+    tester.view.devicePixelRatio = 2.625;
+    tester.view.viewInsets = const FakeViewPadding(bottom: 900);
+    addTearDown(tester.view.reset);
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: AppTheme.dark(),
+        builder: (context, child) => PebbyStandIn(child: child!),
+        home: SignUpScreen(
+          viewModel: SignUpViewModel(
+            authRepository: FakeAuthRepository(),
+            method: AuthMethod.email,
+          ),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+    await tester.tap(find.byType(AppButton));
+    await tester.pumpAndSettle();
+
+    final keyboardTop = tester.view.physicalSize.height / 2.625 - 900 / 2.625;
+    expect(
+      tester.getRect(find.byType(AppButton)).bottom,
+      lessThanOrEqualTo(keyboardTop),
+    );
+    expect(
+      tester.getRect(find.byType(TextField)).bottom,
+      lessThanOrEqualTo(keyboardTop),
+    );
+  });
 }

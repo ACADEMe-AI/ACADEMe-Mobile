@@ -41,6 +41,8 @@ func TestEntryRateLimits(t *testing.T) {
 		{"sign-up per IP", "/auth/sign-up", signUpsPerIPHour, signUp, time.Hour, time.Hour},
 		{"google per IP", "/auth/google", googlePerIPHour,
 			func(int) string { return `{"idToken":"nobody"}` }, time.Hour, time.Hour},
+		{"reset complete per IP", "/auth/password-reset/complete", verifiesPerIPHour,
+			func(i int) string { return completeBody("junk-"+strconv.Itoa(i), "sunflower") }, time.Hour, time.Hour},
 	}
 	for _, tc := range tests {
 		t.Run(tc.name, func(t *testing.T) {
@@ -64,6 +66,44 @@ func TestEntryRateLimits(t *testing.T) {
 				}
 			})
 		})
+	}
+}
+
+func TestLogInLimitPerAccountAcrossIPs(t *testing.T) {
+	synctest.Test(t, func(t *testing.T) {
+		e := newResetEnv(t)
+		ip := func(i int) string { return "203.0.113." + strconv.Itoa(i+1) }
+		wrong := `{"email":"Maya.Rao@example.com","password":"wrong-password"}`
+		for i := range logInsPerEmailHour {
+			if status, _, body := postWithHeaders(t, e.handler, ip(i), "/auth/log-in", wrong); status != http.StatusUnauthorized {
+				t.Fatalf("log-in #%d from a new IP = %d %s, want 401", i+1, status, body)
+			}
+		}
+		status, retry, body := postWithHeaders(t, e.handler, ip(logInsPerEmailHour), "/auth/log-in", `{"email":" maya.rao@EXAMPLE.com","password":"x"}`)
+		if status != http.StatusTooManyRequests || retry != "3600" || !strings.Contains(body, `"too_many_requests"`) {
+			t.Errorf("log-in #%d from a new IP = %d, Retry-After %q, %s; want 429 too_many_requests, Retry-After 3600", logInsPerEmailHour+1, status, retry, body)
+		}
+		if status, _, _ := postWithHeaders(t, e.handler, ip(logInsPerEmailHour+1), "/auth/log-in", `{"email":"other@example.com","password":"x"}`); status != http.StatusUnauthorized {
+			t.Errorf("log-in for another account = %d, want 401", status)
+		}
+		time.Sleep(time.Hour)
+		if status, _, _ := postWithHeaders(t, e.handler, ip(0), "/auth/log-in", wrong); status != http.StatusUnauthorized {
+			t.Errorf("log-in after an hour = %d, want 401", status)
+		}
+	})
+}
+
+func TestThrottledSignUpSendsNoWelcome(t *testing.T) {
+	e := newResetEnv(t)
+	for i := range signUpsPerIPHour + 3 {
+		body := `{"firstName":"Maya","lastName":"Rao","email":"maya` + strconv.Itoa(i) + `@example.com","password":"sunflower"}`
+		postWithHeaders(t, e.handler, "203.0.113.5", "/auth/sign-up", body)
+	}
+	e.service.Wait()
+	e.mailer.mu.Lock()
+	defer e.mailer.mu.Unlock()
+	if got := len(e.mailer.welcomed); got != signUpsPerIPHour {
+		t.Errorf("welcome emails after %d sign-ups from one IP = %d, want %d", signUpsPerIPHour+3, got, signUpsPerIPHour)
 	}
 }
 

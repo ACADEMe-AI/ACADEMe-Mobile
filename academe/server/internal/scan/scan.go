@@ -178,18 +178,27 @@ func title(text string) string {
 	return "Scan"
 }
 
+type Upload func() (Mode, []sarvam.Page, error)
+
 func (s *Service) Read(ctx context.Context, accountID string, mode Mode, pages []sarvam.Page) (Scan, error) {
-	if !mode.valid() {
-		return Scan{}, ErrBadMode
-	}
-	if len(pages) == 0 || len(pages) > MaxPages {
-		return Scan{}, ErrBadPages
-	}
+	return s.ReadUpload(ctx, accountID, func() (Mode, []sarvam.Page, error) { return mode, pages, nil })
+}
+
+func (s *Service) ReadUpload(ctx context.Context, accountID string, upload Upload) (Scan, error) {
 	if s.reader == nil || s.model == nil {
 		return Scan{}, ErrUnavailable
 	}
 	var sc Scan
-	err := s.limited(ctx, accountID, billing.Scan, func() (err error) {
+	err := s.limited(ctx, accountID, billing.Scan, func() error {
+		mode, pages, err := upload()
+		switch {
+		case err != nil:
+			return err
+		case !mode.valid():
+			return ErrBadMode
+		case len(pages) == 0 || len(pages) > MaxPages:
+			return ErrBadPages
+		}
 		sc, err = s.read(ctx, accountID, mode, pages)
 		return err
 	})

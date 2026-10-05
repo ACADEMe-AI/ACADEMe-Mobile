@@ -4,8 +4,9 @@ import '../../../data/repositories/billing_repository.dart';
 import '../../../domain/models/pro.dart';
 import '../../../utils/command.dart';
 import '../../../utils/result.dart';
+import '../../../utils/safe_notifier.dart';
 
-class ProViewModel extends ChangeNotifier {
+class ProViewModel extends ChangeNotifier with SafeNotifier {
   ProViewModel({required BillingRepository billingRepository})
     : _billing = billingRepository {
     _billing.addListener(notifyListeners);

@@ -187,6 +187,27 @@ void main() {
     expect(opened, ['lesson:deck-2']);
   });
 
+  testWidgets('one lesson, card and quick check read in the singular', (
+    tester,
+  ) async {
+    study.deckList = [
+      FakeStudyRepository.summaryOf(FakeStudyRepository.reflection),
+    ];
+    await viewModel.load.execute();
+    await pump(
+      tester,
+      ChapterScreen(
+        viewModel: viewModel,
+        chapterId: 'cbse-10-science-9',
+        actions: actions,
+      ),
+    );
+
+    expect(find.textContaining('0 of 1 lesson done'), findsOneWidget);
+    expect(find.text('5 cards · 1 quick check'), findsOneWidget);
+    expect(find.textContaining('lessons'), findsNothing);
+  });
+
   testWidgets('a chapter with no lessons yet has nothing to start', (
     tester,
   ) async {

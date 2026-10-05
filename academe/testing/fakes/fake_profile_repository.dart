@@ -11,6 +11,7 @@ class FakeProfileRepository extends ProfileRepository {
 
   Profile _profile;
   AuthException? nextFailure;
+  Profile? nextLoad;
   final updates = <ProfileUpdate>[];
 
   static const english = Subject(id: 'english', name: 'English');
@@ -67,7 +68,15 @@ class FakeProfileRepository extends ProfileRepository {
   }
 
   @override
-  Future<Result<Profile>> load() async => _answer(_profile);
+  Future<Result<Profile>> load() async {
+    final result = _answer(nextLoad ?? _profile);
+    if (result case Ok(:final value)) {
+      _profile = value;
+      nextLoad = null;
+      notifyListeners();
+    }
+    return result;
+  }
 
   @override
   Future<Result<Profile>> update(ProfileUpdate update) async {
@@ -81,6 +90,7 @@ class FakeProfileRepository extends ProfileRepository {
       board: update.board ?? _profile.board,
       subjects: update.subjects ?? _profile.subjects,
       setupDone: _profile.setupDone,
+      streak: _profile.streak,
       xp:
           _profile.xp +
           (update.subjects != null && !_profile.hasPicks
@@ -101,6 +111,7 @@ class FakeProfileRepository extends ProfileRepository {
             subjects: next.subjects,
             setupDone: true,
             xp: next.xp + Profile.setupReward,
+            streak: next.streak,
           )
         : next;
     notifyListeners();

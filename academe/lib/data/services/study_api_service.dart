@@ -1,3 +1,4 @@
+import '../../domain/models/chat.dart';
 import '../../domain/models/deck.dart';
 import '../../utils/result.dart';
 import '../model/deck_models.dart';
@@ -59,6 +60,16 @@ class StudyApiService {
         'deckId': deckId,
         'card': card,
       });
+
+  Future<Result<void>> reportLesson(
+    String accessToken,
+    String deckId,
+    ReportReason reason,
+  ) => _none('POST', '/reports', accessToken, {
+    'kind': 'lesson',
+    'id': deckId,
+    'reason': reason.code,
+  });
 
   Future<Result<void>> unkeep(String accessToken, String deckId, int card) =>
       _none('DELETE', '/study/kept/$deckId/$card', accessToken, null);

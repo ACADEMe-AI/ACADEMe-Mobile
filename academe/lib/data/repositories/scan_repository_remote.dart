@@ -1,3 +1,4 @@
+import '../../domain/models/chat.dart';
 import '../../domain/models/scan.dart';
 import '../../utils/result.dart';
 import '../model/api_models.dart';
@@ -60,6 +61,10 @@ class ScanRepositoryRemote extends ScanRepository {
   @override
   Future<Result<void>> linkThread(String id, String threadId) =>
       _change((t) => _api.linkThread(t, id, threadId));
+
+  @override
+  Future<Result<void>> report(String id, ReportReason reason) =>
+      _call((t) => _api.report(t, id, reason));
 
   @override
   Future<Result<Marking>> check(String id, String question) =>

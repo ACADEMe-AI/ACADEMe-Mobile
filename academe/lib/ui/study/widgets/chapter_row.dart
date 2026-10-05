@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../utils/plural.dart';
 import '../../core/themes/app_theme.dart';
 import '../view_models/study_view_model.dart';
 
@@ -20,12 +21,12 @@ class ChapterRow extends StatelessWidget {
     final subtitle = soon
         ? chapter.lessonsPlanned == 0
               ? 'Coming soon'
-              : 'Coming soon · ${chapter.lessonsPlanned} lessons'
+              : 'Coming soon · ${pluralize(chapter.lessonsPlanned, 'lesson')}'
         : chapter.isDone
         ? result == null
               ? 'Lessons done · test next$coming'
               : 'Done · test ${result.percent}%$coming'
-        : '${chapter.lessonsDone} of ${chapter.lessons.length} lessons$coming';
+        : '${chapter.lessonsDone} of ${pluralize(chapter.lessons.length, 'lesson')}$coming';
     final ink = soon ? palette.textMuted : palette.text;
     final exam = chapter.isFormativeOnly ? ' · Not in board exam' : '';
     return Semantics(

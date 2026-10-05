@@ -5,12 +5,13 @@ import 'package:flutter/foundation.dart';
 import '../../domain/models/folder.dart';
 import '../../domain/models/reminder.dart';
 import '../../utils/result.dart';
+import '../../utils/safe_notifier.dart';
 import '../services/hint_store.dart';
 import '../services/notification_service.dart';
 import '../services/preferences_store.dart';
 import 'folder_repository.dart';
 
-class ReminderRepository extends ChangeNotifier {
+class ReminderRepository extends ChangeNotifier with SafeNotifier {
   ReminderRepository({
     required NotificationService notifications,
     required FolderRepository folderRepository,

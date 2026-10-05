@@ -4,10 +4,11 @@ import '../../../data/repositories/auth_repository.dart';
 import '../../../domain/models/auth_failure.dart';
 import '../../../utils/command.dart';
 import '../../../utils/result.dart';
+import '../../../utils/safe_notifier.dart';
 import 'auth_failure_of.dart';
 import 'sign_up_view_model.dart';
 
-class ForgotPasswordViewModel extends ChangeNotifier {
+class ForgotPasswordViewModel extends ChangeNotifier with SafeNotifier {
   ForgotPasswordViewModel({
     required AuthRepository authRepository,
     String email = '',

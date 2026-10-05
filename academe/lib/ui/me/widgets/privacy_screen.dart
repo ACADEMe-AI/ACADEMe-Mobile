@@ -10,8 +10,8 @@ class PrivacyScreen extends StatelessWidget {
   const PrivacyScreen({super.key});
 
   static const summary = [
-    'We keep your account, class and board, study progress, folders, notes '
-        'and chats with Pebby to run ACADEMe for you.',
+    'We keep your account, class, board and subjects, study progress and '
+        'streak, folders, notes and chats with Pebby to run ACADEMe for you.',
     'Your questions and scanned photos go to Sarvam AI in India so Pebby can '
         'answer. We don’t store your photos, only the text read from them.',
     'No ads, no advertising ID, no location, and we never sell your data.',

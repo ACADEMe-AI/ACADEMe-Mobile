@@ -26,29 +26,52 @@ mixin StudyNavigation on State<AppShell> {
 
   void showMessage(String message);
 
-  Future<void> _push(Widget page, {bool replace = false}) async {
+  final _chapterRoutes = <String, Route<void>>{};
+
+  Future<void> _push(
+    Widget page, {
+    bool replace = false,
+    String? chapterId,
+  }) async {
     final route = MaterialPageRoute<void>(builder: (_) => page);
+    if (chapterId != null) _chapterRoutes[chapterId] = route;
     final navigator = Navigator.of(context);
     await (replace ? navigator.pushReplacement(route) : navigator.push(route));
+    if (_chapterRoutes[chapterId] == route) _chapterRoutes.remove(chapterId);
     if (mounted) await widget.study.load.execute();
   }
 
-  void openChapter(String chapterId) => _push(
+  void openChapter(String chapterId, {bool replace = false}) => _push(
     ChapterScreen(
       viewModel: widget.study,
       chapterId: chapterId,
       actions: studyActions,
     ),
+    replace: replace,
+    chapterId: chapterId,
   );
+
+  void backToChapter(String chapterId) {
+    final route = _chapterRoutes[chapterId];
+    if (route != null && route.isActive) {
+      Navigator.of(context).popUntil((r) => r == route);
+    } else {
+      openChapter(chapterId, replace: true);
+    }
+  }
 
   void openLesson(String deckId, {bool replace = false}) {
     final next = widget.study.nextAfter(deckId);
+    final chapterId = widget.study.lesson(deckId)?.chapterId;
     _push(
       DeckScreen(
         viewModel: widget.factory.lesson(deckId),
         onAsk: askAbout,
         nextTitle: next?.title,
         onNext: next == null ? null : () => openLesson(next.id, replace: true),
+        onBackToChapter: chapterId == null
+            ? null
+            : () => backToChapter(chapterId),
       ),
       replace: replace,
     );
@@ -66,6 +89,7 @@ mixin StudyNavigation on State<AppShell> {
           replace: true,
         ),
         onAddToFolder: () => addToFolder([chapterId]),
+        onBackToChapter: () => backToChapter(chapterId),
       ),
     );
   }

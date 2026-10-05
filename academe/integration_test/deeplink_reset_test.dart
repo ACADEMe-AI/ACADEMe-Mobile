@@ -9,9 +9,7 @@ const linked = 'uitest-linked-3456';
 void main() {
   setUpJourney();
 
-  testWidgets('academe://reset link opens New password over Home', (
-    tester,
-  ) async {
+  testWidgets('https reset link opens New password over Home', (tester) async {
     final email = uniqueEmail('deeplink');
     await launchFresh(tester);
     await signUpWithEmail(tester, email: email);

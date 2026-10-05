@@ -188,7 +188,7 @@ open_reset_link() {
 }
 
 reopen_reset_link() {
-  "${adb[@]}" shell am start -a android.intent.action.VIEW -d "'academe://reset?c=$(cat "$out/reset-token.txt")'" com.academe.flutter >/dev/null
+  "${adb[@]}" shell am start -a android.intent.action.VIEW -d "'https://api.academe.cc/reset-password?c=$(cat "$out/reset-token.txt")'" com.academe.flutter >/dev/null
 }
 
 type_reset_code() {

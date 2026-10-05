@@ -19,17 +19,24 @@ func (s *Service) ChangePassword(ctx context.Context, id, current, next string) 
 	if err := validatePassword(next); err != nil {
 		return Account{}, Tokens{}, err
 	}
+	if !s.limits.passwordCheck.allow(id) {
+		return Account{}, Tokens{}, ErrThrottled
+	}
 	hash, err := s.store.PasswordHash(ctx, id)
 	if err != nil {
 		return Account{}, Tokens{}, fmt.Errorf("change password: %w", err)
 	}
 	if hash != "" {
-		if err := s.checkCurrentPassword(id, current, hash); err != nil {
+		if err := s.checkCurrentPassword(ctx, current, hash); err != nil {
 			return Account{}, Tokens{}, err
 		}
 	}
+	nextHash, err := s.hash(ctx, next)
+	if err != nil {
+		return Account{}, Tokens{}, fmt.Errorf("change password: %w", err)
+	}
 	now := revocationTime()
-	if err := s.store.ChangePassword(ctx, id, hash, hashPassword(next), now); err != nil {
+	if err := s.store.ChangePassword(ctx, id, hash, nextHash, now); err != nil {
 		return Account{}, Tokens{}, fmt.Errorf("change password: %w", err)
 	}
 	s.revokeAccessTokens(id, now)
@@ -44,14 +51,11 @@ func (s *Service) ChangePassword(ctx context.Context, id, current, next string) 
 	return a, tokens, nil
 }
 
-func (s *Service) checkCurrentPassword(id, current, hash string) error {
-	if !s.limits.passwordCheck.allow(id) {
-		return ErrThrottled
-	}
+func (s *Service) checkCurrentPassword(ctx context.Context, current, hash string) error {
 	if utf8.RuneCountInString(current) > maxPasswordLength {
 		return ErrWrongPassword
 	}
-	ok, err := checkPassword(current, hash)
+	ok, err := s.check(ctx, current, hash)
 	if err != nil {
 		return fmt.Errorf("check current password: %w", err)
 	}

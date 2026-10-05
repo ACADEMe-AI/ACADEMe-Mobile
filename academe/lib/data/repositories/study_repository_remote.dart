@@ -1,3 +1,4 @@
+import '../../domain/models/chat.dart';
 import '../../domain/models/deck.dart';
 import '../../utils/result.dart';
 import '../services/study_api_service.dart';
@@ -45,6 +46,10 @@ class StudyRepositoryRemote implements StudyRepository {
   @override
   Future<Result<void>> unkeep(String deckId, int card) =>
       _call((t) => _api.unkeep(t, deckId, card));
+
+  @override
+  Future<Result<void>> reportLesson(String deckId, ReportReason reason) =>
+      _call((t) => _api.reportLesson(t, deckId, reason));
 
   @override
   Future<Result<List<ReviewItem>>> review({String? chapterId}) =>

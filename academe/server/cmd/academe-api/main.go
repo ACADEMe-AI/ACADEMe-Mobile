@@ -23,6 +23,7 @@ import (
 	"academe/server/internal/httpx"
 	"academe/server/internal/postgres"
 	"academe/server/internal/profile"
+	"academe/server/internal/report"
 	"academe/server/internal/sarvam"
 	"academe/server/internal/scan"
 	"academe/server/internal/site"
@@ -121,6 +122,7 @@ func run(ctx context.Context, logger *slog.Logger) error {
 	scans := scan.NewService(scan.NewPostgresStore(pool), reader, model, profiles, studyService, folders)
 	scans.SetLimiter(plans)
 	scan.RegisterRoutes(mux, logger, scans, authService.RequireAccount)
+	report.RegisterRoutes(mux, logger, report.NewService(report.NewPostgresStore(pool)), authService.RequireAccount)
 	notices, _ := mailer.(site.Mailer)
 	if err := site.RegisterRoutes(mux, logger, site.Options{
 		Store: site.NewPostgresStore(pool), Mailer: notices, Resets: authService,

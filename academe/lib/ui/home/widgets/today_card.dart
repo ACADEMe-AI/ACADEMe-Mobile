@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../domain/models/folder.dart';
+import '../../../utils/plural.dart';
 import '../../core/themes/app_theme.dart';
 import '../../study/widgets/task_row.dart';
 import '../view_models/today_view_model.dart';
@@ -59,9 +60,7 @@ class TodayCard extends StatelessWidget {
                       const Spacer(),
                       if (folders > 0)
                         Text(
-                          folders == 1
-                              ? 'from 1 folder'
-                              : 'from $folders folders',
+                          'from ${pluralize(folders, 'folder')}',
                           style: AppTextStyles.caption.copyWith(
                             color: palette.textMuted,
                           ),

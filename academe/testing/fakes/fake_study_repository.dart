@@ -1,4 +1,5 @@
 import 'package:academe/data/repositories/study_repository.dart';
+import 'package:academe/domain/models/chat.dart';
 import 'package:academe/domain/models/deck.dart';
 import 'package:academe/utils/result.dart';
 
@@ -76,6 +77,7 @@ class FakeStudyRepository implements StudyRepository {
   final completions = <(String, int)>[];
   final positions = <(String, int)>[];
   final kept = <(String, int)>{};
+  final reports = <(String, ReportReason)>[];
   final ratings = <(String, int, ReviewRating)>[];
   final chapterScores = <(String, int, int)>[];
 
@@ -124,6 +126,10 @@ class FakeStudyRepository implements StudyRepository {
   @override
   Future<Result<void>> unkeep(String deckId, int card) async =>
       _answer(() => kept.remove((deckId, card)));
+
+  @override
+  Future<Result<void>> reportLesson(String deckId, ReportReason reason) async =>
+      _answer(() => reports.add((deckId, reason)));
 
   @override
   Future<Result<List<ReviewItem>>> review({String? chapterId}) async =>

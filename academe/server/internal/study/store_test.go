@@ -132,4 +132,8 @@ func TestPostgresStore(t *testing.T) {
 	if err != nil || results["cbse-10-science-9"].Correct != 7 || results["cbse-10-science-9"].Total != 9 {
 		t.Errorf("ChapterResults() = %v, %v; want 7 of 9", results, err)
 	}
+	var days int
+	if err := pool.QueryRow(ctx, `SELECT count(*) FROM study_days WHERE account_id = $1 AND day = (now() AT TIME ZONE 'Asia/Kolkata')::date`, riya).Scan(&days); err != nil || days != 1 {
+		t.Errorf("study days after Complete and SaveChapterResult = %d, %v; want today once", days, err)
+	}
 }

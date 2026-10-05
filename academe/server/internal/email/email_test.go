@@ -74,8 +74,8 @@ func TestResendWelcomeEscapesTheName(t *testing.T) {
 	if err := c.SendWelcome(t.Context(), Welcome{AccountID: "a1", To: "maya@example.com", FirstName: "Ma\r\nya <b>&"}); err != nil {
 		t.Fatalf("SendWelcome() = %v", err)
 	}
-	if got.Subject != "Welcome to ACADEMe, Maya <b>&" {
-		t.Errorf("subject = %q, want the name without control characters", got.Subject)
+	if got.Subject != "Welcome to ACADEMe" {
+		t.Errorf("subject = %q, want the fixed subject without the name", got.Subject)
 	}
 	containsAll(t, "html", got.HTML, "Welcome to ACADEMe, Maya &lt;b&gt;&amp;!", "Open ACADEMe", "pebby-wave.png")
 	if strings.Contains(got.HTML, "<b>&") {
@@ -91,8 +91,12 @@ func TestResendWelcomeEscapesTheName(t *testing.T) {
 		t.Errorf("html contains a script tag from the name")
 	}
 
-	if err := c.SendWelcome(t.Context(), Welcome{To: "x@example.com", FirstName: "Ma\u202eya\u2066 \u0915\u094d\u200d\u0937"}); err != nil || got.Subject != "Welcome to ACADEMe, Maya \u0915\u094d\u200d\u0937" {
-		t.Errorf("SendWelcome(bidi name) = %v with subject %+q, want bidi controls dropped and the joiner kept", err, got.Subject)
+	if err := c.SendWelcome(t.Context(), Welcome{To: "x@example.com", FirstName: "Ma\u202eya\u2066 \u0915\u094d\u200d\u0937"}); err != nil || !strings.Contains(got.Text, "Welcome to ACADEMe, Maya \u0915\u094d\u200d\u0937!") {
+		t.Errorf("SendWelcome(bidi name) = %v with text %+q, want bidi controls dropped and the joiner kept", err, got.Text)
+	}
+
+	if err := c.SendWelcome(t.Context(), Welcome{To: "x@example.com", FirstName: "Call +1-555-0100 or visit evil.example"}); err != nil || got.Subject != "Welcome to ACADEMe" {
+		t.Errorf("SendWelcome(spam name) = %v with subject %q, want Welcome to ACADEMe", err, got.Subject)
 	}
 
 	if err := c.SendWelcome(t.Context(), Welcome{To: "x@example.com"}); err != nil || got.Subject != "Welcome to ACADEMe" {
@@ -117,13 +121,17 @@ func TestEveryEmailSharesTheLayout(t *testing.T) {
 		t.Run(name, func(t *testing.T) {
 			containsAll(t, "html", m.HTML,
 				`<meta name="color-scheme" content="light dark">`,
-				`src="https://academe.cc/email/logo.png"`,
+				`src="https://api.academe.cc/email/logo.png"`,
+				`url(https://api.academe.cc/email/baloo2-800.ttf)`,
 				"<!--[if mso]>", "<!--[if !mso]><!-->",
 				`max-width:600px`,
 				"You&#39;re getting this email because",
-				"mailto:support@academe.cc", "ACADEMe · <a href=\"https://academe.cc\"",
+				"mailto:support@academe.cc", "ACADEMe · <a href=\"https://api.academe.cc\"",
 			)
-			containsAll(t, "text", m.Text, "You're getting this email because", "support@academe.cc", "ACADEMe · https://academe.cc")
+			containsAll(t, "text", m.Text, "You're getting this email because", "support@academe.cc", "ACADEMe · https://api.academe.cc")
+			if strings.Contains(m.HTML, "https://academe.cc") || strings.Contains(m.Text, "https://academe.cc") {
+				t.Errorf("%s links to https://academe.cc, want every link on %s", name, SiteURL)
+			}
 			for _, banned := range []string{"data:image", "<script", "{{", "ZgotmplZ"} {
 				if strings.Contains(m.HTML, banned) {
 					t.Errorf("html contains %q", banned)

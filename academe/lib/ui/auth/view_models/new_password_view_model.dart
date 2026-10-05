@@ -5,10 +5,11 @@ import '../../../domain/models/account.dart';
 import '../../../domain/models/auth_failure.dart';
 import '../../../utils/command.dart';
 import '../../../utils/result.dart';
+import '../../../utils/safe_notifier.dart';
 import 'auth_failure_of.dart';
 import 'sign_up_view_model.dart';
 
-class NewPasswordViewModel extends ChangeNotifier {
+class NewPasswordViewModel extends ChangeNotifier with SafeNotifier {
   NewPasswordViewModel({
     required AuthRepository authRepository,
     String? resetToken,

@@ -14,10 +14,10 @@ void main() {
     await tester.waitFor(find.text('Privacy policy'));
     await tester.shot('privacy');
     final links = {
-      'Privacy policy': 'https://academe.cc/privacy',
-      'Terms of use': 'https://academe.cc/terms',
-      'Get a copy of my data': 'https://academe.cc/support',
-      'Grievance Officer': 'https://academe.cc/support#grievance',
+      'Privacy policy': 'https://api.academe.cc/privacy',
+      'Terms of use': 'https://api.academe.cc/terms',
+      'Get a copy of my data': 'https://api.academe.cc/support',
+      'Grievance Officer': 'https://api.academe.cc/support#grievance',
     };
     for (final MapEntry(key: label, value: url) in links.entries) {
       await tester.scrollTo(find.text(label));

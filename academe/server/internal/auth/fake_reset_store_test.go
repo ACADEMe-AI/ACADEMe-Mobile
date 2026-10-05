@@ -90,3 +90,14 @@ func (f *fakeStore) CompleteReset(_ context.Context, tokenHash []byte, verifiedA
 	}
 	return "", ErrResetTokenExpired
 }
+
+func (f *fakeStore) ResetAccount(_ context.Context, tokenHash []byte, verifiedAfter time.Time) (string, error) {
+	f.mu.Lock()
+	defer f.mu.Unlock()
+	for _, r := range f.resets {
+		if r.tokenHash != nil && bytes.Equal(r.tokenHash, tokenHash) && !r.completed && r.usedAt.After(verifiedAfter) {
+			return r.accountID, nil
+		}
+	}
+	return "", ErrResetTokenExpired
+}

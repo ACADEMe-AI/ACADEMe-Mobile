@@ -5,8 +5,9 @@ import '../../../data/repositories/study_repository.dart';
 import '../../../domain/models/deck.dart';
 import '../../../utils/command.dart';
 import '../../../utils/result.dart';
+import '../../../utils/safe_notifier.dart';
 
-class ReviewViewModel extends ChangeNotifier {
+class ReviewViewModel extends ChangeNotifier with SafeNotifier {
   ReviewViewModel({
     required StudyRepository studyRepository,
     required FolderRepository folderRepository,

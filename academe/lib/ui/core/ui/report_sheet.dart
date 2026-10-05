@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 
 import '../../../domain/models/chat.dart';
-import '../../core/themes/app_theme.dart';
+import '../themes/app_theme.dart';
 
 class ReportSheet extends StatelessWidget {
-  const ReportSheet({super.key});
+  const ReportSheet({super.key, required this.title});
 
-  static Future<ReportReason?> show(BuildContext context) =>
+  final String title;
+
+  static Future<ReportReason?> show(BuildContext context, String title) =>
       showModalBottomSheet<ReportReason>(
         context: context,
         backgroundColor: context.palette.surface,
         barrierColor: AppColors.keycapEdge.withValues(alpha: .35),
         showDragHandle: true,
         isScrollControlled: true,
-        builder: (_) => const ReportSheet(),
+        builder: (_) => ReportSheet(title: title),
       );
 
   @override
@@ -26,7 +28,7 @@ class ReportSheet extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Report this answer',
+              title,
               style: AppTextStyles.subhead.copyWith(
                 fontSize: 16,
                 color: context.palette.text,

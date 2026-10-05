@@ -19,7 +19,7 @@ void main() {
     await tester.tapText('Maths');
     await tester.tapOn(find.textContaining(RegExp(r'^Ch \d+ ·')).first);
     await tester.tapText('Add 1 chapter');
-    await tester.waitFor(find.textContaining('lessons done'));
+    await tester.waitFor(find.textContaining(RegExp(r'lessons? done')));
     await tester.shot('folder-chapters');
     for (final todo in ['Revise formulas', 'Pack geometry box']) {
       await tester.scrollTo(find.widgetWithText(TextField, 'Add a to-do'));

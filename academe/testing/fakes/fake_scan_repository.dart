@@ -1,4 +1,5 @@
 import 'package:academe/data/repositories/scan_repository.dart';
+import 'package:academe/domain/models/chat.dart';
 import 'package:academe/domain/models/scan.dart';
 import 'package:academe/utils/result.dart';
 
@@ -21,6 +22,7 @@ class FakeScanRepository extends ScanRepository {
   final List<Scan> saved = [];
   final List<(String, String)> threads = [];
   final List<(String, String, bool)> notes = [];
+  final List<(String, ReportReason)> reports = [];
   List<String>? lastPages;
   String? lastQuestion;
 
@@ -49,6 +51,13 @@ class FakeScanRepository extends ScanRepository {
   @override
   Future<Result<void>> linkThread(String id, String threadId) async {
     threads.add((id, threadId));
+    return Result.ok(null);
+  }
+
+  @override
+  Future<Result<void>> report(String id, ReportReason reason) async {
+    if (failure != null) return _fail();
+    reports.add((id, reason));
     return Result.ok(null);
   }
 

@@ -90,6 +90,8 @@ mixin ScanNavigation on State<AppShell> {
           Navigator.of(context).pop();
           startScan(ScanMode.check);
         },
+        onReport: (reason) =>
+            widget.scans.scanRepository.report(scan.id, reason),
       ),
     );
     final navigator = Navigator.of(context);

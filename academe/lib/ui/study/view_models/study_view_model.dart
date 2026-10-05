@@ -6,6 +6,7 @@ import '../../../domain/models/deck.dart';
 import '../../../domain/models/profile.dart';
 import '../../../utils/command.dart';
 import '../../../utils/result.dart';
+import '../../../utils/safe_notifier.dart';
 import 'chapter_filters.dart';
 import 'study_chapter.dart';
 
@@ -23,7 +24,7 @@ typedef SubjectRow = ({
   DeckSummary? next,
 });
 
-class StudyViewModel extends ChangeNotifier {
+class StudyViewModel extends ChangeNotifier with SafeNotifier {
   StudyViewModel({
     required StudyRepository studyRepository,
     required ProfileRepository profileRepository,

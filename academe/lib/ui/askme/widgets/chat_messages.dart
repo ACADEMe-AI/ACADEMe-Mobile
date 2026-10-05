@@ -4,6 +4,7 @@ import '../../../domain/models/chat.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/pebby_peek.dart';
 import '../../core/ui/reply_text.dart';
+import '../../core/ui/report_button.dart';
 import 'reply_actions.dart';
 
 class StudentBubble extends StatelessWidget {

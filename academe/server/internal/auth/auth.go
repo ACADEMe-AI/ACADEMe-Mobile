@@ -83,6 +83,7 @@ type Store interface {
 	ClaimResetLink(ctx context.Context, linkHash []byte) (ResetCode, error)
 	ClaimResetAttempt(ctx context.Context, accountID string) (ResetCode, error)
 	MarkResetCodeUsed(ctx context.Context, codeID string, tokenHash []byte, at time.Time) error
+	ResetAccount(ctx context.Context, tokenHash []byte, verifiedAfter time.Time) (string, error)
 	CompleteReset(ctx context.Context, tokenHash []byte, verifiedAfter time.Time, passwordHash string, at time.Time) (string, error)
 	TokensValidAfter(ctx context.Context, accountID string) (time.Time, error)
 }
@@ -101,6 +102,7 @@ type Service struct {
 	dummyHash   string
 	subscribers SubscriberDeleter
 	revoked     *revocations
+	hashing     chan struct{}
 	logger      *slog.Logger
 	background  sync.WaitGroup
 }
@@ -119,6 +121,7 @@ func NewService(store Store, tokenKey []byte, google GoogleVerifier, mailer Mail
 		entry:     newEntryLimits(1),
 		dummyHash: hashPassword(rand.Text()),
 		revoked:   newRevocations(),
+		hashing:   make(chan struct{}, hashingSlots),
 		logger:    slog.New(slog.DiscardHandler),
 	}
 }
@@ -130,11 +133,15 @@ func (s *Service) SignUp(ctx context.Context, in SignUpInput) (Account, Tokens, 
 	if err := in.validate(); err != nil {
 		return Account{}, Tokens{}, err
 	}
+	hash, err := s.hash(ctx, in.Password)
+	if err != nil {
+		return Account{}, Tokens{}, fmt.Errorf("sign up: %w", err)
+	}
 	a, err := s.store.CreateAccount(ctx, Account{
 		FirstName: in.FirstName,
 		LastName:  in.LastName,
 		Email:     in.Email,
-	}, hashPassword(in.Password))
+	}, hash)
 	if err != nil {
 		return Account{}, Tokens{}, fmt.Errorf("sign up: %w", err)
 	}
@@ -151,18 +158,16 @@ func (s *Service) LogIn(ctx context.Context, email, password string) (Account, T
 		return Account{}, Tokens{}, ErrWrongCredentials
 	}
 	a, hash, err := s.store.AccountByEmail(ctx, normalizeEmail(email))
-	if errors.Is(err, ErrNotFound) {
-		_, _ = checkPassword(password, s.dummyHash)
-		return Account{}, Tokens{}, ErrWrongCredentials
-	}
-	if err != nil {
+	if err != nil && !errors.Is(err, ErrNotFound) {
 		return Account{}, Tokens{}, fmt.Errorf("log in: %w", err)
 	}
-	if hash == "" {
-		_, _ = checkPassword(password, s.dummyHash)
+	if err != nil || hash == "" {
+		if _, err := s.check(ctx, password, s.dummyHash); err != nil {
+			return Account{}, Tokens{}, fmt.Errorf("log in: %w", err)
+		}
 		return Account{}, Tokens{}, ErrWrongCredentials
 	}
-	ok, err := checkPassword(password, hash)
+	ok, err := s.check(ctx, password, hash)
 	if err != nil {
 		return Account{}, Tokens{}, fmt.Errorf("log in: %w", err)
 	}

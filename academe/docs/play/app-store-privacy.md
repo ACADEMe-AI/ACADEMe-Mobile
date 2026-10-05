@@ -60,4 +60,4 @@ tied to the user.
 - **Privacy manifest** (`PrivacyInfo.xcprivacy`): list required-reason APIs
   used by Flutter plugins (`UserDefaults` via shared_preferences, file
   timestamps). Most plugins ship their own; check the Xcode privacy report.
-- **Privacy policy URL**: https://academe.cc/privacy.
+- **Privacy policy URL**: https://api.academe.cc/privacy.

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../domain/models/streak.dart';
 import '../../core/themes/app_theme.dart';
 import 'xp_chip.dart';
 
@@ -10,12 +11,14 @@ class HomeGreeting extends StatelessWidget {
     required this.syllabus,
     required this.xpKey,
     required this.xp,
+    required this.streak,
   });
 
   final String name;
   final String? syllabus;
   final GlobalKey xpKey;
   final int xp;
+  final Streak streak;
 
   @override
   Widget build(BuildContext context) {
@@ -46,15 +49,28 @@ class HomeGreeting extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 8),
-        Icon(
-          Icons.local_fire_department_rounded,
-          size: 20,
-          color: context.palette.border,
-        ),
-        Text(
-          '0',
-          style: AppTextStyles.labelStrong.copyWith(
-            color: context.palette.textMuted,
+        Semantics(
+          label: '${streak.current} day streak',
+          excludeSemantics: true,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                Icons.local_fire_department_rounded,
+                size: 20,
+                color: streak.isTodayCounted
+                    ? AppColors.streak
+                    : context.palette.border,
+              ),
+              Text(
+                '${streak.current}',
+                style: AppTextStyles.labelStrong.copyWith(
+                  color: streak.isTodayCounted
+                      ? context.palette.text
+                      : context.palette.textMuted,
+                ),
+              ),
+            ],
           ),
         ),
         const SizedBox(width: 12),

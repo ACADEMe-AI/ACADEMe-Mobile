@@ -19,7 +19,6 @@ class AskMeScreen extends StatelessWidget {
     required this.syllabus,
     required this.onBack,
     required this.onHistory,
-    required this.onMakeFlashcards,
   });
 
   final AskMeViewModel viewModel;
@@ -27,7 +26,6 @@ class AskMeScreen extends StatelessWidget {
   final String? syllabus;
   final VoidCallback onBack;
   final VoidCallback onHistory;
-  final VoidCallback onMakeFlashcards;
 
   static const _emptyKey = ValueKey('empty');
   static const _chatKey = ValueKey('chat');
@@ -83,7 +81,6 @@ class AskMeScreen extends StatelessWidget {
                       key: _chatKey,
                       viewModel: viewModel,
                       padding: padding,
-                      onMakeFlashcards: onMakeFlashcards,
                     ),
             ),
           ),
@@ -145,12 +142,10 @@ class _Conversation extends StatelessWidget {
     super.key,
     required this.viewModel,
     required this.padding,
-    required this.onMakeFlashcards,
   });
 
   final AskMeViewModel viewModel;
   final double padding;
-  final VoidCallback onMakeFlashcards;
 
   List<FollowUp> _followUps() => switch (viewModel.mode) {
     ChatMode.solve => [
@@ -172,7 +167,6 @@ class _Conversation extends StatelessWidget {
       ),
     ],
     ChatMode.explain => [
-      FollowUp(label: 'Make flashcards', onTap: onMakeFlashcards),
       FollowUp(label: 'Quiz me', onTap: viewModel.quizMe),
       FollowUp(
         label: 'Go deeper',

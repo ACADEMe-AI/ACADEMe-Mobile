@@ -23,24 +23,24 @@ class HomeScreen extends StatefulWidget {
     super.key,
     required this.viewModel,
     this.opensSetup = false,
-    this.onAsk,
+    required this.onAsk,
     this.today,
     this.onOpenTask,
-    this.onFlashcards,
-    this.onSolve,
-    this.onCheck,
+    required this.onFlashcards,
+    required this.onSolve,
+    required this.onCheck,
     required this.study,
     this.onOpenSubject,
   });
 
   final HomeViewModel viewModel;
   final bool opensSetup;
-  final VoidCallback? onAsk;
+  final VoidCallback onAsk;
   final TodayViewModel? today;
   final ValueChanged<StudyTask>? onOpenTask;
-  final VoidCallback? onFlashcards;
-  final VoidCallback? onSolve;
-  final VoidCallback? onCheck;
+  final VoidCallback onFlashcards;
+  final VoidCallback onSolve;
+  final VoidCallback onCheck;
   final StudyViewModel study;
   final ValueChanged<String>? onOpenSubject;
 
@@ -134,12 +134,6 @@ class _HomeScreenState extends State<HomeScreen>
     return box.localToGlobal(Offset.zero, ancestor: stack) & box.size;
   }
 
-  void _comingSoon(String message) {
-    ScaffoldMessenger.of(context)
-      ..hideCurrentSnackBar()
-      ..showSnackBar(SnackBar(content: Text(message)));
-  }
-
   @override
   Widget build(BuildContext context) {
     final scale = ScreenScale.of(context);
@@ -164,13 +158,10 @@ class _HomeScreenState extends State<HomeScreen>
                   syllabus: syllabusLabel,
                   xpKey: _xpKey,
                   xp: _viewModel.displayedXp,
+                  streak: _viewModel.profile.streak,
                 ),
                 const SizedBox(height: 16),
-                AskBar(
-                  onTap:
-                      widget.onAsk ??
-                      () => _comingSoon('ASKMe is coming soon.'),
-                ),
+                AskBar(onTap: widget.onAsk),
                 if (_viewModel.showsAskHint) ...[
                   const SizedBox(height: 4),
                   AskHint(onDismiss: _viewModel.dismissAskHint),
@@ -181,23 +172,17 @@ class _HomeScreenState extends State<HomeScreen>
                     QuickAction(
                       icon: Icons.photo_camera_rounded,
                       label: 'Solve homework',
-                      onTap:
-                          widget.onSolve ??
-                          () => _comingSoon('Homework help is coming soon.'),
+                      onTap: widget.onSolve,
                     ),
                     QuickAction(
                       icon: Icons.fact_check_rounded,
                       label: 'Check my answer',
-                      onTap:
-                          widget.onCheck ??
-                          () => _comingSoon('Answer checking is coming soon.'),
+                      onTap: widget.onCheck,
                     ),
                     QuickAction(
                       icon: Icons.style_rounded,
                       label: 'Flashcards',
-                      onTap:
-                          widget.onFlashcards ??
-                          () => _comingSoon('Flashcards are coming soon.'),
+                      onTap: widget.onFlashcards,
                     ),
                   ],
                 ),

@@ -236,7 +236,12 @@ the first build, not the week of release.
 - Release builds refuse plain `http`; the debug-only network security config
   allows `10.0.2.2` and `localhost` for the local server.
 - Upload signing (`android/key.properties` and the keystore) is set up only
-  when preparing a release; both stay out of git.
+  when preparing a release; both stay out of git. `android/app/build.gradle.kts`
+  signs release builds with it when it exists; without it a release APK falls
+  back to the debug key for local checks, and `bundleRelease` stops with an
+  error so a debug-signed bundle can never reach Play.
+- The advertising-ID library (`play-services-ads-identifier`) is excluded from
+  every configuration; `proguard-rules.pro` tells R8 not to warn about it.
 
 ## 11. Server and environment
 

@@ -5,6 +5,7 @@ import '../../core/themes/app_theme.dart';
 import '../../core/ui/app_button.dart';
 import '../../core/ui/celebration.dart';
 import '../../core/ui/reply_text.dart';
+import '../../core/ui/report_button.dart';
 import '../../core/ui/screen_scale.dart';
 import '../../study/widgets/card_parts.dart';
 import '../../study/widgets/page_scaffold.dart';
@@ -16,12 +17,14 @@ class CheckResultScreen extends StatelessWidget {
     required this.chapter,
     required this.onAskPebby,
     required this.onCheckAgain,
+    required this.onReport,
   });
 
   final Marking marking;
   final String chapter;
   final VoidCallback onAskPebby;
   final VoidCallback onCheckAgain;
+  final ReportAnswer onReport;
 
   String get _verdict {
     if (marking.isFull) return 'Full marks!';
@@ -36,6 +39,13 @@ class CheckResultScreen extends StatelessWidget {
     final ring = _MarksRing(marking: marking);
     return StudyPage(
       title: 'Check my answer',
+      actions: [
+        ReportButton(
+          title: 'Report these marks',
+          thanks: 'Thanks. We’ll review these marks.',
+          onReport: onReport,
+        ),
+      ],
       child: ListView(
         padding: EdgeInsets.fromLTRB(padding, 8, padding, 32),
         children: [

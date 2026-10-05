@@ -1,3 +1,4 @@
+import 'package:academe/domain/models/chat.dart';
 import 'package:academe/domain/models/scan.dart';
 import 'package:academe/ui/core/themes/app_theme.dart';
 import 'package:academe/ui/core/ui/pebby.dart';
@@ -154,6 +155,7 @@ void main() {
         chapter: 'Science · Ch 10 · Light',
         onAskPebby: () {},
         onCheckAgain: () {},
+        onReport: (reason) => scans.report('s1', reason),
       ),
     );
 
@@ -166,5 +168,27 @@ void main() {
     await tester.pump();
     expect(find.textContaining('angle of incidence'), findsOneWidget);
     expectOnlyAppFonts(tester);
+  });
+
+  testWidgets('the marks can be reported', (tester) async {
+    await pump(
+      tester,
+      CheckResultScreen(
+        marking: FakeScanRepository.marking,
+        chapter: '',
+        onAskPebby: () {},
+        onCheckAgain: () {},
+        onReport: (reason) => scans.report('s1', reason),
+      ),
+    );
+
+    await tester.tap(find.byTooltip('Report'));
+    await tester.pumpAndSettle();
+    expect(find.text('Report these marks'), findsOneWidget);
+    await tester.tap(find.text(ReportReason.wrong.label));
+    await tester.pumpAndSettle();
+
+    expect(scans.reports, [('s1', ReportReason.wrong)]);
+    expect(find.text('Thanks. We’ll review these marks.'), findsOneWidget);
   });
 }

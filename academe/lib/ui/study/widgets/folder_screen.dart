@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../domain/models/folder.dart';
+import '../../../utils/plural.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/screen_scale.dart';
 import '../study_actions.dart';
@@ -261,7 +262,8 @@ class _FolderBody extends StatelessWidget {
           LinkRow(
             icon: Icons.menu_book_rounded,
             title: 'Ch ${c.number} · ${c.title}',
-            subtitle: '${c.lessonsDone} of ${c.lessons} lessons done',
+            subtitle:
+                '${c.lessonsDone} of ${pluralize(c.lessons, 'lesson')} done',
             onTap: () => actions.openChapter(c.chapterId),
           ),
         for (final l in detail.lessons)

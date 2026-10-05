@@ -4,5 +4,5 @@
 {{.Reason}}
 Questions? Write to support@academe.cc
 
-ACADEMe · https://academe.cc
+ACADEMe · {{.Site}}
 {{end}}

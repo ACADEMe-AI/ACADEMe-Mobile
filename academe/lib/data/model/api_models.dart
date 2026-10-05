@@ -3,6 +3,7 @@ import '../../domain/models/app_language.dart';
 import '../../domain/models/board.dart';
 import '../../domain/models/chat.dart';
 import '../../domain/models/profile.dart';
+import '../../domain/models/streak.dart';
 import '../../domain/models/study_stream.dart';
 import '../../domain/models/subject.dart';
 
@@ -79,6 +80,14 @@ Profile profileFromJson(Map<String, Object?> json) => Profile(
   },
   setupDone: json['setupDone']! as bool,
   xp: json['xp']! as int,
+  streak: switch (json['streak']) {
+    final Map<String, Object?> streak => Streak(
+      current: streak['current']! as int,
+      longest: streak['longest']! as int,
+      isTodayCounted: streak['todayCounted']! as bool,
+    ),
+    _ => const Streak(),
+  },
 );
 
 Map<String, Object?> profileUpdateToJson(ProfileUpdate update) => {

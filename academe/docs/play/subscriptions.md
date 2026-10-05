@@ -65,7 +65,7 @@ billing workstream; this is the acceptance list.
 - [ ] No fake urgency (countdowns, "only today") and no pre-selected annual
       plan that hides the monthly one.
 - [ ] Deleting the ACADEMe account does not cancel the Play subscription: say
-      so on the delete screen and on `academe.cc/delete-account` (the web page
+      so on the delete screen and on `api.academe.cc/delete-account` (the web page
       already does).
 
 ## Paste-ready copy

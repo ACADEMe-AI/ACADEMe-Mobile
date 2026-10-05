@@ -18,7 +18,9 @@ func NewPostgresStore(pool *pgxpool.Pool) *PostgresStore {
 
 const selectProfile = `
 	SELECT p.language, p.birth_year, p.class_level, p.board, p.subjects, p.setup_done_at IS NOT NULL,
-	       COALESCE((SELECT sum(amount) FROM xp_events x WHERE x.account_id = $1), 0)
+	       COALESCE((SELECT sum(amount) FROM xp_events x WHERE x.account_id = $1), 0),
+	       ARRAY(SELECT (created_at AT TIME ZONE 'Asia/Kolkata')::date FROM xp_events WHERE account_id = $1
+	             UNION SELECT day FROM study_days WHERE account_id = $1 ORDER BY 1)
 	FROM (SELECT $1::uuid AS account_id) a
 	LEFT JOIN profiles p ON p.account_id = a.account_id`
 
@@ -29,7 +31,7 @@ type queryer interface {
 func readProfile(ctx context.Context, q queryer, accountID string) (Profile, error) {
 	var p Profile
 	var done *bool
-	err := q.QueryRow(ctx, selectProfile, accountID).Scan(&p.Language, &p.BirthYear, &p.Class, &p.Board, &p.Subjects, &done, &p.XP)
+	err := q.QueryRow(ctx, selectProfile, accountID).Scan(&p.Language, &p.BirthYear, &p.Class, &p.Board, &p.Subjects, &done, &p.XP, &p.days)
 	if err != nil {
 		return Profile{}, fmt.Errorf("select profile: %w", err)
 	}

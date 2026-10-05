@@ -30,6 +30,8 @@ type Profile struct {
 	Subjects  []string `json:"subjects"`
 	SetupDone bool     `json:"setupDone"`
 	XP        int      `json:"xp"`
+	Streak    Streak   `json:"streak"`
+	days      []time.Time
 }
 
 func (p Profile) complete() bool {
@@ -72,6 +74,7 @@ func (s *Service) Profile(ctx context.Context, accountID string) (Profile, error
 	if err != nil {
 		return Profile{}, fmt.Errorf("get profile: %w", err)
 	}
+	p.Streak = streakOn(p.days, s.now())
 	return p, nil
 }
 
@@ -104,6 +107,7 @@ func (s *Service) Update(ctx context.Context, accountID string, u Update) (Profi
 			return Profile{}, fmt.Errorf("award subjects xp: %w", err)
 		}
 	}
+	p.Streak = streakOn(p.days, s.now())
 	return p, nil
 }
 

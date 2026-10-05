@@ -1,9 +1,9 @@
 # Play Console: Data safety answers
 
 Play Console → App content → Data safety. Answers checked against the code on
-2026-09-25 (`server/internal/postgres/migrations/0001`–`0019`, `lib/data/`,
-`AndroidManifest.xml`, `pubspec.yaml`). Re-check whenever a plugin, SDK or
-table is added.
+2026-10-05 (`server/internal/postgres/migrations/0001`–`0025`, `lib/data/`,
+`AndroidManifest.xml`, `pubspec.yaml`, the merged release manifest and the
+release dependency tree). Re-check whenever a plugin, SDK or table is added.
 
 Source for the form and its definitions:
 [Provide information for Google Play's Data safety section](https://support.google.com/googleplay/android-developer/answer/10787469).
@@ -32,7 +32,7 @@ RevenueCat's own guidance:
 | Is all of the user data collected by your app encrypted in transit? | **Yes**. Release builds refuse plain `http` (debug-only network config), the API is `https://api.academe.cc` behind Railway's TLS edge, and Sarvam, Resend, RevenueCat and Google are all called over HTTPS |
 | Which of the following methods of account creation does your app support? | **Username and password** (email + password) and **OAuth** (Sign in with Google) |
 | Do you provide a way for users to request that their data is deleted? | **Yes** |
-| Delete account URL | `https://academe.cc/delete-account` |
+| Delete account URL | `https://api.academe.cc/delete-account` |
 | Committed to follow the Play Families Policy (badge) | **Yes**, because the target audience includes under-13s (see `target-audience.md`) |
 | Independent security review (MASA) | **No** (optional; costs money; revisit later) |
 | UPI | **No** |
@@ -84,13 +84,18 @@ Everything not listed as "Yes" below is **not collected**.
 - **Name**: first and last name (`accounts.first_name`, `last_name`), from
   sign-up or Google. The first name goes to Sarvam inside Pebby's system prompt
   (service provider, so not "shared").
-- **Email address**: `accounts.email`; used for log-in, password reset codes and
-  deletion confirmations sent through Resend. No marketing email, so
+- **Email address**: `accounts.email`, and the Google account's email
+  (`accounts.google_email`) when Google is linked; used for log-in, the welcome
+  email, password reset emails (a 6-digit code and a one-time reset link that
+  works for 15 minutes; only hashes are stored, in `password_reset_codes`) and
+  deletion confirmations, all sent through Resend. No marketing email, so
   "Developer communications" is **not** ticked. Tick it if we ever send news.
 - **User IDs**: our account UUID (also sent to RevenueCat as `app_user_id`) and
   the Google account subject ID (`accounts.google_subject`).
-- **Other info**: birth year, class, board and app language from the setup
-  sheet (`profiles`). The sheet has a "Later" button, so **optional**.
+- **Other info**: birth year, class, board, app language and the subjects the
+  student picks, including the Class 11–12 stream, which is saved as its
+  subjects (`profiles.subjects`), from the setup sheet and the subjects sheet
+  (`profiles`). The sheet has a "Later" button, so **optional**.
 - **Purchase history**: `subscriptions` (product, base plan, state, expiry,
   auto-renew, purchase token, raw store payload) and RevenueCat's copy. The
   "Analytics" purpose follows RevenueCat's guidance because its dashboard
@@ -104,9 +109,13 @@ Everything not listed as "Yes" below is **not collected**.
   on its side and we have not confirmed how long. If Sarvam confirms files are
   deleted when the job finishes, this can become **Yes**.
 - **App interactions**: study progress (`deck_completions`, `deck_positions`,
-  `kept_cards`, `chapter_results`), quiz answers, XP (`xp_events`), thumbs
-  up/down and reports on answers (`chat_messages.rating`, `chat_reports`), and
-  daily feature counts for the free limits (`usage_counts`).
+  `kept_cards`, `chapter_results`), quiz answers, XP (`xp_events`), the days a
+  student studied (`study_days`, which with the XP dates gives the current and
+  longest streak), thumbs up/down and reports on Pebby's answers
+  (`chat_messages.rating`, `chat_reports`), reports on Check my answer marks
+  and on lessons made from notes (`content_reports`: kind, item, reason,
+  optional note), and daily feature counts for the free limits
+  (`usage_counts`). The daily goal and reminder times stay on the phone.
 - **Other user-generated content**: folders, notes, to-dos and dates
   (`folders`, `folder_items`, `folder_todos`), text read from scans and marks
   (`scans`), lessons made from notes (`user_decks`), deletion reason.
@@ -115,18 +124,17 @@ Everything not listed as "Yes" below is **not collected**.
 
 - **Device or other IDs**: the app reads no Android ID, IMEI, MAC or advertising
   ID. `AndroidManifest.xml` strips `com.google.android.gms.permission.AD_ID`.
-  RevenueCat never calls `collectDeviceIdentifiers()` in our code. **Open
-  point:** `lib/data/services/purchases_service.dart` configures RevenueCat
-  without an `appUserID` and calls `logIn` afterwards, so the SDK first makes a
-  random anonymous ID (`$RCAnonymousID`). RevenueCat says Play hasn't treated
-  that as a device ID, but setting `appUserID` to the account UUID in
-  `PurchasesConfiguration` removes the question. If that isn't done and Play
-  flags it, declare Device or other IDs (App functionality).
+  RevenueCat never calls `collectDeviceIdentifiers()` in our code, and the
+  release build excludes `com.google.android.gms:play-services-ads-identifier`
+  (the library RevenueCat would use to read the advertising ID), so the
+  advertising ID question is **No**. `purchases_service.dart` configures
+  RevenueCat only after sign-in, with `appUserID` set to the account UUID, and
+  never calls `Purchases.logOut()`, so the SDK never makes an anonymous ID.
 - **Crash logs / Diagnostics**: no crash or analytics SDK (no Firebase, no
   Sentry). If one is added, declare it.
 - **In-app search history**: ASKMe history search filters on the phone only.
-- **Files and docs**: the attach sheet shows a PDF tile but PDF upload is not
-  built. Declare Files and docs when it is.
+- **Files and docs**: PDF upload is not built, and the attach sheet offers
+  only Camera and Photos. Declare Files and docs when it is.
 - **Approximate location**: we never derive location from IP. The web deletion
   form stores the IP only to rate-limit the form, and it is not app data.
 - **Audio**: no microphone permission, no voice features yet.

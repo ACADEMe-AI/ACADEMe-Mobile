@@ -1,8 +1,9 @@
 import 'package:flutter/foundation.dart';
 
 import '../../../data/repositories/reminder_repository.dart';
+import '../../../utils/safe_notifier.dart';
 
-class NotificationPrimerViewModel extends ChangeNotifier {
+class NotificationPrimerViewModel extends ChangeNotifier with SafeNotifier {
   NotificationPrimerViewModel({required ReminderRepository reminders})
     : _reminders = reminders {
     _reminders.addListener(notifyListeners);

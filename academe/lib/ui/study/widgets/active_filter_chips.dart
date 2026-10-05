@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../utils/plural.dart';
 import '../../core/themes/app_theme.dart';
 import '../view_models/chapter_filters.dart';
 
@@ -43,7 +44,7 @@ class ActiveFilterChips extends StatelessWidget {
           ),
           const SizedBox(width: 8),
           Text(
-            '$count chapter${count == 1 ? '' : 's'}',
+            pluralize(count, 'chapter'),
             style: AppTextStyles.caption.copyWith(
               color: palette.textMuted,
               fontWeight: FontWeight.w600,

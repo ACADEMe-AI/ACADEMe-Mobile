@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../../domain/models/level.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/keycap.dart';
 import '../../core/ui/screen_scale.dart';
 import '../view_models/me_view_model.dart';
+import 'me_stats.dart';
 import 'settings_list.dart';
 
 class MeScreen extends StatelessWidget {
@@ -50,7 +50,11 @@ class MeScreen extends StatelessWidget {
         children: [
           _ProfileCard(viewModel: viewModel),
           const SizedBox(height: 12),
-          _Stats(xp: viewModel.profile.xp, level: viewModel.level),
+          MeStats(
+            xp: viewModel.profile.xp,
+            level: viewModel.level,
+            streak: viewModel.profile.streak,
+          ),
           if (pro case final card?) ...[const SizedBox(height: 16), card],
           SettingsGroup(
             title: 'Learning',
@@ -221,100 +225,6 @@ class _Chip extends StatelessWidget {
             color: context.palette.text,
             fontWeight: FontWeight.w600,
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class _Stats extends StatelessWidget {
-  const _Stats({required this.xp, required this.level});
-
-  final int xp;
-  final Level level;
-
-  static const streak = 0;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: _Stat(
-            leading: Icon(
-              Icons.local_fire_department_rounded,
-              size: 22,
-              color: streak > 0 ? AppColors.streak : context.palette.border,
-            ),
-            value: '$streak',
-            label: 'day streak',
-          ),
-        ),
-        const SizedBox(width: 8),
-        Expanded(
-          child: _Stat(
-            value: 'Lv ${level.number}',
-            label: '${level.toNext(xp)} XP to Lv ${level.number + 1}',
-          ),
-        ),
-        const SizedBox(width: 8),
-        Expanded(
-          child: _Stat(
-            leading: const Icon(
-              Icons.bolt_rounded,
-              size: 22,
-              color: AppColors.selected,
-            ),
-            value: '$xp',
-            label: 'XP',
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class _Stat extends StatelessWidget {
-  const _Stat({required this.value, required this.label, this.leading});
-
-  final String value;
-  final String label;
-  final Widget? leading;
-
-  @override
-  Widget build(BuildContext context) {
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: context.palette.surfaceRaised,
-        borderRadius: BorderRadius.circular(AppRadius.md),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ?leading,
-                Text(
-                  value,
-                  style: AppTextStyles.display.copyWith(
-                    fontSize: 22,
-                    color: context.palette.text,
-                  ),
-                ),
-              ],
-            ),
-            Text(
-              label,
-              textAlign: TextAlign.center,
-              maxLines: 2,
-              style: AppTextStyles.caption.copyWith(
-                color: context.palette.textMuted,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ],
         ),
       ),
     );

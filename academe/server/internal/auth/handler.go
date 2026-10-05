@@ -86,6 +86,7 @@ func (h handler) logIn(w http.ResponseWriter, r *http.Request) error {
 	if err := admit(w,
 		gate{h.service.entry.logInIP, ip},
 		gate{h.service.entry.logInEmailIP, logInKey(in.Email, ip)},
+		gate{h.service.entry.logInEmail, emailKey(in.Email)},
 	); err != nil {
 		return err
 	}
@@ -282,6 +283,9 @@ func (h handler) verifyReset(w http.ResponseWriter, r *http.Request) error {
 func (h handler) completeReset(w http.ResponseWriter, r *http.Request) error {
 	var in completeRequest
 	if err := httpx.DecodeJSON(w, r, &in); err != nil {
+		return err
+	}
+	if err := admit(w, gate{h.service.limits.verifyIP, clientIP(r)}); err != nil {
 		return err
 	}
 	a, tokens, err := h.service.CompletePasswordReset(r.Context(), in.ResetToken, in.Password)

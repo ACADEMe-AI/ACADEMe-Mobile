@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 
+import '../../../data/repositories/photo_repository.dart';
 import '../../core/themes/app_theme.dart';
 
 class AttachSheet extends StatelessWidget {
   const AttachSheet({super.key, required this.onPick});
 
-  final ValueChanged<String> onPick;
+  final ValueChanged<PhotoSource> onPick;
 
   static Future<void> show(
     BuildContext context, {
-    required ValueChanged<String> onPick,
+    required ValueChanged<PhotoSource> onPick,
   }) => showModalBottomSheet<void>(
     context: context,
     backgroundColor: context.palette.surface,
@@ -18,15 +19,21 @@ class AttachSheet extends StatelessWidget {
     builder: (_) => AttachSheet(onPick: onPick),
   );
 
-  static const camera = 'Camera';
-  static const photos = 'Photos';
-
-  static final _options = <(IconData, String, Color Function(AppPalette))>[
-    (Icons.photo_camera_rounded, camera, (p) => p.tintAmber),
-    (Icons.photo_library_rounded, photos, (p) => p.tintLavender),
-    (Icons.picture_as_pdf_rounded, 'PDF', (p) => p.tintPink),
-    (Icons.menu_book_rounded, 'From Study', (p) => p.tintMint),
-  ];
+  static final _options =
+      <(IconData, String, PhotoSource, Color Function(AppPalette))>[
+        (
+          Icons.photo_camera_rounded,
+          'Camera',
+          PhotoSource.camera,
+          (p) => p.tintAmber,
+        ),
+        (
+          Icons.photo_library_rounded,
+          'Photos',
+          PhotoSource.gallery,
+          (p) => p.tintLavender,
+        ),
+      ];
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +54,7 @@ class AttachSheet extends StatelessWidget {
             const SizedBox(height: 16),
             Row(
               children: [
-                for (final (icon, label, tint) in _options)
+                for (final (icon, label, source, tint) in _options)
                   Expanded(
                     child: _Option(
                       icon: icon,
@@ -55,7 +62,7 @@ class AttachSheet extends StatelessWidget {
                       tint: tint(context.palette),
                       onTap: () {
                         Navigator.of(context).pop();
-                        onPick(label);
+                        onPick(source);
                       },
                     ),
                   ),

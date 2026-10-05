@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../../data/repositories/photo_repository.dart';
 import '../../../domain/models/scan.dart';
+import '../../../utils/plural.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/app_button.dart';
 import '../../core/ui/screen_scale.dart';
@@ -80,9 +81,7 @@ class ScanPagesView extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         AppButton(
-          label: pages.length == 1
-              ? 'Read 1 page'
-              : 'Read ${pages.length} pages',
+          label: 'Read ${pluralize(pages.length, 'page')}',
           isPrimary: true,
           isEnabled: pages.isNotEmpty,
           onTap: onRead,
@@ -180,8 +179,7 @@ class _ScanNotesViewState extends State<ScanNotesView> {
         Text(
           switch (widget.pages) {
             0 => 'Your notes',
-            1 => 'Pebby read 1 page',
-            final n => 'Pebby read $n pages',
+            final n => 'Pebby read ${pluralize(n, 'page')}',
           },
           style: AppTextStyles.display.copyWith(
             fontSize: 24,

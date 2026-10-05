@@ -4,10 +4,11 @@ import '../../../data/repositories/folder_repository.dart';
 import '../../../domain/models/folder.dart';
 import '../../../utils/command.dart';
 import '../../../utils/result.dart';
+import '../../../utils/safe_notifier.dart';
 
 typedef NewFolder = ({String name, DateTime? dueOn});
 
-class FoldersViewModel extends ChangeNotifier {
+class FoldersViewModel extends ChangeNotifier with SafeNotifier {
   FoldersViewModel({required FolderRepository folderRepository})
     : _repository = folderRepository {
     load = Command0(_load)..addListener(notifyListeners);

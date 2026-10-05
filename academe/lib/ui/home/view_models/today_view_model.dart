@@ -4,8 +4,9 @@ import '../../../data/repositories/folder_repository.dart';
 import '../../../domain/models/folder.dart';
 import '../../../utils/command.dart';
 import '../../../utils/result.dart';
+import '../../../utils/safe_notifier.dart';
 
-class TodayViewModel extends ChangeNotifier {
+class TodayViewModel extends ChangeNotifier with SafeNotifier {
   TodayViewModel({required FolderRepository folderRepository})
     : _repository = folderRepository {
     load = Command0(_load)..addListener(notifyListeners);

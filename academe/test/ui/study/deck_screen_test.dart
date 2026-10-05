@@ -1,4 +1,6 @@
 import 'package:academe/domain/models/board.dart';
+import 'package:academe/domain/models/chat.dart';
+import 'package:academe/domain/models/deck.dart';
 import 'package:academe/domain/models/folder.dart';
 import 'package:academe/domain/models/profile.dart';
 import 'package:academe/ui/core/themes/app_theme.dart';
@@ -88,6 +90,42 @@ void main() {
     await tester.tap(find.text('New folder'));
     expect(opened.last, 'new');
     expectOnlyAppFonts(tester);
+  });
+
+  testWidgets('only a lesson made from notes can be reported', (tester) async {
+    const notes = Deck(
+      id: 'u-notes',
+      chapterNumber: 0,
+      chapterTitle: '',
+      title: 'My notes',
+      cards: [
+        StartCard(goals: ['Revise my notes'], minutes: 2),
+      ],
+    );
+    study.decksById[notes.id] = notes;
+    DeckScreen deckOf(String id) => DeckScreen(
+      key: ValueKey(id),
+      viewModel: DeckViewModel.lesson(
+        studyRepository: study,
+        profileRepository: profiles,
+        folderRepository: folders,
+        deckId: id,
+      ),
+      onAsk: (_) {},
+    );
+
+    await pump(tester, deckOf(FakeStudyRepository.reflection.id));
+    expect(find.byTooltip('Report'), findsNothing);
+
+    await pump(tester, deckOf(notes.id));
+    await tester.tap(find.byTooltip('Report'));
+    await tester.pumpAndSettle();
+    expect(find.text('Report this lesson'), findsOneWidget);
+    await tester.tap(find.text(ReportReason.harmful.label));
+    await tester.pumpAndSettle();
+
+    expect(study.reports, [('u-notes', ReportReason.harmful)]);
+    expect(find.text('Thanks. We’ll review this lesson.'), findsOneWidget);
   });
 
   testWidgets('a lesson: start, keep, reveal steps, a wrong answer, done', (

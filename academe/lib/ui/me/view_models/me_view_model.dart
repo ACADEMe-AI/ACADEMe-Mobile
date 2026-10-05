@@ -15,13 +15,14 @@ import '../../../domain/models/reminder.dart';
 import '../../../domain/models/study_preferences.dart';
 import '../../../utils/command.dart';
 import '../../../utils/result.dart';
+import '../../../utils/safe_notifier.dart';
 import '../../subjects/view_models/subjects_view_model.dart';
 
 typedef Syllabus = ({int classLevel, Board board});
 typedef FullName = ({String first, String last});
 typedef PasswordChange = ({String? current, String next});
 
-class MeViewModel extends ChangeNotifier {
+class MeViewModel extends ChangeNotifier with SafeNotifier {
   MeViewModel({
     required AuthRepository authRepository,
     required ProfileRepository profileRepository,

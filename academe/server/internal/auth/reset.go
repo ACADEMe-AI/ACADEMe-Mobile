@@ -152,8 +152,16 @@ func (s *Service) setPassword(ctx context.Context, resetToken, password string) 
 	if err := validatePassword(password); err != nil {
 		return "", err
 	}
+	tokenHash, verifiedAfter := hashToken(resetToken), time.Now().Add(-resetTokenTTL)
+	if _, err := s.store.ResetAccount(ctx, tokenHash, verifiedAfter); err != nil {
+		return "", fmt.Errorf("complete reset: %w", err)
+	}
+	hash, err := s.hash(ctx, password)
+	if err != nil {
+		return "", fmt.Errorf("complete reset: %w", err)
+	}
 	now := revocationTime()
-	accountID, err := s.store.CompleteReset(ctx, hashToken(resetToken), now.Add(-resetTokenTTL), hashPassword(password), now)
+	accountID, err := s.store.CompleteReset(ctx, tokenHash, verifiedAfter, hash, now)
 	if err != nil {
 		return "", fmt.Errorf("complete reset: %w", err)
 	}

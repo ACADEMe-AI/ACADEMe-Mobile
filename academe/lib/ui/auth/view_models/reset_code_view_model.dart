@@ -6,9 +6,10 @@ import '../../../data/repositories/auth_repository.dart';
 import '../../../domain/models/auth_failure.dart';
 import '../../../utils/command.dart';
 import '../../../utils/result.dart';
+import '../../../utils/safe_notifier.dart';
 import 'auth_failure_of.dart';
 
-class ResetCodeViewModel extends ChangeNotifier {
+class ResetCodeViewModel extends ChangeNotifier with SafeNotifier {
   ResetCodeViewModel({
     required AuthRepository authRepository,
     required this.email,

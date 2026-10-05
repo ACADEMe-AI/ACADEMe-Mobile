@@ -63,7 +63,7 @@ func TestPages(t *testing.T) {
 		{"/terms", "Terms of use"},
 		{"/delete-account", "Request deletion"},
 		{"/support", "Grievance Officer"},
-		{"/open", "intent://open#Intent;scheme=academe;package=com.academe.flutter"},
+		{"/open", "https://play.google.com/store/apps/details?id=com.academe.flutter"},
 	}
 	for _, tc := range tests {
 		t.Run(tc.path, func(t *testing.T) {

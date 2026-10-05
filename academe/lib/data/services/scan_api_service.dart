@@ -1,3 +1,4 @@
+import '../../domain/models/chat.dart';
 import '../../domain/models/scan.dart';
 import '../../utils/result.dart';
 import '../model/scan_models.dart';
@@ -43,6 +44,18 @@ class ScanApiService {
     '/scans/$id/thread',
     accessToken: accessToken,
     body: {'threadId': threadId},
+    parse: (_) {},
+  );
+
+  Future<Result<void>> report(
+    String accessToken,
+    String id,
+    ReportReason reason,
+  ) => _api.send(
+    'POST',
+    '/reports',
+    accessToken: accessToken,
+    body: {'kind': 'check', 'id': id, 'reason': reason.code},
     parse: (_) {},
   );
 

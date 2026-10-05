@@ -80,6 +80,21 @@ func (s *PostgresStore) MarkResetCodeUsed(ctx context.Context, codeID string, to
 	return nil
 }
 
+func (s *PostgresStore) ResetAccount(ctx context.Context, tokenHash []byte, verifiedAfter time.Time) (string, error) {
+	var accountID string
+	err := s.pool.QueryRow(ctx, `
+		SELECT account_id::text FROM password_reset_codes
+		WHERE reset_token_hash = $1 AND completed_at IS NULL AND used_at > $2`, tokenHash, verifiedAfter,
+	).Scan(&accountID)
+	if errors.Is(err, pgx.ErrNoRows) {
+		return "", ErrResetTokenExpired
+	}
+	if err != nil {
+		return "", fmt.Errorf("select reset token: %w", err)
+	}
+	return accountID, nil
+}
+
 func (s *PostgresStore) CompleteReset(ctx context.Context, tokenHash []byte, verifiedAfter time.Time, passwordHash string, at time.Time) (string, error) {
 	tx, err := s.pool.Begin(ctx)
 	if err != nil {

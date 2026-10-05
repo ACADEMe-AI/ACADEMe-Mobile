@@ -13,7 +13,7 @@ Reply to this email from this address to confirm. We'll delete the account and i
 Didn't ask for this? You can ignore this email. Nothing will be deleted.
 
 --
-You're getting this email because someone asked on academe.cc to delete the ACADEMe account that uses this address.
+You're getting this email because someone asked on api.academe.cc to delete the ACADEMe account that uses this address.
 Questions? Write to support@academe.cc
 
-ACADEMe · https://academe.cc
+ACADEMe · https://api.academe.cc

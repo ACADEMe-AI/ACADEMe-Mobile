@@ -33,7 +33,6 @@ void main() {
               syllabus: 'Class 10 · CBSE',
               onBack: () => wentBack++,
               onHistory: () {},
-              onMakeFlashcards: () {},
             ),
           ),
         ),
@@ -54,7 +53,8 @@ void main() {
     await tester.pump();
     expect(chats.sent.single.text, 'Explain reflection of light simply');
     expect(find.byType(PebbyPeek), findsWidgets);
-    expect(find.text('Make flashcards'), findsOneWidget);
+    expect(find.text('Make flashcards'), findsNothing);
+    expect(find.text('Quiz me'), findsWidgets);
     expect(find.byTooltip('Helpful'), findsOneWidget);
     expect(find.byTooltip('Try again'), findsOneWidget);
     expectOnlyAppFonts(tester);

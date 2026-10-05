@@ -36,9 +36,7 @@ class FolderHeader extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    due == null
-                        ? 'No date'
-                        : '${shortDay(due)} · ${dueLabel(due).toLowerCase()}',
+                    due == null ? 'No date' : dueLine(due),
                     style: AppTextStyles.caption.copyWith(
                       color: palette.textMuted,
                     ),

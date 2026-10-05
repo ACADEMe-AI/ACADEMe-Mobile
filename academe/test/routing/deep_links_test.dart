@@ -35,11 +35,15 @@ void main() {
       'https://academe.cc/reset-password?c=abc': 'abc',
       'https://api.academe.cc/reset-password?c=abc': 'abc',
       '/reset-password?c=abc': 'abc',
-      'academe://reset?c=abc': 'abc',
-      '/?c=abc': 'abc',
+      'academe://reset?c=abc': null,
+      'academe://reset/reset-password?c=abc': null,
+      'http://api.academe.cc/reset-password?c=abc': null,
+      'other://api.academe.cc/reset-password?c=abc': null,
+      '/?c=abc': null,
       'https://academe.cc/reset-password': null,
       'https://academe.cc/reset-password?c=': null,
       'https://evil.example/reset-password?c=abc': null,
+      'https://api.academe.cc.evil.example/reset-password?c=abc': null,
       'academe://open': null,
       'https://academe.cc/open': null,
       '/': null,
@@ -57,7 +61,7 @@ void main() {
         filter.didPushRouteInformation(RouteInformation(uri: Uri.parse(link)));
 
     expect(await isSwallowed('https://academe.cc/reset-password?c=abc'), false);
-    expect(await isSwallowed('academe://reset?c=abc'), false);
+    expect(await isSwallowed('academe://reset?c=abc'), true);
     expect(await isSwallowed('academe://open'), true);
     expect(await isSwallowed('https://academe.cc/open'), true);
   });
@@ -129,7 +133,7 @@ void main() {
     });
 
     testWidgets('an expired link offers to ask for a new one', (tester) async {
-      await pumpApp(tester, 'academe://reset?c=stale-link');
+      await pumpApp(tester, '/reset-password?c=stale-link');
 
       await save(tester);
       await tester.pump(const Duration(seconds: 1));
@@ -142,24 +146,22 @@ void main() {
       expect(find.byType(ForgotPasswordScreen), findsOneWidget);
     });
 
-    for (final route in [
-      '/reset-password?c=${FakeAuthRepository.resetLink}',
-      '/?c=${FakeAuthRepository.resetLink}',
-    ]) {
-      testWidgets('a cold start from $route keeps New password on top', (
+    testWidgets('a cold start from a reset link keeps New password on top', (
+      tester,
+    ) async {
+      await pumpApp(
         tester,
-      ) async {
-        await pumpApp(tester, route);
-        await tester.pump(const Duration(seconds: 5));
-        expect(find.byType(NewPasswordScreen), findsOneWidget);
+        '/reset-password?c=${FakeAuthRepository.resetLink}',
+      );
+      await tester.pump(const Duration(seconds: 5));
+      expect(find.byType(NewPasswordScreen), findsOneWidget);
 
-        await tester.binding.handlePopRoute();
-        await tester.pump();
-        await tester.pump(const Duration(seconds: 5));
-        expect(find.byType(NewPasswordScreen), findsNothing);
-        expect(find.byType(WelcomeScreen), findsOneWidget);
-      });
-    }
+      await tester.binding.handlePopRoute();
+      await tester.pump();
+      await tester.pump(const Duration(seconds: 5));
+      expect(find.byType(NewPasswordScreen), findsNothing);
+      expect(find.byType(WelcomeScreen), findsOneWidget);
+    });
 
     testWidgets('a link opened while the app runs lands on New password', (
       tester,

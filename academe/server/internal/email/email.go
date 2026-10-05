@@ -13,7 +13,8 @@ import (
 )
 
 const (
-	SiteURL        = "https://api.academe.cc"
+	siteHost       = "api.academe.cc"
+	SiteURL        = "https://" + siteHost
 	OpenURL        = SiteURL + "/open"
 	SupportAddress = "support@academe.cc"
 	supportURL     = "mailto:" + SupportAddress + "?subject=Delete%20my%20ACADEMe%20account"
@@ -46,6 +47,8 @@ type button struct {
 }
 
 type page struct {
+	Site      string
+	Host      string
 	Subject   string
 	Preheader string
 	Reason    string
@@ -100,6 +103,7 @@ func parseTemplates(names ...string) map[string]pair {
 
 func render(name string, p page) (message, error) {
 	t := templates[name]
+	p.Site, p.Host = SiteURL, siteHost
 	var h, txt bytes.Buffer
 	if err := t.html.ExecuteTemplate(&h, "layout", p); err != nil {
 		return message{}, fmt.Errorf("render %s html: %w", name, err)
@@ -142,7 +146,7 @@ func (w Welcome) message() (message, error) {
 		greeting += ", " + name
 	}
 	return render("welcome", page{
-		Subject:   greeting,
+		Subject:   "Welcome to ACADEMe",
 		Preheader: "Your first lesson is ready. Here's how to get started.",
 		Reason:    "You're getting this email because you created an ACADEMe account with this address.",
 		Pebby:     "pebby-wave.png",
@@ -155,7 +159,7 @@ func deletionMessage() (message, error) {
 	return render("deletion", page{
 		Subject:   "Your ACADEMe account deletion request",
 		Preheader: "Reply from this address to confirm, or delete the account in the app.",
-		Reason:    "You're getting this email because someone asked on academe.cc to delete the ACADEMe account that uses this address.",
+		Reason:    "You're getting this email because someone asked on " + siteHost + " to delete the ACADEMe account that uses this address.",
 		Pebby:     "pebby-shy.png",
 		Button:    button{"Contact support", supportURL},
 	})

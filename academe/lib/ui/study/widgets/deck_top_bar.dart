@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/themes/app_theme.dart';
+import '../../core/ui/report_button.dart';
 
 class DeckTopBar extends StatelessWidget {
   const DeckTopBar({
@@ -9,12 +10,14 @@ class DeckTopBar extends StatelessWidget {
     required this.total,
     required this.current,
     required this.onClose,
+    this.onReport,
   });
 
   final String title;
   final int total;
   final int current;
   final VoidCallback onClose;
+  final ReportAnswer? onReport;
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +45,13 @@ class DeckTopBar extends StatelessWidget {
                   ),
                 ),
               ),
+              if (onReport case final report?)
+                ReportButton(
+                  title: 'Report this lesson',
+                  thanks: 'Thanks. We’ll review this lesson.',
+                  onReport: report,
+                  iconSize: 20,
+                ),
               Text(
                 '${current + 1} / $total',
                 style: AppTextStyles.caption.copyWith(color: palette.textMuted),

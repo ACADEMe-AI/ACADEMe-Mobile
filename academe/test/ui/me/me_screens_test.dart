@@ -2,6 +2,7 @@ import 'package:academe/data/repositories/appearance_repository.dart';
 import 'package:academe/domain/models/app_language.dart';
 import 'package:academe/domain/models/board.dart';
 import 'package:academe/domain/models/profile.dart';
+import 'package:academe/domain/models/streak.dart';
 import 'package:academe/ui/core/themes/app_theme.dart';
 import 'package:academe/ui/core/ui/number_wheel.dart';
 import 'package:academe/ui/core/ui/pebby.dart';
@@ -39,6 +40,7 @@ void main() {
           classLevel: 10,
           board: Board.cbse,
           xp: 100,
+          streak: Streak(current: 4, longest: 6, isTodayCounted: true),
         ),
       ),
       preferencesStore: FakePreferencesStore(),
@@ -89,6 +91,8 @@ void main() {
     expect(find.text('Lv 2'), findsOneWidget);
     expect(find.text('150 XP to Lv 3'), findsOneWidget);
     expect(find.byIcon(Icons.local_fire_department_rounded), findsOneWidget);
+    expect(find.text('4'), findsOneWidget);
+    expect(find.text('day streak'), findsOneWidget);
     await tester.scrollUntilVisible(find.text('Log out'), 200);
     await tester.tap(find.text('Log out'));
     await tester.pump(AppKeycap.pressDuration);

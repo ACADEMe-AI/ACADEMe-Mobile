@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../domain/models/deck.dart';
+import '../../../utils/plural.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/app_button.dart';
 import '../../core/ui/screen_scale.dart';
@@ -68,7 +69,7 @@ class ChapterScreen extends StatelessWidget {
                           final r? =>
                             'Last time ${r.correct}/${r.total} · try again',
                           null =>
-                            '${chapter.quizzes} questions from every lesson',
+                            '${pluralize(chapter.quizzes, 'question')} from every lesson',
                         },
                         onTap: () => actions.openChapterTest(chapter.id),
                       ),
@@ -120,7 +121,7 @@ class _ChapterHeader extends StatelessWidget {
         const SizedBox(height: 4),
         Text(
           [
-            '${chapter.lessonsDone} of ${chapter.lessons.length} lessons done',
+            '${chapter.lessonsDone} of ${pluralize(chapter.lessons.length, 'lesson')} done',
             if (chapter.lessonsComing > 0)
               '${chapter.lessonsComing} coming soon',
             if (chapter.isFormativeOnly) 'Not in board exam',
@@ -156,7 +157,8 @@ class _ResumeKey extends StatelessWidget {
           ? 'Resume · card ${lesson.resumeCard + 1} of ${lesson.cards}'
           : 'Next lesson',
       title: lesson.title,
-      subtitle: 'Lesson ${lesson.position} · ${lesson.cards} cards',
+      subtitle:
+          'Lesson ${lesson.position} · ${pluralize(lesson.cards, 'card')}',
       onTap: onTap,
     );
   }
@@ -235,8 +237,8 @@ class _LessonRow extends StatelessWidget {
                     ),
                     Text(
                       lesson.isDone
-                          ? '${lesson.cards} cards · ${lesson.correct}/${lesson.quizzes} right'
-                          : '${lesson.cards} cards · ${lesson.quizzes} quick checks',
+                          ? '${pluralize(lesson.cards, 'card')} · ${lesson.correct}/${lesson.quizzes} right'
+                          : '${pluralize(lesson.cards, 'card')} · ${pluralize(lesson.quizzes, 'quick check')}',
                       style: AppTextStyles.caption.copyWith(
                         color: palette.textMuted,
                       ),

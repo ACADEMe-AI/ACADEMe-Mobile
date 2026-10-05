@@ -1,3 +1,4 @@
+import '../../utils/plural.dart';
 import 'folder.dart';
 import 'study_preferences.dart';
 
@@ -72,7 +73,7 @@ List<Reminder> planReminders({
     if (!evening.isAfter(now) || (soon.isEmpty && !nudges)) continue;
     final left = today.tasks.where((t) => !t.isDone).length;
     final body = d == 0 && left > 0
-        ? '$left thing${left == 1 ? '' : 's'} today, about ${today.minutesLeft} min.'
+        ? '${pluralize(left, 'thing')} today, about ${today.minutesLeft} min.'
         : 'Your plan for today is ready. One lesson is enough.';
     out.add(
       Reminder(

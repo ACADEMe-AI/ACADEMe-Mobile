@@ -40,7 +40,7 @@ paths:
         "429": { $ref: "#/components/responses/Throttled" }
   /auth/log-in:
     post:
-      summary: Log in with email and password. 10 per 15 minutes per email and IP address, 50 an hour per IP address.
+      summary: Log in with email and password. 10 per 15 minutes per email and IP address, 20 an hour per email from any IP address, 50 an hour per IP address.
       requestBody:
         required: true
         content:
@@ -214,14 +214,19 @@ paths:
               schema: { $ref: "#/components/schemas/Session" }
         "400": { $ref: "#/components/responses/Error" }
         "410":
-          description: "`reset_expired` — the token expired or was used. Start again."
+          description: "`reset_expired` — the token expired or was used. Start again. Checked before the new password is hashed."
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
         "422":
           description: "`invalid_password`"
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "429":
+          description: "`too_many_requests` — counts against the 30 tries per IP address an hour shared with /auth/password-reset/verify and /auth/password-reset/link."
+          headers:
+            Retry-After: { description: Seconds until the next try is allowed., schema: { type: integer } }
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
   /auth/password-reset/link:
     post:
-      summary: Trade the link token from a reset email (the c parameter of https://academe.cc/reset-password or academe://reset) for a single-use reset token, then call /auth/password-reset/complete.
+      summary: Trade the link token from a reset email (the c parameter of https://api.academe.cc/reset-password) for a single-use reset token, then call /auth/password-reset/complete.
       description: Single use; the emailed code stops working too. Counts as one of the code's 5 tries and against the 30 tries per IP address an hour.
       requestBody:
         required: true
@@ -351,7 +356,7 @@ paths:
           description: "`invalid_password` — the new password breaks the sign-up rules."
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
         "429":
-          description: "`too_many_requests` — five current-password checks an hour per account."
+          description: "`too_many_requests` — five password changes an hour per account."
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
   /me/google:
     post:
@@ -661,6 +666,31 @@ paths:
         "422":
           description: "`invalid_report`"
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+  /reports:
+    post:
+      summary: Report AI-made content other than chat answers, as wrong, harmful, offensive or other. `check` is the marks of a Check my answer scan (a scan id); `lesson` is a lesson made from notes (a user deck id). Reporting again replaces the earlier report.
+      security: [{ bearer: [] }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [kind, id, reason]
+              properties:
+                kind: { type: string, enum: [check, lesson] }
+                id: { type: string, maxLength: 100 }
+                reason: { type: string, enum: [wrong, harmful, offensive, other] }
+                note: { type: string, maxLength: 500 }
+      responses:
+        "204": { description: Stored. }
+        "404":
+          description: "`not_found`: no such check or lesson in the student's account"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "422":
+          description: "`invalid_report`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
   /study/decks:
     get:
       summary: Swipe decks for the student's class and board, with their progress. Empty until class and board are set.
@@ -743,7 +773,7 @@ paths:
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
   /study/decks/{id}/completion:
     put:
-      summary: Mark a deck finished with its quiz score. The best score is kept.
+      summary: Mark a deck finished with its quiz score. The best score is kept, and today (India time) counts as a streak day.
       security: [{ bearer: [] }]
       parameters:
         - { name: id, in: path, required: true, schema: { type: string } }
@@ -876,7 +906,7 @@ paths:
                   results: { type: array, items: { $ref: "#/components/schemas/ChapterResult" } }
   /study/chapter-results/{id}:
     put:
-      summary: Save a chapter test score. Each question's XP comes from /answers.
+      summary: Save a chapter test score. Each question's XP comes from /answers. Today (India time) counts as a streak day.
       security: [{ bearer: [] }]
       parameters:
         - { name: id, in: path, required: true, schema: { type: string } }
@@ -1113,7 +1143,7 @@ paths:
                   reviewDue: { type: integer }
   /scans:
     post:
-      summary: Read up to 10 photos with Sarvam Document AI. Photos are not kept; only the text is.
+      summary: Read up to 10 photos with Sarvam Document AI. Photos are not kept; only the text is. The daily limit is checked before the upload is read.
       security: [{ bearer: [] }]
       requestBody:
         required: true
@@ -1128,7 +1158,7 @@ paths:
                   type: array
                   minItems: 1
                   maxItems: 10
-                  items: { type: string, format: binary, description: ".jpg, .jpeg, .png or .pdf, 8 MB each" }
+                  items: { type: string, format: binary, description: ".jpg, .jpeg, .png or .pdf, 4 MB each and 24 MB in all" }
       responses:
         "201":
           description: Read.
@@ -1432,7 +1462,7 @@ components:
       description: "`invalid_json`, `body_too_large` or `internal`"
       content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
     Throttled:
-      description: "`too_many_requests` — this IP address (IPv6 grouped by /64), or this email from this IP address, tried too often."
+      description: "`too_many_requests` — this IP address (IPv6 grouped by /64), this email from this IP address, or this email from any IP address tried too often."
       headers:
         Retry-After: { description: Seconds until the next try is allowed., schema: { type: integer } }
       content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
@@ -1652,6 +1682,15 @@ components:
         subjects: { type: [array, "null"], items: { type: string }, description: "picked subject ids in board order; null until the student saves picks" }
         setupDone: { type: boolean }
         xp: { type: integer }
+        streak: { $ref: "#/components/schemas/Streak" }
+    Streak:
+      type: object
+      description: "Study days in India time (Asia/Kolkata). A day counts when the student earns XP or finishes a lesson or chapter test. Until today counts, current is still yesterday's streak."
+      required: [current, longest, todayCounted]
+      properties:
+        current: { type: integer, description: Days in a row up to today, or up to yesterday while today isn't counted yet. }
+        longest: { type: integer }
+        todayCounted: { type: boolean }
     SignUp:
       type: object
       required: [firstName, lastName, email, password]

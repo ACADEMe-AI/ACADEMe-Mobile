@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../domain/models/pro.dart';
 import '../../../routing/routes.dart';
+import '../../../utils/plural.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/app_button.dart';
 import '../../core/ui/pebby.dart';
@@ -45,12 +46,12 @@ class _LimitSheetState extends State<LimitSheet> {
   (String, String) _words(int limit) => switch (widget.feature) {
     ProFeature.askme => (
       'That’s today’s free questions',
-      'Free includes $limit ASKMe questions a day. They come back at '
+      'Free includes ${pluralize(limit, 'ASKMe question')} a day. They come back at '
           'midnight. With Pro, ask as much as you like.',
     ),
     ProFeature.scan => (
       'That’s today’s free scans',
-      'Free includes $limit scans a day. They come back at midnight. '
+      'Free includes ${pluralize(limit, 'scan')} a day. They come back at midnight. '
           'With Pro, scan as much as you like.',
     ),
     ProFeature.check => (

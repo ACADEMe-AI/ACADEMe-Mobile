@@ -23,7 +23,7 @@ the facts and add it to this file.
 |---|---|---|
 | Violence (realistic, fantasy, blood, gore) | **No** | Syllabus lessons only. History chapters mention wars as text, as school textbooks do; no depictions |
 | Fear / horror | **No** | |
-| Sexuality, nudity | **No** | Biology chapters (reproduction) are taught at textbook level as in CBSE/ICSE books. If the questionnaire asks about educational sex education content, answer **Yes, educational** only once such lessons ship; the 5 seeded lessons today are Science Ch 10 (light) and Maths Ch 3 |
+| Sexuality, nudity | **No** | Biology chapters (reproduction) are taught at textbook level as in CBSE/ICSE books. If the questionnaire asks about educational sex education content, answer **Yes, educational** only once such lessons ship; the 8 seeded lessons today (checked 2026-10-05, `server/internal/study/decks`) are all CBSE Class 10: Science Ch 1 Chemical Reactions and Equations (3), Science Ch 9 Light (2), Maths Ch 1 Real Numbers (2) and Maths Ch 3 Linear Equations (1). None covers reproduction. Home now lists every subject's chapters, but chapters without lessons only show "Coming soon" |
 | Language (profanity, crude humour) | **No** | Pebby is instructed to stay on study topics; users can report answers |
 | Controlled substances (drugs, alcohol, tobacco) | **No** | Chemistry facts at textbook level only |
 | Gambling, simulated gambling, loot boxes | **No** | No random rewards; XP only for right answers |
