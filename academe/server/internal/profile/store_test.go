@@ -5,6 +5,7 @@ import (
 	"crypto/rand"
 	"net/url"
 	"os"
+	"slices"
 	"strings"
 	"testing"
 
@@ -75,13 +76,35 @@ func TestPostgresStore(t *testing.T) {
 		t.Fatalf("Apply = %+v, %v, want ta / 8 / ICSE with no birth year", p, err)
 	}
 
+	p, err = store.Apply(ctx, accountID, Update{Subjects: &[]string{"english", "maths"}})
+	if err != nil || !slices.Equal(p.Subjects, []string{"english", "maths"}) {
+		t.Fatalf("Apply(subjects) = %+v, %v, want english and maths", p, err)
+	}
+	p, err = store.Apply(ctx, accountID, Update{BirthYear: ptr(2012)})
+	if err != nil || len(p.Subjects) != 2 {
+		t.Fatalf("Apply(birth year) = %+v, %v, want the subjects kept", p, err)
+	}
+	p, err = store.Apply(ctx, accountID, Update{Subjects: new([]string)})
+	if err != nil || p.Subjects != nil {
+		t.Fatalf("Apply(clear subjects) = %+v, %v, want no subjects", p, err)
+	}
+	for range 2 {
+		p, err = store.AwardXP(ctx, accountID, SubjectsXP, SubjectsReason)
+		if err != nil {
+			t.Fatal(err)
+		}
+	}
+	if p.XP != SubjectsXP {
+		t.Fatalf("XP after AwardXP twice = %d, want %d", p.XP, SubjectsXP)
+	}
+
 	for range 2 {
 		p, err = store.CompleteSetup(ctx, accountID, SetupXP, SetupReason)
 		if err != nil {
 			t.Fatal(err)
 		}
 	}
-	if !p.SetupDone || p.XP != SetupXP {
+	if !p.SetupDone || p.XP != SetupXP+SubjectsXP {
 		t.Errorf("after CompleteSetup twice = %+v, want done with %d XP once", p, SetupXP)
 	}
 

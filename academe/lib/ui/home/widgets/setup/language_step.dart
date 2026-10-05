@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 
 import '../../../../domain/models/app_language.dart';
 import '../../../core/themes/app_theme.dart';
+import '../../../core/ui/page_dots.dart';
 import 'setup_step_frame.dart';
 
 class LanguageStep extends StatefulWidget {
@@ -70,7 +71,7 @@ class _LanguageStepState extends State<LanguageStep> {
             ),
           ),
           const SizedBox(height: 12),
-          _Dots(count: AppLanguage.values.length, active: _index),
+          PageDots(count: AppLanguage.values.length, active: _index),
           const SizedBox(height: 12),
           Text(
             'You can change it any time in Settings.',
@@ -160,33 +161,6 @@ class _LanguageCard extends StatelessWidget {
           child: Transform.scale(scale: 1 - distance * .16, child: child),
         );
       },
-    );
-  }
-}
-
-class _Dots extends StatelessWidget {
-  const _Dots({required this.count, required this.active});
-
-  final int count;
-  final int active;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        for (var i = 0; i < count; i++)
-          AnimatedContainer(
-            duration: const Duration(milliseconds: 200),
-            margin: const EdgeInsets.symmetric(horizontal: 4),
-            width: i == active ? 20 : 8,
-            height: 8,
-            decoration: BoxDecoration(
-              color: i == active ? AppColors.primary : context.palette.border,
-              borderRadius: BorderRadius.circular(AppRadius.full),
-            ),
-          ),
-      ],
     );
   }
 }

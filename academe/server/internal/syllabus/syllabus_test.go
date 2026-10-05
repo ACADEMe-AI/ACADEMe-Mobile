@@ -71,6 +71,9 @@ func TestFixtureLoads(t *testing.T) {
 	if len(plan) != 2 || plan[0].ID() != "cbse-10-science-1" || len(plan[0].Lessons) != 4 || plan[1].ID() != "cbse-10-maths-1" {
 		t.Fatalf("Plan(testdata) = %+v, want science 1 with four lessons then maths 1", plan)
 	}
+	if plan[0].Marks != 0 || plan[1].Marks != 6 {
+		t.Errorf("Plan(testdata) marks = %d and %d, want 0 for science and 6 for maths", plan[0].Marks, plan[1].Marks)
+	}
 	if syllabi[0].Board != "CBSE" {
 		t.Errorf("board = %q, want CBSE", syllabi[0].Board)
 	}

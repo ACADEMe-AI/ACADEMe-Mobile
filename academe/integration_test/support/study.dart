@@ -1,5 +1,5 @@
 import 'package:academe/domain/models/deck.dart';
-import 'package:academe/ui/study/widgets/courses_view.dart';
+import 'package:academe/ui/study/widgets/chapter_row.dart';
 import 'package:academe/ui/study/widgets/deck_screen.dart';
 import 'package:academe/ui/study/widgets/quiz_cards.dart';
 import 'package:flutter/material.dart';

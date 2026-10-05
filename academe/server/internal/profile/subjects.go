@@ -51,3 +51,50 @@ func Subjects(class int, board string) ([]Subject, bool) {
 		return seniorISC, true
 	}
 }
+
+const English = "english"
+
+func pickSubjects(current Profile, u Update) (*[]string, error) {
+	class, board := current.Class, current.Board
+	if u.Class != nil {
+		class = u.Class
+	}
+	if u.Board != nil {
+		board = u.Board
+	}
+	if u.Subjects != nil {
+		if class == nil || board == nil {
+			return nil, &ValidationError{"subjects", "need a class and board first"}
+		}
+		allowed, _ := Subjects(*class, *board)
+		for _, id := range *u.Subjects {
+			if !slices.ContainsFunc(allowed, func(s Subject) bool { return s.ID == id }) {
+				return nil, &ValidationError{"subjects", "include " + id + ", which isn't taught in that class and board"}
+			}
+		}
+		if !slices.Contains(*u.Subjects, English) {
+			return nil, &ValidationError{"subjects", "must include English"}
+		}
+		return keep(allowed, *u.Subjects), nil
+	}
+	if current.Subjects == nil || class == nil || board == nil {
+		return nil, nil
+	}
+	if senior(*class) != senior(*current.Class) {
+		return new([]string), nil
+	}
+	allowed, _ := Subjects(*class, *board)
+	return keep(allowed, current.Subjects), nil
+}
+
+func senior(class int) bool { return class >= 11 }
+
+func keep(allowed []Subject, picked []string) *[]string {
+	out := []string{}
+	for _, s := range allowed {
+		if slices.Contains(picked, s.ID) {
+			out = append(out, s.ID)
+		}
+	}
+	return &out
+}

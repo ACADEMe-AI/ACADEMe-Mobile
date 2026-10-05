@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Website plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@800&family=Archivo:wght@700&family=Noto+Sans:wght@400;600&family=Noto+Sans+Devanagari:wght@600&family=Noto+Sans+Telugu:wght@600&family=Noto+Sans+Tamil:wght@600&family=Noto+Sans+Bengali:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0c0d12;--card:#14161c;--raised:#1c1f28;--text:#f2f3f5;--muted:#8b93a7;--faint:#5c6578;--primary:#564cf1;--amber:#f5a800;--edge:#12141a;--ok:#3ddc97;--bad:#ff5c6a;--lav:#e7e6ff;--mint:#d9f4ea;--sky:#dcebff;--pink:#ffe0ec;--cream:#fff9e8}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.55 "Noto Sans",system-ui,sans-serif}
+a{color:#a9a3ff}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+header.top{padding:48px 0 24px;border-bottom:1px solid #22252f}
+h1,h2,.display{font-family:"Baloo 2",sans-serif;font-weight:800;line-height:1.05;margin:0}
+h1{font-size:44px}
+h2{font-size:30px;margin-bottom:6px}
+h3{font-family:Archivo,sans-serif;font-size:17px;margin:0 0 6px}
+.lead{color:var(--muted);max-width:760px;margin:10px 0 0}
+nav.toc{position:sticky;top:0;z-index:5;background:rgba(12,13,18,.92);backdrop-filter:blur(6px);border-bottom:1px solid #22252f}
+nav.toc .wrap{display:flex;gap:6px;overflow-x:auto;padding:10px 20px}
+nav.toc a{white-space:nowrap;padding:6px 12px;border-radius:999px;background:var(--raised);color:var(--text);text-decoration:none;font-size:13px}
+section{padding:44px 0;border-bottom:1px solid #22252f}
+.tag{display:inline-block;font:700 11px/1 Archivo,sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:5px 9px;border-radius:999px;margin-bottom:10px}
+.t-now{background:#3a1d22;color:#ffb3ba}.t-new{background:#1d2a4a;color:#b9c8ff}.t-keep{background:#15352a;color:#9ff0c9}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:18px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
+@media(max-width:860px){.grid2,.grid3{grid-template-columns:1fr}h1{font-size:34px}}
+.card{background:var(--card);border:1px solid #262a35;border-radius:18px;padding:18px}
+.shot{width:100%;border-radius:12px;display:block;border:1px solid #2a2e3a}
+.old p.copy{font-family:Archivo,sans-serif;color:#cfd3dd}
+.new{background:linear-gradient(160deg,#17162e,#121420 60%);border-color:#2d2a5c}
+.stage{display:flex;gap:18px;align-items:center}
+.stage .words{flex:1}
+.stage .words .display{font-size:32px}
+.stage .words .display em{font-style:normal;color:#8d85ff}
+.stage .words p{color:#c9cdd8;margin:10px 0 0}
+.phone{flex:0 0 190px;border-radius:30px;padding:7px;background:#05060a;border:2px solid #2d3140;box-shadow:0 18px 40px rgba(0,0,0,.5),0 0 0 1px #000}
+.phone img{width:100%;border-radius:23px;display:block}
+.phone .need{aspect-ratio:9/19.5;border-radius:23px;border:2px dashed #4a4f63;display:grid;place-items:center;text-align:center;padding:14px;color:var(--muted);font-size:12px}
+.pebby{width:74px;height:74px;object-fit:contain}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.chip{background:var(--raised);border-radius:999px;padding:5px 11px;font-size:12.5px;color:#d7dae3}
+.btn{display:inline-block;background:var(--primary);color:#fff;font:700 14px Archivo,sans-serif;padding:11px 18px;border-radius:14px;border:2px solid var(--edge);box-shadow:0 4px 0 var(--edge)}
+.btn.ghost{background:transparent;color:var(--text);border-color:#3a3f50;box-shadow:none}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid #262a35;vertical-align:top}
+th{font-family:Archivo,sans-serif;color:var(--muted);font-size:12px;letter-spacing:.04em;text-transform:uppercase}
+.swatch{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:-2px;margin-right:6px;border:1px solid #0006}
+.bad{color:#ff9aa3}.ok{color:#8ff0c5}
+ul.tight{margin:6px 0 0;padding-left:18px}ul.tight li{margin:3px 0}
+.price{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.price .p{background:#0f1118;border:1px solid #2a2e3a;border-radius:14px;padding:14px}
+.price .p.best{border-color:var(--amber)}
+.price b{font-family:"Baloo 2";font-size:24px}
+.note{font-size:13px;color:var(--muted)}
+.step{counter-increment:s;position:relative;padding-left:40px;margin:12px 0}
+.t-wip{background:#3a2f12;color:#ffd77a}
+.track{position:relative;height:46px;margin:22px 0 8px;border-radius:999px;background:var(--raised)}
+.track .fill{position:absolute;top:0;bottom:0;border-radius:999px;opacity:.85}
+.track .mark{position:absolute;top:-4px;bottom:-4px;width:2px;background:#fff6}
+.track .lbl{position:absolute;top:50%;transform:translateY(-50%);font:700 11.5px Archivo,sans-serif;color:#0c0d12;padding-left:8px;white-space:nowrap}
+.beats{display:grid;grid-template-columns:repeat(7,minmax(150px,1fr));gap:12px;overflow-x:auto;padding-bottom:6px;margin-top:14px}
+.beat{background:var(--card);border:1px solid #262a35;border-radius:16px;padding:12px;font-size:13px}
+.beat h3{font-size:14px}
+.beat .t{font:700 11px Archivo;color:var(--muted);letter-spacing:.04em}
+.beat .mini{display:flex;gap:6px;margin:10px 0}
+.beat .mini img,.beat .mini .need{width:62px;aspect-ratio:9/19.5;border-radius:9px;object-fit:cover;border:1px solid #2a2e3a}
+.beat .mini .need{border:1.5px dashed #4a4f63;display:grid;place-items:center;font-size:9.5px;text-align:center;color:var(--muted);padding:3px}
+.beat .mini .land{width:132px;aspect-ratio:19.5/9}
+.beat p{margin:4px 0;color:#c9cdd8}
+.spec{display:grid;gap:12px;margin-top:16px}
+.spec .s{background:var(--card);border:1px solid #262a35;border-radius:16px;padding:16px 18px;display:grid;grid-template-columns:1fr 260px;gap:16px;align-items:center}
+@media(max-width:860px){.spec .s{grid-template-columns:1fr}}
+.spec .meta{font-size:13px;color:var(--muted)}
+.lang{font-family:"Noto Sans","Noto Sans Devanagari","Noto Sans Telugu","Noto Sans Tamil","Noto Sans Bengali",sans-serif;font-weight:600}
+.band{margin-top:16px;padding:16px;border-radius:16px;background:#0f1118;border:1px solid #2a2e3a}
+.step:before{content:counter(s);position:absolute;left:0;top:0;width:28px;height:28px;border-radius:9px;background:var(--primary);display:grid;place-items:center;font:700 13px Archivo}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+<div class="tag t-new">Website plan · 26 Sep 2026 · updated 4 Oct 2026 · built on the website branch app-source-of-truth</div>
+<h1>academe.cc, rebuilt from the app</h1>
+<p class="lead">A section-by-section look at today's website and what each part becomes. The app is the source of truth: same screens, same logo files, same colours and fonts, same backend at <b>api.academe.cc</b>, and only features the app really has. The site keeps its 3D scroll story, loader and dark cinematic style.</p>
+</div></header>
+
+<nav class="toc"><div class="wrap">
+<a href="#issues">What's wrong today</a><a href="#since">New in the app</a><a href="#usp">USPs</a><a href="#scroll">Scroll story</a><a href="#s1">1 · Hero</a><a href="#s2">2 · Lessons</a><a href="#s3">3 · Pebby</a><a href="#s4">4 · Scan</a><a href="#s5">5 · Revision</a><a href="#s6">6 · Folders</a><a href="#s7">7 · Pricing + download</a><a href="#brand">Brand</a><a href="#design">/design</a><a href="#backend">Backend + legal</a><a href="#clean">Cleanup</a><a href="#shots">Screens to capture</a><a href="#steps">Order of work</a>
+</div></nav>
+
+<section id="issues"><div class="wrap">
+<div class="tag t-now">Today</div>
+<h2>What's wrong with the website now</h2>
+<div class="grid3">
+<div class="card"><h3>It sells a different product</h3>"Turn notes, PDFs, lectures and slides into AI practice". The app is a Class 6–12 CBSE/ICSE/ISC app with syllabus lessons, Pebby, Scan and folders. There's no PDF or slide upload in the app.</div>
+<div class="card"><h3>The phone screens are fake</h3>All nine phone screens are drawn by <code>scripts/build-screens.mjs</code>: study modes, uploads, a chat with "Mee", a waitlist. None exist in the app.</div>
+<div class="card"><h3>Wrong mascot and colours</h3>"Mee" instead of Pebby. Primary <span class="swatch" style="background:#5b6cff"></span>#5B6CFF instead of the app's <span class="swatch" style="background:#564cf1"></span>#564CF1, and a different font.</div>
+<div class="card"><h3>Delete account is broken</h3>The form posts to the old backend <code>academe-api-production.up.railway.app</code>, which returns 404. Google Play requires this page to work.</div>
+<div class="card"><h3>Old privacy policy</h3>From August 2026. It doesn't cover Pebby's AI, Scan, Sarvam, RevenueCat, Resend or the Families ages. The accurate one is on api.academe.cc.</div>
+<div class="card"><h3>academe.cc fails half the time</h3>Its DNS has two A records: Vercel <b>and</b> Namecheap parking (162.255.119.53). Browsers that hit the parking IP get a certificate error. <b>www</b> works.</div>
+<div class="card"><h3>Promises that aren't live</h3>An App Store badge (no iOS app yet), a waitlist form link, "Start for free, no credit card" with nothing to download, and a demo video on an outside video site.</div>
+<div class="card"><h3>Other app names</h3>The <code>design/</code> folder names competitors and other apps (a scraped design system, competitive UI notes). They have to go.</div>
+<div class="card"><h3>What's good and stays</h3>The ACADEMe cube loader, the 3D phone scroll story, the big ACADEMe footer wordmark, smooth scrolling, the /design brand docs.</div>
+</div>
+</div></section>
+
+<section id="since"><div class="wrap">
+<div class="tag t-new">Checked 4 Oct 2026</div>
+<h2>What the plan was missing</h2>
+<p class="lead">Checked against the app's code, <code>tasks/strategy.md</code> and <code>tasks/roadmap.md</code>, and the work in progress in the academe-rebuild checkout.</p>
+<div class="grid3">
+<div class="card"><div class="tag t-wip">In progress</div><h3>Class 11–12 streams</h3>Science · PCM, Science · PCB, Commerce and Humanities, each with main and optional subjects. ICSE uses Commerce in place of Business Studies. The server side is written but not committed yet (<code>profile/streams.go</code>, migration 0023).<p class="note">Site: the hero and Lessons copy mention streams once this ships.</p></div>
+<div class="card"><div class="tag t-wip">In progress</div><h3>Pick your subjects</h3>Setup asks which subjects you study, Courses gets subject filters, and you can change them later (<code>subjects-designs.html</code>).<p class="note">Site: capture the Courses screen again with filters once this is built.</p></div>
+<div class="card"><div class="tag t-keep">Built</div><h3>Pebby in five languages</h3>Pebby answers in <span class="lang">English · हिन्दी · తెలుగు · தமிழ் · বাংলা</span>. The app's own text in those languages comes later.<p class="note">Site: "Pebby answers in your language", not "the app is in your language".</p></div>
+<div class="card"><div class="tag t-keep">Built</div><h3>Safe for students</h3>No ads, no advertising ID, photos never stored, Report on every AI answer, real account deletion with a 30-day grace period.<p class="note">Site: a new "Made for students in India" band after the scroll story.</p></div>
+<div class="card"><div class="tag t-keep">Built</div><h3>Pebby can be unavailable</h3>When Sarvam is out of credits, Pebby shows as unavailable (<code>71bb6b8</code>).<p class="note">Site: no live Pebby demo on the page. Captures wait for credits.</p></div>
+<div class="card"><div class="tag t-now">Be honest</div><h3>Only 6 lessons are live</h3>Class 10 CBSE: Maths 1-1, 1-2, 3-3 and Science 1-2, 9-1, 9-2. Every other chapter is listed but greyed out as "Coming soon". 5,777 lessons are planned.<p class="note">Site: "Every chapter, in swipe lessons" overclaims. Section 2 now uses a version that holds up.</p></div>
+</div>
+</div></section>
+
+<section id="usp"><div class="wrap">
+<h2>USPs: where each one shows up on the site</h2>
+<p class="lead">The seven USPs from <code>tasks/strategy.md</code>. Five ride on the existing scroll beats. Language and safety have no app screen that sells them, so they get a plain section after the scroll ends, before pricing.</p>
+<table>
+<tr><th>USP</th><th>Where</th><th>What proves it on the page</th></tr>
+<tr><td><b>Knows your syllabus</b></td><td>1 · Hero, 2 · Lessons</td><td>"Class 6–12 · CBSE · ICSE · ISC · 2026-27". The real Courses screen with real chapter names. Floating chapter cards fly into the phone.</td></tr>
+<tr><td><b>Learn by swiping</b></td><td>2 · Lessons</td><td>A quick-check card answered correctly (+5 XP). "A quick check every few cards."</td></tr>
+<tr><td><b>Pebby, a tutor with personality</b></td><td>3 · Pebby, and a pose in every heading</td><td>ASKMe with a real reply. Explain · Solve with hints first · Quiz me.</td></tr>
+<tr><td><b>Check my answer, board-style</b></td><td>4 · Scan</td><td>The marks screen: marks ring, point by point, how to get full marks.</td></tr>
+<tr><td><b>Your language</b></td><td>Made for students in India (after the scroll)</td><td>Five language chips in their own scripts. "Pebby answers in your language."</td></tr>
+<tr><td><b>Safe for students</b></td><td>Made for students in India, and the footer</td><td>No ads · Photos never stored · Report any AI answer · Delete your account anytime. Links to Privacy and Delete account.</td></tr>
+<tr><td><b>Fair</b></td><td>Pricing</td><td>The Free column lists every lesson, revision, folder and reminder. No paywall during sign-up.</td></tr>
+</table>
+<div class="band">
+<div class="tag t-new">New section · after the scroll, before pricing</div>
+<div class="display" style="font-size:28px">Made for students <em style="font-style:normal;color:#8d85ff">in India.</em></div>
+<p style="color:#c9cdd8;margin:8px 0 0">Your board, your syllabus, your language. Pebby answers in</p>
+<div class="row"><span class="chip lang">English</span><span class="chip lang">हिन्दी</span><span class="chip lang">తెలుగు</span><span class="chip lang">தமிழ்</span><span class="chip lang">বাংলা</span></div>
+<div class="row"><span class="chip">No ads, ever</span><span class="chip">Photos never stored</span><span class="chip">Report any AI answer</span><span class="chip">Delete your account anytime</span></div>
+<p class="note">Plain HTML, no 3D. It sits after the pinned scroll, so it can't break the phone animation.</p>
+</div>
+</div></section>
+
+<section id="scroll"><div class="wrap">
+<h2>The scroll story after the update</h2>
+<p class="lead">The 3D film keeps its 7 beats, the same camera path and the same phone moves. Only the textures on the phone, the floating cards, the headings and the Pebby art change. That keeps the motion that already works intact.</p>
+<div class="track">
+<div class="fill" style="left:0;width:12%;background:#e7e6ff"></div><div class="fill" style="left:12%;width:34.5%;background:#d9f4ea"></div><div class="fill" style="left:46.5%;width:15%;background:#ffe0ec"></div><div class="fill" style="left:61.5%;width:14.7%;background:#dcebff"></div><div class="fill" style="left:76.2%;width:11.3%;background:#ffe7a3"></div><div class="fill" style="left:87.5%;width:7%;background:#fff9e8"></div><div class="fill" style="left:94.5%;width:5.5%;background:#a9a3ff"></div>
+<span class="lbl" style="left:0">Hero</span><span class="lbl" style="left:12%">Lessons</span><span class="lbl" style="left:46.5%">Pebby</span><span class="lbl" style="left:61.5%">Scan</span><span class="lbl" style="left:76.2%">Revise</span><span class="lbl" style="left:87.5%">Plan</span>
+</div>
+<p class="note">Scroll progress 0 → 1. Each beat's width is how much of the scroll its screens get, from <code>screenFromProgress</code>.</p>
+<div class="beats">
+<div class="beat"><div class="t">0 – 0.12 · HERO</div><h3>Your syllabus</h3><div class="mini"><img src="img/app-home.jpg" alt=""></div><p><b>Phone</b> tilted, right side</p><p><b>3D</b> floating PDF cards become chapter cards in the app's tints: "Maths · Ch 3", "Science · Ch 9", "History · Ch 2", "English · Ch 5"</p></div>
+<div class="beat"><div class="t">0.12 – 0.465 · LESSONS</div><h3>Every chapter</h3><div class="mini"><img src="img/app-courses.jpg" alt=""><div class="need">quick check, answered</div></div><p><b>3D</b> the chapter cards fly into the phone (same absorb move as today)</p><p><b>Screens</b> Courses, then a lesson card</p><p><b>Pebby</b> 21_act_reading</p></div>
+<div class="beat"><div class="t">0.465 – 0.615 · PEBBY</div><h3>Ask Pebby</h3><div class="mini"><div class="need">ASKMe reply<br>(Sarvam)</div></div><p><b>Screen</b> ASKMe with a real reply</p><p><b>Pebby</b> 25_chat</p></div>
+<div class="beat"><div class="t">0.615 – 0.762 · SCAN</div><h3>Snap it</h3><div class="mini"><div class="need">Scan's 4 jobs</div><div class="need">marks<br>(Sarvam)</div></div><p><b>Screens</b> Scan's four jobs, then Check my answer marks</p><p><b>Pebby</b> 22_act_solving</p></div>
+<div class="beat"><div class="t">0.762 – 0.875 · REVISE</div><h3>Miss it once</h3><div class="mini"><div class="need">revision card</div></div><p><b>Screen</b> revision card: Didn't know / Almost / Knew it</p><p><b>Pebby</b> 24_adaptive</p></div>
+<div class="beat"><div class="t">0.875 – 0.945 · PLAN</div><h3>Test on Friday?</h3><div class="mini"><img src="img/app-folder.jpg" alt=""></div><p><b>Screen</b> folder with its plan</p><p><b>Pebby</b> 28_mastery</p></div>
+<div class="beat"><div class="t">0.945 – 1 · GET IT</div><h3>Start free</h3><div class="mini"><div class="need land">landscape paywall</div></div><p><b>Phone</b> turns sideways (today's move)</p><p><b>Screen</b> a landscape capture, rotated into the portrait file the way <code>waitlist.png</code> is today</p><p><b>Buttons</b> Get it on Google Play + QR</p></div>
+</div>
+<div class="spec">
+<div class="s"><div><h3>Screen swaps: hidden in the spins, timed to the text</h3><p style="margin:0">The screens follow the text fades, not the waypoint labels. Two swaps happen while the phone is edge-on: lesson → courses at 0.32, and check → revision at 0.762 (checked numerically on both the desktop and phone paths). The rest happen while the headline crossfades: home → lesson 0.12, courses → askme 0.465, askme → scan 0.615, scan → check 0.69, revision → folder 0.875, folder → landscape 0.945.</p></div><div class="meta">The text fades moved slightly so the Lessons card gets time on screen: Lessons out at 0.41, Pebby in at 0.48 and out at 0.59, Scan in at 0.62 and out at 0.73.</div></div>
+<div class="s"><div><h3>Screen files</h3><p style="margin:0">Nine slots: <code>home · lesson · courses · askme · scan · check · revision · folder · landscape</code>. Capture on the Pixel 10 at 1080×2424, crop the status and navigation bars to 1080×2340, scale to 720×1560 (9:19.5, the phone mesh's shape). All in Light, the same look the site's phone has today.</p></div><div class="meta">The captures in this folder are 312×700 and too small for the 3D phone. Capture every screen again at full size, including the ones marked "have it".</div></div>
+<div class="s"><div><h3>Pebby and the floating cards</h3><p style="margin:0">The headings use the app's own poses, which already have the website's slot names (<code>24_adaptive</code>, <code>25_chat</code>, <code>26_cta</code>, <code>27_hero</code>, <code>28_mastery</code>). The floating cards keep their size, path and timing. Only the label texture changes: chapter name, subject tint, Archivo 700.</p></div><div class="meta"><code>MeeSprite.tsx</code> never shows: its <code>mee.visible</code> is always 0. Delete it, don't port it.</div></div>
+<div class="s"><div><h3>Checks before you review it</h3><p style="margin:0"><code>pnpm typecheck</code>, <code>pnpm build</code>, <code>pnpm test:loader</code> (the loader and scroll regression test), <code>pnpm qa</code> (desktop and phone shots across the scroll). Then a manual pass: each beat's heading matches its screen, reduced motion, a 390px phone width, and no blank texture flashes. All 9 textures load up front, same as today.</p></div><div class="meta">Same texture count and size as today, so GPU memory and load time don't change.</div></div>
+</div>
+</div></section>
+
+<section id="s1"><div class="wrap">
+<h2>1 · Hero</h2>
+<div class="grid2">
+<div class="card old"><div class="tag t-now">Now</div><img class="shot" src="img/before-0.jpg" alt="Current hero"><p class="copy">"Study smarter. In your pocket." · "Turn notes, PDFs, lectures and study material into personalized AI-powered practice." · Start For Free · No credit card required</p></div>
+<div class="card new"><div class="tag t-new">New</div>
+<div class="stage"><div class="words"><div class="display">Your syllabus.<br><em>One swipe at a time.</em></div><p>The study app for Class 6 to 12, CBSE, ICSE and ISC. Short swipe lessons from your chapters, Pebby to help when you're stuck, and Scan for homework.</p><div class="row"><span class="btn">Get it on Google Play</span><span class="btn ghost">See how it works</span></div><p class="note">Free to start · Coming soon on Google Play until the listing is live</p></div>
+<div class="phone"><img src="img/app-home.jpg" alt="App Home"></div></div>
+<p class="note">Phone: the real Home screen (greeting, class and board, XP, ask bar, Solve homework / Check my answer / Flashcards, subjects). The floating PDF icons around the phone become floating chapter cards ("Maths · Ch 3", "Science · Ch 9"). When streams ship, the body adds: "Class 11 and 12: Science, Commerce or Humanities."</p></div>
+</div>
+</div></section>
+
+<section id="s2"><div class="wrap">
+<h2>2 · Lessons from your syllabus <span class="note">(replaces "Put your material to work")</span></h2>
+<div class="grid2">
+<div class="card old"><div class="tag t-now">Now</div><img class="shot" src="img/before-1.jpg" alt="Upload section"><p class="copy">"Put your material to work. Drop in notes, slides, PDFs, or lectures." Phone: an upload box with PDF/Notes/Slides.</p></div>
+<div class="card new"><div class="tag t-new">New</div>
+<div class="stage"><div class="words"><div class="display">Your chapters,<br><em>in swipe lessons.</em></div><p>Every chapter of your board's 2026-27 syllabus, for your class. Each lesson is a few swipeable cards: an idea, a worked example, a quick check. Five minutes, and you know it. New lessons are added chapter by chapter, starting with Class 10.</p><div class="row"><span class="chip">Class 6–12</span><span class="chip">CBSE · ICSE · ISC</span><span class="chip">Quick check every few cards</span><span class="chip">+XP</span></div></div>
+<div class="phone"><img src="img/app-courses.jpg" alt="Chapter lessons"></div></div>
+<p class="note">Phone scroll: chapter list → a quick-check card answered correctly (needs capture, see below). The line about new lessons stays until most chapters have lessons; only 6 are live today.</p></div>
+</div>
+</div></section>
+
+<section id="s3"><div class="wrap">
+<h2>3 · Pebby, your tutor <span class="note">(replaces "A tutor that sees the context")</span></h2>
+<div class="grid2">
+<div class="card old"><div class="tag t-now">Now</div><img class="shot" src="img/before-3.jpg" alt="Mee chat"><p class="copy">"A tutor that sees the context. Mee responds from the material you're actually studying." Mee chat with "Summarise PDF".</p></div>
+<div class="card new"><div class="tag t-new">New</div>
+<div class="stage"><div class="words"><img class="pebby" src="img/01_wave.png" alt="Pebby"><div class="display">Stuck? <em>Ask Pebby.</em></div><p>Explain it simply, solve it with hints first, or quiz me. Pebby answers for your class and board, in plain words.</p><div class="row"><span class="chip">Explain</span><span class="chip">Solve · hints first</span><span class="chip">Quiz me</span></div></div>
+<div class="phone"><div class="need"><b>Needs capture</b><br>ASKMe with a real Pebby reply.<br>Blocked until Sarvam credits are topped up.</div></div></div>
+<p class="note">Pebby (the app's own art) replaces Mee in the 3D scene too.</p></div>
+</div>
+</div></section>
+
+<section id="s4"><div class="wrap">
+<h2>4 · Scan anything on paper <span class="note">(replaces "Turn review into recall")</span></h2>
+<div class="grid2">
+<div class="card old"><div class="tag t-now">Now</div><img class="shot" src="img/before-4.jpg" alt="Practice section"><p class="copy">"Turn review into recall. Make flashcards, quiz yourself…"</p></div>
+<div class="card new"><div class="tag t-new">New</div>
+<div class="stage"><div class="words"><img class="pebby" src="img/22_act_solving.png" alt="Pebby solving"><div class="display">Snap it. <em>Get it.</em></div><p>Solve homework with hints, not just answers. Check your written answer and get marks the way your board marks it. Turn notes into a lesson in a folder.</p><div class="row"><span class="chip">Solve homework</span><span class="chip">Check my answer</span><span class="chip">Notes to a folder</span><span class="chip">Ask about a photo</span></div></div>
+<div class="phone"><div class="need"><b>Needs capture</b><br>Scan's four jobs, then the Check my answer marks screen (marks ring, points, full-marks tip). Marks need Sarvam.</div></div></div></div>
+</div>
+</div></section>
+
+<section id="s5"><div class="wrap">
+<h2>5 · Revision that remembers <span class="note">(replaces "Practice that adjusts to you")</span></h2>
+<div class="grid2">
+<div class="card old"><div class="tag t-now">Now</div><img class="shot" src="img/before-5.jpg" alt="Adaptive section"><p class="copy">"Practice that adjusts to you. Wrong answers become the next useful question…"</p></div>
+<div class="card new"><div class="tag t-new">New</div>
+<div class="stage"><div class="words"><div class="display">Miss it once.<br><em>Master it later.</em></div><p>Keep any card, and every question you miss comes back in your revision: tomorrow, then a few days later, until you've got it.</p><div class="row"><span class="chip">Keep a card</span><span class="chip">Missed questions return</span><span class="chip">Chapter tests</span></div></div>
+<div class="phone"><div class="need"><b>Needs capture</b><br>The revision card (Didn't know / Almost / Knew it) and a chapter test report.</div></div></div></div>
+</div>
+</div></section>
+
+<section id="s6"><div class="wrap">
+<h2>6 · A plan for every test <span class="note">(replaces "Build a study loop")</span></h2>
+<div class="grid2">
+<div class="card old"><div class="tag t-now">Now</div><img class="shot" src="img/before-6.jpg" alt="Mastery section"><p class="copy">"Build a study loop you can stick with. Upload, understand, practise, improve."</p></div>
+<div class="card new"><div class="tag t-new">New</div>
+<div class="stage"><div class="words"><div class="display">Test on Friday?<br><em>Make a folder.</em></div><p>Add the chapters and the date. ACADEMe spreads the lessons over the days left, adds revision, and reminds you. Today's list is on your Home screen.</p><div class="row"><span class="chip">Test date → plan</span><span class="chip">Daily checklist</span><span class="chip">Reminders</span></div></div>
+<div class="phone"><img src="img/app-folder.jpg" alt="Folder"></div></div>
+<div class="grid2"><img class="shot" src="img/app-today.jpg" alt="Home Today"><img class="shot" src="img/app-primer.jpg" alt="Reminder primer"></div></div>
+</div>
+</div></section>
+
+<section id="s7"><div class="wrap">
+<h2>7 · Pricing and download <span class="note">(replaces "Join the community")</span></h2>
+<div class="grid2">
+<div class="card old"><div class="tag t-now">Now</div><img class="shot" src="img/before-7.jpg" alt="CTA"><p class="copy">"Your next study session starts here." · Join the community · QR · App Store + Google Play badges · footer: Privacy, Delete data</p></div>
+<div class="card new"><div class="tag t-new">New</div>
+<p class="note" style="margin-top:0">The 3D film ends on the sideways phone with Get it on Google Play + QR. Pricing comes after the film, as a plain section after "Made for students in India", then the footer.</p>
+<div class="display" style="font-size:30px">Start free. <em style="font-style:normal;color:#8d85ff">Go Pro when you're ready.</em></div>
+<div class="price">
+<div class="p"><h3>Free</h3><p>All lessons, revision, folders and reminders. 10 Pebby questions, 3 scans and 1 answer check a day. No paywall during sign-up.</p></div>
+<div class="p best"><h3>ACADEMe Pro</h3><b>₹200</b>/month <span class="note">· first month ₹100</span><br><b>₹1,999</b>/year <span class="note">· save 17%</span><p>Unlimited Pebby and Scan, Check my answer, lessons from your notes.</p></div>
+</div>
+<div class="row"><span class="btn">Get it on Google Play</span><span class="chip">QR opens the Play listing</span><span class="chip">No App Store badge until iOS ships</span></div>
+<p class="note">Footer: Privacy · Terms · Delete account · Support · support@academe.cc · © 2026 ACADEMe. The big ACADEMe wordmark stays.</p>
+<div class="grid2"><img class="shot" src="img/app-pro.jpg" alt="Pro card"><img class="shot" src="img/app-paywall.jpg" alt="Paywall"></div>
+<p class="note">The paywall capture shows "Purchases aren't available", because no Play key is set. Recapture with prices after the Play app is connected in RevenueCat.</p></div>
+</div>
+</div></section>
+
+<section id="brand"><div class="wrap">
+<h2>Brand: byte-identical to the app</h2>
+<table>
+<tr><th>Thing</th><th>Website today</th><th>From the app</th></tr>
+<tr><td>Logo and cube</td><td>its own copies (logo-on-dark.png…)</td><td>the app's <code>academe_cube.png</code> and <code>logo_mark.png</code>, copied and checked with <code>cmp</code> <img src="img/academe_cube.png" alt="" style="height:22px;vertical-align:-6px"></td></tr>
+<tr><td>Primary</td><td><span class="swatch" style="background:#5b6cff"></span>#5B6CFF</td><td><span class="swatch" style="background:#564cf1"></span>#564CF1</td></tr>
+<tr><td>Selected</td><td>none</td><td><span class="swatch" style="background:#f5a800"></span>#F5A800 amber (selected, XP), ink <span class="swatch" style="background:#8a6100"></span>#8A6100</td></tr>
+<tr><td>Status</td><td>accent #7CFFB2 only</td><td><span class="swatch" style="background:#7cffb2"></span>accent #7CFFB2 <span class="swatch" style="background:#3ddc97"></span>success #3DDC97 <span class="swatch" style="background:#ffc14d"></span>warning #FFC14D <span class="swatch" style="background:#ff5c6a"></span>error #FF5C6A <span class="swatch" style="background:#ff8a4c"></span>streak #FF8A4C</td></tr>
+<tr><td>Pebby</td><td>none</td><td><span class="swatch" style="background:#a2a4fb"></span>#A2A4FB <span class="swatch" style="background:#8b8cf5"></span>#8B8CF5 <span class="swatch" style="background:#6e71d6"></span>#6E71D6</td></tr>
+<tr><td>Tints</td><td>none</td><td><span class="swatch" style="background:#e7e6ff"></span>lavender <span class="swatch" style="background:#ffe7a3"></span>amber <span class="swatch" style="background:#d9f4ea"></span>mint <span class="swatch" style="background:#ffe0ec"></span>pink <span class="swatch" style="background:#dcebff"></span>sky <span class="swatch" style="background:#fff9e8"></span>cream <span class="swatch" style="background:#ffe3e0"></span>rose</td></tr>
+<tr><td>Dark</td><td>#0b0c10-ish</td><td>background <span class="swatch" style="background:#0b0c0f"></span>#0B0C0F, surface <span class="swatch" style="background:#14161c"></span>#14161C, raised <span class="swatch" style="background:#1c1f28"></span>#1C1F28, border #2A2E38, text #F2F3F5 / #8B93A7 / #5C6578</td></tr>
+<tr><td>Light</td><td>#F6F7FA set (for the phone)</td><td>background <span class="swatch" style="background:#f6f7fa"></span>#F6F7FA, surface #FFFFFF, raised #EEF0F5, border #D8DCE6, text #12141A / #5C6578</td></tr>
+<tr><td>Fonts</td><td>Inter, Archivo and DM Sans from Google Fonts</td><td><b style="font-family:'Baloo 2'">Baloo 2 800</b> headlines · <b style="font-family:Archivo">Archivo 700</b> subheads · Noto Sans 400/600 body · ArchivoWordmark for the ACADEMe wordmark. See <a href="#design">/design</a>.</td></tr>
+<tr><td>Buttons</td><td>white pill</td><td>the app's keycap: purple face, dark border, thick bottom edge</td></tr>
+<tr><td>Mascot</td><td>"Mee"</td><td>Pebby, from the app's pose art <img class="pebby" src="img/09_happy.png" alt="" style="width:34px;height:34px;vertical-align:-10px"></td></tr>
+<tr><td>Radius</td><td>same</td><td>8 · 12 · 16 · 24 · 999, already matching</td></tr>
+<tr><td>Phone screens</td><td>9 generated fakes</td><td>real Pixel 10 captures, 720×1560, Light, status and navigation bars cropped</td></tr>
+</table>
+</div></section>
+
+<section id="design"><div class="wrap">
+<h2>/design: rewritten from the app</h2>
+<p class="lead">The /design site (<code>src/design/content/</code>) still describes the old product: upload-first, primary #5B6CFF, light mode only, "prefer system fonts", and Pebby kept as an internal name. <b>No font is named anywhere.</b> Every page below gets rewritten from <code>app_theme.dart</code>, <code>pubspec.yaml</code>, <code>AGENTS.md</code> §7 and <code>tasks/strategy.md</code>.</p>
+
+<h3 style="margin-top:26px">New page: Type</h3>
+<div class="spec">
+<div class="s"><div><div style="font:800 34px/1.1 'Baloo 2',sans-serif">Your syllabus. One swipe at a time.</div></div><div class="meta"><b>Baloo 2 · 800</b> · headlines<br>Line height 1.1. In Telugu, Tamil and Bengali it falls back to Baloo Tammudu 2, Baloo Thambi 2 and Baloo Da 2, then Noto Sans.</div></div>
+<div class="s"><div><div style="font:700 20px/1.25 Archivo,sans-serif">Chapter 3 · Pair of linear equations</div></div><div class="meta"><b>Archivo · 700</b> · subheads, card titles, buttons on the site<br>Line height 1.25. Latin only: in Indian scripts it falls back to Noto Sans.</div></div>
+<div class="s"><div><div style="font:400 16px/1.55 'Noto Sans',sans-serif">Keep any card, and every question you miss comes back in your revision: tomorrow, then a few days later.</div><div class="lang" style="margin-top:6px;font-weight:400">आज हम क्या पढ़ें? · ఈరోజు ఏం చదువుదాం? · இன்று என்ன படிப்போம்?</div></div><div class="meta"><b>Noto Sans · 400 and 600</b> · body, labels, inputs<br>Noto Sans Devanagari, Telugu, Tamil and Bengali cover the other four languages.</div></div>
+<div class="s"><div><div style="font:600 30px/1 Archivo,sans-serif;letter-spacing:-.02em">ACADEM<span style="font-weight:500;font-size:.92em;letter-spacing:-.04em">e</span></div></div><div class="meta"><b>ArchivoWordmark · 600, with a 500 "e"</b> · the ACADEMe wordmark only<br>A 3 KB subset bundled with the app. The website's big footer wordmark uses it.</div></div>
+</div>
+<p class="note">The site serves its own copies of the app's font files (from <code>assets/fonts/</code>), converted to woff2, and preloads Baloo 2 and Archivo. Inter, DM Sans and the Google Fonts link are removed. The Indian-script families load only on the section that shows them.</p>
+
+<h3 style="margin-top:26px">Page by page</h3>
+<table>
+<tr><th>Page</th><th>Says today</th><th>Becomes</th></tr>
+<tr><td>identity/color.md</td><td class="bad">Light is the default, dark is "later", primary #5B6CFF</td><td>The app's palette: dark and light (both in the app under Appearance), primary #564CF1, selected amber, status colours, Pebby colours, 7 tints (the <a href="#brand">Brand</a> table)</td></tr>
+<tr><td>identity/tokens.md</td><td class="bad">"Prefer system fonts", type 32/24/20/16/13, made-up component names</td><td>Fonts link to the Type page. Radius (already right). Keycap: 2px border, 6px depth for buttons, 4.5px for options, 90ms press. Components named as in the app: AppButton, Keycap, OptionTile, ClassDial, BoardPicker, Pebby, PebbyPeek, AcademeWordmark, Celebration</td></tr>
+<tr><td><b>identity/type.md</b></td><td class="bad">missing</td><td>New page: the specimen above</td></tr>
+<tr><td>identity/logo.md</td><td class="bad">Dark cube on light as the default, its own logo copies</td><td>The app's <code>academe_cube.png</code> and <code>logo_mark.png</code> (same bytes), the wordmark rule, and the dark site as the default</td></tr>
+<tr><td>identity/overview.md</td><td>Scheme B and D</td><td>Logo, Colour, Type, Voice, all from the app</td></tr>
+<tr><td>illustration/mascot.md, expressions.md, moments.md</td><td class="bad">Poses cut from a 3D sheet; Pebby is an internal name, say "learning buddy" in the UI</td><td>Pebby is the product name ("Ask Pebby"). The app's 29 poses and <code>pebby.riv</code>, Pebby's three colours, which pose goes with which moment</td></tr>
+<tr><td>writing/voice.md</td><td class="bad">Don't name the mascot in the product</td><td>Name Pebby. Tone and celebration rules stay</td></tr>
+<tr><td>writing/messaging.md</td><td class="bad">"Turns notes into understanding: chat, flashcards, quizzes, summaries, practice tests"</td><td>"Your syllabus, one swipe at a time." Store, landing and social lines from strategy.md</td></tr>
+<tr><td>product/overview.md, roadmap.md, app-ia.md, checklist.md</td><td class="bad">A competitor named as the bar, tabs Home · Library · AI · You, roadmap from August</td><td>The 5 pillars, tabs Home · ASKMe · Study · Me plus the Scan key, and a short status that links to the app's <code>tasks/roadmap.md</code> instead of copying it</td></tr>
+<tr><td><b>product/usps.md</b></td><td class="bad">missing (only <code>design/usp/</code>, built around a competitor)</td><td>New page: the 7 USPs with proof, from strategy.md, described generically with no other names</td></tr>
+<tr><td>marketing/showcase-site.md, ctas.md</td><td class="bad">5 AI tools, App Store + Play badges, a waitlist, a demo video, "-style" named after another app</td><td>The 7 beats from this plan. Google Play only, the QR opens the Play listing, no waitlist</td></tr>
+<tr><td>agents/*</td><td>Guardrails for agents</td><td>Keep. Add the app's rules: no other app names, no code comments, the app is the source of truth</td></tr>
+<tr><td><code>src/design/index.css</code></td><td>Archivo + DM Sans, #5B6CFF tiles</td><td>The app's fonts and tokens, so /design looks like the app it documents</td></tr>
+</table>
+</div></section>
+
+<section id="backend"><div class="wrap">
+<h2>Backend and legal: the same API as the app</h2>
+<table>
+<tr><th>academe.cc path</th><th>Today</th><th>New</th></tr>
+<tr><td>/privacy</td><td class="bad">old page on Vercel (Aug 2026)</td><td class="ok">308 → api.academe.cc/privacy (the app links here)</td></tr>
+<tr><td>/terms</td><td class="bad">missing</td><td class="ok">308 → api.academe.cc/terms</td></tr>
+<tr><td>/delete-account</td><td class="bad">form posts to a dead backend (404)</td><td class="ok">308 → api.academe.cc/delete-account (same server and database as the app)</td></tr>
+<tr><td>/support</td><td class="bad">missing</td><td class="ok">308 → api.academe.cc/support (with the grievance officer)</td></tr>
+<tr><td>/reset-password, /open</td><td class="bad">missing</td><td class="ok">308 → api.academe.cc (links in emails keep working)</td></tr>
+<tr><td>/api/*</td><td class="bad">rewrite to the dead backend</td><td class="ok">removed</td></tr>
+</table>
+<p class="note">The server side is already done in the app repo (local commit, not pushed): email links, email images and the reset link use api.academe.cc. <b>DNS to fix at Namecheap:</b> delete the A record <code>@ → 162.255.119.53</code> (parking) so academe.cc always reaches Vercel.</p>
+</div></section>
+
+<section id="clean"><div class="wrap">
+<h2>Cleanup in the website repo</h2>
+<div class="grid2">
+<div class="card"><h3>Delete</h3><ul class="tight">
+<li>9 fake screens and <code>scripts/build-screens.mjs</code></li>
+<li>Mee: <code>public/mascot</code> (a glossy 3D render of the same character), <code>MeeSprite.tsx</code> and the <code>mee</code> scroll track (never visible), <code>design/mascot/flat/svg/mee.svg</code>, <code>mee-animations.css</code></li>
+<li><code>screenFromProgress()</code>: screens follow the waypoints instead</li>
+<li><code>public/privacy.html</code>, <code>public/delete-account.html</code>, the /api rewrite</li>
+<li>The waitlist form link and the outside demo-video link</li>
+<li>The App Store badge (until iOS ships)</li>
+<li><code>_qa_crops.png</code> and other unused assets</li>
+</ul></div>
+<div class="card"><h3>Reword or remove</h3><ul class="tight">
+<li>Every competitor and other app name: <b>19 files</b>, 16 in <code>design/</code> and 3 rendered on /design (<code>marketing/ctas.md</code>, <code>product/overview.md</code>, <code>product/roadmap.md</code>). The scraped design system, the competitor USP file and the competitive UI notes are deleted; the rest are reworded.</li>
+<li>Page title, description and social preview image (index.html)</li>
+<li>The /design docs: rewritten from the app, see <a href="#design">/design</a></li>
+<li>No code comments in files that change</li>
+</ul></div>
+</div>
+</div></section>
+
+<section id="shots"><div class="wrap">
+<h2>Screens still to capture on the Pixel 10</h2>
+<table>
+<tr><th>Screen</th><th>Used in</th><th>Status</th></tr>
+<tr><td>Home</td><td>1 · Hero</td><td>recapture at full size</td></tr>
+<tr><td>Courses (chapter list)</td><td>2 · Lessons</td><td>recapture at full size; again with filters once subjects ship</td></tr>
+<tr><td>Quick-check card answered correctly</td><td>2 · Lessons</td><td>to capture (no blockers)</td></tr>
+<tr><td>ASKMe with a Pebby reply</td><td>3 · Pebby</td><td class="bad">needs Sarvam credits</td></tr>
+<tr><td>Scan's four jobs</td><td>4 · Scan</td><td>to capture (no blockers)</td></tr>
+<tr><td>Check my answer marks</td><td>4 · Scan</td><td class="bad">needs Sarvam credits</td></tr>
+<tr><td>Revision card</td><td>5 · Revision</td><td>to capture (no blockers)</td></tr>
+<tr><td>Folder with its plan</td><td>6 · Folders</td><td>recapture at full size</td></tr>
+<tr><td>Paywall with prices, <b>landscape</b></td><td>7 · Get it (the sideways phone)</td><td class="bad">needs the Play app in RevenueCat (or a Test Store debug build). Stand-in: Home in landscape.</td></tr>
+</table>
+</div></section>
+
+<section id="steps"><div class="wrap" style="counter-reset:s">
+<h2>Order of work</h2>
+<div class="step"><b>Capture</b> all 9 screens on the Pixel 10 at full size, in Light (spec in <a href="#scroll">Scroll story</a>). After Sarvam is topped up: the Pebby reply and Check my answer marks.</div>
+<div class="step"><b>Brand</b>: copy the app's logo files, Pebby poses, colours and font files into the website; replace Mee.</div>
+<div class="step"><b>Story</b>: rewrite the seven beats with the copy above, swap the phone screens, make screens follow the waypoints, relabel the floating cards. Add "Made for students in India" and Pricing after the film.</div>
+<div class="step"><b>/design</b>: rewrite the docs from the app (the table in <a href="#design">/design</a>), with a new Type page and a USPs page.</div>
+<div class="step"><b>Legal and backend</b>: vercel.json redirects to api.academe.cc; delete the old pages and the dead /api rewrite.</div>
+<div class="step"><b>Cleanup</b>: remove other app names, fake screens, unused assets; update the /design docs.</div>
+<div class="step"><b>Check</b>: typecheck, build, the site's visual QA, screenshots at desktop and phone width; you review it locally.</div>
+<div class="step"><b>Your call</b>: push and open a PR, then Vercel deploys when you merge. And fix the Namecheap parking A record.</div>
+</div></section>
+
+<footer class="wrap" style="padding:30px 20px 60px;color:var(--faint);font-size:13px">Preview only. Nothing on academe.cc has changed.</footer>
+</body>
+</html>

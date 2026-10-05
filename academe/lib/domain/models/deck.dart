@@ -14,6 +14,7 @@ class DeckSummary {
     required this.correct,
     this.resumeCard = 0,
     this.kept = 0,
+    this.minutes = 0,
   });
 
   final String id;
@@ -30,6 +31,7 @@ class DeckSummary {
   final int correct;
   final int resumeCard;
   final int kept;
+  final int minutes;
 
   bool get isStarted => isDone || resumeCard > 0;
 }
@@ -163,12 +165,14 @@ class PlannedLesson {
     required this.position,
     required this.title,
     required this.isAvailable,
+    this.minutes = 0,
   });
 
   final String id;
   final int position;
   final String title;
   final bool isAvailable;
+  final int minutes;
 }
 
 class PlannedChapter {
@@ -181,6 +185,9 @@ class PlannedChapter {
     this.unit = '',
     this.lessons = const [],
     this.isFormativeOnly = false,
+    this.marks = 0,
+    this.revisionDue = 0,
+    this.lastStudiedAt,
   });
 
   final String id;
@@ -191,9 +198,32 @@ class PlannedChapter {
   final String unit;
   final List<PlannedLesson> lessons;
   final bool isFormativeOnly;
+  final int marks;
+  final int revisionDue;
+  final DateTime? lastStudiedAt;
+}
+
+class SubjectProgress {
+  const SubjectProgress({
+    required this.id,
+    required this.name,
+    this.chapters = 0,
+    this.lessonsAvailable = 0,
+    this.lessonsDone = 0,
+  });
+
+  final String id;
+  final String name;
+  final int chapters;
+  final int lessonsAvailable;
+  final int lessonsDone;
+
+  double get progress =>
+      lessonsAvailable == 0 ? 0 : lessonsDone / lessonsAvailable;
 }
 
 typedef StudyCatalogue = ({
   List<DeckSummary> decks,
   List<PlannedChapter> chapters,
+  List<SubjectProgress> subjects,
 });

@@ -27,8 +27,6 @@ class StudyScreen extends StatefulWidget {
 }
 
 class _StudyScreenState extends State<StudyScreen> {
-  bool _showsFolders = false;
-
   @override
   void initState() {
     super.initState();
@@ -55,24 +53,30 @@ class _StudyScreenState extends State<StudyScreen> {
                 ),
               ),
               const SizedBox(height: 8),
-              _Tabs(
-                showsFolders: _showsFolders,
-                onSelect: (v) => setState(() => _showsFolders = v),
+              ListenableBuilder(
+                listenable: widget.viewModel,
+                builder: (context, _) => _Tabs(
+                  showsFolders: widget.viewModel.showsFolders,
+                  onSelect: widget.viewModel.showFolders,
+                ),
               ),
             ],
           ),
         ),
         Expanded(
-          child: _showsFolders
-              ? FoldersView(
-                  viewModel: widget.folders,
-                  onOpen: widget.actions.openFolder,
-                  onNew: widget.onNewFolder,
-                )
-              : CoursesView(
-                  viewModel: widget.viewModel,
-                  actions: widget.actions,
-                ),
+          child: ListenableBuilder(
+            listenable: widget.viewModel,
+            builder: (context, _) => widget.viewModel.showsFolders
+                ? FoldersView(
+                    viewModel: widget.folders,
+                    onOpen: widget.actions.openFolder,
+                    onNew: widget.onNewFolder,
+                  )
+                : CoursesView(
+                    viewModel: widget.viewModel,
+                    actions: widget.actions,
+                  ),
+          ),
         ),
       ],
     );

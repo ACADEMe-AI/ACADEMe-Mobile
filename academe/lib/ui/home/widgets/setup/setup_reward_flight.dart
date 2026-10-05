@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-import '../../../../domain/models/profile.dart';
 import '../../../core/themes/app_theme.dart';
 
 class SetupRewardFlight extends StatelessWidget {
@@ -11,11 +10,13 @@ class SetupRewardFlight extends StatelessWidget {
     required this.progress,
     required this.from,
     required this.to,
+    required this.amount,
   });
 
   final Animation<double> progress;
   final Rect from;
   final Rect to;
+  final int amount;
 
   static const duration = Duration(milliseconds: 1500);
   static const _pillSize = Size(104, 44);
@@ -73,7 +74,7 @@ class SetupRewardFlight extends StatelessWidget {
                   padding: const EdgeInsets.all(8),
                   child: isPlus
                       ? Text(
-                          '+${Profile.setupReward}',
+                          '+$amount',
                           style: AppTextStyles.display.copyWith(
                             fontSize: 28,
                             color: AppColors.keycapEdge,

@@ -1,4 +1,4 @@
-import 'package:academe/ui/study/widgets/courses_view.dart';
+import 'package:academe/ui/study/widgets/chapter_row.dart';
 import 'package:academe/ui/study/widgets/pill_choices.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -33,6 +33,7 @@ void main() {
     var sawSoon = false;
     var sawPartly = false;
     for (final subject in subjects) {
+      await tester.ensureVisible(find.text(subject).first);
       await tester.tapText(subject);
       await tester.pause(const Duration(seconds: 1));
       if (!sawSoon && soon.evaluate().isNotEmpty) {

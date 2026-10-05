@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 
 import '../../domain/models/board.dart';
 import '../../domain/models/profile.dart';
+import '../../domain/models/study_stream.dart';
 import '../../domain/models/subject.dart';
 import '../../utils/result.dart';
 
@@ -13,6 +14,11 @@ abstract class ProfileRepository extends ChangeNotifier {
   Future<Result<Profile>> update(ProfileUpdate update);
 
   Future<Result<List<Subject>>> subjects({
+    required int classLevel,
+    required Board board,
+  });
+
+  Future<Result<List<StudyStream>>> streams({
     required int classLevel,
     required Board board,
   });

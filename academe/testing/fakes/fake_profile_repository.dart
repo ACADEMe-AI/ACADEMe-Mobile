@@ -2,6 +2,7 @@ import 'package:academe/data/repositories/profile_repository.dart';
 import 'package:academe/domain/models/auth_failure.dart';
 import 'package:academe/domain/models/board.dart';
 import 'package:academe/domain/models/profile.dart';
+import 'package:academe/domain/models/study_stream.dart';
 import 'package:academe/domain/models/subject.dart';
 import 'package:academe/utils/result.dart';
 
@@ -12,10 +13,45 @@ class FakeProfileRepository extends ProfileRepository {
   AuthException? nextFailure;
   final updates = <ProfileUpdate>[];
 
+  static const english = Subject(id: 'english', name: 'English');
+  static const maths = Subject(id: 'maths', name: 'Maths');
+  static const physics = Subject(id: 'physics', name: 'Physics');
+  static const chemistry = Subject(id: 'chemistry', name: 'Chemistry');
+  static const biology = Subject(id: 'biology', name: 'Biology');
+  static const computerScience = Subject(
+    id: 'computer-science',
+    name: 'Computer Science',
+  );
+
   static const subjectList = [
-    Subject(id: 'maths', name: 'Maths'),
+    maths,
     Subject(id: 'science', name: 'Science'),
-    Subject(id: 'english', name: 'English'),
+    english,
+    Subject(id: 'sanskrit', name: 'Sanskrit'),
+  ];
+
+  static const seniorList = [
+    physics,
+    chemistry,
+    maths,
+    biology,
+    english,
+    computerScience,
+  ];
+
+  static const streamList = [
+    StudyStream(
+      id: 'pcm',
+      name: 'Science · PCM',
+      main: [english, physics, chemistry, maths],
+      optional: [computerScience, biology],
+    ),
+    StudyStream(
+      id: 'pcb',
+      name: 'Science · PCB',
+      main: [english, physics, chemistry, biology],
+      optional: [maths, computerScience],
+    ),
   ];
 
   @override
@@ -43,8 +79,13 @@ class FakeProfileRepository extends ProfileRepository {
       birthYear: update.birthYear ?? _profile.birthYear,
       classLevel: update.classLevel ?? _profile.classLevel,
       board: update.board ?? _profile.board,
+      subjects: update.subjects ?? _profile.subjects,
       setupDone: _profile.setupDone,
-      xp: _profile.xp,
+      xp:
+          _profile.xp +
+          (update.subjects != null && !_profile.hasPicks
+              ? Profile.subjectsReward
+              : 0),
     );
     final complete =
         next.language != null &&
@@ -57,6 +98,7 @@ class FakeProfileRepository extends ProfileRepository {
             birthYear: next.birthYear,
             classLevel: next.classLevel,
             board: next.board,
+            subjects: next.subjects,
             setupDone: true,
             xp: next.xp + Profile.setupReward,
           )
@@ -69,5 +111,11 @@ class FakeProfileRepository extends ProfileRepository {
   Future<Result<List<Subject>>> subjects({
     required int classLevel,
     required Board board,
-  }) async => Result.ok(subjectList);
+  }) async => _answer(classLevel >= 11 ? seniorList : subjectList);
+
+  @override
+  Future<Result<List<StudyStream>>> streams({
+    required int classLevel,
+    required Board board,
+  }) async => _answer(streamList);
 }

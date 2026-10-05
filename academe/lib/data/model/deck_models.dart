@@ -19,6 +19,7 @@ DeckSummary deckSummaryFromJson(Map<String, Object?> json) => DeckSummary(
   correct: json['correct']! as int,
   resumeCard: json['resumeCard'] as int? ?? 0,
   kept: json['kept'] as int? ?? 0,
+  minutes: json['minutes'] as int? ?? 0,
 );
 
 DeckCard deckCardFromJson(Map<String, Object?> json) => switch (json['kind']) {
@@ -94,6 +95,12 @@ PlannedChapter plannedChapterFromJson(Map<String, Object?> json) =>
       title: json['title']! as String,
       unit: json['unit'] as String? ?? '',
       isFormativeOnly: json['formativeOnly'] as bool? ?? false,
+      marks: json['marks'] as int? ?? 0,
+      revisionDue: json['revisionDue'] as int? ?? 0,
+      lastStudiedAt: switch (json['lastStudiedAt']) {
+        final String at => DateTime.parse(at),
+        _ => null,
+      },
       lessons: [
         for (final l in (json['lessons'] as List<Object?>?) ?? const [])
           PlannedLesson(
@@ -101,6 +108,7 @@ PlannedChapter plannedChapterFromJson(Map<String, Object?> json) =>
             position: (l as Map<String, Object?>)['position']! as int,
             title: l['title']! as String,
             isAvailable: l['available'] as bool? ?? false,
+            minutes: l['minutes'] as int? ?? 0,
           ),
       ],
     );
@@ -114,4 +122,17 @@ StudyCatalogue studyCatalogueFromJson(Map<String, Object?> json) => (
     for (final item in (json['chapters'] as List<Object?>?) ?? const [])
       plannedChapterFromJson(item! as Map<String, Object?>),
   ],
+  subjects: [
+    for (final item in (json['subjects'] as List<Object?>?) ?? const [])
+      subjectProgressFromJson(item! as Map<String, Object?>),
+  ],
 );
+
+SubjectProgress subjectProgressFromJson(Map<String, Object?> json) =>
+    SubjectProgress(
+      id: json['id']! as String,
+      name: json['name']! as String,
+      chapters: json['chapters'] as int? ?? 0,
+      lessonsAvailable: json['lessonsAvailable'] as int? ?? 0,
+      lessonsDone: json['lessonsDone'] as int? ?? 0,
+    );

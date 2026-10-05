@@ -8,8 +8,10 @@ import (
 )
 
 const (
-	SetupXP     = 100
-	SetupReason = "setup"
+	SetupXP        = 100
+	SetupReason    = "setup"
+	SubjectsXP     = 25
+	SubjectsReason = "setup:subjects"
 
 	minClass = 6
 	maxClass = 12
@@ -21,12 +23,13 @@ var (
 )
 
 type Profile struct {
-	Language  *string `json:"language"`
-	BirthYear *int    `json:"birthYear"`
-	Class     *int    `json:"class"`
-	Board     *string `json:"board"`
-	SetupDone bool    `json:"setupDone"`
-	XP        int     `json:"xp"`
+	Language  *string  `json:"language"`
+	BirthYear *int     `json:"birthYear"`
+	Class     *int     `json:"class"`
+	Board     *string  `json:"board"`
+	Subjects  []string `json:"subjects"`
+	SetupDone bool     `json:"setupDone"`
+	XP        int      `json:"xp"`
 }
 
 func (p Profile) complete() bool {
@@ -34,10 +37,11 @@ func (p Profile) complete() bool {
 }
 
 type Update struct {
-	Language  *string `json:"language"`
-	BirthYear *int    `json:"birthYear"`
-	Class     *int    `json:"class"`
-	Board     *string `json:"board"`
+	Language  *string   `json:"language"`
+	BirthYear *int      `json:"birthYear"`
+	Class     *int      `json:"class"`
+	Board     *string   `json:"board"`
+	Subjects  *[]string `json:"subjects"`
 }
 
 type ValidationError struct {
@@ -51,6 +55,7 @@ type Store interface {
 	Profile(ctx context.Context, accountID string) (Profile, error)
 	Apply(ctx context.Context, accountID string, u Update) (Profile, error)
 	CompleteSetup(ctx context.Context, accountID string, xp int, reason string) (Profile, error)
+	AwardXP(ctx context.Context, accountID string, xp int, reason string) (Profile, error)
 }
 
 type Service struct {
@@ -74,6 +79,15 @@ func (s *Service) Update(ctx context.Context, accountID string, u Update) (Profi
 	if err := s.validate(u); err != nil {
 		return Profile{}, err
 	}
+	if u.Subjects != nil || u.Class != nil || u.Board != nil {
+		current, err := s.store.Profile(ctx, accountID)
+		if err != nil {
+			return Profile{}, fmt.Errorf("read profile: %w", err)
+		}
+		if u.Subjects, err = pickSubjects(current, u); err != nil {
+			return Profile{}, err
+		}
+	}
 	p, err := s.store.Apply(ctx, accountID, u)
 	if err != nil {
 		return Profile{}, fmt.Errorf("update profile: %w", err)
@@ -84,13 +98,19 @@ func (s *Service) Update(ctx context.Context, accountID string, u Update) (Profi
 			return Profile{}, fmt.Errorf("complete setup: %w", err)
 		}
 	}
+	if u.Subjects != nil && *u.Subjects != nil {
+		p, err = s.store.AwardXP(ctx, accountID, SubjectsXP, SubjectsReason)
+		if err != nil {
+			return Profile{}, fmt.Errorf("award subjects xp: %w", err)
+		}
+	}
 	return p, nil
 }
 
 func (s *Service) validate(u Update) error {
 	year := s.now().Year()
 	switch {
-	case u.Language == nil && u.BirthYear == nil && u.Class == nil && u.Board == nil:
+	case u.Language == nil && u.BirthYear == nil && u.Class == nil && u.Board == nil && u.Subjects == nil:
 		return &ValidationError{"profile", "has nothing to update"}
 	case u.Language != nil && !slices.Contains(Languages, *u.Language):
 		return &ValidationError{"language", "is not supported"}

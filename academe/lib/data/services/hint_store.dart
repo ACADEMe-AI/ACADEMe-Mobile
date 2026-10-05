@@ -1,6 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-enum Hint { askPebby, notificationPermission, notificationPrimer }
+enum Hint { askPebby, notificationPermission, notificationPrimer, pickSubjects }
 
 abstract class HintStore {
   Future<bool> hasSeen(Hint hint);

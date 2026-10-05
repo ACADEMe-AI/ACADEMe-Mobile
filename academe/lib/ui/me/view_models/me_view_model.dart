@@ -15,6 +15,7 @@ import '../../../domain/models/reminder.dart';
 import '../../../domain/models/study_preferences.dart';
 import '../../../utils/command.dart';
 import '../../../utils/result.dart';
+import '../../subjects/view_models/subjects_view_model.dart';
 
 typedef Syllabus = ({int classLevel, Board board});
 typedef FullName = ({String first, String last});
@@ -119,6 +120,9 @@ class MeViewModel extends ChangeNotifier {
     _preferences = await _store.read();
     notifyListeners();
   }
+
+  SubjectsViewModel subjectsPicker() =>
+      SubjectsViewModel(profileRepository: _profiles);
 
   Future<Result<Profile>> _saveSyllabus(Syllabus syllabus) => _profiles.update(
     ProfileUpdate(classLevel: syllabus.classLevel, board: syllabus.board),

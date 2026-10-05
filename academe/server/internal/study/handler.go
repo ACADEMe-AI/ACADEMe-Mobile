@@ -34,11 +34,6 @@ type handler struct {
 	service *Service
 }
 
-type deckList struct {
-	Decks    []LessonSummary  `json:"decks"`
-	Chapters []ChapterSummary `json:"chapters"`
-}
-
 type answerInput struct {
 	Card   int `json:"card"`
 	Choice int `json:"choice"`
@@ -79,19 +74,11 @@ type scoreInput struct {
 func account(r *http.Request) string { return auth.AccountID(r.Context()) }
 
 func (h handler) list(w http.ResponseWriter, r *http.Request) error {
-	subject := r.URL.Query().Get("subject")
-	decks, err := h.service.Decks(r.Context(), account(r), subject)
+	c, err := h.service.Catalogue(r.Context(), account(r), r.URL.Query().Get("subject"))
 	if err != nil {
 		return err
 	}
-	if decks == nil {
-		decks = []LessonSummary{}
-	}
-	chapters, err := h.service.Chapters(r.Context(), account(r), subject)
-	if err != nil {
-		return err
-	}
-	httpx.WriteJSON(w, http.StatusOK, deckList{decks, chapters})
+	httpx.WriteJSON(w, http.StatusOK, c)
 	return nil
 }
 

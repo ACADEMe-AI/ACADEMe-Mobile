@@ -131,12 +131,12 @@ a date into a plan, a checklist and reminders; XP and streaks bring them back.
 **Entry and onboarding**
 - [x] Splash, Welcome (Pebby peeking over the sheet), email sign-up (5 steps, Pebby reacting), email log-in, session restore, log-out
 - [x] Google sign-in wired end to end (needs Google Cloud client IDs)
-- [x] Setup sheet + dashboard checklist: language, birth year, class dial, board; +25 XP each, +100 flying into the XP chip
+- [x] Setup sheet + dashboard checklist: language, birth year, class dial, board, subjects (stream cards for 11–12); +25 XP each, +125 flying into the XP chip
 - [x] Forgot password → 6-digit code (autofill, paste, 30 s resend, lockout) → new password → signed in; reset link from the email opens New password in the app (cold or warm)
 
 **Shell and Home**
 - [x] Floating nav pill (Home · ASKMe · Study · Me) + separate Scan key; the pill turns into the ask bar on ASKMe
-- [x] Home: greeting + class · board, streak + XP chips, ask field, quick actions, **Today card**, subjects
+- [x] Home: greeting + class · board, streak + XP chips, ask field, quick actions, **Today card**, subject rows (picked subjects, next lesson, progress ring)
 
 **ASKMe**
 - [x] Chat with Pebby (Explain · Solve · Quiz me), answers in the profile language, thumbs, copy, retry, history with search, attach sheet; Sarvam with reasoning off
@@ -233,9 +233,10 @@ IDs: **A** entry · **B** onboarding · **C** shell and companion · **D** captu
 | | ID | Task | Notes |
 |---|---|---|---|
 | [x] | S1–S4 | Language, age, class, board | setup sheet + checklist, +25 XP each |
-| [x] | L3–L4 | Ticks and the +100 finish | |
+| [x] | L3–L4 | Ticks and the finish flight | +125 with the subjects step |
+| [x] | S5 | Subjects (setup step 5) | pills with English locked (Class 6–10); stream swipe cards then Main / Optional (11–12); +25 XP, setup totals 125 |
 | [x] | D1 | Ask-bar hint | once |
-| [ ] | P1–P5 | Personalise with Pebby (parked) | subjects swipe, goal, daily goal, reminder, Day 1 streak |
+| [ ] | P1–P5 | Personalise with Pebby (parked) | goal, daily goal, reminder, Day 1 streak (subjects done in S5) |
 | [ ] | — | Onboarding taster | a 3-card lesson before streak day one |
 | [ ] | — | State boards | "coming soon" in the board step; only when asked |
 
@@ -292,6 +293,8 @@ returns 503 `scan_unavailable`.
 | [ ] | E9 | Share a folder | link for messaging apps; friends get a copy |
 | [x] | E10 | Add chapters: default to a subject with lessons | UI finding F2; only subjects with lessons are offered |
 | [ ] | E11 | "Coming soon" counts on subject pills | |
+| [x] | E14 | Home "Your subjects" rows (option C) | picked subjects only, next lesson or "Lessons coming soon", progress ring; tap opens Courses on that subject; Edit opens the picker; one-time "Pick your subjects" card |
+| [x] | E15 | Courses filters | one row of picked-subject pills; Filters key + sheet (board exam only, ready to study, revision due, sort by marks or recent); removable chips; same in Add chapters |
 | [ ] | E13 | Edit folder notes | today only delete |
 
 ### Phase 6 — Progress and reward
@@ -310,7 +313,7 @@ returns 503 `scan_unavailable`.
 | | ID | Screen | Notes |
 |---|---|---|---|
 | [x] | G1 | Me | L1 + Pro card |
-| [~] | G2 | Edit profile | name, class + board. Left: subjects |
+| [x] | G2 | Edit profile | name, class + board, Stream (11–12) and Subjects rows opening the picker sheet |
 | [~] | G3 | Account | change / set password, link / unlink Google built. Left: sign out everywhere, live refresh of a link made on another device |
 | [x] | G4 | Reminders, daily goal, notifications | primer, access state, Settings deep link |
 | [~] | G5 | Language | saved and used by Pebby. Left: app text (Stage 2) |
@@ -498,6 +501,13 @@ Full order in `docs/play/release-checklist.md`.
 | Area | Issue | Fix / next step |
 |---|---|---|
 | Content | 6 lessons live, 5,771 to generate | full pipeline run (§6.2) |
+| Folders | A folder's date reads "Fri 9 Oct · fri · 5 days" (weekday shown twice) | show the date once: "Fri 9 Oct · in 5 days" |
+| Study | "1 lessons" instead of "1 lesson" | singular/plural in the lesson counts |
+| Progress | The streak stays at 0 after finishing a lesson | real streak days (F1) |
+| Study | "Back to chapter" after a lesson goes to the course list | return to the chapter screen |
+| Auth | Log in: when the keyboard opens, the Log in button sits below it and the Password field is half covered; one swipe up shows both (checked on the Pixel 10, 2026-10-04) | anchor the log-in page to the bottom like the reset screens (`reverse: true`) |
+| Layout | In landscape the tab bar covers content | pad content by the nav bar height in landscape |
+| Auth | Welcome and log-in still use the old pitch ("Notes, quizzes and flashcards made from what you are actually studying") | rewrite once the lead USP is decided (D-research) |
 | Content | Sarvam 402: no credits | top up; rerun resumes |
 | Content | ~50% approved first pass; drafts mostly "too close to textbook wording" or drift into the next lesson | rerun retries; teacher review |
 | Content | Reviewer is the same model family; originality is judgement only; literature lessons paraphrase copyrighted texts | second reviewer (D2), n-gram check, human look |
@@ -553,6 +563,9 @@ Full order in `docs/play/release-checklist.md`.
 
 Newest first. One line per change that landed; details live in git and `tasks/reports/`.
 
+**2026-10-04**
+- Recorded six app bugs found while capturing screens, plus the old welcome pitch, in §11 Known issues (not fixed yet).
+- Subjects and filters: `profiles.subjects` (migration 0023), `PATCH /me/profile` takes `subjects` (checked against class and board, English required, +25 XP once; class or board changes filter picks, crossing Class 10/11 clears them), `GET /catalog/streams`, and the catalogue adds subject counts, lesson minutes, chapter marks, `revisionDue` and `lastStudiedAt`. App: setup step 5 (stream cards for 11–12), Home subject rows, Courses and Add chapters show only picked subjects with a Filters sheet and chips, Me → Class and board gets Stream and Subjects. Report: `tasks/reports/subjects.md`.
 
 **2026-09-26**
 - Public pages and email links move to `https://api.academe.cc` (privacy, terms, delete-account, support, reset-password, open, email images); academe.cc stays the marketing website on Vercel and redirects those paths. No Railway Pro or apex DNS change needed for them.

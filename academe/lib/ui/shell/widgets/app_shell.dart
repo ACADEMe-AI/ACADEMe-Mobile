@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import '../../../data/repositories/photo_repository.dart';
 import '../../../domain/models/chat.dart';
 import '../../../domain/models/scan.dart';
-import '../../../utils/result.dart';
 import '../../askme/view_models/askme_view_model.dart';
 import '../../askme/widgets/askme_history_screen.dart';
 import '../../askme/widgets/askme_screen.dart';
@@ -71,6 +70,7 @@ class AppShell extends StatefulWidget {
 class _AppShellState extends State<AppShell>
     with StudyNavigation, MeNavigation, ScanNavigation {
   static const _askMeTab = 1;
+  static const _studyTab = 3;
 
   int _tab = 0;
   int _returnTab = 0;
@@ -85,15 +85,15 @@ class _AppShellState extends State<AppShell>
   @override
   void initState() {
     super.initState();
-    _me.logOut.addListener(_onLeft);
-    _me.deleteAccount.addListener(_onLeft);
+    _me.logOut.addListener(onLeft);
+    _me.deleteAccount.addListener(onLeft);
     widget.today.load.execute();
   }
 
   @override
   void dispose() {
-    _me.logOut.removeListener(_onLeft);
-    _me.deleteAccount.removeListener(_onLeft);
+    _me.logOut.removeListener(onLeft);
+    _me.deleteAccount.removeListener(onLeft);
     _viewModel.dispose();
     _me.dispose();
     widget.study.dispose();
@@ -112,6 +112,11 @@ class _AppShellState extends State<AppShell>
     if (_isAsking) _askFocus.unfocus();
     if (index == 0) widget.today.load.execute();
     setState(() => _tab = index);
+  }
+
+  void _openSubject(String id) {
+    widget.study.openSubject(id);
+    _select(_studyTab);
   }
 
   void _openAskMe() {
@@ -186,38 +191,6 @@ class _AppShellState extends State<AppShell>
     );
   }
 
-  void _onLeft() {
-    if (_me.deleteAccount.result case Ok(:final value)) {
-      _soon(
-        'Your account will be deleted on ${_date(value)}. '
-        'Log in before then to keep it.',
-      );
-      widget.onLoggedOut?.call();
-    } else if (_me.logOut.isCompleted) {
-      widget.onLoggedOut?.call();
-    }
-  }
-
-  static const _months = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-  ];
-
-  static String _date(DateTime time) {
-    final local = time.toLocal();
-    return '${local.day} ${_months[local.month - 1]} ${local.year}';
-  }
-
   @override
   void showMessage(String message) => _soon(message);
 
@@ -255,6 +228,8 @@ class _AppShellState extends State<AppShell>
                   onFlashcards: () => openReview(null),
                   onSolve: () => startScan(ScanMode.solve),
                   onCheck: () => startScan(ScanMode.check),
+                  study: widget.study,
+                  onOpenSubject: _openSubject,
                 ),
                 ListenableBuilder(
                   listenable: _viewModel,

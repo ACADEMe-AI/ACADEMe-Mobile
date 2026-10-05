@@ -186,6 +186,7 @@ func Plan(syllabi []Syllabus) []study.PlannedChapter {
 					Board: s.Board, Class: s.Class, Subject: sub.Subject, Number: c.Number, Title: c.Title, Unit: c.Unit,
 					FormativeOnly: strings.Contains(strings.ToLower(c.Unit), "formative assessment only"),
 				}
+				_ = json.Unmarshal(c.Marks, &p.Marks)
 				for _, l := range c.Lessons {
 					p.Lessons = append(p.Lessons, l.Title)
 				}

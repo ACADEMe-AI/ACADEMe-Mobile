@@ -410,7 +410,11 @@ paths:
           description: "`invalid_token`"
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
     patch:
-      summary: Save one or more setup answers. When all four are set for the first time, setup is marked done and 100 XP is awarded once.
+      summary: >-
+        Save one or more setup answers. When language, birth year, class and board are all set for the first time,
+        setup is marked done and 100 XP is awarded once. The first time subjects are saved, 25 more XP is awarded once.
+        Changing class or board drops picked subjects that aren't taught in the new class and board, and clears them
+        when moving between Class 10 and Class 11.
       security: [{ bearer: [] }]
       requestBody:
         required: true
@@ -424,6 +428,10 @@ paths:
                 birthYear: { type: integer }
                 class: { type: integer, minimum: 6, maximum: 12 }
                 board: { type: string, enum: [CBSE, ICSE] }
+                subjects:
+                  type: array
+                  items: { type: string }
+                  description: "Subject ids from /catalog/subjects for the class and board (after this update). Must include english. Stored in board order without duplicates."
       responses:
         "200":
           description: The updated profile.
@@ -433,7 +441,7 @@ paths:
           description: "`invalid_token`"
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
         "422":
-          description: "`invalid_profile`, `invalid_language`, `invalid_birthYear`, `invalid_class` or `invalid_board`"
+          description: "`invalid_profile`, `invalid_language`, `invalid_birthYear`, `invalid_class`, `invalid_board` or `invalid_subjects` (no class and board yet, a subject not taught in them, or no english)"
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
   /catalog/subjects:
     get:
@@ -458,6 +466,34 @@ paths:
                       properties:
                         id: { type: string }
                         name: { type: string }
+  /catalog/streams:
+    get:
+      summary: Class 11–12 streams with their main and optional subjects for the board (ISC subject codes for ICSE).
+      parameters:
+        - { name: class, in: query, required: true, schema: { type: integer, minimum: 11, maximum: 12 } }
+        - { name: board, in: query, required: true, schema: { type: string, enum: [CBSE, ICSE] } }
+      responses:
+        "200":
+          description: The streams, in the order to show them.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [streams]
+                properties:
+                  streams:
+                    type: array
+                    items:
+                      type: object
+                      required: [id, name, main, optional]
+                      properties:
+                        id: { type: string, enum: [pcm, pcb, commerce, humanities] }
+                        name: { type: string, example: Science · PCM }
+                        main: { type: array, items: { $ref: "#/components/schemas/Subject" }, description: English first }
+                        optional: { type: array, items: { $ref: "#/components/schemas/Subject" } }
+        "400":
+          description: "`invalid_query`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
         "400":
           description: "`invalid_query`"
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
@@ -638,9 +674,21 @@ paths:
             application/json:
               schema:
                 type: object
-                required: [decks, chapters]
+                required: [decks, chapters, subjects]
                 properties:
                   decks: { type: array, items: { $ref: "#/components/schemas/DeckSummary" } }
+                  subjects:
+                    type: array
+                    description: Every subject for the student's class and board, in board order, with counts over the chapters below.
+                    items:
+                      type: object
+                      required: [id, name, chapters, lessonsAvailable, lessonsDone]
+                      properties:
+                        id: { type: string }
+                        name: { type: string }
+                        chapters: { type: integer }
+                        lessonsAvailable: { type: integer }
+                        lessonsDone: { type: integer }
                   chapters:
                     type: array
                     description: Every syllabus chapter for the student's class and board, including chapters with no lessons written yet, in subject and chapter order.
@@ -1503,7 +1551,7 @@ components:
         folderName: { type: string }
     DeckSummary:
       type: object
-      required: [id, chapterId, subject, subjectName, chapterNumber, chapterTitle, position, title, cards, quizzes, done, correct, resumeCard, kept]
+      required: [id, chapterId, subject, subjectName, chapterNumber, chapterTitle, position, title, cards, quizzes, minutes, done, correct, resumeCard, kept]
       properties:
         id: { type: string }
         chapterId: { type: string }
@@ -1517,6 +1565,7 @@ components:
         title: { type: string }
         cards: { type: integer }
         quizzes: { type: integer }
+        minutes: { type: integer, description: about how long the lesson takes }
         done: { type: boolean }
         correct: { type: integer }
     Deck:
@@ -1545,7 +1594,7 @@ components:
             checkedAt: { type: string, format: date-time }
     ChapterPlan:
       type: object
-      required: [id, subject, subjectName, number, title, unit, lessons]
+      required: [id, subject, subjectName, number, title, unit, lessons, revisionDue]
       properties:
         id: { type: string, example: cbse-10-science-1 }
         subject: { type: string }
@@ -1554,6 +1603,9 @@ components:
         title: { type: string }
         unit: { type: string, description: "Syllabus unit, empty when unknown" }
         formativeOnly: { type: boolean, description: "true for CBSE reading material that is assessed in school only and is not in the board exam; absent otherwise" }
+        marks: { type: integer, description: "board exam marks for this chapter when the syllabus gives them for it alone; absent otherwise" }
+        revisionDue: { type: integer, description: kept or missed cards from this chapter due for revision now }
+        lastStudiedAt: { type: string, format: date-time, description: "when a lesson in this chapter was last finished; absent before the first" }
         lessons:
           type: array
           description: Planned lessons in order. Unavailable ones are not written yet; show them as coming soon.
@@ -1565,6 +1617,7 @@ components:
               position: { type: integer }
               title: { type: string }
               available: { type: boolean, description: "true when GET /study/decks/{id} serves this lesson" }
+              minutes: { type: integer, description: "available lessons only: about how long it takes" }
     DeckCard:
       type: object
       required: [kind]
@@ -1582,14 +1635,21 @@ components:
         options: { type: array, items: { type: string }, description: quiz only }
         answer: { type: integer, description: quiz only }
         why: { type: string, description: "quiz only; shown when the answer is wrong" }
+    Subject:
+      type: object
+      required: [id, name]
+      properties:
+        id: { type: string }
+        name: { type: string }
     Profile:
       type: object
-      required: [language, birthYear, class, board, setupDone, xp]
+      required: [language, birthYear, class, board, subjects, setupDone, xp]
       properties:
         language: { type: [string, "null"] }
         birthYear: { type: [integer, "null"] }
         class: { type: [integer, "null"] }
         board: { type: [string, "null"] }
+        subjects: { type: [array, "null"], items: { type: string }, description: "picked subject ids in board order; null until the student saves picks" }
         setupDone: { type: boolean }
         xp: { type: integer }
     SignUp:

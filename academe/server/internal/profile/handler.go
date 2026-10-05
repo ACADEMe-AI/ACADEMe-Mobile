@@ -17,6 +17,7 @@ func RegisterRoutes(mux *http.ServeMux, logger *slog.Logger, s *Service, require
 	mux.Handle("GET /me/profile", httpx.Handle(logger, requireAccount(h.get)))
 	mux.Handle("PATCH /me/profile", httpx.Handle(logger, requireAccount(h.update)))
 	mux.Handle("GET /catalog/subjects", httpx.Handle(logger, subjects))
+	mux.Handle("GET /catalog/streams", httpx.Handle(logger, streams))
 }
 
 type handler struct {
@@ -59,5 +60,19 @@ func subjects(w http.ResponseWriter, r *http.Request) error {
 		return &httpx.Error{Status: http.StatusBadRequest, Code: "invalid_query", Message: "class must be 6 to 12 and board CBSE or ICSE."}
 	}
 	httpx.WriteJSON(w, http.StatusOK, subjectList{list})
+	return nil
+}
+
+type streamList struct {
+	Streams []Stream `json:"streams"`
+}
+
+func streams(w http.ResponseWriter, r *http.Request) error {
+	class, err := strconv.Atoi(r.URL.Query().Get("class"))
+	list, ok := Streams(class, r.URL.Query().Get("board"))
+	if err != nil || !ok {
+		return &httpx.Error{Status: http.StatusBadRequest, Code: "invalid_query", Message: "class must be 11 or 12 and board CBSE or ICSE."}
+	}
+	httpx.WriteJSON(w, http.StatusOK, streamList{list})
 	return nil
 }

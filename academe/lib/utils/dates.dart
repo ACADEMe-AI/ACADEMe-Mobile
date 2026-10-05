@@ -19,6 +19,9 @@ DateTime dateOnly(DateTime t) => DateTime(t.year, t.month, t.day);
 String shortDay(DateTime day) =>
     '${_weekdays[day.weekday - 1]} ${day.day} ${_months[day.month - 1]}';
 
+String longDate(DateTime day) =>
+    '${day.day} ${_months[day.month - 1]} ${day.year}';
+
 String weekday(DateTime day) => _weekdays[day.weekday - 1];
 
 String dueLabel(DateTime due, {DateTime? now}) {

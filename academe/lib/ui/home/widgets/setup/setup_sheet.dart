@@ -4,12 +4,14 @@ import '../../../../domain/models/profile.dart';
 import '../../../../utils/result.dart';
 import '../../../auth/widgets/auth_failure_text.dart';
 import '../../../core/themes/app_theme.dart';
+import '../../../subjects/view_models/subjects_view_model.dart';
 import '../../view_models/home_view_model.dart';
 import 'age_step.dart';
 import 'board_step.dart';
 import 'class_step.dart';
 import 'language_step.dart';
 import 'setup_reward_pill.dart';
+import 'subjects_step.dart';
 
 class SetupSheet extends StatefulWidget {
   const SetupSheet({super.key, required this.viewModel, required this.start});
@@ -41,8 +43,28 @@ class SetupSheet extends StatefulWidget {
 
 class _SetupSheetState extends State<SetupSheet> {
   late SetupTask _task = widget.start;
+  SubjectsViewModel? _picker;
 
   HomeViewModel get _viewModel => widget.viewModel;
+
+  @override
+  void initState() {
+    super.initState();
+    _goTo(widget.start);
+  }
+
+  @override
+  void dispose() {
+    _picker?.dispose();
+    super.dispose();
+  }
+
+  void _goTo(SetupTask task) {
+    if (task == SetupTask.subjects && _picker == null) {
+      _picker = _viewModel.subjectsPicker()..load.execute();
+    }
+    _task = task;
+  }
 
   Future<void> _submit(ProfileUpdate update) async {
     await _viewModel.save.execute(update);
@@ -51,13 +73,19 @@ class _SetupSheetState extends State<SetupSheet> {
     if (next == null) {
       Navigator.of(context).pop();
     } else {
-      setState(() => _task = next);
+      setState(() => _goTo(next));
     }
   }
 
   void _back() {
-    if (_task.index > 0) {
-      setState(() => _task = SetupTask.values[_task.index - 1]);
+    final picker = _picker;
+    if (_task == SetupTask.subjects &&
+        picker != null &&
+        picker.isSenior &&
+        picker.stage == SubjectsStage.subjects) {
+      picker.showStreams();
+    } else if (_task.index > 0) {
+      setState(() => _goTo(SetupTask.values[_task.index - 1]));
     }
   }
 
@@ -139,9 +167,15 @@ class _SetupSheetState extends State<SetupSheet> {
       ),
       SetupTask.board => BoardStep(
         initial: profile.board,
-        isLast: _viewModel.nextTask(after: task) == null,
+        isLast: _viewModel.nextTask(after: task) == null && profile.hasPicks,
         isSaving: isSaving,
         onSubmit: (board) => _submit(ProfileUpdate(board: board)),
+      ),
+      SetupTask.subjects => SubjectsStep(
+        viewModel: _picker!,
+        isLast: _viewModel.nextTask(after: task) == null,
+        isSaving: isSaving,
+        onSubmit: (picks) => _submit(ProfileUpdate(subjects: picks)),
       ),
     };
   }

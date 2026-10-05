@@ -1,6 +1,7 @@
 import '../../domain/models/auth_failure.dart';
 import '../../domain/models/board.dart';
 import '../../domain/models/profile.dart';
+import '../../domain/models/study_stream.dart';
 import '../../domain/models/subject.dart';
 import '../../utils/result.dart';
 import '../model/api_models.dart';
@@ -18,6 +19,7 @@ class ProfileRepositoryRemote extends ProfileRepository {
   final ProfileApiService _api;
   final Authorizer _authorizer;
   final _subjects = <String, List<Subject>>{};
+  final _streams = <String, List<StudyStream>>{};
 
   Profile? _profile;
 
@@ -44,6 +46,23 @@ class ProfileRepositoryRemote extends ProfileRepository {
     switch (result) {
       case Ok(:final value):
         _subjects[key] = value;
+        return result;
+      case Error(:final error):
+        return Result.error(_failure(error));
+    }
+  }
+
+  @override
+  Future<Result<List<StudyStream>>> streams({
+    required int classLevel,
+    required Board board,
+  }) async {
+    final key = '$classLevel-${board.code}';
+    if (_streams[key] case final cached?) return Result.ok(cached);
+    final result = await _api.streams(classLevel: classLevel, board: board);
+    switch (result) {
+      case Ok(:final value):
+        _streams[key] = value;
         return result;
       case Error(:final error):
         return Result.error(_failure(error));

@@ -38,8 +38,11 @@ Future<void> completeSetup(WidgetTester tester) async {
   await tester.tapText('I’m in Class 10');
   await tester.waitFor(find.text('Which board?'));
   await tester.tapText('CBSE');
+  await tester.tapText('Continue');
+  await tester.waitFor(find.text('Which subjects do you study?'));
+  await tester.shot('setup-subjects');
   await tester.tapText('Finish setup');
-  await tester.waitGone(find.text('Which board?'));
+  await tester.waitGone(find.text('Which subjects do you study?'));
   await tester.pause(const Duration(seconds: 3));
 }
 

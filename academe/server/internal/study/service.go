@@ -38,51 +38,37 @@ func (s *Service) syllabus(ctx context.Context, accountID string) (class int, bo
 	return *p.Class, *p.Board, true, nil
 }
 
-func (s *Service) Decks(ctx context.Context, accountID, subject string) ([]LessonSummary, error) {
-	class, board, ok, err := s.syllabus(ctx, accountID)
-	if err != nil || !ok {
-		return nil, err
-	}
-	done, err := s.store.Completions(ctx, accountID)
-	if err != nil {
-		return nil, err
-	}
-	positions, err := s.store.Positions(ctx, accountID)
-	if err != nil {
-		return nil, err
-	}
-	kept, err := s.store.KeptCards(ctx, accountID)
-	if err != nil {
-		return nil, err
-	}
+func (s *Service) lessons(class int, board, subject string, names map[string]string, act activity) []LessonSummary {
 	keptPerDeck := map[string]int{}
-	for _, k := range kept {
+	for _, k := range act.kept {
 		keptPerDeck[k.DeckID]++
-	}
-	names := map[string]string{}
-	subjects, _ := profile.Subjects(class, board)
-	for _, sub := range subjects {
-		names[sub.ID] = sub.Name
 	}
 	var out []LessonSummary
 	for _, d := range s.decks {
 		if d.Class != class || d.Board != board || (subject != "" && d.Subject != subject) {
 			continue
 		}
-		c, isDone := done[d.ID]
+		c, isDone := act.done[d.ID]
 		out = append(out, LessonSummary{
 			ID: d.ID, ChapterID: d.ChapterID(), Subject: d.Subject, SubjectName: names[d.Subject],
 			ChapterNumber: d.ChapterNumber, ChapterTitle: d.ChapterTitle, Position: d.Position, Title: d.Title,
-			Cards: len(d.Cards), Quizzes: d.quizzes(), Done: isDone, Correct: c.Correct,
-			ResumeCard: positions[d.ID], Kept: keptPerDeck[d.ID],
+			Cards: len(d.Cards), Quizzes: d.quizzes(), Minutes: d.Minutes(), Done: isDone, Correct: c.Correct,
+			ResumeCard: act.positions[d.ID], Kept: keptPerDeck[d.ID],
 		})
 	}
-	return out, nil
+	return out
+}
+
+func (s *Service) libraryDeck(id string) (Deck, bool) {
+	if i := slices.IndexFunc(s.decks, func(d Deck) bool { return d.ID == id }); i >= 0 {
+		return s.decks[i], true
+	}
+	return Deck{}, false
 }
 
 func (s *Service) deck(ctx context.Context, id string) (Deck, error) {
-	if i := slices.IndexFunc(s.decks, func(d Deck) bool { return d.ID == id }); i >= 0 {
-		return s.decks[i], nil
+	if d, ok := s.libraryDeck(id); ok {
+		return d, nil
 	}
 	if strings.HasPrefix(id, UserDeckPrefix) {
 		return s.store.UserDeck(ctx, id)

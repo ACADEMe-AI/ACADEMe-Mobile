@@ -3,6 +3,7 @@ import '../../domain/models/app_language.dart';
 import '../../domain/models/board.dart';
 import '../../domain/models/chat.dart';
 import '../../domain/models/profile.dart';
+import '../../domain/models/study_stream.dart';
 import '../../domain/models/subject.dart';
 
 class ApiException implements Exception {
@@ -72,6 +73,10 @@ Profile profileFromJson(Map<String, Object?> json) => Profile(
   birthYear: json['birthYear'] as int?,
   classLevel: json['class'] as int?,
   board: Board.fromCode(json['board'] as String?),
+  subjects: switch (json['subjects']) {
+    final List<Object?> ids => [for (final id in ids) id! as String],
+    _ => null,
+  },
   setupDone: json['setupDone']! as bool,
   xp: json['xp']! as int,
 );
@@ -81,10 +86,24 @@ Map<String, Object?> profileUpdateToJson(ProfileUpdate update) => {
   'birthYear': ?update.birthYear,
   'class': ?update.classLevel,
   if (update.board case final board?) 'board': board.code,
+  'subjects': ?update.subjects,
 };
 
 Subject subjectFromJson(Map<String, Object?> json) =>
     Subject(id: json['id']! as String, name: json['name']! as String);
+
+StudyStream studyStreamFromJson(Map<String, Object?> json) => StudyStream(
+  id: json['id']! as String,
+  name: json['name']! as String,
+  main: [
+    for (final s in json['main']! as List<Object?>)
+      subjectFromJson(s! as Map<String, Object?>),
+  ],
+  optional: [
+    for (final s in json['optional']! as List<Object?>)
+      subjectFromJson(s! as Map<String, Object?>),
+  ],
+);
 
 ChatThread chatThreadFromJson(Map<String, Object?> json) => ChatThread(
   id: json['id']! as String,

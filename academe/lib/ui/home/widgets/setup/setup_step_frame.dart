@@ -12,6 +12,7 @@ class SetupStepFrame extends StatelessWidget {
     required this.onSubmit,
     required this.isSaving,
     this.subtitle,
+    this.isEnabled = true,
   });
 
   final String title;
@@ -20,6 +21,7 @@ class SetupStepFrame extends StatelessWidget {
   final String buttonLabel;
   final VoidCallback onSubmit;
   final bool isSaving;
+  final bool isEnabled;
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +52,7 @@ class SetupStepFrame extends StatelessWidget {
         AppButton(
           label: isSaving ? 'Saving…' : buttonLabel,
           isPrimary: true,
-          isEnabled: !isSaving,
+          isEnabled: isEnabled && !isSaving,
           onTap: onSubmit,
         ),
       ],

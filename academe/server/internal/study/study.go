@@ -119,6 +119,7 @@ type LessonSummary struct {
 	Title         string `json:"title"`
 	Cards         int    `json:"cards"`
 	Quizzes       int    `json:"quizzes"`
+	Minutes       int    `json:"minutes"`
 	Done          bool   `json:"done"`
 	Correct       int    `json:"correct"`
 	ResumeCard    int    `json:"resumeCard"`

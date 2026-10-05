@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../utils/dates.dart';
+import '../../../utils/result.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/app_button.dart';
 import '../../me/widgets/account_screen.dart';
@@ -14,6 +16,18 @@ import 'app_shell.dart';
 
 mixin MeNavigation on State<AppShell> {
   void showMessage(String message);
+
+  void onLeft() {
+    if (widget.me.deleteAccount.result case Ok(:final value)) {
+      showMessage(
+        'Your account will be deleted on ${longDate(value.toLocal())}. '
+        'Log in before then to keep it.',
+      );
+      widget.onLoggedOut?.call();
+    } else if (widget.me.logOut.isCompleted) {
+      widget.onLoggedOut?.call();
+    }
+  }
 
   Future<T?> pushMe<T>(Widget page) =>
       Navigator.of(context).push<T>(MaterialPageRoute<T>(builder: (_) => page));

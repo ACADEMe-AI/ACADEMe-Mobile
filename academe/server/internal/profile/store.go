@@ -17,7 +17,7 @@ func NewPostgresStore(pool *pgxpool.Pool) *PostgresStore {
 }
 
 const selectProfile = `
-	SELECT p.language, p.birth_year, p.class_level, p.board, p.setup_done_at IS NOT NULL,
+	SELECT p.language, p.birth_year, p.class_level, p.board, p.subjects, p.setup_done_at IS NOT NULL,
 	       COALESCE((SELECT sum(amount) FROM xp_events x WHERE x.account_id = $1), 0)
 	FROM (SELECT $1::uuid AS account_id) a
 	LEFT JOIN profiles p ON p.account_id = a.account_id`
@@ -29,7 +29,7 @@ type queryer interface {
 func readProfile(ctx context.Context, q queryer, accountID string) (Profile, error) {
 	var p Profile
 	var done *bool
-	err := q.QueryRow(ctx, selectProfile, accountID).Scan(&p.Language, &p.BirthYear, &p.Class, &p.Board, &done, &p.XP)
+	err := q.QueryRow(ctx, selectProfile, accountID).Scan(&p.Language, &p.BirthYear, &p.Class, &p.Board, &p.Subjects, &done, &p.XP)
 	if err != nil {
 		return Profile{}, fmt.Errorf("select profile: %w", err)
 	}
@@ -42,16 +42,21 @@ func (s *PostgresStore) Profile(ctx context.Context, accountID string) (Profile,
 }
 
 func (s *PostgresStore) Apply(ctx context.Context, accountID string, u Update) (Profile, error) {
+	var subjects []string
+	if u.Subjects != nil {
+		subjects = *u.Subjects
+	}
 	if _, err := s.pool.Exec(ctx, `
-		INSERT INTO profiles (account_id, language, birth_year, class_level, board)
-		VALUES ($1, $2, $3, $4, $5)
+		INSERT INTO profiles (account_id, language, birth_year, class_level, board, subjects)
+		VALUES ($1, $2, $3, $4, $5, $6)
 		ON CONFLICT (account_id) DO UPDATE SET
 			language    = COALESCE(EXCLUDED.language, profiles.language),
 			birth_year  = COALESCE(EXCLUDED.birth_year, profiles.birth_year),
 			class_level = COALESCE(EXCLUDED.class_level, profiles.class_level),
 			board       = COALESCE(EXCLUDED.board, profiles.board),
+			subjects    = CASE WHEN $7 THEN EXCLUDED.subjects ELSE profiles.subjects END,
 			updated_at  = now()`,
-		accountID, u.Language, u.BirthYear, u.Class, u.Board,
+		accountID, u.Language, u.BirthYear, u.Class, u.Board, subjects, u.Subjects != nil,
 	); err != nil {
 		return Profile{}, fmt.Errorf("upsert profile: %w", err)
 	}
@@ -82,4 +87,13 @@ func (s *PostgresStore) CompleteSetup(ctx context.Context, accountID string, xp 
 		return Profile{}, fmt.Errorf("commit complete setup: %w", err)
 	}
 	return p, nil
+}
+
+func (s *PostgresStore) AwardXP(ctx context.Context, accountID string, xp int, reason string) (Profile, error) {
+	if _, err := s.pool.Exec(ctx, `
+		INSERT INTO xp_events (account_id, amount, reason) VALUES ($1, $2, $3)
+		ON CONFLICT (account_id, reason) DO NOTHING`, accountID, xp, reason); err != nil {
+		return Profile{}, fmt.Errorf("award xp: %w", err)
+	}
+	return readProfile(ctx, s.pool, accountID)
 }

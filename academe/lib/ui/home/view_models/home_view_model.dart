@@ -4,13 +4,12 @@ import '../../../data/repositories/auth_repository.dart';
 import '../../../data/repositories/profile_repository.dart';
 import '../../../data/services/hint_store.dart';
 import '../../../domain/models/account.dart';
-import '../../../domain/models/board.dart';
 import '../../../domain/models/profile.dart';
-import '../../../domain/models/subject.dart';
 import '../../../utils/command.dart';
 import '../../../utils/result.dart';
+import '../../subjects/view_models/subjects_view_model.dart';
 
-enum SetupTask { language, age, classLevel, board }
+enum SetupTask { language, age, classLevel, board, subjects }
 
 class HomeViewModel extends ChangeNotifier {
   HomeViewModel({
@@ -22,7 +21,7 @@ class HomeViewModel extends ChangeNotifier {
        _hintStore = hintStore {
     load = Command0(_load)..addListener(notifyListeners);
     save = Command1(_save)..addListener(notifyListeners);
-    _profileRepository.addListener(_onProfileChanged);
+    _profileRepository.addListener(notifyListeners);
     load.execute();
   }
 
@@ -33,39 +32,40 @@ class HomeViewModel extends ChangeNotifier {
   late final Command0<Profile> load;
   late final Command1<Profile, ProfileUpdate> save;
 
-  static const xpPerTask = Profile.setupReward ~/ 4;
+  static const xpPerTask = Profile.subjectsReward;
 
-  List<Subject> _subjects = const [];
+  int _pendingXp = 0;
   bool _isRewardPending = false;
   bool _hasSeenAskHint = true;
   bool _showsAskHint = false;
+  bool _hasSeenPickHint = true;
 
   Account? get account => _authRepository.account;
   Profile get profile => _profileRepository.profile ?? const Profile();
-  List<Subject> get subjects => _subjects;
-
-  String? get syllabusLabel {
-    final classLevel = profile.classLevel;
-    if (classLevel == null) return null;
-    final board = profile.board;
-    return board == null
-        ? 'Class $classLevel'
-        : 'Class $classLevel · ${board.code}';
-  }
+  String? get syllabusLabel => profile.syllabusLabel;
 
   bool get isRewardPending => _isRewardPending;
+  int get pendingXp => _pendingXp;
   bool get showsChecklist => !profile.setupDone || _isRewardPending;
   bool get showsAskHint => _showsAskHint;
+  bool get showsPickSubjects =>
+      !showsChecklist &&
+      profile.hasSyllabus &&
+      !profile.hasPicks &&
+      !_hasSeenPickHint;
 
-  int get displayedXp =>
-      profile.xp - (_isRewardPending ? Profile.setupReward : 0);
+  int get displayedXp => profile.xp - _pendingXp;
 
   bool isDone(SetupTask task) => switch (task) {
     SetupTask.language => profile.language != null,
     SetupTask.age => profile.birthYear != null,
     SetupTask.classLevel => profile.classLevel != null,
     SetupTask.board => profile.board != null,
+    SetupTask.subjects => profile.hasPicks,
   };
+
+  bool _isOpen(SetupTask task) =>
+      task != SetupTask.subjects || profile.hasSyllabus;
 
   int get doneCount => SetupTask.values.where(isDone).length;
 
@@ -74,13 +74,20 @@ class HomeViewModel extends ChangeNotifier {
     final start = after == null ? 0 : after.index + 1;
     for (var offset = 0; offset < tasks.length; offset++) {
       final task = tasks[(start + offset) % tasks.length];
-      if (task != after && !isDone(task)) return task;
+      if (task != after && !isDone(task) && _isOpen(task)) return task;
     }
     return null;
   }
 
+  SetupTask startAt(SetupTask task) =>
+      _isOpen(task) ? task : nextTask() ?? SetupTask.classLevel;
+
+  SubjectsViewModel subjectsPicker() =>
+      SubjectsViewModel(profileRepository: _profileRepository);
+
   void rewardLanded() {
     _isRewardPending = false;
+    _pendingXp = 0;
     _showsAskHint = !_hasSeenAskHint;
     notifyListeners();
   }
@@ -92,46 +99,27 @@ class HomeViewModel extends ChangeNotifier {
     _hintStore.markSeen(Hint.askPebby);
   }
 
+  void dismissPickSubjects() {
+    _hasSeenPickHint = true;
+    notifyListeners();
+    _hintStore.markSeen(Hint.pickSubjects);
+  }
+
   Future<Result<Profile>> _load() async {
     _hasSeenAskHint = await _hintStore.hasSeen(Hint.askPebby);
-    final result = await _profileRepository.load();
-    if (result is Ok) await _refreshSubjects();
-    return result;
+    _hasSeenPickHint = await _hintStore.hasSeen(Hint.pickSubjects);
+    return _profileRepository.load();
   }
 
   Future<Result<Profile>> _save(ProfileUpdate update) async {
     final wasDone = profile.setupDone;
+    final before = profile.xp;
     final result = await _profileRepository.update(update);
     if (result is Ok) {
       if (!wasDone && profile.setupDone) _isRewardPending = true;
-      await _refreshSubjects();
+      if (_isRewardPending) _pendingXp += profile.xp - before;
     }
     return result;
-  }
-
-  (int?, Board?) _syllabus = (null, null);
-
-  Future<void> _onProfileChanged() async {
-    final next = (profile.classLevel, profile.board);
-    if (next == _syllabus) return;
-    await _refreshSubjects();
-    notifyListeners();
-  }
-
-  Future<void> _refreshSubjects() async {
-    final current = profile;
-    final classLevel = current.classLevel;
-    final board = current.board;
-    _syllabus = (classLevel, board);
-    if (classLevel == null || board == null) {
-      _subjects = const [];
-      return;
-    }
-    final result = await _profileRepository.subjects(
-      classLevel: classLevel,
-      board: board,
-    );
-    if (result case Ok(:final value)) _subjects = value;
   }
 
   @override
@@ -142,7 +130,7 @@ class HomeViewModel extends ChangeNotifier {
     save
       ..removeListener(notifyListeners)
       ..dispose();
-    _profileRepository.removeListener(_onProfileChanged);
+    _profileRepository.removeListener(notifyListeners);
     super.dispose();
   }
 }

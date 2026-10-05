@@ -68,6 +68,7 @@ class FakeStudyRepository implements StudyRepository {
   final decksById = {reflection.id: reflection, mirrors.id: mirrors};
   List<DeckSummary> deckList = [summaryOf(reflection), summaryOf(mirrors)];
   List<PlannedChapter> chapterList = [];
+  List<SubjectProgress> subjectList = [];
   List<ChapterResult> results = [];
   List<ReviewItem> reviewItems = [];
   Exception? nextFailure;
@@ -88,8 +89,9 @@ class FakeStudyRepository implements StudyRepository {
   }
 
   @override
-  Future<Result<StudyCatalogue>> catalogue() async =>
-      _answer(() => (decks: deckList, chapters: chapterList));
+  Future<Result<StudyCatalogue>> catalogue() async => _answer(
+    () => (decks: deckList, chapters: chapterList, subjects: subjectList),
+  );
 
   @override
   Future<Result<Deck>> deck(String id) async => _answer(() => decksById[id]!);

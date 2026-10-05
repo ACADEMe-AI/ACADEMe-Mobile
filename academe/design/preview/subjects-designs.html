@@ -3,421 +3,271 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Your Subjects</title>
+<title>Subjects and Filters</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700&family=Baloo+2:wght@800&family=Noto+Sans:wght@400;600&family=Material+Symbols+Rounded:opsz,wght,FILL@24,500,1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700&family=Baloo+2:wght@800&family=Noto+Sans:wght@400;600;700&family=Material+Symbols+Rounded:opsz,wght,FILL@24,500,0..1&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#F6F7FA;--surface:#FFFFFF;--raised:#EEF0F5;--border:#D8DCE6;--text:#12141A;--muted:#5C6578;
   --primary:#564CF1;--edge:#12141A;--amber:#F5A800;--ok:#0D9F6E;
   --lav:#E7E6FF;--amb:#FFE7A3;--mint:#D9F4EA;--pink:#FFE0EC;--sky:#DCEBFF;--cream:#FFF9E8;--rose:#FFE3E0;
-  --page:#EDEFF5;
+  --page:#E9ECF3;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--page);color:var(--text);font:15px/1.5 "Noto Sans",system-ui,sans-serif;padding:32px 16px 80px}
-main{max-width:1280px;margin:0 auto}
+main{max-width:1320px;margin:0 auto}
 h1{font:800 40px/1.1 "Baloo 2",sans-serif}
 h2{font:800 28px/1.15 "Baloo 2",sans-serif;margin:56px 0 6px}
-h3{font:700 16px/1.3 Archivo,sans-serif;margin-bottom:4px}
-.lead{color:var(--muted);max-width:760px;margin-top:8px}
-.ic{font-family:"Material Symbols Rounded";font-weight:normal;font-style:normal;font-size:20px;line-height:1;display:inline-block;vertical-align:middle;font-variation-settings:"FILL" 1}
-.strip{display:flex;gap:28px;flex-wrap:wrap;margin-top:20px}
-figure{width:340px}
+.lead{color:var(--muted);max-width:780px;margin-top:8px}
+.toc{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.toc a{padding:6px 12px;border-radius:99px;border:2px solid var(--edge);background:#fff;color:var(--text);text-decoration:none;font-weight:600;font-size:13px;box-shadow:0 2px 0 var(--edge)}
+.strip{display:flex;gap:26px;flex-wrap:wrap;margin-top:20px;align-items:flex-start}
+figure{width:330px}
 figcaption{margin-top:10px}
 figcaption b{font:700 14px Archivo,sans-serif;display:block}
 figcaption span{color:var(--muted);font-size:13px}
-.tag{display:inline-block;font:700 11px Archivo,sans-serif;letter-spacing:.4px;text-transform:uppercase;padding:2px 8px;border-radius:99px;background:var(--amb);color:#8A6100;margin-left:6px;vertical-align:middle}
-.tag.now{background:var(--rose);color:#B42332}
-.phone{width:340px;height:720px;background:var(--bg);border:3px solid var(--edge);border-radius:36px;overflow:hidden;position:relative;display:flex;flex-direction:column;box-shadow:0 6px 0 var(--edge)}
-.phone.dark{--bg:#0B0C0F;--surface:#14161C;--raised:#1C1F28;--border:#2A2E38;--text:#F2F3F5;--muted:#8B93A7;--edge:#45476F;
-  --lav:#2A2750;--amb:#4A3A10;--mint:#12382C;--pink:#43202F;--sky:#152A45;--cream:#3A3320;--rose:#45211F;background:var(--bg);color:var(--text)}
-.status{height:30px;display:flex;justify-content:space-between;align-items:center;padding:0 22px;font-size:12px;font-weight:600}
-.body{flex:1;overflow:hidden;padding:4px 16px 0}
-.row{display:flex;align-items:center;gap:8px}
+.badge{display:inline-block;font:700 10px Archivo,sans-serif;letter-spacing:.4px;text-transform:uppercase;padding:2px 8px;border-radius:99px;vertical-align:middle;margin-left:6px}
+.b-now{background:#DDE1EA;color:var(--muted)}
+.b-new{background:var(--amber);color:#12141A}
+.b-pick{background:var(--primary);color:#fff}
+.shot{width:330px;height:740px;border-radius:30px;border:3px solid #C9CEDA;overflow:hidden;background:#fff}
+.shot img{width:100%;display:block}
+.ic{font-family:"Material Symbols Rounded";font-weight:normal;font-style:normal;font-size:20px;line-height:1;display:inline-block;vertical-align:middle;font-variation-settings:"FILL" 1}
+.phone{width:330px;height:740px;border-radius:30px;border:3px solid #C9CEDA;overflow:hidden;background:var(--bg);position:relative;display:flex;flex-direction:column}
+.status{height:34px;display:flex;justify-content:space-between;align-items:center;padding:0 20px;font-size:12.5px;font-weight:600}
+.scr{flex:1;overflow:hidden;padding:6px 18px 0}
+.big{font:800 29px/1.1 "Baloo 2",sans-serif}
+.cap{font-size:12px;color:var(--muted);font-weight:600}
 .muted{color:var(--muted)}
-.small{font-size:12px}
-.greet{font:800 26px/1.1 "Baloo 2",sans-serif}
-.chip{white-space:nowrap;display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:99px;font-size:12px;font-weight:600;border:2px solid var(--edge)}
+.row{display:flex;align-items:center;gap:8px}
+.seg{display:flex;background:var(--raised);border-radius:14px;padding:4px;margin:10px 0 12px}
+.seg>span{flex:1;display:flex;justify-content:center;align-items:center;gap:6px;height:36px;border-radius:11px;font-weight:600;font-size:14px;color:var(--text)}
+.seg>span.on{background:#fff;color:var(--primary)}
+.seg>span .ic{font-size:18px}
+.pills{display:flex;flex-wrap:wrap;gap:7px}
+.pills.one{flex-wrap:nowrap;overflow:hidden}
+.pill{display:inline-flex;align-items:center;gap:5px;white-space:nowrap;padding:5px 13px;border-radius:99px;border:2px solid var(--edge);box-shadow:0 2px 0 var(--edge);font-size:13.5px;font-weight:600;background:#fff}
+.pill.on{background:var(--amber)}
+.pill.ghost{border-style:dashed;box-shadow:none;background:var(--raised);color:var(--muted)}
+.pill .ic{font-size:17px}
+.pill.icon{margin-left:auto;padding:5px 9px}
+.ic.o{font-variation-settings:"FILL" 0}
+.pill .n{background:var(--primary);color:#fff;border-radius:99px;font-size:10.5px;padding:0 6px;font-weight:700}
+.x{display:inline-flex;align-items:center;gap:3px;white-space:nowrap;padding:3px 10px;border-radius:99px;background:var(--lav);font-size:12px;font-weight:600;color:var(--text)}
+.x .ic{font-size:15px}
+.cont{background:var(--primary);color:#fff;border:2.5px solid var(--edge);border-radius:16px;box-shadow:0 4px 0 var(--edge);height:84px;display:flex;align-items:center;padding:0 14px;gap:10px;margin:14px 0}
+.cont .k{font-size:12px;font-weight:600}
+.cont .t{font:800 20px/1.1 "Baloo 2",sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cont .s{font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cont .play{width:40px;height:40px;background:#fff;color:var(--primary);border-radius:12px;display:grid;place-items:center;flex:none}
+.ch{display:flex;align-items:center;gap:12px;padding:9px 0}
+.ch .num{width:40px;height:40px;border-radius:12px;background:var(--raised);display:grid;place-items:center;font:800 17px "Baloo 2";flex:none}
+.ch .t{font-weight:600;font-size:14.5px;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ch .s{font-size:12px;color:var(--muted)}
+.ch.soon .t,.ch.soon .num{color:var(--muted)}
+.ring{--p:0;width:28px;height:28px;border-radius:50%;flex:none;background:conic-gradient(var(--ok) calc(var(--p)*1%),var(--raised) 0);display:grid;place-items:center}
+.ring::after{content:"";width:20px;height:20px;border-radius:50%;background:var(--bg)}
+.card .ring::after{background:#fff}
+.nav{display:flex;gap:10px;margin:0 12px 14px;align-items:center}
+.nav .pillnav{flex:1;height:60px;border:2.5px solid var(--edge);border-radius:22px;background:#fff;display:flex;justify-content:space-around;align-items:center;font-size:11px;font-weight:600;box-shadow:0 3px 0 var(--edge)}
+.nav .pillnav div{display:flex;flex-direction:column;align-items:center;color:var(--muted)}
+.nav .pillnav div.on{color:var(--primary)}
+.nav .cam{width:60px;height:60px;border-radius:20px;background:var(--primary);border:2.5px solid var(--edge);box-shadow:0 3px 0 var(--edge);color:#fff;display:grid;place-items:center}
+.greet{font:800 29px/1.1 "Baloo 2",sans-serif}
+.chip{white-space:nowrap;display:inline-flex;align-items:center;gap:3px;padding:1px 8px;border-radius:99px;font-size:12px;font-weight:700;border:2px solid var(--edge);background:var(--amber)}
+.ask{height:48px;border:2.5px solid var(--edge);border-radius:16px;box-shadow:0 3px 0 var(--edge);background:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 12px;color:var(--muted);font-size:14px;margin:12px 0}
+.ask .mic{width:30px;height:30px;border-radius:9px;background:var(--raised);display:grid;place-items:center;color:var(--text)}
+.qa{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.qa div{background:var(--raised);border-radius:14px;height:66px;display:flex;flex-direction:column;justify-content:center;align-items:center;font-size:12px;font-weight:600;text-align:center;line-height:1.2}
+.today{background:var(--cream);border:2.5px solid var(--edge);border-radius:18px;box-shadow:0 3px 0 var(--edge);padding:10px 12px;margin-top:12px}
+.today .h{display:flex;justify-content:space-between;align-items:baseline}
+.today .h b{font:800 18px "Baloo 2"}
+.task{display:flex;align-items:center;gap:10px;padding:5px 0;font-size:13.5px;font-weight:600}
+.task .bx{width:26px;height:26px;border-radius:8px;border:2px solid var(--edge);display:grid;place-items:center;flex:none}
+.task small{display:block;font-weight:400;color:var(--muted);font-size:11.5px}
 .sect{display:flex;justify-content:space-between;align-items:baseline;margin:14px 0 8px}
-.sect b{font:700 15px Archivo,sans-serif}
-.sect a{color:var(--primary);font-weight:600;font-size:13px;text-decoration:none}
+.sect b{font:700 16px Archivo,sans-serif}
+.sect a{color:var(--primary);font-weight:600;font-size:13px}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.tile{border-radius:16px;padding:10px 12px;min-height:74px;display:flex;flex-direction:column;justify-content:space-between;position:relative}
-.tile.key{border:2px solid var(--edge);box-shadow:0 3px 0 var(--edge)}
-.tile.has-soon .name{padding-right:38px}
-.tile .name{font:700 13.5px/1.2 Archivo,sans-serif;display:flex;align-items:center;gap:6px}
-.tile .name .ic{font-size:18px}
-.bar{height:5px;border-radius:5px;background:rgba(18,20,26,.12);overflow:hidden;margin-top:6px}
-.dark .bar{background:rgba(255,255,255,.14)}
-.bar i{display:block;height:100%;background:var(--primary);border-radius:5px}
-.tile .meta{font-size:11px;color:var(--muted);margin-top:3px}
-.soon{position:absolute;right:8px;top:8px;font:700 9.5px Archivo,sans-serif;letter-spacing:.3px;text-transform:uppercase;background:var(--surface);border:1.5px solid var(--border);padding:1px 6px;border-radius:99px;color:var(--muted)}
-.plain .tile{border:none;box-shadow:none}
-.card{background:var(--surface);border:2px solid var(--border);border-radius:18px;padding:12px}
-.sheet{position:absolute;left:0;right:0;bottom:0;background:var(--surface);border-top-left-radius:26px;border-top-right-radius:26px;border-top:3px solid var(--edge);padding:10px 16px 18px;box-shadow:0 -8px 30px rgba(0,0,0,.18)}
-.dim{position:absolute;inset:0;background:rgba(18,20,26,.35)}
-.handle{width:40px;height:4px;border-radius:4px;background:var(--border);margin:0 auto 10px}
-.stepbar{display:flex;gap:4px;margin:4px 0 10px}
-.stepbar i{flex:1;height:5px;border-radius:5px;background:var(--primary)}
-.stepbar i.off{background:var(--raised)}
-.title{font:800 22px/1.15 "Baloo 2",sans-serif}
-.pick{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
-.pill{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:99px;border:2px solid var(--edge);box-shadow:0 2px 0 var(--edge);font-weight:600;font-size:13px;background:var(--surface)}
-.pill.on{background:var(--amber);color:#12141A}
-.pill.lock{background:var(--raised);box-shadow:none;border-style:dashed;color:var(--muted)}
-.pill .ic{font-size:16px}
-.stream{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
-.stream div{border:2px solid var(--edge);box-shadow:0 3px 0 var(--edge);border-radius:14px;padding:9px 10px;background:var(--surface)}
-.stream div.on{background:var(--amber)}
-.stream b{font:700 13px Archivo,sans-serif;display:block}
-.stream span{font-size:11px;color:var(--muted)}
-.stream div.on span{color:#5a4200}
-.btn{display:flex;justify-content:center;align-items:center;gap:6px;height:48px;border-radius:14px;border:2.5px solid var(--edge);box-shadow:0 4px 0 var(--edge);font:700 15px Archivo,sans-serif;margin-top:14px;background:var(--primary);color:#fff}
-.btn.ghost{background:var(--surface);color:var(--text)}
-.nav{height:64px;margin:0 12px 12px;border:2.5px solid var(--edge);border-radius:22px;background:var(--surface);display:flex;align-items:center;justify-content:space-around;box-shadow:0 3px 0 var(--edge);font-size:10.5px;font-weight:600}
-.nav div{display:flex;flex-direction:column;align-items:center;gap:1px;color:var(--muted)}
-.nav div.on{color:var(--primary)}
-.top{display:flex;align-items:center;gap:8px;height:44px}
-.top b{font:700 15px Archivo,sans-serif}
-.chips{display:flex;gap:6px;overflow:hidden;margin:8px 0 10px}
-.chips span{white-space:nowrap;padding:5px 11px;border-radius:99px;border:2px solid var(--edge);font-size:12px;font-weight:600;background:var(--surface)}
-.chips span.on{background:var(--amber)}
-.list .li{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
-.list .num{width:34px;height:34px;border-radius:10px;background:var(--lav);display:grid;place-items:center;font:700 13px Archivo,sans-serif}
-.list .li.soonrow{opacity:1}
-.list .li.soonrow .num{background:var(--raised);color:var(--muted)}
-.list .li.soonrow .t{color:var(--muted)}
-.list .t{font-weight:600;font-size:13.5px;line-height:1.25}
-.list .s{font-size:11.5px;color:var(--muted)}
-.hero{border-radius:18px;padding:12px;border:2px solid var(--edge);box-shadow:0 3px 0 var(--edge)}
-.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:18px}
+.tile{border-radius:16px;padding:10px 12px;height:62px;display:flex;flex-direction:column;justify-content:center;font-weight:600;font-size:14px}
+.tile.tap{height:74px;border:2px solid var(--edge);box-shadow:0 3px 0 var(--edge);justify-content:space-between;padding:9px 11px}
+.tile .nm{display:flex;align-items:center;gap:6px}
+.tile .nm .ic{font-size:18px}
+.bar{height:5px;border-radius:5px;background:rgba(18,20,26,.12);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ok)}
+.tile .m{font-size:11px;color:var(--muted);font-weight:400;margin-top:2px}
+.srow{display:flex;align-items:center;gap:11px;padding:8px 0;border-bottom:1px solid var(--border)}
+.srow:last-child{border:none}
+.srow .sq{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;flex:none}
+.srow .t{font-weight:600;font-size:14.5px}
+.srow .s{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card{background:#fff;border:2px solid var(--border);border-radius:18px;padding:4px 12px}
+.dim{position:absolute;inset:0;background:rgba(18,20,26,.32)}
+.sheet{position:absolute;left:0;right:0;bottom:0;background:#fff;border-top-left-radius:28px;border-top-right-radius:28px;padding:10px 18px 22px}
+.handle{width:40px;height:4px;border-radius:4px;background:var(--border);margin:0 auto 12px}
+.sh{display:flex;justify-content:space-between;align-items:center}
+.sh .l{font-size:12px;font-weight:700;letter-spacing:.5px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.sh a{color:var(--primary);font-weight:700;font-size:14px}
+.q{font:800 23px/1.15 "Baloo 2",sans-serif;margin:10px 0 4px}
+.btn{height:52px;border-radius:14px;border:2.5px solid var(--edge);box-shadow:0 4px 0 var(--edge);background:var(--primary);color:#fff;display:flex;justify-content:center;align-items:center;gap:6px;font:700 16px Archivo,sans-serif;margin-top:14px}
+.btn.ghost{background:#fff;color:var(--text)}
+.lbl{font-size:12px;font-weight:700;letter-spacing:.5px;color:var(--muted);text-transform:uppercase;margin:12px 0 6px}
+.cards{display:flex;gap:12px;overflow:hidden;margin-top:10px}
+.bigcard{flex:none;width:160px;height:176px;border:2.5px solid var(--edge);border-radius:20px;box-shadow:0 4px 0 var(--edge);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:10px}
+.bigcard .ic{font-size:38px}
+.bigcard b{font:800 19px/1.1 "Baloo 2";margin-top:6px}
+.bigcard span{font-size:11.5px;color:var(--muted);margin-top:2px}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:10px}
+.dots i{width:8px;height:8px;border-radius:8px;background:var(--border)}
+.dots i.on{width:22px;background:var(--primary)}
+.seg2{display:flex;background:var(--raised);border-radius:12px;padding:3px;gap:3px}
+.seg2 span{flex:1;text-align:center;white-space:nowrap;padding:6px 0;border-radius:9px;font-size:12px;font-weight:600;color:var(--muted)}
+.seg2 span.on{background:#fff;color:var(--text);border:2px solid var(--edge);box-shadow:0 2px 0 var(--edge)}
+.tog{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-weight:600}
+.tog small{display:block;font-weight:400;color:var(--muted);font-size:11.5px}
+.sw{width:42px;height:24px;border-radius:24px;background:var(--border);position:relative;flex:none}
+.sw::after{content:"";position:absolute;left:3px;top:3px;width:18px;height:18px;border-radius:50%;background:#fff}
+.sw.on{background:var(--primary)}
+.sw.on::after{left:21px}
+.folder{display:flex;align-items:center;gap:12px;padding:10px 12px;border:2px solid var(--border);border-radius:16px;background:#fff;margin-bottom:10px}
+.folder .fi{width:44px;height:44px;border-radius:12px;background:var(--lav);color:var(--primary);display:grid;place-items:center;flex:none}
+.folder .fi .ic{font-size:24px}
+.folder b{font-size:15px}
+.due{font-size:11px;font-weight:700;padding:2px 8px;border-radius:99px;background:var(--amb);color:#8A6100}
+.top{display:flex;align-items:center;gap:10px;height:44px;font-weight:600;font-size:15px}
+.set{background:#fff;border:2px solid var(--border);border-radius:16px}
+.set>div{display:flex;align-items:center;gap:12px;padding:12px}
+.set>div+div{border-top:1px solid var(--border)}
+.set small{display:block;color:var(--muted);font-size:12px;font-weight:400}
 .note{background:#fff;border:2px solid var(--border);border-radius:16px;padding:14px 16px}
 .note ul{margin:6px 0 0 18px}
 .note li{margin:3px 0}
-.note.good{border-color:#9BDCC4}
-.note.bad{border-color:#F3B6AE}
-table{border-collapse:collapse;width:100%;margin-top:14px;background:#fff;border-radius:14px;overflow:hidden}
-th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top}
-th{font:700 13px Archivo,sans-serif;background:var(--raised)}
-.toc{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
-.toc a{padding:6px 12px;border-radius:99px;border:2px solid var(--edge);background:#fff;color:var(--text);text-decoration:none;font-weight:600;font-size:13px;box-shadow:0 2px 0 var(--edge)}
-.pick-label{font:700 12px Archivo,sans-serif;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-top:12px}
-.ring{--p:30;width:58px;height:58px;border-radius:50%;background:conic-gradient(var(--primary) calc(var(--p)*1%),var(--raised) 0);display:grid;place-items:center;border:2px solid var(--edge)}
-.ring>span{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--surface)}
-.rail{display:flex;gap:12px;overflow:hidden}
-.rail .it{display:flex;flex-direction:column;align-items:center;gap:4px;width:64px;text-align:center;font-size:11px;font-weight:600;line-height:1.2}
-.srow{display:flex;align-items:center;gap:10px;padding:9px 10px;border:2px solid var(--edge);border-radius:14px;box-shadow:0 2px 0 var(--edge);margin-bottom:8px;background:var(--surface)}
-.srow .sq{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;flex:none}
-.mini{--p:30;width:34px;height:34px;border-radius:50%;background:conic-gradient(var(--primary) calc(var(--p)*1%),var(--raised) 0);display:grid;place-items:center;flex:none}
-.mini>span{width:26px;height:26px;border-radius:50%;background:var(--surface);display:grid;place-items:center;font:700 9.5px Archivo,sans-serif}
-.cards{display:flex;gap:10px;overflow:hidden}
-.ncard{flex:none;width:210px;border:2px solid var(--edge);box-shadow:0 3px 0 var(--edge);border-radius:18px;padding:12px}
-.ncard .btn{height:38px;margin-top:10px;font-size:13px}
-.focus{border:2px solid var(--edge);box-shadow:0 4px 0 var(--edge);border-radius:20px;padding:14px}
-.seg{display:flex;background:var(--raised);border-radius:12px;padding:3px;gap:3px}
-.seg span{flex:1;text-align:center;padding:6px 0;border-radius:9px;font-size:12px;font-weight:600;color:var(--muted)}
-.seg span.on{background:var(--surface);color:var(--text);border:2px solid var(--edge);box-shadow:0 2px 0 var(--edge)}
-.search{display:flex;align-items:center;gap:8px;height:42px;border:2px solid var(--border);border-radius:14px;padding:0 12px;background:var(--surface);color:var(--muted);font-size:13px}
-.fbtn{display:inline-flex;align-items:center;gap:4px;padding:5px 11px;border-radius:99px;border:2px solid var(--edge);box-shadow:0 2px 0 var(--edge);font-size:12px;font-weight:700;background:var(--surface)}
-.fbtn b{background:var(--primary);color:#fff;border-radius:99px;padding:0 6px;font-size:10px}
-.x{white-space:nowrap;display:inline-flex;align-items:center;gap:3px;padding:4px 9px;border-radius:99px;background:var(--lav);font-size:11.5px;font-weight:600}
-.shelf-t{font:700 13px Archivo,sans-serif;margin:10px 0 6px;display:flex;justify-content:space-between}
-.shelf{display:flex;gap:8px;overflow:hidden}
-.shelf div{flex:none;width:136px;border-radius:14px;padding:9px;border:2px solid var(--edge);box-shadow:0 2px 0 var(--edge);font-size:12px;line-height:1.3}
-.shelf div b{display:block;font:700 12.5px Archivo,sans-serif;margin-bottom:2px}
-.pickbadge{display:inline-block;font:700 10px Archivo,sans-serif;letter-spacing:.4px;text-transform:uppercase;background:var(--primary);color:#fff;padding:2px 8px;border-radius:99px;margin-left:6px;vertical-align:middle}
-.frow{margin-top:10px}
-.frow .pick-label{margin:0 0 6px}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-top:18px}
+.cols h3{font:700 16px Archivo,sans-serif}
 </style>
 </head>
 <body>
 <main>
-<h1>Your subjects</h1>
-<p class="lead">Home and Study currently list every subject the board offers, and the Home tiles can't be tapped. The plan is to let each student pick their own subjects once, show only those, and turn every tile into a way into that subject's lessons.</p>
-<div class="toc">
-  <a href="#now">1 · Today</a><a href="#setup">2 · Pick subjects in setup</a><a href="#home">3 · Home tiles</a><a href="#study">4 · Tap a tile → Study</a><a href="#edit">5 · Change later</a><a href="#edges">6 · Edge cases</a><a href="#tiles">7 · Other tile ideas</a><a href="#filters">8 · Filtering</a><a href="#build">9 · What gets built</a>
-</div>
+<h1>Subjects and filters</h1>
+<p class="lead">These designs build on the app as it is today. Each section starts with a real Pixel 10 screenshot (grey frame, <span class="badge b-now">Today</span>), followed by proposals (<span class="badge b-new">New</span>) made from the same pieces: the Courses / Folders toggle, the amber pills, the purple Continue keycap, the chapter rows with green progress rings, and the setup sheet.</p>
+<div class="toc"><a href="#home">1 · Home subjects</a><a href="#setup">2 · Pick subjects in setup</a><a href="#courses">3 · Study → Courses + filters</a><a href="#folders">4 · Study → Folders</a><a href="#me">5 · Change later</a><a href="#build">6 · What gets built</a></div>
 
-<section id="now">
-<h2>1 · Today <span class="tag now">Problem</span></h2>
-<p class="lead">A Class 12 CBSE Science student sees all 14 senior subjects, from Accountancy to Psychology. The tiles are plain labels, and most of them lead to chapters marked "Coming soon".</p>
-<div class="strip" id="now-strip"></div>
-</section>
+<section id="home"><h2>1 · Home subjects</h2>
+<p class="lead">Today the tiles are plain labels for every subject on the board. In both proposals Home shows only the student's subjects, each one opens Study → Courses with that subject selected, and there's an <b>Edit</b> link. A keeps the current tinted tiles and adds progress. C turns them into rows with the next lesson.</p>
+<div class="strip" id="home-strip"></div></section>
 
-<section id="setup">
-<h2>2 · Pick subjects in setup <span class="tag">New step 5</span></h2>
-<p class="lead">This is one more step in the existing setup sheet, after the board. Class 6–10 comes with every subject already selected, so most students just tap Finish. Class 11–12 picks a stream first, which fills in the usual subjects, then adds any optional ones. English is always included.</p>
-<div class="strip" id="setup-strip"></div>
-</section>
+<section id="setup"><h2>2 · Pick subjects in setup</h2>
+<p class="lead">A fifth step in the existing setup sheet, in the same style (SET UP · n/5, +25 XP, Later, a big question and a primary button). Class 6–10 comes with everything selected. Class 11–12 first picks a stream on swipe cards, just like the language step.</p>
+<div class="strip" id="setup-strip"></div></section>
 
-<section id="home">
-<h2>3 · Home tiles <span class="tag">Tappable</span></h2>
-<p class="lead">Home shows only the student's subjects. Each tile is a keycap with an icon, a progress bar and "N of M lessons". Subjects with no lessons yet show a small "Soon" badge and still open, because their chapters and the plan are already visible. The section has an Edit link.</p>
-<div class="strip" id="home-strip"></div>
-</section>
+<section id="courses"><h2>3 · Study → Courses, with filters</h2>
+<p class="lead">Same page as today, with three changes. The subject pills show only the student's subjects, so they fit in one row. The All / In progress / Done row gets a <b>Filters</b> key (the tune icon) at the end, which opens a sheet. Active filters show as removable chips above the list.</p>
+<div class="strip" id="courses-strip"></div></section>
 
-<section id="study">
-<h2>4 · Tap a tile → Study <span class="tag">Filtered</span></h2>
-<p class="lead">Tapping a tile opens Study → Courses with that subject selected. The subject chips at the top list only the student's subjects. Chapters without lessons stay greyed out as "Coming soon", as they are today.</p>
-<div class="strip" id="study-strip"></div>
-</section>
+<section id="folders"><h2>4 · Study → Folders</h2>
+<p class="lead">The Folders tab stays as it is. Adding chapters to a folder now offers only the student's subjects, and the same Filters pill works there too.</p>
+<div class="strip" id="folders-strip"></div></section>
 
-<section id="edit">
-<h2>5 · Change later <span class="tag">Me</span></h2>
-<p class="lead">Me → Class and board gets a "Subjects" row that opens the same picker. Changing class or board resets the picks to that syllabus's defaults and says so.</p>
-<div class="strip" id="edit-strip"></div>
-</section>
+<section id="me"><h2>5 · Change later</h2>
+<p class="lead">Me → Class and board gets Stream and Subjects rows. They open the same picker as setup, as a sheet.</p>
+<div class="strip" id="me-strip"></div></section>
 
-<section id="edges">
-<h2>6 · Edge cases</h2>
-<div class="strip" id="edge-strip"></div>
-</section>
-
-
-<section id="tiles">
-<h2>7 · Other ways to show subjects on Home <span class="tag">Directions</span></h2>
-<p class="lead">The keycap grid (section 3) is one option. Here are four more, each using the same data: the student's subjects, progress, and the next lesson.</p>
-<div class="strip" id="tiles-strip"></div>
-</section>
-
-<section id="filters">
-<h2>8 · Filtering in Study → Courses <span class="tag">New</span></h2>
-<p class="lead">Today Courses has subject chips and All / In progress / Done pills. With every chapter of the syllabus listed (hundreds for Class 11–12), students need to narrow things down by board-exam relevance, lessons that are ready, revision that's due, and search.</p>
-<div class="strip" id="filters-strip"></div>
-</section>
-
-<section id="build">
-<h2>9 · What gets built</h2>
+<section id="build"><h2>6 · What gets built</h2>
 <div class="cols">
-  <div class="note good"><h3>Server</h3><ul>
-    <li>New profile field <code>subjects</code> (list of subject codes). Migration 0023 adds a <code>text[]</code> column.</li>
-    <li><code>PATCH /me/profile</code> accepts <code>subjects</code> and checks every code against that class and board.</li>
-    <li><code>GET /catalog/streams?class=&amp;board=</code> returns the Class 11–12 streams (Science PCM, Science PCB, Commerce, Humanities) with their default and optional subjects.</li>
-    <li>Changing class or board clears the picks, and the app asks again.</li>
-    <li><code>GET /study/decks</code> adds lesson counts per subject (planned and ready) for the tiles. The change is additive only.</li>
-  </ul></div>
-  <div class="note good"><h3>App</h3><ul>
-    <li>A "Your subjects" step in the setup sheet (+25 XP like the other steps), and a subjects row in Me → Class and board.</li>
-    <li>SubjectGrid becomes tappable keycap tiles with an icon, progress and a Soon badge, and opens Study filtered to that subject.</li>
-    <li>Study's subject chips, Add chapters and the Today plan use only the picked subjects.</li>
-    <li>Existing students have no picks, so the app treats that as "all subjects" and shows a one-time nudge: "Pick your subjects".</li>
-  </ul></div>
-  <div class="note"><h3>Not in this change</h3><ul>
-    <li>Per-subject reminders or goals.</li>
-    <li>State boards.</li>
-    <li>A "notify me when lessons arrive" button for Soon subjects. It could come later.</li>
-  </ul></div>
-</div>
-<table>
-  <tr><th>Class and board</th><th>Default picks</th><th>Optional</th></tr>
-  <tr><td>CBSE 6–8</td><td>Maths, Science, Social Science, English, Hindi, Sanskrit (all on)</td><td>untick what you don't take</td></tr>
-  <tr><td>CBSE 9–10</td><td>Maths, Science, Social Science, English, Hindi</td><td>Sanskrit, Computer Applications</td></tr>
-  <tr><td>ICSE 6–10</td><td>English, Hindi, Maths, Physics, Chemistry, Biology, History &amp; Civics, Geography</td><td>Computer Applications</td></tr>
-  <tr><td>CBSE / ISC 11–12 · Science PCM</td><td>English, Physics, Chemistry, Maths</td><td>Computer Science, Physical Education, Psychology, Economics</td></tr>
-  <tr><td>CBSE / ISC 11–12 · Science PCB</td><td>English, Physics, Chemistry, Biology</td><td>Maths, Psychology, Physical Education</td></tr>
-  <tr><td>CBSE / ISC 11–12 · Commerce</td><td>English, Accountancy, Business Studies (ISC: Commerce), Economics</td><td>Maths, Computer Science, Physical Education</td></tr>
-  <tr><td>CBSE / ISC 11–12 · Humanities</td><td>English, History, Political Science, Geography</td><td>Economics, Psychology, Physical Education</td></tr>
-</table>
-</section>
+<div class="note"><h3>Server</h3><ul>
+<li>A <code>subjects</code> list on the profile (migration 0023). <code>PATCH /me/profile</code> checks each code against the class and board.</li>
+<li><code>GET /catalog/streams</code> returns the Class 11–12 streams with their main and optional subjects.</li>
+<li>The catalogue adds per-subject counts, lesson minutes and whether each chapter has revision due, which the filters need. The change is additive only.</li>
+</ul></div>
+<div class="note"><h3>App</h3><ul>
+<li>A fifth setup step and a Subjects row in Me → Class and board.</li>
+<li>Home subjects: either A (tiles with progress) or C (rows), both tappable.</li>
+<li>Courses: pills for the student's subjects only, a Filters pill and sheet (board exam only, ready to study, revision due, sort by marks or recent), and active-filter chips.</li>
+<li>Add chapters uses the same subject list. Students with no picks saved see every subject plus a one-time "Pick your subjects" card.</li>
+</ul></div>
+</div></section>
 </main>
-
 <script>
-const icon = {
-  maths:'calculate', science:'science', 'social-science':'public', english:'menu_book', hindi:'translate', sanskrit:'history_edu',
-  computer:'computer', physics:'bolt', chemistry:'experiment', biology:'eco', 'history-civics':'account_balance', geography:'map',
-  'computer-science':'terminal', accountancy:'receipt_long', 'business-studies':'business_center', commerce:'storefront',
-  economics:'trending_up', history:'account_balance', 'political-science':'gavel', psychology:'psychology', 'physical-education':'sports_soccer'
-};
-const names = {
-  maths:'Maths', science:'Science', 'social-science':'Social Science', english:'English', hindi:'Hindi', sanskrit:'Sanskrit',
-  computer:'Computer Applications', physics:'Physics', chemistry:'Chemistry', biology:'Biology', 'history-civics':'History & Civics',
-  geography:'Geography', 'computer-science':'Computer Science', accountancy:'Accountancy', 'business-studies':'Business Studies',
-  commerce:'Commerce', economics:'Economics', history:'History', 'political-science':'Political Science', psychology:'Psychology',
-  'physical-education':'Physical Education'
-};
-const tints = ['lav','amb','mint','pink','sky','cream','rose'];
-const ic = n => `<span class="ic">${n}</span>`;
+const I=n=>`<span class="ic">${n}</span>`;
+const icon={maths:'calculate',science:'science','social-science':'public',english:'menu_book',hindi:'translate',sanskrit:'history_edu',computer:'computer'};
+const nm={maths:'Maths',science:'Science','social-science':'Social Science',english:'English',hindi:'Hindi',sanskrit:'Sanskrit',computer:'Computer Applications'};
+const tint={maths:'lav',science:'amb','social-science':'mint',english:'pink',hindi:'sky',sanskrit:'lav',computer:'amb'};
+const shot=src=>`<div class="shot"><img src="subjects/${src}"></div>`;
+const fig=(t,s,h,b='b-new',bl='New')=>`<figure>${h}<figcaption><b>${t}<span class="badge ${b}">${bl}</span></b><span>${s}</span></figcaption></figure>`;
+const nav=tab=>`<div class="nav"><div class="pillnav">${[['home','Home'],['forum','ASKMe'],['auto_stories','Study'],['person','Me']].map(([i,l])=>`<div class="${l===tab?'on':''}">${I(i)}${l}</div>`).join('')}</div><div class="cam">${I('photo_camera')}</div></div>`;
+const phone=(inner,tab,overlay='')=>`<div class="phone"><div class="status"><span>10:44</span><span>${I('signal_cellular_alt')}${I('wifi')}${I('battery_full')}</span></div><div class="scr">${inner}</div>${tab?nav(tab):''}${overlay}</div>`;
+const pill=(l,on,ic,ghost)=>`<span class="pill ${on?'on':''} ${ghost?'ghost':''}">${ic?I(ic):''}${l}</span>`;
+const ring=p=>`<div class="ring" style="--p:${p}"></div>`;
+const ch=(n,t,s,right)=>`<div class="ch ${right==='soon'?'soon':''}"><div class="num">${n}</div><div style="flex:1;min-width:0"><div class="t">${t}</div><div class="s">${s}</div></div>${right==='soon'?`<span class="ic o muted">schedule</span>`:typeof right==='number'?ring(right):right}</div>`;
+const homeTop=`<div class="row" style="justify-content:space-between;margin-top:6px"><div><div class="greet">Hi, Asha!</div><div class="cap">Class 10 · CBSE</div></div><div class="row"><span class="muted" style="font-size:13px;font-weight:700">${I('local_fire_department')} 0</span><span class="chip">${I('bolt')} 100 XP</span></div></div>
+<div class="ask">Ask anything…<span class="mic">${I('mic')}</span></div>
+<div class="qa"><div>${I('photo_camera')}Solve<br>homework</div><div>${I('fact_check')}Check my<br>answer</div><div>${I('style')}Flashcards</div></div>
+<div class="today"><div class="h"><b>Today · 6 min</b><span class="cap">from 1 folder</span></div><div class="task"><span class="bx" style="background:var(--lav)">${I('menu_book')}</span><div style="flex:1">Mirror formula<small>Maths unit test</small></div><span class="cap">6 min</span></div></div>`;
+const picks=['maths','science','social-science','english','hindi'];
+const prog={maths:[3,6,48],science:[5,9,52],'social-science':[0,0,66],english:[0,0,34],hindi:[0,0,40]};
+const next={maths:'Ch 3 · Solving by substitution',science:'Ch 9 · Mirror formula','social-science':'Lessons coming soon',english:'Lessons coming soon',hindi:'Lessons coming soon'};
 
-function phone(inner, opts = {}) {
-  const nav = opts.nav === false ? '' : `<div class="nav">
-    <div class="${opts.tab==='home'?'on':''}">${ic('home')}Home</div>
-    <div>${ic('forum')}ASKMe</div>
-    <div class="${opts.tab==='study'?'on':''}">${ic('auto_stories')}Study</div>
-    <div class="${opts.tab==='me'?'on':''}">${ic('person')}Me</div>
-    <div style="width:44px;height:44px;border-radius:14px;background:var(--primary);color:#fff;display:grid;place-items:center;border:2px solid var(--edge)">${ic('photo_camera')}</div>
-  </div>`;
-  return `<div class="phone ${opts.dark?'dark':''}"><div class="status"><span>9:41</span><span>${ic('signal_cellular_alt')} ${ic('wifi')} ${ic('battery_full')}</span></div><div class="body">${inner}</div>${nav}${opts.overlay||''}</div>`;
-}
-function fig(title, sub, html) { return `<figure>${html}<figcaption><b>${title}</b><span>${sub}</span></figcaption></figure>`; }
+const tilesA=phone(`${homeTop}<div class="sect"><b>Your subjects</b><a>Edit</a></div><div class="grid">${picks.map(c=>{const [d,r,t]=prog[c];return `<div class="tile tap" style="background:var(--${tint[c]})"><div class="nm">${I(icon[c])}${nm[c]}</div><div><div class="bar"><i style="width:${r?Math.max(d/r*100,4):0}%"></i></div><div class="m">${r?`${d} of ${r} lessons`:`Soon · ${t} planned`}</div></div></div>`}).join('')}</div>`,'Home');
+const rowsC=phone(`${homeTop}<div class="sect"><b>Your subjects</b><a>Edit</a></div><div class="card">${picks.map(c=>{const [d,r]=prog[c];return `<div class="srow"><div class="sq" style="background:var(--${tint[c]})">${I(icon[c])}</div><div style="flex:1;min-width:0"><div class="t">${nm[c]}</div><div class="s">${r?'Next: '+next[c]:next[c]}</div></div>${r?ring(Math.round(d/r*100)):`<span class="ic o muted">schedule</span>`}</div>`}).join('')}</div>`,'Home');
+document.getElementById('home-strip').innerHTML=
+ fig('Home today','Seven tinted labels, one per board subject; they can’t be tapped.',shot('today-home.png'),'b-now','Today')+
+ fig('A · Same tiles, now useful','Only the picked subjects, with an icon, keycap edge, progress bar and "3 of 6 lessons"; tap to open.',tilesA)+
+ fig('C · Subject rows','One row each with the next lesson and the same green ring as the chapter rows; tap to open that subject.',rowsC,'b-pick','My pick');
 
-function greet(syl) {
-  return `<div class="row" style="justify-content:space-between;margin-top:4px"><div><div class="greet">Hi, Riya!</div><div class="muted small">${syl}</div></div>
-  <div class="row"><span class="chip">${ic('local_fire_department')} 4</span><span class="chip" style="background:var(--amber);color:#12141A">${ic('bolt')} 230 XP</span></div></div>`;
-}
+const sheetTop=(n,cta,body)=>`<div class="dim"></div><div class="sheet"><div class="handle"></div><div class="sh"><span class="l">SET UP · ${n}/5 <span class="chip" style="font-size:11px">+25 XP</span></span><a>Later</a></div>${body}<div class="btn">${cta}</div></div>`;
+const setupHome=`<div class="row" style="justify-content:space-between;margin-top:6px"><div class="greet">Hi, Asha!</div><span class="chip">${I('bolt')} 75 XP</span></div><div class="ask">Ask anything…<span class="mic">${I('mic')}</span></div>`;
+const step10=phone(setupHome,'',sheetTop(5,'Finish setup',`<div class="q">Which subjects do you study?</div><div class="cap" style="font-weight:400">Class 10 · CBSE. Tap to remove any you don’t take.</div>
+<div class="pills" style="margin-top:14px">${pill('English',false,'lock',true)}${['maths','science','social-science','hindi'].map(c=>pill(nm[c],true,icon[c])).join('')}${pill('Sanskrit',false,'history_edu')}${pill('Computer Applications',false,'computer')}</div>
+<div class="cap" style="font-weight:400;margin-top:12px">You can change this any time in Me.</div>`));
+const stream=phone(setupHome,'',sheetTop(5,'Choose Science · PCM',`<div class="q">What do you study in Class 11?</div>
+<div class="cards">${[['bolt','Science · PCM','Physics, Chemistry, Maths','lav'],['eco','Science · PCB','Physics, Chemistry, Biology','mint'],['receipt_long','Commerce','Accounts, Business, Economics','amb']].map(([i,t,s,c])=>`<div class="bigcard" style="background:var(--${c})">${I(i)}<b>${t}</b><span>${s}</span></div>`).join('')}</div>
+<div class="dots"><i class="on"></i><i></i><i></i><i></i></div><div class="cap" style="font-weight:400;text-align:center;margin-top:8px">Swipe for Humanities. Change it any time in Me.</div>`));
+const opt=phone(setupHome,'',sheetTop(5,'Finish setup',`<div class="q">Anything else?</div><div class="cap" style="font-weight:400">Science · PCM. Your main subjects are in.</div>
+<div class="lbl">Main</div><div class="pills">${pill('English',false,'lock',true)}${pill('Physics',true,'bolt')}${pill('Chemistry',true,'experiment')}${pill('Maths',true,'calculate')}</div>
+<div class="lbl">Optional</div><div class="pills">${pill('Computer Science',true,'terminal')}${pill('Physical Education',false,'sports_soccer')}${pill('Psychology',false,'psychology')}${pill('Economics',false,'trending_up')}</div>`));
+document.getElementById('setup-strip').innerHTML=
+ fig('Setup today','Four steps: language, age, class and board. This is step 1.',shot('today-setup.png'),'b-now','Today')+
+ fig('Step 5 · Class 6–10','Same sheet and pills. English is locked, the usual subjects are on, and one tap finishes.',step10)+
+ fig('Step 5 · Class 11–12 stream','Swipe cards like the language step; picking one fills in the main subjects.',stream)+
+ fig('Step 5 · Optional subjects','The main subjects are already on; add the optional ones and finish.',opt);
 
-function oldTiles(codes) {
-  return `<div class="grid plain">${codes.map((c,i)=>`<div class="tile" style="background:var(--${tints[i%5]});min-height:48px;justify-content:center"><div class="name">${names[c]}</div></div>`).join('')}</div>`;
-}
+const studyHead=(tab='Courses')=>`<div class="big" style="margin-top:6px">Study</div><div class="seg"><span class="${tab==='Courses'?'on':''}">${I('menu_book')}Courses</span><span class="${tab==='Folders'?'on':''}">${I('folder')}Folders</span></div>`;
+const subjPills=sel=>`<div class="cap">Class 10 · CBSE</div><div class="pills one" style="margin-top:8px">${picks.map(c=>pill(nm[c],c===sel)).join('')}</div>`;
+const statusRow=(sel,n)=>`<div class="pills one">${['All','In progress','Done'].map(l=>pill(l,l===sel)).join('')}<span class="pill icon">${I('tune')}${n?`<span class="n">${n}</span>`:''}</span></div>`;
+const cont=(k,t,s)=>`<div class="cont"><div style="flex:1;min-width:0"><div class="k">${k}</div><div class="t">${t}</div><div class="s">${s}</div></div><div class="play">${I('play_arrow')}</div></div>`;
+const sciCont=cont('Continue · card 4 of 9','Mirror formula','Ch 9 · Light – Reflection and Refraction');
+const courses=phone(`${studyHead()}${subjPills('science')}${sciCont}${statusRow('All')}<div style="margin-top:6px">${ch(1,'Chemical Reactions and Equations','1 of 3 lessons · 2 coming soon',33)+ch(2,'Acids, Bases and Salts','Coming soon · 4 lessons','soon')+ch(3,'Metals and Non-metals','Coming soon · 4 lessons','soon')+ch(9,'Light – Reflection and Refraction','1 of 2 lessons · 2 coming soon',50)}</div>`,'Study');
+const filterSheet=phone(`${studyHead()}${subjPills('science')}`,'Study',`<div class="dim"></div><div class="sheet"><div class="handle"></div><div class="sh"><span class="q" style="margin:0">Filters</span><a>Clear</a></div>
+<div class="tog"><div>Board exam only<small>Hide school-assessed chapters</small></div><span class="sw on"></span></div>
+<div class="tog"><div>Ready to study<small>Hide chapters still coming soon</small></div><span class="sw on"></span></div>
+<div class="tog"><div>Revision due<small>Chapters with kept cards to revise</small></div><span class="sw"></span></div>
+<div class="lbl">Sort</div><div class="seg2"><span class="on">Textbook</span><span>Most marks</span><span>Recent</span></div>
+<div class="btn">Show 4 chapters</div></div>`);
+const filtered=phone(`${studyHead()}${subjPills('science')}${sciCont}${statusRow('All',2)}
+<div class="row" style="margin:10px 0 2px;gap:6px"><span class="x">Board exam ${I('close')}</span><span class="x">Ready ${I('close')}</span><span class="cap" style="margin-left:auto">4 chapters</span></div>
+${ch(1,'Chemical Reactions and Equations','1 of 3 lessons · 2 coming soon',33)+ch(9,'Light – Reflection and Refraction','1 of 2 lessons · 2 coming soon',50)+ch(10,'The Human Eye','2 of 3 lessons',66)+ch(12,'Electricity','0 of 4 lessons',0)}`,'Study');
+const fromHome=phone(`${studyHead()}${subjPills('maths')}${cont('Continue · card 2 of 10','Solving by substitution','Ch 3 · Pair of Linear Equations')}${statusRow('All')}<div style="margin-top:6px">${ch(1,'Real Numbers','Lessons done · test next',100)+ch(2,'Polynomials','Coming soon · 3 lessons','soon')+ch(3,'Pair of Linear Equations in Two Variables','0 of 1 lessons · 3 coming soon',10)+ch(4,'Quadratic Equations','Coming soon · 4 lessons','soon')}</div>`,'Study');
+document.getElementById('courses-strip').innerHTML=
+ fig('Courses today','The subject pills wrap to three rows, then Continue (when there is one), All / In progress / Done and the chapters.',shot('today-study.png'),'b-now','Today')+
+ fig('Courses · your subjects','One row of pills for the picked subjects, then Continue, the status pills and a new Filters key on the right.',courses)+
+ fig('Filters sheet','Board exam only, Ready to study and Revision due as switches, plus a Sort option. The button shows the live count.',filterSheet)+
+ fig('Filtered','Active filters appear as chips you can clear, the Filters key shows the count, and the list shrinks.',filtered)+
+ fig('Opened from Home','Tapping Maths on Home lands here with Maths already selected.',fromHome);
 
-function tile(c, i, done, total, ready) {
-  const soon = ready === 0;
-  const pct = total ? Math.round(done / total * 100) : 0;
-  return `<div class="tile key ${soon?'has-soon':''}" style="background:var(--${tints[i%7]})">
-    ${soon ? '<span class="soon">Soon</span>' : ''}
-    <div class="name">${ic(icon[c])}${names[c]}</div>
-    <div><div class="bar"><i style="width:${soon?0:Math.max(pct,3)}%"></i></div>
-    <div class="meta">${soon ? `${total} lessons planned` : `${done} of ${ready} lessons${ready<total?` · ${total-ready} soon`:''}`}</div></div>
-  </div>`;
-}
+const box=on=>`<span class="ic" style="color:${on?'var(--primary)':'var(--muted)'}">${on?'check_box':'check_box_outline_blank'}</span>`;
+const foldersTab=phone(`${studyHead('Folders')}<div class="folder"><div class="fi">${I('folder')}</div><div style="flex:1"><b>Maths unit test</b><div class="cap" style="font-weight:400">Fri 2 Oct · 3 chapters</div></div><span class="due">7 days</span></div><div class="folder"><div class="fi">${I('folder')}</div><div style="flex:1"><b>Board exams</b><div class="cap" style="font-weight:400">Maths · Science</div></div></div><div class="btn ghost" style="height:48px">${I('create_new_folder')} New folder</div>`,'Study');
+const addCh=phone(`<div class="top">${I('chevron_left')}Add chapters</div><div class="pills one">${picks.slice(0,4).map(c=>pill(nm[c],c==='maths')).join('')}</div><div class="pills one" style="margin-top:8px">${pill('All',true)}${pill('In progress',false)}${pill('Done',false)}<span class="pill icon">${I('tune')}</span></div><div style="margin-top:6px">${ch(1,'Real Numbers','2 lessons',box(true))+ch(3,'Pair of Linear Equations','1 lesson',box(true))+ch(5,'Arithmetic Progressions','3 lessons',box(false))}</div><div class="btn" style="margin-top:20px">Add 2 chapters</div>`,'');
+document.getElementById('folders-strip').innerHTML=
+ fig('Folder today','An empty folder with Add chapters, Write a note and Scan notes.',shot('today-folder.png'),'b-now','Today')+
+ fig('Folders tab','Unchanged: the same toggle and folder rows with due tags.',foldersTab)+
+ fig('Add chapters','Only the picked subjects, with the same status pills and Filters.',addCh);
 
-const senior = ['physics','chemistry','maths','biology','english','computer-science','accountancy','business-studies','economics','history','political-science','geography','psychology','physical-education'];
-document.getElementById('now-strip').innerHTML =
-  fig('Home today, Class 12 CBSE', '14 subjects, none tappable, most with no lessons yet.', phone(`${greet('Class 12 · CBSE')}<div class="sect"><b>Your subjects</b></div>${oldTiles(senior)}`, {tab:'home'})) +
-  fig('Study today', 'The chips show every subject, and most chapters are "Coming soon".', phone(`<div class="top"><b style="font:800 24px 'Baloo 2'">Study</b></div>
-    <div class="chips"><span class="on">Physics</span><span>Chemistry</span><span>Maths</span><span>Biology</span><span>English</span><span>Accountancy</span></div>
-    <div class="list">${[['1','Electric Charges and Fields','Coming soon · 4 lessons'],['2','Electrostatic Potential','Coming soon · 4 lessons'],['3','Current Electricity','Coming soon · 5 lessons'],['4','Moving Charges and Magnetism','Coming soon · 4 lessons'],['5','Magnetism and Matter','Coming soon · 3 lessons']].map(r=>`<div class="li soonrow"><div class="num">${r[0]}</div><div><div class="t">${r[1]}</div><div class="s">${r[2]}</div></div></div>`).join('')}</div>`, {tab:'study'}));
-
-function sheet(step, title, sub, content, cta = 'Finish setup') {
-  return `<div class="dim"></div><div class="sheet"><div class="handle"></div>
-    <div class="row" style="justify-content:space-between"><span class="small muted" style="font-weight:700;letter-spacing:.4px">SET UP · ${step}/5</span><span class="chip" style="background:var(--amber);color:#12141A;border-width:1.5px">+25 XP</span></div>
-    <div class="stepbar">${[1,2,3,4,5].map(n=>`<i class="${n<=step?'':'off'}"></i>`).join('')}</div>
-    <div class="title">${title}</div><div class="muted small" style="margin-top:2px">${sub}</div>${content}
-    <div class="btn">${cta}</div></div>`;
-}
-const pill = (c, on, lock) => `<span class="pill ${lock?'lock':on?'on':''}">${ic(lock?'lock':icon[c])}${names[c]}</span>`;
-
-const middle = phone(greet('Class 9 · CBSE'), {tab:'home', overlay: sheet(5, 'Your subjects', 'Tap to remove any you don’t study. You can change this later.',
-  `<div class="pick">${pill('english',1,1)}${['maths','science','social-science','hindi'].map(c=>pill(c,1)).join('')}${pill('sanskrit',0)}${pill('computer',1)}</div>`)});
-const streamPick = phone(greet('Class 11 · CBSE'), {tab:'home', overlay: sheet(5, 'What do you study?', 'Pick your stream. We’ll fill in the usual subjects.',
-  `<div class="stream"><div class="on"><b>${ic('bolt')} Science · PCM</b><span>Physics, Chemistry, Maths</span></div><div><b>${ic('eco')} Science · PCB</b><span>Physics, Chemistry, Biology</span></div><div><b>${ic('receipt_long')} Commerce</b><span>Accounts, Business, Economics</span></div><div><b>${ic('account_balance')} Humanities</b><span>History, Pol. Science, Geography</span></div></div>`, 'Next')});
-const optional = phone(greet('Class 11 · CBSE'), {tab:'home', overlay: sheet(5, 'Science · PCM', 'Your main subjects are in. Add any optional ones.',
-  `<div class="pick-label">Main</div><div class="pick">${pill('english',1,1)}${['physics','chemistry','maths'].map(c=>pill(c,1)).join('')}</div>
-   <div class="pick-label">Optional</div><div class="pick">${pill('computer-science',1)}${pill('physical-education',0)}${pill('psychology',0)}${pill('economics',0)}</div>
-   <div class="small muted" style="margin-top:10px">${ic('swap_horiz')} <u>Change stream</u></div>`)});
-document.getElementById('setup-strip').innerHTML =
-  fig('Class 6–10: already picked', 'Everything is selected, English is locked, and tapping a pill removes it. Most students tap Finish.', middle) +
-  fig('Class 11–12: stream first', 'Four keycap cards; picking one fills in the main subjects.', streamPick) +
-  fig('Class 11–12: add optionals', 'Main subjects are already on; add optional ones. "Change stream" goes back.', optional);
-
-const homePcm = phone(`${greet('Class 12 · CBSE · Science PCM')}
-  <div class="sect"><b>Your subjects</b><a href="#edit">Edit</a></div>
-  <div class="grid">${tile('physics',0,6,72,12)}${tile('chemistry',1,2,64,8)}${tile('maths',2,0,58,20)}${tile('english',3,0,30,0)}${tile('computer-science',4,1,40,5)}</div>`, {tab:'home'});
-const home10 = phone(`${greet('Class 10 · CBSE')}
-  <div class="sect"><b>Your subjects</b><a href="#edit">Edit</a></div>
-  <div class="grid">${tile('maths',0,3,48,6)}${tile('science',1,5,52,9)}${tile('social-science',2,0,66,0)}${tile('english',3,0,34,0)}${tile('hindi',4,0,40,0)}</div>`, {tab:'home'});
-const homeDark = phone(`${greet('Class 12 · CBSE · Science PCM')}
-  <div class="sect"><b>Your subjects</b><a href="#edit" style="color:#A2A4FB">Edit</a></div>
-  <div class="grid">${tile('physics',0,6,72,12)}${tile('chemistry',1,2,64,8)}${tile('maths',2,0,58,20)}${tile('english',3,0,30,0)}${tile('computer-science',4,1,40,5)}</div>`, {tab:'home', dark:true});
-document.getElementById('home-strip').innerHTML =
-  fig('Class 12 Science PCM', '5 subjects instead of 14. The progress bar counts ready lessons; English is "Soon".', homePcm) +
-  fig('Class 10 CBSE', 'Only the student’s picks, with a tint per subject. Tiles press like keycaps.', home10) +
-  fig('Dark mode', 'The same tiles on the dark palette.', homeDark);
-
-const studyPhysics = phone(`<div class="top"><b style="font:800 24px 'Baloo 2'">Study</b></div>
-  <div class="chips"><span class="on">${ic('bolt')} Physics</span><span>Chemistry</span><span>Maths</span><span>English</span><span>Computer Sci.</span></div>
-  <div class="hero" style="background:var(--lav)"><div class="small muted" style="font-weight:700">CONTINUE</div><div style="font:700 15px Archivo">Ch 1 · Coulomb’s law</div><div class="small muted">Lesson 3 of 4 · 6 min</div></div>
-  <div class="list" style="margin-top:8px">${[['1','Electric Charges and Fields','3 of 4 lessons done',0],['2','Electrostatic Potential','0 of 4 lessons',0],['3','Current Electricity','Coming soon · 5 lessons',1],['4','Moving Charges and Magnetism','Coming soon · 4 lessons',1]].map(r=>`<div class="li ${r[3]?'soonrow':''}"><div class="num">${r[0]}</div><div><div class="t">${r[1]}</div><div class="s">${r[2]}</div></div></div>`).join('')}</div>`, {tab:'study'});
-const studySoon = phone(`<div class="top"><b style="font:800 24px 'Baloo 2'">Study</b></div>
-  <div class="chips"><span>Physics</span><span>Chemistry</span><span>Maths</span><span class="on">${ic('menu_book')} English</span><span>Computer Sci.</span></div>
-  <div class="card" style="text-align:center;padding:16px"><div style="width:84px;height:84px;margin:0 auto;border-radius:50%;background:var(--lav);display:grid;place-items:center;font-size:40px">${ic('hourglass_top')}</div>
-  <div style="font:800 19px 'Baloo 2';margin-top:8px">English lessons are on the way</div><div class="small muted">Here’s what’s coming, chapter by chapter.</div></div>
-  <div class="list" style="margin-top:6px">${[['1','The Last Lesson','Coming soon · 3 lessons'],['2','Lost Spring','Coming soon · 3 lessons'],['3','Deep Water','Coming soon · 3 lessons']].map(r=>`<div class="li soonrow"><div class="num">${r[0]}</div><div><div class="t">${r[1]}</div><div class="s">${r[2]}</div></div></div>`).join('')}</div>`, {tab:'study'});
-document.getElementById('study-strip').innerHTML =
-  fig('Tap Physics on Home', 'Study opens with Physics selected: Continue, then chapters, with unwritten ones greyed out.', studyPhysics) +
-  fig('Tap a "Soon" subject', 'It still opens and shows the chapter plan, so it never looks like a dead end.', studySoon);
-
-const meRow = phone(`<div class="top">${ic('chevron_left')}<b>Class and board</b></div>
-  <div class="card" style="padding:0">${[['school','Class','12'],['account_balance','Board','CBSE'],['category','Stream','Science · PCM'],['library_books','Subjects','5 · Physics, Chemistry, Maths…']].map((r,i)=>`<div class="row" style="padding:12px;${i?'border-top:1px solid var(--border)':''}">${ic(r[0])}<div style="flex:1"><div style="font-weight:600;font-size:14px">${r[1]}</div><div class="small muted">${r[2]}</div></div>${ic('chevron_right')}</div>`).join('')}</div>`, {tab:'me'});
-const editSheet = phone(`<div class="top">${ic('chevron_left')}<b>Class and board</b></div>`, {tab:'me', overlay:`<div class="dim"></div><div class="sheet"><div class="handle"></div>
-  <div class="title">Your subjects</div><div class="small muted">Science · PCM</div>
-  <div class="pick-label">Main</div><div class="pick">${pill('english',1,1)}${['physics','chemistry','maths'].map(c=>pill(c,1)).join('')}</div>
-  <div class="pick-label">Optional</div><div class="pick">${pill('computer-science',1)}${pill('physical-education',0)}${pill('psychology',1)}${pill('economics',0)}</div>
-  <div class="btn">Save</div></div>`});
-const classChange = phone(`<div class="top">${ic('chevron_left')}<b>Class and board</b></div>`, {tab:'me', overlay:`<div class="dim"></div><div class="sheet"><div class="handle"></div>
-  <div class="title">Moving to Class 11?</div><div class="small muted" style="margin-top:4px">Class 11 has different subjects, so we’ll ask for your stream next. Your progress in Class 10 stays saved.</div>
-  <div class="btn">Continue</div><div class="btn ghost">Keep Class 10</div></div>`});
-document.getElementById('edit-strip').innerHTML =
-  fig('Me → Class and board', 'New Stream and Subjects rows under Class and Board.', meRow) +
-  fig('Edit subjects', 'The same picker as setup, as a sheet, with a Save button.', editSheet) +
-  fig('Changing class', 'Picks reset to that class, stream is asked again, and old progress is kept.', classChange);
-
-const existing = phone(`${greet('Class 10 · CBSE')}
-  <div class="card" style="margin-top:12px;background:var(--cream);border-color:var(--edge);box-shadow:0 3px 0 var(--edge)"><div class="row">${ic('tune')}<b style="font:700 14px Archivo">Pick your subjects</b></div><div class="small muted" style="margin-top:2px">Hide the ones you don’t study.</div><div class="row" style="margin-top:8px;gap:8px"><span class="pill on" style="padding:5px 12px">Pick now</span><span class="pill" style="padding:5px 12px">Later</span></div></div>
-  <div class="sect"><b>Your subjects</b><a>Edit</a></div>
-  <div class="grid">${tile('maths',0,3,48,6)}${tile('science',1,5,52,9)}${tile('social-science',2,0,66,0)}${tile('english',3,0,34,0)}</div>`, {tab:'home'});
-const noneLeft = phone(`<div class="top">${ic('chevron_left')}<b>Class and board</b></div>`, {tab:'me', overlay:`<div class="dim"></div><div class="sheet"><div class="handle"></div>
-  <div class="title">Your subjects</div><div class="small muted">Class 9 · CBSE</div>
-  <div class="pick">${pill('english',1,1)}${['maths','science','social-science','hindi'].map(c=>pill(c,0)).join('')}${pill('sanskrit',0)}${pill('computer',0)}</div>
-  <div class="small" style="margin-top:10px;color:#B42332">${ic('info')} English is always on. Pick at least one more.</div>
-  <div class="btn" style="opacity:.45">Save</div></div>`});
-const noSetup = phone(`${greet('')}<div class="sect"><b>Your subjects</b></div>
-  <div class="card" style="text-align:center;border-style:dashed;padding:18px"><div class="small muted">Finish setup to see your subjects</div></div>`, {tab:'home'});
-document.getElementById('edge-strip').innerHTML =
-  fig('Existing students', 'No picks saved yet, so everything shows plus a one-time nudge to pick subjects.', existing) +
-  fig('Can’t pick zero', 'English stays on and at least one more subject is needed; Save is disabled until then.', noneLeft) +
-  fig('Setup not finished', 'Same as today: a dashed card until class and board are set.', noSetup);
-
-const subs=[['physics',42,'Ch 1 · Coulomb’s law',0],['chemistry',18,'Ch 2 · Solutions: Raoult’s law',1],['maths',0,'Ch 1 · Relations and functions',2],['english',0,'Lessons coming soon',3],['computer-science',12,'Ch 1 · Python revision',4]];
-const ringRail=phone(`${greet('Class 12 · CBSE · Science PCM')}
-  <div class="sect"><b>Your subjects</b><a>See all</a></div>
-  <div class="rail">${subs.map(([c,p])=>`<div class="it"><div class="ring" style="--p:${p}"><span>${ic(icon[c])}</span></div>${names[c].replace('Computer Science','Comp. Sci.')}<span class="muted" style="font-weight:400">${p?p+'%':'Soon'}</span></div>`).join('')}</div>
-  <div class="sect"><b>Today · 25 min</b></div>
-  <div class="card"><div class="row" style="padding:4px 0">${ic('replay')}<div style="flex:1"><div style="font-weight:600;font-size:13px">Revise 8 kept cards</div><div class="small muted">Revision</div></div></div><div class="row" style="padding:4px 0;border-top:1px solid var(--border)">${ic('menu_book')}<div style="flex:1"><div style="font-weight:600;font-size:13px">Coulomb’s law</div><div class="small muted">Physics · Ch 1</div></div></div></div>`,{tab:'home'});
-const listRows=phone(`${greet('Class 12 · CBSE · Science PCM')}
-  <div class="sect"><b>Your subjects</b><a>Edit</a></div>
-  ${subs.map(([c,p,next,i])=>`<div class="srow"><div class="sq" style="background:var(--${tints[i]})">${ic(icon[c])}</div><div style="flex:1;min-width:0"><div style="font:700 13.5px Archivo">${names[c]}</div><div class="small muted" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${p?'Next: '+next:next}</div></div><div class="mini" style="--p:${p}"><span>${p?p+'%':'–'}</span></div></div>`).join('')}`,{tab:'home'});
-const nextCards=phone(`${greet('Class 12 · CBSE · Science PCM')}
-  <div class="sect"><b>Pick up a subject</b><a>Edit</a></div>
-  <div class="cards">${subs.slice(0,3).map(([c,p,next,i])=>`<div class="ncard" style="background:var(--${tints[i]})"><div class="row" style="justify-content:space-between"><b style="font:700 13px Archivo">${ic(icon[c])} ${names[c]}</b><span class="small muted">${p}%</span></div><div class="bar"><i style="width:${Math.max(p,3)}%"></i></div><div style="font:800 18px/1.15 'Baloo 2';margin-top:10px">${next.split('· ')[1]}</div><div class="small muted">${next.split(' ·')[0]} · 6 min · 9 cards</div><div class="btn">${ic('play_arrow')} ${p?'Continue':'Start'}</div></div>`).join('')}</div>
-  <div class="small muted" style="margin-top:8px;text-align:center">Swipe for Maths, English, Computer Science →</div>`,{tab:'home'});
-const focusCard=phone(`${greet('Class 12 · CBSE · Science PCM')}
-  <div class="chips" style="margin-top:14px"><span class="on">${ic('bolt')} Physics</span><span>Chemistry</span><span>Maths</span><span>English</span><span>Comp. Sci.</span></div>
-  <div class="focus" style="background:var(--lav)"><div class="row" style="justify-content:space-between"><div><div class="small muted" style="font-weight:700">PHYSICS · 12 OF 72 LESSONS</div><div style="font:800 22px/1.1 'Baloo 2';margin-top:4px">Ch 1 · Electric Charges</div></div><div class="ring" style="--p:42"><span style="font:700 13px Archivo">42%</span></div></div>
-  <div class="row" style="gap:6px;margin-top:10px"><span class="x">${ic('replay')} 3 cards to revise</span><span class="x">${ic('quiz')} Chapter test ready</span></div>
-  <div class="btn">${ic('play_arrow')} Continue: Coulomb’s law</div></div>
-  <div class="small muted" style="margin-top:8px;text-align:center">Tap a subject above to switch</div>`,{tab:'home'});
-document.getElementById('tiles-strip').innerHTML=
-  fig('B · Progress rings', 'A row of subject rings with the % done. Compact, so the Today plan stays above the fold.', ringRail)+
-  fig('C · Subject rows<span class="pickbadge">My pick</span>', 'One row per subject with the next lesson and a small ring. Works for 5 or 9 subjects, and each row opens that subject.', listRows)+
-  fig('D · Next-up cards', 'Swipe through one big card per subject, each with its next lesson and a Continue button. Very action-first.', nextCards)+
-  fig('E · Focus card', 'Subject chips switch one big card showing progress, revision due, the test and Continue.', focusCard);
-const statusNow=phone(`<div class="top"><b style="font:800 24px 'Baloo 2'">Study</b></div>
-  <div class="seg"><span class="on">${ic('menu_book')} Courses</span><span>${ic('folder')} Folders</span></div>
-  <div class="chips"><span class="on">Physics</span><span>Chemistry</span><span>Maths</span><span>English</span></div>
-  <div class="chips" style="margin-top:-4px"><span class="on">All</span><span>In progress</span><span>Done</span></div>
-  <div class="list">${[['1','Electric Charges and Fields','3 of 4 lessons done',0],['2','Electrostatic Potential','0 of 4 lessons',0],['3','Current Electricity','Coming soon · 5 lessons',1],['4','Moving Charges and Magnetism','Coming soon · 4 lessons',1]].map(r=>`<div class="li ${r[3]?'soonrow':''}"><div class="num">${r[0]}</div><div><div class="t">${r[1]}</div><div class="s">${r[2]}</div></div></div>`).join('')}</div>`,{tab:'study'});
-const filterSheet=phone(`<div class="top"><b style="font:800 24px 'Baloo 2'">Study</b></div>
-  <div class="row" style="gap:6px;margin-top:6px;flex-wrap:wrap"><span class="fbtn">${ic('tune')} Filters <b>3</b></span><span class="x">Physics ✕</span><span class="x">Board exam ✕</span><span class="x">Ready ✕</span></div>`,{tab:'study',overlay:`<div class="dim"></div><div class="sheet"><div class="handle"></div>
-  <div class="row" style="justify-content:space-between"><div class="title">Filters</div><span class="small" style="color:var(--primary);font-weight:700">Clear all</span></div>
-  <div class="frow"><div class="pick-label">Subject</div><div class="pick" style="margin:0">${pill('physics',1)}${pill('chemistry',0)}${pill('maths',0)}${pill('english',0)}</div></div>
-  <div class="frow"><div class="pick-label">Progress</div><div class="seg"><span>Any</span><span>Not started</span><span class="on">Started</span><span>Done</span></div></div>
-  <div class="frow"><div class="pick-label">Show</div><div class="pick" style="margin:0"><span class="pill on">${ic('verified')}Board exam only</span><span class="pill on">${ic('check_circle')}Ready to study</span><span class="pill">${ic('replay')}Revision due</span></div></div>
-  <div class="frow"><div class="pick-label">Sort</div><div class="seg"><span class="on">Textbook order</span><span>Most marks</span><span>Recent</span></div></div>
-  <div class="btn">Show 6 chapters</div></div>`});
-const filtered=phone(`<div class="top"><b style="font:800 24px 'Baloo 2'">Study</b></div>
-  <div class="row" style="gap:6px;margin-top:6px;flex-wrap:wrap"><span class="fbtn">${ic('tune')} Filters <b>3</b></span><span class="x">Physics ✕</span><span class="x">Board exam ✕</span><span class="x">Ready ✕</span></div>
-  <div class="small muted" style="margin:10px 0 2px">6 chapters · 38 of 70 board marks</div>
-  <div class="list">${[['1','Electric Charges and Fields','3 of 4 lessons · 16 marks'],['2','Electrostatic Potential','0 of 4 lessons · unit with Ch 1'],['6','Electromagnetic Induction','1 of 3 lessons · 17 marks'],['9','Ray Optics','0 of 5 lessons · 18 marks']].map(r=>`<div class="li"><div class="num">${r[0]}</div><div><div class="t">${r[1]}</div><div class="s">${r[2]}</div></div></div>`).join('')}</div>`,{tab:'study'});
-const shelves=phone(`<div class="top"><b style="font:800 24px 'Baloo 2'">Study</b></div>
-  <div class="search">${ic('search')} Search chapters or topics</div>
-  <div class="shelf-t"><span>${ic('replay')} Revision due</span><span class="muted small">3</span></div>
-  <div class="shelf"><div style="background:var(--rose)"><b>Coulomb’s law</b>Physics · 4 cards</div><div style="background:var(--rose)"><b>Raoult’s law</b>Chemistry · 2 cards</div></div>
-  <div class="shelf-t"><span>${ic('play_circle')} Keep going</span><span class="muted small">2</span></div>
-  <div class="shelf"><div style="background:var(--lav)"><b>Electric Charges</b>Physics · 3 of 4</div><div style="background:var(--amb)"><b>Solutions</b>Chemistry · 1 of 4</div></div>
-  <div class="shelf-t"><span>${ic('verified')} Most board marks</span><span class="muted small">See all</span></div>
-  <div class="shelf"><div style="background:var(--mint)"><b>Ray Optics</b>Physics · 18 marks</div><div style="background:var(--sky)"><b>Calculus</b>Maths · 35 marks</div></div>
-  <div class="shelf-t"><span>${ic('timer')} Under 10 minutes</span><span class="muted small">See all</span></div>
-  <div class="shelf"><div style="background:var(--cream)"><b>Units and measurement</b>Physics · 6 min</div><div style="background:var(--pink)"><b>Sets</b>Maths · 7 min</div></div>`,{tab:'study'});
-const searchSeg=phone(`<div class="top"><b style="font:800 24px 'Baloo 2'">Study</b></div>
-  <div class="search" style="border-color:var(--primary);color:var(--text)">${ic('search')} lens</div>
-  <div class="seg" style="margin-top:10px"><span class="on">All 4</span><span>Started 1</span><span>Done 0</span><span>Soon 3</span></div>
-  <div class="list" style="margin-top:6px">${[['9','Ray Optics','Physics · topic: Thin <b>lens</b> formula'],['9','Ray Optics','Physics · topic: Power of a <b>lens</b>'],['10','Wave Optics','Physics · topic: <b>Lens</b>-less imaging, Coming soon'],['–','Human Eye (Class 10)','Not in your class · hidden']].map((r,i)=>`<div class="li ${i>1?'soonrow':''}"><div class="num">${r[0]}</div><div><div class="t">${r[1]}</div><div class="s">${r[2]}</div></div></div>`).join('')}</div>`,{tab:'study'});
-document.getElementById('filters-strip').innerHTML=
-  fig('F1 · Today', 'Subject chips plus status pills. Fine for a few chapters, but gets long with 40+ chapters per subject.', statusNow)+
-  fig('F2 · Filter sheet<span class="pickbadge">My pick</span>', 'One Filters keycap opens a sheet: subject, progress, board-exam only, ready to study, revision due, sort by marks.', filterSheet)+
-  fig('F2 · After filtering', 'Active filters show as removable chips, with a live count and board marks covered.', filtered)+
-  fig('F3 · Smart shelves', 'No setup needed: Revision due, Keep going, Most board marks, Under 10 minutes. Search on top.', shelves)+
-  fig('F4 · Search + status', 'Search finds chapters and topics inside them; a segmented control with counts narrows the status.', searchSeg);
+const meRows=phone(`<div class="top">${I('chevron_left')}Class and board</div><div class="set">${[['school','Class','10'],['account_balance','Board','CBSE'],['library_books','Subjects','5 · Maths, Science, Social Science…']].map(([i,t,s])=>`<div>${I(i)}<div style="flex:1;font-weight:600">${t}<small>${s}</small></div>${I('chevron_right')}</div>`).join('')}</div><div class="cap" style="font-weight:400;margin-top:10px">Class 11–12 also shows a Stream row.</div>`,'Me');
+const meSheet=phone(`<div class="top">${I('chevron_left')}Class and board</div>`,'Me',`<div class="dim"></div><div class="sheet"><div class="handle"></div><div class="q" style="margin-top:0">Your subjects</div><div class="cap" style="font-weight:400">Class 10 · CBSE</div>
+<div class="pills" style="margin-top:12px">${pill('English',false,'lock',true)}${['maths','science','social-science','hindi'].map(c=>pill(nm[c],true,icon[c])).join('')}${pill('Sanskrit',true,'history_edu')}${pill('Computer Applications',false,'computer')}</div><div class="btn">Save</div></div>`);
+document.getElementById('me-strip').innerHTML=
+ fig('Me → Class and board','A new Subjects row under Class and Board, plus Stream for Class 11–12.',meRows)+
+ fig('Edit subjects','The same pills as setup; Save updates Home and Study straight away.',meSheet);
 </script>
 </body>
 </html>

@@ -8,6 +8,7 @@ import 'package:academe/domain/models/app_language.dart';
 import 'package:academe/domain/models/auth_failure.dart';
 import 'package:academe/domain/models/board.dart';
 import 'package:academe/domain/models/profile.dart';
+import 'package:academe/domain/models/study_stream.dart';
 import 'package:academe/domain/models/subject.dart';
 import 'package:academe/utils/result.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -50,6 +51,7 @@ void main() {
             'birthYear': 2011,
             'class': 9,
             'board': 'ICSE',
+            'subjects': ['english', 'maths'],
             'setupDone': true,
             'xp': 100,
           }),
@@ -59,6 +61,24 @@ void main() {
           jsonEncode({
             'subjects': [
               {'id': 'maths', 'name': 'Maths'},
+            ],
+          }),
+          200,
+        ),
+        'GET /catalog/streams' => http.Response(
+          jsonEncode({
+            'streams': [
+              {
+                'id': 'pcm',
+                'name': 'Science · PCM',
+                'main': [
+                  {'id': 'english', 'name': 'English'},
+                  {'id': 'physics', 'name': 'Physics'},
+                ],
+                'optional': [
+                  {'id': 'psychology', 'name': 'Psychology'},
+                ],
+              },
             ],
           }),
           200,
@@ -105,6 +125,35 @@ void main() {
       expect((result as Ok<List<Subject>>).value.single.name, 'Maths');
     }
     expect(requests.single.url.query, 'class=9&board=CBSE');
+  });
+
+  test('the profile carries picked subjects, null until saved', () async {
+    final loaded = await repository.load();
+    expect((loaded as Ok<Profile>).value.subjects, isNull);
+    expect(loaded.value.hasPicks, isFalse);
+    expect(loaded.value.studies('hindi'), isTrue);
+
+    await repository.update(const ProfileUpdate(subjects: ['english']));
+    expect(jsonDecode(requests.last.body), {
+      'subjects': ['english'],
+    });
+    expect(repository.profile?.subjects, ['english', 'maths']);
+    expect(repository.profile?.studies('hindi'), isFalse);
+  });
+
+  test('streams are fetched once per class and board', () async {
+    for (var i = 0; i < 2; i++) {
+      final result = await repository.streams(
+        classLevel: 11,
+        board: Board.icse,
+      );
+      final stream = (result as Ok<List<StudyStream>>).value.single;
+      expect(stream.name, 'Science · PCM');
+      expect(stream.summary, 'Physics');
+      expect(stream.optional.single.id, 'psychology');
+    }
+    expect(requests.single.url.path, '/catalog/streams');
+    expect(requests.single.url.query, 'class=11&board=ICSE');
   });
 
   test('no connection is a network failure', () async {

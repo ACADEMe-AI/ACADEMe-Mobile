@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
 
 import '../../../domain/models/folder.dart';
-import '../../core/themes/app_theme.dart';
 import '../../core/ui/screen_scale.dart';
+import '../../study/view_models/study_view_model.dart';
+import '../../subjects/widgets/subjects_sheet.dart';
 import '../view_models/home_view_model.dart';
 import '../view_models/today_view_model.dart';
 import 'ask_bar.dart';
 import 'ask_hint.dart';
+import 'dashboard_load_error.dart';
+import 'home_greeting.dart';
+import 'pick_subjects_card.dart';
 import 'quick_actions.dart';
 import 'setup/setup_checklist.dart';
 import 'setup/setup_reward_flight.dart';
 import 'setup/setup_sheet.dart';
-import 'subject_grid.dart';
+import 'subject_rows.dart';
 import 'today_card.dart';
-import 'xp_chip.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
@@ -26,6 +29,8 @@ class HomeScreen extends StatefulWidget {
     this.onFlashcards,
     this.onSolve,
     this.onCheck,
+    required this.study,
+    this.onOpenSubject,
   });
 
   final HomeViewModel viewModel;
@@ -36,6 +41,8 @@ class HomeScreen extends StatefulWidget {
   final VoidCallback? onFlashcards;
   final VoidCallback? onSolve;
   final VoidCallback? onCheck;
+  final StudyViewModel study;
+  final ValueChanged<String>? onOpenSubject;
 
   static const setupDelay = Duration(milliseconds: 400);
   static const rewardDelay = Duration(milliseconds: 350);
@@ -85,7 +92,11 @@ class _HomeScreenState extends State<HomeScreen>
   }
 
   Future<void> _openSetup(SetupTask start) async {
-    await SetupSheet.show(context, viewModel: _viewModel, start: start);
+    await SetupSheet.show(
+      context,
+      viewModel: _viewModel,
+      start: _viewModel.startAt(start),
+    );
     if (mounted && _viewModel.isRewardPending) await _playReward();
   }
 
@@ -103,6 +114,17 @@ class _HomeScreenState extends State<HomeScreen>
     if (!mounted) return;
     _viewModel.rewardLanded();
     setState(() => _flightPath = null);
+  }
+
+  Future<void> _openSubjects() async {
+    final picker = _viewModel.subjectsPicker();
+    await SubjectsSheet.show(context, viewModel: picker);
+    picker.dispose();
+  }
+
+  void _pickFromCard() {
+    _viewModel.dismissPickSubjects();
+    _openSubjects();
   }
 
   Rect? _rectOf(GlobalKey key) {
@@ -124,10 +146,6 @@ class _HomeScreenState extends State<HomeScreen>
     return ListenableBuilder(
       listenable: _viewModel,
       builder: (context, _) {
-        final profile = _viewModel.profile;
-        final syllabus = profile.hasSyllabus
-            ? 'Class ${profile.classLevel} · ${profile.board!.code}'
-            : null;
         final syllabusLabel = _viewModel.syllabusLabel;
         final flightPath = _flightPath;
         return Stack(
@@ -141,7 +159,7 @@ class _HomeScreenState extends State<HomeScreen>
                 24 + MediaQuery.paddingOf(context).bottom,
               ),
               children: [
-                _Greeting(
+                HomeGreeting(
                   name: _viewModel.account?.firstName ?? 'there',
                   syllabus: syllabusLabel,
                   xpKey: _xpKey,
@@ -212,110 +230,34 @@ class _HomeScreenState extends State<HomeScreen>
                 if (_viewModel.load.hasError &&
                     !_viewModel.profile.setupDone) ...[
                   const SizedBox(height: 12),
-                  _LoadError(onRetry: _viewModel.load.execute),
+                  DashboardLoadError(onRetry: _viewModel.load.execute),
+                ],
+                if (_viewModel.showsPickSubjects) ...[
+                  const SizedBox(height: 16),
+                  PickSubjectsCard(
+                    onPick: _pickFromCard,
+                    onDismiss: _viewModel.dismissPickSubjects,
+                  ),
                 ],
                 const SizedBox(height: 24),
-                Text(
-                  'Your subjects',
-                  style: AppTextStyles.subhead.copyWith(
-                    fontSize: 16,
-                    color: context.palette.text,
-                  ),
+                SubjectRows(
+                  study: widget.study,
+                  hasSyllabus: _viewModel.profile.hasSyllabus,
+                  onEdit: _openSubjects,
+                  onOpen: widget.onOpenSubject ?? (_) {},
                 ),
-                const SizedBox(height: 8),
-                SubjectGrid(subjects: _viewModel.subjects, syllabus: syllabus),
               ],
             ),
             if (flightPath case (final from, final to))
-              SetupRewardFlight(progress: _flight, from: from, to: to),
+              SetupRewardFlight(
+                progress: _flight,
+                from: from,
+                to: to,
+                amount: _viewModel.pendingXp,
+              ),
           ],
         );
       },
-    );
-  }
-}
-
-class _Greeting extends StatelessWidget {
-  const _Greeting({
-    required this.name,
-    required this.syllabus,
-    required this.xpKey,
-    required this.xp,
-  });
-
-  final String name;
-  final String? syllabus;
-  final GlobalKey xpKey;
-  final int xp;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Hi, $name!',
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: AppTextStyles.display.copyWith(
-                  fontSize: 28,
-                  color: context.palette.text,
-                ),
-              ),
-              if (syllabus case final label?)
-                Text(
-                  label,
-                  style: AppTextStyles.caption.copyWith(
-                    fontWeight: FontWeight.w600,
-                    color: context.palette.textMuted,
-                  ),
-                ),
-            ],
-          ),
-        ),
-        const SizedBox(width: 8),
-        Icon(
-          Icons.local_fire_department_rounded,
-          size: 20,
-          color: context.palette.border,
-        ),
-        Text(
-          '0',
-          style: AppTextStyles.labelStrong.copyWith(
-            color: context.palette.textMuted,
-          ),
-        ),
-        const SizedBox(width: 12),
-        XpChip(key: xpKey, xp: xp),
-      ],
-    );
-  }
-}
-
-class _LoadError extends StatelessWidget {
-  const _LoadError({required this.onRetry});
-
-  final VoidCallback onRetry;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: Text(
-            'Couldn’t load your dashboard.',
-            style: AppTextStyles.label.copyWith(color: AppColors.error),
-          ),
-        ),
-        TextButton(
-          onPressed: onRetry,
-          style: TextButton.styleFrom(foregroundColor: AppColors.primary),
-          child: const Text('Retry', style: AppTextStyles.labelStrong),
-        ),
-      ],
     );
   }
 }

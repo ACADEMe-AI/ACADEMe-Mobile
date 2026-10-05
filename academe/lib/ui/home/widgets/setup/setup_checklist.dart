@@ -22,6 +22,7 @@ class SetupChecklist extends StatelessWidget {
     SetupTask.age: 'Your age',
     SetupTask.classLevel: 'Your class',
     SetupTask.board: 'Your board',
+    SetupTask.subjects: 'Your subjects',
   };
 
   @override

@@ -26,12 +26,13 @@ void main() {
     await pumpEventQueue();
   }
 
-  test('a new account has four tasks and no subjects', () async {
+  test('a new account has five tasks, subjects last', () async {
     await start();
+    expect(SetupTask.values.length, 5);
     expect(viewModel.doneCount, 0);
     expect(viewModel.showsChecklist, isTrue);
-    expect(viewModel.subjects, isEmpty);
     expect(viewModel.nextTask(), SetupTask.language);
+    expect(viewModel.showsPickSubjects, isFalse);
   });
 
   test('nextTask goes forward and wraps to skipped tasks', () async {
@@ -41,12 +42,55 @@ void main() {
     expect(viewModel.nextTask(after: SetupTask.classLevel), SetupTask.language);
   });
 
-  test('subjects arrive once class and board are set', () async {
-    await start();
+  test('the subjects task opens only once class and board are set', () async {
+    await start(const Profile(language: AppLanguage.english, birthYear: 2011));
+    expect(viewModel.nextTask(after: SetupTask.classLevel), SetupTask.board);
+    expect(viewModel.startAt(SetupTask.subjects), SetupTask.classLevel);
     await viewModel.save.execute(const ProfileUpdate(classLevel: 9));
-    expect(viewModel.subjects, isEmpty);
     await viewModel.save.execute(const ProfileUpdate(board: Board.icse));
-    expect(viewModel.subjects, FakeProfileRepository.subjectList);
+    expect(viewModel.nextTask(after: SetupTask.board), SetupTask.subjects);
+    expect(viewModel.startAt(SetupTask.subjects), SetupTask.subjects);
+  });
+
+  test('the reward waits for the subjects step and adds its 25', () async {
+    await start(
+      const Profile(
+        language: AppLanguage.hindi,
+        birthYear: 2011,
+        classLevel: 9,
+      ),
+    );
+    await viewModel.save.execute(const ProfileUpdate(board: Board.cbse));
+    expect(viewModel.nextTask(after: SetupTask.board), SetupTask.subjects);
+    await viewModel.save.execute(
+      const ProfileUpdate(subjects: ['maths', 'english']),
+    );
+
+    expect(viewModel.doneCount, 5);
+    expect(viewModel.nextTask(after: SetupTask.subjects), isNull);
+    expect(viewModel.pendingXp, 125);
+    expect(viewModel.displayedXp, 0);
+    viewModel.rewardLanded();
+    expect(viewModel.displayedXp, 125);
+    expect(viewModel.showsPickSubjects, isFalse);
+  });
+
+  test('a finished account without picks sees the card once', () async {
+    await start(
+      const Profile(
+        language: AppLanguage.tamil,
+        birthYear: 2010,
+        classLevel: 10,
+        board: Board.cbse,
+        setupDone: true,
+        xp: 100,
+      ),
+    );
+    expect(viewModel.showsPickSubjects, isTrue);
+    viewModel.dismissPickSubjects();
+    await pumpEventQueue();
+    expect(viewModel.showsPickSubjects, isFalse);
+    expect(hints.seen, contains(Hint.pickSubjects));
   });
 
   test('the last task holds the reward until it lands', () async {
@@ -93,6 +137,5 @@ void main() {
     );
     expect(viewModel.showsChecklist, isFalse);
     expect(viewModel.displayedXp, 100);
-    expect(viewModel.subjects, isNotEmpty);
   });
 }

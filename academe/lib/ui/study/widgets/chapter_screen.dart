@@ -6,7 +6,7 @@ import '../../core/ui/app_button.dart';
 import '../../core/ui/screen_scale.dart';
 import '../study_actions.dart';
 import '../view_models/study_view_model.dart';
-import 'courses_view.dart';
+import 'continue_key.dart';
 import 'page_scaffold.dart';
 import 'planned_lesson_row.dart';
 

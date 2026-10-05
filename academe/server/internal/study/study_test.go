@@ -15,6 +15,8 @@ import (
 	"testing/fstest"
 	"time"
 
+	"github.com/google/go-cmp/cmp"
+
 	"academe/server/internal/auth"
 	"academe/server/internal/httpx"
 	"academe/server/internal/profile"
@@ -300,7 +302,7 @@ func TestRoutes(t *testing.T) {
 	if res, err := srv.Client().Do(gzipped); err != nil || !res.Uncompressed || res.Body.Close() != nil {
 		t.Errorf("GET /study/decks with gzip accepted = %v; want a compressed reply the client unpacks", err)
 	}
-	if status, got := call("GET", "/study/decks", "new", ""); status != http.StatusOK || len(got["decks"].([]any)) != 0 || len(got["chapters"].([]any)) != 0 {
+	if status, got := call("GET", "/study/decks", "new", ""); status != http.StatusOK || len(got["decks"].([]any)) != 0 || len(got["chapters"].([]any)) != 0 || len(got["subjects"].([]any)) != 0 {
 		t.Errorf("GET /study/decks before setup = %d %v, want an empty list", status, got)
 	}
 	if status, got := call("GET", "/study/decks?subject=maths", "riya", ""); status != http.StatusOK || len(got["decks"].([]any)) != 0 || len(got["chapters"].([]any)) != 1 {
@@ -336,6 +338,23 @@ func TestRoutes(t *testing.T) {
 	_, got = call("GET", "/study/decks", "riya", "")
 	if d := got["decks"].([]any)[0].(map[string]any); d["done"] != true || d["correct"] != 1.0 || d["chapterId"] != "cbse-10-science-9" {
 		t.Errorf("deck after completion = %v, want done with 1 correct in chapter cbse-10-science-9", d)
+	}
+	if d := got["decks"].([]any)[0].(map[string]any); d["minutes"] != 2.0 {
+		t.Errorf("deck minutes = %v, want 2", d["minutes"])
+	}
+	wantSubjects := []any{
+		map[string]any{"id": "maths", "name": "Maths", "chapters": 1.0, "lessonsAvailable": 0.0, "lessonsDone": 0.0},
+		map[string]any{"id": "science", "name": "Science", "chapters": 1.0, "lessonsAvailable": 1.0, "lessonsDone": 1.0},
+	}
+	if diff := cmp.Diff(wantSubjects, got["subjects"].([]any)[:2]); diff != "" {
+		t.Errorf("subjects after completion diff (-want +got):\n%s", diff)
+	}
+	if n := len(got["subjects"].([]any)); n != 7 {
+		t.Errorf("subjects = %d, want all 7 Class 10 CBSE subjects", n)
+	}
+	science = got["chapters"].([]any)[1].(map[string]any)
+	if science["revisionDue"] != 0.0 || science["lastStudiedAt"] == nil || science["lessons"].([]any)[0].(map[string]any)["minutes"] != 2.0 {
+		t.Errorf("science after completion = %v, want nothing due, a lastStudiedAt and a 2-minute first lesson", science)
 	}
 
 	if status, _ := call("PUT", "/study/decks/d1/position", "riya", `{"card":1}`); status != http.StatusNoContent {
@@ -468,5 +487,33 @@ func TestReadDecksSkipsABrokenFile(t *testing.T) {
 	decks, err := ReadDecks(fsys)
 	if err == nil || !strings.Contains(err.Error(), "cbse-10-science-1-1.json") || len(decks) != 1 || decks[0].ID != "seed" {
 		t.Errorf("ReadDecks(one broken file) = %v, %v; want the good deck and an error naming the broken file", decks, err)
+	}
+}
+
+func TestCatalogueRevisionDueAndMarks(t *testing.T) {
+	class, board := 10, "CBSE"
+	store := newFakeStore()
+	s := NewService(store, fakeProfiles{"riya": {Class: &class, Board: &board}}, testDecks, testPlan)
+	now := time.Date(2026, 10, 4, 9, 0, 0, 0, time.UTC)
+	s.now = func() time.Time { return now }
+	store.kept["riya"] = []Kept{
+		{DeckID: "d1", Card: 0, Reason: "kept", DueAt: now.Add(-time.Hour)},
+		{DeckID: "d1", Card: 1, Reason: "missed", DueAt: now},
+		{DeckID: "d1", Card: 2, Reason: "kept", DueAt: now.Add(time.Hour)},
+	}
+	plan := slices.Clone(testPlan)
+	plan[1].Marks = 6
+	s.plan = plan
+	c, err := s.Catalogue(t.Context(), "riya", "")
+	if err != nil {
+		t.Fatal(err)
+	}
+	got := map[string][2]int{}
+	for _, ch := range c.Chapters {
+		got[ch.ID] = [2]int{ch.RevisionDue, ch.Marks}
+	}
+	want := map[string][2]int{"cbse-10-maths-1": {0, 6}, "cbse-10-science-9": {2, 0}}
+	if diff := cmp.Diff(want, got); diff != "" {
+		t.Errorf("Catalogue() revisionDue and marks diff (-want +got):\n%s", diff)
 	}
 }
