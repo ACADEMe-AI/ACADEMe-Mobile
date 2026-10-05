@@ -1,0 +1,50 @@
+{
+  "board": "cbse",
+  "class": 10,
+  "session": "2025-26",
+  "sources": [{"title": "CBSE Curriculum 2025-26 Secondary", "url": "https://cbseacademic.nic.in/curriculum_2026.html"}],
+  "subjects": [
+    {
+      "subject": "science",
+      "name": "Science",
+      "book": "Science Textbook for Class X (NCERT)",
+      "chapters": [
+        {
+          "number": 1,
+          "title": "Chemical Reactions and Equations",
+          "unit": "Chemical Substances – Nature and Behaviour",
+          "outcomes": ["Write and balance chemical equations", "Classify reactions by type", "Explain corrosion and rancidity"],
+          "topics": ["Chemical changes and their signs", "Writing chemical equations", "Balancing chemical equations", "Combination and decomposition reactions", "Displacement and double displacement reactions", "Oxidation and reduction", "Corrosion and rancidity"],
+          "lessons": [
+            {"title": "Spotting a chemical reaction", "topics": ["Chemical changes and their signs", "Writing chemical equations"]},
+            {"title": "Balancing equations", "topics": ["Balancing chemical equations"]},
+            {"title": "Types of chemical reactions", "topics": ["Combination and decomposition reactions", "Displacement and double displacement reactions"]},
+            {"title": "Oxidation, reduction and everyday effects", "topics": ["Oxidation and reduction", "Corrosion and rancidity"]}
+          ],
+          "source": "https://ncert.nic.in/textbook.php?jesc1=0-13"
+        }
+      ]
+    },
+    {
+      "subject": "maths",
+      "name": "Mathematics",
+      "book": "Mathematics Textbook for Class X (NCERT)",
+      "chapters": [
+        {
+          "number": 1,
+          "title": "Real Numbers",
+          "unit": "Number Systems",
+          "marks": 6,
+          "outcomes": ["Use the Fundamental Theorem of Arithmetic", "Find HCF and LCM by prime factorisation", "Prove that numbers like √2 are irrational"],
+          "topics": ["Fundamental Theorem of Arithmetic", "HCF and LCM by prime factorisation", "Irrational numbers and their proofs"],
+          "lessons": [
+            {"title": "The Fundamental Theorem of Arithmetic", "topics": ["Fundamental Theorem of Arithmetic"]},
+            {"title": "HCF and LCM using prime factors", "topics": ["HCF and LCM by prime factorisation"]},
+            {"title": "Proving numbers irrational", "topics": ["Irrational numbers and their proofs"]}
+          ],
+          "source": "https://ncert.nic.in/textbook.php?jemh1=1-14"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,4278 @@
+{
+  "board": "ICSE",
+  "class": 6,
+  "session": "2026-27",
+  "sources": [
+    {
+      "title": "CISCE (Council for the Indian School Certificate Examinations)",
+      "url": "https://cisce.org/"
+    },
+    {
+      "title": "Selina Publishers (publisher)",
+      "url": "https://www.selinapublishers.com/"
+    },
+    {
+      "title": "Frank Educational Aids (publisher)",
+      "url": "https://www.frankedu.com/"
+    }
+  ],
+  "subjects": [
+    {
+      "subject": "english",
+      "name": "English",
+      "book": "CISCE English curriculum scope for Class 6 (grammar, vocabulary, composition); school readers vary, so no reader chapters are listed",
+      "chapters": [
+        {
+          "number": 1,
+          "title": "Nouns and Pronouns",
+          "unit": "Grammar",
+          "outcomes": [
+            "Identify kinds of nouns and form plurals and possessives",
+            "Use personal and reflexive pronouns correctly",
+            "Match pronouns to their nouns in number and person"
+          ],
+          "topics": [
+            "Proper and common nouns",
+            "Collective nouns",
+            "Abstract nouns",
+            "Singular and plural forms",
+            "Irregular plurals",
+            "Possessive nouns",
+            "Personal pronouns",
+            "Number and person of pronouns",
+            "Subject and object forms",
+            "Reflexive pronouns",
+            "Pronoun–antecedent agreement"
+          ],
+          "lessons": [
+            {
+              "title": "Kinds of nouns",
+              "topics": [
+                "Proper and common nouns",
+                "Collective nouns",
+                "Abstract nouns"
+              ]
+            },
+            {
+              "title": "Number and possession",
+              "topics": [
+                "Singular and plural forms",
+                "Irregular plurals",
+                "Possessive nouns"
+              ]
+            },
+            {
+              "title": "Personal pronouns",
+              "topics": [
+                "Personal pronouns",
+                "Number and person of pronouns",
+                "Subject and object forms"
+              ]
+            },
+            {
+              "title": "Reflexive pronouns",
+              "topics": [
+                "Reflexive pronouns",
+                "Pronoun–antecedent agreement"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 2,
+          "title": "Verbs and Tenses",
+          "unit": "Grammar",
+          "outcomes": [
+            "Recognise main and helping verbs",
+            "Use simple, continuous and perfect tenses to show time and sequence",
+            "Spot and correct inappropriate shifts in tense"
+          ],
+          "topics": [
+            "Action and state verbs",
+            "Helping verbs",
+            "Regular and irregular verb forms",
+            "Simple present",
+            "Present continuous",
+            "Present perfect",
+            "Simple past",
+            "Past continuous",
+            "Past perfect",
+            "Simple future",
+            "Sequence of tenses in a paragraph",
+            "Correcting shifts in verb tense"
+          ],
+          "lessons": [
+            {
+              "title": "Verbs and helping verbs",
+              "topics": [
+                "Action and state verbs",
+                "Helping verbs",
+                "Regular and irregular verb forms"
+              ]
+            },
+            {
+              "title": "Present tenses",
+              "topics": [
+                "Simple present",
+                "Present continuous",
+                "Present perfect"
+              ]
+            },
+            {
+              "title": "Past and future tenses",
+              "topics": [
+                "Simple past",
+                "Past continuous",
+                "Past perfect",
+                "Simple future"
+              ]
+            },
+            {
+              "title": "Consistent tense",
+              "topics": [
+                "Sequence of tenses in a paragraph",
+                "Correcting shifts in verb tense"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 3,
+          "title": "Subject–Verb Agreement",
+          "unit": "Grammar",
+          "outcomes": [
+            "Make verbs agree with singular and plural subjects",
+            "Handle tricky subjects such as collective nouns and joined subjects"
+          ],
+          "topics": [
+            "Singular subjects with singular verbs",
+            "Plural subjects with plural verbs",
+            "Agreement with pronoun subjects",
+            "Subjects joined by and",
+            "Either–or and neither–nor",
+            "Collective nouns as subjects",
+            "Words between subject and verb"
+          ],
+          "lessons": [
+            {
+              "title": "Basic agreement",
+              "topics": [
+                "Singular subjects with singular verbs",
+                "Plural subjects with plural verbs",
+                "Agreement with pronoun subjects"
+              ]
+            },
+            {
+              "title": "Tricky subjects",
+              "topics": [
+                "Subjects joined by and",
+                "Either–or and neither–nor",
+                "Collective nouns as subjects",
+                "Words between subject and verb"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 4,
+          "title": "Adjectives, Adverbs and Prepositions",
+          "unit": "Grammar",
+          "outcomes": [
+            "Use adjectives and their degrees of comparison",
+            "Use adverbs of manner, time, place and frequency",
+            "Choose prepositions of time, place and direction"
+          ],
+          "topics": [
+            "Kinds of adjectives",
+            "Degrees of comparison",
+            "Order of adjectives",
+            "Adverbs of manner",
+            "Adverbs of time and place",
+            "Adverbs of frequency",
+            "Prepositions of time",
+            "Prepositions of place",
+            "Prepositions of direction"
+          ],
+          "lessons": [
+            {
+              "title": "Adjectives",
+              "topics": [
+                "Kinds of adjectives",
+                "Degrees of comparison",
+                "Order of adjectives"
+              ]
+            },
+            {
+              "title": "Adverbs",
+              "topics": [
+                "Adverbs of manner",
+                "Adverbs of time and place",
+                "Adverbs of frequency"
+              ]
+            },
+            {
+              "title": "Prepositions",
+              "topics": [
+                "Prepositions of time",
+                "Prepositions of place",
+                "Prepositions of direction"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 5,
+          "title": "Sentences, Punctuation and Figures of Speech",
+          "unit": "Grammar",
+          "outcomes": [
+            "Identify types of sentences and their parts",
+            "Punctuate sentences correctly",
+            "Recognise simile, metaphor and personification in context"
+          ],
+          "topics": [
+            "Subject and predicate",
+            "Statements and questions",
+            "Commands and exclamations",
+            "Conjunctions",
+            "Framing questions",
+            "Capital letters and full stops",
+            "Commas",
+            "Question and exclamation marks",
+            "Apostrophes and quotation marks",
+            "Simile",
+            "Metaphor",
+            "Personification",
+            "Alliteration"
+          ],
+          "lessons": [
+            {
+              "title": "Kinds of sentences",
+              "topics": [
+                "Subject and predicate",
+                "Statements and questions",
+                "Commands and exclamations"
+              ]
+            },
+            {
+              "title": "Joining ideas",
+              "topics": [
+                "Conjunctions",
+                "Framing questions"
+              ]
+            },
+            {
+              "title": "Punctuation",
+              "topics": [
+                "Capital letters and full stops",
+                "Commas",
+                "Question and exclamation marks",
+                "Apostrophes and quotation marks"
+              ]
+            },
+            {
+              "title": "Figures of speech",
+              "topics": [
+                "Simile",
+                "Metaphor",
+                "Personification",
+                "Alliteration"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 6,
+          "title": "Vocabulary Skills",
+          "unit": "Vocabulary",
+          "outcomes": [
+            "Work out meanings of unfamiliar words from context",
+            "Use prefixes, suffixes and roots as meaning clues",
+            "Use a dictionary to check meaning, pronunciation and part of speech"
+          ],
+          "topics": [
+            "Meaning from context",
+            "Synonyms and antonyms",
+            "Homophones",
+            "Prefixes",
+            "Suffixes",
+            "Root words",
+            "Compound words",
+            "Alphabetical order and guide words",
+            "Pronunciation",
+            "Parts of speech in the dictionary",
+            "Print and digital references"
+          ],
+          "lessons": [
+            {
+              "title": "Context clues",
+              "topics": [
+                "Meaning from context",
+                "Synonyms and antonyms",
+                "Homophones"
+              ]
+            },
+            {
+              "title": "Word building",
+              "topics": [
+                "Prefixes",
+                "Suffixes",
+                "Root words",
+                "Compound words"
+              ]
+            },
+            {
+              "title": "Using a dictionary",
+              "topics": [
+                "Alphabetical order and guide words",
+                "Pronunciation",
+                "Parts of speech in the dictionary",
+                "Print and digital references"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 7,
+          "title": "Functional Writing",
+          "unit": "Composition",
+          "outcomes": [
+            "Write short messages, notices and invitations",
+            "Write informal letters and simple applications in the right format"
+          ],
+          "topics": [
+            "Writing a short message",
+            "Writing an invitation",
+            "Writing a notice",
+            "Format of an informal letter",
+            "Writing to family and friends",
+            "Format of a leave application",
+            "Polite formal language"
+          ],
+          "lessons": [
+            {
+              "title": "Messages and invitations",
+              "topics": [
+                "Writing a short message",
+                "Writing an invitation",
+                "Writing a notice"
+              ]
+            },
+            {
+              "title": "Informal letters",
+              "topics": [
+                "Format of an informal letter",
+                "Writing to family and friends"
+              ]
+            },
+            {
+              "title": "Applications",
+              "topics": [
+                "Format of a leave application",
+                "Polite formal language"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 8,
+          "title": "Creative and Descriptive Writing",
+          "unit": "Composition",
+          "outcomes": [
+            "Organise ideas into paragraphs using linkers",
+            "Write picture compositions, stories and descriptions",
+            "Plan, draft, revise and edit a piece of writing"
+          ],
+          "topics": [
+            "Topic sentence and supporting details",
+            "Linkers such as firstly, then, later, finally",
+            "Describing a picture",
+            "Writing a simple story",
+            "Beginning, middle and end",
+            "Describing a person",
+            "Describing a place or event",
+            "Planning and drafting",
+            "Revising and editing",
+            "Rewriting a final copy"
+          ],
+          "lessons": [
+            {
+              "title": "Paragraph writing",
+              "topics": [
+                "Topic sentence and supporting details",
+                "Linkers such as firstly, then, later, finally"
+              ]
+            },
+            {
+              "title": "Picture composition and stories",
+              "topics": [
+                "Describing a picture",
+                "Writing a simple story",
+                "Beginning, middle and end"
+              ]
+            },
+            {
+              "title": "Descriptive writing",
+              "topics": [
+                "Describing a person",
+                "Describing a place or event"
+              ]
+            },
+            {
+              "title": "Process writing",
+              "topics": [
+                "Planning and drafting",
+                "Revising and editing",
+                "Rewriting a final copy"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        }
+      ]
+    },
+    {
+      "subject": "hindi",
+      "name": "Hindi",
+      "book": "Hindi vyakaran and rachna scope typical of ICSE Class 6 grammar books (no single CISCE-prescribed book; school readers vary, so no reader chapters are listed)",
+      "chapters": [
+        {
+          "number": 1,
+          "title": "भाषा, लिपि और व्याकरण (Language, Script and Grammar)",
+          "unit": "व्याकरण",
+          "outcomes": [
+            "भाषा के मौखिक और लिखित रूप पहचानना",
+            "देवनागरी लिपि और व्याकरण का महत्त्व समझना"
+          ],
+          "topics": [
+            "भाषा की परिभाषा",
+            "मौखिक और लिखित भाषा",
+            "मातृभाषा और राष्ट्रभाषा",
+            "देवनागरी लिपि",
+            "व्याकरण का अर्थ",
+            "व्याकरण के अंग"
+          ],
+          "lessons": [
+            {
+              "title": "भाषा क्या है",
+              "topics": [
+                "भाषा की परिभाषा",
+                "मौखिक और लिखित भाषा",
+                "मातृभाषा और राष्ट्रभाषा"
+              ]
+            },
+            {
+              "title": "लिपि और व्याकरण",
+              "topics": [
+                "देवनागरी लिपि",
+                "व्याकरण का अर्थ",
+                "व्याकरण के अंग"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 2,
+          "title": "वर्ण-विचार (Letters and Sounds)",
+          "unit": "व्याकरण",
+          "outcomes": [
+            "स्वर और व्यंजन पहचानना",
+            "मात्राओं और संयुक्त व्यंजनों का सही प्रयोग करना"
+          ],
+          "topics": [
+            "वर्णमाला",
+            "स्वर",
+            "मात्राएँ",
+            "व्यंजन के भेद",
+            "संयुक्त व्यंजन",
+            "अनुस्वार और अनुनासिक",
+            "वर्ण-विच्छेद",
+            "रेफ और र के रूप"
+          ],
+          "lessons": [
+            {
+              "title": "स्वर और मात्राएँ",
+              "topics": [
+                "वर्णमाला",
+                "स्वर",
+                "मात्राएँ"
+              ]
+            },
+            {
+              "title": "व्यंजन",
+              "topics": [
+                "व्यंजन के भेद",
+                "संयुक्त व्यंजन",
+                "अनुस्वार और अनुनासिक"
+              ]
+            },
+            {
+              "title": "वर्ण-विच्छेद",
+              "topics": [
+                "वर्ण-विच्छेद",
+                "रेफ और र के रूप"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 3,
+          "title": "शब्द-विचार (Words)",
+          "unit": "शब्द-भंडार",
+          "outcomes": [
+            "तत्सम और तद्भव शब्द पहचानना",
+            "पर्यायवाची और विलोम शब्दों का प्रयोग करना"
+          ],
+          "topics": [
+            "शब्द की परिभाषा",
+            "सार्थक और निरर्थक शब्द",
+            "तत्सम और तद्भव शब्द",
+            "पर्यायवाची शब्द",
+            "विलोम शब्द",
+            "अनेक शब्दों के लिए एक शब्द",
+            "श्रुतिसमभिन्नार्थक शब्द"
+          ],
+          "lessons": [
+            {
+              "title": "शब्द के भेद",
+              "topics": [
+                "शब्द की परिभाषा",
+                "सार्थक और निरर्थक शब्द",
+                "तत्सम और तद्भव शब्द"
+              ]
+            },
+            {
+              "title": "पर्यायवाची और विलोम",
+              "topics": [
+                "पर्यायवाची शब्द",
+                "विलोम शब्द"
+              ]
+            },
+            {
+              "title": "अनेक शब्दों के लिए एक शब्द",
+              "topics": [
+                "अनेक शब्दों के लिए एक शब्द",
+                "श्रुतिसमभिन्नार्थक शब्द"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 4,
+          "title": "संज्ञा (Noun)",
+          "unit": "व्याकरण",
+          "outcomes": [
+            "संज्ञा की पहचान करना",
+            "संज्ञा के भेद उदाहरण सहित बताना"
+          ],
+          "topics": [
+            "संज्ञा की परिभाषा",
+            "व्यक्तिवाचक संज्ञा",
+            "जातिवाचक संज्ञा",
+            "भाववाचक संज्ञा",
+            "भाववाचक संज्ञा बनाना"
+          ],
+          "lessons": [
+            {
+              "title": "संज्ञा की पहचान",
+              "topics": [
+                "संज्ञा की परिभाषा",
+                "व्यक्तिवाचक संज्ञा",
+                "जातिवाचक संज्ञा"
+              ]
+            },
+            {
+              "title": "भाववाचक संज्ञा",
+              "topics": [
+                "भाववाचक संज्ञा",
+                "भाववाचक संज्ञा बनाना"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 5,
+          "title": "लिंग और वचन (Gender and Number)",
+          "unit": "व्याकरण",
+          "outcomes": [
+            "शब्दों का लिंग बदलना",
+            "एकवचन से बहुवचन बनाना"
+          ],
+          "topics": [
+            "पुल्लिंग और स्त्रीलिंग",
+            "लिंग बदलने के नियम",
+            "एकवचन और बहुवचन",
+            "वचन बदलने के नियम",
+            "वाक्य में लिंग-वचन का मेल"
+          ],
+          "lessons": [
+            {
+              "title": "लिंग",
+              "topics": [
+                "पुल्लिंग और स्त्रीलिंग",
+                "लिंग बदलने के नियम"
+              ]
+            },
+            {
+              "title": "वचन",
+              "topics": [
+                "एकवचन और बहुवचन",
+                "वचन बदलने के नियम",
+                "वाक्य में लिंग-वचन का मेल"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 6,
+          "title": "सर्वनाम (Pronoun)",
+          "unit": "व्याकरण",
+          "outcomes": [
+            "सर्वनाम के भेद पहचानना",
+            "वाक्य में सर्वनाम का सही प्रयोग करना"
+          ],
+          "topics": [
+            "सर्वनाम की परिभाषा",
+            "पुरुषवाचक सर्वनाम",
+            "निजवाचक सर्वनाम",
+            "निश्चयवाचक और अनिश्चयवाचक सर्वनाम",
+            "प्रश्नवाचक सर्वनाम",
+            "संबंधवाचक सर्वनाम"
+          ],
+          "lessons": [
+            {
+              "title": "सर्वनाम और उसके भेद",
+              "topics": [
+                "सर्वनाम की परिभाषा",
+                "पुरुषवाचक सर्वनाम",
+                "निजवाचक सर्वनाम"
+              ]
+            },
+            {
+              "title": "अन्य सर्वनाम",
+              "topics": [
+                "निश्चयवाचक और अनिश्चयवाचक सर्वनाम",
+                "प्रश्नवाचक सर्वनाम",
+                "संबंधवाचक सर्वनाम"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 7,
+          "title": "विशेषण (Adjective)",
+          "unit": "व्याकरण",
+          "outcomes": [
+            "विशेषण और विशेष्य पहचानना",
+            "विशेषण के भेद और तुलना की अवस्थाएँ समझना"
+          ],
+          "topics": [
+            "विशेषण और विशेष्य",
+            "गुणवाचक विशेषण",
+            "संख्यावाचक और परिमाणवाचक विशेषण",
+            "सार्वनामिक विशेषण",
+            "संज्ञा से विशेषण बनाना",
+            "तुलना की अवस्थाएँ"
+          ],
+          "lessons": [
+            {
+              "title": "विशेषण के भेद",
+              "topics": [
+                "विशेषण और विशेष्य",
+                "गुणवाचक विशेषण",
+                "संख्यावाचक और परिमाणवाचक विशेषण",
+                "सार्वनामिक विशेषण"
+              ]
+            },
+            {
+              "title": "विशेषण बनाना और तुलना",
+              "topics": [
+                "संज्ञा से विशेषण बनाना",
+                "तुलना की अवस्थाएँ"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 8,
+          "title": "क्रिया और काल (Verb and Tense)",
+          "unit": "व्याकरण",
+          "outcomes": [
+            "सकर्मक और अकर्मक क्रिया पहचानना",
+            "भूत, वर्तमान और भविष्य काल में वाक्य बदलना"
+          ],
+          "topics": [
+            "क्रिया की परिभाषा",
+            "धातु",
+            "सकर्मक और अकर्मक क्रिया",
+            "वर्तमान काल",
+            "भूतकाल",
+            "भविष्यत् काल"
+          ],
+          "lessons": [
+            {
+              "title": "क्रिया",
+              "topics": [
+                "क्रिया की परिभाषा",
+                "धातु",
+                "सकर्मक और अकर्मक क्रिया"
+              ]
+            },
+            {
+              "title": "काल",
+              "topics": [
+                "वर्तमान काल",
+                "भूतकाल",
+                "भविष्यत् काल"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 9,
+          "title": "अव्यय (Indeclinables)",
+          "unit": "व्याकरण",
+          "outcomes": [
+            "अविकारी शब्दों को पहचानना",
+            "क्रियाविशेषण, संबंधबोधक, समुच्चयबोधक और विस्मयादिबोधक का प्रयोग करना"
+          ],
+          "topics": [
+            "अविकारी शब्द",
+            "क्रियाविशेषण",
+            "संबंधबोधक",
+            "समुच्चयबोधक",
+            "विस्मयादिबोधक"
+          ],
+          "lessons": [
+            {
+              "title": "क्रियाविशेषण",
+              "topics": [
+                "अविकारी शब्द",
+                "क्रियाविशेषण"
+              ]
+            },
+            {
+              "title": "अन्य अव्यय",
+              "topics": [
+                "संबंधबोधक",
+                "समुच्चयबोधक",
+                "विस्मयादिबोधक"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 10,
+          "title": "उपसर्ग, प्रत्यय और संधि-समास परिचय (Word Formation)",
+          "unit": "शब्द-भंडार",
+          "outcomes": [
+            "उपसर्ग और प्रत्यय से नए शब्द बनाना",
+            "सरल समस्त पदों को पहचानना"
+          ],
+          "topics": [
+            "उपसर्ग की परिभाषा",
+            "उपसर्ग से शब्द बनाना",
+            "प्रत्यय की परिभाषा",
+            "प्रत्यय से शब्द बनाना",
+            "समास का अर्थ",
+            "समस्त पद और विग्रह"
+          ],
+          "lessons": [
+            {
+              "title": "उपसर्ग",
+              "topics": [
+                "उपसर्ग की परिभाषा",
+                "उपसर्ग से शब्द बनाना"
+              ]
+            },
+            {
+              "title": "प्रत्यय",
+              "topics": [
+                "प्रत्यय की परिभाषा",
+                "प्रत्यय से शब्द बनाना"
+              ]
+            },
+            {
+              "title": "समास परिचय",
+              "topics": [
+                "समास का अर्थ",
+                "समस्त पद और विग्रह"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 11,
+          "title": "मुहावरे और लोकोक्तियाँ (Idioms and Proverbs)",
+          "unit": "शब्द-भंडार",
+          "outcomes": [
+            "सामान्य मुहावरों का अर्थ समझना",
+            "मुहावरों का वाक्य में प्रयोग करना"
+          ],
+          "topics": [
+            "मुहावरे का अर्थ",
+            "शरीर के अंगों से जुड़े मुहावरे",
+            "मुहावरों का वाक्य-प्रयोग",
+            "लोकोक्ति का अर्थ",
+            "मुहावरे और लोकोक्ति में अंतर"
+          ],
+          "lessons": [
+            {
+              "title": "मुहावरे",
+              "topics": [
+                "मुहावरे का अर्थ",
+                "शरीर के अंगों से जुड़े मुहावरे",
+                "मुहावरों का वाक्य-प्रयोग"
+              ]
+            },
+            {
+              "title": "लोकोक्तियाँ",
+              "topics": [
+                "लोकोक्ति का अर्थ",
+                "मुहावरे और लोकोक्ति में अंतर"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 12,
+          "title": "रचना (Composition)",
+          "unit": "रचना",
+          "outcomes": [
+            "अनौपचारिक और औपचारिक पत्र लिखना",
+            "अनुच्छेद और चित्र-वर्णन लिखना",
+            "अपठित गद्यांश के प्रश्नों के उत्तर देना"
+          ],
+          "topics": [
+            "अनौपचारिक पत्र",
+            "औपचारिक पत्र (प्रार्थना-पत्र)",
+            "अनुच्छेद-लेखन",
+            "सरल निबंध",
+            "चित्र-वर्णन",
+            "अपठित गद्यांश"
+          ],
+          "lessons": [
+            {
+              "title": "पत्र-लेखन",
+              "topics": [
+                "अनौपचारिक पत्र",
+                "औपचारिक पत्र (प्रार्थना-पत्र)"
+              ]
+            },
+            {
+              "title": "अनुच्छेद और निबंध",
+              "topics": [
+                "अनुच्छेद-लेखन",
+                "सरल निबंध"
+              ]
+            },
+            {
+              "title": "चित्र-वर्णन और अपठित",
+              "topics": [
+                "चित्र-वर्णन",
+                "अपठित गद्यांश"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        }
+      ]
+    },
+    {
+      "subject": "maths",
+      "name": "Maths",
+      "book": "Selina Concise Mathematics, Class 6 (2026-27)",
+      "chapters": [
+        {
+          "number": 1,
+          "title": "Number System",
+          "unit": "Number System",
+          "outcomes": [
+            "Read, write and compare large numbers",
+            "Find place value and write numbers in expanded form",
+            "Round and estimate numbers"
+          ],
+          "topics": [
+            "Numerals and number names",
+            "Periods and commas",
+            "Comparing numbers",
+            "Ascending and descending order",
+            "Forming greatest and smallest numbers",
+            "Place value",
+            "Face value",
+            "Difference of place values",
+            "Expanded form",
+            "Standard form from expanded form",
+            "Rounding to nearest ten",
+            "Rounding to nearest hundred",
+            "Rounding to nearest thousand",
+            "Estimating sums and differences",
+            "Estimating products and quotients"
+          ],
+          "lessons": [
+            {
+              "title": "Reading large numbers",
+              "topics": [
+                "Numerals and number names",
+                "Periods and commas"
+              ]
+            },
+            {
+              "title": "Comparing numbers",
+              "topics": [
+                "Comparing numbers",
+                "Ascending and descending order",
+                "Forming greatest and smallest numbers"
+              ]
+            },
+            {
+              "title": "Place value and expanded form",
+              "topics": [
+                "Place value",
+                "Face value",
+                "Difference of place values",
+                "Expanded form",
+                "Standard form from expanded form"
+              ]
+            },
+            {
+              "title": "Rounding off",
+              "topics": [
+                "Rounding to nearest ten",
+                "Rounding to nearest hundred",
+                "Rounding to nearest thousand"
+              ]
+            },
+            {
+              "title": "Estimating results",
+              "topics": [
+                "Estimating sums and differences",
+                "Estimating products and quotients"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 2,
+          "title": "Numbers in Indian and International Systems",
+          "unit": "Number System",
+          "outcomes": [
+            "Write numbers in Indian and International systems",
+            "Convert between lakhs/crores and millions/billions"
+          ],
+          "topics": [
+            "Indian place value chart",
+            "Lakhs and crores",
+            "International place value chart",
+            "Millions and billions",
+            "Comparing the two systems"
+          ],
+          "lessons": [
+            {
+              "title": "Indian system",
+              "topics": [
+                "Indian place value chart",
+                "Lakhs and crores"
+              ]
+            },
+            {
+              "title": "International system",
+              "topics": [
+                "International place value chart",
+                "Millions and billions",
+                "Comparing the two systems"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 3,
+          "title": "Natural Numbers and Whole Numbers",
+          "unit": "Number System",
+          "outcomes": [
+            "Distinguish natural and whole numbers",
+            "Apply properties of operations on whole numbers"
+          ],
+          "topics": [
+            "Natural numbers",
+            "Whole numbers",
+            "Successor and predecessor",
+            "Closure property",
+            "Commutative property",
+            "Associative property",
+            "Distributive property",
+            "Identity elements",
+            "Division by zero",
+            "Patterns in whole numbers"
+          ],
+          "lessons": [
+            {
+              "title": "Natural and whole numbers",
+              "topics": [
+                "Natural numbers",
+                "Whole numbers",
+                "Successor and predecessor"
+              ]
+            },
+            {
+              "title": "Properties of addition and subtraction",
+              "topics": [
+                "Closure property",
+                "Commutative property",
+                "Associative property"
+              ]
+            },
+            {
+              "title": "Properties of multiplication and division",
+              "topics": [
+                "Distributive property",
+                "Identity elements",
+                "Division by zero",
+                "Patterns in whole numbers"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 4,
+          "title": "Negative Numbers and Integers",
+          "unit": "Number System",
+          "outcomes": [
+            "Understand negative numbers in real contexts",
+            "Add and subtract integers",
+            "Represent and operate on integers using a number line"
+          ],
+          "topics": [
+            "Need for negative numbers",
+            "Integers",
+            "Opposite of an integer",
+            "Comparing integers",
+            "Adding integers",
+            "Subtracting integers",
+            "Whole numbers on a number line",
+            "Integers on a number line",
+            "Addition on a number line",
+            "Subtraction on a number line",
+            "Comparing using a number line"
+          ],
+          "lessons": [
+            {
+              "title": "Negative numbers",
+              "topics": [
+                "Need for negative numbers",
+                "Integers",
+                "Opposite of an integer"
+              ]
+            },
+            {
+              "title": "Operations on integers",
+              "topics": [
+                "Comparing integers",
+                "Adding integers",
+                "Subtracting integers"
+              ]
+            },
+            {
+              "title": "Drawing a number line",
+              "topics": [
+                "Whole numbers on a number line",
+                "Integers on a number line"
+              ]
+            },
+            {
+              "title": "Operations on a number line",
+              "topics": [
+                "Addition on a number line",
+                "Subtraction on a number line",
+                "Comparing using a number line"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 5,
+          "title": "Sets",
+          "unit": "Number System",
+          "outcomes": [
+            "Describe a set in roster and rule form",
+            "Identify finite, infinite, empty and equal sets"
+          ],
+          "topics": [
+            "Meaning of a set",
+            "Elements and membership",
+            "Roster form",
+            "Set-builder form",
+            "Finite and infinite sets",
+            "Empty set",
+            "Equal and equivalent sets",
+            "Cardinal number"
+          ],
+          "lessons": [
+            {
+              "title": "What is a set",
+              "topics": [
+                "Meaning of a set",
+                "Elements and membership",
+                "Roster form",
+                "Set-builder form"
+              ]
+            },
+            {
+              "title": "Types of sets",
+              "topics": [
+                "Finite and infinite sets",
+                "Empty set",
+                "Equal and equivalent sets",
+                "Cardinal number"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 6,
+          "title": "Fractions",
+          "unit": "Number System",
+          "outcomes": [
+            "Classify and compare fractions",
+            "Add, subtract, multiply and divide fractions"
+          ],
+          "topics": [
+            "Proper and improper fractions",
+            "Mixed numbers",
+            "Equivalent fractions",
+            "Simplest form",
+            "Like and unlike fractions",
+            "Comparing and ordering fractions",
+            "Adding fractions",
+            "Subtracting fractions",
+            "Multiplying fractions",
+            "Reciprocal",
+            "Dividing fractions",
+            "Word problems on fractions"
+          ],
+          "lessons": [
+            {
+              "title": "Kinds of fractions",
+              "topics": [
+                "Proper and improper fractions",
+                "Mixed numbers",
+                "Equivalent fractions",
+                "Simplest form"
+              ]
+            },
+            {
+              "title": "Comparing fractions",
+              "topics": [
+                "Like and unlike fractions",
+                "Comparing and ordering fractions"
+              ]
+            },
+            {
+              "title": "Adding and subtracting",
+              "topics": [
+                "Adding fractions",
+                "Subtracting fractions"
+              ]
+            },
+            {
+              "title": "Multiplying and dividing",
+              "topics": [
+                "Multiplying fractions",
+                "Reciprocal",
+                "Dividing fractions",
+                "Word problems on fractions"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 7,
+          "title": "Decimal Fractions",
+          "unit": "Number System",
+          "outcomes": [
+            "Convert between fractions and decimals",
+            "Perform operations on decimals"
+          ],
+          "topics": [
+            "Decimal place value",
+            "Like and unlike decimals",
+            "Converting decimals and fractions",
+            "Comparing decimals",
+            "Adding decimals",
+            "Subtracting decimals",
+            "Multiplying decimals",
+            "Dividing decimals",
+            "Money, length and mass as decimals"
+          ],
+          "lessons": [
+            {
+              "title": "Decimals and place value",
+              "topics": [
+                "Decimal place value",
+                "Like and unlike decimals",
+                "Converting decimals and fractions"
+              ]
+            },
+            {
+              "title": "Adding and subtracting decimals",
+              "topics": [
+                "Comparing decimals",
+                "Adding decimals",
+                "Subtracting decimals"
+              ]
+            },
+            {
+              "title": "Multiplying and dividing decimals",
+              "topics": [
+                "Multiplying decimals",
+                "Dividing decimals",
+                "Money, length and mass as decimals"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 8,
+          "title": "Playing with Numbers",
+          "unit": "Number System",
+          "outcomes": [
+            "Classify numbers as prime, composite, even and odd",
+            "Apply divisibility tests",
+            "Find HCF and LCM by prime factorisation and division",
+            "Solve word problems on HCF and LCM"
+          ],
+          "topics": [
+            "Even and odd numbers",
+            "Prime and composite numbers",
+            "Co-primes and twin primes",
+            "Divisibility by 2, 3, 4 and 5",
+            "Divisibility by 6, 8, 9, 10 and 11",
+            "Sieve of Eratosthenes",
+            "Number patterns and puzzles",
+            "Factors and multiples",
+            "Prime factorisation",
+            "HCF by prime factorisation",
+            "HCF by division method",
+            "LCM by prime factorisation",
+            "LCM by division method",
+            "Relation between HCF and LCM",
+            "Word problems on HCF and LCM"
+          ],
+          "lessons": [
+            {
+              "title": "Kinds of numbers",
+              "topics": [
+                "Even and odd numbers",
+                "Prime and composite numbers",
+                "Co-primes and twin primes"
+              ]
+            },
+            {
+              "title": "Divisibility tests",
+              "topics": [
+                "Divisibility by 2, 3, 4 and 5",
+                "Divisibility by 6, 8, 9, 10 and 11",
+                "Sieve of Eratosthenes",
+                "Number patterns and puzzles"
+              ]
+            },
+            {
+              "title": "Factors and multiples",
+              "topics": [
+                "Factors and multiples",
+                "Prime factorisation"
+              ]
+            },
+            {
+              "title": "Highest common factor",
+              "topics": [
+                "HCF by prime factorisation",
+                "HCF by division method"
+              ]
+            },
+            {
+              "title": "Lowest common multiple",
+              "topics": [
+                "LCM by prime factorisation",
+                "LCM by division method",
+                "Relation between HCF and LCM",
+                "Word problems on HCF and LCM"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 9,
+          "title": "Ratio and Proportion",
+          "unit": "Ratio and Proportion",
+          "outcomes": [
+            "Express and simplify ratios",
+            "Check and use proportion",
+            "Solve problems by the unitary method"
+          ],
+          "topics": [
+            "Ratio as comparison",
+            "Terms of a ratio",
+            "Ratio in simplest form",
+            "Equivalent ratios",
+            "Comparing ratios",
+            "Dividing a quantity in a given ratio",
+            "Meaning of proportion",
+            "Extremes and means",
+            "Checking proportion",
+            "Finding a missing term",
+            "Continued proportion",
+            "Mean proportional",
+            "Meaning of unitary method",
+            "Finding value of one item",
+            "Finding value of many items",
+            "Problems on cost, work and distance"
+          ],
+          "lessons": [
+            {
+              "title": "Meaning of ratio",
+              "topics": [
+                "Ratio as comparison",
+                "Terms of a ratio",
+                "Ratio in simplest form"
+              ]
+            },
+            {
+              "title": "Using ratios",
+              "topics": [
+                "Equivalent ratios",
+                "Comparing ratios",
+                "Dividing a quantity in a given ratio"
+              ]
+            },
+            {
+              "title": "Proportion",
+              "topics": [
+                "Meaning of proportion",
+                "Extremes and means",
+                "Checking proportion"
+              ]
+            },
+            {
+              "title": "Continued proportion",
+              "topics": [
+                "Finding a missing term",
+                "Continued proportion",
+                "Mean proportional"
+              ]
+            },
+            {
+              "title": "Unitary method",
+              "topics": [
+                "Meaning of unitary method",
+                "Finding value of one item",
+                "Finding value of many items",
+                "Problems on cost, work and distance"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 10,
+          "title": "Percent",
+          "unit": "Ratio and Proportion",
+          "outcomes": [
+            "Convert between fractions, decimals and percentages",
+            "Find a percentage of a quantity"
+          ],
+          "topics": [
+            "Meaning of percent",
+            "Fraction to percent",
+            "Decimal to percent",
+            "Percent to fraction and decimal",
+            "Percentage of a quantity",
+            "Expressing one quantity as a percent of another"
+          ],
+          "lessons": [
+            {
+              "title": "Meaning of percent",
+              "topics": [
+                "Meaning of percent",
+                "Fraction to percent",
+                "Decimal to percent"
+              ]
+            },
+            {
+              "title": "Using percent",
+              "topics": [
+                "Percent to fraction and decimal",
+                "Percentage of a quantity",
+                "Expressing one quantity as a percent of another"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 11,
+          "title": "Idea of Speed, Distance and Time",
+          "unit": "Ratio and Proportion",
+          "outcomes": [
+            "Relate speed, distance and time",
+            "Convert units of speed"
+          ],
+          "topics": [
+            "Meaning of speed",
+            "Formula for speed",
+            "Units of speed",
+            "Finding distance",
+            "Finding time",
+            "Converting km/h to m/s"
+          ],
+          "lessons": [
+            {
+              "title": "Speed",
+              "topics": [
+                "Meaning of speed",
+                "Formula for speed",
+                "Units of speed"
+              ]
+            },
+            {
+              "title": "Distance and time",
+              "topics": [
+                "Finding distance",
+                "Finding time",
+                "Converting km/h to m/s"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 12,
+          "title": "Fundamental Concepts of Algebra",
+          "unit": "Algebra",
+          "outcomes": [
+            "Use letters for numbers and identify terms and coefficients",
+            "Add, subtract, multiply and divide simple algebraic expressions",
+            "Evaluate expressions by substitution"
+          ],
+          "topics": [
+            "Constants and variables",
+            "Algebraic expressions",
+            "Terms of an expression",
+            "Numerical and literal coefficients",
+            "Like and unlike terms",
+            "Monomials, binomials and trinomials",
+            "Polynomials",
+            "Degree of a polynomial",
+            "Adding like terms",
+            "Adding expressions",
+            "Subtracting expressions",
+            "Multiplying monomials",
+            "Multiplying a polynomial by a monomial",
+            "Dividing a monomial by a monomial",
+            "Meaning of substitution",
+            "Evaluating expressions",
+            "Expressions with brackets",
+            "Substitution in formulae"
+          ],
+          "lessons": [
+            {
+              "title": "Letters for numbers",
+              "topics": [
+                "Constants and variables",
+                "Algebraic expressions",
+                "Terms of an expression"
+              ]
+            },
+            {
+              "title": "Coefficients and kinds of expressions",
+              "topics": [
+                "Numerical and literal coefficients",
+                "Like and unlike terms",
+                "Monomials, binomials and trinomials",
+                "Polynomials",
+                "Degree of a polynomial"
+              ]
+            },
+            {
+              "title": "Addition and subtraction",
+              "topics": [
+                "Adding like terms",
+                "Adding expressions",
+                "Subtracting expressions"
+              ]
+            },
+            {
+              "title": "Multiplication and division",
+              "topics": [
+                "Multiplying monomials",
+                "Multiplying a polynomial by a monomial",
+                "Dividing a monomial by a monomial"
+              ]
+            },
+            {
+              "title": "Substitution",
+              "topics": [
+                "Meaning of substitution",
+                "Evaluating expressions",
+                "Expressions with brackets",
+                "Substitution in formulae"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 13,
+          "title": "Framing Algebraic Expressions",
+          "unit": "Algebra",
+          "outcomes": [
+            "Translate statements into algebraic expressions",
+            "Use brackets correctly",
+            "Solve simple linear equations",
+            "Form equations from word problems"
+          ],
+          "topics": [
+            "Writing statements as expressions",
+            "Writing expressions as statements",
+            "Types of brackets",
+            "Removing brackets",
+            "Simplifying expressions with brackets",
+            "Equation and its sides",
+            "Solution of an equation",
+            "Trial and error method",
+            "Transposition method",
+            "Checking the solution",
+            "Forming equations from statements",
+            "Word problems on equations"
+          ],
+          "lessons": [
+            {
+              "title": "Statements to expressions",
+              "topics": [
+                "Writing statements as expressions",
+                "Writing expressions as statements"
+              ]
+            },
+            {
+              "title": "Brackets",
+              "topics": [
+                "Types of brackets",
+                "Removing brackets",
+                "Simplifying expressions with brackets"
+              ]
+            },
+            {
+              "title": "Equations",
+              "topics": [
+                "Equation and its sides",
+                "Solution of an equation",
+                "Trial and error method"
+              ]
+            },
+            {
+              "title": "Solving equations",
+              "topics": [
+                "Transposition method",
+                "Checking the solution"
+              ]
+            },
+            {
+              "title": "Word problems",
+              "topics": [
+                "Forming equations from statements",
+                "Word problems on equations"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 14,
+          "title": "Fundamental Concepts of Geometry",
+          "unit": "Geometry",
+          "outcomes": [
+            "Identify points, lines, rays, segments and planes",
+            "Name, measure and classify angles",
+            "Identify pairs of angles and angles formed by a transversal"
+          ],
+          "topics": [
+            "Point",
+            "Line, ray and line segment",
+            "Plane",
+            "Intersecting and parallel lines",
+            "Concurrent and collinear points",
+            "Open and closed curves",
+            "Arms and vertex",
+            "Naming an angle",
+            "Interior and exterior of an angle",
+            "Using a protractor",
+            "Acute, right and obtuse angles",
+            "Straight, reflex and complete angles",
+            "Complementary angles",
+            "Supplementary angles",
+            "Adjacent angles",
+            "Linear pair",
+            "Vertically opposite angles",
+            "Transversal",
+            "Corresponding and alternate angles",
+            "Co-interior angles"
+          ],
+          "lessons": [
+            {
+              "title": "Points, lines and curves",
+              "topics": [
+                "Point",
+                "Line, ray and line segment",
+                "Plane",
+                "Intersecting and parallel lines",
+                "Concurrent and collinear points",
+                "Open and closed curves"
+              ]
+            },
+            {
+              "title": "Naming angles",
+              "topics": [
+                "Arms and vertex",
+                "Naming an angle",
+                "Interior and exterior of an angle"
+              ]
+            },
+            {
+              "title": "Measuring angles",
+              "topics": [
+                "Using a protractor",
+                "Acute, right and obtuse angles",
+                "Straight, reflex and complete angles"
+              ]
+            },
+            {
+              "title": "Pairs of angles",
+              "topics": [
+                "Complementary angles",
+                "Supplementary angles",
+                "Adjacent angles",
+                "Linear pair",
+                "Vertically opposite angles"
+              ]
+            },
+            {
+              "title": "Parallel lines",
+              "topics": [
+                "Transversal",
+                "Corresponding and alternate angles",
+                "Co-interior angles"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 15,
+          "title": "Triangles",
+          "unit": "Geometry",
+          "outcomes": [
+            "Classify triangles by sides and angles",
+            "Use the angle sum and exterior angle properties"
+          ],
+          "topics": [
+            "Parts of a triangle",
+            "Types by sides",
+            "Types by angles",
+            "Angle sum property",
+            "Exterior angle property"
+          ],
+          "lessons": [
+            {
+              "title": "Parts and types",
+              "topics": [
+                "Parts of a triangle",
+                "Types by sides",
+                "Types by angles"
+              ]
+            },
+            {
+              "title": "Properties",
+              "topics": [
+                "Angle sum property",
+                "Exterior angle property"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 16,
+          "title": "Quadrilaterals",
+          "unit": "Geometry",
+          "outcomes": [
+            "Identify types of quadrilaterals",
+            "Use the angle sum of a quadrilateral",
+            "Name polygons by number of sides"
+          ],
+          "topics": [
+            "Parts of a quadrilateral",
+            "Angle sum property",
+            "Trapezium and parallelogram",
+            "Rectangle, rhombus and square",
+            "Kite",
+            "Meaning of a polygon",
+            "Naming polygons by sides",
+            "Convex and concave polygons",
+            "Regular and irregular polygons",
+            "Diagonals of a polygon"
+          ],
+          "lessons": [
+            {
+              "title": "Quadrilaterals",
+              "topics": [
+                "Parts of a quadrilateral",
+                "Angle sum property"
+              ]
+            },
+            {
+              "title": "Special quadrilaterals",
+              "topics": [
+                "Trapezium and parallelogram",
+                "Rectangle, rhombus and square",
+                "Kite"
+              ]
+            },
+            {
+              "title": "Polygons",
+              "topics": [
+                "Meaning of a polygon",
+                "Naming polygons by sides"
+              ]
+            },
+            {
+              "title": "Types of polygons",
+              "topics": [
+                "Convex and concave polygons",
+                "Regular and irregular polygons",
+                "Diagonals of a polygon"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 17,
+          "title": "Circles",
+          "unit": "Geometry",
+          "outcomes": [
+            "Name parts of a circle",
+            "Relate radius and diameter"
+          ],
+          "topics": [
+            "Centre, radius and diameter",
+            "Chord and arc",
+            "Circumference",
+            "Interior and exterior",
+            "Sector and segment",
+            "Semicircle",
+            "Drawing a circle with compasses"
+          ],
+          "lessons": [
+            {
+              "title": "Parts of a circle",
+              "topics": [
+                "Centre, radius and diameter",
+                "Chord and arc",
+                "Circumference"
+              ]
+            },
+            {
+              "title": "Regions of a circle",
+              "topics": [
+                "Interior and exterior",
+                "Sector and segment",
+                "Semicircle",
+                "Drawing a circle with compasses"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 18,
+          "title": "Symmetry",
+          "unit": "Geometry",
+          "outcomes": [
+            "Identify lines of symmetry",
+            "Complete symmetric figures"
+          ],
+          "topics": [
+            "Meaning of symmetry",
+            "Lines of symmetry",
+            "Symmetry in letters and shapes",
+            "Mirror reflection",
+            "Completing symmetric figures"
+          ],
+          "lessons": [
+            {
+              "title": "Line symmetry",
+              "topics": [
+                "Meaning of symmetry",
+                "Lines of symmetry",
+                "Symmetry in letters and shapes"
+              ]
+            },
+            {
+              "title": "Reflection",
+              "topics": [
+                "Mirror reflection",
+                "Completing symmetric figures"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 19,
+          "title": "Constructions",
+          "unit": "Geometry",
+          "outcomes": [
+            "Construct line segments and perpendiculars with ruler and compasses",
+            "Construct and bisect standard angles",
+            "Construct triangles from given measurements"
+          ],
+          "topics": [
+            "Constructing and copying a line segment",
+            "Perpendicular bisector of a line segment",
+            "Perpendicular to a line through a point",
+            "Constructing angles of 60°, 120° and 90°",
+            "Bisecting an angle",
+            "Constructing angles of 30° and 45°",
+            "Construction of triangles"
+          ],
+          "lessons": [
+            {
+              "title": "Lines and perpendiculars",
+              "topics": [
+                "Constructing and copying a line segment",
+                "Perpendicular bisector of a line segment",
+                "Perpendicular to a line through a point"
+              ]
+            },
+            {
+              "title": "Angles",
+              "topics": [
+                "Constructing angles of 60°, 120° and 90°",
+                "Bisecting an angle",
+                "Constructing angles of 30° and 45°"
+              ]
+            },
+            {
+              "title": "Triangles",
+              "topics": [
+                "Construction of triangles"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 20,
+          "title": "Recognition of Solids",
+          "unit": "Geometry",
+          "outcomes": [
+            "Identify common solids",
+            "Count faces, edges and vertices"
+          ],
+          "topics": [
+            "Cube and cuboid",
+            "Cylinder, cone and sphere",
+            "Prisms and pyramids",
+            "Faces, edges and vertices",
+            "Nets of solids"
+          ],
+          "lessons": [
+            {
+              "title": "Common solids",
+              "topics": [
+                "Cube and cuboid",
+                "Cylinder, cone and sphere",
+                "Prisms and pyramids"
+              ]
+            },
+            {
+              "title": "Faces, edges and vertices",
+              "topics": [
+                "Faces, edges and vertices",
+                "Nets of solids"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 21,
+          "title": "Perimeter and Area of Plane Figures",
+          "unit": "Mensuration",
+          "outcomes": [
+            "Find perimeters of rectilinear figures",
+            "Find areas of rectangles and squares"
+          ],
+          "topics": [
+            "Meaning of perimeter",
+            "Perimeter of a rectangle",
+            "Perimeter of a square and triangle",
+            "Meaning of area",
+            "Area of a rectangle",
+            "Area of a square",
+            "Units of area",
+            "Cost of fencing and flooring",
+            "Area of combined figures"
+          ],
+          "lessons": [
+            {
+              "title": "Perimeter",
+              "topics": [
+                "Meaning of perimeter",
+                "Perimeter of a rectangle",
+                "Perimeter of a square and triangle"
+              ]
+            },
+            {
+              "title": "Area",
+              "topics": [
+                "Meaning of area",
+                "Area of a rectangle",
+                "Area of a square"
+              ]
+            },
+            {
+              "title": "Problems",
+              "topics": [
+                "Units of area",
+                "Cost of fencing and flooring",
+                "Area of combined figures"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 22,
+          "title": "Data Handling",
+          "unit": "Data Handling",
+          "outcomes": [
+            "Organise raw data in a frequency table",
+            "Draw and read pictographs and bar graphs",
+            "Calculate the mean of data",
+            "Find the median of data"
+          ],
+          "topics": [
+            "Data and raw data",
+            "Tally marks",
+            "Frequency table",
+            "Pictographs",
+            "Bar graphs",
+            "Reading graphs",
+            "Meaning of average",
+            "Mean of a set of numbers",
+            "Word problems on mean",
+            "Arranging data",
+            "Median of odd number of values",
+            "Median of even number of values"
+          ],
+          "lessons": [
+            {
+              "title": "Collecting data",
+              "topics": [
+                "Data and raw data",
+                "Tally marks",
+                "Frequency table"
+              ]
+            },
+            {
+              "title": "Representing data",
+              "topics": [
+                "Pictographs",
+                "Bar graphs",
+                "Reading graphs"
+              ]
+            },
+            {
+              "title": "Mean",
+              "topics": [
+                "Meaning of average",
+                "Mean of a set of numbers",
+                "Word problems on mean"
+              ]
+            },
+            {
+              "title": "Median",
+              "topics": [
+                "Arranging data",
+                "Median of odd number of values",
+                "Median of even number of values"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        }
+      ]
+    },
+    {
+      "subject": "physics",
+      "name": "Physics",
+      "book": "Selina Concise Physics, Class 6 (2026-27)",
+      "chapters": [
+        {
+          "number": 1,
+          "title": "Matter",
+          "unit": "Matter",
+          "outcomes": [
+            "Describe matter as made up of tiny particles",
+            "Compare solids, liquids and gases",
+            "Explain changes of state on heating and cooling"
+          ],
+          "topics": [
+            "Meaning of matter",
+            "Particle nature of matter",
+            "Intermolecular space and force",
+            "Solids",
+            "Liquids",
+            "Gases",
+            "Melting and freezing",
+            "Evaporation and condensation",
+            "Sublimation",
+            "Effect of heat on matter"
+          ],
+          "lessons": [
+            {
+              "title": "What is matter",
+              "topics": [
+                "Meaning of matter",
+                "Particle nature of matter",
+                "Intermolecular space and force"
+              ]
+            },
+            {
+              "title": "States of matter",
+              "topics": [
+                "Solids",
+                "Liquids",
+                "Gases"
+              ]
+            },
+            {
+              "title": "Change of state",
+              "topics": [
+                "Melting and freezing",
+                "Evaporation and condensation",
+                "Sublimation",
+                "Effect of heat on matter"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 2,
+          "title": "Physical Quantities and Measurement",
+          "unit": "Measurement",
+          "outcomes": [
+            "State the need for standard units",
+            "Measure length, mass and time with correct units",
+            "Find the area and volume of regular objects"
+          ],
+          "topics": [
+            "Need for measurement",
+            "Physical quantities",
+            "Standard units and SI system",
+            "Units of length",
+            "Using a metre scale",
+            "Measuring a curved line",
+            "Units of mass",
+            "Beam balance",
+            "Units of time",
+            "Clocks and stopwatches",
+            "Area of regular surfaces",
+            "Volume of regular solids",
+            "Volume of liquids",
+            "Volume of irregular solids"
+          ],
+          "lessons": [
+            {
+              "title": "Measurement and units",
+              "topics": [
+                "Need for measurement",
+                "Physical quantities",
+                "Standard units and SI system"
+              ]
+            },
+            {
+              "title": "Length",
+              "topics": [
+                "Units of length",
+                "Using a metre scale",
+                "Measuring a curved line"
+              ]
+            },
+            {
+              "title": "Mass and time",
+              "topics": [
+                "Units of mass",
+                "Beam balance",
+                "Units of time",
+                "Clocks and stopwatches"
+              ]
+            },
+            {
+              "title": "Area and volume",
+              "topics": [
+                "Area of regular surfaces",
+                "Volume of regular solids",
+                "Volume of liquids",
+                "Volume of irregular solids"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 3,
+          "title": "Force",
+          "unit": "Force",
+          "outcomes": [
+            "Describe force as a push or pull",
+            "Identify effects of force",
+            "Distinguish contact and non-contact forces"
+          ],
+          "topics": [
+            "Force as push or pull",
+            "Effects of force",
+            "Muscular force",
+            "Frictional force",
+            "Gravitational force",
+            "Magnetic force",
+            "Electrostatic force"
+          ],
+          "lessons": [
+            {
+              "title": "Push and pull",
+              "topics": [
+                "Force as push or pull",
+                "Effects of force"
+              ]
+            },
+            {
+              "title": "Contact forces",
+              "topics": [
+                "Muscular force",
+                "Frictional force"
+              ]
+            },
+            {
+              "title": "Non-contact forces",
+              "topics": [
+                "Gravitational force",
+                "Magnetic force",
+                "Electrostatic force"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 4,
+          "title": "Simple Machines",
+          "unit": "Machines",
+          "outcomes": [
+            "Explain how simple machines make work easier",
+            "Identify the three classes of levers",
+            "Give examples of inclined planes, pulleys and wheel and axle"
+          ],
+          "topics": [
+            "Simple machines",
+            "Load, effort and fulcrum",
+            "Uses of machines",
+            "Class I levers",
+            "Class II levers",
+            "Class III levers",
+            "Levers in the human body",
+            "Inclined plane",
+            "Wedge and screw",
+            "Pulley",
+            "Wheel and axle"
+          ],
+          "lessons": [
+            {
+              "title": "What machines do",
+              "topics": [
+                "Simple machines",
+                "Load, effort and fulcrum",
+                "Uses of machines"
+              ]
+            },
+            {
+              "title": "Levers",
+              "topics": [
+                "Class I levers",
+                "Class II levers",
+                "Class III levers",
+                "Levers in the human body"
+              ]
+            },
+            {
+              "title": "Other simple machines",
+              "topics": [
+                "Inclined plane",
+                "Wedge and screw",
+                "Pulley",
+                "Wheel and axle"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 5,
+          "title": "Light",
+          "unit": "Light",
+          "outcomes": [
+            "Classify objects as luminous or non-luminous",
+            "Explain that light travels in straight lines",
+            "Describe how shadows and pinhole images form"
+          ],
+          "topics": [
+            "Luminous and non-luminous objects",
+            "Natural and artificial sources",
+            "Rectilinear propagation of light",
+            "Transparent, translucent and opaque objects",
+            "Formation of shadows",
+            "Pinhole camera",
+            "Eclipses"
+          ],
+          "lessons": [
+            {
+              "title": "Sources of light",
+              "topics": [
+                "Luminous and non-luminous objects",
+                "Natural and artificial sources"
+              ]
+            },
+            {
+              "title": "How light travels",
+              "topics": [
+                "Rectilinear propagation of light",
+                "Transparent, translucent and opaque objects"
+              ]
+            },
+            {
+              "title": "Shadows and images",
+              "topics": [
+                "Formation of shadows",
+                "Pinhole camera",
+                "Eclipses"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 6,
+          "title": "Magnetism",
+          "unit": "Magnetism",
+          "outcomes": [
+            "Describe natural and artificial magnets",
+            "State properties of magnets",
+            "Make a magnet and explain how to keep magnets safe"
+          ],
+          "topics": [
+            "Natural and artificial magnets",
+            "Magnetic and non-magnetic materials",
+            "Magnetic poles",
+            "Attraction and repulsion",
+            "Directive property",
+            "Magnetic compass",
+            "Making a magnet by stroking",
+            "Electromagnets",
+            "Loss of magnetism",
+            "Uses of magnets"
+          ],
+          "lessons": [
+            {
+              "title": "Magnets",
+              "topics": [
+                "Natural and artificial magnets",
+                "Magnetic and non-magnetic materials"
+              ]
+            },
+            {
+              "title": "Properties of magnets",
+              "topics": [
+                "Magnetic poles",
+                "Attraction and repulsion",
+                "Directive property",
+                "Magnetic compass"
+              ]
+            },
+            {
+              "title": "Making and keeping magnets",
+              "topics": [
+                "Making a magnet by stroking",
+                "Electromagnets",
+                "Loss of magnetism",
+                "Uses of magnets"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        }
+      ]
+    },
+    {
+      "subject": "chemistry",
+      "name": "Chemistry",
+      "book": "Selina Concise Chemistry, Class 6 (2026-27)",
+      "chapters": [
+        {
+          "number": 1,
+          "title": "Introduction to Chemistry",
+          "unit": "Introduction",
+          "outcomes": [
+            "Describe what chemistry studies",
+            "Give examples of chemistry in daily life"
+          ],
+          "topics": [
+            "Meaning of chemistry",
+            "Branches of science",
+            "Contributions of chemists",
+            "Chemistry in food and medicine",
+            "Chemistry in agriculture and industry",
+            "Harmful effects of chemicals"
+          ],
+          "lessons": [
+            {
+              "title": "What is chemistry",
+              "topics": [
+                "Meaning of chemistry",
+                "Branches of science",
+                "Contributions of chemists"
+              ]
+            },
+            {
+              "title": "Chemistry around us",
+              "topics": [
+                "Chemistry in food and medicine",
+                "Chemistry in agriculture and industry",
+                "Harmful effects of chemicals"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 2,
+          "title": "Common Laboratory Apparatus and Equipments",
+          "unit": "Laboratory",
+          "outcomes": [
+            "Name common laboratory apparatus and their uses",
+            "Follow basic laboratory safety rules"
+          ],
+          "topics": [
+            "Test tubes and beakers",
+            "Flasks and funnels",
+            "Measuring cylinder",
+            "Bunsen burner and flames",
+            "Tripod stand and wire gauze",
+            "Test tube holder and stand",
+            "Safety rules",
+            "First aid in the laboratory"
+          ],
+          "lessons": [
+            {
+              "title": "Glassware",
+              "topics": [
+                "Test tubes and beakers",
+                "Flasks and funnels",
+                "Measuring cylinder"
+              ]
+            },
+            {
+              "title": "Heating and holding equipment",
+              "topics": [
+                "Bunsen burner and flames",
+                "Tripod stand and wire gauze",
+                "Test tube holder and stand"
+              ]
+            },
+            {
+              "title": "Laboratory safety",
+              "topics": [
+                "Safety rules",
+                "First aid in the laboratory"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 3,
+          "title": "Matter",
+          "unit": "Matter",
+          "outcomes": [
+            "Define matter and its properties",
+            "Explain the states of matter using particles",
+            "Describe interconversion of states"
+          ],
+          "topics": [
+            "Definition of matter",
+            "Mass and volume",
+            "Molecules",
+            "Solids",
+            "Liquids",
+            "Gases",
+            "Kinetic theory of matter",
+            "Melting and freezing",
+            "Boiling and condensation",
+            "Sublimation"
+          ],
+          "lessons": [
+            {
+              "title": "Matter and its properties",
+              "topics": [
+                "Definition of matter",
+                "Mass and volume",
+                "Molecules"
+              ]
+            },
+            {
+              "title": "States of matter",
+              "topics": [
+                "Solids",
+                "Liquids",
+                "Gases",
+                "Kinetic theory of matter"
+              ]
+            },
+            {
+              "title": "Interconversion of states",
+              "topics": [
+                "Melting and freezing",
+                "Boiling and condensation",
+                "Sublimation"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 4,
+          "title": "Elements, Compounds, Symbols and Formulae",
+          "unit": "Composition",
+          "outcomes": [
+            "Distinguish elements and compounds",
+            "Write symbols of common elements",
+            "Read simple chemical formulae"
+          ],
+          "topics": [
+            "Elements",
+            "Metals, non-metals and metalloids",
+            "Symbols of elements",
+            "Compounds",
+            "Elements versus compounds",
+            "Atoms and molecules",
+            "Valency",
+            "Writing simple formulae"
+          ],
+          "lessons": [
+            {
+              "title": "Elements",
+              "topics": [
+                "Elements",
+                "Metals, non-metals and metalloids",
+                "Symbols of elements"
+              ]
+            },
+            {
+              "title": "Compounds",
+              "topics": [
+                "Compounds",
+                "Elements versus compounds"
+              ]
+            },
+            {
+              "title": "Formulae",
+              "topics": [
+                "Atoms and molecules",
+                "Valency",
+                "Writing simple formulae"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 5,
+          "title": "Pure Substances and Mixtures; Separation of Mixtures",
+          "unit": "Composition",
+          "outcomes": [
+            "Distinguish pure substances from mixtures",
+            "Choose a method to separate a given mixture"
+          ],
+          "topics": [
+            "Pure substances",
+            "Mixtures",
+            "Homogeneous and heterogeneous mixtures",
+            "Need for separation",
+            "Handpicking, winnowing and sieving",
+            "Sublimation and magnetic separation",
+            "Sedimentation and decantation",
+            "Filtration",
+            "Evaporation and crystallisation",
+            "Distillation",
+            "Separating funnel"
+          ],
+          "lessons": [
+            {
+              "title": "Mixtures",
+              "topics": [
+                "Pure substances",
+                "Mixtures",
+                "Homogeneous and heterogeneous mixtures"
+              ]
+            },
+            {
+              "title": "Separating solids",
+              "topics": [
+                "Need for separation",
+                "Handpicking, winnowing and sieving",
+                "Sublimation and magnetic separation"
+              ]
+            },
+            {
+              "title": "Separating solids from liquids",
+              "topics": [
+                "Sedimentation and decantation",
+                "Filtration",
+                "Evaporation and crystallisation"
+              ]
+            },
+            {
+              "title": "Separating liquids",
+              "topics": [
+                "Distillation",
+                "Separating funnel"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 6,
+          "title": "Air and Atmosphere",
+          "unit": "Air",
+          "outcomes": [
+            "State the composition of air",
+            "Describe properties and uses of oxygen, nitrogen and carbon dioxide",
+            "Explain causes and prevention of air pollution"
+          ],
+          "topics": [
+            "Air as a mixture",
+            "Composition of air",
+            "Layers of the atmosphere",
+            "Oxygen and its uses",
+            "Nitrogen and its uses",
+            "Carbon dioxide and its uses",
+            "Air pollutants",
+            "Effects of air pollution",
+            "Preventing air pollution"
+          ],
+          "lessons": [
+            {
+              "title": "Composition of air",
+              "topics": [
+                "Air as a mixture",
+                "Composition of air",
+                "Layers of the atmosphere"
+              ]
+            },
+            {
+              "title": "Gases in air",
+              "topics": [
+                "Oxygen and its uses",
+                "Nitrogen and its uses",
+                "Carbon dioxide and its uses"
+              ]
+            },
+            {
+              "title": "Air pollution",
+              "topics": [
+                "Air pollutants",
+                "Effects of air pollution",
+                "Preventing air pollution"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 7,
+          "title": "Water",
+          "unit": "Water",
+          "outcomes": [
+            "Describe the water cycle and sources of water",
+            "Explain water as a universal solvent",
+            "Suggest ways to conserve water"
+          ],
+          "topics": [
+            "Sources of water",
+            "Water cycle",
+            "Composition of water",
+            "States of water",
+            "Water as a solvent",
+            "Solutions, solute and solvent",
+            "Water pollution",
+            "Purification of water",
+            "Conservation of water"
+          ],
+          "lessons": [
+            {
+              "title": "Water around us",
+              "topics": [
+                "Sources of water",
+                "Water cycle",
+                "Composition of water"
+              ]
+            },
+            {
+              "title": "Properties of water",
+              "topics": [
+                "States of water",
+                "Water as a solvent",
+                "Solutions, solute and solvent"
+              ]
+            },
+            {
+              "title": "Clean water",
+              "topics": [
+                "Water pollution",
+                "Purification of water",
+                "Conservation of water"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        }
+      ]
+    },
+    {
+      "subject": "biology",
+      "name": "Biology",
+      "book": "Selina Concise Biology, Class 6 (2026-27)",
+      "chapters": [
+        {
+          "number": 1,
+          "title": "The Leaf",
+          "unit": "Plant Life",
+          "outcomes": [
+            "Name parts of a leaf",
+            "Describe venation and simple and compound leaves",
+            "State functions of leaves"
+          ],
+          "topics": [
+            "Leaf base, petiole and lamina",
+            "Venation",
+            "Simple and compound leaves",
+            "Arrangement of leaves",
+            "Photosynthesis",
+            "Transpiration",
+            "Modifications of leaves"
+          ],
+          "lessons": [
+            {
+              "title": "Parts of a leaf",
+              "topics": [
+                "Leaf base, petiole and lamina",
+                "Venation"
+              ]
+            },
+            {
+              "title": "Kinds of leaves",
+              "topics": [
+                "Simple and compound leaves",
+                "Arrangement of leaves"
+              ]
+            },
+            {
+              "title": "Functions of leaves",
+              "topics": [
+                "Photosynthesis",
+                "Transpiration",
+                "Modifications of leaves"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 2,
+          "title": "The Flower",
+          "unit": "Plant Life",
+          "outcomes": [
+            "Name the parts of a flower",
+            "Describe pollination and fertilisation",
+            "Describe seed and fruit formation"
+          ],
+          "topics": [
+            "Stalk and thalamus",
+            "Sepals and petals",
+            "Stamens and carpels",
+            "Self-pollination",
+            "Cross-pollination",
+            "Agents of pollination",
+            "Fertilisation",
+            "Formation of fruit and seed",
+            "Dispersal of seeds"
+          ],
+          "lessons": [
+            {
+              "title": "Parts of a flower",
+              "topics": [
+                "Stalk and thalamus",
+                "Sepals and petals",
+                "Stamens and carpels"
+              ]
+            },
+            {
+              "title": "Pollination",
+              "topics": [
+                "Self-pollination",
+                "Cross-pollination",
+                "Agents of pollination"
+              ]
+            },
+            {
+              "title": "Fruits and seeds",
+              "topics": [
+                "Fertilisation",
+                "Formation of fruit and seed",
+                "Dispersal of seeds"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 3,
+          "title": "Cell — The Structure and Functions",
+          "unit": "Cell",
+          "outcomes": [
+            "Describe the cell as the unit of life",
+            "Name cell parts and their functions",
+            "Compare plant and animal cells"
+          ],
+          "topics": [
+            "Discovery of the cell",
+            "Unicellular and multicellular organisms",
+            "Shapes and sizes of cells",
+            "Cell membrane and cell wall",
+            "Cytoplasm",
+            "Nucleus",
+            "Vacuoles and plastids",
+            "Plant cell versus animal cell",
+            "Cells, tissues and organs"
+          ],
+          "lessons": [
+            {
+              "title": "The unit of life",
+              "topics": [
+                "Discovery of the cell",
+                "Unicellular and multicellular organisms",
+                "Shapes and sizes of cells"
+              ]
+            },
+            {
+              "title": "Parts of a cell",
+              "topics": [
+                "Cell membrane and cell wall",
+                "Cytoplasm",
+                "Nucleus",
+                "Vacuoles and plastids"
+              ]
+            },
+            {
+              "title": "Plant and animal cells",
+              "topics": [
+                "Plant cell versus animal cell",
+                "Cells, tissues and organs"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 4,
+          "title": "Digestive System",
+          "unit": "Human Body",
+          "outcomes": [
+            "Name the organs of the digestive system",
+            "Describe digestion from mouth to large intestine",
+            "State good eating habits"
+          ],
+          "topics": [
+            "Nutrients in food",
+            "Balanced diet",
+            "Mouth and teeth",
+            "Oesophagus and stomach",
+            "Small intestine",
+            "Large intestine",
+            "Salivary glands, liver and pancreas",
+            "Absorption and assimilation",
+            "Good eating habits"
+          ],
+          "lessons": [
+            {
+              "title": "Food and nutrients",
+              "topics": [
+                "Nutrients in food",
+                "Balanced diet"
+              ]
+            },
+            {
+              "title": "Digestive organs",
+              "topics": [
+                "Mouth and teeth",
+                "Oesophagus and stomach",
+                "Small intestine",
+                "Large intestine"
+              ]
+            },
+            {
+              "title": "Glands and habits",
+              "topics": [
+                "Salivary glands, liver and pancreas",
+                "Absorption and assimilation",
+                "Good eating habits"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 5,
+          "title": "Respiratory System",
+          "unit": "Human Body",
+          "outcomes": [
+            "Name the organs of the respiratory system",
+            "Describe breathing movements",
+            "Distinguish breathing from respiration"
+          ],
+          "topics": [
+            "Nose and nasal cavity",
+            "Pharynx, larynx and trachea",
+            "Bronchi and lungs",
+            "Inhalation",
+            "Exhalation",
+            "Role of diaphragm and ribs",
+            "Breathing versus respiration",
+            "Care of respiratory organs"
+          ],
+          "lessons": [
+            {
+              "title": "Respiratory organs",
+              "topics": [
+                "Nose and nasal cavity",
+                "Pharynx, larynx and trachea",
+                "Bronchi and lungs"
+              ]
+            },
+            {
+              "title": "Breathing",
+              "topics": [
+                "Inhalation",
+                "Exhalation",
+                "Role of diaphragm and ribs"
+              ]
+            },
+            {
+              "title": "Respiration",
+              "topics": [
+                "Breathing versus respiration",
+                "Care of respiratory organs"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 6,
+          "title": "The Circulatory System",
+          "unit": "Human Body",
+          "outcomes": [
+            "Name parts of the circulatory system",
+            "Describe the heart and blood vessels",
+            "State the components of blood"
+          ],
+          "topics": [
+            "Plasma",
+            "Red blood cells",
+            "White blood cells and platelets",
+            "Structure of the heart",
+            "Heartbeat and pulse",
+            "Arteries",
+            "Veins",
+            "Capillaries",
+            "Care of the heart"
+          ],
+          "lessons": [
+            {
+              "title": "Blood",
+              "topics": [
+                "Plasma",
+                "Red blood cells",
+                "White blood cells and platelets"
+              ]
+            },
+            {
+              "title": "Heart",
+              "topics": [
+                "Structure of the heart",
+                "Heartbeat and pulse"
+              ]
+            },
+            {
+              "title": "Blood vessels",
+              "topics": [
+                "Arteries",
+                "Veins",
+                "Capillaries",
+                "Care of the heart"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 7,
+          "title": "Disease and Hygiene",
+          "unit": "Health",
+          "outcomes": [
+            "Distinguish communicable and non-communicable diseases",
+            "Describe how common diseases spread",
+            "Practise personal and community hygiene"
+          ],
+          "topics": [
+            "Meaning of health",
+            "Communicable and non-communicable diseases",
+            "Germs and carriers",
+            "Water-borne and air-borne diseases",
+            "Insect-borne diseases",
+            "Personal hygiene",
+            "Community hygiene",
+            "Vaccination"
+          ],
+          "lessons": [
+            {
+              "title": "Health and disease",
+              "topics": [
+                "Meaning of health",
+                "Communicable and non-communicable diseases"
+              ]
+            },
+            {
+              "title": "How diseases spread",
+              "topics": [
+                "Germs and carriers",
+                "Water-borne and air-borne diseases",
+                "Insect-borne diseases"
+              ]
+            },
+            {
+              "title": "Hygiene",
+              "topics": [
+                "Personal hygiene",
+                "Community hygiene",
+                "Vaccination"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 8,
+          "title": "Habitat and Adaptation",
+          "unit": "Environment",
+          "outcomes": [
+            "Define habitat and adaptation",
+            "Describe adaptations of plants and animals to different habitats"
+          ],
+          "topics": [
+            "Meaning of habitat",
+            "Terrestrial and aquatic habitats",
+            "Biotic and abiotic components",
+            "Desert plants",
+            "Aquatic plants",
+            "Mountain plants",
+            "Desert animals",
+            "Aquatic animals",
+            "Polar and mountain animals",
+            "Aerial animals"
+          ],
+          "lessons": [
+            {
+              "title": "Habitats",
+              "topics": [
+                "Meaning of habitat",
+                "Terrestrial and aquatic habitats",
+                "Biotic and abiotic components"
+              ]
+            },
+            {
+              "title": "Adaptations in plants",
+              "topics": [
+                "Desert plants",
+                "Aquatic plants",
+                "Mountain plants"
+              ]
+            },
+            {
+              "title": "Adaptations in animals",
+              "topics": [
+                "Desert animals",
+                "Aquatic animals",
+                "Polar and mountain animals",
+                "Aerial animals"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        }
+      ]
+    },
+    {
+      "subject": "history-civics",
+      "name": "History & Civics",
+      "book": "Frank Modern Certificate History & Civics, Class 6 (2026-27)",
+      "chapters": [
+        {
+          "number": 1,
+          "title": "Ancient River Valley Civilisation: The Indus Valley",
+          "unit": "History",
+          "outcomes": [
+            "Explain why early civilisations grew near rivers",
+            "Describe town planning and life in the Harappan cities",
+            "State reasons for the decline of the Indus Valley Civilisation"
+          ],
+          "topics": [
+            "Why civilisations grew near rivers",
+            "Sources of Harappan history",
+            "Major Harappan sites",
+            "Town planning",
+            "Great Bath and granaries",
+            "Drainage system",
+            "Occupations and trade",
+            "Seals and script",
+            "Religion and art",
+            "Decline of the civilisation"
+          ],
+          "lessons": [
+            {
+              "title": "River valley civilisations",
+              "topics": [
+                "Why civilisations grew near rivers",
+                "Sources of Harappan history",
+                "Major Harappan sites"
+              ]
+            },
+            {
+              "title": "Harappan cities",
+              "topics": [
+                "Town planning",
+                "Great Bath and granaries",
+                "Drainage system"
+              ]
+            },
+            {
+              "title": "Life of the people",
+              "topics": [
+                "Occupations and trade",
+                "Seals and script",
+                "Religion and art",
+                "Decline of the civilisation"
+              ]
+            }
+          ],
+          "source": "https://www.frankedu.com/"
+        },
+        {
+          "number": 2,
+          "title": "Ancient River Valley Civilisation: Mesopotamia",
+          "unit": "History",
+          "outcomes": [
+            "Locate Mesopotamia between the Tigris and Euphrates",
+            "Describe Sumerian society, cuneiform and ziggurats",
+            "State contributions of Mesopotamia"
+          ],
+          "topics": [
+            "Location of Mesopotamia",
+            "Sumerians and city-states",
+            "Social life and occupations",
+            "Religion and ziggurats",
+            "Cuneiform script",
+            "Code of Hammurabi",
+            "Contributions to science and mathematics"
+          ],
+          "lessons": [
+            {
+              "title": "Land between rivers",
+              "topics": [
+                "Location of Mesopotamia",
+                "Sumerians and city-states"
+              ]
+            },
+            {
+              "title": "Life in Mesopotamia",
+              "topics": [
+                "Social life and occupations",
+                "Religion and ziggurats",
+                "Cuneiform script"
+              ]
+            },
+            {
+              "title": "Contributions",
+              "topics": [
+                "Code of Hammurabi",
+                "Contributions to science and mathematics"
+              ]
+            }
+          ],
+          "source": "https://www.frankedu.com/"
+        },
+        {
+          "number": 3,
+          "title": "Ancient River Valley Civilisation: Egypt",
+          "unit": "History",
+          "outcomes": [
+            "Explain the importance of the Nile to Egypt",
+            "Describe pharaohs, pyramids and mummies",
+            "State Egyptian contributions"
+          ],
+          "topics": [
+            "Location and the Nile",
+            "Pharaohs and government",
+            "Society and occupations",
+            "Religion and afterlife",
+            "Pyramids and mummies",
+            "Hieroglyphics and papyrus",
+            "Calendar, medicine and mathematics"
+          ],
+          "lessons": [
+            {
+              "title": "Gift of the Nile",
+              "topics": [
+                "Location and the Nile",
+                "Pharaohs and government"
+              ]
+            },
+            {
+              "title": "Life and beliefs",
+              "topics": [
+                "Society and occupations",
+                "Religion and afterlife",
+                "Pyramids and mummies"
+              ]
+            },
+            {
+              "title": "Contributions",
+              "topics": [
+                "Hieroglyphics and papyrus",
+                "Calendar, medicine and mathematics"
+              ]
+            }
+          ],
+          "source": "https://www.frankedu.com/"
+        },
+        {
+          "number": 4,
+          "title": "Ancient River Valley Civilisation: China",
+          "unit": "History",
+          "outcomes": [
+            "Locate the Huang He civilisation",
+            "Describe the Shang dynasty and its achievements",
+            "State Chinese contributions"
+          ],
+          "topics": [
+            "Location and the Huang He",
+            "Shang dynasty",
+            "Society and occupations",
+            "Religion and oracle bones",
+            "Chinese writing",
+            "Bronze work and silk",
+            "Other contributions"
+          ],
+          "lessons": [
+            {
+              "title": "The Huang He valley",
+              "topics": [
+                "Location and the Huang He",
+                "Shang dynasty"
+              ]
+            },
+            {
+              "title": "Life under the Shang",
+              "topics": [
+                "Society and occupations",
+                "Religion and oracle bones",
+                "Chinese writing"
+              ]
+            },
+            {
+              "title": "Contributions",
+              "topics": [
+                "Bronze work and silk",
+                "Other contributions"
+              ]
+            }
+          ],
+          "source": "https://www.frankedu.com/"
+        },
+        {
+          "number": 5,
+          "title": "The Vedic Period",
+          "unit": "History",
+          "outcomes": [
+            "Name sources for the Vedic period",
+            "Compare Early and Later Vedic society",
+            "Describe Vedic religion and education"
+          ],
+          "topics": [
+            "Sources of the Vedic period",
+            "Arrival of the Aryans",
+            "The four Vedas",
+            "Political organisation",
+            "Social and economic life",
+            "Religion",
+            "Changes in polity",
+            "Varna system",
+            "Position of women",
+            "Education and gurukul"
+          ],
+          "lessons": [
+            {
+              "title": "The Aryans and the Vedas",
+              "topics": [
+                "Sources of the Vedic period",
+                "Arrival of the Aryans",
+                "The four Vedas"
+              ]
+            },
+            {
+              "title": "Early Vedic age",
+              "topics": [
+                "Political organisation",
+                "Social and economic life",
+                "Religion"
+              ]
+            },
+            {
+              "title": "Later Vedic age",
+              "topics": [
+                "Changes in polity",
+                "Varna system",
+                "Position of women",
+                "Education and gurukul"
+              ]
+            }
+          ],
+          "source": "https://www.frankedu.com/"
+        },
+        {
+          "number": 6,
+          "title": "Great Preachers: Mahavira and Buddha",
+          "unit": "History",
+          "outcomes": [
+            "Explain why new religious ideas arose in the 6th century BCE",
+            "State the teachings of Mahavira and Buddha",
+            "Describe the spread of Jainism and Buddhism"
+          ],
+          "topics": [
+            "Causes of new religious movements",
+            "Life of Mahavira",
+            "Teachings of Jainism",
+            "Spread of Jainism",
+            "Life of Gautama Buddha",
+            "Four Noble Truths and Eightfold Path",
+            "Spread of Buddhism"
+          ],
+          "lessons": [
+            {
+              "title": "New ideas",
+              "topics": [
+                "Causes of new religious movements"
+              ]
+            },
+            {
+              "title": "Mahavira and Jainism",
+              "topics": [
+                "Life of Mahavira",
+                "Teachings of Jainism",
+                "Spread of Jainism"
+              ]
+            },
+            {
+              "title": "Buddha and Buddhism",
+              "topics": [
+                "Life of Gautama Buddha",
+                "Four Noble Truths and Eightfold Path",
+                "Spread of Buddhism"
+              ]
+            }
+          ],
+          "source": "https://www.frankedu.com/"
+        },
+        {
+          "number": 7,
+          "title": "Rise of Kingdoms and Republics; Magadha",
+          "unit": "History",
+          "outcomes": [
+            "Explain the rise of mahajanapadas",
+            "Distinguish kingdoms and republics",
+            "Describe the rise of Magadha"
+          ],
+          "topics": [
+            "Janapadas and mahajanapadas",
+            "Kingdoms and republics",
+            "Reasons for Magadha's rise",
+            "Haryanka dynasty",
+            "Shishunaga and Nanda dynasties",
+            "Persian invasion",
+            "Alexander's invasion"
+          ],
+          "lessons": [
+            {
+              "title": "Mahajanapadas",
+              "topics": [
+                "Janapadas and mahajanapadas",
+                "Kingdoms and republics"
+              ]
+            },
+            {
+              "title": "Rise of Magadha",
+              "topics": [
+                "Reasons for Magadha's rise",
+                "Haryanka dynasty",
+                "Shishunaga and Nanda dynasties"
+              ]
+            },
+            {
+              "title": "Foreign invasions",
+              "topics": [
+                "Persian invasion",
+                "Alexander's invasion"
+              ]
+            }
+          ],
+          "source": "https://www.frankedu.com/"
+        },
+        {
+          "number": 8,
+          "title": "The Mauryan Empire",
+          "unit": "History",
+          "outcomes": [
+            "Name sources of Mauryan history",
+            "Describe the achievements of Chandragupta and Ashoka",
+            "Describe Mauryan administration"
+          ],
+          "topics": [
+            "Sources of Mauryan history",
+            "Chandragupta Maurya",
+            "Kalinga war",
+            "Ashoka's dhamma",
+            "Ashokan edicts and pillars",
+            "Mauryan administration",
+            "Art and architecture",
+            "Decline of the Mauryas"
+          ],
+          "lessons": [
+            {
+              "title": "Sources and founder",
+              "topics": [
+                "Sources of Mauryan history",
+                "Chandragupta Maurya"
+              ]
+            },
+            {
+              "title": "Ashoka",
+              "topics": [
+                "Kalinga war",
+                "Ashoka's dhamma",
+                "Ashokan edicts and pillars"
+              ]
+            },
+            {
+              "title": "Administration and decline",
+              "topics": [
+                "Mauryan administration",
+                "Art and architecture",
+                "Decline of the Mauryas"
+              ]
+            }
+          ],
+          "source": "https://www.frankedu.com/"
+        },
+        {
+          "number": 9,
+          "title": "The Golden Age: Gupta Empire",
+          "unit": "History",
+          "outcomes": [
+            "Name the major Gupta rulers",
+            "Explain why the Gupta period is called a golden age",
+            "Describe Gupta achievements in science and art"
+          ],
+          "topics": [
+            "Sources of Gupta history",
+            "Chandragupta I and Samudragupta",
+            "Chandragupta II",
+            "Administration",
+            "Society and economy",
+            "Religion",
+            "Literature",
+            "Science and mathematics",
+            "Art and architecture",
+            "Decline of the Guptas"
+          ],
+          "lessons": [
+            {
+              "title": "Gupta rulers",
+              "topics": [
+                "Sources of Gupta history",
+                "Chandragupta I and Samudragupta",
+                "Chandragupta II"
+              ]
+            },
+            {
+              "title": "Life in the Gupta age",
+              "topics": [
+                "Administration",
+                "Society and economy",
+                "Religion"
+              ]
+            },
+            {
+              "title": "Golden age achievements",
+              "topics": [
+                "Literature",
+                "Science and mathematics",
+                "Art and architecture",
+                "Decline of the Guptas"
+              ]
+            }
+          ],
+          "source": "https://www.frankedu.com/"
+        },
+        {
+          "number": 10,
+          "title": "Local Self-Government — Rural",
+          "unit": "Civics",
+          "outcomes": [
+            "Explain the need for local self-government",
+            "Describe the three-tier Panchayati Raj system",
+            "State functions and sources of income of panchayats"
+          ],
+          "topics": [
+            "Meaning of local self-government",
+            "73rd Amendment",
+            "Gram Sabha",
+            "Gram Panchayat",
+            "Nyaya Panchayat",
+            "Panchayat Samiti",
+            "Zila Parishad",
+            "Sources of income"
+          ],
+          "lessons": [
+            {
+              "title": "Local self-government",
+              "topics": [
+                "Meaning of local self-government",
+                "73rd Amendment"
+              ]
+            },
+            {
+              "title": "Village level",
+              "topics": [
+                "Gram Sabha",
+                "Gram Panchayat",
+                "Nyaya Panchayat"
+              ]
+            },
+            {
+              "title": "Block and district levels",
+              "topics": [
+                "Panchayat Samiti",
+                "Zila Parishad",
+                "Sources of income"
+              ]
+            }
+          ],
+          "source": "https://www.frankedu.com/"
+        },
+        {
+          "number": 11,
+          "title": "Local Self-Government — Urban",
+          "unit": "Civics",
+          "outcomes": [
+            "Name the types of urban local bodies",
+            "Describe the composition and functions of a municipal corporation"
+          ],
+          "topics": [
+            "Need for urban local bodies",
+            "74th Amendment",
+            "Types of urban local bodies",
+            "Composition",
+            "Mayor and Municipal Commissioner",
+            "Functions",
+            "Municipal council",
+            "Sources of income"
+          ],
+          "lessons": [
+            {
+              "title": "Urban local bodies",
+              "topics": [
+                "Need for urban local bodies",
+                "74th Amendment",
+                "Types of urban local bodies"
+              ]
+            },
+            {
+              "title": "Municipal corporation",
+              "topics": [
+                "Composition",
+                "Mayor and Municipal Commissioner",
+                "Functions"
+              ]
+            },
+            {
+              "title": "Municipal committee",
+              "topics": [
+                "Municipal council",
+                "Sources of income"
+              ]
+            }
+          ],
+          "source": "https://www.frankedu.com/"
+        }
+      ]
+    },
+    {
+      "subject": "geography",
+      "name": "Geography",
+      "book": "Frank Middle School Geography, Class 6 (2026-27)",
+      "chapters": [
+        {
+          "number": 1,
+          "title": "Representation of Geographical Features: Globes and Maps",
+          "unit": "Map Work",
+          "outcomes": [
+            "Compare a globe and a map",
+            "Use latitudes and longitudes to locate places",
+            "Read map components such as scale, direction and symbols"
+          ],
+          "topics": [
+            "Globe as a model of the Earth",
+            "Axis and poles",
+            "Equator and parallels",
+            "Important latitudes",
+            "Prime Meridian and meridians",
+            "Grid system",
+            "Types of maps",
+            "Components of a map",
+            "Scale and direction",
+            "Conventional signs and symbols"
+          ],
+          "lessons": [
+            {
+              "title": "The globe",
+              "topics": [
+                "Globe as a model of the Earth",
+                "Axis and poles"
+              ]
+            },
+            {
+              "title": "Latitudes and longitudes",
+              "topics": [
+                "Equator and parallels",
+                "Important latitudes",
+                "Prime Meridian and meridians",
+                "Grid system"
+              ]
+            },
+            {
+              "title": "Maps",
+              "topics": [
+                "Types of maps",
+                "Components of a map",
+                "Scale and direction",
+                "Conventional signs and symbols"
+              ]
+            }
+          ],
+          "source": "https://www.frankedu.com/"
+        },
+        {
+          "number": 2,
+          "title": "Landforms",
+          "unit": "Physical Geography",
+          "outcomes": [
+            "Identify mountains, plateaus and plains",
+            "Describe how major landforms are formed",
+            "Explain the importance of landforms to people"
+          ],
+          "topics": [
+            "Major landforms",
+            "Types of mountains",
+            "Importance of mountains",
+            "Types of plateaus",
+            "Importance of plateaus",
+            "Types of plains",
+            "Importance of plains"
+          ],
+          "lessons": [
+            {
+              "title": "Mountains",
+              "topics": [
+                "Major landforms",
+                "Types of mountains",
+                "Importance of mountains"
+              ]
+            },
+            {
+              "title": "Plateaus",
+              "topics": [
+                "Types of plateaus",
+                "Importance of plateaus"
+              ]
+            },
+            {
+              "title": "Plains",
+              "topics": [
+                "Types of plains",
+                "Importance of plains"
+              ]
+            }
+          ],
+          "source": "https://www.frankedu.com/"
+        },
+        {
+          "number": 3,
+          "title": "Water Bodies",
+          "unit": "Physical Geography",
+          "outcomes": [
+            "Distinguish oceans, seas, lakes and rivers",
+            "Describe the importance of water bodies"
+          ],
+          "topics": [
+            "Oceans of the world",
+            "Seas, gulfs and bays",
+            "Straits and isthmuses",
+            "Lakes",
+            "Rivers and their courses",
+            "Uses of water bodies",
+            "Conservation of water bodies"
+          ],
+          "lessons": [
+            {
+              "title": "Oceans and seas",
+              "topics": [
+                "Oceans of the world",
+                "Seas, gulfs and bays",
+                "Straits and isthmuses"
+              ]
+            },
+            {
+              "title": "Inland water bodies",
+              "topics": [
+                "Lakes",
+                "Rivers and their courses"
+              ]
+            },
+            {
+              "title": "Importance of water bodies",
+              "topics": [
+                "Uses of water bodies",
+                "Conservation of water bodies"
+              ]
+            }
+          ],
+          "source": "https://www.frankedu.com/"
+        },
+        {
+          "number": 4,
+          "title": "Agriculture",
+          "unit": "Economic Geography",
+          "outcomes": [
+            "Explain factors affecting agriculture",
+            "Distinguish types of farming",
+            "Name major crops and where they grow"
+          ],
+          "topics": [
+            "Meaning of agriculture",
+            "Factors affecting agriculture",
+            "Subsistence farming",
+            "Commercial farming",
+            "Plantation and mixed farming",
+            "Food crops",
+            "Cash crops",
+            "Modern methods of agriculture"
+          ],
+          "lessons": [
+            {
+              "title": "Agriculture basics",
+              "topics": [
+                "Meaning of agriculture",
+                "Factors affecting agriculture"
+              ]
+            },
+            {
+              "title": "Types of farming",
+              "topics": [
+                "Subsistence farming",
+                "Commercial farming",
+                "Plantation and mixed farming"
+              ]
+            },
+            {
+              "title": "Major crops",
+              "topics": [
+                "Food crops",
+                "Cash crops",
+                "Modern methods of agriculture"
+              ]
+            }
+          ],
+          "source": "https://www.frankedu.com/"
+        },
+        {
+          "number": 5,
+          "title": "Minerals",
+          "unit": "Economic Geography",
+          "outcomes": [
+            "Classify minerals as metallic and non-metallic",
+            "Name uses and locations of major minerals",
+            "Explain the need to conserve minerals"
+          ],
+          "topics": [
+            "Meaning of minerals",
+            "Metallic minerals",
+            "Non-metallic minerals",
+            "Methods of mining",
+            "Distribution of major minerals",
+            "Uses of minerals",
+            "Conservation of minerals"
+          ],
+          "lessons": [
+            {
+              "title": "Types of minerals",
+              "topics": [
+                "Meaning of minerals",
+                "Metallic minerals",
+                "Non-metallic minerals"
+              ]
+            },
+            {
+              "title": "Mining",
+              "topics": [
+                "Methods of mining",
+                "Distribution of major minerals"
+              ]
+            },
+            {
+              "title": "Conservation",
+              "topics": [
+                "Uses of minerals",
+                "Conservation of minerals"
+              ]
+            }
+          ],
+          "source": "https://www.frankedu.com/"
+        },
+        {
+          "number": 6,
+          "title": "North America",
+          "unit": "Continents",
+          "outcomes": [
+            "Locate North America and its countries",
+            "Describe its physical features, climate and vegetation",
+            "Describe its resources and people"
+          ],
+          "topics": [
+            "Location and extent",
+            "Political divisions",
+            "Western mountains",
+            "Central plains",
+            "Eastern highlands",
+            "Rivers and lakes",
+            "Climate",
+            "Natural vegetation and wildlife",
+            "Agriculture, minerals and industries",
+            "People"
+          ],
+          "lessons": [
+            {
+              "title": "Location and divisions",
+              "topics": [
+                "Location and extent",
+                "Political divisions"
+              ]
+            },
+            {
+              "title": "Physical features",
+              "topics": [
+                "Western mountains",
+                "Central plains",
+                "Eastern highlands",
+                "Rivers and lakes"
+              ]
+            },
+            {
+              "title": "Climate and life",
+              "topics": [
+                "Climate",
+                "Natural vegetation and wildlife",
+                "Agriculture, minerals and industries",
+                "People"
+              ]
+            }
+          ],
+          "source": "https://www.frankedu.com/"
+        },
+        {
+          "number": 7,
+          "title": "South America",
+          "unit": "Continents",
+          "outcomes": [
+            "Locate South America and its countries",
+            "Describe the Andes, the Amazon basin and other features",
+            "Describe its climate, vegetation and economy"
+          ],
+          "topics": [
+            "Location and extent",
+            "Political divisions",
+            "Andes Mountains",
+            "Amazon basin",
+            "Plateaus and plains",
+            "Rivers",
+            "Climate",
+            "Natural vegetation and wildlife",
+            "Agriculture and minerals",
+            "People"
+          ],
+          "lessons": [
+            {
+              "title": "Location and divisions",
+              "topics": [
+                "Location and extent",
+                "Political divisions"
+              ]
+            },
+            {
+              "title": "Physical features",
+              "topics": [
+                "Andes Mountains",
+                "Amazon basin",
+                "Plateaus and plains",
+                "Rivers"
+              ]
+            },
+            {
+              "title": "Climate and life",
+              "topics": [
+                "Climate",
+                "Natural vegetation and wildlife",
+                "Agriculture and minerals",
+                "People"
+              ]
+            }
+          ],
+          "source": "https://www.frankedu.com/"
+        }
+      ]
+    },
+    {
+      "subject": "computer",
+      "name": "Computer Applications",
+      "book": "CISCE Computer Studies curriculum topics for Class 6; school textbooks such as Understanding Computer Studies or Logix follow these topics",
+      "chapters": [
+        {
+          "number": 1,
+          "title": "Categories of Computer and Computer Languages",
+          "unit": "Computer Fundamentals",
+          "outcomes": [
+            "Classify computers by size and use",
+            "Distinguish low-level and high-level languages",
+            "Explain the role of translators"
+          ],
+          "topics": [
+            "Supercomputers and mainframes",
+            "Minicomputers and microcomputers",
+            "Mobile phones and game consoles",
+            "Embedded computers",
+            "Machine language",
+            "Assembly language",
+            "High-level languages",
+            "Fourth generation languages",
+            "Translators: assembler, compiler and interpreter"
+          ],
+          "lessons": [
+            {
+              "title": "Types of computers",
+              "topics": [
+                "Supercomputers and mainframes",
+                "Minicomputers and microcomputers",
+                "Mobile phones and game consoles",
+                "Embedded computers"
+              ]
+            },
+            {
+              "title": "Low-level languages",
+              "topics": [
+                "Machine language",
+                "Assembly language"
+              ]
+            },
+            {
+              "title": "High-level languages",
+              "topics": [
+                "High-level languages",
+                "Fourth generation languages",
+                "Translators: assembler, compiler and interpreter"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 2,
+          "title": "File Management — Organisation of Data",
+          "unit": "Computer Fundamentals",
+          "outcomes": [
+            "Organise files into folders",
+            "Recognise common file formats",
+            "Transfer data between devices"
+          ],
+          "topics": [
+            "Files and folders",
+            "Creating, renaming and deleting files",
+            "File extensions",
+            "Document and spreadsheet formats",
+            "Image formats: JPEG and PNG",
+            "Audio and video formats: MP3 and MP4",
+            "Copying and moving files",
+            "Transferring data between devices"
+          ],
+          "lessons": [
+            {
+              "title": "Files and folders",
+              "topics": [
+                "Files and folders",
+                "Creating, renaming and deleting files",
+                "File extensions"
+              ]
+            },
+            {
+              "title": "File formats",
+              "topics": [
+                "Document and spreadsheet formats",
+                "Image formats: JPEG and PNG",
+                "Audio and video formats: MP3 and MP4"
+              ]
+            },
+            {
+              "title": "Moving data",
+              "topics": [
+                "Copying and moving files",
+                "Transferring data between devices"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 3,
+          "title": "Word Processor — Tabular Presentation",
+          "unit": "Office Tools",
+          "outcomes": [
+            "Insert and edit tables in a document",
+            "Format tables by merging, resizing and aligning"
+          ],
+          "topics": [
+            "Inserting a table",
+            "Entering data in a table",
+            "Inserting and deleting rows and columns",
+            "Merging and splitting cells",
+            "Resizing a table",
+            "Aligning text in cells",
+            "Borders and shading"
+          ],
+          "lessons": [
+            {
+              "title": "Creating tables",
+              "topics": [
+                "Inserting a table",
+                "Entering data in a table"
+              ]
+            },
+            {
+              "title": "Editing tables",
+              "topics": [
+                "Inserting and deleting rows and columns",
+                "Merging and splitting cells"
+              ]
+            },
+            {
+              "title": "Formatting tables",
+              "topics": [
+                "Resizing a table",
+                "Aligning text in cells",
+                "Borders and shading"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 4,
+          "title": "Word Processor — Mail Merge",
+          "unit": "Office Tools",
+          "outcomes": [
+            "Explain uses and benefits of mail merge",
+            "Carry out a mail merge"
+          ],
+          "topics": [
+            "What mail merge is",
+            "Uses and benefits of mail merge",
+            "Main document",
+            "Data source",
+            "Inserting merge fields",
+            "Previewing and completing the merge"
+          ],
+          "lessons": [
+            {
+              "title": "About mail merge",
+              "topics": [
+                "What mail merge is",
+                "Uses and benefits of mail merge"
+              ]
+            },
+            {
+              "title": "Doing a mail merge",
+              "topics": [
+                "Main document",
+                "Data source",
+                "Inserting merge fields",
+                "Previewing and completing the merge"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 5,
+          "title": "Presentation — Visual Effects",
+          "unit": "Office Tools",
+          "outcomes": [
+            "Add slide transitions and animations",
+            "Insert audio and video into slides"
+          ],
+          "topics": [
+            "Slide transitions",
+            "Custom animation",
+            "Animation timing and order",
+            "Inserting audio",
+            "Inserting video clips",
+            "Running a slide show"
+          ],
+          "lessons": [
+            {
+              "title": "Transitions and animation",
+              "topics": [
+                "Slide transitions",
+                "Custom animation",
+                "Animation timing and order"
+              ]
+            },
+            {
+              "title": "Media in slides",
+              "topics": [
+                "Inserting audio",
+                "Inserting video clips",
+                "Running a slide show"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 6,
+          "title": "Scratch Programming — Introduction to Game Creation",
+          "unit": "Programming",
+          "outcomes": [
+            "Use the Scratch interface",
+            "Move and animate sprites with blocks",
+            "Build a simple game"
+          ],
+          "topics": [
+            "Stage and sprites",
+            "Block palette and script area",
+            "Adding sprites and backdrops",
+            "Costumes and shapes",
+            "Motion and looks blocks",
+            "Events and control blocks",
+            "Sensing blocks",
+            "Variables for score",
+            "Building a simple game"
+          ],
+          "lessons": [
+            {
+              "title": "Scratch interface",
+              "topics": [
+                "Stage and sprites",
+                "Block palette and script area"
+              ]
+            },
+            {
+              "title": "Working with sprites",
+              "topics": [
+                "Adding sprites and backdrops",
+                "Costumes and shapes",
+                "Motion and looks blocks"
+              ]
+            },
+            {
+              "title": "Making a game",
+              "topics": [
+                "Events and control blocks",
+                "Sensing blocks",
+                "Variables for score",
+                "Building a simple game"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 7,
+          "title": "HTML — Introduction",
+          "unit": "Web",
+          "outcomes": [
+            "Explain websites, web pages and browsers",
+            "Write a basic HTML page with tags"
+          ],
+          "topics": [
+            "Websites and web pages",
+            "Web browsers",
+            "What HTML is",
+            "Tags and elements",
+            "Structure of an HTML document",
+            "Saving and viewing a page",
+            "Headings and paragraphs",
+            "Bold, italic and underline",
+            "Line breaks"
+          ],
+          "lessons": [
+            {
+              "title": "The web",
+              "topics": [
+                "Websites and web pages",
+                "Web browsers",
+                "What HTML is"
+              ]
+            },
+            {
+              "title": "First HTML page",
+              "topics": [
+                "Tags and elements",
+                "Structure of an HTML document",
+                "Saving and viewing a page"
+              ]
+            },
+            {
+              "title": "Formatting text",
+              "topics": [
+                "Headings and paragraphs",
+                "Bold, italic and underline",
+                "Line breaks"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 8,
+          "title": "Internet — Online Surfing",
+          "unit": "Web",
+          "outcomes": [
+            "Use email and cloud storage",
+            "Recognise online threats and stay safe",
+            "Describe e-commerce and online payments"
+          ],
+          "topics": [
+            "Internet threats",
+            "Safe browsing habits",
+            "Creating and sending email",
+            "Attachments",
+            "Google Drive",
+            "E-commerce sites",
+            "Online payment methods",
+            "Safe online payments"
+          ],
+          "lessons": [
+            {
+              "title": "Internet safety",
+              "topics": [
+                "Internet threats",
+                "Safe browsing habits"
+              ]
+            },
+            {
+              "title": "Email and cloud",
+              "topics": [
+                "Creating and sending email",
+                "Attachments",
+                "Google Drive"
+              ]
+            },
+            {
+              "title": "Online shopping",
+              "topics": [
+                "E-commerce sites",
+                "Online payment methods",
+                "Safe online payments"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        }
+      ]
+    }
+  ]
+}

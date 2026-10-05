@@ -1,0 +1,9 @@
+.git
+**/.env*
+**/*.pem
+**/*.key
+**/*.p12
+**/*.dump
+**/*_test.go
+**/testdata
+compose.yaml

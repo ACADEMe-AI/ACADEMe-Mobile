@@ -1,0 +1,216 @@
+import 'package:academe/domain/models/app_language.dart';
+import 'package:academe/domain/models/deck.dart';
+import 'package:academe/domain/models/profile.dart';
+import 'package:academe/ui/core/themes/app_theme.dart';
+import 'package:academe/ui/home/view_models/home_view_model.dart';
+import 'package:academe/ui/home/widgets/home_screen.dart';
+import 'package:academe/ui/study/view_models/study_view_model.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+
+import '../../../testing/fakes/fake_auth_repository.dart';
+import '../../../testing/fakes/fake_hint_store.dart';
+import '../../../testing/fakes/fake_profile_repository.dart';
+import '../../../testing/fakes/fake_study_repository.dart';
+import '../../helpers/app_fonts.dart';
+
+void main() {
+  late FakeProfileRepository profiles;
+  late FakeStudyRepository studies;
+  late List<String> opened;
+  late List<String> tapped;
+
+  Future<HomeViewModel> pumpHome(
+    WidgetTester tester, {
+    Profile profile = const Profile(),
+    bool opensSetup = false,
+    List<SubjectProgress> progress = const [],
+  }) async {
+    tester.view.physicalSize = const Size(1080, 2400);
+    tester.view.devicePixelRatio = 2.625;
+    addTearDown(tester.view.reset);
+    profiles = FakeProfileRepository(profile);
+    final viewModel = HomeViewModel(
+      authRepository: FakeAuthRepository(),
+      profileRepository: profiles,
+      hintStore: FakeHintStore(),
+    );
+    addTearDown(viewModel.dispose);
+    studies = FakeStudyRepository()..subjectList = progress;
+    final study = StudyViewModel(
+      studyRepository: studies,
+      profileRepository: profiles,
+    );
+    addTearDown(study.dispose);
+    await study.load.execute();
+    opened = [];
+    tapped = [];
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: AppTheme.dark(),
+        home: Scaffold(
+          body: HomeScreen(
+            viewModel: viewModel,
+            opensSetup: opensSetup,
+            study: study,
+            onOpenSubject: opened.add,
+            onAsk: () => tapped.add('ask'),
+            onSolve: () => tapped.add('solve'),
+            onCheck: () => tapped.add('check'),
+            onFlashcards: () => tapped.add('flashcards'),
+          ),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+    return viewModel;
+  }
+
+  testWidgets('a new account sees the checklist and no subjects yet', (
+    tester,
+  ) async {
+    await pumpHome(tester);
+
+    expect(find.text('Set up your dashboard'), findsOneWidget);
+    expect(find.text('0 / 125 XP'), findsOneWidget);
+    expect(find.text('Setting up…'), findsNothing);
+    expect(
+      find.text('Set your class and board to see your subjects'),
+      findsOneWidget,
+    );
+    expectOnlyAppFonts(tester);
+  });
+
+  testWidgets('the ask field and quick actions open their features', (
+    tester,
+  ) async {
+    await pumpHome(tester);
+
+    expect(find.text('Ask anything…'), findsOneWidget);
+    await tester.tap(find.text('Ask anything…'));
+    await tester.tap(find.text('Solve homework'));
+    await tester.tap(find.text('Check my answer'));
+    await tester.tap(find.text('Flashcards'));
+    await tester.pump();
+
+    expect(tapped, ['ask', 'solve', 'check', 'flashcards']);
+    expect(find.textContaining('coming soon'), findsNothing);
+  });
+
+  testWidgets('after sign-up the sheet rises, and Later closes it', (
+    tester,
+  ) async {
+    await pumpHome(tester, opensSetup: true);
+    await tester.pump(HomeScreen.setupDelay);
+    await tester.pumpAndSettle();
+
+    expect(find.text('Which language do you learn in?'), findsOneWidget);
+    expect(find.text('SET UP · 1/5'), findsOneWidget);
+    final width = tester.view.physicalSize.width / tester.view.devicePixelRatio;
+    final setUp = tester.getRect(find.text('SET UP · 1/5'));
+    final later = tester.getRect(find.text('Later'));
+    expect(width - later.right, closeTo(setUp.left, 1));
+    expect(later.center.dy, closeTo(setUp.center.dy, 1));
+
+    await tester.tap(find.text('Later'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Which language do you learn in?'), findsNothing);
+    expect(find.text('Set up your dashboard'), findsOneWidget);
+  });
+
+  testWidgets('answering a task ticks it and fills the meter', (tester) async {
+    await pumpHome(tester);
+
+    await tester.tap(find.text('Language'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Choose English'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('When were you born?'), findsOneWidget);
+    await tester.tap(find.text('Later'));
+    await tester.pumpAndSettle();
+
+    expect(profiles.updates.single.language, AppLanguage.english);
+    expect(find.text('25 / 125 XP'), findsOneWidget);
+    expect(find.text('✓ 25 XP'), findsOneWidget);
+  });
+
+  testWidgets('board leads to subjects; finishing flies +125 into the chip', (
+    tester,
+  ) async {
+    await pumpHome(
+      tester,
+      profile: const Profile(
+        language: AppLanguage.hindi,
+        birthYear: 2011,
+        classLevel: 9,
+      ),
+    );
+    expect(find.text('0 XP'), findsOneWidget);
+
+    await tester.tap(find.text('Your board'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Continue'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('SET UP · 5/5'), findsOneWidget);
+    expect(find.text('Which subjects do you study?'), findsOneWidget);
+    expect(
+      find.text('Class 9 · CBSE. Tap to remove any you don’t take.'),
+      findsOneWidget,
+    );
+    expect(find.byIcon(Icons.lock_rounded), findsOneWidget);
+    await tester.tap(find.text('English'));
+    await tester.tap(find.text('Sanskrit'));
+    await tester.tap(find.text('Finish setup'));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 400));
+    await tester.pump(HomeScreen.rewardDelay);
+    await tester.pump(const Duration(milliseconds: 900));
+
+    expect(profiles.updates.last.subjects, [
+      'maths',
+      'science',
+      'english',
+      'sanskrit',
+    ]);
+    expect(find.text('+125'), findsOneWidget);
+    expect(find.text('0 XP'), findsOneWidget);
+
+    await tester.pumpAndSettle();
+
+    expect(find.text('+125'), findsNothing);
+    expect(find.text('125 XP'), findsOneWidget);
+    expect(find.text('Set up your dashboard'), findsNothing);
+    expect(find.text('Pick your subjects'), findsNothing);
+    expect(find.text('Class 9 · CBSE'), findsWidgets);
+    expect(find.text('Ask Pebby anything'), findsOneWidget);
+  });
+
+  testWidgets('Later on the subjects step pays 100 and leaves the card', (
+    tester,
+  ) async {
+    await pumpHome(
+      tester,
+      profile: const Profile(
+        language: AppLanguage.hindi,
+        birthYear: 2011,
+        classLevel: 9,
+      ),
+    );
+    await tester.tap(find.text('Your board'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Continue'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Later'));
+    await tester.pump();
+    await tester.pump(HomeScreen.rewardDelay);
+    await tester.pump(const Duration(milliseconds: 900));
+
+    expect(find.text('+100'), findsOneWidget);
+    await tester.pumpAndSettle();
+    expect(find.text('100 XP'), findsOneWidget);
+    expect(find.text('Pick your subjects'), findsOneWidget);
+  });
+}

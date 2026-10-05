@@ -1,0 +1,3505 @@
+{
+  "board": "CBSE",
+  "class": 6,
+  "session": "2026-27",
+  "sources": [
+    {
+      "title": "NCERT Ganita Prakash (NCERT, Grade 6), Reprint 2026-27 (prelims and contents)",
+      "url": "https://ncert.nic.in/textbook/pdf/fegp1ps.pdf"
+    },
+    {
+      "title": "NCERT Curiosity (NCERT, Grade 6, 2024), Reprint 2026-27 (prelims and contents)",
+      "url": "https://ncert.nic.in/textbook/pdf/fecu1ps.pdf"
+    },
+    {
+      "title": "NCERT Exploring Society: India and Beyond (NCERT, Grade 6), Reprint 2026-27 (prelims and contents)",
+      "url": "https://ncert.nic.in/textbook/pdf/fees1ps.pdf"
+    },
+    {
+      "title": "NCERT Poorvi (NCERT, Grade 6), Reprint 2026-27 (prelims and contents)",
+      "url": "https://ncert.nic.in/textbook/pdf/fepr1ps.pdf"
+    },
+    {
+      "title": "NCERT मल्हार / Malhar (NCERT, Grade 6), Reprint 2026-27 (prelims and contents)",
+      "url": "https://ncert.nic.in/textbook/pdf/fhml1ps.pdf"
+    },
+    {
+      "title": "NCERT दीपकम् / Deepakam (NCERT, Grade 6), Reprint 2026-27 (prelims and contents)",
+      "url": "https://ncert.nic.in/textbook/pdf/fsde1ps.pdf"
+    },
+    {
+      "title": "NCERT textbook catalogue (textbook.php)",
+      "url": "https://ncert.nic.in/textbook.php"
+    },
+    {
+      "title": "CBSE Circular Acad-17/2026: R3 in Class VI (Scheme of Studies 2026-27)",
+      "url": "https://cbseacademic.nic.in/web_material/Circulars/2026/17_Circular_2026.pdf"
+    }
+  ],
+  "subjects": [
+    {
+      "subject": "maths",
+      "name": "Maths",
+      "book": "Ganita Prakash (NCERT, Grade 6)",
+      "chapters": [
+        {
+          "number": 1,
+          "title": "Patterns in Mathematics",
+          "unit": "",
+          "outcomes": [
+            "Explain mathematics as the search for patterns",
+            "Extend and visualise number sequences such as odd, square and triangular numbers",
+            "Relate number sequences to each other and to patterns in shapes"
+          ],
+          "topics": [
+            "What is Mathematics?",
+            "Patterns in Numbers",
+            "Visualising Number Sequences",
+            "Relations among Number Sequences",
+            "Patterns in Shapes",
+            "Relation to Number Sequences"
+          ],
+          "lessons": [
+            {
+              "title": "What is maths about?",
+              "topics": [
+                "What is Mathematics?",
+                "Patterns in Numbers"
+              ]
+            },
+            {
+              "title": "Seeing number sequences",
+              "topics": [
+                "Visualising Number Sequences",
+                "Relations among Number Sequences"
+              ]
+            },
+            {
+              "title": "Patterns in shapes",
+              "topics": [
+                "Patterns in Shapes",
+                "Relation to Number Sequences"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fegp101.pdf"
+        },
+        {
+          "number": 2,
+          "title": "Lines and Angles",
+          "unit": "",
+          "outcomes": [
+            "Identify and name points, line segments, lines and rays",
+            "Compare angles and classify them as acute, right, obtuse, straight and reflex",
+            "Measure and draw angles with a protractor"
+          ],
+          "topics": [
+            "Point",
+            "Line Segment",
+            "Line",
+            "Ray",
+            "Angle",
+            "Comparing Angles",
+            "Making Rotating Arms",
+            "Special Types of Angles",
+            "Measuring Angles",
+            "Drawing Angles",
+            "Types of Angles and their Measures"
+          ],
+          "lessons": [
+            {
+              "title": "Points, segments, lines and rays",
+              "topics": [
+                "Point",
+                "Line Segment",
+                "Line",
+                "Ray"
+              ]
+            },
+            {
+              "title": "What is an angle?",
+              "topics": [
+                "Angle",
+                "Comparing Angles",
+                "Making Rotating Arms"
+              ]
+            },
+            {
+              "title": "Special angles and measuring",
+              "topics": [
+                "Special Types of Angles",
+                "Measuring Angles"
+              ]
+            },
+            {
+              "title": "Drawing and classifying angles",
+              "topics": [
+                "Drawing Angles",
+                "Types of Angles and their Measures"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fegp102.pdf"
+        },
+        {
+          "number": 3,
+          "title": "Number Play",
+          "unit": "",
+          "outcomes": [
+            "Use numbers to describe arrangements and relationships",
+            "Explore digit, palindrome and Kaprekar patterns",
+            "Use mental math and estimation strategies",
+            "Reason about winning strategies in number games"
+          ],
+          "topics": [
+            "Numbers can Tell us Things",
+            "Supercells",
+            "Patterns of Numbers on the Number Line",
+            "Playing with Digits",
+            "Pretty Palindromic Patterns",
+            "The Magic Number of Kaprekar",
+            "Clock and Calendar Numbers",
+            "Mental Math",
+            "Playing with Number Patterns",
+            "An Unsolved Mystery — the Collatz Conjecture!",
+            "Simple Estimation",
+            "Games and Winning Strategies"
+          ],
+          "lessons": [
+            {
+              "title": "Numbers that tell us things",
+              "topics": [
+                "Numbers can Tell us Things",
+                "Supercells",
+                "Patterns of Numbers on the Number Line"
+              ]
+            },
+            {
+              "title": "Digits, palindromes and Kaprekar",
+              "topics": [
+                "Playing with Digits",
+                "Pretty Palindromic Patterns",
+                "The Magic Number of Kaprekar"
+              ]
+            },
+            {
+              "title": "Clocks, calendars and mental math",
+              "topics": [
+                "Clock and Calendar Numbers",
+                "Mental Math",
+                "Playing with Number Patterns"
+              ]
+            },
+            {
+              "title": "Collatz, estimation and games",
+              "topics": [
+                "An Unsolved Mystery — the Collatz Conjecture!",
+                "Simple Estimation",
+                "Games and Winning Strategies"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fegp103.pdf"
+        },
+        {
+          "number": 4,
+          "title": "Data Handling and Presentation",
+          "unit": "",
+          "outcomes": [
+            "Collect and organise data using tally marks and tables",
+            "Read and draw pictographs",
+            "Read, interpret and draw bar graphs with a suitable scale"
+          ],
+          "topics": [
+            "Collecting and Organising Data",
+            "Pictographs",
+            "Bar Graphs",
+            "Drawing a Bar Graph",
+            "Artistic and Aesthetic Considerations"
+          ],
+          "lessons": [
+            {
+              "title": "Collecting data and pictographs",
+              "topics": [
+                "Collecting and Organising Data",
+                "Pictographs"
+              ]
+            },
+            {
+              "title": "Bar graphs",
+              "topics": [
+                "Bar Graphs",
+                "Drawing a Bar Graph",
+                "Artistic and Aesthetic Considerations"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fegp104.pdf"
+        },
+        {
+          "number": 5,
+          "title": "Prime Time",
+          "unit": "",
+          "outcomes": [
+            "Find common multiples and common factors",
+            "Identify prime and co-prime numbers",
+            "Write the prime factorisation of a number",
+            "Apply divisibility tests for 2, 3, 4, 5, 8, 10 and more"
+          ],
+          "topics": [
+            "Common Multiples and Common Factors",
+            "Prime Numbers",
+            "Co-prime numbers for safekeeping treasures",
+            "Prime Factorisation",
+            "Divisibility Tests",
+            "Fun with numbers"
+          ],
+          "lessons": [
+            {
+              "title": "Multiples, factors and primes",
+              "topics": [
+                "Common Multiples and Common Factors",
+                "Prime Numbers"
+              ]
+            },
+            {
+              "title": "Co-primes and prime factorisation",
+              "topics": [
+                "Co-prime numbers for safekeeping treasures",
+                "Prime Factorisation"
+              ]
+            },
+            {
+              "title": "Divisibility tests",
+              "topics": [
+                "Divisibility Tests",
+                "Fun with numbers"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fegp105.pdf"
+        },
+        {
+          "number": 6,
+          "title": "Perimeter and Area",
+          "unit": "",
+          "outcomes": [
+            "Find the perimeter of rectangles, squares, triangles and regular polygons",
+            "Find area by counting unit squares and using formulas",
+            "Find the area of a triangle as half of a rectangle",
+            "Compare shapes with equal perimeter or equal area"
+          ],
+          "topics": [
+            "Perimeter of a Rectangle and a Square",
+            "Perimeter of a Triangle and Regular Polygons",
+            "Area",
+            "Area of a Triangle",
+            "Making it ‘More’ or ‘Less’"
+          ],
+          "lessons": [
+            {
+              "title": "Perimeter",
+              "topics": [
+                "Perimeter of a Rectangle and a Square",
+                "Perimeter of a Triangle and Regular Polygons"
+              ]
+            },
+            {
+              "title": "Area and area of a triangle",
+              "topics": [
+                "Area",
+                "Area of a Triangle"
+              ]
+            },
+            {
+              "title": "More or less area and perimeter",
+              "topics": [
+                "Making it ‘More’ or ‘Less’"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fegp106.pdf"
+        },
+        {
+          "number": 7,
+          "title": "Fractions",
+          "unit": "",
+          "outcomes": [
+            "Represent fractions as equal shares and as parts of a whole",
+            "Mark fractions on the number line and convert mixed fractions",
+            "Find equivalent fractions and compare fractions",
+            "Add and subtract fractions with like and unlike denominators"
+          ],
+          "topics": [
+            "Fractional Units and Equal Shares",
+            "Fractional Units as Parts of a Whole",
+            "Measuring Using Fractional Units",
+            "Marking Fraction Lengths on the Number Line",
+            "Mixed Fractions",
+            "Equivalent Fractions",
+            "Comparing Fractions",
+            "Addition and Subtraction of Fractions",
+            "A Pinch of History"
+          ],
+          "lessons": [
+            {
+              "title": "Fractional units",
+              "topics": [
+                "Fractional Units and Equal Shares",
+                "Fractional Units as Parts of a Whole",
+                "Measuring Using Fractional Units"
+              ]
+            },
+            {
+              "title": "Number line, mixed and equivalent fractions",
+              "topics": [
+                "Marking Fraction Lengths on the Number Line",
+                "Mixed Fractions",
+                "Equivalent Fractions"
+              ]
+            },
+            {
+              "title": "Comparing fractions",
+              "topics": [
+                "Comparing Fractions"
+              ]
+            },
+            {
+              "title": "Adding and subtracting fractions",
+              "topics": [
+                "Addition and Subtraction of Fractions",
+                "A Pinch of History"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fegp107.pdf"
+        },
+        {
+          "number": 8,
+          "title": "Playing with Constructions",
+          "unit": "",
+          "outcomes": [
+            "Draw circles and arcs with a compass to create designs",
+            "Construct squares and rectangles with given measures",
+            "Explore properties of diagonals of rectangles and squares",
+            "Locate points equidistant from two given points"
+          ],
+          "topics": [
+            "Artwork",
+            "Squares and Rectangles",
+            "Constructing Squares and Rectangles",
+            "An Exploration in Rectangles",
+            "Exploring Diagonals of Rectangles and Squares",
+            "Points Equidistant from Two Given Points"
+          ],
+          "lessons": [
+            {
+              "title": "Artwork with compass",
+              "topics": [
+                "Artwork",
+                "Squares and Rectangles"
+              ]
+            },
+            {
+              "title": "Constructing squares and rectangles",
+              "topics": [
+                "Constructing Squares and Rectangles",
+                "An Exploration in Rectangles"
+              ]
+            },
+            {
+              "title": "Diagonals and equidistant points",
+              "topics": [
+                "Exploring Diagonals of Rectangles and Squares",
+                "Points Equidistant from Two Given Points"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fegp108.pdf"
+        },
+        {
+          "number": 9,
+          "title": "Symmetry",
+          "unit": "",
+          "outcomes": [
+            "Identify lines of symmetry in figures",
+            "Create symmetric shapes by folding, cutting and ink blots",
+            "Identify rotational symmetry and angles of symmetry"
+          ],
+          "topics": [
+            "Line of Symmetry",
+            "Generating Shapes Having Lines of Symmetry",
+            "Rotational Symmetry",
+            "Rotational Symmetry of Figures with Radial Arms"
+          ],
+          "lessons": [
+            {
+              "title": "Lines of symmetry",
+              "topics": [
+                "Line of Symmetry",
+                "Generating Shapes Having Lines of Symmetry"
+              ]
+            },
+            {
+              "title": "Rotational symmetry",
+              "topics": [
+                "Rotational Symmetry",
+                "Rotational Symmetry of Figures with Radial Arms"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fegp109.pdf"
+        },
+        {
+          "number": 10,
+          "title": "The Other Side of Zero",
+          "unit": "",
+          "outcomes": [
+            "Understand negative numbers and integers on a number line",
+            "Add and subtract integers using the token model",
+            "Use integers in real contexts like temperature, banking and elevation"
+          ],
+          "topics": [
+            "Bela’s Building of Fun",
+            "The Token Model",
+            "Integers in Other Places",
+            "Explorations with Integers",
+            "A Pinch of History"
+          ],
+          "lessons": [
+            {
+              "title": "Bela's building of fun",
+              "topics": [
+                "Bela’s Building of Fun"
+              ]
+            },
+            {
+              "title": "The token model",
+              "topics": [
+                "The Token Model"
+              ]
+            },
+            {
+              "title": "Integers around us",
+              "topics": [
+                "Integers in Other Places",
+                "Explorations with Integers",
+                "A Pinch of History"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fegp110.pdf"
+        }
+      ]
+    },
+    {
+      "subject": "science",
+      "name": "Science",
+      "book": "Curiosity (NCERT, Grade 6, 2024)",
+      "chapters": [
+        {
+          "number": 1,
+          "title": "The Wonderful World of Science",
+          "unit": "",
+          "outcomes": [
+            "Describe science as a way of thinking, observing and doing things to understand the world",
+            "List the steps of scientific inquiry: observe, question, guess, test and conclude",
+            "Relate everyday problem-solving to how scientists work"
+          ],
+          "topics": [
+            "What is science",
+            "Science as an unending jigsaw puzzle",
+            "A preview of the year's journey: food, water, materials, living things and the sky",
+            "Observing and asking questions",
+            "Guessing a possible answer",
+            "Testing the guess through experiments",
+            "Scientists everywhere: everyday problem-solving",
+            "Science as a collaborative activity"
+          ],
+          "lessons": [
+            {
+              "title": "Science all around us",
+              "topics": [
+                "What is science",
+                "Science as an unending jigsaw puzzle",
+                "A preview of the year's journey: food, water, materials, living things and the sky"
+              ]
+            },
+            {
+              "title": "How scientists find answers",
+              "topics": [
+                "Observing and asking questions",
+                "Guessing a possible answer",
+                "Testing the guess through experiments",
+                "Scientists everywhere: everyday problem-solving",
+                "Science as a collaborative activity"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fecu101.pdf"
+        },
+        {
+          "number": 2,
+          "title": "Diversity in the Living World",
+          "unit": "",
+          "outcomes": [
+            "Group plants and animals using observable features",
+            "Distinguish herbs, shrubs and trees, and climbers and creepers",
+            "Relate leaf venation and root type to monocot and dicot seeds",
+            "Explain how plants and animals are adapted to their surroundings"
+          ],
+          "topics": [
+            "Diversity in plants and animals around us",
+            "Recording observations of plants in a field trip",
+            "How to group plants and animals",
+            "Herbs, shrubs and trees",
+            "Climbers and creepers",
+            "Leaf venation: parallel and reticulate",
+            "Root types: taproot and fibrous roots",
+            "Monocots and dicots",
+            "Grouping animals by features such as body covering, movement and food",
+            "Plants and animals in different surroundings",
+            "Habitats: deserts, mountains, water bodies",
+            "Adaptations of plants and animals",
+            "Conserving biodiversity"
+          ],
+          "lessons": [
+            {
+              "title": "Noticing diversity",
+              "topics": [
+                "Diversity in plants and animals around us",
+                "Recording observations of plants in a field trip",
+                "How to group plants and animals"
+              ]
+            },
+            {
+              "title": "Grouping plants",
+              "topics": [
+                "Herbs, shrubs and trees",
+                "Climbers and creepers",
+                "Leaf venation: parallel and reticulate",
+                "Root types: taproot and fibrous roots",
+                "Monocots and dicots"
+              ]
+            },
+            {
+              "title": "Grouping animals",
+              "topics": [
+                "Grouping animals by features such as body covering, movement and food"
+              ]
+            },
+            {
+              "title": "Life in different surroundings",
+              "topics": [
+                "Plants and animals in different surroundings",
+                "Habitats: deserts, mountains, water bodies",
+                "Adaptations of plants and animals",
+                "Conserving biodiversity"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fecu102.pdf"
+        },
+        {
+          "number": 3,
+          "title": "Mindful Eating: A Path to a Healthy Body",
+          "unit": "",
+          "outcomes": [
+            "Compare food habits and cooking practices across regions and over time",
+            "Test foods for starch, fats and proteins",
+            "Explain the role of nutrients and plan a balanced diet",
+            "Describe the value of millets and the idea of food miles"
+          ],
+          "topics": [
+            "What do we eat",
+            "Food in different regions",
+            "How cooking practices have changed over time",
+            "Components of food: carbohydrates, proteins, fats, vitamins, minerals",
+            "Roughage and water",
+            "Deficiency diseases",
+            "How to test different components of food",
+            "Test for starch",
+            "Test for fats",
+            "Test for proteins",
+            "Balanced diet",
+            "Millets: nutrition-rich cereals",
+            "Food miles: from farm to our plate",
+            "Avoiding food wastage"
+          ],
+          "lessons": [
+            {
+              "title": "What we eat",
+              "topics": [
+                "What do we eat",
+                "Food in different regions",
+                "How cooking practices have changed over time"
+              ]
+            },
+            {
+              "title": "Components of food",
+              "topics": [
+                "Components of food: carbohydrates, proteins, fats, vitamins, minerals",
+                "Roughage and water",
+                "Deficiency diseases"
+              ]
+            },
+            {
+              "title": "Testing food",
+              "topics": [
+                "How to test different components of food",
+                "Test for starch",
+                "Test for fats",
+                "Test for proteins"
+              ]
+            },
+            {
+              "title": "Eating well",
+              "topics": [
+                "Balanced diet",
+                "Millets: nutrition-rich cereals",
+                "Food miles: from farm to our plate",
+                "Avoiding food wastage"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fecu103.pdf"
+        },
+        {
+          "number": 4,
+          "title": "Exploring Magnets",
+          "unit": "",
+          "outcomes": [
+            "Classify materials as magnetic or non-magnetic",
+            "Locate the poles of a magnet and use a magnet to find direction",
+            "Explain attraction and repulsion between magnetic poles"
+          ],
+          "topics": [
+            "Lodestones: naturally occurring magnets",
+            "Magnetic and non-magnetic materials",
+            "Poles of a magnet",
+            "A freely suspended magnet points north-south",
+            "Finding directions",
+            "Making a magnetic compass",
+            "Attraction and repulsion between magnets",
+            "Fun with magnets"
+          ],
+          "lessons": [
+            {
+              "title": "Magnetic materials",
+              "topics": [
+                "Lodestones: naturally occurring magnets",
+                "Magnetic and non-magnetic materials",
+                "Poles of a magnet"
+              ]
+            },
+            {
+              "title": "Magnets and direction",
+              "topics": [
+                "A freely suspended magnet points north-south",
+                "Finding directions",
+                "Making a magnetic compass"
+              ]
+            },
+            {
+              "title": "Poles and uses",
+              "topics": [
+                "Attraction and repulsion between magnets",
+                "Fun with magnets"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fecu104.pdf"
+        },
+        {
+          "number": 5,
+          "title": "Measurement of Length and Motion",
+          "unit": "",
+          "outcomes": [
+            "Explain the need for standard units and use SI units of length",
+            "Measure straight and curved lengths correctly",
+            "Describe position with respect to a reference point",
+            "Classify motion as linear, circular or oscillatory"
+          ],
+          "topics": [
+            "How do we measure",
+            "Measuring with body parts and its limits",
+            "Standard units",
+            "SI unit of length and conversions",
+            "Correct way of measuring length",
+            "Measuring the length of a curved line",
+            "Describing position with a reference point",
+            "Moving things",
+            "Types of motion: linear, circular, oscillatory"
+          ],
+          "lessons": [
+            {
+              "title": "Measuring length",
+              "topics": [
+                "How do we measure",
+                "Measuring with body parts and its limits",
+                "Standard units",
+                "SI unit of length and conversions"
+              ]
+            },
+            {
+              "title": "Measuring correctly",
+              "topics": [
+                "Correct way of measuring length",
+                "Measuring the length of a curved line"
+              ]
+            },
+            {
+              "title": "Position and motion",
+              "topics": [
+                "Describing position with a reference point",
+                "Moving things",
+                "Types of motion: linear, circular, oscillatory"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fecu105.pdf"
+        },
+        {
+          "number": 6,
+          "title": "Materials Around Us",
+          "unit": "",
+          "outcomes": [
+            "Group objects by the materials they are made of",
+            "Identify properties such as lustre, hardness, transparency, solubility and floating",
+            "Explain that matter has mass and occupies space"
+          ],
+          "topics": [
+            "Observing objects around us",
+            "How to group materials",
+            "What are the different properties of materials",
+            "Appearance of materials: lustrous and non-lustrous",
+            "Which materials are hard",
+            "Transparent, translucent and opaque materials",
+            "What is soluble in water and what is not",
+            "How heavy or light: floating and sinking",
+            "Space and volume",
+            "What is matter"
+          ],
+          "lessons": [
+            {
+              "title": "Objects and materials",
+              "topics": [
+                "Observing objects around us",
+                "How to group materials"
+              ]
+            },
+            {
+              "title": "Properties of materials 1",
+              "topics": [
+                "What are the different properties of materials",
+                "Appearance of materials: lustrous and non-lustrous",
+                "Which materials are hard",
+                "Transparent, translucent and opaque materials"
+              ]
+            },
+            {
+              "title": "Properties of materials 2",
+              "topics": [
+                "What is soluble in water and what is not",
+                "How heavy or light: floating and sinking",
+                "Space and volume",
+                "What is matter"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fecu106.pdf"
+        },
+        {
+          "number": 7,
+          "title": "Temperature and its Measurement",
+          "unit": "",
+          "outcomes": [
+            "Explain why touch is unreliable for judging hot and cold",
+            "Read clinical and laboratory thermometers safely",
+            "Convert between Celsius and Fahrenheit readings and name the SI unit of temperature"
+          ],
+          "topics": [
+            "Hot or cold: limits of our sense of touch",
+            "Temperature",
+            "Celsius, Fahrenheit and kelvin scales",
+            "Measuring temperature",
+            "Clinical thermometer",
+            "Digital thermometers",
+            "Laboratory thermometer",
+            "Air temperature",
+            "Maximum and minimum temperature of a day"
+          ],
+          "lessons": [
+            {
+              "title": "Hot or cold",
+              "topics": [
+                "Hot or cold: limits of our sense of touch",
+                "Temperature",
+                "Celsius, Fahrenheit and kelvin scales"
+              ]
+            },
+            {
+              "title": "Using thermometers",
+              "topics": [
+                "Measuring temperature",
+                "Clinical thermometer",
+                "Digital thermometers",
+                "Laboratory thermometer"
+              ]
+            },
+            {
+              "title": "Air temperature",
+              "topics": [
+                "Air temperature",
+                "Maximum and minimum temperature of a day"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fecu107.pdf"
+        },
+        {
+          "number": 8,
+          "title": "A Journey through States of Water",
+          "unit": "",
+          "outcomes": [
+            "Describe the solid, liquid and gaseous states of water",
+            "Explain melting, freezing, evaporation and condensation",
+            "Identify factors that affect the rate of evaporation and its cooling effect",
+            "Explain how clouds form and give rain"
+          ],
+          "topics": [
+            "Investigating water's disappearing act",
+            "Another mystery: water droplets on a cold glass",
+            "Different states of water",
+            "How we can change the states of water",
+            "Melting and freezing",
+            "Evaporation and condensation",
+            "How water evaporates faster or slower",
+            "Factors affecting evaporation",
+            "Cooling effect of evaporation",
+            "How clouds give us rain"
+          ],
+          "lessons": [
+            {
+              "title": "Where does water go",
+              "topics": [
+                "Investigating water's disappearing act",
+                "Another mystery: water droplets on a cold glass",
+                "Different states of water"
+              ]
+            },
+            {
+              "title": "Changing states",
+              "topics": [
+                "How we can change the states of water",
+                "Melting and freezing",
+                "Evaporation and condensation"
+              ]
+            },
+            {
+              "title": "Evaporation in life",
+              "topics": [
+                "How water evaporates faster or slower",
+                "Factors affecting evaporation",
+                "Cooling effect of evaporation",
+                "How clouds give us rain"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fecu108.pdf"
+        },
+        {
+          "number": 9,
+          "title": "Methods of Separation in Everyday Life",
+          "unit": "",
+          "outcomes": [
+            "Explain why substances are separated from mixtures",
+            "Choose a suitable separation method based on the components",
+            "Describe separation methods used at home, in farms and in industry"
+          ],
+          "topics": [
+            "Why we separate substances",
+            "Handpicking",
+            "Threshing",
+            "Winnowing",
+            "Sieving",
+            "Evaporation to obtain salt",
+            "Sedimentation and decantation",
+            "Filtration",
+            "Churning",
+            "Magnetic separation",
+            "Machines for separation such as threshers"
+          ],
+          "lessons": [
+            {
+              "title": "Separating solids",
+              "topics": [
+                "Why we separate substances",
+                "Handpicking",
+                "Threshing",
+                "Winnowing",
+                "Sieving"
+              ]
+            },
+            {
+              "title": "Separating with water and heat",
+              "topics": [
+                "Evaporation to obtain salt",
+                "Sedimentation and decantation",
+                "Filtration"
+              ]
+            },
+            {
+              "title": "More methods",
+              "topics": [
+                "Churning",
+                "Magnetic separation",
+                "Machines for separation such as threshers"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fecu109.pdf"
+        },
+        {
+          "number": 10,
+          "title": "Living Creatures: Exploring their Characteristics",
+          "unit": "",
+          "outcomes": [
+            "List the features that distinguish living from non-living things",
+            "Identify conditions needed for seed germination",
+            "Describe the life cycles of plants and of animals such as the mosquito and frog"
+          ],
+          "topics": [
+            "What sets the living apart from the non-living",
+            "Characteristics of living beings: movement, food, growth, breathing, excretion",
+            "Response to stimuli, reproduction and death",
+            "Essential conditions for germination of a seed",
+            "Growth and movement in plants",
+            "Life cycle of a plant",
+            "Life cycle of animals",
+            "Life cycle of a mosquito",
+            "Life cycle of a frog"
+          ],
+          "lessons": [
+            {
+              "title": "Living or non-living",
+              "topics": [
+                "What sets the living apart from the non-living",
+                "Characteristics of living beings: movement, food, growth, breathing, excretion",
+                "Response to stimuli, reproduction and death"
+              ]
+            },
+            {
+              "title": "Seeds and plants",
+              "topics": [
+                "Essential conditions for germination of a seed",
+                "Growth and movement in plants",
+                "Life cycle of a plant"
+              ]
+            },
+            {
+              "title": "Animal life cycles",
+              "topics": [
+                "Life cycle of animals",
+                "Life cycle of a mosquito",
+                "Life cycle of a frog"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fecu110.pdf"
+        },
+        {
+          "number": 11,
+          "title": "Nature's Treasures",
+          "unit": "",
+          "outcomes": [
+            "Identify natural resources such as air, water, sunlight, forests, soil and fossil fuels",
+            "Classify resources as renewable or non-renewable",
+            "Suggest ways to use natural resources wisely"
+          ],
+          "topics": [
+            "Air as a natural resource",
+            "Water as a natural resource",
+            "Rainwater harvesting",
+            "Energy from the Sun",
+            "Forests",
+            "Soil, rocks and minerals",
+            "Fossil fuels: coal, petroleum and natural gas",
+            "Natural resources: renewable and non-renewable",
+            "Resources we use: natural and human-made",
+            "Using resources responsibly"
+          ],
+          "lessons": [
+            {
+              "title": "Air and water",
+              "topics": [
+                "Air as a natural resource",
+                "Water as a natural resource",
+                "Rainwater harvesting"
+              ]
+            },
+            {
+              "title": "Sun and forests",
+              "topics": [
+                "Energy from the Sun",
+                "Forests"
+              ]
+            },
+            {
+              "title": "Earth's resources",
+              "topics": [
+                "Soil, rocks and minerals",
+                "Fossil fuels: coal, petroleum and natural gas"
+              ]
+            },
+            {
+              "title": "Using resources wisely",
+              "topics": [
+                "Natural resources: renewable and non-renewable",
+                "Resources we use: natural and human-made",
+                "Using resources responsibly"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fecu111.pdf"
+        },
+        {
+          "number": 12,
+          "title": "Beyond Earth",
+          "unit": "",
+          "outcomes": [
+            "Identify stars, constellations and the Pole Star in the night sky",
+            "Name the planets of the Solar System in order",
+            "Describe the Moon, satellites, asteroids and comets",
+            "Place the Solar System within the Milky Way and the universe"
+          ],
+          "topics": [
+            "Stars and constellations",
+            "Night sky watching",
+            "Locating the Pole Star",
+            "Our Solar System: the Sun and planets",
+            "The Moon and other satellites",
+            "Asteroids and comets",
+            "The Milky Way Galaxy",
+            "The universe",
+            "Space exploration by India"
+          ],
+          "lessons": [
+            {
+              "title": "The night sky",
+              "topics": [
+                "Stars and constellations",
+                "Night sky watching",
+                "Locating the Pole Star"
+              ]
+            },
+            {
+              "title": "Our Solar System",
+              "topics": [
+                "Our Solar System: the Sun and planets",
+                "The Moon and other satellites",
+                "Asteroids and comets"
+              ]
+            },
+            {
+              "title": "Galaxy and universe",
+              "topics": [
+                "The Milky Way Galaxy",
+                "The universe",
+                "Space exploration by India"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fecu112.pdf"
+        }
+      ]
+    },
+    {
+      "subject": "social-science",
+      "name": "Social Science",
+      "book": "Exploring Society: India and Beyond (NCERT, Grade 6)",
+      "chapters": [
+        {
+          "number": 1,
+          "title": "Locating Places on the Earth",
+          "unit": "Theme A — India and the World: Land and the People",
+          "outcomes": [
+            "Identify the components of a map and read physical, political and thematic maps",
+            "Explain latitudes and longitudes as a coordinate system for locating places",
+            "Explain why the Earth is divided into time zones and relate longitude to time"
+          ],
+          "topics": [
+            "Maps and their uses",
+            "A map and its components: distance, direction, symbols",
+            "Physical, political and thematic maps",
+            "Mapping the Earth: the globe",
+            "Understanding coordinates",
+            "Latitudes",
+            "Longitudes",
+            "Understanding time zones",
+            "Indian Standard Time"
+          ],
+          "lessons": [
+            {
+              "title": "Reading a map",
+              "topics": [
+                "Maps and their uses",
+                "A map and its components: distance, direction, symbols",
+                "Physical, political and thematic maps"
+              ]
+            },
+            {
+              "title": "Coordinates on the globe",
+              "topics": [
+                "Mapping the Earth: the globe",
+                "Understanding coordinates",
+                "Latitudes",
+                "Longitudes"
+              ]
+            },
+            {
+              "title": "Time zones",
+              "topics": [
+                "Understanding time zones",
+                "Indian Standard Time"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fees101.pdf"
+        },
+        {
+          "number": 2,
+          "title": "Oceans and Continents",
+          "unit": "Theme A — India and the World: Land and the People",
+          "outcomes": [
+            "Describe the distribution of land and water on the Earth",
+            "Name and locate the five oceans and seven continents",
+            "Explain the importance of oceans for life and the disasters linked to them"
+          ],
+          "topics": [
+            "The distribution of water and land on the Earth",
+            "Ocean life",
+            "Oceans",
+            "Oceans and disasters",
+            "Continents",
+            "Islands",
+            "Oceans and life"
+          ],
+          "lessons": [
+            {
+              "title": "Water and land on Earth",
+              "topics": [
+                "The distribution of water and land on the Earth",
+                "Ocean life"
+              ]
+            },
+            {
+              "title": "The world's oceans",
+              "topics": [
+                "Oceans",
+                "Oceans and disasters"
+              ]
+            },
+            {
+              "title": "Continents and islands",
+              "topics": [
+                "Continents",
+                "Islands"
+              ]
+            },
+            {
+              "title": "Why oceans matter",
+              "topics": [
+                "Oceans and life"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fees102.pdf"
+        },
+        {
+          "number": 3,
+          "title": "Landforms and Life",
+          "unit": "Theme A — India and the World: Land and the People",
+          "outcomes": [
+            "Distinguish between mountains, plateaus and plains",
+            "Describe how landforms shape the way people live",
+            "Relate natural features to livelihoods and culture"
+          ],
+          "topics": [
+            "Introduction to landforms",
+            "Mountains",
+            "Mountain environment",
+            "Life in the mountains",
+            "Plateaus",
+            "Plains",
+            "Life in the plains"
+          ],
+          "lessons": [
+            {
+              "title": "Mountains",
+              "topics": [
+                "Introduction to landforms",
+                "Mountains",
+                "Mountain environment",
+                "Life in the mountains"
+              ]
+            },
+            {
+              "title": "Plateaus",
+              "topics": [
+                "Plateaus"
+              ]
+            },
+            {
+              "title": "Plains",
+              "topics": [
+                "Plains",
+                "Life in the plains"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fees103.pdf"
+        },
+        {
+          "number": 4,
+          "title": "Timeline and Sources of History",
+          "unit": "Theme B — Tapestry of the Past",
+          "outcomes": [
+            "Explain how historians learn about the past",
+            "Read and draw a timeline using BCE and CE",
+            "Classify sources of history and describe the beginnings of human history and farming"
+          ],
+          "topics": [
+            "How do we learn about the past?",
+            "How is time measured in history?",
+            "BCE and CE on a timeline",
+            "What are the sources of history?",
+            "The beginnings of human history",
+            "The first crops"
+          ],
+          "lessons": [
+            {
+              "title": "Measuring historical time",
+              "topics": [
+                "How do we learn about the past?",
+                "How is time measured in history?",
+                "BCE and CE on a timeline"
+              ]
+            },
+            {
+              "title": "Sources of history",
+              "topics": [
+                "What are the sources of history?"
+              ]
+            },
+            {
+              "title": "Early humans and the first crops",
+              "topics": [
+                "The beginnings of human history",
+                "The first crops"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fees104.pdf"
+        },
+        {
+          "number": 5,
+          "title": "India, That Is Bharat",
+          "unit": "Theme B — Tapestry of the Past",
+          "outcomes": [
+            "Describe the names by which India has been known through history",
+            "Explain how Indians named their land in ancient texts",
+            "Explain how foreigners named India"
+          ],
+          "topics": [
+            "The land between the Himalayas and the seas",
+            "How Indians named India",
+            "Names in ancient texts: Jambudvīpa and Bhārata",
+            "How foreigners named India"
+          ],
+          "lessons": [
+            {
+              "title": "Names from within",
+              "topics": [
+                "The land between the Himalayas and the seas",
+                "How Indians named India",
+                "Names in ancient texts: Jambudvīpa and Bhārata"
+              ]
+            },
+            {
+              "title": "Names from outside",
+              "topics": [
+                "How foreigners named India"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fees105.pdf"
+        },
+        {
+          "number": 6,
+          "title": "The Beginnings of Indian Civilisation",
+          "unit": "Theme B — Tapestry of the Past",
+          "outcomes": [
+            "Explain what a civilisation is",
+            "Describe the town-planning, water management and trade of the Harappan civilisation",
+            "Describe daily life in Harappan cities and discuss the civilisation's decline"
+          ],
+          "topics": [
+            "What is a civilisation?",
+            "From village to city",
+            "The Sarasvatī river",
+            "Town-planning",
+            "Water management",
+            "What did the Harappans eat?",
+            "A brisk trade",
+            "The lives of the ancients",
+            "Objects of daily use",
+            "Cultural and symbolic objects",
+            "The end or a new beginning?"
+          ],
+          "lessons": [
+            {
+              "title": "What makes a civilisation",
+              "topics": [
+                "What is a civilisation?",
+                "From village to city",
+                "The Sarasvatī river"
+              ]
+            },
+            {
+              "title": "Planned Harappan cities",
+              "topics": [
+                "Town-planning",
+                "Water management"
+              ]
+            },
+            {
+              "title": "Food and trade",
+              "topics": [
+                "What did the Harappans eat?",
+                "A brisk trade"
+              ]
+            },
+            {
+              "title": "Everyday life",
+              "topics": [
+                "The lives of the ancients",
+                "Objects of daily use",
+                "Cultural and symbolic objects"
+              ]
+            },
+            {
+              "title": "Decline of the cities",
+              "topics": [
+                "The end or a new beginning?"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fees106.pdf"
+        },
+        {
+          "number": 7,
+          "title": "India's Cultural Roots",
+          "unit": "Theme C — Our Cultural Heritage and Knowledge Traditions",
+          "outcomes": [
+            "Describe the Vedas and Vedic society",
+            "Explain the core ideas of Buddhism and Jainism",
+            "Appreciate folk and tribal traditions as roots of Indian culture"
+          ],
+          "topics": [
+            "The Vedas and Vedic culture",
+            "What are the Vedas?",
+            "Vedic society",
+            "Vedic schools of thought",
+            "The Upaniṣhads and their stories",
+            "Buddhism",
+            "Jainism",
+            "Folk and tribal roots",
+            "What is a tribe?"
+          ],
+          "lessons": [
+            {
+              "title": "The Vedas",
+              "topics": [
+                "The Vedas and Vedic culture",
+                "What are the Vedas?",
+                "Vedic society",
+                "Vedic schools of thought"
+              ]
+            },
+            {
+              "title": "Upaniṣhads and Buddhism",
+              "topics": [
+                "The Upaniṣhads and their stories",
+                "Buddhism"
+              ]
+            },
+            {
+              "title": "Jainism",
+              "topics": [
+                "Jainism"
+              ]
+            },
+            {
+              "title": "Folk and tribal roots",
+              "topics": [
+                "Folk and tribal roots",
+                "What is a tribe?"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fees107.pdf"
+        },
+        {
+          "number": 8,
+          "title": "Unity in Diversity, or 'Many in the One'",
+          "unit": "Theme C — Our Cultural Heritage and Knowledge Traditions",
+          "outcomes": [
+            "Recognise the diversity of Indian food, clothing and festivals",
+            "Explain the idea of unity underlying India's diversity",
+            "Describe how the epics spread across India's regions"
+          ],
+          "topics": [
+            "A rich diversity",
+            "Food for all",
+            "Textiles and clothing",
+            "Festivals galore",
+            "An epic spread"
+          ],
+          "lessons": [
+            {
+              "title": "Diversity in food and clothing",
+              "topics": [
+                "A rich diversity",
+                "Food for all",
+                "Textiles and clothing"
+              ]
+            },
+            {
+              "title": "Festivals and epics",
+              "topics": [
+                "Festivals galore",
+                "An epic spread"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fees108.pdf"
+        },
+        {
+          "number": 9,
+          "title": "Family and Community",
+          "unit": "Theme D — Governance and Democracy",
+          "outcomes": [
+            "Describe the family as a basic unit of society",
+            "Explain roles and responsibilities within a family",
+            "Explain how communities support their members"
+          ],
+          "topics": [
+            "Family",
+            "Types of families",
+            "Roles and responsibilities",
+            "Community",
+            "Community participation"
+          ],
+          "lessons": [
+            {
+              "title": "The family",
+              "topics": [
+                "Family",
+                "Types of families",
+                "Roles and responsibilities"
+              ]
+            },
+            {
+              "title": "The community",
+              "topics": [
+                "Community",
+                "Community participation"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fees109.pdf"
+        },
+        {
+          "number": 10,
+          "title": "Grassroots Democracy — Part 1: Governance",
+          "unit": "Theme D — Governance and Democracy",
+          "outcomes": [
+            "Explain what governance means",
+            "Describe the three organs and three levels of government",
+            "Explain the basic features of democracy"
+          ],
+          "topics": [
+            "Introduction to governance",
+            "Three organs of government: legislature, executive, judiciary",
+            "Separation of powers",
+            "Three levels of government",
+            "Democracy"
+          ],
+          "lessons": [
+            {
+              "title": "What is governance",
+              "topics": [
+                "Introduction to governance",
+                "Three organs of government: legislature, executive, judiciary",
+                "Separation of powers"
+              ]
+            },
+            {
+              "title": "Levels of government and democracy",
+              "topics": [
+                "Three levels of government",
+                "Democracy"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fees110.pdf"
+        },
+        {
+          "number": 11,
+          "title": "Grassroots Democracy — Part 2: Local Government in Rural Areas",
+          "unit": "Theme D — Governance and Democracy",
+          "outcomes": [
+            "Describe the Panchayati Raj system",
+            "Explain the functions of the Gram Sabha and Gram Panchayat",
+            "Describe the Panchayat Samiti and Zila Parishad"
+          ],
+          "topics": [
+            "Panchayati Raj system",
+            "Gram Sabha",
+            "Gram Panchayat",
+            "Exemplary sarpanchs",
+            "Child-friendly panchayat initiative",
+            "Panchayat Samiti and Zila Parishad"
+          ],
+          "lessons": [
+            {
+              "title": "The village level",
+              "topics": [
+                "Panchayati Raj system",
+                "Gram Sabha",
+                "Gram Panchayat"
+              ]
+            },
+            {
+              "title": "Panchayats in action",
+              "topics": [
+                "Exemplary sarpanchs",
+                "Child-friendly panchayat initiative"
+              ]
+            },
+            {
+              "title": "Block and district levels",
+              "topics": [
+                "Panchayat Samiti and Zila Parishad"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fees111.pdf"
+        },
+        {
+          "number": 12,
+          "title": "Grassroots Democracy — Part 3: Local Government in Urban Areas",
+          "unit": "Theme D — Governance and Democracy",
+          "outcomes": [
+            "Describe urban local bodies and their types",
+            "Explain the functions of a municipal corporation and ward committees",
+            "Suggest how citizens can participate in urban governance"
+          ],
+          "topics": [
+            "Introduction to urban governance",
+            "Urban local bodies",
+            "Municipal corporation, municipal council and nagar panchayat",
+            "Ward committees and councillors",
+            "Citizens' role in urban governance"
+          ],
+          "lessons": [
+            {
+              "title": "Urban local bodies",
+              "topics": [
+                "Introduction to urban governance",
+                "Urban local bodies",
+                "Municipal corporation, municipal council and nagar panchayat"
+              ]
+            },
+            {
+              "title": "Wards and citizens",
+              "topics": [
+                "Ward committees and councillors",
+                "Citizens' role in urban governance"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fees112.pdf"
+        },
+        {
+          "number": 13,
+          "title": "The Value of Work",
+          "unit": "Theme E — Economic Life Around Us",
+          "outcomes": [
+            "Distinguish between economic and non-economic activities",
+            "Classify types of economic activities",
+            "Appreciate the value of non-economic activities such as sevā and community participation"
+          ],
+          "topics": [
+            "Activities people do every day",
+            "Economic and non-economic activities",
+            "Types of economic activities",
+            "The importance of non-economic activities",
+            "Sevā: selfless service",
+            "The strength of community participation"
+          ],
+          "lessons": [
+            {
+              "title": "Everyday work",
+              "topics": [
+                "Activities people do every day",
+                "Economic and non-economic activities"
+              ]
+            },
+            {
+              "title": "Types of economic activities",
+              "topics": [
+                "Types of economic activities"
+              ]
+            },
+            {
+              "title": "Value of non-economic work",
+              "topics": [
+                "The importance of non-economic activities",
+                "Sevā: selfless service",
+                "The strength of community participation"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fees113.pdf"
+        },
+        {
+          "number": 14,
+          "title": "Economic Activities Around Us",
+          "unit": "Theme E — Economic Life Around Us",
+          "outcomes": [
+            "Classify economic activities into primary, secondary and tertiary sectors",
+            "Give examples of activities in each sector",
+            "Explain the interdependence among sectors"
+          ],
+          "topics": [
+            "The classification of economic activities into economic sectors",
+            "Primary activities",
+            "Secondary activities",
+            "Tertiary activities",
+            "Interdependence among sectors",
+            "Dairy cooperative: from farm to plate"
+          ],
+          "lessons": [
+            {
+              "title": "Sectors of the economy",
+              "topics": [
+                "The classification of economic activities into economic sectors",
+                "Primary activities"
+              ]
+            },
+            {
+              "title": "Secondary and tertiary",
+              "topics": [
+                "Secondary activities",
+                "Tertiary activities"
+              ]
+            },
+            {
+              "title": "Linked sectors",
+              "topics": [
+                "Interdependence among sectors",
+                "Dairy cooperative: from farm to plate"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fees114.pdf"
+        }
+      ]
+    },
+    {
+      "subject": "english",
+      "name": "English",
+      "book": "Poorvi (NCERT, Grade 6)",
+      "chapters": [
+        {
+          "number": 1,
+          "title": "Fables and Folk Tales",
+          "unit": "",
+          "outcomes": [
+            "Read fables and folk tales and state the lesson each one teaches",
+            "Tell homophones apart and use contractions correctly",
+            "Use the present continuous tense and adverbs of manner in sentences",
+            "Punctuate exclamatory and interrogative sentences"
+          ],
+          "topics": [
+            "Reading: A Bottle of Dew (story, hard work and diligence)",
+            "Vocabulary: homophones and word meanings",
+            "Speaking: sounds of the letter 's' and tongue twisters",
+            "Writing: describing a fruit",
+            "Reading: The Raven and the Fox (poem, vanity and flattery)",
+            "Vocabulary: rhyming words and opposites",
+            "Speaking and writing: retelling a fable as a story and a conversation",
+            "Reading: Rama to the Rescue (graphic story, presence of mind)",
+            "Grammar: contractions",
+            "Grammar: present continuous tense (am/is/are + -ing)",
+            "Grammar: adverbs of manner",
+            "Grammar: exclamatory and interrogative sentences with punctuation",
+            "Writing: retelling an incident in your own words"
+          ],
+          "lessons": [
+            {
+              "title": "A Bottle of Dew",
+              "topics": [
+                "Reading: A Bottle of Dew (story, hard work and diligence)",
+                "Vocabulary: homophones and word meanings",
+                "Speaking: sounds of the letter 's' and tongue twisters",
+                "Writing: describing a fruit"
+              ]
+            },
+            {
+              "title": "The Raven and the Fox",
+              "topics": [
+                "Reading: The Raven and the Fox (poem, vanity and flattery)",
+                "Vocabulary: rhyming words and opposites",
+                "Speaking and writing: retelling a fable as a story and a conversation"
+              ]
+            },
+            {
+              "title": "Rama to the Rescue",
+              "topics": [
+                "Reading: Rama to the Rescue (graphic story, presence of mind)",
+                "Grammar: contractions",
+                "Grammar: present continuous tense (am/is/are + -ing)"
+              ]
+            },
+            {
+              "title": "Adverbs and sentence types",
+              "topics": [
+                "Grammar: adverbs of manner",
+                "Grammar: exclamatory and interrogative sentences with punctuation",
+                "Writing: retelling an incident in your own words"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fepr101.pdf"
+        },
+        {
+          "number": 2,
+          "title": "Friendship",
+          "unit": "",
+          "outcomes": [
+            "Discuss what makes a real friendship using the unit's stories and poem",
+            "Form opposites with prefixes and use simple past tense verbs",
+            "Describe a friend in a short paragraph and in messages"
+          ],
+          "topics": [
+            "Reading: The Unlikely Best Friends (story, friendship across differences)",
+            "Vocabulary: opposites formed with prefixes",
+            "Grammar: simple past tense verbs",
+            "Grammar: neither...nor",
+            "Writing: comparing yourself and a friend",
+            "Reading: A Friend's Prayer (poem, valuing friendship)",
+            "Vocabulary: synonyms and words for qualities of a good friend",
+            "Speaking: role-play conversations between friends",
+            "Writing: a short paragraph on how a friendship began",
+            "Reading: The Chair (story, true versus boastful friendship)",
+            "Speaking: discussing qualities of a friend",
+            "Writing: messages to friends"
+          ],
+          "lessons": [
+            {
+              "title": "The Unlikely Best Friends",
+              "topics": [
+                "Reading: The Unlikely Best Friends (story, friendship across differences)",
+                "Vocabulary: opposites formed with prefixes",
+                "Grammar: simple past tense verbs"
+              ]
+            },
+            {
+              "title": "Comparing friends",
+              "topics": [
+                "Grammar: neither...nor",
+                "Writing: comparing yourself and a friend"
+              ]
+            },
+            {
+              "title": "A Friend's Prayer",
+              "topics": [
+                "Reading: A Friend's Prayer (poem, valuing friendship)",
+                "Vocabulary: synonyms and words for qualities of a good friend",
+                "Speaking: role-play conversations between friends",
+                "Writing: a short paragraph on how a friendship began"
+              ]
+            },
+            {
+              "title": "The Chair",
+              "topics": [
+                "Reading: The Chair (story, true versus boastful friendship)",
+                "Speaking: discussing qualities of a friend",
+                "Writing: messages to friends"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fepr102.pdf"
+        },
+        {
+          "number": 3,
+          "title": "Nurturing Nature",
+          "unit": "",
+          "outcomes": [
+            "Explain how trees, birds and spices connect us to nature",
+            "Identify open, closed and hyphenated compound words",
+            "Use modal verbs such as may, should, can and must",
+            "Write a descriptive paragraph about a tree"
+          ],
+          "topics": [
+            "Reading: Neem Baba (story, uses of the neem tree)",
+            "Vocabulary: compound words (open, closed, hyphenated)",
+            "Grammar: verbs as action words",
+            "Writing: a paragraph about a tree in your neighbourhood",
+            "Reading: What a Bird Thought (poem, a growing view of the world)",
+            "Vocabulary: rhyming words and describing words",
+            "Speaking: describing the bird you would like to be",
+            "Reading: Spices that Heal Us (letter, traditional home remedies)",
+            "Vocabulary: describing spices by colour, texture and taste",
+            "Grammar: modal verbs (may, should, can, must, need to, used to)",
+            "Speaking: introducing yourself as a spice",
+            "Writing: completing a letter on natural remedies"
+          ],
+          "lessons": [
+            {
+              "title": "Neem Baba",
+              "topics": [
+                "Reading: Neem Baba (story, uses of the neem tree)",
+                "Vocabulary: compound words (open, closed, hyphenated)",
+                "Grammar: verbs as action words",
+                "Writing: a paragraph about a tree in your neighbourhood"
+              ]
+            },
+            {
+              "title": "What a Bird Thought",
+              "topics": [
+                "Reading: What a Bird Thought (poem, a growing view of the world)",
+                "Vocabulary: rhyming words and describing words",
+                "Speaking: describing the bird you would like to be"
+              ]
+            },
+            {
+              "title": "Spices that Heal Us",
+              "topics": [
+                "Reading: Spices that Heal Us (letter, traditional home remedies)",
+                "Vocabulary: describing spices by colour, texture and taste",
+                "Grammar: modal verbs (may, should, can, must, need to, used to)",
+                "Speaking: introducing yourself as a spice",
+                "Writing: completing a letter on natural remedies"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fepr103.pdf"
+        },
+        {
+          "number": 4,
+          "title": "Sports and Wellness",
+          "unit": "",
+          "outcomes": [
+            "Discuss sportsmanship, play and well-being",
+            "Use the past perfect tense to order two past actions",
+            "Tell apart practice/practise and advice/advise",
+            "Write a diary entry and a paragraph on yoga"
+          ],
+          "topics": [
+            "Reading: Change of Heart (story, sportsmanship and accepting defeat)",
+            "Vocabulary: making words from consecutive letters",
+            "Grammar: past perfect tense (old action and new action)",
+            "Speaking: using please, thank you and sorry",
+            "Writing: a diary entry",
+            "Reading: The Winner (poem, the joy of play)",
+            "Speaking: role-play of a parent and a child",
+            "Writing: a paragraph about your playtime",
+            "Reading: Yoga—A Way of Life (non-fiction, yoga and well-being)",
+            "Vocabulary: practice/practise and advice/advise",
+            "Speaking: sharing thoughts in a group",
+            "Writing: a paragraph on the benefits of yoga"
+          ],
+          "lessons": [
+            {
+              "title": "Change of Heart",
+              "topics": [
+                "Reading: Change of Heart (story, sportsmanship and accepting defeat)",
+                "Vocabulary: making words from consecutive letters",
+                "Grammar: past perfect tense (old action and new action)",
+                "Speaking: using please, thank you and sorry",
+                "Writing: a diary entry"
+              ]
+            },
+            {
+              "title": "The Winner",
+              "topics": [
+                "Reading: The Winner (poem, the joy of play)",
+                "Speaking: role-play of a parent and a child",
+                "Writing: a paragraph about your playtime"
+              ]
+            },
+            {
+              "title": "Yoga—A Way of Life",
+              "topics": [
+                "Reading: Yoga—A Way of Life (non-fiction, yoga and well-being)",
+                "Vocabulary: practice/practise and advice/advise",
+                "Speaking: sharing thoughts in a group",
+                "Writing: a paragraph on the benefits of yoga"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fepr104.pdf"
+        },
+        {
+          "number": 5,
+          "title": "Culture and Tradition",
+          "unit": "",
+          "outcomes": [
+            "Describe India's cultural diversity and traditional arts",
+            "Use words for movement and describe objects precisely",
+            "Frame yes/no and wh- questions with the right intonation",
+            "Recite a poem with expression"
+          ],
+          "topics": [
+            "Reading: Hamara Bharat—Incredible India! (non-fiction, India's cultural diversity)",
+            "Vocabulary: words about festivals, food and crafts",
+            "Reading: The Kites (poem, the joy of kite flying)",
+            "Vocabulary: parts of a kite and words for movement",
+            "Writing: creating a kite-shaped poem",
+            "Vocabulary: phrases such as 'up in the air' and 'stand and stare'",
+            "Reading: Ila Sachani: Embroidering Dreams with her Feet (biography, determination and art)",
+            "Speaking: yes/no and wh- questions with rising and falling tone",
+            "Writing: describing a piece of artwork you made",
+            "Reading: National War Memorial (poem, honouring India's soldiers)",
+            "Speaking: reading aloud and reciting a poem"
+          ],
+          "lessons": [
+            {
+              "title": "Hamara Bharat—Incredible India!",
+              "topics": [
+                "Reading: Hamara Bharat—Incredible India! (non-fiction, India's cultural diversity)",
+                "Vocabulary: words about festivals, food and crafts"
+              ]
+            },
+            {
+              "title": "The Kites",
+              "topics": [
+                "Reading: The Kites (poem, the joy of kite flying)",
+                "Vocabulary: parts of a kite and words for movement",
+                "Writing: creating a kite-shaped poem",
+                "Vocabulary: phrases such as 'up in the air' and 'stand and stare'"
+              ]
+            },
+            {
+              "title": "Ila Sachani",
+              "topics": [
+                "Reading: Ila Sachani: Embroidering Dreams with her Feet (biography, determination and art)",
+                "Speaking: yes/no and wh- questions with rising and falling tone",
+                "Writing: describing a piece of artwork you made"
+              ]
+            },
+            {
+              "title": "National War Memorial",
+              "topics": [
+                "Reading: National War Memorial (poem, honouring India's soldiers)",
+                "Speaking: reading aloud and reciting a poem"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fepr105.pdf"
+        }
+      ]
+    },
+    {
+      "subject": "hindi",
+      "name": "Hindi",
+      "book": "मल्हार / Malhar (NCERT, Grade 6)",
+      "chapters": [
+        {
+          "number": 1,
+          "title": "मातृभूमि",
+          "unit": "",
+          "outcomes": [
+            "कविता का केंद्रीय भाव (देशप्रेम) अपने शब्दों में बता सके",
+            "कविता में आए भौगोलिक और सांस्कृतिक संदर्भों को पहचान सके",
+            "पुनरुक्त शब्दों और एक मात्रा के अंतर से बदलते अर्थ को समझ सके"
+          ],
+          "topics": [
+            "पाठ परिचय: कविता — भारत भूमि का गौरव",
+            "कवि परिचय: सोहनलाल द्विवेदी",
+            "मेरी समझ से: कविता का मुख्य भाव",
+            "मिलकर करें मिलान: हिमालय, त्रिवेणी, मलय पवन जैसे संदर्भ",
+            "पंक्तियों पर चर्चा: युद्ध-भूमि और बुद्ध-भूमि का अर्थ",
+            "सोच-विचार के लिए: प्रकृति और महापुरुषों के वर्णन",
+            "कविता की रचना: लय के लिए शब्दों में बदलाव",
+            "अनुमान या कल्पना से: कोयल और मलय पवन के दृश्य",
+            "शब्दों के रूप: पुनरुक्त शब्द-जोड़े (घर-घर, देश-देश)",
+            "‘भूमि’ से नए शब्द बनाना (तपोभूमि, कर्मभूमि आदि)",
+            "एक मात्रा का अंतर, अर्थ में बदलाव (दया-दिया)",
+            "आपकी बात: अपने क्षेत्र की विशेषताएँ बताना",
+            "फूँक से बजने वाले वाद्य: शब्द-जाल",
+            "आज की पहेली: अक्षरों से सार्थक शब्द",
+            "झरोखे से: ‘वंदे मातरम्’ का भावार्थ",
+            "खोजबीन: देशप्रेम की अन्य रचनाएँ"
+          ],
+          "lessons": [
+            {
+              "title": "कविता से परिचय",
+              "topics": [
+                "पाठ परिचय: कविता — भारत भूमि का गौरव",
+                "कवि परिचय: सोहनलाल द्विवेदी",
+                "मेरी समझ से: कविता का मुख्य भाव",
+                "मिलकर करें मिलान: हिमालय, त्रिवेणी, मलय पवन जैसे संदर्भ"
+              ]
+            },
+            {
+              "title": "पंक्तियों का भाव",
+              "topics": [
+                "पंक्तियों पर चर्चा: युद्ध-भूमि और बुद्ध-भूमि का अर्थ",
+                "सोच-विचार के लिए: प्रकृति और महापुरुषों के वर्णन",
+                "कविता की रचना: लय के लिए शब्दों में बदलाव",
+                "अनुमान या कल्पना से: कोयल और मलय पवन के दृश्य"
+              ]
+            },
+            {
+              "title": "शब्दों का खेल",
+              "topics": [
+                "शब्दों के रूप: पुनरुक्त शब्द-जोड़े (घर-घर, देश-देश)",
+                "‘भूमि’ से नए शब्द बनाना (तपोभूमि, कर्मभूमि आदि)",
+                "एक मात्रा का अंतर, अर्थ में बदलाव (दया-दिया)"
+              ]
+            },
+            {
+              "title": "पाठ से आगे",
+              "topics": [
+                "आपकी बात: अपने क्षेत्र की विशेषताएँ बताना",
+                "फूँक से बजने वाले वाद्य: शब्द-जाल",
+                "आज की पहेली: अक्षरों से सार्थक शब्द",
+                "झरोखे से: ‘वंदे मातरम्’ का भावार्थ",
+                "खोजबीन: देशप्रेम की अन्य रचनाएँ"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fhml101.pdf"
+        },
+        {
+          "number": 2,
+          "title": "गोल",
+          "unit": "",
+          "outcomes": [
+            "संस्मरण विधा की पहचान कर सके",
+            "खेल भावना और बदले के बजाय संयम के महत्व पर विचार रख सके",
+            "योजक चिह्न, शब्द-युग्म और ‘ही/तो’ से बल देने का प्रयोग कर सके",
+            "डायरी लेखन शुरू कर सके"
+          ],
+          "topics": [
+            "पाठ परिचय: संस्मरण — खेल भावना और धैर्य",
+            "लेखक परिचय: मेजर ध्यानचंद (1905–1979)",
+            "मेरी समझ से: खेल को सही भावना से खेलना",
+            "पंक्तियों पर चर्चा और सोच-विचार",
+            "संस्मरण की रचना: उत्तम पुरुष में अनुभव-कथन",
+            "योजक चिह्न और शब्द-युग्म (जैसे-जैसे, वैसे-वैसे)",
+            "विपरीत और संबंधित शब्द-युग्म (अमीर-गरीब, गुरु-शिष्य)",
+            "बात पर बल देना: ‘ही’ और ‘तो’ का प्रयोग",
+            "आपकी बात: बदले की जगह संयम",
+            "समाचार-पत्र का खेल पृष्ठ पढ़ना",
+            "डायरी का प्रारंभ: रोज़ के अनुभव लिखना",
+            "आज की पहेली: खिलाड़ियों की पहचान",
+            "झरोखे से: डाँडी/गोथा जैसा पारंपरिक खेल",
+            "खोजबीन: ध्यानचंद और ओलंपिक"
+          ],
+          "lessons": [
+            {
+              "title": "संस्मरण की समझ",
+              "topics": [
+                "पाठ परिचय: संस्मरण — खेल भावना और धैर्य",
+                "लेखक परिचय: मेजर ध्यानचंद (1905–1979)",
+                "मेरी समझ से: खेल को सही भावना से खेलना",
+                "पंक्तियों पर चर्चा और सोच-विचार"
+              ]
+            },
+            {
+              "title": "भाषा की बात",
+              "topics": [
+                "संस्मरण की रचना: उत्तम पुरुष में अनुभव-कथन",
+                "योजक चिह्न और शब्द-युग्म (जैसे-जैसे, वैसे-वैसे)",
+                "विपरीत और संबंधित शब्द-युग्म (अमीर-गरीब, गुरु-शिष्य)",
+                "बात पर बल देना: ‘ही’ और ‘तो’ का प्रयोग"
+              ]
+            },
+            {
+              "title": "पाठ से आगे",
+              "topics": [
+                "आपकी बात: बदले की जगह संयम",
+                "समाचार-पत्र का खेल पृष्ठ पढ़ना",
+                "डायरी का प्रारंभ: रोज़ के अनुभव लिखना",
+                "आज की पहेली: खिलाड़ियों की पहचान",
+                "झरोखे से: डाँडी/गोथा जैसा पारंपरिक खेल",
+                "खोजबीन: ध्यानचंद और ओलंपिक"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fhml102.pdf"
+        },
+        {
+          "number": 3,
+          "title": "पहली बूँद",
+          "unit": "",
+          "outcomes": [
+            "कविता में वर्षा और प्रकृति के बिंबों को पहचान सके",
+            "उपमा जैसे प्रयोगों से कविता की सुंदरता समझ सके",
+            "एक शब्द के अनेक अर्थ और अनेक शब्दों के लिए एक शब्द का प्रयोग कर सके"
+          ],
+          "topics": [
+            "पाठ परिचय: कविता — वर्षा और नवजीवन",
+            "कवि परिचय: गोपालकृष्ण कौल",
+            "मेरी समझ से: बादल, बूँद, अंकुर, पावस",
+            "मिलकर करें मिलान: पंक्तियों का भावार्थ",
+            "पंक्तियों पर चर्चा",
+            "सोच-विचार के लिए: धरती और आकाश के चित्र",
+            "कविता की रचना: आकाश को उड़ता सागर कहने जैसे प्रयोग",
+            "शब्द एक अर्थ अनेक (जलधर: बादल/समुद्र)",
+            "अनेक शब्दों के लिए एक शब्द (‘धर’ से बने शब्द)",
+            "शब्द पहेली: शब्द-जाल",
+            "आपकी बात: बारिश के अपने अनुभव",
+            "समाचार माध्यमों से मौसम की खबरें",
+            "सृजन: चित्र को शीर्षक देना",
+            "इन्हें भी जानें: उत्सवों के वाद्ययंत्र (नगाड़ा)",
+            "झरोखे से: बूँद पर एक और कविता"
+          ],
+          "lessons": [
+            {
+              "title": "कविता का भाव",
+              "topics": [
+                "पाठ परिचय: कविता — वर्षा और नवजीवन",
+                "कवि परिचय: गोपालकृष्ण कौल",
+                "मेरी समझ से: बादल, बूँद, अंकुर, पावस",
+                "मिलकर करें मिलान: पंक्तियों का भावार्थ",
+                "पंक्तियों पर चर्चा"
+              ]
+            },
+            {
+              "title": "कविता की रचना",
+              "topics": [
+                "सोच-विचार के लिए: धरती और आकाश के चित्र",
+                "कविता की रचना: आकाश को उड़ता सागर कहने जैसे प्रयोग",
+                "शब्द एक अर्थ अनेक (जलधर: बादल/समुद्र)",
+                "अनेक शब्दों के लिए एक शब्द (‘धर’ से बने शब्द)",
+                "शब्द पहेली: शब्द-जाल"
+              ]
+            },
+            {
+              "title": "पाठ से आगे",
+              "topics": [
+                "आपकी बात: बारिश के अपने अनुभव",
+                "समाचार माध्यमों से मौसम की खबरें",
+                "सृजन: चित्र को शीर्षक देना",
+                "इन्हें भी जानें: उत्सवों के वाद्ययंत्र (नगाड़ा)",
+                "झरोखे से: बूँद पर एक और कविता"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fhml103.pdf"
+        },
+        {
+          "number": 4,
+          "title": "हार की जीत",
+          "unit": "",
+          "outcomes": [
+            "कहानी के पात्रों के गुणों का वर्णन कर सके",
+            "कहानी के शीर्षक की सार्थकता पर तर्क दे सके",
+            "मुहावरों का अर्थ समझकर वाक्य में प्रयोग कर सके",
+            "किसी पात्र के दृष्टिकोण से कहानी दोबारा कह सके"
+          ],
+          "topics": [
+            "पाठ परिचय: कहानी — विश्वास और हृदय-परिवर्तन",
+            "लेखक परिचय: सुदर्शन",
+            "मेरी समझ से: घटनाओं का क्रम",
+            "शीर्षक: ‘हार की जीत’ की सार्थकता",
+            "पंक्तियों पर चर्चा",
+            "सोच-विचार के लिए: बाबा भारती की चिंता",
+            "दिनचर्या: बाबा भारती का दिन",
+            "कैसे-कैसे पात्र: गुण बताने वाले शब्द",
+            "मुहावरे कहानी से: लट्टू होना, फूले न समाना आदि",
+            "भावों की पहचान: अधीरता, करुणा, निराशा",
+            "सुलतान की कहानी: दृष्टिकोण बदलकर कथा-लेखन",
+            "झरोखे से: सुदर्शन की एक कविता",
+            "खोजबीन: सुदर्शन की अन्य रचनाएँ"
+          ],
+          "lessons": [
+            {
+              "title": "कहानी की समझ",
+              "topics": [
+                "पाठ परिचय: कहानी — विश्वास और हृदय-परिवर्तन",
+                "लेखक परिचय: सुदर्शन",
+                "मेरी समझ से: घटनाओं का क्रम",
+                "शीर्षक: ‘हार की जीत’ की सार्थकता"
+              ]
+            },
+            {
+              "title": "पात्र और विचार",
+              "topics": [
+                "पंक्तियों पर चर्चा",
+                "सोच-विचार के लिए: बाबा भारती की चिंता",
+                "दिनचर्या: बाबा भारती का दिन",
+                "कैसे-कैसे पात्र: गुण बताने वाले शब्द"
+              ]
+            },
+            {
+              "title": "मुहावरे और सृजन",
+              "topics": [
+                "मुहावरे कहानी से: लट्टू होना, फूले न समाना आदि",
+                "भावों की पहचान: अधीरता, करुणा, निराशा",
+                "सुलतान की कहानी: दृष्टिकोण बदलकर कथा-लेखन",
+                "झरोखे से: सुदर्शन की एक कविता",
+                "खोजबीन: सुदर्शन की अन्य रचनाएँ"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fhml104.pdf"
+        },
+        {
+          "number": 5,
+          "title": "रहीम के दोहे",
+          "unit": "",
+          "outcomes": [
+            "दोहों के नीतिपरक संदेश अपने शब्दों में बता सके",
+            "दोहे की रचना (दो पंक्तियाँ, तुक) पहचान सके",
+            "एक शब्द के अनेक अर्थ (पानी) समझ सके",
+            "दोहों का सस्वर पाठ कर सके"
+          ],
+          "topics": [
+            "पाठ परिचय: दोहा — नीति और जीवन-मूल्य",
+            "कवि परिचय: रहीम",
+            "मेरी समझ से: सुई और तलवार का संदेश",
+            "सोच-विचार के लिए: दोहों में प्रकृति के उदाहरण",
+            "दोहों में शब्दों के बदलते रूप (डारि/डार)",
+            "शब्द-संपदा: दोहों के कठिन शब्द",
+            "शब्द एक अर्थ अनेक: ‘पानी’ के तीन अर्थ",
+            "आपकी बात: छोटी चीज़ों का महत्व",
+            "सरगम: दोहों का गायन और रिकॉर्डिंग",
+            "दोहा अंत्याक्षरी",
+            "आज की पहेली"
+          ],
+          "lessons": [
+            {
+              "title": "दोहों का संदेश",
+              "topics": [
+                "पाठ परिचय: दोहा — नीति और जीवन-मूल्य",
+                "कवि परिचय: रहीम",
+                "मेरी समझ से: सुई और तलवार का संदेश",
+                "सोच-विचार के लिए: दोहों में प्रकृति के उदाहरण"
+              ]
+            },
+            {
+              "title": "दोहों की भाषा",
+              "topics": [
+                "दोहों में शब्दों के बदलते रूप (डारि/डार)",
+                "शब्द-संपदा: दोहों के कठिन शब्द",
+                "शब्द एक अर्थ अनेक: ‘पानी’ के तीन अर्थ"
+              ]
+            },
+            {
+              "title": "पाठ से आगे",
+              "topics": [
+                "आपकी बात: छोटी चीज़ों का महत्व",
+                "सरगम: दोहों का गायन और रिकॉर्डिंग",
+                "दोहा अंत्याक्षरी",
+                "आज की पहेली"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fhml105.pdf"
+        },
+        {
+          "number": 6,
+          "title": "मेरी माँ",
+          "unit": "",
+          "outcomes": [
+            "आत्मकथा विधा की विशेषताएँ बता सके",
+            "स्वतंत्रता संग्राम में क्रांतिकारियों के योगदान पर चर्चा कर सके",
+            "शब्दों के विविध प्रयोग और विशेषण पहचान सके",
+            "साक्षात्कार के लिए प्रश्न बना सके"
+          ],
+          "topics": [
+            "पाठ परिचय: आत्मकथा अंश — माँ की प्रेरणा",
+            "लेखक परिचय: रामप्रसाद ‘बिस्मिल’",
+            "मेरी समझ से",
+            "सोच-विचार के लिए: माँ की शिक्षा और साहस",
+            "आत्मकथा की रचना: अपनी कथा स्वयं कहना",
+            "शब्द-प्रयोग तरह-तरह के (अक्षर-बोध आदि)",
+            "आज की पहेली: पाठ से विशेषण छाँटना",
+            "आपकी बात: बिस्मिल के साथी क्रांतिकारी",
+            "साक्षात्कार के लिए प्रश्न बनाना",
+            "झरोखे से: मातृभूमि पर एक कविता",
+            "खोजबीन: माँ पर रचनाओं की पत्रिका"
+          ],
+          "lessons": [
+            {
+              "title": "आत्मकथा का परिचय",
+              "topics": [
+                "पाठ परिचय: आत्मकथा अंश — माँ की प्रेरणा",
+                "लेखक परिचय: रामप्रसाद ‘बिस्मिल’",
+                "मेरी समझ से",
+                "सोच-विचार के लिए: माँ की शिक्षा और साहस"
+              ]
+            },
+            {
+              "title": "रचना और शब्द",
+              "topics": [
+                "आत्मकथा की रचना: अपनी कथा स्वयं कहना",
+                "शब्द-प्रयोग तरह-तरह के (अक्षर-बोध आदि)",
+                "आज की पहेली: पाठ से विशेषण छाँटना"
+              ]
+            },
+            {
+              "title": "पाठ से आगे",
+              "topics": [
+                "आपकी बात: बिस्मिल के साथी क्रांतिकारी",
+                "साक्षात्कार के लिए प्रश्न बनाना",
+                "झरोखे से: मातृभूमि पर एक कविता",
+                "खोजबीन: माँ पर रचनाओं की पत्रिका"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fhml106.pdf"
+        },
+        {
+          "number": 7,
+          "title": "जलाते चलो",
+          "unit": "",
+          "outcomes": [
+            "कविता में दीप और अँधेरे के प्रतीकों को समझ सके",
+            "आशा और निरंतर प्रयास का संदेश अपने शब्दों में बता सके",
+            "‘सा/सी/से’ से समानता दिखाना सीख सके",
+            "तिथि-पत्र (कैलेंडर) पढ़ सके"
+          ],
+          "topics": [
+            "पाठ परिचय: कविता — आशा और कर्तव्य",
+            "कवि परिचय: द्वारिका प्रसाद माहेश्वरी",
+            "मेरी समझ से",
+            "सोच-विचार के लिए",
+            "मिलान: मिलते-जुलते भाव वाली पंक्तियाँ",
+            "कविता की रचना: दीप और तूफ़ान",
+            "अनुमान या कल्पना से",
+            "शब्दों के रूप: अमावस और पूर्णिमा",
+            "अर्थ की बात: शब्द बदलने से अर्थ बदलना",
+            "प्रतीक: निशा और सवेरा",
+            "सा/सी/से का प्रयोग: समानता दिखाना",
+            "पंक्ति से पंक्ति: भाव मिलान",
+            "आपकी बात: हर व्यक्ति का कर्तव्य",
+            "तिथि-पत्र: हिंदी महीने, पक्ष और तिथियाँ",
+            "आज की पहेली और खोजबीन"
+          ],
+          "lessons": [
+            {
+              "title": "कविता का भाव",
+              "topics": [
+                "पाठ परिचय: कविता — आशा और कर्तव्य",
+                "कवि परिचय: द्वारिका प्रसाद माहेश्वरी",
+                "मेरी समझ से",
+                "सोच-विचार के लिए",
+                "मिलान: मिलते-जुलते भाव वाली पंक्तियाँ"
+              ]
+            },
+            {
+              "title": "प्रतीक और अर्थ",
+              "topics": [
+                "कविता की रचना: दीप और तूफ़ान",
+                "अनुमान या कल्पना से",
+                "शब्दों के रूप: अमावस और पूर्णिमा",
+                "अर्थ की बात: शब्द बदलने से अर्थ बदलना",
+                "प्रतीक: निशा और सवेरा"
+              ]
+            },
+            {
+              "title": "भाषा और जीवन",
+              "topics": [
+                "सा/सी/से का प्रयोग: समानता दिखाना",
+                "पंक्ति से पंक्ति: भाव मिलान",
+                "आपकी बात: हर व्यक्ति का कर्तव्य",
+                "तिथि-पत्र: हिंदी महीने, पक्ष और तिथियाँ",
+                "आज की पहेली और खोजबीन"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fhml107.pdf"
+        },
+        {
+          "number": 8,
+          "title": "सत्रिया और बिहू नृत्य",
+          "unit": "",
+          "outcomes": [
+            "सत्रिया और बिहू नृत्य की विशेषताएँ बता सके",
+            "पूर्वोत्तर भारत की संस्कृति के बारे में जानकारी जुटा सके",
+            "पत्र और पोस्टकार्ड लिख सके"
+          ],
+          "topics": [
+            "पाठ परिचय: निबंध — असम के नृत्य और उत्सव",
+            "लेखक परिचय: जया मेहता",
+            "मेरी समझ से",
+            "सोच-विचार के लिए",
+            "निबंध की रचना: घटनाओं का क्रमबद्ध वर्णन",
+            "अनुमान या कल्पना से",
+            "शब्दों की बात: नृत्य और उत्सव से जुड़े शब्द",
+            "तीन बिहू: रोंगाली, कोंगाली, भोगाली",
+            "आपकी बात: अपने क्षेत्र के नृत्य",
+            "पूर्वोत्तर की यात्रा: आठ राज्य",
+            "टाइम मशीन और संग्रहालय",
+            "खिलौने विभिन्न प्रकार के",
+            "पत्र: पोस्टकार्ड लेखन",
+            "आज की पहेली: असमिया पहेलियाँ",
+            "झरोखे से: असम का रेशम (मूँगा)"
+          ],
+          "lessons": [
+            {
+              "title": "निबंध की समझ",
+              "topics": [
+                "पाठ परिचय: निबंध — असम के नृत्य और उत्सव",
+                "लेखक परिचय: जया मेहता",
+                "मेरी समझ से",
+                "सोच-विचार के लिए",
+                "निबंध की रचना: घटनाओं का क्रमबद्ध वर्णन"
+              ]
+            },
+            {
+              "title": "शब्द और संस्कृति",
+              "topics": [
+                "अनुमान या कल्पना से",
+                "शब्दों की बात: नृत्य और उत्सव से जुड़े शब्द",
+                "तीन बिहू: रोंगाली, कोंगाली, भोगाली",
+                "आपकी बात: अपने क्षेत्र के नृत्य"
+              ]
+            },
+            {
+              "title": "पाठ से आगे",
+              "topics": [
+                "पूर्वोत्तर की यात्रा: आठ राज्य",
+                "टाइम मशीन और संग्रहालय",
+                "खिलौने विभिन्न प्रकार के",
+                "पत्र: पोस्टकार्ड लेखन",
+                "आज की पहेली: असमिया पहेलियाँ",
+                "झरोखे से: असम का रेशम (मूँगा)"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fhml108.pdf"
+        },
+        {
+          "number": 9,
+          "title": "मैया मैं नहिं माखन खायो",
+          "unit": "",
+          "outcomes": [
+            "पद में वात्सल्य भाव पहचान सके",
+            "ब्रजभाषा के शब्दों के मानक हिंदी रूप बता सके",
+            "वर्ण-परिवर्तन (र/ल) जैसे बदलाव समझ सके",
+            "पुराने समय-मापन (पहर) को समझ सके"
+          ],
+          "topics": [
+            "पाठ परिचय: पद — वात्सल्य रस",
+            "कवि परिचय: सूरदास",
+            "मेरी समझ से",
+            "सोच-विचार के लिए",
+            "कविता की रचना: ब्रजभाषा और गेयता",
+            "अनुमान या कल्पना से: कृष्ण के तर्क",
+            "शब्दों के रूप: ब्रज और मानक हिंदी",
+            "वर्ण-परिवर्तन: ‘भोरी’ और ‘भोली’",
+            "पंक्ति से पंक्ति: भावार्थ मिलान",
+            "आपकी बात",
+            "घर की वस्तुएँ: छींका आदि",
+            "समय का माप: पहर और घड़ी",
+            "हम सब विशेष हैं: विशेष क्षमताएँ",
+            "आज की पहेली: दूध से बनी चीज़ें"
+          ],
+          "lessons": [
+            {
+              "title": "पद की समझ",
+              "topics": [
+                "पाठ परिचय: पद — वात्सल्य रस",
+                "कवि परिचय: सूरदास",
+                "मेरी समझ से",
+                "सोच-विचार के लिए",
+                "कविता की रचना: ब्रजभाषा और गेयता"
+              ]
+            },
+            {
+              "title": "शब्दों के रूप",
+              "topics": [
+                "अनुमान या कल्पना से: कृष्ण के तर्क",
+                "शब्दों के रूप: ब्रज और मानक हिंदी",
+                "वर्ण-परिवर्तन: ‘भोरी’ और ‘भोली’",
+                "पंक्ति से पंक्ति: भावार्थ मिलान"
+              ]
+            },
+            {
+              "title": "पाठ से आगे",
+              "topics": [
+                "आपकी बात",
+                "घर की वस्तुएँ: छींका आदि",
+                "समय का माप: पहर और घड़ी",
+                "हम सब विशेष हैं: विशेष क्षमताएँ",
+                "आज की पहेली: दूध से बनी चीज़ें"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fhml109.pdf"
+        },
+        {
+          "number": 10,
+          "title": "परीक्षा",
+          "unit": "",
+          "outcomes": [
+            "कहानी की समस्या और समाधान पहचान सके",
+            "अच्छे गुणों के महत्व पर तर्क दे सके",
+            "विपरीतार्थक शब्द और कहावतें प्रयोग कर सके",
+            "विज्ञापन और आगे की कहानी लिख सके"
+          ],
+          "topics": [
+            "पाठ परिचय: कहानी — सच्चे गुणों की परीक्षा",
+            "लेखक परिचय: प्रेमचंद",
+            "शीर्षक: ‘परीक्षा’ नाम की सार्थकता",
+            "पंक्तियों पर चर्चा",
+            "मेरी समझ से",
+            "सोच-विचार के लिए",
+            "खोजबीन: कहानी से प्रमाण-वाक्य",
+            "कहानी की रचना: दृश्य-वर्णन",
+            "समस्या और समाधान",
+            "मन के भाव",
+            "अभिनय: युवक और किसान का संवाद",
+            "विपरीतार्थक शब्द",
+            "कहावत: गहरे पानी पैठ",
+            "अनुमान या कल्पना से",
+            "विज्ञापन: नौकरी का विज्ञापन लिखना",
+            "आगे की कहानी",
+            "आपकी बात: योग्य व्यक्ति का चयन",
+            "नया-पुराना: पीढ़ियों की पसंद",
+            "वाद-विवाद: खेल भी एक विद्या",
+            "अच्छाई और दिखावा",
+            "परिधान तरह-तरह के",
+            "आपकी परीक्षाएँ",
+            "आज की पहेली और खोजबीन"
+          ],
+          "lessons": [
+            {
+              "title": "कहानी की समझ",
+              "topics": [
+                "पाठ परिचय: कहानी — सच्चे गुणों की परीक्षा",
+                "लेखक परिचय: प्रेमचंद",
+                "शीर्षक: ‘परीक्षा’ नाम की सार्थकता",
+                "पंक्तियों पर चर्चा",
+                "मेरी समझ से"
+              ]
+            },
+            {
+              "title": "रचना और पात्र",
+              "topics": [
+                "सोच-विचार के लिए",
+                "खोजबीन: कहानी से प्रमाण-वाक्य",
+                "कहानी की रचना: दृश्य-वर्णन",
+                "समस्या और समाधान",
+                "मन के भाव",
+                "अभिनय: युवक और किसान का संवाद"
+              ]
+            },
+            {
+              "title": "भाषा की बात",
+              "topics": [
+                "विपरीतार्थक शब्द",
+                "कहावत: गहरे पानी पैठ",
+                "अनुमान या कल्पना से",
+                "विज्ञापन: नौकरी का विज्ञापन लिखना",
+                "आगे की कहानी"
+              ]
+            },
+            {
+              "title": "पाठ से आगे",
+              "topics": [
+                "आपकी बात: योग्य व्यक्ति का चयन",
+                "नया-पुराना: पीढ़ियों की पसंद",
+                "वाद-विवाद: खेल भी एक विद्या",
+                "अच्छाई और दिखावा",
+                "परिधान तरह-तरह के",
+                "आपकी परीक्षाएँ",
+                "आज की पहेली और खोजबीन"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fhml110.pdf"
+        },
+        {
+          "number": 11,
+          "title": "चेतक की वीरता",
+          "unit": "",
+          "outcomes": [
+            "कविता में वीर रस और गति के वर्णन को पहचान सके",
+            "समानार्थी शब्दों का प्रयोग कर सके",
+            "ऐतिहासिक संदर्भ (हल्दीघाटी) के बारे में जानकारी जुटा सके"
+          ],
+          "topics": [
+            "पाठ परिचय: कविता — वीरता और स्वामिभक्ति",
+            "कवि परिचय: श्यामनारायण पांडेय",
+            "मेरी समझ से",
+            "शीर्षक: ‘हल्दीघाटी’ काव्य का अंश",
+            "कविता की रचना: गति और लय",
+            "आपकी बात",
+            "समानार्थी शब्द: हय, अश्व, घोड़ा",
+            "आज की पहेली: बूझो तो जानें",
+            "खोजबीन: महाराणा प्रताप"
+          ],
+          "lessons": [
+            {
+              "title": "कविता का भाव",
+              "topics": [
+                "पाठ परिचय: कविता — वीरता और स्वामिभक्ति",
+                "कवि परिचय: श्यामनारायण पांडेय",
+                "मेरी समझ से",
+                "शीर्षक: ‘हल्दीघाटी’ काव्य का अंश"
+              ]
+            },
+            {
+              "title": "रचना और शब्द",
+              "topics": [
+                "कविता की रचना: गति और लय",
+                "आपकी बात",
+                "समानार्थी शब्द: हय, अश्व, घोड़ा"
+              ]
+            },
+            {
+              "title": "पाठ से आगे",
+              "topics": [
+                "आज की पहेली: बूझो तो जानें",
+                "खोजबीन: महाराणा प्रताप"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fhml111.pdf"
+        },
+        {
+          "number": 12,
+          "title": "हिंद महासागर में छोटा-सा हिंदुस्तान",
+          "unit": "",
+          "outcomes": [
+            "यात्रा वृतांत की विशेषताएँ बता सके",
+            "प्रवासी भारतीयों की संस्कृति पर चर्चा कर सके",
+            "सर्वनाम शब्दों की पहचान कर सके",
+            "पत्र पढ़कर प्रश्नों के उत्तर दे सके"
+          ],
+          "topics": [
+            "पाठ परिचय: यात्रा वृतांत — मॉरीशस में भारतीय संस्कृति",
+            "लेखक परिचय: रामधारी सिंह ‘दिनकर’",
+            "मेरी समझ से",
+            "सोच-विचार के लिए: केन्या और भूमध्य रेखा",
+            "यात्रा-वृतांत की रचना",
+            "अनुमान या कल्पना से",
+            "शब्दों की बात",
+            "सर्वनाम शब्दों की पहचान",
+            "आपकी बात: यादगार अनुभव",
+            "कक्षा और घर की भाषाएँ: भोजपुरी",
+            "हस्ताक्षर",
+            "पत्र: दिनकर का पत्र पढ़ना",
+            "समय क्षेत्र: दो घड़ियाँ",
+            "आज की पहेली और खोजबीन"
+          ],
+          "lessons": [
+            {
+              "title": "यात्रा की समझ",
+              "topics": [
+                "पाठ परिचय: यात्रा वृतांत — मॉरीशस में भारतीय संस्कृति",
+                "लेखक परिचय: रामधारी सिंह ‘दिनकर’",
+                "मेरी समझ से",
+                "सोच-विचार के लिए: केन्या और भूमध्य रेखा"
+              ]
+            },
+            {
+              "title": "रचना और भाषा",
+              "topics": [
+                "यात्रा-वृतांत की रचना",
+                "अनुमान या कल्पना से",
+                "शब्दों की बात",
+                "सर्वनाम शब्दों की पहचान"
+              ]
+            },
+            {
+              "title": "पाठ से आगे",
+              "topics": [
+                "आपकी बात: यादगार अनुभव",
+                "कक्षा और घर की भाषाएँ: भोजपुरी",
+                "हस्ताक्षर",
+                "पत्र: दिनकर का पत्र पढ़ना",
+                "समय क्षेत्र: दो घड़ियाँ",
+                "आज की पहेली और खोजबीन"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fhml112.pdf"
+        },
+        {
+          "number": 13,
+          "title": "पेड़ की बात",
+          "unit": "",
+          "outcomes": [
+            "बीज के अंकुरण और पेड़ के जीवन-चक्र को क्रम से बता सके",
+            "वैज्ञानिक लेख की सुसंगत रचना पहचान सके",
+            "मिट्टी से जुड़े शब्दों के रूप बना सके"
+          ],
+          "topics": [
+            "पाठ परिचय: निबंध — पेड़ों का जीवन",
+            "लेखक परिचय: जगदीशचंद्र बसु",
+            "मेरी समझ से",
+            "सोच-विचार के लिए: बीज का अंकुरण",
+            "लेख की रचना: विचारों का क्रम",
+            "अनुमान या कल्पना से: संतान के लिए त्याग",
+            "शब्दों के रूप: मिट्टी से जुड़े शब्द",
+            "खोजबीन: जगदीशचंद्र बसु के प्रयोग",
+            "पढ़ने के लिए: आओ बच्चो तुम्हें दिखाएँ झाँकी हिंदुस्तान की",
+            "शब्दकोश का प्रयोग"
+          ],
+          "lessons": [
+            {
+              "title": "लेख की समझ",
+              "topics": [
+                "पाठ परिचय: निबंध — पेड़ों का जीवन",
+                "लेखक परिचय: जगदीशचंद्र बसु",
+                "मेरी समझ से",
+                "सोच-विचार के लिए: बीज का अंकुरण"
+              ]
+            },
+            {
+              "title": "रचना और शब्द",
+              "topics": [
+                "लेख की रचना: विचारों का क्रम",
+                "अनुमान या कल्पना से: संतान के लिए त्याग",
+                "शब्दों के रूप: मिट्टी से जुड़े शब्द"
+              ]
+            },
+            {
+              "title": "पाठ से आगे",
+              "topics": [
+                "खोजबीन: जगदीशचंद्र बसु के प्रयोग",
+                "पढ़ने के लिए: आओ बच्चो तुम्हें दिखाएँ झाँकी हिंदुस्तान की",
+                "शब्दकोश का प्रयोग"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fhml113.pdf"
+        }
+      ]
+    },
+    {
+      "subject": "sanskrit",
+      "name": "Sanskrit",
+      "book": "दीपकम् / Deepakam (NCERT, Grade 6)",
+      "chapters": [
+        {
+          "number": 1,
+          "title": "वयं वर्णमालां पठामः",
+          "unit": "",
+          "outcomes": [
+            "संस्कृत वर्णमाला के स्वर और व्यञ्जन पहचानना",
+            "ह्रस्व, दीर्घ, प्लुत स्वरों में मात्रा का अन्तर समझना",
+            "वर्णों को उच्चारण-स्थान (कण्ठ्य, तालव्य आदि) के अनुसार वर्गीकृत करना",
+            "वर्ण से आरम्भ होने वाले सरल संस्कृत शब्द लिखना"
+          ],
+          "topics": [
+            "पाठ परिचय: वर्णमाला के दो भेद – स्वर और व्यञ्जन",
+            "समानाक्षर (अ इ उ ऋ ऌ) और सन्ध्यक्षर (ए ऐ ओ औ)",
+            "ह्रस्व, दीर्घ और प्लुत स्वर – मात्रा की अवधारणा",
+            "स्पर्श (वर्गीय) व्यञ्जन – पाँच वर्ग",
+            "अन्तःस्थ और ऊष्म व्यञ्जन",
+            "अयोगवाह – अनुस्वार और विसर्ग",
+            "उच्चारण-स्थान: कण्ठ्य, तालव्य, मूर्धन्य, दन्त्य, ओष्ठ्य, नासिक्य",
+            "पक्षियों की ध्वनि से मात्रा-काल को समझना",
+            "चित्र देखकर वर्ण और शब्द पहचानना",
+            "प्रथम वर्ण से पद बनाना; परिवार, शिक्षकों और मित्रों के पूरे नाम लिखना"
+          ],
+          "lessons": [
+            {
+              "title": "स्वर वर्ण",
+              "topics": [
+                "पाठ परिचय: वर्णमाला के दो भेद – स्वर और व्यञ्जन",
+                "समानाक्षर (अ इ उ ऋ ऌ) और सन्ध्यक्षर (ए ऐ ओ औ)",
+                "ह्रस्व, दीर्घ और प्लुत स्वर – मात्रा की अवधारणा"
+              ]
+            },
+            {
+              "title": "व्यञ्जन वर्ण",
+              "topics": [
+                "स्पर्श (वर्गीय) व्यञ्जन – पाँच वर्ग",
+                "अन्तःस्थ और ऊष्म व्यञ्जन",
+                "अयोगवाह – अनुस्वार और विसर्ग"
+              ]
+            },
+            {
+              "title": "उच्चारण-स्थान",
+              "topics": [
+                "उच्चारण-स्थान: कण्ठ्य, तालव्य, मूर्धन्य, दन्त्य, ओष्ठ्य, नासिक्य",
+                "पक्षियों की ध्वनि से मात्रा-काल को समझना"
+              ]
+            },
+            {
+              "title": "वर्णों से शब्द",
+              "topics": [
+                "चित्र देखकर वर्ण और शब्द पहचानना",
+                "प्रथम वर्ण से पद बनाना; परिवार, शिक्षकों और मित्रों के पूरे नाम लिखना"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fsde101.pdf"
+        },
+        {
+          "number": 2,
+          "title": "संयुक्त-व्यञ्जनानि",
+          "unit": "",
+          "outcomes": [
+            "संयुक्त व्यञ्जन बनने की प्रक्रिया समझना",
+            "सामान्य संयुक्ताक्षर (क्ष, त्र, ज्ञ, श्र आदि) पढ़ना-लिखना",
+            "संयुक्ताक्षर वाले शब्दों को वर्णों में तोड़ना"
+          ],
+          "topics": [
+            "पाठ परिचय: दो या अधिक व्यञ्जनों का मेल",
+            "स्वर-रहित (हलन्त) व्यञ्जन और मेल का नियम",
+            "विशेष संयुक्ताक्षर: क्ष, त्र, ज्ञ, श्र",
+            "रेफ (र्) और र-युक्त व्यञ्जन के रूप",
+            "संयुक्ताक्षर वाले शब्दों का वर्ण-विच्छेद और लेखन"
+          ],
+          "lessons": [
+            {
+              "title": "संयुक्त व्यञ्जन क्या है",
+              "topics": [
+                "पाठ परिचय: दो या अधिक व्यञ्जनों का मेल",
+                "स्वर-रहित (हलन्त) व्यञ्जन और मेल का नियम"
+              ]
+            },
+            {
+              "title": "संयुक्ताक्षर पढ़ना",
+              "topics": [
+                "विशेष संयुक्ताक्षर: क्ष, त्र, ज्ञ, श्र",
+                "रेफ (र्) और र-युक्त व्यञ्जन के रूप",
+                "संयुक्ताक्षर वाले शब्दों का वर्ण-विच्छेद और लेखन"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fsde102.pdf"
+        },
+        {
+          "number": 3,
+          "title": "एषः कः ? एषा का ? एतत् किम् ?",
+          "unit": "",
+          "outcomes": [
+            "पुंलिङ्ग, स्त्रीलिङ्ग, नपुंसकलिङ्ग शब्दों की पहचान करना",
+            "एतद् और किम् सर्वनाम के तीनों लिङ्गों में रूप प्रयोग करना",
+            "एकवचन-बहुवचन में सरल वाक्य बनाना और प्रश्न पूछना"
+          ],
+          "topics": [
+            "पाठ परिचय: वस्तुओं और प्राणियों के नाम",
+            "पुंलिङ्ग, स्त्रीलिङ्ग, नपुंसकलिङ्ग शब्दों की पहचान",
+            "एषः/एषा/एतत् और कः/का/किम् का प्रयोग",
+            "एकवचन और बहुवचन (एते, एताः, एतानि)",
+            "चित्र देखकर संस्कृत पद और वाक्य लिखना",
+            "प्रश्न-निर्माण",
+            "गृह-वस्तुओं के नाम लिङ्ग-विभाग से लिखना; व्यावहारिक शब्द"
+          ],
+          "lessons": [
+            {
+              "title": "तीन लिङ्ग",
+              "topics": [
+                "पाठ परिचय: वस्तुओं और प्राणियों के नाम",
+                "पुंलिङ्ग, स्त्रीलिङ्ग, नपुंसकलिङ्ग शब्दों की पहचान"
+              ]
+            },
+            {
+              "title": "एषः, एषा, एतत्",
+              "topics": [
+                "एषः/एषा/एतत् और कः/का/किम् का प्रयोग",
+                "एकवचन और बहुवचन (एते, एताः, एतानि)"
+              ]
+            },
+            {
+              "title": "वाक्य और प्रश्न",
+              "topics": [
+                "चित्र देखकर संस्कृत पद और वाक्य लिखना",
+                "प्रश्न-निर्माण",
+                "गृह-वस्तुओं के नाम लिङ्ग-विभाग से लिखना; व्यावहारिक शब्द"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fsde103.pdf"
+        },
+        {
+          "number": 4,
+          "title": "अहं च त्वं च",
+          "unit": "",
+          "outcomes": [
+            "अस्मद् (अहम्) और युष्मद् (त्वम्) सर्वनाम का प्रयोग करना",
+            "उत्तम, मध्यम और प्रथम पुरुष की पहचान करना",
+            "अपना और दूसरों का परिचय संस्कृत में देना"
+          ],
+          "topics": [
+            "पाठ परिचय: व्यवसायों के माध्यम से आत्म-परिचय",
+            "मम नाम … अहं … – आत्म-परिचय वाक्य",
+            "अहम्, आवाम्, वयम् तथा त्वम्, युवाम्, यूयम् – तीनों वचन",
+            "पुरुष की अवधारणा: उत्तम, मध्यम, प्रथम",
+            "चित्र देखकर वाक्य-लेखन",
+            "वाक्य जोड़ना और प्रश्न-निर्माण"
+          ],
+          "lessons": [
+            {
+              "title": "परिचय देना",
+              "topics": [
+                "पाठ परिचय: व्यवसायों के माध्यम से आत्म-परिचय",
+                "मम नाम … अहं … – आत्म-परिचय वाक्य"
+              ]
+            },
+            {
+              "title": "अहम् और त्वम्",
+              "topics": [
+                "अहम्, आवाम्, वयम् तथा त्वम्, युवाम्, यूयम् – तीनों वचन",
+                "पुरुष की अवधारणा: उत्तम, मध्यम, प्रथम"
+              ]
+            },
+            {
+              "title": "अभ्यास",
+              "topics": [
+                "चित्र देखकर वाक्य-लेखन",
+                "वाक्य जोड़ना और प्रश्न-निर्माण"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fsde104.pdf"
+        },
+        {
+          "number": 5,
+          "title": "संख्यागणना ननु सरला",
+          "unit": "",
+          "outcomes": [
+            "१ से ५० तक (और आगे) संख्याएँ संस्कृत में बोलना-लिखना",
+            "संख्या के साथ संज्ञा का सही प्रयोग करना",
+            "अङ्कों और शब्दों दोनों में संख्या लिखना"
+          ],
+          "topics": [
+            "पाठ परिचय: कक्षा में उपस्थित छात्रों की गणना",
+            "संख्याएँ संस्कृत में: एकः से दश तक",
+            "दश से आगे संख्याएँ – अङ्क और शब्द",
+            "संख्या के साथ पद जोड़ना (लिङ्ग के अनुसार एक, द्वि, त्रि, चतुर्)",
+            "चित्र देखकर वस्तुएँ गिनना और लिखना",
+            "उपस्थिति-पत्र से संख्या बोलना-लिखना"
+          ],
+          "lessons": [
+            {
+              "title": "कक्षा में गणना",
+              "topics": [
+                "पाठ परिचय: कक्षा में उपस्थित छात्रों की गणना",
+                "संख्याएँ संस्कृत में: एकः से दश तक"
+              ]
+            },
+            {
+              "title": "बड़ी संख्याएँ",
+              "topics": [
+                "दश से आगे संख्याएँ – अङ्क और शब्द",
+                "संख्या के साथ पद जोड़ना (लिङ्ग के अनुसार एक, द्वि, त्रि, चतुर्)"
+              ]
+            },
+            {
+              "title": "अभ्यास",
+              "topics": [
+                "चित्र देखकर वस्तुएँ गिनना और लिखना",
+                "उपस्थिति-पत्र से संख्या बोलना-लिखना"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fsde105.pdf"
+        },
+        {
+          "number": 6,
+          "title": "अहं प्रातः उत्तिष्ठामि",
+          "unit": "",
+          "outcomes": [
+            "अपनी दिनचर्या संस्कृत में सरल वाक्यों से बताना",
+            "घड़ी का समय संस्कृत में (वादनम्, सार्ध, पाद) कहना",
+            "शिष्टाचार के शब्दों का प्रयोग करना"
+          ],
+          "topics": [
+            "पाठ परिचय: प्रातः से रात्रि तक की दिनचर्या",
+            "उत्तम पुरुष क्रियापद (करोमि, पिबामि, गच्छामि)",
+            "समय-लेखन: वादनम्, सार्ध-, सपाद-, पादोन-",
+            "समय अङ्कों और अक्षरों में लिखना",
+            "शिष्टाचार के पद (नमो नमः, धन्यवादः, क्षम्यताम् आदि)",
+            "प्रश्न-निर्माण और अपनी दिनचर्या लिखना"
+          ],
+          "lessons": [
+            {
+              "title": "दिनचर्या",
+              "topics": [
+                "पाठ परिचय: प्रातः से रात्रि तक की दिनचर्या",
+                "उत्तम पुरुष क्रियापद (करोमि, पिबामि, गच्छामि)"
+              ]
+            },
+            {
+              "title": "समय बताना",
+              "topics": [
+                "समय-लेखन: वादनम्, सार्ध-, सपाद-, पादोन-",
+                "समय अङ्कों और अक्षरों में लिखना"
+              ]
+            },
+            {
+              "title": "शिष्टाचार",
+              "topics": [
+                "शिष्टाचार के पद (नमो नमः, धन्यवादः, क्षम्यताम् आदि)",
+                "प्रश्न-निर्माण और अपनी दिनचर्या लिखना"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fsde106.pdf"
+        },
+        {
+          "number": 7,
+          "title": "शूराः वयं धीराः वयम्",
+          "unit": "",
+          "outcomes": [
+            "देशभक्ति गीत का भाव समझना और सस्वर गाना",
+            "प्रथमा विभक्ति बहुवचन पदों को पहचानना",
+            "वचन-परिवर्तन करना"
+          ],
+          "topics": [
+            "पाठ परिचय: देशभक्ति और साहस का गीत",
+            "गीत का भावार्थ और गीत-रचनाकार का परिचय",
+            "एकपदीय प्रश्नोत्तर",
+            "वचन-परिवर्तन: एकवचन से बहुवचन",
+            "शब्दरूप: अकारान्त पुंलिङ्ग (प्रथमा)",
+            "पद जोड़कर वाक्य-रचना और रिक्तस्थान-पूर्ति",
+            "महापुरुषों और राष्ट्रनायकों का लघु परिचय"
+          ],
+          "lessons": [
+            {
+              "title": "गीत का भाव",
+              "topics": [
+                "पाठ परिचय: देशभक्ति और साहस का गीत",
+                "गीत का भावार्थ और गीत-रचनाकार का परिचय",
+                "एकपदीय प्रश्नोत्तर"
+              ]
+            },
+            {
+              "title": "वचन-परिवर्तन",
+              "topics": [
+                "वचन-परिवर्तन: एकवचन से बहुवचन",
+                "शब्दरूप: अकारान्त पुंलिङ्ग (प्रथमा)"
+              ]
+            },
+            {
+              "title": "अभ्यास और परियोजना",
+              "topics": [
+                "पद जोड़कर वाक्य-रचना और रिक्तस्थान-पूर्ति",
+                "महापुरुषों और राष्ट्रनायकों का लघु परिचय"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fsde107.pdf"
+        },
+        {
+          "number": 8,
+          "title": "सः एव महान् चित्रकारः",
+          "unit": "",
+          "outcomes": [
+            "प्रकृति के रंगों का वर्णन संस्कृत में करना",
+            "रंगों (वर्णाः) के संस्कृत नाम जानना",
+            "वस्तु और उसके रंग को जोड़कर वाक्य बनाना"
+          ],
+          "topics": [
+            "पाठ परिचय: अमृत उद्यान और प्रकृति के रंग",
+            "ईश्वर/प्रकृति – सबसे बड़ा चित्रकार: भाव",
+            "रंगों के संस्कृत नाम (रक्तः, नीलः, हरितः, पीतः आदि)",
+            "राष्ट्रध्वज के रंग और उनका अर्थ",
+            "उचित वर्ण के साथ शब्द जोड़ना",
+            "कक्षा की वस्तुओं के नाम और रंग लिखना"
+          ],
+          "lessons": [
+            {
+              "title": "प्रकृति के रंग",
+              "topics": [
+                "पाठ परिचय: अमृत उद्यान और प्रकृति के रंग",
+                "ईश्वर/प्रकृति – सबसे बड़ा चित्रकार: भाव"
+              ]
+            },
+            {
+              "title": "वर्णों के नाम",
+              "topics": [
+                "रंगों के संस्कृत नाम (रक्तः, नीलः, हरितः, पीतः आदि)",
+                "राष्ट्रध्वज के रंग और उनका अर्थ"
+              ]
+            },
+            {
+              "title": "अभ्यास",
+              "topics": [
+                "उचित वर्ण के साथ शब्द जोड़ना",
+                "कक्षा की वस्तुओं के नाम और रंग लिखना"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fsde108.pdf"
+        },
+        {
+          "number": 9,
+          "title": "अतिथिदेवो भव",
+          "unit": "",
+          "outcomes": [
+            "अतिथि-सत्कार के भारतीय मूल्य को समझना",
+            "अव्यय पदों (अत्र, तत्र, कुत्र आदि) का प्रयोग करना",
+            "अस्ति/नास्ति से स्थान-वर्णन करना"
+          ],
+          "topics": [
+            "पाठ परिचय: अतिथिदेवो भव – भारतीय संस्कृति",
+            "कथा: घर में आए नन्हे अतिथि (बिल्ली के बच्चे)",
+            "एकपदीय और पूर्णवाक्य प्रश्नोत्तर",
+            "अव्यय का लक्षण और पहचान",
+            "अत्र, तत्र, कुत्र, सर्वत्र आदि का प्रयोग",
+            "किम् अस्ति? किं नास्ति? – चित्र-वर्णन",
+            "कः कुत्र अस्ति – वाक्य-लेखन"
+          ],
+          "lessons": [
+            {
+              "title": "अतिथि-सत्कार",
+              "topics": [
+                "पाठ परिचय: अतिथिदेवो भव – भारतीय संस्कृति",
+                "कथा: घर में आए नन्हे अतिथि (बिल्ली के बच्चे)",
+                "एकपदीय और पूर्णवाक्य प्रश्नोत्तर"
+              ]
+            },
+            {
+              "title": "अव्यय",
+              "topics": [
+                "अव्यय का लक्षण और पहचान",
+                "अत्र, तत्र, कुत्र, सर्वत्र आदि का प्रयोग"
+              ]
+            },
+            {
+              "title": "स्थान-वर्णन",
+              "topics": [
+                "किम् अस्ति? किं नास्ति? – चित्र-वर्णन",
+                "कः कुत्र अस्ति – वाक्य-लेखन"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fsde109.pdf"
+        },
+        {
+          "number": 10,
+          "title": "बुद्धिः सर्वार्थसाधिका",
+          "unit": "",
+          "outcomes": [
+            "कथा से बुद्धिबल का महत्त्व समझना",
+            "लट् लकार (वर्तमान काल) के पुरुष और वचन पहचानना",
+            "पर्याय शब्द मिलाना"
+          ],
+          "topics": [
+            "पाठ परिचय: शरीरबल से बुद्धिबल श्रेष्ठ",
+            "कथा का सार और प्रश्नोत्तर",
+            "वर्तमान काल और लट् लकार",
+            "तीन पुरुष और तीन वचन – क्रियापद पहचानना",
+            "उचित क्रियापद से रिक्तस्थान-पूर्ति",
+            "पर्यायपद मिलाना",
+            "चित्र के आधार पर पाँच वाक्य"
+          ],
+          "lessons": [
+            {
+              "title": "कथा",
+              "topics": [
+                "पाठ परिचय: शरीरबल से बुद्धिबल श्रेष्ठ",
+                "कथा का सार और प्रश्नोत्तर"
+              ]
+            },
+            {
+              "title": "लट् लकार",
+              "topics": [
+                "वर्तमान काल और लट् लकार",
+                "तीन पुरुष और तीन वचन – क्रियापद पहचानना",
+                "उचित क्रियापद से रिक्तस्थान-पूर्ति"
+              ]
+            },
+            {
+              "title": "शब्द-भण्डार",
+              "topics": [
+                "पर्यायपद मिलाना",
+                "चित्र के आधार पर पाँच वाक्य"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fsde110.pdf"
+        },
+        {
+          "number": 11,
+          "title": "यः जानाति सः पण्डितः",
+          "unit": "",
+          "outcomes": [
+            "संस्कृत प्रहेलिकाएँ (पहेलियाँ) समझना और हल करना",
+            "षष्ठी विभक्ति से सम्बन्ध दर्शाना",
+            "अपने परिवार का परिचय संस्कृत में देना"
+          ],
+          "topics": [
+            "पाठ परिचय: प्रहेलिका – बुद्धि का खेल",
+            "प्रहेलिकाओं के उत्तर और प्रश्नोत्तर",
+            "शब्दरूप पढ़ना और स्मरण",
+            "षष्ठी विभक्ति – सम्बन्ध-सूचक रूप",
+            "उपरि – स्थान बताने वाले वाक्य",
+            "कुटुम्ब के सम्बन्ध-सूचक शब्द और वंशवृक्ष",
+            "परिवार का परिचय वाक्यों में"
+          ],
+          "lessons": [
+            {
+              "title": "प्रहेलिका",
+              "topics": [
+                "पाठ परिचय: प्रहेलिका – बुद्धि का खेल",
+                "प्रहेलिकाओं के उत्तर और प्रश्नोत्तर"
+              ]
+            },
+            {
+              "title": "षष्ठी विभक्ति",
+              "topics": [
+                "शब्दरूप पढ़ना और स्मरण",
+                "षष्ठी विभक्ति – सम्बन्ध-सूचक रूप",
+                "उपरि – स्थान बताने वाले वाक्य"
+              ]
+            },
+            {
+              "title": "कुटुम्ब-परिचय",
+              "topics": [
+                "कुटुम्ब के सम्बन्ध-सूचक शब्द और वंशवृक्ष",
+                "परिवार का परिचय वाक्यों में"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fsde111.pdf"
+        },
+        {
+          "number": 12,
+          "title": "त्वम् आपणं गच्छ",
+          "unit": "",
+          "outcomes": [
+            "बाज़ार से सामान लाने का संवाद समझना",
+            "लोट् लकार (आज्ञा/प्रार्थना) के रूप प्रयोग करना",
+            "विराम-चिह्नों का सही प्रयोग करना"
+          ],
+          "topics": [
+            "पाठ परिचय: माँ और पुत्र का संवाद – बाज़ार जाना",
+            "वस्तुओं की नामावली (शाक, फल, दैनिक वस्तुएँ)",
+            "लोट् लकार – आज्ञा और प्रार्थना का अर्थ",
+            "लोट् लकार के रूप (पठ, गच्छ, आनय आदि)",
+            "बहुवचन रूप लिखना",
+            "सूचना-वाक्य और मार्ग-सूचना फलक",
+            "विराम-चिह्न ( ? ! । , ) का प्रयोग"
+          ],
+          "lessons": [
+            {
+              "title": "आपण-संवाद",
+              "topics": [
+                "पाठ परिचय: माँ और पुत्र का संवाद – बाज़ार जाना",
+                "वस्तुओं की नामावली (शाक, फल, दैनिक वस्तुएँ)"
+              ]
+            },
+            {
+              "title": "लोट् लकार",
+              "topics": [
+                "लोट् लकार – आज्ञा और प्रार्थना का अर्थ",
+                "लोट् लकार के रूप (पठ, गच्छ, आनय आदि)",
+                "बहुवचन रूप लिखना"
+              ]
+            },
+            {
+              "title": "व्यवहार में प्रयोग",
+              "topics": [
+                "सूचना-वाक्य और मार्ग-सूचना फलक",
+                "विराम-चिह्न ( ? ! । , ) का प्रयोग"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fsde112.pdf"
+        },
+        {
+          "number": 13,
+          "title": "पृथिव्यां त्रीणि रत्नानि",
+          "unit": "",
+          "outcomes": [
+            "सुभाषितों का सस्वर पाठ और भावार्थ समझना",
+            "जल, अन्न और सुभाषित – तीन रत्नों का मूल्य जानना",
+            "सुभाषितों के क्रियापदों से वाक्य बनाना"
+          ],
+          "topics": [
+            "पाठ परिचय: सुभाषित – सुन्दर वचन",
+            "तीन रत्न: जल, अन्न, सुभाषित – भाव",
+            "विद्या, उद्यम और अभिवादन के गुण",
+            "एकपदीय और एकवाक्य प्रश्नोत्तर",
+            "चित्र देखकर वाक्य-रचना",
+            "आम्/न – सत्य-असत्य पहचान",
+            "लिङ्ग-निर्देश और पद-चयन",
+            "सुभाषित-पूर्ति और वसुधैव कुटुम्बकम् पर चर्चा"
+          ],
+          "lessons": [
+            {
+              "title": "सुभाषित",
+              "topics": [
+                "पाठ परिचय: सुभाषित – सुन्दर वचन",
+                "तीन रत्न: जल, अन्न, सुभाषित – भाव",
+                "विद्या, उद्यम और अभिवादन के गुण"
+              ]
+            },
+            {
+              "title": "प्रश्नोत्तर",
+              "topics": [
+                "एकपदीय और एकवाक्य प्रश्नोत्तर",
+                "चित्र देखकर वाक्य-रचना",
+                "आम्/न – सत्य-असत्य पहचान"
+              ]
+            },
+            {
+              "title": "शब्द और अभ्यास",
+              "topics": [
+                "लिङ्ग-निर्देश और पद-चयन",
+                "सुभाषित-पूर्ति और वसुधैव कुटुम्बकम् पर चर्चा"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fsde113.pdf"
+        },
+        {
+          "number": 14,
+          "title": "आलस्यं हि मनुष्याणां शरीरस्थः महान् रिपुः",
+          "unit": "",
+          "outcomes": [
+            "आलस्य-त्याग और परिश्रम का मूल्य समझना",
+            "द्वितीया विभक्ति के रूप और प्रयोग जानना",
+            "द्वितीया विभक्ति के साथ वाक्य बनाना"
+          ],
+          "topics": [
+            "पाठ परिचय: अवकाश-दिवस और आलस्य",
+            "आलस्य शत्रु, उद्यम मित्र – भाव",
+            "प्रश्नोत्तर और आम्/न",
+            "द्वितीया विभक्ति – कर्म का बोध",
+            "शब्दरूप: द्वितीया एकवचन, द्विवचन, बहुवचन",
+            "वचन-परिवर्तन के साथ वाक्य",
+            "चित्र देखकर द्वितीया विभक्ति से वाक्य",
+            "प्रेरक व्यक्तित्व (अरुणिमा सिन्हा) पर अन्वेषण"
+          ],
+          "lessons": [
+            {
+              "title": "कथा और भाव",
+              "topics": [
+                "पाठ परिचय: अवकाश-दिवस और आलस्य",
+                "आलस्य शत्रु, उद्यम मित्र – भाव",
+                "प्रश्नोत्तर और आम्/न"
+              ]
+            },
+            {
+              "title": "द्वितीया विभक्ति",
+              "topics": [
+                "द्वितीया विभक्ति – कर्म का बोध",
+                "शब्दरूप: द्वितीया एकवचन, द्विवचन, बहुवचन",
+                "वचन-परिवर्तन के साथ वाक्य"
+              ]
+            },
+            {
+              "title": "अभ्यास",
+              "topics": [
+                "चित्र देखकर द्वितीया विभक्ति से वाक्य",
+                "प्रेरक व्यक्तित्व (अरुणिमा सिन्हा) पर अन्वेषण"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fsde114.pdf"
+        },
+        {
+          "number": 15,
+          "title": "माधवस्य प्रियम् अङ्गम्",
+          "unit": "",
+          "outcomes": [
+            "शरीर के अङ्गों के संस्कृत नाम जानना",
+            "हर अङ्ग का कार्य संस्कृत वाक्य में बताना",
+            "शुद्ध-अशुद्ध वाक्य पहचानना"
+          ],
+          "topics": [
+            "पाठ परिचय: स्वप्न में अङ्गों का संवाद",
+            "कौन श्रेष्ठ? – सभी अङ्गों का सहयोग",
+            "शरीराङ्गों के संस्कृत नाम",
+            "अङ्ग और उनके कार्य (क्रियापद के साथ)",
+            "संख्या के साथ अङ्ग (द्वे नेत्रे, दश अङ्गुलयः)",
+            "शब्दों को वर्गों में लिखना",
+            "शुद्ध-अशुद्ध वाक्य-पहचान"
+          ],
+          "lessons": [
+            {
+              "title": "अङ्गों का संवाद",
+              "topics": [
+                "पाठ परिचय: स्वप्न में अङ्गों का संवाद",
+                "कौन श्रेष्ठ? – सभी अङ्गों का सहयोग"
+              ]
+            },
+            {
+              "title": "अङ्ग और कार्य",
+              "topics": [
+                "शरीराङ्गों के संस्कृत नाम",
+                "अङ्ग और उनके कार्य (क्रियापद के साथ)",
+                "संख्या के साथ अङ्ग (द्वे नेत्रे, दश अङ्गुलयः)"
+              ]
+            },
+            {
+              "title": "अभ्यास",
+              "topics": [
+                "शब्दों को वर्गों में लिखना",
+                "शुद्ध-अशुद्ध वाक्य-पहचान"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fsde115.pdf"
+        },
+        {
+          "number": 16,
+          "title": "वृक्षाः सत्पुरुषाः इव",
+          "unit": "",
+          "outcomes": [
+            "वृक्षों की परोपकारी प्रकृति सुभाषितों से समझना",
+            "विभक्ति पहचानना और वचन-परिवर्तन करना",
+            "लट् लकार प्रथम पुरुष के रूप लिखना"
+          ],
+          "topics": [
+            "पाठ परिचय: पर्यावरण-संरक्षण प्रदर्शनी",
+            "सुभाषित: वृक्ष सत्पुरुषों के समान",
+            "प्रश्नोत्तर – एकपद और पूर्णवाक्य",
+            "स्थूल पदों की विभक्ति पहचानना",
+            "द्विवचन और बहुवचन रूप",
+            "लट् लकार प्रथम पुरुष के रूप",
+            "कः किं ददाति – वृक्षों से मिलने वाली वस्तुएँ",
+            "पौधों का संरक्षण और परोपकार के सुभाषित-संग्रह"
+          ],
+          "lessons": [
+            {
+              "title": "वृक्ष और परोपकार",
+              "topics": [
+                "पाठ परिचय: पर्यावरण-संरक्षण प्रदर्शनी",
+                "सुभाषित: वृक्ष सत्पुरुषों के समान",
+                "प्रश्नोत्तर – एकपद और पूर्णवाक्य"
+              ]
+            },
+            {
+              "title": "व्याकरण",
+              "topics": [
+                "स्थूल पदों की विभक्ति पहचानना",
+                "द्विवचन और बहुवचन रूप",
+                "लट् लकार प्रथम पुरुष के रूप"
+              ]
+            },
+            {
+              "title": "परियोजना",
+              "topics": [
+                "कः किं ददाति – वृक्षों से मिलने वाली वस्तुएँ",
+                "पौधों का संरक्षण और परोपकार के सुभाषित-संग्रह"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/fsde116.pdf"
+        }
+      ]
+    }
+  ]
+}

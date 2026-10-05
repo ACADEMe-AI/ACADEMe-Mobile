@@ -1,0 +1,8 @@
+{
+  "issues": [
+    "card 3: The definitions of word and skeletal equations and the hydrogen–oxygen–water example closely mirror the NCERT textbook’s explanation, reproducing the same example with nearly identical wording. Rewrite using original phrasing and a different simple example, e.g.: A word equation lists reactants and products in words, while a skeletal equation uses chemical formulas and an arrow. For example, methane burns in oxygen to give carbon dioxide and water. The word form is methane + oxygen → carbon dioxide + water. The formula form is CH4 + O2 → CO2 + H2O.",
+    "card 8: The paragraph on physical-state symbols matches the NCERT wording almost exactly, using the same order and phrasing. Rewrite with original wording, e.g.: We indicate the physical state of each substance by writing a bracketed symbol after its formula. The symbols are (s) for solid, (l) for liquid, (g) for gas, and (aq) for aqueous solution."
+  ],
+  "rounds": 3,
+  "checkedAt": "2026-09-25T15:37:43.903032Z"
+}
