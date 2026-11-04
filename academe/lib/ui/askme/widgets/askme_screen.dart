@@ -5,6 +5,7 @@ import '../../../domain/models/pro.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/appear.dart';
 import '../../core/ui/screen_scale.dart';
+import '../../core/ui/tab_bar_layout.dart';
 import '../../paywall/widgets/limit_sheet.dart';
 import '../view_models/askme_view_model.dart';
 import 'askme_empty_state.dart';
@@ -220,7 +221,7 @@ class _Conversation extends StatelessWidget {
         padding,
         16,
         padding,
-        4 + MediaQuery.paddingOf(context).bottom,
+        4 + TabBarLayout.scrollBottomPadding(context),
       ),
       itemCount: count,
       findChildIndexCallback: (key) {

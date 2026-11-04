@@ -185,7 +185,7 @@ class _FlowBody extends StatelessWidget {
         onGoPro: () => Navigator.of(
           context,
           rootNavigator: true,
-        ).pushNamed(Routes.paywall),
+        ).pushNamed(Routes.proUpgrade),
       );
       return switch (failure.limitFeature) {
         final feature? => OpensLimitSheet(feature: feature, child: problem),

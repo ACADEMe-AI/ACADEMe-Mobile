@@ -13,6 +13,7 @@ void main() {
     await tester.shot('me');
     final screens = {
       'Class and board': 'Class and board',
+      'My Progress': 'My Progress is part of Pro',
       'Appearance': 'Dark mode is easier on your eyes at night.',
       'Reminders and daily goal': 'Reminders and goal',
       'Account': 'Delete my account',

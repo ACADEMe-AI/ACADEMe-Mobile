@@ -244,7 +244,7 @@ class _LimitMeter extends StatelessWidget {
                   FractionallySizedBox(
                     alignment: Alignment.centerLeft,
                     widthFactor: fill == 0 ? 0.001 : fill,
-                    child: ColoredBox(color: AppColors.primary),
+                    child: const ColoredBox(color: AppColors.primary),
                   ),
                 ],
               ),

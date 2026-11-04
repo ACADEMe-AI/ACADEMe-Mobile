@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/ask_me_icon.dart';
 import '../../core/ui/keycap.dart';
+import '../../core/ui/tab_bar_layout.dart';
 
 class AppNavBar extends StatelessWidget {
   const AppNavBar({
@@ -29,8 +30,8 @@ class AppNavBar extends StatelessWidget {
   static const morph = Duration(milliseconds: 280);
 
   static const scanIndex = 2;
-  static const barHeight = 64.0;
-  static const depth = 4.0;
+  static const barHeight = TabBarLayout.barHeight;
+  static const depth = TabBarLayout.depth;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +40,12 @@ class AppNavBar extends StatelessWidget {
       child: SafeArea(
         top: false,
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
+          padding: const EdgeInsets.fromLTRB(
+            16,
+            0,
+            16,
+            TabBarLayout.outerBottomPadding,
+          ),
           child: Row(
             children: [
               Expanded(

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/keycap.dart';
 import '../../core/ui/screen_scale.dart';
+import '../../core/ui/tab_bar_layout.dart';
 import '../view_models/me_view_model.dart';
 import 'me_stats.dart';
 import 'settings_list.dart';
@@ -18,6 +19,7 @@ class MeScreen extends StatelessWidget {
     required this.onAccount,
     required this.onHelp,
     required this.onPrivacy,
+    required this.onProgress,
     required this.onLogOut,
     this.pro,
   });
@@ -30,6 +32,7 @@ class MeScreen extends StatelessWidget {
   final VoidCallback onAccount;
   final VoidCallback onHelp;
   final VoidCallback onPrivacy;
+  final VoidCallback onProgress;
   final VoidCallback onLogOut;
   final Widget? pro;
 
@@ -45,7 +48,7 @@ class MeScreen extends StatelessWidget {
           padding,
           8,
           padding,
-          24 + MediaQuery.paddingOf(context).bottom,
+          24 + TabBarLayout.scrollBottomPadding(context),
         ),
         children: [
           _ProfileCard(viewModel: viewModel),
@@ -89,6 +92,7 @@ class MeScreen extends StatelessWidget {
           SettingsGroup(
             title: 'Account',
             children: [
+              SettingsRow(label: 'My Progress', onTap: onProgress),
               SettingsRow(label: 'Account', onTap: onAccount),
               SettingsRow(label: 'Help and feedback', onTap: onHelp),
               SettingsRow(label: 'Privacy and terms', onTap: onPrivacy),

@@ -203,58 +203,65 @@ class _AppShellState extends State<AppShell>
           backgroundColor: context.palette.surface,
           body: SafeArea(
             bottom: false,
-            child: IndexedStack(
-              index: _tab,
-              children: [
-                HomeScreen(
-                  viewModel: _viewModel,
-                  opensSetup: widget.opensSetup,
-                  onAsk: _openAskMe,
-                  today: widget.today,
-                  onOpenTask: studyActions.openTask,
-                  onFlashcards: () => openReview(null),
-                  onSolve: () => startScan(ScanMode.solve),
-                  onCheck: () => startScan(ScanMode.check),
-                  study: widget.study,
-                  onOpenSubject: _openSubject,
+            child: Align(
+              alignment: Alignment.topCenter,
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 600),
+                child: IndexedStack(
+                  index: _tab,
+                  children: [
+                    HomeScreen(
+                      viewModel: _viewModel,
+                      opensSetup: widget.opensSetup,
+                      onAsk: _openAskMe,
+                      today: widget.today,
+                      onOpenTask: studyActions.openTask,
+                      onFlashcards: () => openReview(null),
+                      onSolve: () => startScan(ScanMode.solve),
+                      onCheck: () => startScan(ScanMode.check),
+                      study: widget.study,
+                      onOpenSubject: _openSubject,
+                    ),
+                    ListenableBuilder(
+                      listenable: _viewModel,
+                      builder: (context, _) => AskMeScreen(
+                        viewModel: _askMe,
+                        name: _viewModel.account?.firstName ?? 'there',
+                        syllabus: _viewModel.syllabusLabel,
+                        onBack: () => _select(_returnTab),
+                        onHistory: _history,
+                      ),
+                    ),
+                    ScanScreen(
+                      viewModel: widget.scan,
+                      onStart: startScan,
+                      onOpen: openScan,
+                    ),
+                    StudyScreen(
+                      viewModel: widget.study,
+                      folders: widget.folders,
+                      actions: studyActions,
+                      onNewFolder: newFolder,
+                    ),
+                    MeScreen(
+                      viewModel: _me,
+                      onClassAndBoard: openClassAndBoard,
+                      onLanguage: openLanguage,
+                      onAppearance: openAppearance,
+                      onNotifications: openNotifications,
+                      onAccount: openAccount,
+                      onHelp: () => pushMe<void>(const HelpScreen()),
+                      onPrivacy: () => pushMe<void>(const PrivacyScreen()),
+                      onProgress: openProgress,
+                      onLogOut: confirmLogOut,
+                      pro: switch (widget.pro) {
+                        final pro? => ProCard(viewModel: pro),
+                        null => null,
+                      },
+                    ),
+                  ],
                 ),
-                ListenableBuilder(
-                  listenable: _viewModel,
-                  builder: (context, _) => AskMeScreen(
-                    viewModel: _askMe,
-                    name: _viewModel.account?.firstName ?? 'there',
-                    syllabus: _viewModel.syllabusLabel,
-                    onBack: () => _select(_returnTab),
-                    onHistory: _history,
-                  ),
-                ),
-                ScanScreen(
-                  viewModel: widget.scan,
-                  onStart: startScan,
-                  onOpen: openScan,
-                ),
-                StudyScreen(
-                  viewModel: widget.study,
-                  folders: widget.folders,
-                  actions: studyActions,
-                  onNewFolder: newFolder,
-                ),
-                MeScreen(
-                  viewModel: _me,
-                  onClassAndBoard: openClassAndBoard,
-                  onLanguage: openLanguage,
-                  onAppearance: openAppearance,
-                  onNotifications: openNotifications,
-                  onAccount: openAccount,
-                  onHelp: () => pushMe<void>(const HelpScreen()),
-                  onPrivacy: () => pushMe<void>(const PrivacyScreen()),
-                  onLogOut: confirmLogOut,
-                  pro: switch (widget.pro) {
-                    final pro? => ProCard(viewModel: pro),
-                    null => null,
-                  },
-                ),
-              ],
+              ),
             ),
           ),
           bottomNavigationBar: ListenableBuilder(

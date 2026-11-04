@@ -6,6 +6,7 @@ import '../../../utils/plural.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/keycap.dart';
 import '../../core/ui/screen_scale.dart';
+import '../../core/ui/tab_bar_layout.dart';
 import '../../study/widgets/page_scaffold.dart';
 import '../view_models/scan_view_model.dart';
 import 'scan_parts.dart';
@@ -42,7 +43,7 @@ class _ScanScreenState extends State<ScanScreen> {
         padding,
         16,
         padding,
-        96 + MediaQuery.paddingOf(context).bottom,
+        TabBarLayout.scrollBottomPadding(context) + 16,
       ),
       children: [
         Text(

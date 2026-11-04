@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../domain/models/folder.dart';
 import '../../core/ui/screen_scale.dart';
+import '../../core/ui/tab_bar_layout.dart';
 import '../../study/view_models/study_view_model.dart';
 import '../../subjects/widgets/subjects_sheet.dart';
 import '../view_models/home_view_model.dart';
@@ -150,7 +151,7 @@ class _HomeScreenState extends State<HomeScreen>
                 scale.pagePadding,
                 8,
                 scale.pagePadding,
-                24 + MediaQuery.paddingOf(context).bottom,
+                24 + TabBarLayout.scrollBottomPadding(context),
               ),
               children: [
                 HomeGreeting(

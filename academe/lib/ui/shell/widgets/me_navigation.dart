@@ -12,6 +12,8 @@ import '../../me/widgets/delete_account_screen.dart';
 import '../../me/widgets/language_sheet.dart';
 import '../../me/widgets/language_switch_screen.dart';
 import '../../me/widgets/notifications_screen.dart';
+import '../../paywall/widgets/upgrade_sheet.dart';
+import '../../progress/widgets/progress_screen.dart';
 import 'app_shell.dart';
 
 mixin MeNavigation on State<AppShell> {
@@ -81,6 +83,21 @@ mixin MeNavigation on State<AppShell> {
       ),
     ),
   );
+
+  void openProgress() {
+    final pro = widget.pro;
+    if (pro == null) return;
+    pushMe<void>(
+      ProgressScreen(
+        me: widget.me,
+        onGoPro: () async {
+          final bought = await UpgradeSheet.show(context, pro);
+          if (!mounted) return;
+          if (bought == true) await pro.load.execute();
+        },
+      ),
+    );
+  }
 
   Future<void> confirmLogOut() async {
     final confirmed = await showModalBottomSheet<bool>(

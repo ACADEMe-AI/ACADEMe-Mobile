@@ -27,8 +27,11 @@ func TrustClientIP(header string, next http.Handler) http.Handler {
 		return next
 	}
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		if ip, err := netip.ParseAddr(strings.TrimSpace(r.Header.Get(header))); err == nil {
-			r.RemoteAddr = netip.AddrPortFrom(ip, 0).String()
+		for part := range strings.SplitSeq(r.Header.Get(header), ",") {
+			if ip, err := netip.ParseAddr(strings.TrimSpace(part)); err == nil {
+				r.RemoteAddr = netip.AddrPortFrom(ip, 0).String()
+				break
+			}
 		}
 		next.ServeHTTP(w, r)
 	})

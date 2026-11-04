@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../domain/models/deck.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/screen_scale.dart';
+import '../../core/ui/tab_bar_layout.dart';
 import '../study_actions.dart';
 import '../view_models/study_view_model.dart';
 import 'active_filter_chips.dart';
@@ -35,7 +36,7 @@ class CoursesView extends StatelessWidget {
             padding,
             0,
             padding,
-            24 + MediaQuery.paddingOf(context).bottom,
+            24 + TabBarLayout.scrollBottomPadding(context),
           ),
           children: [_CoursesBody(viewModel: viewModel, actions: actions)],
         ),

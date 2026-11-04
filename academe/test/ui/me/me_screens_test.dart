@@ -78,6 +78,7 @@ void main() {
         onAccount: () {},
         onHelp: () {},
         onPrivacy: () {},
+        onProgress: () {},
         onLogOut: () => loggedOut++,
       ),
     );

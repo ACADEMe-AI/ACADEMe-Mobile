@@ -23,11 +23,7 @@ class FaceCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(AppRadius.lg),
         border: Border.all(color: context.palette.border, width: 2),
         boxShadow: const [
-          BoxShadow(
-            color: AppColors.keycapEdge,
-            offset: Offset(3, 3),
-            blurRadius: 0,
-          ),
+          BoxShadow(color: AppColors.keycapEdge, offset: Offset(3, 3)),
         ],
       ),
       child: Padding(padding: padding, child: child),

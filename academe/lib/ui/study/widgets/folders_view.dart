@@ -5,6 +5,7 @@ import '../../../utils/dates.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/app_button.dart';
 import '../../core/ui/screen_scale.dart';
+import '../../core/ui/tab_bar_layout.dart';
 import '../view_models/folders_view_model.dart';
 import 'study_note.dart';
 
@@ -33,7 +34,7 @@ class FoldersView extends StatelessWidget {
             padding,
             0,
             padding,
-            24 + MediaQuery.paddingOf(context).bottom,
+            24 + TabBarLayout.scrollBottomPadding(context),
           ),
           children: [
             if (viewModel.folders.isEmpty && viewModel.load.isRunning)
