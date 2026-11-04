@@ -420,7 +420,7 @@ Full order in `docs/play/release-checklist.md`.
 - [x] Data safety, content rating, target audience, listing, subscription and AI answers written (`docs/play/`)
 - [x] In-app and Play policy URLs / support email naming confirmed (`docs/play/legal-entity.md`, `lib/config/links.dart`)
 - [ ] [[FILL]] placeholders filled; lawyer review (`./tool/check_legal_placeholders.sh`)
-- [ ] Redeploy the server so api.academe.cc serves this build (migrations through **0026**; Cloud Run revision deployed 2026-11-05)
+- [x] Redeploy the server so api.academe.cc serves this build (migrations through **0026**; Cloud Run `academe-api-00005-flb`, 2026-11-05)
 - [ ] Upload key copied in (`android/key.properties` + keystore, never committed), SHA-256 `66:40:CE:…:57:CD` matches Play's upload key
 - [ ] `ACADEME_ANDROID_CERT_SHA256` set (upload + app signing) so reset links open the app
 - [x] Release AAB script with `GOOGLE_SERVER_CLIENT_ID` + `REVENUECAT_GOOGLE_API_KEY` (`tool/build_release_aab.sh`, `docs/play/release-checklist.md` step 11)
