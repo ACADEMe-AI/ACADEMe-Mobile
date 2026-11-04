@@ -1,0 +1,8 @@
+{{define "content"}}{{template "heading" .Heading}}
+{{template "text" "A signed-in student sent this from Help and feedback in the app."}}
+<p class="muted" style="margin:0 0 8px;font-size:15px;line-height:22px;color:#5C6578;"><strong class="ink" style="color:#12141A;">Ticket</strong> {{.TicketID}}</p>
+<p class="muted" style="margin:0 0 8px;font-size:15px;line-height:22px;color:#5C6578;"><strong class="ink" style="color:#12141A;">From</strong> {{.StudentEmail}}</p>
+<p class="muted" style="margin:0 0 16px;font-size:15px;line-height:22px;color:#5C6578;"><strong class="ink" style="color:#12141A;">Category</strong> {{.CategoryLabel}}</p>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 24px;"><tr><td class="digit" style="background-color:#F2F3F8;border:2px solid #12141A;border-bottom-width:4px;border-radius:16px;padding:16px 18px;font-family:'Noto Sans',Arial,Helvetica,sans-serif;font-size:15px;line-height:24px;color:#12141A;white-space:pre-wrap;">{{.MessageHTML}}</td></tr></table>
+{{template "button" .Button}}
+{{end}}

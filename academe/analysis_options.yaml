@@ -1,0 +1,47 @@
+# Rules in AGENTS.md; this file enforces the parts a linter can check.
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  exclude:
+    - design/**
+    - docs/**
+  language:
+    strict-casts: true
+    strict-inference: true
+    strict-raw-types: true
+  errors:
+    missing_required_param: error
+    missing_return: error
+
+linter:
+  rules:
+    - prefer_const_constructors
+    - prefer_const_constructors_in_immutables
+    - prefer_const_declarations
+    - prefer_const_literals_to_create_immutables
+    - prefer_final_fields
+    - prefer_final_locals
+    - prefer_final_in_for_each
+    - directives_ordering
+    - prefer_relative_imports
+    - sort_constructors_first
+    - sort_child_properties_last
+    - avoid_multiple_declarations_per_line
+    - no_leading_underscores_for_local_identifiers
+    - prefer_single_quotes
+    - eol_at_end_of_file
+    - use_colored_box
+    - use_decorated_box
+    - sized_box_shrink_expand
+    - avoid_unnecessary_containers
+    - use_super_parameters
+    - always_declare_return_types
+    - unawaited_futures
+    - cancel_subscriptions
+    - close_sinks
+    - use_build_context_synchronously
+    - avoid_redundant_argument_values
+    - unnecessary_lambdas
+    - unnecessary_await_in_return
+    - prefer_int_literals
+    - comment_references

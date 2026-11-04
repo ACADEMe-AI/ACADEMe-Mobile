@@ -1,0 +1,118 @@
+{
+  "id": "cbse-10-science-1-1",
+  "board": "CBSE",
+  "class": 10,
+  "subject": "science",
+  "chapterNumber": 1,
+  "chapterTitle": "Chemical Reactions and Equations",
+  "position": 1,
+  "title": "Chemical equations",
+  "language": "en",
+  "cards": [
+    {
+      "kind": "start",
+      "goals": [
+        "Observe a chemical change and write a word equation",
+        "Write a skeletal chemical equation from a word equation",
+        "Balance a chemical equation",
+        "Write the physical states of reactants and products"
+      ],
+      "minutes": 7
+    },
+    {
+      "kind": "concept",
+      "title": "Observing chemical change",
+      "body": "A chemical change happens when substances react to form new substances. You can see this when a precipitate forms or gas bubbles appear. For example, mixing baking soda and vinegar produces bubbles of carbon dioxide gas."
+    },
+    {
+      "kind": "concept",
+      "title": "Word and skeletal equations",
+      "body": "A word equation uses words to describe a reaction. A skeletal equation uses chemical formulas and an arrow to show the direction. For example, hydrogen gas reacts with oxygen gas to form water. The word equation is hydrogen + oxygen → water. The skeletal equation is H₂ + O₂ → H₂O."
+    },
+    {
+      "kind": "table",
+      "title": "Balancing chemical equations",
+      "remember": "Never change the subscripts inside a chemical formula like H₂O to balance an equation.",
+      "rows": [
+        {
+          "term": "Law of conservation of mass",
+          "value": "Mass is neither created nor destroyed in a chemical reaction"
+        },
+        {
+          "term": "Balancing rule",
+          "value": "The number of atoms of each element must be equal on both sides of the equation"
+        },
+        {
+          "term": "Method",
+          "value": "Add coefficients in front of the chemical formulas to balance the atoms"
+        }
+      ]
+    },
+    {
+      "kind": "quiz",
+      "question": "Which of the following is the correct skeletal equation for the reaction of zinc with hydrochloric acid to form zinc chloride and hydrogen gas?",
+      "options": [
+        "Zn + HCl → ZnCl + H₂",
+        "Zn + 2HCl → ZnCl₂ + H₂",
+        "Zn + HCl → ZnCl₂ + H₂",
+        "Zn + 2HCl → ZnCl + H₂"
+      ],
+      "answer": 2,
+      "why": "A skeletal equation must have the correct chemical formulas but no coefficients. The correct formula for zinc chloride is ZnCl₂ and for hydrogen gas is H₂. Therefore the skeletal equation is Zn + HCl → ZnCl₂ + H₂."
+    },
+    {
+      "kind": "example",
+      "steps": [
+        "The skeletal equation is Mg + O₂ → MgO",
+        "There are 2 oxygen atoms on the left side, so put a coefficient 2 in front of MgO to get 2 oxygen atoms on the right",
+        "Now there are 2 magnesium atoms on the right, so put a coefficient 2 in front of Mg on the left",
+        "The balanced equation is 2Mg + O₂ → 2MgO"
+      ],
+      "question": "Balance the skeletal equation for the reaction of magnesium with oxygen to form magnesium oxide."
+    },
+    {
+      "kind": "quiz",
+      "question": "In the thermal decomposition of calcium carbonate to form calcium oxide and carbon dioxide gas, what are the correct states for the reactants and products?",
+      "options": [
+        "CaCO₃(s) + CaO(g) → CaO(s) + CO₂(g)",
+        "CaCO₃(l) + CaO(g) → CaO(s) + CO₂(l)",
+        "CaCO₃(s) → CaO(s) + CO₂(g)",
+        "CaCO₃(s) + CaO(g) → CaO(g) + CO₂(g)"
+      ],
+      "answer": 2,
+      "why": "Calcium carbonate is a solid, calcium oxide is a solid, and carbon dioxide is a gas. The balanced chemical equation is CaCO₃(s) → CaO(s) + CO₂(g)."
+    },
+    {
+      "kind": "concept",
+      "title": "States of reactants and products",
+      "body": "Chemical equations can show the physical state of each substance. We use symbols to save space. The symbols are (s) for solid, (l) for liquid, (g) for gas, and (aq) for aqueous solution."
+    },
+    {
+      "kind": "quiz",
+      "question": "In the reaction of solid sodium hydroxide with aqueous hydrochloric acid to form aqueous sodium chloride and liquid water, which option correctly shows the states?",
+      "options": [
+        "NaOH(s) + HCl(aq) → NaCl(s) + H₂O(l)",
+        "NaOH(aq) + HCl(aq) → NaCl(s) + H₂O(l)",
+        "NaOH(s) + HCl(aq) → NaCl(aq) + H₂O(l)",
+        "NaOH(l) + HCl(aq) → NaCl(aq) + H₂O(g)"
+      ],
+      "answer": 2,
+      "why": "Sodium hydroxide is a solid, so it is NaOH(s). Hydrochloric acid is aqueous, so it is HCl(aq). The products are aqueous sodium chloride and liquid water. The correct states are NaOH(s) + HCl(aq) → NaCl(aq) + H₂O(l)."
+    },
+    {
+      "kind": "summary",
+      "points": [
+        "A chemical change produces new substances with different properties",
+        "Word equations use words and skeletal equations use chemical formulas",
+        "Chemical equations must be balanced to follow the law of conservation of mass",
+        "States of matter are shown using (s), (l), (g), and (aq)"
+      ]
+    }
+  ],
+  "status": "draft",
+  "generatedBy": {
+    "model": "sarvam-105b",
+    "promptVersion": "lessons-v2",
+    "checkedAt": "2026-09-25T15:37:43Z"
+  }
+}

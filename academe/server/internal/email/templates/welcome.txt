@@ -1,0 +1,7 @@
+{{define "content"}}{{.Heading}}
+
+I'm Pebby, and I'll be studying with you. Your lessons follow your class and board, in the language you choose.
+
+Swipe through a short lesson, ask me anything you're stuck on, or scan a page from your notebook. A few minutes a day adds up.
+
+Open ACADEMe: {{.Button.URL}}{{end}}
