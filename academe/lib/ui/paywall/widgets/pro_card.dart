@@ -14,7 +14,7 @@ class ProCard extends StatelessWidget {
   static const height = 72.0;
 
   String _subtitle(ProViewModel viewModel) {
-    if (!viewModel.isPro) return 'Free plan · go unlimited with Pro';
+    if (!viewModel.isPro) return 'Plan & limits · 3× with Pro';
     return switch (viewModel.plan.period) {
       ProPeriod.monthly => 'Pro · monthly',
       ProPeriod.annual => 'Pro · annual',
@@ -36,7 +36,7 @@ class ProCard extends StatelessWidget {
           onTap: () => Navigator.of(
             context,
             rootNavigator: true,
-          ).pushNamed(isPro ? Routes.proManage : Routes.paywall),
+          ).pushNamed(Routes.proManage),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Row(

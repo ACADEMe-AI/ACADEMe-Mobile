@@ -22,5 +22,8 @@ ProPlan proPlanFromJson(Map<String, Object?> json) {
         ?ProFeature.fromCode(key): value as int? ?? 0,
     },
     resetsAt: DateTime.tryParse(json['resetsAt'] as String? ?? ''),
+    usedWeek: (json['usedWeek'] as num?)?.toInt() ?? 0,
+    weekLimit: (json['weekLimit'] as num?)?.toInt() ?? 0,
+    weekResetsAt: DateTime.tryParse(json['weekResetsAt'] as String? ?? ''),
   );
 }

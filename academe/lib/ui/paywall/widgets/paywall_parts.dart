@@ -10,9 +10,9 @@ class ProBenefits extends StatelessWidget {
   const ProBenefits({super.key});
 
   static const items = [
-    (Icons.all_inclusive_rounded, 'Unlimited ASKMe questions'),
-    (Icons.document_scanner_rounded, 'Unlimited scans'),
-    (Icons.fact_check_rounded, 'Check every answer you write'),
+    (Icons.chat_bubble_rounded, '3× ASKMe questions every day'),
+    (Icons.document_scanner_rounded, '3× scans every day'),
+    (Icons.fact_check_rounded, '3× answer checks every day'),
     (Icons.auto_stories_rounded, 'Swipe lessons made from your notes'),
     (Icons.event_note_rounded, 'Mock exams and a weekly parent report, soon'),
   ];

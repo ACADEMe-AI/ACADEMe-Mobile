@@ -80,6 +80,21 @@ func (f *fakeStore) Usage(_ context.Context, accountID string, day time.Time) (m
 	return out, nil
 }
 
+func (f *fakeStore) WeekUsage(_ context.Context, accountID string, start, end time.Time) (int, error) {
+	f.mu.Lock()
+	defer f.mu.Unlock()
+	total := 0
+	for k, n := range f.usage {
+		if k.account != accountID {
+			continue
+		}
+		if !k.day.Before(start) && k.day.Before(end) {
+			total += n
+		}
+	}
+	return total, nil
+}
+
 func (f *fakeStore) Take(_ context.Context, accountID string, day time.Time, feature Feature, limit int) (bool, error) {
 	f.mu.Lock()
 	defer f.mu.Unlock()
@@ -101,6 +116,8 @@ func (f *fakeStore) Refund(_ context.Context, accountID string, day time.Time, f
 }
 
 var testLimits = map[string]int{"askme": 2, "scan": 3, "check": 1, "lessons": 0}
+
+func intPtr(n int) *int { return &n }
 
 func TestLimiterRollsOverAtMidnightInIndia(t *testing.T) {
 	synctest.Test(t, func(t *testing.T) {
@@ -160,16 +177,11 @@ func TestLimiterRefundProOnlyAndPro(t *testing.T) {
 		if _, err := store.Apply(ctx, "", []Change{{AccountID: "riya", Entitlement: &Entitlement{State: "active", ExpiresAt: &expires}}}); err != nil {
 			t.Fatal(err)
 		}
-		for range 5 {
-			if err := s.Take(ctx, "riya", Check); err != nil {
-				t.Fatalf("Take(check) on pro = %v, want nil", err)
-			}
-		}
 		if err := s.Take(ctx, "riya", Lessons); err != nil {
 			t.Errorf("Take(lessons) on pro = %v, want nil", err)
 		}
 		p, _ := s.Plan(ctx, "riya")
-		if diff := cmp.Diff(map[Feature]*int{AskMe: nil, Scan: nil, Check: nil, Lessons: nil}, p.Limits); p.Plan != "pro" || diff != "" {
+		if diff := cmp.Diff(map[Feature]*int{AskMe: intPtr(6), Scan: intPtr(9), Check: intPtr(3)}, p.Limits); p.Plan != "pro" || diff != "" {
 			t.Errorf("Plan() = %s, limits diff (-want +got):\n%s", p.Plan, diff)
 		}
 		time.Sleep(2 * time.Hour)

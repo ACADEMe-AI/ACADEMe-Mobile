@@ -34,6 +34,7 @@ import '../ui/paywall/view_models/pro_view_model.dart';
 import '../ui/paywall/widgets/limit_sheet.dart';
 import '../ui/paywall/widgets/paywall_screen.dart';
 import '../ui/paywall/widgets/pro_manage_screen.dart';
+import '../ui/paywall/widgets/upgrade_sheet.dart';
 import '../ui/scan/scan_factory.dart';
 import '../ui/scan/view_models/scan_view_model.dart';
 import '../ui/shell/widgets/app_shell.dart';
@@ -260,6 +261,22 @@ Route<Object?> _route(
           billingRepository: dependencies.billingRepository,
         ),
         feature: settings.arguments as ProFeature? ?? ProFeature.askme,
+      ),
+    ),
+    Routes.proUpgrade => ModalBottomSheetRoute<bool>(
+      settings: settings,
+      isScrollControlled: true,
+      showDragHandle: true,
+      useSafeArea: true,
+      barrierLabel: 'Close',
+      modalBarrierColor: AppColors.keycapEdge.withValues(alpha: .35),
+      backgroundColor: dependencies.appearance.isDark
+          ? AppPalette.dark.surface
+          : AppPalette.light.surface,
+      builder: (context) => UpgradeSheet(
+        viewModel: ProViewModel(
+          billingRepository: dependencies.billingRepository,
+        ),
       ),
     ),
     Routes.home => PageRouteBuilder<void>(

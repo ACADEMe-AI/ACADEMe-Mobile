@@ -10,4 +10,5 @@ abstract final class Routes {
   static const paywall = '/pro';
   static const proManage = '/pro/manage';
   static const proLimit = '/pro/limit';
+  static const proUpgrade = '/pro/upgrade';
 }

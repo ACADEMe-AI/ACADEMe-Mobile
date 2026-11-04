@@ -13,6 +13,7 @@ import 'package:academe/ui/paywall/widgets/limit_sheet.dart';
 import 'package:academe/ui/paywall/widgets/paywall_screen.dart';
 import 'package:academe/ui/paywall/widgets/pro_card.dart';
 import 'package:academe/ui/paywall/widgets/pro_manage_screen.dart';
+import 'package:academe/ui/paywall/widgets/upgrade_sheet.dart';
 import 'package:academe/ui/scan/widgets/scan_parts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -35,6 +36,11 @@ void main() {
         Routes.proManage => MaterialPageRoute<void>(
           settings: settings,
           builder: (_) => ProManageScreen(viewModel: viewModel()),
+        ),
+        Routes.proUpgrade => ModalBottomSheetRoute<bool>(
+          settings: settings,
+          isScrollControlled: true,
+          builder: (_) => UpgradeSheet(viewModel: viewModel()),
         ),
         Routes.proLimit => ModalBottomSheetRoute<void>(
           settings: settings,
@@ -81,7 +87,7 @@ void main() {
     await openPaywall(tester);
 
     expect(find.text('ACADEMe Pro'), findsOneWidget);
-    expect(find.text('Unlimited ASKMe questions'), findsOneWidget);
+    expect(find.text('3× ASKMe questions every day'), findsOneWidget);
     expect(
       find.text('₹100 for the first month, then ₹200/month'),
       findsOneWidget,
@@ -176,7 +182,9 @@ void main() {
     );
   });
 
-  testWidgets('the Pro card opens the paywall, then Manage', (tester) async {
+  testWidgets('the Pro card opens Plan & limits, then Go Pro sheet', (
+    tester,
+  ) async {
     final card = viewModel();
     addTearDown(card.dispose);
     await pump(tester, ProCard(viewModel: card));
@@ -184,18 +192,14 @@ void main() {
     expect(find.text('Go Pro'), findsOneWidget);
     await tester.tap(find.byType(ProCard));
     await tester.pumpAndSettle();
-    expect(find.byType(PaywallScreen), findsOneWidget);
+    expect(find.text('Plan & limits'), findsOneWidget);
+
+    await tester.tap(find.text('Go Pro · 3× limits'));
+    await tester.pumpAndSettle();
+    expect(find.text('Continue'), findsOneWidget);
 
     await tester.tap(find.text('Continue'));
     await tester.pumpAndSettle();
-    expect(find.text('Manage'), findsOneWidget);
-    expect(find.text('Pro · annual'), findsNothing);
-
-    await tester.tap(find.byType(ProCard));
-    await tester.pumpAndSettle();
-    expect(find.text('You’re on Pro'), findsOneWidget);
-    expect(find.text('Monthly plan'), findsOneWidget);
-    expect(find.textContaining('Renews on'), findsOneWidget);
     expect(find.text('Manage in Google Play'), findsOneWidget);
   });
 
@@ -209,12 +213,12 @@ void main() {
 
     expect(find.text('That’s today’s free questions'), findsOneWidget);
     expect(find.textContaining('10 ASKMe questions a day'), findsOneWidget);
-    expect(find.textContaining('midnight'), findsOneWidget);
+    expect(find.textContaining('3×'), findsOneWidget);
 
     await tester.tap(find.text('Go Pro'));
     await tester.pumpAndSettle();
     expect(find.byType(LimitSheet), findsNothing);
-    expect(find.byType(PaywallScreen), findsOneWidget);
+    expect(find.byType(UpgradeSheet), findsOneWidget);
   });
 
   testWidgets('lessons from notes say they are Pro', (tester) async {

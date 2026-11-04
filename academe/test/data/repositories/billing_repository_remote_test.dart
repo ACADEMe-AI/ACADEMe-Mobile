@@ -36,10 +36,13 @@ Map<String, Object?> _plan({required bool isPro}) => {
   'platform': isPro ? 'play_store' : null,
   'state': isPro ? 'active' : null,
   'limits': isPro
-      ? {'askme': null, 'scan': null, 'check': null, 'lessons': null}
+      ? {'askme': 30, 'scan': 9, 'check': 3}
       : {'askme': 10, 'scan': 3, 'check': 1, 'lessons': 0},
   'usedToday': {'askme': 4, 'scan': 0, 'check': 1, 'lessons': 0},
   'resetsAt': '2026-09-25T18:30:00Z',
+  'usedWeek': 0,
+  'weekLimit': isPro ? 294 : 98,
+  'weekResetsAt': '2026-09-29T18:30:00Z',
 };
 
 http.Response _limit(String code, String feature) => http.Response(
@@ -122,10 +125,10 @@ void main() {
     repository.addListener(() => notified++);
     final result = await repository.purchase(ProPeriod.annual);
     expect((result as Ok<PurchaseOutcome>).value, PurchaseOutcome.purchased);
-    expect(requests, ['POST /billing/sync']);
+    expect(requests, ['GET /me/plan', 'POST /billing/sync']);
     expect(repository.isPro, isTrue);
     expect(repository.plan.period, ProPeriod.annual);
-    expect(repository.plan.limitOf(ProFeature.askme), isNull);
+    expect(repository.plan.limitOf(ProFeature.askme), 30);
     expect(repository.manageUrl, contains('play.google.com'));
     expect(notified, greaterThan(0));
   });

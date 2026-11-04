@@ -93,6 +93,14 @@ func (s *PostgresStore) Usage(ctx context.Context, accountID string, day time.Ti
 	return out, rows.Err()
 }
 
+func (s *PostgresStore) WeekUsage(ctx context.Context, accountID string, start, end time.Time) (int, error) {
+	var total int
+	err := s.pool.QueryRow(ctx, `
+		SELECT COALESCE(SUM(count), 0) FROM usage_counts
+		WHERE account_id = $1 AND day >= $2 AND day < $3`, accountID, start, end).Scan(&total)
+	return total, err
+}
+
 func (s *PostgresStore) Take(ctx context.Context, accountID string, day time.Time, f Feature, limit int) (bool, error) {
 	var n int
 	err := s.pool.QueryRow(ctx, `

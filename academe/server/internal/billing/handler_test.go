@@ -126,8 +126,9 @@ func TestSync(t *testing.T) {
 	ts.revenueCat.set(riya, subscriberJSON(time.Now().Add(30*24*time.Hour), false), 0)
 	status, body := ts.do(t, http.MethodPost, "/billing/sync", as(riya), "")
 	limits, _ := body["limits"].(map[string]any)
+	askme, _ := limits["askme"].(float64)
 	if status != http.StatusOK || body["plan"] != "pro" || body["productId"] != "academe_pro" || body["basePlanId"] != "monthly" ||
-		body["platform"] != "play_store" || body["autoRenew"] != true || limits["askme"] != nil {
+		body["platform"] != "play_store" || body["autoRenew"] != true || askme != 6 {
 		t.Fatalf("sync = %d %v, want pro on the monthly plan", status, body)
 	}
 	ts.revenueCat.set(riya, subscriberJSON(time.Now().Add(time.Hour), true), 0)

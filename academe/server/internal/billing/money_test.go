@@ -179,8 +179,8 @@ func TestDeleteSubscriber(t *testing.T) {
 }
 
 func TestLimitMessageNamesTheFeature(t *testing.T) {
-	err, ok := errors.AsType[*httpx.Error](HTTPError(&LimitError{Feature: AskMe, Limit: 10}))
-	if !ok || err.Message != "You've used today's free ASKMe messages." || err.Status != http.StatusPaymentRequired {
+	err, ok := errors.AsType[*httpx.Error](HTTPError(&LimitError{Feature: AskMe, Limit: 10, Scope: "day"}))
+	if !ok || err.Message != "You've used today's ASKMe messages." || err.Status != http.StatusPaymentRequired {
 		t.Errorf("HTTPError(askme limit) = %+v, want 402 naming ASKMe messages", err)
 	}
 }

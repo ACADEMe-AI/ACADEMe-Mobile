@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import '../../domain/models/pro.dart';
 import '../../utils/result.dart';
 import '../model/api_models.dart';
@@ -39,7 +41,11 @@ class BillingRepositoryRemote extends BillingRepository {
       _customer.managementUrl ?? BillingRepository.playSubscriptionsUrl;
 
   void _setCustomer(StoreCustomer customer) {
+    final wasPro = _plan.isPro || _customer.isPro;
     _customer = customer;
+    if (!wasPro && customer.isPro) {
+      unawaited(refresh());
+    }
     notifyListeners();
   }
 

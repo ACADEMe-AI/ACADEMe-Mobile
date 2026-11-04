@@ -121,9 +121,23 @@ func HTTPError(err error) error {
 	if !ok {
 		return err
 	}
-	details := map[string]any{"feature": le.Feature, "limit": le.Limit, "resetsAt": le.ResetsAt}
+	details := map[string]any{
+		"feature": le.Feature, "limit": le.Limit, "resetsAt": le.ResetsAt, "scope": le.Scope,
+	}
 	if le.Limit == 0 {
 		return &httpx.Error{Status: http.StatusPaymentRequired, Code: "pro_only", Message: "This is part of ACADEMe Pro.", Details: details}
 	}
-	return &httpx.Error{Status: http.StatusPaymentRequired, Code: "limit_reached", Message: "You've used today's free " + cmp.Or(featureNames[le.Feature], string(le.Feature)) + ".", Details: details}
+	name := cmp.Or(featureNames[le.Feature], string(le.Feature))
+	if le.Scope == "week" {
+		return &httpx.Error{
+			Status: http.StatusPaymentRequired, Code: "limit_reached",
+			Message: "You've hit this week's combined limit for " + name + ".",
+			Details: details,
+		}
+	}
+	return &httpx.Error{
+		Status: http.StatusPaymentRequired, Code: "limit_reached",
+		Message: "You've used today's " + name + ".",
+		Details: details,
+	}
 }

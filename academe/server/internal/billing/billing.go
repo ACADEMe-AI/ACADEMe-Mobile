@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"sync"
 	"time"
 )
 
@@ -32,6 +33,7 @@ type LimitError struct {
 	Feature  Feature
 	Limit    int
 	ResetsAt time.Time
+	Scope    string
 }
 
 func (e *LimitError) Error() string {
@@ -71,15 +73,19 @@ type Plan struct {
 	BasePlanID *string          `json:"basePlanId"`
 	Platform   *string          `json:"platform"`
 	State      *string          `json:"state"`
-	Limits     map[Feature]*int `json:"limits"`
-	UsedToday  map[Feature]int  `json:"usedToday"`
-	ResetsAt   time.Time        `json:"resetsAt"`
+	Limits        map[Feature]*int `json:"limits"`
+	UsedToday     map[Feature]int  `json:"usedToday"`
+	ResetsAt      time.Time        `json:"resetsAt"`
+	UsedWeek      int              `json:"usedWeek"`
+	WeekLimit     int              `json:"weekLimit"`
+	WeekResetsAt  time.Time        `json:"weekResetsAt"`
 }
 
 type Store interface {
 	Entitlement(ctx context.Context, accountID string) (*Entitlement, error)
 	Apply(ctx context.Context, eventID string, changes []Change) (bool, error)
 	Usage(ctx context.Context, accountID string, day time.Time) (map[Feature]int, error)
+	WeekUsage(ctx context.Context, accountID string, start, end time.Time) (int, error)
 	Take(ctx context.Context, accountID string, day time.Time, f Feature, limit int) (bool, error)
 	Refund(ctx context.Context, accountID string, day time.Time, f Feature) error
 }
@@ -90,6 +96,7 @@ type Service struct {
 	revenueCat  *RevenueCat
 	testers     map[string]bool
 	entitlement string
+	locks       sync.Map
 }
 
 func (s *Service) SetEntitlement(id string) {
@@ -120,6 +127,54 @@ func today(now time.Time) (day, next time.Time) {
 	return day, next
 }
 
+func weekWindow(now time.Time) (start, next time.Time) {
+	t := now.In(india)
+	offset := (int(t.Weekday()) + 6) % 7
+	monday := time.Date(t.Year(), t.Month(), t.Day()-offset, 0, 0, 0, 0, india)
+	start = time.Date(monday.Year(), monday.Month(), monday.Day(), 0, 0, 0, 0, time.UTC)
+	next = monday.AddDate(0, 0, 7)
+	return start, next
+}
+
+func (s *Service) accountLock(accountID string) *sync.Mutex {
+	v, _ := s.locks.LoadOrStore(accountID, &sync.Mutex{})
+	return v.(*sync.Mutex)
+}
+
+func (s *Service) dailyLimit(f Feature, pro bool) (limit int, capped bool) {
+	freeLimit, ok := s.free[string(f)]
+	if !ok {
+		return -1, false
+	}
+	if pro {
+		if freeLimit == 0 {
+			return -1, false
+		}
+		return freeLimit * 3, true
+	}
+	return freeLimit, true
+}
+
+func (s *Service) weekCap(pro bool) int {
+	sum := 0
+	for _, f := range features {
+		l, ok := s.free[string(f)]
+		if !ok {
+			continue
+		}
+		if pro {
+			if l == 0 {
+				continue
+			}
+			l *= 3
+		}
+		if l > 0 {
+			sum += l
+		}
+	}
+	return 7 * sum
+}
+
 func (s *Service) current(ctx context.Context, accountID string) (*Entitlement, error) {
 	e, err := s.store.Entitlement(ctx, accountID)
 	if err != nil {
@@ -136,17 +191,28 @@ func (s *Service) Plan(ctx context.Context, accountID string) (Plan, error) {
 	if err != nil {
 		return Plan{}, err
 	}
-	day, next := today(time.Now())
+	now := time.Now()
+	day, next := today(now)
+	weekStart, weekNext := weekWindow(now)
 	used, err := s.store.Usage(ctx, accountID, day)
 	if err != nil {
 		return Plan{}, fmt.Errorf("read usage: %w", err)
 	}
-	p := Plan{Plan: "free", Limits: map[Feature]*int{}, UsedToday: map[Feature]int{}, ResetsAt: next}
+	usedWeek, err := s.store.WeekUsage(ctx, accountID, weekStart, weekNext)
+	if err != nil {
+		return Plan{}, fmt.Errorf("read weekly usage: %w", err)
+	}
+	pro := e != nil
+	p := Plan{
+		Plan: "free", Limits: map[Feature]*int{}, UsedToday: map[Feature]int{},
+		ResetsAt: next, UsedWeek: usedWeek, WeekLimit: s.weekCap(pro), WeekResetsAt: weekNext,
+	}
 	for _, f := range features {
 		p.UsedToday[f] = used[f]
-		p.Limits[f] = nil
-		if limit, ok := s.free[string(f)]; ok && e == nil {
-			p.Limits[f] = &limit
+		limit, capped := s.dailyLimit(f, pro)
+		if capped {
+			l := limit
+			p.Limits[f] = &l
 		}
 	}
 	if e != nil {
@@ -161,20 +227,48 @@ func (s *Service) Take(ctx context.Context, accountID string, f Feature) error {
 	if err != nil {
 		return err
 	}
-	limit, limited := s.free[string(f)]
-	if e != nil || !limited {
-		limit = -1
-	}
+	pro := e != nil
+	limit, capped := s.dailyLimit(f, pro)
 	day, next := today(time.Now())
+	if !capped {
+		ok, err := s.store.Take(ctx, accountID, day, f, -1)
+		if err != nil {
+			return fmt.Errorf("count usage: %w", err)
+		}
+		if !ok {
+			return fmt.Errorf("count usage: take failed")
+		}
+		return nil
+	}
 	if limit == 0 {
-		return &LimitError{Feature: f, ResetsAt: next}
+		return &LimitError{Feature: f, ResetsAt: next, Scope: "day"}
+	}
+	mu := s.accountLock(accountID)
+	mu.Lock()
+	defer mu.Unlock()
+	weekStart, weekNext := weekWindow(time.Now())
+	usedWeek, err := s.store.WeekUsage(ctx, accountID, weekStart, weekNext)
+	if err != nil {
+		return fmt.Errorf("read weekly usage: %w", err)
+	}
+	cap := s.weekCap(pro)
+	if usedWeek >= cap {
+		return &LimitError{Feature: f, Limit: cap, ResetsAt: weekNext, Scope: "week"}
 	}
 	ok, err := s.store.Take(ctx, accountID, day, f, limit)
 	if err != nil {
 		return fmt.Errorf("count usage: %w", err)
 	}
 	if !ok {
-		return &LimitError{Feature: f, Limit: limit, ResetsAt: next}
+		return &LimitError{Feature: f, Limit: limit, ResetsAt: next, Scope: "day"}
+	}
+	usedWeek, err = s.store.WeekUsage(ctx, accountID, weekStart, weekNext)
+	if err != nil {
+		return fmt.Errorf("read weekly usage: %w", err)
+	}
+	if usedWeek > cap {
+		_ = s.store.Refund(ctx, accountID, day, f)
+		return &LimitError{Feature: f, Limit: cap, ResetsAt: weekNext, Scope: "week"}
 	}
 	return nil
 }

@@ -17,6 +17,7 @@ class FakeBillingRepository extends BillingRepository {
       ProFeature.check: 1,
       ProFeature.lessons: 0,
     },
+    weekLimit: 98,
   );
 
   static final proPlan = ProPlan(
@@ -25,6 +26,12 @@ class FakeBillingRepository extends BillingRepository {
     autoRenew: true,
     period: ProPeriod.monthly,
     state: 'active',
+    limits: {
+      ProFeature.askme: 30,
+      ProFeature.scan: 9,
+      ProFeature.check: 3,
+    },
+    weekLimit: 294,
   );
 
   @override

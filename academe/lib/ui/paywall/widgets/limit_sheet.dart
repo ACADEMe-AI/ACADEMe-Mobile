@@ -46,18 +46,17 @@ class _LimitSheetState extends State<LimitSheet> {
   (String, String) _words(int limit) => switch (widget.feature) {
     ProFeature.askme => (
       'That’s today’s free questions',
-      'Free includes ${pluralize(limit, 'ASKMe question')} a day. They come back at '
-          'midnight. With Pro, ask as much as you like.',
+      'Free includes ${pluralize(limit, 'ASKMe question')} a day. Pro gives 3× '
+          'every day.',
     ),
     ProFeature.scan => (
       'That’s today’s free scans',
-      'Free includes ${pluralize(limit, 'scan')} a day. They come back at midnight. '
-          'With Pro, scan as much as you like.',
+      'Free includes ${pluralize(limit, 'scan')} a day. Pro gives 3× every day.',
     ),
     ProFeature.check => (
       limit == 1 ? 'That’s today’s free check' : 'That’s today’s free checks',
       'Free includes ${limit == 1 ? 'one answer check' : '$limit answer checks'} '
-          'a day. It comes back at midnight. With Pro, check every answer.',
+          'a day. Pro gives 3× every day.',
     ),
     ProFeature.lessons => (
       'Lessons from notes are Pro',
@@ -68,9 +67,8 @@ class _LimitSheetState extends State<LimitSheet> {
 
   void _goPro() {
     final navigator = Navigator.of(context);
-    navigator
-      ..pop()
-      ..pushNamed(Routes.paywall);
+    navigator.pop();
+    navigator.pushNamed(Routes.proUpgrade);
   }
 
   @override

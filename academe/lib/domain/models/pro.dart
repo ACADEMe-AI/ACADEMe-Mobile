@@ -28,6 +28,9 @@ class ProPlan {
     this.limits = const {},
     this.usedToday = const {},
     this.resetsAt,
+    this.usedWeek = 0,
+    this.weekLimit = 0,
+    this.weekResetsAt,
   });
 
   static const free = ProPlan(isPro: false);
@@ -40,6 +43,9 @@ class ProPlan {
   final Map<ProFeature, int?> limits;
   final Map<ProFeature, int> usedToday;
   final DateTime? resetsAt;
+  final int usedWeek;
+  final int weekLimit;
+  final DateTime? weekResetsAt;
 
   int? limitOf(ProFeature feature) => limits[feature];
 
@@ -52,6 +58,9 @@ class ProPlan {
     limits: limits,
     usedToday: usedToday,
     resetsAt: resetsAt,
+    usedWeek: usedWeek,
+    weekLimit: weekLimit,
+    weekResetsAt: weekResetsAt,
   );
 }
 
