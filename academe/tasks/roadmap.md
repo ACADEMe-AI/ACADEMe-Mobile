@@ -302,8 +302,8 @@ returns 503 `scan_unavailable`.
 | | ID | Screen | Notes |
 |---|---|---|---|
 | [x] | F1 | Streak (basic) | streak days in India time from XP and finished lessons or chapter tests; current, longest and today on `GET /me/profile`; Home flame and Me show it and Home updates when a lesson ends |
-| [ ] | F1b | Streak extras | calendar, freeze, streak saver reminder (the Me toggle schedules nothing yet) |
-| [ ] | F2 | Level up | full-screen, Pebby (the Me toggle schedules nothing yet) |
+| [ ] | F1b | Streak extras | calendar, freeze (streak saver evening reminder wired in app) |
+| [ ] | F2 | Level up | full-screen, Pebby celebration (level-up local notification wired when toggle on) |
 | [ ] | F3 | Leaderboard | weekly, by class |
 | [ ] | F4 | Achievements | badges |
 | [ ] | F5 | Weekly report (Pro) | shareable to a parent through messaging apps |
@@ -420,7 +420,7 @@ Full order in `docs/play/release-checklist.md`.
 - [x] Data safety, content rating, target audience, listing, subscription and AI answers written (`docs/play/`)
 - [x] In-app and Play policy URLs / support email naming confirmed (`docs/play/legal-entity.md`, `lib/config/links.dart`)
 - [ ] [[FILL]] placeholders filled; lawyer review (`./tool/check_legal_placeholders.sh`)
-- [ ] Redeploy the server so api.academe.cc serves this build (migrations 0023–0025)
+- [ ] Redeploy the server so api.academe.cc serves this build (migrations through **0026**; Cloud Run revision deployed 2026-11-05)
 - [ ] Upload key copied in (`android/key.properties` + keystore, never committed), SHA-256 `66:40:CE:…:57:CD` matches Play's upload key
 - [ ] `ACADEME_ANDROID_CERT_SHA256` set (upload + app signing) so reset links open the app
 - [x] Release AAB script with `GOOGLE_SERVER_CLIENT_ID` + `REVENUECAT_GOOGLE_API_KEY` (`tool/build_release_aab.sh`, `docs/play/release-checklist.md` step 11)
