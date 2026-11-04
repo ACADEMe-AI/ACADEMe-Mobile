@@ -1,8 +1,8 @@
-# ACADEMe server — engineering rules
+# ACADEMe server: engineering rules
 
 Every change to the Go backend follows these rules. They are distilled from the
 official Go docs and the Google and Uber style guides, saved verbatim in
-`../docs/go-reference/` — read the file named in brackets when a rule needs
+`../docs/go-reference/`: read the file named in brackets when a rule needs
 more context. Where the guides disagree, Google's wins.
 
 A change is not done until the checks in **Definition of done** pass.
@@ -13,7 +13,7 @@ A change is not done until the checks in **Definition of done** pass.
 - Everything else lives under `internal/`, so nothing outside this module can
   import it. [go-module-layout]
 - **Package by feature, not by layer.** `internal/auth` holds the auth types,
-  service, store and handlers together — not `models/`, `services/`,
+  service, store and handlers together: not `models/`, `services/`,
   `handlers/` folders. [google-go-style-best-practices "Package size",
   go-blog-package-names]
 - Shared plumbing gets its own small package, named for what it does:
@@ -68,7 +68,7 @@ server/
 - Compare with `errors.Is` / `errors.AsType`, never `==` on wrapped errors or
   string matching.
 - Domain failures the caller acts on are **sentinel errors in the feature
-  package** (`auth.ErrEmailTaken`). The HTTP layer maps them to status codes —
+  package** (`auth.ErrEmailTaken`). The HTTP layer maps them to status codes : 
   **only** the HTTP layer knows about status codes.
 - **Handle an error once**: log it *or* return it, never both. Handlers log
   unexpected errors at the edge; everything below just returns.
@@ -151,7 +151,7 @@ server/
 
 - Passwords hashed with **argon2id** (`golang.org/x/crypto/argon2`), per-user
   random salt, parameters stored with the hash. Never logged, never returned.
-- Random values — tokens, salts, IDs — from `crypto/rand` only.
+- Random values: tokens, salts, IDs: from `crypto/rand` only.
 - Compare secrets with `crypto/subtle.ConstantTimeCompare`.
 - Secrets (database URL, signing keys, Google client IDs) come from the
   environment, are validated at start-up, and are never committed.
@@ -238,6 +238,10 @@ export ACADEME_EMAIL_FROM='ACADEMe <no-reply@academe.cc>'     # default
 export ACADEME_EMAIL_DEV=1                                    # optional; logs reset codes, never in production
 export ACADEME_CLIENT_IP_HEADER=X-Real-IP                     # only behind a proxy that overwrites it (Railway)
 export ACADEME_ANDROID_CERT_SHA256=<AA:BB:…>                  # optional; unset = /.well-known/assetlinks.json is 404
+export ACADEME_MIN_BUILD=0                                      # optional; force-update below this X-App-Build
+export ACADEME_RECOMMENDED_BUILD=0                            # optional; soft-update banner above this build
+export ACADEME_UPDATE_MESSAGE='…'                             # optional; soft/force update copy
+export ACADEME_UPDATE_URL='https://play.google.com/…'         # optional; Play listing URL
 go run ./cmd/academe-api
 ```
 

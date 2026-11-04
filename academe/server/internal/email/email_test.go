@@ -10,6 +10,7 @@ import (
 	"path/filepath"
 	"strings"
 	"testing"
+	"time"
 
 	"github.com/google/go-cmp/cmp"
 )
@@ -116,6 +117,34 @@ func TestResendDeletionNotice(t *testing.T) {
 	containsAll(t, "text", got.Text, "Me > Account > Delete my account", "Reply to this email")
 }
 
+func TestResendFeedback(t *testing.T) {
+	c, got := fakeResend(t)
+	ticket := FeedbackTicket{
+		ID: "fb_1", StudentEmail: "maya@example.com", Category: "bug",
+		Message: "App froze\non quiz 3",
+	}
+	if err := c.SendFeedback(t.Context(), ticket); err != nil {
+		t.Fatalf("SendFeedback() = %v", err)
+	}
+	if got.To[0] != SupportAddress || got.ReplyTo != "maya@example.com" {
+		t.Errorf("ops to/reply = %q %q, want support + student reply-to", got.To, got.ReplyTo)
+	}
+	if !strings.Contains(got.Subject, "bug") {
+		t.Errorf("subject = %q", got.Subject)
+	}
+	containsAll(t, "html", got.HTML, "New in-app feedback", "fb_1", "maya@example.com", "Something isn&#39;t working", "App froze", "Reply to student", "pebby-wave.png")
+	containsAll(t, "text", got.Text, "fb_1", "App froze", "Reply to student")
+
+	if err := c.SendFeedbackReceipt(t.Context(), ticket); err != nil {
+		t.Fatalf("SendFeedbackReceipt() = %v", err)
+	}
+	if got.To[0] != "maya@example.com" || got.ReplyTo != SupportAddress {
+		t.Errorf("receipt to/reply = %q %q", got.To, got.ReplyTo)
+	}
+	containsAll(t, "html", got.HTML, "Thanks, we got your message", "Open ACADEMe", "pebby-shy.png")
+	containsAll(t, "text", got.Text, "Thanks, we got your message", "https://api.academe.cc/open")
+}
+
 func TestEveryEmailSharesTheLayout(t *testing.T) {
 	for name, m := range allMessages(t) {
 		t.Run(name, func(t *testing.T) {
@@ -185,6 +214,12 @@ func allMessages(t *testing.T) map[string]message {
 		"google":   Reset{GoogleOnly: true}.message,
 		"welcome":  Welcome{FirstName: "Maya"}.message,
 		"deletion": deletionMessage,
+		"feedback_ops": func() (message, error) {
+			return FeedbackTicket{ID: "t1", StudentEmail: "s@ex.com", Category: "feature", Message: "Dark mode"}.opsMessage()
+		},
+		"feedback_received": func() (message, error) {
+			return FeedbackTicket{ID: "t1", StudentEmail: "s@ex.com"}.receivedMessage()
+		},
 	} {
 		m, err := build()
 		if err != nil {
@@ -193,6 +228,35 @@ func allMessages(t *testing.T) map[string]message {
 		all[name] = m
 	}
 	return all
+}
+
+// Sends real feedback receipt (and ops copy) when ACADEME_LIVE_EMAIL=1 and ACADEME_RESEND_API_KEY is set.
+// ACADEME_SEND_SAMPLE_TO defaults to the address under test.
+func TestSendFeedbackLive(t *testing.T) {
+	if os.Getenv("ACADEME_LIVE_EMAIL") != "1" {
+		t.Skip("set ACADEME_LIVE_EMAIL=1 to send real mail")
+	}
+	key := os.Getenv("ACADEME_RESEND_API_KEY")
+	if key == "" {
+		t.Skip("ACADEME_RESEND_API_KEY not set")
+	}
+	to := os.Getenv("ACADEME_SEND_SAMPLE_TO")
+	if to == "" {
+		t.Skip("ACADEME_SEND_SAMPLE_TO not set")
+	}
+	c := NewResend(key, os.Getenv("ACADEME_EMAIL_FROM"), &http.Client{Timeout: 15 * time.Second})
+	ticket := FeedbackTicket{
+		ID: "sample-" + time.Now().UTC().Format("20060102-150405"),
+		StudentEmail: to,
+		Category:     "feature",
+		Message:      "Sample branded feedback email from ACADEMe dev — safe to ignore. Checking ops + receipt templates match reset/welcome.",
+	}
+	if err := c.SendFeedbackReceipt(t.Context(), ticket); err != nil {
+		t.Fatalf("SendFeedbackReceipt() = %v", err)
+	}
+	if err := c.SendFeedback(t.Context(), ticket); err != nil {
+		t.Fatalf("SendFeedback() = %v", err)
+	}
 }
 
 func TestWritePreviews(t *testing.T) {

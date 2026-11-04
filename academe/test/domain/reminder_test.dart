@@ -1,5 +1,6 @@
 import 'package:academe/domain/models/folder.dart';
 import 'package:academe/domain/models/reminder.dart';
+import 'package:academe/domain/models/streak.dart';
 import 'package:academe/domain/models/study_preferences.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -37,7 +38,7 @@ void main() {
 
     expect(reminders.first.at, DateTime(2026, 10, 5, 21));
     expect(reminders.first.title, 'Science test in 3 days');
-    expect(reminders.first.body, '1 thing today, about 6 min.');
+    expect(reminders.first.body, '1 thing today, about 6 min. Goal: 25 min.');
     expect(reminders.map((r) => r.title), contains('Science test is tomorrow'));
     final morning = reminders.firstWhere((r) => r.at.hour == testMorningHour);
     expect(morning.title, 'Science test is today');
@@ -60,5 +61,19 @@ void main() {
       ),
       isEmpty,
     );
+  });
+
+  test('streak saver schedules when today is not counted', () {
+    final reminders = planReminders(
+      now: now,
+      preferences: const StudyPreferences(),
+      folders: const [],
+      today: TodayPlan.empty,
+      streak: const Streak(current: 5),
+    );
+    expect(reminders, isNotEmpty);
+    expect(reminders.first.title, 'Keep your streak');
+    expect(reminders.first.body, contains('5-day streak'));
+    expect(reminders.where((r) => r.title == 'Keep your streak').length, 1);
   });
 }

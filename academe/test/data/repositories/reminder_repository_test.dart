@@ -8,6 +8,7 @@ import '../../../testing/fakes/fake_folder_repository.dart';
 import '../../../testing/fakes/fake_hint_store.dart';
 import '../../../testing/fakes/fake_notification_service.dart';
 import '../../../testing/fakes/fake_preferences_store.dart';
+import '../../../testing/fakes/fake_profile_repository.dart';
 
 void main() {
   final now = DateTime(2026, 10, 5, 12);
@@ -23,6 +24,7 @@ void main() {
     repository = ReminderRepository(
       notifications: notifications,
       folderRepository: folders,
+      profileRepository: FakeProfileRepository(),
       preferencesStore: FakePreferencesStore(),
       hintStore: hints,
       now: () => now,

@@ -9,6 +9,8 @@ import (
 	"time"
 
 	"github.com/google/go-cmp/cmp"
+
+	"academe/server/internal/india"
 )
 
 type usageKey struct {
@@ -136,7 +138,7 @@ func TestLimiterRollsOverAtMidnightInIndia(t *testing.T) {
 		if !ok || le.Limit != 2 || le.Feature != AskMe {
 			t.Fatalf("Take(askme) #3 = %v, want a LimitError for 2 a day", err)
 		}
-		midnight := time.Date(2000, 1, 2, 0, 0, 0, 0, india)
+		midnight := time.Date(2000, 1, 2, 0, 0, 0, 0, india.Loc)
 		if !le.ResetsAt.Equal(midnight) {
 			t.Errorf("ResetsAt = %v, want %v", le.ResetsAt, midnight)
 		}

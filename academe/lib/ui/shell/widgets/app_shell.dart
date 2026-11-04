@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../../data/repositories/billing_repository.dart';
+import '../../../data/repositories/feedback_repository.dart';
+import '../../../data/repositories/progress_repository.dart';
 import '../../../domain/models/chat.dart';
 import '../../../domain/models/scan.dart';
 import '../../askme/view_models/askme_view_model.dart';
@@ -11,6 +14,7 @@ import '../../core/themes/app_theme.dart';
 import '../../home/view_models/home_view_model.dart';
 import '../../home/view_models/today_view_model.dart';
 import '../../home/widgets/home_screen.dart';
+import '../../me/view_models/help_view_model.dart';
 import '../../me/view_models/me_view_model.dart';
 import '../../me/widgets/help_screen.dart';
 import '../../me/widgets/me_screen.dart';
@@ -43,6 +47,9 @@ class AppShell extends StatefulWidget {
     required this.scan,
     required this.scans,
     this.pro,
+    required this.feedbackRepository,
+    required this.progressRepository,
+    required this.billingRepository,
     this.onRemindersWanted,
     this.opensSetup = false,
     this.onLoggedOut,
@@ -58,6 +65,9 @@ class AppShell extends StatefulWidget {
   final ScanViewModel scan;
   final ScanFactory scans;
   final ProViewModel? pro;
+  final FeedbackRepository feedbackRepository;
+  final ProgressRepository progressRepository;
+  final BillingRepository billingRepository;
   final VoidCallback? onRemindersWanted;
   final bool opensSetup;
   final VoidCallback? onLoggedOut;
@@ -250,7 +260,14 @@ class _AppShellState extends State<AppShell>
                       onAppearance: openAppearance,
                       onNotifications: openNotifications,
                       onAccount: openAccount,
-                      onHelp: () => pushMe<void>(const HelpScreen()),
+                      onHelp: () {
+                        final help = HelpViewModel(
+                          feedback: widget.feedbackRepository,
+                        );
+                        pushMe<void>(
+                          HelpScreen(viewModel: help),
+                        ).whenComplete(help.dispose);
+                      },
                       onPrivacy: () => pushMe<void>(const PrivacyScreen()),
                       onProgress: openProgress,
                       onLogOut: confirmLogOut,

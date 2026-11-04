@@ -11,9 +11,11 @@ if [[ "$REVENUECAT_GOOGLE_API_KEY" == test_* ]]; then
   exit 1
 fi
 
+BUILD="$(sed -n 's/^version: .*+\([0-9][0-9]*\)/\1/p' "$root/pubspec.yaml")"
 flutter build appbundle --release \
   --dart-define=GOOGLE_SERVER_CLIENT_ID="$GOOGLE_SERVER_CLIENT_ID" \
-  --dart-define=REVENUECAT_GOOGLE_API_KEY="$REVENUECAT_GOOGLE_API_KEY"
+  --dart-define=REVENUECAT_GOOGLE_API_KEY="$REVENUECAT_GOOGLE_API_KEY" \
+  --dart-define=APP_BUILD="$BUILD"
 
 aab="$root/build/app/outputs/bundle/release/app-release.aab"
 if ! strings "$aab" | grep -q 'https://api.academe.cc'; then

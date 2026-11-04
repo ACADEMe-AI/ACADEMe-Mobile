@@ -92,7 +92,8 @@ Added `POST /auth/password-reset/link`, `GET`/`POST /reset-password`, `GET /open
 
 ## Previews
 
-- `ACADEME_EMAIL_PREVIEW=server/content-review/emails go test ./internal/email -run TestWritePreviews` writes `reset`, `google`, `welcome` and `deletion` `.html` and `.txt` files. The directory is git-ignored, and asset URLs point at the local copies.
+- `ACADEME_EMAIL_PREVIEW=server/internal/email/content-review/emails go test ./internal/email -run TestWritePreviews` writes `reset`, `google`, `welcome`, `deletion`, `feedback_ops` and `feedback_received` `.html` and `.txt` files. The directory is git-ignored, and asset URLs point at the local copies.
+- Live sample (once): `ACADEME_LIVE_EMAIL=1 ACADEME_SEND_SAMPLE_TO=you@example.com ACADEME_RESEND_API_KEY=re_… go test ./internal/email -run TestSendFeedbackLive -count=1` sends the branded receipt to the student address and the ops copy to support (Reply-To the student).
 - I rendered them with headless Chrome at 800 px, 390 px, and 390 px in dark mode, and checked the look, the mobile wrap of the code boxes, and dark-mode contrast. I also checked the web reset, open and broken-link pages served by my own build.
 
 ## How it was tested

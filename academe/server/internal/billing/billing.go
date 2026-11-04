@@ -7,6 +7,8 @@ import (
 	"fmt"
 	"sync"
 	"time"
+
+	"academe/server/internal/india"
 )
 
 type Feature string
@@ -19,8 +21,6 @@ const (
 )
 
 var features = []Feature{AskMe, Scan, Check, Lessons}
-
-var india = time.FixedZone("IST", 5*60*60+30*60)
 
 var (
 	ErrUnavailable    = errors.New("billing is not set up")
@@ -121,19 +121,10 @@ func NewService(store Store, free map[string]int, revenueCat *RevenueCat) *Servi
 }
 
 func today(now time.Time) (day, next time.Time) {
-	t := now.In(india)
-	day = time.Date(t.Year(), t.Month(), t.Day(), 0, 0, 0, 0, time.UTC)
-	next = time.Date(t.Year(), t.Month(), t.Day()+1, 0, 0, 0, 0, india)
+	day = india.UsageDayUTC(now)
+	t := now.In(india.Loc)
+	next = time.Date(t.Year(), t.Month(), t.Day()+1, 0, 0, 0, 0, india.Loc)
 	return day, next
-}
-
-func weekWindow(now time.Time) (start, next time.Time) {
-	t := now.In(india)
-	offset := (int(t.Weekday()) + 6) % 7
-	monday := time.Date(t.Year(), t.Month(), t.Day()-offset, 0, 0, 0, 0, india)
-	start = time.Date(monday.Year(), monday.Month(), monday.Day(), 0, 0, 0, 0, time.UTC)
-	next = monday.AddDate(0, 0, 7)
-	return start, next
 }
 
 func (s *Service) accountLock(accountID string) *sync.Mutex {
@@ -193,7 +184,7 @@ func (s *Service) Plan(ctx context.Context, accountID string) (Plan, error) {
 	}
 	now := time.Now()
 	day, next := today(now)
-	weekStart, weekNext := weekWindow(now)
+	weekStart, weekNext := india.UsageWeekBounds(now)
 	used, err := s.store.Usage(ctx, accountID, day)
 	if err != nil {
 		return Plan{}, fmt.Errorf("read usage: %w", err)
@@ -246,7 +237,7 @@ func (s *Service) Take(ctx context.Context, accountID string, f Feature) error {
 	mu := s.accountLock(accountID)
 	mu.Lock()
 	defer mu.Unlock()
-	weekStart, weekNext := weekWindow(time.Now())
+	weekStart, weekNext := india.UsageWeekBounds(time.Now())
 	usedWeek, err := s.store.WeekUsage(ctx, accountID, weekStart, weekNext)
 	if err != nil {
 		return fmt.Errorf("read weekly usage: %w", err)

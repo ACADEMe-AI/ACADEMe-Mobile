@@ -66,6 +66,9 @@ TLS 1.2/1.3, HTTP/2. Health checks run only at deploy time, not continuously.
 | `ACADEME_AUTH_LIMIT_SCALE` | whole number, default `1`; multiplies the per-IP log-in, sign-up and Google limits (raise for schools behind one IP) | no |
 | `ACADEME_FREE_LIMITS` | e.g. `askme=10,scan=3`; unset = `askme=10,scan=3,check=1,lessons=0`; `-1` = unlimited | no |
 | `ACADEME_ANDROID_CERT_SHA256` | release signing certificate SHA-256 fingerprints, comma-separated, for `/.well-known/assetlinks.json` | App Links |
+| `ACADEME_MIN_BUILD` | minimum `X-App-Build`; unset/`0` = no force update | no |
+| `ACADEME_RECOMMENDED_BUILD` | soft-update banner when build is below this | no |
+| `ACADEME_UPDATE_MESSAGE` / `ACADEME_UPDATE_URL` | copy and Play URL for update UI | no |
 | `ACADEME_ADDR` | leave unset | no |
 
 Test only, never on Railway: `ACADEME_TEST_DATABASE_URL` (store tests) and

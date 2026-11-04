@@ -1,15 +1,15 @@
-# ACADEMe — engineering rules
+# ACADEMe: engineering rules
 
 Every change to this app follows these rules. They are distilled from the
 official Flutter and Dart guidance, saved verbatim in `docs/flutter-reference/`
-— read the source file named in brackets when a rule needs more context.
+:  read the source file named in brackets when a rule needs more context.
 
 A change is not done until `flutter analyze`, `dart format`, `flutter test`
 and a Pixel 10 run all pass (see **Definition of done**).
 
 The Go backend in `server/` has its own rules: `server/AGENTS.md`.
 
-## 1. Architecture — MVVM, two layers
+## 1. Architecture: MVVM, two layers
 
 [flutter-architecture-guide.md, flutter-architecture-recommendations.yml]
 
@@ -30,7 +30,7 @@ The Go backend in `server/` has its own rules: `server/AGENTS.md`.
 
 ## 2. Folder structure
 
-[flutter-case-study.md — "Package structure"]
+[flutter-case-study.md: "Package structure"]
 
 UI is organised by feature, data by type:
 
@@ -41,7 +41,7 @@ lib/
   config/                   dependencies, environment
   ui/
     core/
-      themes/               app_theme.dart — AppColors, AppRadius,
+      themes/               app_theme.dart: AppColors, AppRadius,
                             AppTextStyles, AppTheme (only place)
       ui/                   shared widgets: buttons, links, headline, stagger
       motion/               keyframe tracks and easing
@@ -93,9 +93,9 @@ code go in this file or `tasks/`.
 
 The only exception is analyzer directives: `// ignore: <lint>`.
 
-## 5. Widgets — when to split
+## 5. Widgets: when to split
 
-[flutter-performance.md — "Control build() cost", "Pitfalls"]
+[flutter-performance.md: "Control build() cost", "Pitfalls"]
 
 **Always a widget class, never a method that returns a widget.** `_buildHeader()`
 or `Widget _link(...)` helpers are not allowed; extract a `StatelessWidget`
@@ -123,7 +123,7 @@ own files in the feature's `widgets/` folder.
 
 - `const` every constructor and literal that can be. Lints enforce it.
 - **Localise rebuilds.** Put `setState`, `ListenableBuilder` and
-  `AnimatedBuilder` as low in the tree as possible — around the part that
+  `AnimatedBuilder` as low in the tree as possible: around the part that
   changes, not the screen. A text field that re-enables a button wraps the
   *button* in a `ListenableBuilder`, not the whole screen in `setState`.
 - `AnimatedBuilder`: pass everything that doesn't animate as `child:`; never
@@ -134,7 +134,7 @@ own files in the feature's `widgets/` folder.
   wrapper.
 - Prefer `*Transition` widgets (`FadeTransition`, `SlideTransition`,
   `ScaleTransition`) driven by an `Animation` over computing values in `build`.
-- No side effects in `build()` — don't set state-machine inputs, start
+- No side effects in `build()`: don't set state-machine inputs, start
   controllers or fire callbacks there. Use listeners and `initState`.
 - Rounded corners via `borderRadius`, not `ClipRRect`. No clipping inside
   animations. Avoid `saveLayer` triggers (`Opacity`, `ShaderMask`,
@@ -144,7 +144,7 @@ own files in the feature's `widgets/` folder.
 - Dispose every controller, `FocusNode`, `AnimationController`,
   `StreamSubscription` and Rive controller you create.
 - Never override `operator ==` on a widget.
-- Keep each frame under 16 ms on the Pixel 10 — check with DevTools'
+- Keep each frame under 16 ms on the Pixel 10: check with DevTools'
   performance view when adding motion.
 
 ## 7. Design system
@@ -153,17 +153,17 @@ own files in the feature's `widgets/` folder.
   literals, `Colors.*` or raw font sizes in screens. Brand marks drawn to spec
   (the Google "G", `AcademeWordmark`) are the only exceptions.
 - Three font families, bundled so iOS and Android render identically:
-  - **Baloo 2** 800 — headlines, via `AppTextStyles.display`. Covers all five launch scripts.
-  - **Archivo** 700 — subheads, via `AppTextStyles.subhead` (and `titleLarge`/`titleMedium`).
+  - **Baloo 2** 800: headlines, via `AppTextStyles.display`. Covers all five launch scripts.
+  - **Archivo** 700: subheads, via `AppTextStyles.subhead` (and `titleLarge`/`titleMedium`).
     Latin only: in Hindi, Telugu, Tamil and Bengali it falls back to Noto Sans.
-  - **Noto Sans** 400 and 600 — everything else, from the theme. All scripts.
-- Screens never set `fontFamily` or a raw weight for a heading level — they use
+  - **Noto Sans** 400 and 600: everything else, from the theme. All scripts.
+- Screens never set `fontFamily` or a raw weight for a heading level: they use
   `AppTextStyles` and `copyWith` for size and colour only.
 - Spacing literals (`SizedBox`, `EdgeInsets`) sit on the 4 pt grid. Sizes that
   depend on the screen come from `ScreenScale`.
   `test/type_consistency_test.dart` enforces both.
 - Every screen reads correctly on the Pixel 10 at the default text scale and at
-  1.3× — test with the device's font-size setting.
+  1.3×: test with the device's font-size setting.
 
 ## 8. State and async
 
@@ -182,7 +182,7 @@ own files in the feature's `widgets/` folder.
 [flutter-case-study-testing.md]
 
 - View models and repositories get unit tests, run against **fakes** in
-  `testing/fakes/` — never the real network.
+  `testing/fakes/`: never the real network.
 - Each screen gets a widget test covering its main states.
 - Wrap the app in `PebbyStandIn` in widget tests: Rive's native text engine
   doesn't load under `flutter test`.
@@ -254,6 +254,7 @@ The app reads its settings from `--dart-define`s (`lib/config/environment.dart`)
 | `REVENUECAT_GOOGLE_API_KEY` | empty | RevenueCat public Android key (`goog_…`); empty = the paywall says purchases aren't available |
 | `REVENUECAT_APPLE_API_KEY` | empty | RevenueCat public iOS key (`appl_…`), for the iOS release |
 | `REVENUECAT_ENTITLEMENT` | `academe_pro` | the RevenueCat entitlement that means Pro |
+| `APP_BUILD` | `8` | Play `versionCode` sent as `X-App-Build`; release builds set this from `pubspec.yaml` (`tool/build_release_aab.sh`) |
 
 Sessions: the refresh token and the account live in `flutter_secure_storage`
 (`SecureSessionStore`); the access token only in memory. `AuthRepositoryRemote`
@@ -266,12 +267,12 @@ All of these, every change:
 
 ```
 dart format lib test          # formatted, 80 columns
-flutter analyze               # zero issues — infos included
+flutter analyze               # zero issues: infos included
 flutter test                  # all green
 flutter run -d emulator-5554  # looks right on the Pixel 10
 ```
 
-Never run ACADEMe on macOS, Chrome or the iOS simulator for sign-off — the
+Never run ACADEMe on macOS, Chrome or the iOS simulator for sign-off: the
 Pixel 10 is the reference device.
 
 Then tick the task in `tasks/roadmap.md` and add a line to its change log.

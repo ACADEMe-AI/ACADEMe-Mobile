@@ -34,4 +34,11 @@ class FakeNotificationService implements NotificationService {
   @override
   Future<void> replaceAll(List<Reminder> reminders) async =>
       scheduled = reminders;
+
+  @override
+  Future<void> showNow({
+    required int id,
+    required String title,
+    required String body,
+  }) async {}
 }

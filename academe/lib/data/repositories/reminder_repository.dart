@@ -3,34 +3,42 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 
 import '../../domain/models/folder.dart';
+import '../../domain/models/level.dart';
+import '../../domain/models/profile.dart';
 import '../../domain/models/reminder.dart';
+import '../../domain/models/study_preferences.dart';
 import '../../utils/result.dart';
 import '../../utils/safe_notifier.dart';
 import '../services/hint_store.dart';
 import '../services/notification_service.dart';
 import '../services/preferences_store.dart';
 import 'folder_repository.dart';
+import 'profile_repository.dart';
 
 class ReminderRepository extends ChangeNotifier with SafeNotifier {
   ReminderRepository({
     required NotificationService notifications,
     required FolderRepository folderRepository,
+    required ProfileRepository profileRepository,
     required PreferencesStore preferencesStore,
     required HintStore hintStore,
     DateTime Function()? now,
   }) : _notifications = notifications,
        _folders = folderRepository,
+       _profile = profileRepository,
        _preferences = preferencesStore,
        _hints = hintStore,
        _now = now ?? DateTime.now;
 
   final NotificationService _notifications;
   final FolderRepository _folders;
+  final ProfileRepository _profile;
   final PreferencesStore _preferences;
   final HintStore _hints;
   final DateTime Function() _now;
 
   static const settle = Duration(milliseconds: 600);
+  static const levelUpNotificationId = 9000;
 
   Timer? _pending;
   NotificationAccess _access = NotificationAccess.unknown;
@@ -40,10 +48,14 @@ class ReminderRepository extends ChangeNotifier with SafeNotifier {
 
   bool get wantsPrimer => _wantsPrimer;
 
-  void start() => _folders.addListener(refreshSoon);
+  void start() {
+    _folders.addListener(refreshSoon);
+    _profile.addListener(refreshSoon);
+  }
 
   void stop() {
     _folders.removeListener(refreshSoon);
+    _profile.removeListener(refreshSoon);
     _pending?.cancel();
   }
 
@@ -55,6 +67,7 @@ class ReminderRepository extends ChangeNotifier with SafeNotifier {
   Future<void> refresh() async {
     await _readAccess();
     final preferences = await _preferences.read();
+    final profile = _profile.profile ?? const Profile();
     final (folders, today) = await (_folders.folders(), _folders.today()).wait;
     final summaries = folders is Ok<List<FolderSummary>>
         ? folders.value
@@ -64,6 +77,7 @@ class ReminderRepository extends ChangeNotifier with SafeNotifier {
       preferences: preferences,
       folders: summaries,
       today: today is Ok<TodayPlan> ? today.value : TodayPlan.empty,
+      streak: profile.streak,
     );
     final hasSomethingToSend =
         reminders.isNotEmpty ||
@@ -77,7 +91,28 @@ class ReminderRepository extends ChangeNotifier with SafeNotifier {
     }
     if (_access == NotificationAccess.allowed) {
       await _notifications.replaceAll(reminders);
+      await _maybeCelebrateLevelUp(preferences, profile);
     }
+  }
+
+  Future<void> _maybeCelebrateLevelUp(
+    StudyPreferences preferences,
+    Profile profile,
+  ) async {
+    if (!preferences.celebratesLevelUps) return;
+    final level = Level.of(profile.xp).number;
+    final last = await _preferences.lastNotifiedLevel();
+    if (last == 0) {
+      await _preferences.saveLastNotifiedLevel(level);
+      return;
+    }
+    if (level <= last) return;
+    await _notifications.showNow(
+      id: levelUpNotificationId,
+      title: 'Level up!',
+      body: 'You reached level $level. Keep going.',
+    );
+    await _preferences.saveLastNotifiedLevel(level);
   }
 
   Future<void> checkAccess() async {

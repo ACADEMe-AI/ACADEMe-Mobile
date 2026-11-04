@@ -13,6 +13,7 @@ import '../../me/widgets/language_sheet.dart';
 import '../../me/widgets/language_switch_screen.dart';
 import '../../me/widgets/notifications_screen.dart';
 import '../../paywall/widgets/upgrade_sheet.dart';
+import '../../progress/view_models/progress_view_model.dart';
 import '../../progress/widgets/progress_screen.dart';
 import 'app_shell.dart';
 
@@ -87,16 +88,25 @@ mixin MeNavigation on State<AppShell> {
   void openProgress() {
     final pro = widget.pro;
     if (pro == null) return;
+    final progress = ProgressViewModel(
+      progress: widget.progressRepository,
+      billing: widget.billingRepository,
+    );
+    progress.loadIfPro(widget.me.isPro);
     pushMe<void>(
       ProgressScreen(
         me: widget.me,
+        progress: progress,
         onGoPro: () async {
           final bought = await UpgradeSheet.show(context, pro);
           if (!mounted) return;
-          if (bought == true) await pro.load.execute();
+          if (bought == true) {
+            await pro.load.execute();
+            progress.loadIfPro(widget.me.isPro);
+          }
         },
       ),
-    );
+    ).whenComplete(progress.dispose);
   }
 
   Future<void> confirmLogOut() async {

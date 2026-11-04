@@ -1,4 +1,4 @@
-# Motion & Celebrations — Rive + Flutter
+# Motion & Celebrations: Rive + Flutter
 
 **Stack choice:** **Rive** for mascot & celebration state machines · Flutter implicit/explicit animation for UI chrome.  
 **Why Rive:** Interactive state machines, smaller iteration loop for mascot.
@@ -16,7 +16,7 @@
 | `google_fonts` | Only if custom font not bundled | optional |
 | Haptics | `HapticFeedback` (SDK) | 1.0 |
 
-**pubspec sketch (do not invent versions blindly — pin latest stable at install time):**
+**pubspec sketch (do not invent versions blindly: pin latest stable at install time):**
 
 ```yaml
 dependencies:
@@ -33,7 +33,7 @@ dependencies:
 
 ---
 
-## 2. Rive state machine — suggested inputs
+## 2. Rive state machine: suggested inputs
 
 **File:** `ace_mascot.riv` (rename to chosen mascot)  
 **State machine name:** `MascotSM`
@@ -70,7 +70,7 @@ dependencies:
 | Streak 3/7/14/30 | celebrate_big | streak numeral | success | per milestone |
 | Daily plan complete | celebrate_small | day check | light | daily |
 | Wrong answer | encourage (subtle) | red flash border | light | no overlay spam |
-| AI streaming start | think | skeleton | none | — |
+| AI streaming start | think | skeleton | none |: |
 
 **Anti-spam rules**
 - No big celebration if user disabled mascot  
@@ -96,7 +96,7 @@ dependencies:
 
 | Take | Our version |
 |------|-------------|
-| Mascot reacts to outcomes | Yes — limited events only |
+| Mascot reacts to outcomes | Yes: limited events only |
 | Guilt / nag | **Soft only**; no dark-pattern spam in P1 |
 | XP / levels | Optional later; streak + mastery first |
 | Sound | Off by default or follow system silent |
@@ -119,7 +119,7 @@ dependencies:
 ## 7. Widget API (contract for agents)
 
 ```dart
-// Conceptual — implement in Flutter app repo
+// Conceptual: implement in Flutter app repo
 MascotView(state: MascotState.idle | wave | ...)
 CelebrationOverlay.show(context, CelebrationType.sessionComplete)
 ```

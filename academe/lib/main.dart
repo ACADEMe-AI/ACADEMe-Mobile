@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'config/environment.dart';
+import 'data/repositories/app_config_repository.dart';
 import 'data/repositories/appearance_repository.dart';
 import 'data/repositories/auth_repository.dart';
 import 'data/repositories/auth_repository_remote.dart';
@@ -9,26 +10,32 @@ import 'data/repositories/billing_repository.dart';
 import 'data/repositories/billing_repository_remote.dart';
 import 'data/repositories/chat_repository.dart';
 import 'data/repositories/chat_repository_remote.dart';
+import 'data/repositories/feedback_repository.dart';
 import 'data/repositories/folder_repository.dart';
 import 'data/repositories/folder_repository_remote.dart';
 import 'data/repositories/photo_repository.dart';
 import 'data/repositories/profile_repository.dart';
 import 'data/repositories/profile_repository_remote.dart';
+import 'data/repositories/progress_repository.dart';
+import 'data/repositories/progress_repository_remote.dart';
 import 'data/repositories/reminder_repository.dart';
 import 'data/repositories/scan_repository_remote.dart';
 import 'data/repositories/study_repository.dart';
 import 'data/repositories/study_repository_remote.dart';
 import 'data/services/api_client.dart';
+import 'data/services/app_config_api_service.dart';
 import 'data/services/appearance_store.dart';
 import 'data/services/auth_api_service.dart';
 import 'data/services/billing_api_service.dart';
 import 'data/services/chat_api_service.dart';
+import 'data/services/feedback_api_service.dart';
 import 'data/services/folder_api_service.dart';
 import 'data/services/google_auth_service.dart';
 import 'data/services/hint_store.dart';
 import 'data/services/notification_service.dart';
 import 'data/services/preferences_store.dart';
 import 'data/services/profile_api_service.dart';
+import 'data/services/progress_api_service.dart';
 import 'data/services/purchases_service.dart';
 import 'data/services/scan_api_service.dart';
 import 'data/services/session_store.dart';
@@ -44,6 +51,11 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized().addObserver(DeepLinkFilter());
   await SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
   final api = ApiClient(baseUrl: Environment.apiBaseUrl);
+  final preferencesStore = SharedPreferencesStore();
+  final appConfigRepository = AppConfigRepository(
+    api: AppConfigApiService(api),
+    preferences: preferencesStore,
+  );
   final authRepository = AuthRepositoryRemote(
     api: AuthApiService(api),
     sessionStore: SecureSessionStore(),
@@ -67,7 +79,18 @@ Future<void> main() async {
     photoRepository: DevicePhotoRepository(),
   );
   final hintStore = SharedPreferencesHintStore();
-  final preferencesStore = SharedPreferencesStore();
+  final feedbackRepository = FeedbackRepositoryRemote(
+    api: FeedbackApiService(api),
+    authorizer: authRepository,
+  );
+  final progressRepository = ProgressRepositoryRemote(
+    api: ProgressApiService(api),
+    authorizer: authRepository,
+  );
+  final profileRepository = ProfileRepositoryRemote(
+    api: ProfileApiService(api),
+    authorizer: authRepository,
+  );
   runApp(
     AcademeApp(
       folderRepository: folderRepository,
@@ -75,15 +98,13 @@ Future<void> main() async {
       reminders: ReminderRepository(
         notifications: LocalNotificationService(),
         folderRepository: folderRepository,
+        profileRepository: profileRepository,
         preferencesStore: preferencesStore,
         hintStore: hintStore,
       ),
       appearance: appearance,
       authRepository: authRepository,
-      profileRepository: ProfileRepositoryRemote(
-        api: ProfileApiService(api),
-        authorizer: authRepository,
-      ),
+      profileRepository: profileRepository,
       billingRepository: BillingRepositoryRemote(
         api: BillingApiService(api),
         authorizer: authRepository,
@@ -101,6 +122,9 @@ Future<void> main() async {
       ),
       hintStore: hintStore,
       preferencesStore: preferencesStore,
+      appConfigRepository: appConfigRepository,
+      feedbackRepository: feedbackRepository,
+      progressRepository: progressRepository,
       restoredSession: authRepository.restoreSession(),
     ),
   );
@@ -120,6 +144,9 @@ class AcademeApp extends StatelessWidget {
     required this.reminders,
     required this.hintStore,
     required this.preferencesStore,
+    required this.appConfigRepository,
+    required this.feedbackRepository,
+    required this.progressRepository,
     required this.restoredSession,
   });
 
@@ -134,6 +161,9 @@ class AcademeApp extends StatelessWidget {
   final ReminderRepository reminders;
   final HintStore hintStore;
   final PreferencesStore preferencesStore;
+  final AppConfigRepository appConfigRepository;
+  final FeedbackRepository feedbackRepository;
+  final ProgressRepository progressRepository;
   final Future<Result<Account>> restoredSession;
 
   @override
@@ -150,6 +180,9 @@ class AcademeApp extends StatelessWidget {
       reminders: reminders,
       hintStore: hintStore,
       preferencesStore: preferencesStore,
+      appConfigRepository: appConfigRepository,
+      feedbackRepository: feedbackRepository,
+      progressRepository: progressRepository,
       restoredSession: restoredSession,
     );
     return ListenableBuilder(

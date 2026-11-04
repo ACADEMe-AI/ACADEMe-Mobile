@@ -24,6 +24,8 @@ import '../../testing/fakes/fake_profile_repository.dart';
 import '../../testing/fakes/fake_scan_repository.dart';
 import '../../testing/fakes/fake_study_repository.dart';
 
+import 'test_repositories.dart';
+
 Future<void> pumpShellApp(
   WidgetTester tester, {
   FakeStudyRepository? studies,
@@ -31,9 +33,10 @@ Future<void> pumpShellApp(
   FakeProfileRepository? profiles,
 }) async {
   final folderRepository = folders ?? FakeFolderRepository();
+  final authRepository = FakeAuthRepository(signedIn: FakeAuthRepository.ada);
   final router = appRouter(
     appearance: AppearanceRepository(store: FakeAppearanceStore()),
-    authRepository: FakeAuthRepository(signedIn: FakeAuthRepository.ada),
+    authRepository: authRepository,
     profileRepository:
         profiles ??
         FakeProfileRepository(
@@ -50,11 +53,15 @@ Future<void> pumpShellApp(
     reminders: ReminderRepository(
       notifications: FakeNotificationService(),
       folderRepository: folderRepository,
+      profileRepository: FakeProfileRepository(),
       preferencesStore: FakePreferencesStore(),
       hintStore: FakeHintStore(),
     ),
     hintStore: FakeHintStore(),
     preferencesStore: FakePreferencesStore(),
+    appConfigRepository: testAppConfigRepository(),
+    feedbackRepository: testFeedbackRepository(authRepository),
+    progressRepository: testProgressRepository(),
     restoredSession: Future.value(Result.ok(FakeAuthRepository.ada)),
   );
   await tester.pumpWidget(

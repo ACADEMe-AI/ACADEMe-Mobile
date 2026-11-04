@@ -15,6 +15,12 @@ abstract class NotificationService {
   Future<void> openSettings();
 
   Future<void> replaceAll(List<Reminder> reminders);
+
+  Future<void> showNow({
+    required int id,
+    required String title,
+    required String body,
+  });
 }
 
 class LocalNotificationService implements NotificationService {
@@ -117,5 +123,20 @@ class LocalNotificationService implements NotificationService {
         androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
       );
     }
+  }
+
+  @override
+  Future<void> showNow({
+    required int id,
+    required String title,
+    required String body,
+  }) async {
+    await _init();
+    await _plugin.show(
+      id: id,
+      title: title,
+      body: body,
+      notificationDetails: _details,
+    );
   }
 }

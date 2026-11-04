@@ -1,6 +1,6 @@
 # Pebby as a Rive character
 
-`assets/academe/mascot/animations/pebby.riv` — one artboard, the named rig,
+`assets/academe/mascot/animations/pebby.riv`: one artboard, the named rig,
 **50 poses**, and the `PebbySM` state machine. Built by the Python generator in
 this folder; nothing here was authored in the Rive editor, and `build.py`
 reproduces the file byte for byte.
@@ -11,7 +11,7 @@ expressions, the 6 study moments, the 5 turnaround angles and the 8 stable
 motion state ids. A test asserts that, so the file cannot drift from the spec
 without failing.
 
-Open `preview/index.html` to watch it. The same page also has **one clay 3D model** (`preview/pebby.glb`) built from these stills and `pebby_3d_master.png` — orbitable in the viewer at the top of the page. Rebuild with `python3 make_glb.py`.
+Open `preview/index.html` to watch it. The same page also has **one clay 3D model** (`preview/pebby.glb`) built from these stills and `pebby_3d_master.png`: orbitable in the viewer at the top of the page. Rebuild with `python3 make_glb.py`.
 
 ## What is in the file
 
@@ -58,8 +58,8 @@ the motion state ids, so both spellings resolve to the same clip rather than a
 duplicate. `surprised`, `dissolve_in`, `dissolve_out` and `summon` are one-shots;
 the rest loop. `cheering` is `cheer`.
 
-`sleepy` and `sleeping` are genuinely different: `sleepy` is drowsy but awake —
-it yawns, and the head nods off and catches itself — while `sleeping` is out
+`sleepy` and `sleeping` are genuinely different: `sleepy` is drowsy but awake : 
+it yawns, and the head nods off and catches itself: while `sleeping` is out
 cold.
 
 The motion page's own rules are honoured: motion stays subtle in product,
@@ -68,12 +68,12 @@ rationed (`PebbyState.isBigMoment` marks it).
 
 ## The three arrival moments
 
-**Peeking in from the edge** — `peek_left` / `peek_right`. Pebby slides in from
+**Peeking in from the edge**: `peek_left` / `peek_right`. Pebby slides in from
 off-artboard, overshoots, settles braced against the edge with about half of him
 still hidden, looks into the screen, blinks, ducks back once and re-emerges.
 The artboard clips him, so the widget can sit flush against any screen edge.
 
-**Dissolving into a screen** — `dissolve_in` / `dissolve_out` are choreographed
+**Dissolving into a screen**: `dissolve_in` / `dissolve_out` are choreographed
 one-shots: a scale-up from 80%, a settle, a sub-pixel materialise jitter, limbs
 that start tucked and open out, and eyes that open once he is most of the way
 in. For a fade driven by a page transition, pass `appear` to `PebbyRive`.
@@ -112,7 +112,7 @@ composite, and `dissolve_in` / `dissolve_out` are built to spend almost no time
 translucent: opacity lands within three frames on the way in, and on the way out
 he shrinks first and only fades over the last 0.3 s.
 
-**Summoning** — `summon`. He drops in from above with anticipation, lands with a
+**Summoning**: `summon`. He drops in from above with anticipation, lands with a
 squash, and bounces twice into a grin while the tufts and arms overshoot and
 trail behind the body. The contact shadow stretches and snaps with him.
 
@@ -199,8 +199,8 @@ because the first attempt turned the wrong way:
 | front | 0.555 of body | centred | yes |
 | three quarter | 0.508 | −0.101 | yes |
 | side | 0.036 | −0.436 | a sliver |
-| three quarter back | none | — | none |
-| back | none | — | none |
+| three quarter back | none |: | none |
+| back | none |: | none |
 
 The face leaves to the **viewer's left**, the side view is a near-total profile
 with only the leading edge of the face plate and part of one eye showing, and
@@ -219,7 +219,7 @@ The things that make cheap mascots feel robotic, and what this file does
 instead.
 
 - **12 fps, not 60.** Animating on twos reads as drawn rather than tweened.
-- **Long loops.** `idle` is 203 frames at 12 fps — nearly 17 seconds.
+- **Long loops.** `idle` is 203 frames at 12 fps: nearly 17 seconds.
   Ambient states run 10–17 s and no two neighbouring
   states share a period, so nothing marches in step.
 - **Coprime harmonics.** Breathing and head drift are the sum of 3, 5 and 7
@@ -230,7 +230,7 @@ instead.
   second or more. Gliding eyes are the single biggest tell of a cheap rig. Each
   fixation also carries a sub-pixel tremor.
 - **Irregular blinks, sometimes doubled.** Blinks cluster: gaps of 2.3 s,
-  then a double 0.7 s apart, then 1.8 s. A blink closes in 2 frames, holds 1 and opens in 3 — closing is always
+  then a double 0.7 s apart, then 1.8 s. A blink closes in 2 frames, holds 1 and opens in 3: closing is always
   faster than opening.
 - **Anticipation, overshoot, settle.** Every action moves slightly the wrong way
   first, passes its target, and comes back. Only appendages overshoot; the body
@@ -255,7 +255,7 @@ instead.
 ## Look
 
 Flat vector only: rounded rectangles, circles and ellipses, every corner
-rounded — the design system's "rounded primitives, simple shape budgets, clear
+rounded: the design system's "rounded primitives, simple shape budgets, clear
 silhouettes". Depth comes from stacked fills, not bitmaps. He is built to read
 at 48 px, and checked against the brand surfaces `#F6F7FA`, `#FFFFFF` and
 `#EEF0F5`; light mode is the product default, so the previews are rendered on
@@ -296,15 +296,15 @@ python3 build.py     # writes pebby.riv beside the script
 
 Standard library only.
 
-- `rig.py` — geometry, paints and bone chain of every layer, authored back to front
-- `skin.py` — cubic vertex generation, weight packing and the bind matrices
-- `ease.py` — the 17 cubics
-- `anim.py` — rest pose, expression and motion vocabulary
-- `states.py` — the 43 states
-- `riv.py` — the `.riv` binary writer
-- `rivread.py` — the matching reader, used to inspect the built file
-- `build.py` — assembles artboard, rig, animations and state machine
-- `mksvg.py` — an SVG render of the rest pose, for quick geometry checks
+- `rig.py`: geometry, paints and bone chain of every layer, authored back to front
+- `skin.py`: cubic vertex generation, weight packing and the bind matrices
+- `ease.py`: the 17 cubics
+- `anim.py`: rest pose, expression and motion vocabulary
+- `states.py`: the 43 states
+- `riv.py`: the `.riv` binary writer
+- `rivread.py`: the matching reader, used to inspect the built file
+- `build.py`: assembles artboard, rig, animations and state machine
+- `mksvg.py`: an SVG render of the rest pose, for quick geometry checks
 
 ## Format notes
 
@@ -346,8 +346,8 @@ at least 12 s and no two share a period, the one-shot loop modes, the three
 inputs, that the entry state is `wave`, that every pose renders differently from
 `idle`, that `idle` never freezes, that both peeks leave Pebby between a quarter
 and three quarters on screen, that `reduceMotion` holds a byte-identical frame
-and releasing it resumes, that `appear` really dissolves — 0 renders no ink at
-all and 50 is measurably fainter than 100 — and that no state squashes the body
+and releasing it resumes, that `appear` really dissolves: 0 renders no ink at
+all and 50 is measurably fainter than 100: and that no state squashes the body
 past the brand limit.
 
 It needs `rive` in `dev_dependencies` and one `flutter build macos --debug`

@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 
+import '../data/repositories/app_config_repository.dart';
 import '../data/repositories/appearance_repository.dart';
 import '../data/repositories/auth_repository.dart';
 import '../data/repositories/billing_repository.dart';
 import '../data/repositories/chat_repository.dart';
+import '../data/repositories/feedback_repository.dart';
 import '../data/repositories/folder_repository.dart';
 import '../data/repositories/profile_repository.dart';
+import '../data/repositories/progress_repository.dart';
 import '../data/repositories/reminder_repository.dart';
 import '../data/repositories/study_repository.dart';
 import '../data/services/hint_store.dart';
 import '../data/services/preferences_store.dart';
 import '../domain/models/account.dart';
+import '../domain/models/app_config.dart';
 import '../domain/models/auth_failure.dart';
 import '../domain/models/auth_method.dart';
 import '../domain/models/pro.dart';
@@ -38,6 +42,8 @@ import '../ui/paywall/widgets/upgrade_sheet.dart';
 import '../ui/scan/scan_factory.dart';
 import '../ui/scan/view_models/scan_view_model.dart';
 import '../ui/shell/widgets/app_shell.dart';
+import '../ui/shell/widgets/soft_update_banner.dart';
+import '../ui/shell/widgets/update_required_screen.dart';
 import '../ui/splash/widgets/splash_screen.dart';
 import '../ui/study/study_factory.dart';
 import '../ui/study/view_models/folders_view_model.dart';
@@ -59,6 +65,9 @@ RouteFactory appRouter({
   required ReminderRepository reminders,
   required HintStore hintStore,
   required PreferencesStore preferencesStore,
+  required AppConfigRepository appConfigRepository,
+  required FeedbackRepository feedbackRepository,
+  required ProgressRepository progressRepository,
   required Future<Result<Account>> restoredSession,
 }) {
   return (settings) => _route(
@@ -75,6 +84,9 @@ RouteFactory appRouter({
       reminders,
       hintStore,
       preferencesStore,
+      appConfigRepository,
+      feedbackRepository,
+      progressRepository,
     ),
     restoredSession,
   );
@@ -93,6 +105,9 @@ class _Dependencies {
     this.reminders,
     this.hintStore,
     this.preferencesStore,
+    this.appConfigRepository,
+    this.feedbackRepository,
+    this.progressRepository,
   );
 
   final AppearanceRepository appearance;
@@ -106,6 +121,31 @@ class _Dependencies {
   final ReminderRepository reminders;
   final HintStore hintStore;
   final PreferencesStore preferencesStore;
+  final AppConfigRepository appConfigRepository;
+  final FeedbackRepository feedbackRepository;
+  final ProgressRepository progressRepository;
+}
+
+Future<void> _continueFromSplash(
+  BuildContext context,
+  _Dependencies dependencies,
+  Future<Result<Account>> restoredSession,
+) async {
+  final configResult = await dependencies.appConfigRepository.load(
+    refresh: true,
+  );
+  if (!context.mounted) return;
+  if (configResult case Ok(value: final config) when config.mustForceUpdate) {
+    await Navigator.of(
+      context,
+    ).pushReplacementNamed(Routes.updateRequired, arguments: config);
+    return;
+  }
+  final session = await restoredSession;
+  if (!context.mounted) return;
+  await Navigator.of(
+    context,
+  ).pushReplacementNamed(session is Ok ? Routes.home : Routes.welcome);
 }
 
 void _goHome(BuildContext context, {bool opensSetup = false}) => Navigator.of(
@@ -277,6 +317,12 @@ Route<Object?> _route(
         billingRepository: dependencies.billingRepository,
       ),
     ),
+    Routes.updateRequired => PageRouteBuilder<void>(
+      settings: settings,
+      transitionDuration: Duration.zero,
+      pageBuilder: (context, _, _) =>
+          UpdateRequiredScreen(config: settings.arguments! as AppConfig),
+    ),
     Routes.home => PageRouteBuilder<void>(
       settings: settings,
       transitionDuration: Duration.zero,
@@ -288,13 +334,8 @@ Route<Object?> _route(
     _ => PageRouteBuilder<void>(
       settings: settings,
       pageBuilder: (context, _, _) => SplashScreen(
-        onDone: () async {
-          final session = await restoredSession;
-          if (!context.mounted) return;
-          await Navigator.of(
-            context,
-          ).pushReplacementNamed(session is Ok ? Routes.home : Routes.welcome);
-        },
+        onDone: () =>
+            _continueFromSplash(context, dependencies, restoredSession),
       ),
     ),
   };
@@ -312,6 +353,7 @@ class _HomePage extends StatefulWidget {
 
 class _HomePageState extends State<_HomePage> {
   late final _Dependencies _dependencies = widget.dependencies;
+  AppConfig? _softUpdate;
   late final _home = HomeViewModel(
     authRepository: _dependencies.authRepository,
     profileRepository: _dependencies.profileRepository,
@@ -363,6 +405,18 @@ class _HomePageState extends State<_HomePage> {
     _dependencies.billingRepository.identify(
       _dependencies.authRepository.account?.id,
     );
+    _loadSoftUpdateBanner();
+  }
+
+  Future<void> _loadSoftUpdateBanner() async {
+    final loaded = await _dependencies.appConfigRepository.load();
+    if (loaded case Ok(value: final config)) {
+      if (await _dependencies.appConfigRepository.shouldShowSoftBanner(
+        config,
+      )) {
+        if (mounted) setState(() => _softUpdate = config);
+      }
+    }
   }
 
   @override
@@ -377,25 +431,47 @@ class _HomePageState extends State<_HomePage> {
   Widget build(BuildContext context) {
     return NotificationPrimerHost(
       viewModel: _primer,
-      child: AppShell(
-        viewModel: _home,
-        askMe: _askMe,
-        me: _me,
-        study: _study,
-        folders: _folders,
-        today: _today,
-        factory: _factory,
-        scan: _scan,
-        scans: _dependencies.scans,
-        pro: _pro,
-        onRemindersWanted: _dependencies.reminders.refreshSoon,
-        opensSetup: widget.opensSetup,
-        onLoggedOut: () {
-          _dependencies.billingRepository.identify(null);
-          Navigator.of(
-            context,
-          ).pushNamedAndRemoveUntil(Routes.welcome, (_) => false);
-        },
+      child: Column(
+        children: [
+          if (_softUpdate case final config?)
+            SafeArea(
+              bottom: false,
+              child: SoftUpdateBanner(
+                config: config,
+                onDismiss: () async {
+                  await _dependencies.appConfigRepository.dismissSoftBanner(
+                    config,
+                  );
+                  if (mounted) setState(() => _softUpdate = null);
+                },
+              ),
+            ),
+          Expanded(
+            child: AppShell(
+              viewModel: _home,
+              askMe: _askMe,
+              me: _me,
+              study: _study,
+              folders: _folders,
+              today: _today,
+              factory: _factory,
+              scan: _scan,
+              scans: _dependencies.scans,
+              pro: _pro,
+              feedbackRepository: _dependencies.feedbackRepository,
+              progressRepository: _dependencies.progressRepository,
+              billingRepository: _dependencies.billingRepository,
+              onRemindersWanted: _dependencies.reminders.refreshSoon,
+              opensSetup: widget.opensSetup,
+              onLoggedOut: () {
+                _dependencies.billingRepository.identify(null);
+                Navigator.of(
+                  context,
+                ).pushNamedAndRemoveUntil(Routes.welcome, (_) => false);
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

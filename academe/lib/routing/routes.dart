@@ -11,4 +11,5 @@ abstract final class Routes {
   static const proManage = '/pro/manage';
   static const proLimit = '/pro/limit';
   static const proUpgrade = '/pro/upgrade';
+  static const updateRequired = '/update-required';
 }

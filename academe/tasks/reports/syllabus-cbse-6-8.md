@@ -65,7 +65,7 @@ The script is `scratchpad/merge.py`, a copy of `validate_cbse_6_8.py`. It builds
 
 - **Two-part books (class 7 and 8 maths and social science):** chapter numbers continue across the parts. The `unit` field names the part.
   - Maths: "Ganita Prakash Part I", or "Ganita Prakash Part II, Chapter n" with n being the official number in that part.
-  - Social science: "Part I: Theme A — …".
+  - Social science: "Part I: Theme A: …".
 - **English:** chapters are the five Poorvi units, with `unit` set to "". Each unit's pieces become reading topics, followed by its grammar, vocabulary, speaking and writing points.
 - **Hindi and Sanskrit:** Malhar and Deepakam have no units, so each chapter is a chapter.
 
@@ -82,7 +82,7 @@ Changes elsewhere in CBSE policy:
 
 ## Discrepancies and uncertainties
 
-- **Class 7 maths, Part II:** the "About the Book" page describes chapter 2 as "Integers — Multiplication and Division" and chapter 4 as "Decimals — Multiplication and Division". The contents page and the chapter PDFs say "Operations with Integers" and "Another Peek Beyond the Point", and those titles were used.
+- **Class 7 maths, Part II:** the "About the Book" page describes chapter 2 as "Integers: Multiplication and Division" and chapter 4 as "Decimals: Multiplication and Division". The contents page and the chapter PDFs say "Operations with Integers" and "Another Peek Beyond the Point", and those titles were used.
 - **Class 8 Social Science:**
   - The judiciary chapter is called "…in Our Society" on the contents page and "…in Society" in the front-matter note. The contents-page title was used.
   - "Cultural Currents: 13th to 17th Centuries" is placed last in Part II, as in the contents. The book says it belongs to Theme C and will later move to Part I.

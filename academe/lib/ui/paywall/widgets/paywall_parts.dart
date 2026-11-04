@@ -14,7 +14,7 @@ class ProBenefits extends StatelessWidget {
     (Icons.document_scanner_rounded, '3× scans every day'),
     (Icons.fact_check_rounded, '3× answer checks every day'),
     (Icons.auto_stories_rounded, 'Swipe lessons made from your notes'),
-    (Icons.event_note_rounded, 'Mock exams and a weekly parent report, soon'),
+    (Icons.insights_rounded, 'My Progress weekly study summary'),
   ];
 
   @override

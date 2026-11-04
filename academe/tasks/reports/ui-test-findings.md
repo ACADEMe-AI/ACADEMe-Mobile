@@ -3,7 +3,7 @@
 Found by the integration_test journeys in `integration_test/` against the real
 local server. Screenshots and logs are in `build/ui-test/<journey>/`.
 
-## F1 — ASKMe: some questions always fail with "Something went wrong" (High, server) — FIXED
+## F1: ASKMe: some questions always fail with "Something went wrong" (High, server): FIXED
 
 Status: fixed on :8080 by the orchestrator (reasoning tokens); askme journey passes.
 
@@ -27,7 +27,7 @@ Suggested fix: log `finish_reason` and the raw choice when content is empty,
 set `max_tokens`, and retry once before failing. The journey now asks about
 photosynthesis so it tests the UI, not this bug.
 
-## F2 — Add chapters opens on a subject with nothing to pick (Low, UI) — FIXED
+## F2: Add chapters opens on a subject with nothing to pick (Low, UI): FIXED
 
 Status: fixed by the fix-up agent (default subject has lessons).
 
@@ -43,7 +43,7 @@ agent is editing Study). Suggested fix: default to the first subject that has
 a playable chapter, or show "No lessons in this subject yet" when the
 filtered list is empty. The journey taps Maths first.
 
-## F3 — Sarvam out of credits shows a generic error (Medium, server) — FIXED
+## F3: Sarvam out of credits shows a generic error (Medium, server): FIXED
 
 Status: fixed by the orchestrator. `sarvam.StatusError` matches `sarvam.ErrUnavailable` for 401/402/403/429/5xx, and chat and scan map it to 503 `askme_unavailable` / `scan_unavailable`. Verified on :8080 with the real key at 0 credits: 503, and the ASKMe use is refunded.
 

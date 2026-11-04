@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
+import '../../config/environment.dart';
 import '../../utils/result.dart';
 import '../model/api_models.dart';
 
@@ -46,6 +47,7 @@ class ApiClient {
         }
       }
       request.headers['Accept'] = 'application/json';
+      request.headers['X-App-Build'] = '${Environment.buildNumber}';
       if (accessToken != null) {
         request.headers['Authorization'] = 'Bearer $accessToken';
       }

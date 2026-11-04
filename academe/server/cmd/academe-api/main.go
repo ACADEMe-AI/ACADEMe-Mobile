@@ -14,15 +14,18 @@ import (
 	"syscall"
 	"time"
 
+	"academe/server/internal/appconfig"
 	"academe/server/internal/auth"
 	"academe/server/internal/billing"
 	"academe/server/internal/chat"
 	"academe/server/internal/config"
 	"academe/server/internal/email"
+	"academe/server/internal/feedback"
 	"academe/server/internal/folder"
 	"academe/server/internal/httpx"
 	"academe/server/internal/postgres"
 	"academe/server/internal/profile"
+	"academe/server/internal/progress"
 	"academe/server/internal/report"
 	"academe/server/internal/sarvam"
 	"academe/server/internal/scan"
@@ -76,7 +79,8 @@ func run(ctx context.Context, logger *slog.Logger) error {
 	} else {
 		logger.Warn("reset emails are only logged", "reason", "ACADEME_RESEND_API_KEY is not set")
 	}
-	authService := auth.NewService(auth.NewPostgresStore(pool), cfg.TokenKey, google, mailer)
+	authStore := auth.NewPostgresStore(pool)
+	authService := auth.NewService(authStore, cfg.TokenKey, google, mailer)
 	authService.SetEntryLimitScale(cfg.AuthLimitScale)
 	authService.SetLogger(logger)
 	defer authService.Wait()
@@ -123,6 +127,13 @@ func run(ctx context.Context, logger *slog.Logger) error {
 	scans.SetLimiter(plans)
 	scan.RegisterRoutes(mux, logger, scans, authService.RequireAccount)
 	report.RegisterRoutes(mux, logger, report.NewService(report.NewPostgresStore(pool)), authService.RequireAccount)
+	feedbackSvc := feedback.NewService(feedback.NewPostgresStore(pool), feedbackNotifier(mailer, authStore, logger))
+	feedback.RegisterRoutes(mux, logger, feedbackSvc, authService.RequireAccount)
+	defer feedbackSvc.Wait()
+	progress.RegisterRoutes(mux, logger, progress.NewService(plans, studyService, progress.NewPostgresStore(pool)), authService.RequireAccount)
+	updatePolicy := appconfig.ParsePolicy(cfg.MinBuild, cfg.RecommendedBuild, cfg.UpdateMessage, cfg.UpdateURL)
+	appconfig.LogPolicy(logger, updatePolicy)
+	appconfig.RegisterRoutes(mux, logger, updatePolicy)
 	notices, _ := mailer.(site.Mailer)
 	if err := site.RegisterRoutes(mux, logger, site.Options{
 		Store: site.NewPostgresStore(pool), Mailer: notices, Resets: authService,
@@ -132,7 +143,7 @@ func run(ctx context.Context, logger *slog.Logger) error {
 	}
 
 	srv := &http.Server{
-		Handler:           httpx.TrustClientIP(cfg.ClientIPHeader, httpx.WithRequestID(httpx.Recover(logger, httpx.LogRequests(logger, mux)))),
+	Handler: httpx.TrustClientIP(cfg.ClientIPHeader, httpx.WithRequestID(httpx.Recover(logger, httpx.LogRequests(logger, appconfig.RequireBuild(updatePolicy, mux))))),
 		ReadHeaderTimeout: 5 * time.Second,
 		ReadTimeout:       10 * time.Second,
 		WriteTimeout:      60 * time.Second,
@@ -167,4 +178,22 @@ func run(ctx context.Context, logger *slog.Logger) error {
 		return err
 	}
 	return nil
+}
+
+func feedbackNotifier(m auth.Mailer, store *auth.PostgresStore, logger *slog.Logger) *feedback.Notifier {
+	var mail feedback.Mailer
+	if sender, ok := m.(interface {
+		SendFeedback(context.Context, email.FeedbackTicket) error
+		SendFeedbackReceipt(context.Context, email.FeedbackTicket) error
+	}); ok {
+		mail = sender
+	}
+	return &feedback.Notifier{
+		Mail: mail,
+		Email: func(ctx context.Context, accountID string) (string, error) {
+			a, err := store.AccountByID(ctx, accountID)
+			return a.Email, err
+		},
+		Log: logger,
+	}
 }

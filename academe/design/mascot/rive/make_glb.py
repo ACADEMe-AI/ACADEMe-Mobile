@@ -87,7 +87,7 @@ def field(pts):
     foot_r = sd_round_box(p - np.array([0.47, -1.38, 0.06]), 0.265, 0.165, 0.22, 0.14)
     d = smin(d, smin(foot_l, foot_r, 0.04), 0.08)
 
-    # Right arm (screen-right, down) — capsule
+    # Right arm (screen-right, down): capsule
     arm_r = sd_capsule(
         p,
         np.array([0.92, 0.05, 0.05]),
@@ -97,7 +97,7 @@ def field(pts):
     paw_r = sd_ellipsoid(p - np.array([1.22, -0.82, 0.14]), 0.16, 0.14, 0.15)
     d = smin(d, smin(arm_r, paw_r, 0.06), 0.10)
 
-    # Left arm (screen-left, WAVE) — raised, matching 01_wave + 3D master
+    # Left arm (screen-left, WAVE): raised, matching 01_wave + 3D master
     arm_l = sd_capsule(
         p,
         np.array([-0.90, 0.10, 0.08]),

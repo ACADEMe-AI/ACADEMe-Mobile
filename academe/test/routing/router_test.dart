@@ -22,6 +22,7 @@ import '../../testing/fakes/fake_preferences_store.dart';
 import '../../testing/fakes/fake_profile_repository.dart';
 import '../../testing/fakes/fake_scan_repository.dart';
 import '../../testing/fakes/fake_study_repository.dart';
+import '../helpers/test_repositories.dart';
 
 void main() {
   testWidgets('log out still leaves home after the theme changes', (
@@ -45,11 +46,15 @@ void main() {
       reminders: ReminderRepository(
         notifications: FakeNotificationService(),
         folderRepository: folders,
+        profileRepository: FakeProfileRepository(),
         preferencesStore: FakePreferencesStore(),
         hintStore: FakeHintStore(),
       ),
       hintStore: FakeHintStore(),
       preferencesStore: FakePreferencesStore(),
+      appConfigRepository: testAppConfigRepository(),
+      feedbackRepository: testFeedbackRepository(auth),
+      progressRepository: testProgressRepository(),
       restoredSession: Future.value(Result.ok(FakeAuthRepository.ada)),
     );
     await tester.pumpWidget(

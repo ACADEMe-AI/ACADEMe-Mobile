@@ -1,4 +1,4 @@
-# ACADEMe — roadmap
+# ACADEMe: roadmap
 
 The one planning document for the ACADEMe rebuild: what the app is, what is
 decided, what is built, the order we build the rest in, every screen as a task,
@@ -86,14 +86,14 @@ a date into a plan, a checklist and reminders; XP and streaks bring them back.
 
 ## 3. How we work
 
-1. **Preview** — mock it in `design/preview/index.html` (local HTML, one page), open it, get approval.
-2. **Build** — app (MVVM per `AGENTS.md`) and, if it needs data, the server endpoint (per `server/AGENTS.md`) and `openapi.yaml` (additive only).
-3. **Check** — `dart format`, `flutter analyze`, `flutter test`; `gofmt`, `go vet`, `golangci-lint`, `go test -race` (with `ACADEME_TEST_DATABASE_URL`), `govulncheck`.
-4. **Test** — a second agent reviews and attacks each workstream (`tasks/reports/*-test.md`).
-5. **Run** — `tool/ui_test.sh <journey…>` drives `integration_test/` on the Pixel 10 against the local server; screenshots and video in `build/ui-test/<journey>/`.
-6. **Brand gate** — the brand grep over the repo prints nothing.
-7. **Record** — a report in `tasks/reports/`, a tick below, a line in the change log (§12).
-8. **Git** — branch `academe-rebuild`, PR #1 into `main`; commits only when the user asks.
+1. **Preview**: mock it in `design/preview/index.html` (local HTML, one page), open it, get approval.
+2. **Build**: app (MVVM per `AGENTS.md`) and, if it needs data, the server endpoint (per `server/AGENTS.md`) and `openapi.yaml` (additive only).
+3. **Check**: `dart format`, `flutter analyze`, `flutter test`; `gofmt`, `go vet`, `golangci-lint`, `go test -race` (with `ACADEME_TEST_DATABASE_URL`), `govulncheck`.
+4. **Test**: a second agent reviews and attacks each workstream (`tasks/reports/*-test.md`).
+5. **Run**: `tool/ui_test.sh <journey…>` drives `integration_test/` on the Pixel 10 against the local server; screenshots and video in `build/ui-test/<journey>/`.
+6. **Brand gate**: the brand grep over the repo prints nothing.
+7. **Record**: a report in `tasks/reports/`, a tick below, a line in the change log (§12).
+8. **Git**: branch `academe-rebuild`, PR #1 into `main`; commits only when the user asks.
 
 ---
 
@@ -143,12 +143,12 @@ a date into a plan, a checklist and reminders; XP and streaks bring them back.
 - [x] Report on every Pebby answer (wrong, harmful, offensive, other) → `chat_reports`
 - [x] Free limit 10 messages/day (retry counts); the failed bubble offers Go Pro
 
-**Study — Courses (swipe lessons)**
+**Study: Courses (swipe lessons)**
 - [x] Courses: every syllabus chapter for the student's class and board; written lessons playable, unwritten ones greyed "Coming soon"; "Not in board exam" on formative-only chapters
 - [x] Chapter page, lesson player (seven text card types, Keep + Ask Pebby, resume), quick checks with +5 XP, lesson done, chapter test + report, revision queue
-- [x] Content live: 6 lessons, Class 10 CBSE — Maths 1-1 Prime factorisation, 1-2 Irrational numbers, 3-3 Substitution; Science 1-2 Types of reactions, 9-1 Spherical mirrors, 9-2 Mirror formula. 2 drafts held back (Science 1-1, 1-3)
+- [x] Content live: 6 lessons, Class 10 CBSE: Maths 1-1 Prime factorisation, 1-2 Irrational numbers, 3-3 Substitution; Science 1-2 Types of reactions, 9-1 Spherical mirrors, 9-2 Mirror formula. 2 drafts held back (Science 1-1, 1-3)
 
-**Study — Folders**
+**Study: Folders**
 - [x] Folders list, new/edit/delete, chapters, notes, to-dos, plan from the date, Today checklist, reminders
 
 **Scan (direction B · choose first)**
@@ -190,24 +190,24 @@ a date into a plan, a checklist and reminders; XP and streaks bring them back.
 
 ## 6. What's next, in order
 
-1. **Shipaton submission (30 Sep 2026)** — upgrade Railway to Pro, point academe.cc DNS, set the RevenueCat secrets and webhook, redeploy the current build, internal-testing build with the RevenueCat key, promotional Pro for judges. Checklist in §11.
-2. **Sarvam credits → lessons** — top up (₹10–13k for one full pass, plus live ASKMe/Scan), smoke run (CBSE 10 science 9: Refraction, Lenses), then generate Class 10 and 12 first, then everything; teacher spot-check drafts first.
-3. **Fix what the UI run finds** — F2 (Add chapters opens on an empty subject), the failing journeys once the run finishes, F1 re-check against production.
-4. **Launch hardening** — rate limits on log-in and sign-up, limiters in Postgres before a second instance, [[FILL]]s, lawyer review, monochrome notification icon, focus rings, width cap.
-5. **Play release 2.0.0** — the `docs/play/release-checklist.md` steps, internal → closed (20+ students) → staged production, India only.
-6. **Streaks and levels** (Phase 6) — real streak, streak saver, level-up moment.
-7. **Scan, part 2** — crop, blur check, offline queue, PDFs, similar question, revision cards / quiz from notes, Report on marks.
-8. **Stage 2 — languages** — app text, emails and policy pages in five languages; lessons translated and checked.
-9. **DPDP by 13 May 2027** — consent notice and records, verifiable parental consent, DPAs, breach runbook.
+1. **Shipaton submission (30 Sep 2026)**: upgrade Railway to Pro, point academe.cc DNS, set the RevenueCat secrets and webhook, redeploy the current build, internal-testing build with the RevenueCat key, promotional Pro for judges. Checklist in §11.
+2. **Sarvam credits → lessons**: top up (₹10–13k for one full pass, plus live ASKMe/Scan), smoke run (CBSE 10 science 9: Refraction, Lenses), then generate Class 10 and 12 first, then everything; teacher spot-check drafts first.
+3. **Fix what the UI run finds**: F2 (Add chapters opens on an empty subject), the failing journeys once the run finishes, F1 re-check against production.
+4. **Launch hardening**: rate limits on log-in and sign-up, limiters in Postgres before a second instance, [[FILL]]s, lawyer review, monochrome notification icon, focus rings, width cap.
+5. **Play release 2.0.0**: the `docs/play/release-checklist.md` steps, internal → closed (20+ students) → staged production, India only.
+6. **Streaks and levels** (Phase 6): real streak, streak saver, level-up moment.
+7. **Scan, part 2**: crop, blur check, offline queue, PDFs, similar question, revision cards / quiz from notes, Report on marks.
+8. **Stage 2: languages**: app text, emails and policy pages in five languages; lessons translated and checked.
+9. **DPDP by 13 May 2027**: consent notice and records, verifiable parental consent, DPAs, breach runbook.
 
 ---
 
-## 7. Stage 1 — competitor parity
+## 7. Stage 1: competitor parity
 
 IDs: **A** entry · **B** onboarding · **C** shell and companion · **D** capture
 · **E** study · **F** progress · **G** settings · **H** money. `[~]` = partly built.
 
-### Phase 1 — Entry and auth
+### Phase 1: Entry and auth
 
 | | ID | Screen | Notes |
 |---|---|---|---|
@@ -228,7 +228,7 @@ IDs: **A** entry · **B** onboarding · **C** shell and companion · **D** captu
 | [ ] | A14 | Reset email from the background queue | removes the timing difference |
 | [ ] | A15 | SMS Retriever / one-tap code autofill | Android |
 
-### Phase 2 — Onboarding
+### Phase 2: Onboarding
 
 | | ID | Task | Notes |
 |---|---|---|---|
@@ -237,10 +237,10 @@ IDs: **A** entry · **B** onboarding · **C** shell and companion · **D** captu
 | [x] | S5 | Subjects (setup step 5) | pills with English locked (Class 6–10); stream swipe cards then Main / Optional (11–12); +25 XP, setup totals 125 |
 | [x] | D1 | Ask-bar hint | once |
 | [ ] | P1–P5 | Personalise with Pebby (parked) | goal, daily goal, reminder, Day 1 streak (subjects done in S5) |
-| [ ] | — | Onboarding taster | a 3-card lesson before streak day one |
-| [ ] | — | State boards | "coming soon" in the board step; only when asked |
+| [ ] |: | Onboarding taster | a 3-card lesson before streak day one |
+| [ ] |: | State boards | "coming soon" in the board step; only when asked |
 
-### Phase 3 — Shell and AI companion
+### Phase 3: Shell and AI companion
 
 | | ID | Screen | Notes |
 |---|---|---|---|
@@ -253,7 +253,7 @@ IDs: **A** entry · **B** onboarding · **C** shell and companion · **D** captu
 | [x] | C8 | Daily free uses | replaced tickets: server limits + limit sheet |
 | [ ] | C9 | Output moderation | keyword filter in five languages, self-harm helpline answer, red-team before launch |
 
-### Phase 4 — Capture (Scan)
+### Phase 4: Capture (Scan)
 
 Designed in `design/preview/index.html` (Scan section). Everything runs on
 Sarvam (Document AI to read, chat to label, solve, mark and make lessons);
@@ -276,7 +276,7 @@ Server: `POST /scans` (multipart, up to 10 pages of 8 MB), `GET /scans`,
 `POST /scans/{id}/notes`; migration 0008. Without the Sarvam key every scan
 returns 503 `scan_unavailable`.
 
-### Phase 5 — Study
+### Phase 5: Study
 
 | | ID | Screen | Notes |
 |---|---|---|---|
@@ -297,7 +297,7 @@ returns 503 `scan_unavailable`.
 | [x] | E15 | Courses filters | one row of picked-subject pills; Filters key + sheet (board exam only, ready to study, revision due, sort by marks or recent); removable chips; same in Add chapters |
 | [ ] | E13 | Edit folder notes | today only delete |
 
-### Phase 6 — Progress and reward
+### Phase 6: Progress and reward
 
 | | ID | Screen | Notes |
 |---|---|---|---|
@@ -309,7 +309,7 @@ returns 503 `scan_unavailable`.
 | [ ] | F5 | Weekly report (Pro) | shareable to a parent through messaging apps |
 | [ ] | F6 | Answer sounds | our own (the old clips were removed) |
 
-### Phase 7 — Settings and account
+### Phase 7: Settings and account
 
 | | ID | Screen | Notes |
 |---|---|---|---|
@@ -323,12 +323,12 @@ returns 503 `scan_unavailable`.
 | [x] | G7 | Delete account | in-app + web page + Play subscription notice. Left: signed "confirm deletion" link in the web email |
 | [ ] | G8 | iOS notifications | provisional authorisation option; device check |
 
-### Phase 8 — Exam planner
+### Phase 8: Exam planner
 
 Replaced by folders (decided 2026-09-25). Left: the board-exam date filled in
 for Class 10 and 12, and a "missed classes" catch-up folder shortcut.
 
-### Phase 9 — Money (ACADEMe Pro)
+### Phase 9: Money (ACADEMe Pro)
 
 | | ID | Screen | Notes |
 |---|---|---|---|
@@ -358,7 +358,7 @@ end to end in English on the Pixel 10 (6 of 15 checked 25 Sep: 2, 3, 4, 9,
 
 ---
 
-## 8. Stage 2 — Multilingual
+## 8. Stage 2: Multilingual
 
 | | Task | Notes |
 |---|---|---|
@@ -375,7 +375,7 @@ end to end in English on the Pixel 10 (6 of 15 checked 25 Sep: 2, 3, 4, 9,
 
 ---
 
-## 9. Stage 3 — Swipe learning at scale
+## 9. Stage 3: Swipe learning at scale
 
 | | Task | Notes |
 |---|---|---|
@@ -431,7 +431,7 @@ Full order in `docs/play/release-checklist.md`.
 - [ ] Reviewer account `play-review@academe.cc` with content
 - [ ] Play Console forms submitted; subscription products active; RevenueCat live
 - [ ] Internal testing on a real phone, pre-launch report clean, closed test with students
-- [ ] Parental consent for under-18s (DPDP, 13 May 2027) — D1
+- [ ] Parental consent for under-18s (DPDP, 13 May 2027): D1
 
 ---
 
@@ -525,7 +525,7 @@ Full order in `docs/play/release-checklist.md`.
 | Content | Progress on renumbered seed IDs (dev accounts only) attaches to other lessons | harmless before release |
 | ASKMe | Empty answers from `sarvam-105b` reasoning (UI F1, deploy) | fixed in code (reasoning off); verify after redeploy |
 | ASKMe | No output moderation beyond the prompt; Report covers ASKMe answers, Check my answer marks and lessons made from notes | C9, D8 |
-| Study | Streak and level-up toggles schedule nothing; no streak calendar or freeze | F1b, F2 |
+| Study | Streak saver and level-up toggles schedule local notifications; no streak calendar or freeze yet | F1b (partial), F2 (partial) |
 | Study | "Done today" uses the phone's date and UTC offset | fine for India |
 | Study | Folder notes can't be edited | E13 |
 | Auth | Throttles, sync limit and password-check limit live in one process's memory | Postgres/Redis before a second instance |
@@ -608,9 +608,10 @@ Newest first. One line per change that landed; details live in git and `tasks/re
 - Scan built as direction B (choose first), all on Sarvam: shared `internal/sarvam` client (chat + Document AI digitise), `internal/scan` (read, list, link thread, check with board marking, notes → folder + generated lesson validated by `study.Validate`, one retry), user lessons in study and folders, migration 0008, OpenAPI; app Scan tab, camera/gallery via `image_picker`, read-and-fix screen, marks screen, notes-to-folder, entry points from Home, ASKMe attach and folders. 105 app tests and the server suite pass; on the Pixel 10 the flow runs to the server, which answers 503 until the key is set.
 - Scan designed (`design/preview/scan-designs.html`, 27 screens): two competitors' scan flows redrawn (a scan chip → crop → full answer with Pro limits and scan into folders; a document scanner with edges, filters, multi-page and upload for credits); our Scan = camera for everything on paper with Solve · Check · Notes · Ask; three layouts (camera first, choose first, point and shoot; recommended camera first); full Solve, Check, Notes and Ask flows, failure states, entry points and journeys. Rows in Today, folders and course lists are one line with “…” so every row is the same height; task titles drop the “Lesson:” prefix (the type moves into the subtitle).
 - Right answers celebrate: the option pops with a burst of dots from its tick, “+5 XP” floats up (only when XP was earned), a varied praise line and “N in a row” for streaks, a medium haptic; wrong answers shake gently. Lesson done: a burst behind Pebby, XP counts up, “Perfect lesson!” with the big celebration when every check is right; the chapter report ring fills with a burst at 80%+; finishing revision bursts. No sound yet (the bundled clips’ origin is unconfirmed). Folder bell is purple when reminders are on, delete is red; Home’s Today card says how many more tasks are in folders. Journeys re-checked on the Pixel 10: 6 of 15 work end to end (2, 3, 4, 9, 10, 15); 13 and 14 had been counted wrongly and are not built.
-- Study built end to end: Courses (subject chips, Continue at the exact card, All / In progress / Done, chapter page with Resume, lessons, chapter test, kept cards, add to folder); the lesson player with seven text card types (start, concept + Remember, table, worked example with tap-to-reveal steps, quick check, here's why, summary), Keep and Ask Pebby on every card, resume position; chapter test + report by lesson; revision queue for kept and missed cards (Didn't know / Almost / Knew it); Folders (one folder icon, name + optional date, add chapters, notes, to-dos, plan from the date with revision days, today checklist that ticks lessons and tests itself); Home's Today card; reminders as local notifications (bundled evening nudge, 3 days / tomorrow / 7 am on the day, permission asked once). Server: `internal/study` extended (positions, kept cards with spaced intervals, auto-keep on a miss, chapter results; migration 0007) and new `internal/folder` (folders, items, to-dos, plan and `/today`); 5 lessons with the new card types. Android: `POST_NOTIFICATIONS`, `RECEIVE_BOOT_COMPLETED`, `VIBRATE` stripped, core library desugaring. 94 app tests and the server suite pass; played end to end on the Pixel 10. Roadmap rewritten to match.
+- In-app feedback (`POST /me/feedback`, 2/day and 5/week IST), Help submit UI, remote app update policy (`GET /app/config`, force screen, soft banner with Pebby), `GET /me/progress` weekly Pro summary on My Progress, widget and integration tests; operator doc `docs/play/app-update-policy.md`.
+- Study built end to end:
 - Study end to end previewed (`design/preview/study-end-to-end.html`, 25 screens, Material icons, no emoji): Courses = Subject → Chapter → Lesson → swipe cards (the old ACADEMe structure) with new text card types (start, concept, table, worked example with tap-to-reveal steps, quick check, here’s why, summary), Keep on every card and auto-kept misses feeding one revision queue, chapter test and report; Folders simplified to one folder icon, a name and an optional date, then chapters/notes, plan, checklist, reminders, Home Today card, save-to-folder. Checked against the 15 student journeys (7 end to end after this plan, 8 waiting on Scan, voice, translation, offline, uploads, Me report, ASKMe depth). Build order: lessons + keeping cards → folders → reminders → content.
-- Folders previewed (`design/preview/folders-designs.html`, 17 screens): a competitor’s folders redrawn, then ours — a folder holds syllabus chapters, scans, photos, PDFs, ASKMe chats and notes; an optional date makes a plan; one checklist (plan tasks tick themselves, own to-dos by hand, missed tasks roll forward); per-folder reminders (Settings time, 3 days / day before / morning of, bundled, quiet hours); Home’s Today card = every folder’s tasks for today; save-to-folder from Scan, ASKMe and chapters; sharing later. Proposed to replace Phase 8 and finish G4 and C2’s Today card. Decision pending.
+- Folders previewed (`design/preview/folders-designs.html`, 17 screens): a competitor’s folders redrawn, then ours: a folder holds syllabus chapters, scans, photos, PDFs, ASKMe chats and notes; an optional date makes a plan; one checklist (plan tasks tick themselves, own to-dos by hand, missed tasks roll forward); per-folder reminders (Settings time, 3 days / day before / morning of, bundled, quiet hours); Home’s Today card = every folder’s tasks for today; save-to-folder from Scan, ASKMe and chapters; sharing later. Proposed to replace Phase 8 and finish G4 and C2’s Today card. Decision pending.
 - Swipe learning v1 built (text only). Server: `internal/study` with decks as JSON built into the binary (3 starter decks, Class 10 CBSE: Science Ch 10 Reflection and Spherical mirrors, Maths Ch 3), `GET /study/decks`, `GET /study/decks/{id}`, `POST /study/decks/{id}/answers` (graded, 5 XP once per question via `xp_events`), `PUT /study/decks/{id}/completion` (best score kept, migration 0006); a library test checks every deck (quiz every ≤3 cards, answer in range, a why on each). App: Study tab (subject chips, Continue, chapters with decks and done state), deck player (concept, quiz, here's-why, deck done with Pebby, next deck), `ReplyText` moved to core. 86 app tests and the server suite pass; played end to end on the Pixel 10.
 - Decision: swipe learning v1 is text only. Diagrams (drawn in the app from a diagram description, plus a designer-drawn biology library) and video are later upgrades.
 - Decision: no video in the first version of swipe learning (cost). Decks are text and diagram cards, a quiz every 2–3 cards, and a “here’s why” card on wrong answers. Video moves to a later upgrade; the Study preview marks it that way.
@@ -645,7 +646,7 @@ Newest first. One line per change that landed; details live in git and `tasks/re
 - Home chosen: direction 1 · Today. No logo or app name: the greeting and syllabus share the top row with streak and XP; one ask field with tool chips; Today plan and Continue cards once they have data; subjects. No Pebby on the home screen. Tabs Home · Pebby · ＋Scan · Study · Me.
 - Home preview: direction 9 added, the old ACADEMe app (home, courses, topics, topic details, swipe deck, quiz, feedback, report, progress), redrawn from `ACADEMe-frontend`. Keep its course → topic → subtopic → deck → quiz → report structure; drop its look and Perfect/Oops-only feedback.
 - The leading study app's September redesign reviewed (a competitor then-and-now preview, since removed). Chat is now their home screen, with 6 unlabelled tabs, XP for asking, the plan built in chat, and ~12 onboarding screens before the account. Home directions updated: 1 is now Today + Pebby modes; 2 is chat-first; Tool hub replaced by Exam plan; 7 redrawn as that app today. Recommendation: 1, five labelled tabs.
-- Home screen: eight directions previewed (`design/preview/home-designs.html`) — six of ours plus two competitors; choice pending.
+- Home screen: eight directions previewed (`design/preview/home-designs.html`): six of ours plus two competitors; choice pending.
 - Phase 2 built: `profiles` + `xp_events` (migration 0003), `GET/PATCH /me/profile` with a one-time 100 XP setup reward, `GET /catalog/subjects` (CBSE/ICSE 6–12), shared `RequireAccount` middleware; app shell with five tabs, first dashboard, setup sheet (language cards, year wheel, class dial, board cards), checklist with tick bursts, green ✓ → +100 → XP counter finish, one-time ask hint. Checked end to end on the Pixel 10.
 - Setup completion: the card turns green with a ✓, shrinks into "+100", and the +100 flies into the XP counter.
 - Setup completion simplified: tick + burst + XP into the header, card collapses, no "ready" pop-up; Personalise with Pebby parked as Phase 2b.

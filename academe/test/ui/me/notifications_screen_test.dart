@@ -28,6 +28,7 @@ void main() {
     repository = ReminderRepository(
       notifications: notifications,
       folderRepository: FakeFolderRepository(),
+      profileRepository: FakeProfileRepository(),
       preferencesStore: FakePreferencesStore(),
       hintStore: FakeHintStore(),
     );

@@ -2,6 +2,7 @@ import 'package:academe/data/repositories/appearance_repository.dart';
 import 'package:academe/ui/core/themes/app_theme.dart';
 import 'package:academe/ui/core/ui/pebby.dart';
 import 'package:academe/ui/me/view_models/me_view_model.dart';
+import 'package:academe/ui/progress/view_models/progress_view_model.dart';
 import 'package:academe/ui/progress/widgets/progress_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -11,6 +12,7 @@ import '../../../testing/fakes/fake_auth_repository.dart';
 import '../../../testing/fakes/fake_billing_repository.dart';
 import '../../../testing/fakes/fake_preferences_store.dart';
 import '../../../testing/fakes/fake_profile_repository.dart';
+import '../../helpers/test_repositories.dart';
 
 void main() {
   Future<void> pump(
@@ -24,12 +26,18 @@ void main() {
       appearance: AppearanceRepository(store: FakeAppearanceStore()),
       billing: billing,
     );
+    final progress = ProgressViewModel(
+      progress: testProgressRepository(),
+      billing: billing,
+    );
+    progress.loadIfPro(billing.isPro);
     addTearDown(me.dispose);
+    addTearDown(progress.dispose);
     await tester.pumpWidget(
       PebbyStandIn(
         child: MaterialApp(
           theme: AppTheme.dark(),
-          home: ProgressScreen(me: me, onGoPro: () {}),
+          home: ProgressScreen(me: me, progress: progress, onGoPro: () {}),
         ),
       ),
     );
@@ -41,12 +49,15 @@ void main() {
     expect(find.text('My Progress is part of Pro'), findsOneWidget);
   });
 
-  testWidgets('Pro user sees progress stats', (tester) async {
+  testWidgets('Pro user sees progress stats and weekly summary', (
+    tester,
+  ) async {
     await pump(
       tester,
       billing: FakeBillingRepository(plan: FakeBillingRepository.proPlan),
     );
     expect(find.text('My Progress is part of Pro'), findsNothing);
     expect(find.textContaining('Your streak, level and XP'), findsOneWidget);
+    expect(find.textContaining('This week:'), findsOneWidget);
   });
 }

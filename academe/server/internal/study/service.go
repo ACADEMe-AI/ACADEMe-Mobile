@@ -278,3 +278,21 @@ func (s *Service) ChapterResults(ctx context.Context, accountID string) ([]Chapt
 	slices.SortFunc(out, func(a, b ChapterResult) int { return a.CompletedAt.Compare(b.CompletedAt) })
 	return out, nil
 }
+
+func (s *Service) DeckSubject(ctx context.Context, accountID, deckID string) (id, name string, ok bool) {
+	d, err := s.deck(ctx, deckID)
+	if err != nil {
+		return "", "", false
+	}
+	class, board, syllabusOK, err := s.syllabus(ctx, accountID)
+	if err != nil || !syllabusOK {
+		return d.Subject, d.Subject, d.Subject != ""
+	}
+	subs, _ := profile.Subjects(class, board)
+	for _, sub := range subs {
+		if sub.ID == d.Subject {
+			return sub.ID, sub.Name, true
+		}
+	}
+	return d.Subject, d.Subject, d.Subject != ""
+}

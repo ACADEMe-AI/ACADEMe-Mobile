@@ -6,6 +6,14 @@ abstract class PreferencesStore {
   Future<StudyPreferences> read();
 
   Future<void> write(StudyPreferences preferences);
+
+  Future<int> lastNotifiedLevel() async => 0;
+
+  Future<void> saveLastNotifiedLevel(int level) async {}
+
+  Future<int> softUpdateDismissedBuild() async => 0;
+
+  Future<void> saveSoftUpdateDismissedBuild(int build) async {}
 }
 
 class SharedPreferencesStore implements PreferencesStore {
@@ -48,4 +56,22 @@ class SharedPreferencesStore implements PreferencesStore {
     await _preferences.setBool('${_prefix}levels', p.celebratesLevelUps);
     await _preferences.setInt('${_prefix}goal', p.dailyGoalMinutes);
   }
+
+  @override
+  Future<int> lastNotifiedLevel() async =>
+      await _preferences.getInt('${_prefix}level_done') ?? 0;
+
+  @override
+  Future<void> saveLastNotifiedLevel(int level) =>
+      _preferences.setInt('${_prefix}level_done', level);
+
+  static const _softDismissKey = 'soft_update_dismissed_build';
+
+  @override
+  Future<int> softUpdateDismissedBuild() async =>
+      await _preferences.getInt(_softDismissKey) ?? 0;
+
+  @override
+  Future<void> saveSoftUpdateDismissedBuild(int build) =>
+      _preferences.setInt(_softDismissKey, build);
 }

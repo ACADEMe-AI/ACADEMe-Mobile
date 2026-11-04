@@ -1,10 +1,10 @@
-# ACADEMe Shape Language — How we build characters
+# ACADEMe Shape Language: How we build characters
 
 **Purpose:** A production recipe for **ACADEMe** illustrations and mascots.
 
 **Brand note:** Never copy another app's mascot, colours or character IP. ACADEMe uses **our** palette (Scheme B/D) and our personality.
 
-**Related:** Animation library stays in `design/mascot/flat/ANIMATION-LIBRARY.md` — build character *with this guide first*, then animate.
+**Related:** Animation library stays in `design/mascot/flat/ANIMATION-LIBRARY.md`: build character *with this guide first*, then animate.
 
 ---
 
@@ -28,9 +28,9 @@ Method: **few geometric shapes, all rounded, clear silhouette, controlled detail
 
 | Primitive | Notes |
 |-----------|--------|
-| **Rounded rectangle** (“stadium” / soft box) | Used **most** often — body, limbs, props |
+| **Rounded rectangle** (“stadium” / soft box) | Used **most** often: body, limbs, props |
 | **Circle** (and ellipse) | Heads, eyes, joints, cheeks |
-| **Rounded triangle** | Ears, beaks, ribbons, accents — **corners rounded**, never sharp spikes |
+| **Rounded triangle** | Ears, beaks, ribbons, accents: **corners rounded**, never sharp spikes |
 
 **Rules**
 
@@ -43,7 +43,7 @@ Method: **few geometric shapes, all rounded, clear silhouette, controlled detail
 BUILD ORDER (every character)
 1. Silhouette from 1–3 big shapes (must read in solid black)
 2. Add mid-size shapes for limbs / signature feature
-3. Face: eyes + mouth (+ optional nose) — geometric only
+3. Face: eyes + mouth (+ optional nose): geometric only
 4. Accent color on ONE signature feature
 5. Count shapes → stay in the “good” band (§3)
 ```
@@ -56,9 +56,9 @@ Shape budget:
 
 | Shape count (approx.) | Verdict |
 |----------------------|---------|
-| **~6** | Too abstract — hard to read |
+| **~6** | Too abstract: hard to read |
 | **~12–18** | **Sweet spot** for a character |
-| **~30+** | Too busy — silhouette muddies |
+| **~30+** | Too busy: silhouette muddies |
 
 **ACADEMe target for a mascot hero pose:** **10–18 filled shapes** (including eyes/pupils as separate shapes).
 
@@ -94,7 +94,7 @@ Shape budget:
 
 - Build torso/head from **1–3** large rounded rects / circles  
 - **Shape repetition** keeps the design cohesive (same corner radius language)  
-- Avoid too many body parts — complicated silhouette  
+- Avoid too many body parts: complicated silhouette  
 
 ### Eyes (geometric only)
 
@@ -109,7 +109,7 @@ Eye styles to start with:
 **Rules**
 
 - Pupils roughly **centered** in the eye  
-- Eyes geometric — no realistic lashes  
+- Eyes geometric: no realistic lashes  
 - Prefer clear contrast (white + dark on primary body)  
 
 ### Mouth
@@ -238,4 +238,4 @@ Animals are **not** drawn realistically. Decode the animal into primitives:
 
 ---
 
-*Version 2.0 — 2026-07-31 · V3 cast redesign.*
+*Version 2.0: 2026-07-31 · V3 cast redesign.*

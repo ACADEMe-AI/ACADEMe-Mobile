@@ -28,3 +28,13 @@ func (l Log) SendDeletionNotice(ctx context.Context, _ string) error {
 	l.Logger.InfoContext(ctx, "deletion notice sent")
 	return nil
 }
+
+func (l Log) SendFeedback(ctx context.Context, t FeedbackTicket) error {
+	l.Logger.InfoContext(ctx, "feedback ops email sent", "ticket", t.ID, "category", t.Category)
+	return nil
+}
+
+func (l Log) SendFeedbackReceipt(ctx context.Context, t FeedbackTicket) error {
+	l.Logger.InfoContext(ctx, "feedback receipt email sent", "ticket", t.ID)
+	return nil
+}

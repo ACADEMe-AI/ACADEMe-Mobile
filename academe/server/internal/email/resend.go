@@ -60,7 +60,11 @@ func (c *Resend) SendDeletionNotice(ctx context.Context, to string) error {
 }
 
 func (c *Resend) send(ctx context.Context, to string, m message) error {
-	body, err := json.Marshal(resendRequest{From: c.From, To: []string{to}, ReplyTo: SupportAddress, Subject: m.Subject, HTML: m.HTML, Text: m.Text})
+	return c.sendTo(ctx, to, SupportAddress, m)
+}
+
+func (c *Resend) sendTo(ctx context.Context, to, replyTo string, m message) error {
+	body, err := json.Marshal(resendRequest{From: c.From, To: []string{to}, ReplyTo: replyTo, Subject: m.Subject, HTML: m.HTML, Text: m.Text})
 	if err != nil {
 		return fmt.Errorf("encode resend request: %w", err)
 	}

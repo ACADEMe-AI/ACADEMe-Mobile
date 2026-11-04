@@ -5,6 +5,8 @@ import (
 	"testing"
 	"testing/synctest"
 	"time"
+
+	"academe/server/internal/india"
 )
 
 func TestWeekPoolIgnoresUncappedLessons(t *testing.T) {
@@ -40,7 +42,7 @@ func TestWeekPoolBlocksAndRefundsOvershoot(t *testing.T) {
 	ctx := t.Context()
 	cap := s.weekCap(false)
 	day, _ := today(time.Now())
-	weekStart, _ := weekWindow(time.Now())
+	weekStart, _ := india.UsageWeekBounds(time.Now())
 	store.mu.Lock()
 	store.usage[usageKey{"riya", day, AskMe}] = 99
 	store.usage[usageKey{"riya", weekStart, AskMe}] = cap - 1 - 99
@@ -80,7 +82,7 @@ func TestWeekPoolResetsOnMondayIST(t *testing.T) {
 		if err := s.Take(ctx, "riya", AskMe); err == nil {
 			t.Fatal("want week limit before rollover")
 		}
-		_, weekNext := weekWindow(time.Now())
+		_, weekNext := india.UsageWeekBounds(time.Now())
 		time.Sleep(time.Until(weekNext))
 		if err := s.Take(ctx, "riya", AskMe); err != nil {
 			t.Errorf("Take after Monday IST = %v, want nil", err)

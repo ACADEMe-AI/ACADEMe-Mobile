@@ -27,6 +27,12 @@ abstract final class Environment {
     defaultValue: 'academe_pro',
   );
 
+  static const buildNumber = int.fromEnvironment('APP_BUILD', defaultValue: 8);
+
+  static final playStoreUrl = Uri.parse(
+    'https://play.google.com/store/apps/details?id=com.academe.flutter',
+  );
+
   static String get revenueCatApiKey => switch (defaultTargetPlatform) {
     TargetPlatform.android when !kIsWeb => revenueCatGoogleApiKey,
     TargetPlatform.iOS when !kIsWeb => revenueCatAppleApiKey,

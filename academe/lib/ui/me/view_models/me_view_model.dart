@@ -115,6 +115,7 @@ class MeViewModel extends ChangeNotifier with SafeNotifier {
     _preferences = next;
     notifyListeners();
     await _store.write(next);
+    _reminders?.refreshSoon();
   }
 
   Future<void> _loadPreferences() async {

@@ -29,6 +29,11 @@ type Config struct {
 	AuthLimitScale        int
 	BillingTesters        []string
 	RevenueCatEntitlement string
+
+	MinBuild         int
+	RecommendedBuild int
+	UpdateMessage    string
+	UpdateURL        string
 }
 
 func FromEnv() (Config, error) {
@@ -75,7 +80,19 @@ func FromEnv() (Config, error) {
 	if err := c.billing(); err != nil {
 		return Config{}, err
 	}
+	c.MinBuild = parseNonNegInt(os.Getenv("ACADEME_MIN_BUILD"))
+	c.RecommendedBuild = parseNonNegInt(os.Getenv("ACADEME_RECOMMENDED_BUILD"))
+	c.UpdateMessage = os.Getenv("ACADEME_UPDATE_MESSAGE")
+	c.UpdateURL = os.Getenv("ACADEME_UPDATE_URL")
 	return c, nil
+}
+
+func parseNonNegInt(raw string) int {
+	n, _ := strconv.Atoi(strings.TrimSpace(raw))
+	if n < 0 {
+		return 0
+	}
+	return n
 }
 
 func (c *Config) billing() error {

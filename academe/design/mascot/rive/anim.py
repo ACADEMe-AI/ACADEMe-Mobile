@@ -260,7 +260,7 @@ TREMOR = [0.0, 0.34, -0.22, 0.41, -0.15, 0.28, -0.36, 0.12]
 
 
 def gaze(a, script, tremor=True):
-    """script: [(frame, dx, dy, ease)] — eyes and highlights move together."""
+    """script: [(frame, dx, dy, ease)]: eyes and highlights move together."""
     for i, e in enumerate(GAZE):
         bx, by = a.get(e, 'x'), a.get(e, 'y')
         xs, ys = [], []
@@ -373,7 +373,7 @@ def mouth(a, mode):
 
 
 def mouth_morph(a, frames):
-    """frames: [(frame, mode, ease)] — every mouth channel crossfades together."""
+    """frames: [(frame, mode, ease)]: every mouth channel crossfades together."""
     chans = {}
     for f, mode, es in frames:
         sx, sy, y, tongue, fill, ts, te, off, thick = MOUTHS[mode]

@@ -6,18 +6,25 @@ import '../../core/ui/face_card.dart';
 import '../../core/ui/screen_scale.dart';
 import '../../me/view_models/me_view_model.dart';
 import '../../me/widgets/me_stats.dart';
+import '../view_models/progress_view_model.dart';
 
 class ProgressScreen extends StatelessWidget {
-  const ProgressScreen({super.key, required this.me, required this.onGoPro});
+  const ProgressScreen({
+    super.key,
+    required this.me,
+    required this.progress,
+    required this.onGoPro,
+  });
 
   final MeViewModel me;
+  final ProgressViewModel progress;
   final VoidCallback onGoPro;
 
   @override
   Widget build(BuildContext context) {
     final padding = ScreenScale.of(context).pagePadding;
     return ListenableBuilder(
-      listenable: me,
+      listenable: Listenable.merge([me, progress]),
       builder: (context, _) {
         final body = ListView(
           padding: EdgeInsets.fromLTRB(padding, 8, padding, 24),
@@ -34,6 +41,60 @@ class ProgressScreen extends StatelessWidget {
               level: me.level,
               streak: me.profile.streak,
             ),
+            const SizedBox(height: 16),
+            if (me.isPro) ...[
+              FaceCard(
+                child: Text(
+                  'Daily goal: ${me.preferences.dailyGoalMinutes} min',
+                  style: AppTextStyles.label.copyWith(
+                    color: context.palette.textMuted,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 8),
+              if (progress.load.isRunning)
+                FaceCard(
+                  child: Text(
+                    'Loading this week…',
+                    style: AppTextStyles.label.copyWith(
+                      color: context.palette.textMuted,
+                    ),
+                  ),
+                )
+              else if (progress.load.result is Error)
+                FaceCard(
+                  child: TextButton(
+                    onPressed: progress.load.isRunning
+                        ? null
+                        : progress.load.execute,
+                    child: const Text(
+                      'Couldn’t load this week’s summary. Retry',
+                    ),
+                  ),
+                )
+              else if (progress.summary case final summary?) ...[
+                FaceCard(
+                  child: Text(
+                    summary.weekLine,
+                    style: AppTextStyles.labelStrong.copyWith(
+                      color: context.palette.text,
+                    ),
+                  ),
+                ),
+                for (final row in summary.bySubject)
+                  if (row.lessonsDone > 0) ...[
+                    const SizedBox(height: 8),
+                    FaceCard(
+                      child: Text(
+                        '${row.name}: ${row.lessonsDone} lesson${row.lessonsDone == 1 ? '' : 's'}',
+                        style: AppTextStyles.label.copyWith(
+                          color: context.palette.text,
+                        ),
+                      ),
+                    ),
+                  ],
+              ],
+            ],
             const SizedBox(height: 16),
             FaceCard(
               child: Text(

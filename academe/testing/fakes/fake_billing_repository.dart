@@ -26,11 +26,7 @@ class FakeBillingRepository extends BillingRepository {
     autoRenew: true,
     period: ProPeriod.monthly,
     state: 'active',
-    limits: {
-      ProFeature.askme: 30,
-      ProFeature.scan: 9,
-      ProFeature.check: 3,
-    },
+    limits: {ProFeature.askme: 30, ProFeature.scan: 9, ProFeature.check: 3},
     weekLimit: 294,
   );
 

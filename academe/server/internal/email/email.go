@@ -47,16 +47,21 @@ type button struct {
 }
 
 type page struct {
-	Site      string
-	Host      string
-	Subject   string
-	Preheader string
-	Reason    string
-	Pebby     string
-	Heading   string
-	Button    button
-	Code      string
-	Digits    []string
+	Site          string
+	Host          string
+	Subject       string
+	Preheader     string
+	Reason        string
+	Pebby         string
+	Heading       string
+	Button        button
+	Code          string
+	Digits        []string
+	TicketID      string
+	CategoryLabel string
+	StudentEmail  string
+	Message       string
+	MessageHTML   htmltemplate.HTML
 }
 
 //go:embed templates
@@ -86,7 +91,7 @@ type pair struct {
 	text *texttemplate.Template
 }
 
-var templates = parseTemplates("reset", "google", "welcome", "deletion")
+var templates = parseTemplates("reset", "google", "welcome", "deletion", "feedback_ops", "feedback_received")
 
 func parseTemplates(names ...string) map[string]pair {
 	htmlLayout := htmltemplate.Must(htmltemplate.New("").Funcs(outlook).ParseFS(files, "templates/layout.html"))
@@ -162,6 +167,54 @@ func deletionMessage() (message, error) {
 		Reason:    "You're getting this email because someone asked on " + siteHost + " to delete the ACADEMe account that uses this address.",
 		Pebby:     "pebby-shy.png",
 		Button:    button{"Contact support", supportURL},
+	})
+}
+
+type FeedbackTicket struct {
+	ID           string
+	StudentEmail string
+	Category     string
+	Message      string
+}
+
+func feedbackCategoryLabel(category string) string {
+	switch category {
+	case "wrong_answer":
+		return "Report a wrong answer"
+	case "bug":
+		return "Something isn't working"
+	case "feature":
+		return "Suggest a feature"
+	default:
+		return category
+	}
+}
+
+func (t FeedbackTicket) opsMessage() (message, error) {
+	reply := "mailto:" + t.StudentEmail + "?subject=" + url.QueryEscape("Re: your ACADEMe feedback")
+	return render("feedback_ops", page{
+		Subject:       "ACADEMe feedback (" + t.Category + ")",
+		Preheader:     "Reply to reach the student. Ticket " + t.ID + ".",
+		Reason:        "You're getting this email because a student sent feedback from the ACADEMe app.",
+		Pebby:         "pebby-wave.png",
+		Heading:       "New in-app feedback",
+		TicketID:      t.ID,
+		CategoryLabel: feedbackCategoryLabel(t.Category),
+		StudentEmail:  t.StudentEmail,
+		Message:       t.Message,
+		MessageHTML:   htmltemplate.HTML(html.EscapeString(t.Message)), //nolint:gosec // escaped
+		Button:        button{"Reply to student", reply},
+	})
+}
+
+func (t FeedbackTicket) receivedMessage() (message, error) {
+	return render("feedback_received", page{
+		Subject:   "We got your feedback",
+		Preheader: "Thanks for writing in. Our team reads every message.",
+		Reason:    "You're getting this email because you sent feedback from the ACADEMe app.",
+		Pebby:     "pebby-shy.png",
+		Heading:   "Thanks, we got your message",
+		Button:    button{"Open ACADEMe", OpenURL},
 	})
 }
 

@@ -1,9 +1,10 @@
 import 'package:academe/data/repositories/auth_repository.dart';
+import 'package:academe/data/repositories/authorizer.dart';
 import 'package:academe/domain/models/account.dart';
 import 'package:academe/domain/models/auth_failure.dart';
 import 'package:academe/utils/result.dart';
 
-class FakeAuthRepository implements AuthRepository {
+class FakeAuthRepository implements AuthRepository, Authorizer {
   FakeAuthRepository({Account? signedIn}) : _account = signedIn;
 
   static const ada = Account(
@@ -227,4 +228,9 @@ class FakeAuthRepository implements AuthRepository {
     }
     return result;
   }
+
+  @override
+  Future<Result<T>> authorized<T>(
+    Future<Result<T>> Function(String accessToken) call,
+  ) => call('fake-access-token');
 }

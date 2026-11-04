@@ -60,7 +60,7 @@ paths:
               schema: { $ref: "#/components/schemas/Session" }
         "400": { $ref: "#/components/responses/Error" }
         "401":
-          description: "`wrong_credentials` — never says whether the email exists."
+          description: "`wrong_credentials`: never says whether the email exists."
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
         "429": { $ref: "#/components/responses/Throttled" }
   /auth/refresh:
@@ -79,7 +79,7 @@ paths:
               schema: { $ref: "#/components/schemas/Tokens" }
         "400": { $ref: "#/components/responses/Error" }
         "401":
-          description: "`invalid_token` — expired, used or logged out. Log the student out."
+          description: "`invalid_token`: expired, used or logged out. Log the student out."
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
   /auth/log-out:
     post:
@@ -125,7 +125,7 @@ paths:
           description: "`email_taken`"
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
         "503":
-          description: "`google_unavailable` — the server has no Google client IDs."
+          description: "`google_unavailable`: the server has no Google client IDs."
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
         "429": { $ref: "#/components/responses/Throttled" }
   /auth/password-reset:
@@ -184,13 +184,13 @@ paths:
                   expiresIn: { type: integer, description: Reset token lifetime in seconds. }
         "400": { $ref: "#/components/responses/Error" }
         "410":
-          description: "`code_expired` — expired, used, replaced, or never sent. Ask for a new code."
+          description: "`code_expired`: expired, used, replaced, or never sent. Ask for a new code."
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
         "422":
           description: "`wrong_code`"
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
         "429":
-          description: "`too_many_attempts` — the code is burned, ask for a new one; or `too_many_requests`."
+          description: "`too_many_attempts`: the code is burned, ask for a new one; or `too_many_requests`."
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
   /auth/password-reset/complete:
     post:
@@ -214,13 +214,13 @@ paths:
               schema: { $ref: "#/components/schemas/Session" }
         "400": { $ref: "#/components/responses/Error" }
         "410":
-          description: "`reset_expired` — the token expired or was used. Start again. Checked before the new password is hashed."
+          description: "`reset_expired`: the token expired or was used. Start again. Checked before the new password is hashed."
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
         "422":
           description: "`invalid_password`"
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
         "429":
-          description: "`too_many_requests` — counts against the 30 tries per IP address an hour shared with /auth/password-reset/verify and /auth/password-reset/link."
+          description: "`too_many_requests`: counts against the 30 tries per IP address an hour shared with /auth/password-reset/verify and /auth/password-reset/link."
           headers:
             Retry-After: { description: Seconds until the next try is allowed., schema: { type: integer } }
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
@@ -251,7 +251,7 @@ paths:
                   expiresIn: { type: integer, description: Token lifetime in seconds. }
         "400": { $ref: "#/components/responses/Error" }
         "410":
-          description: "`reset_expired` — the link is unknown, expired, used, or replaced by a newer email."
+          description: "`reset_expired`: the link is unknown, expired, used, or replaced by a newer email."
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
         "429":
           description: "`too_many_attempts` (the code's tries are used up) or `too_many_requests`"
@@ -350,13 +350,13 @@ paths:
           description: "`invalid_token`"
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
         "403":
-          description: "`wrong_password` — the current password is wrong."
+          description: "`wrong_password`: the current password is wrong."
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
         "422":
-          description: "`invalid_password` — the new password breaks the sign-up rules."
+          description: "`invalid_password`: the new password breaks the sign-up rules."
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
         "429":
-          description: "`too_many_requests` — five password changes an hour per account."
+          description: "`too_many_requests`: five password changes an hour per account."
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
   /me/google:
     post:
@@ -383,10 +383,10 @@ paths:
           description: "`invalid_token` or `invalid_google_token`"
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
         "409":
-          description: "`google_taken` — that Google account is linked to another account."
+          description: "`google_taken`: that Google account is linked to another account."
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
         "503":
-          description: "`google_unavailable` — the server has no Google client IDs."
+          description: "`google_unavailable`: the server has no Google client IDs."
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
     delete:
       summary: Unlink Google. Only allowed when the account has a password.
@@ -401,7 +401,7 @@ paths:
           description: "`invalid_token`"
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
         "409":
-          description: "`password_required` — set a password first."
+          description: "`password_required`: set a password first."
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
   /me/profile:
     get:
@@ -580,7 +580,7 @@ paths:
           description: "`invalid_text` or `invalid_mode`"
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
         "402":
-          description: "`limit_reached` (feature askme): a free student asked 10 questions today — `error.details` has feature, limit and resetsAt. Show the Go Pro sheet."
+          description: "`limit_reached` (feature askme): a free student asked 10 questions today: `error.details` has feature, limit and resetsAt. Show the Go Pro sheet."
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
         "503":
           description: "`askme_unavailable`: the server has no tutor configured."
@@ -612,7 +612,7 @@ paths:
           description: "`nothing_to_retry`: the last message isn't Pebby's."
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
         "402":
-          description: "`limit_reached` (feature askme): out of free messages today; the last answer is kept — `error.details` has feature, limit and resetsAt."
+          description: "`limit_reached` (feature askme): out of free messages today; the last answer is kept: `error.details` has feature, limit and resetsAt."
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
         "503":
           description: "`askme_unavailable`"
@@ -1173,7 +1173,7 @@ paths:
           description: "`scan_failed`"
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
         "402":
-          description: "`limit_reached` (feature scan): a free student read 3 scans today — `error.details` has feature, limit and resetsAt. Show the Go Pro sheet."
+          description: "`limit_reached` (feature scan): a free student read 3 scans today: `error.details` has feature, limit and resetsAt. Show the Go Pro sheet."
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
         "503":
           description: "`scan_unavailable`: no Sarvam key on the server."
@@ -1251,7 +1251,7 @@ paths:
           description: "`scan_failed`"
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
         "402":
-          description: "`limit_reached` (feature check): a free student checked 1 answer today — `error.details` has feature, limit and resetsAt. Show the Go Pro sheet."
+          description: "`limit_reached` (feature check): a free student checked 1 answer today: `error.details` has feature, limit and resetsAt. Show the Go Pro sheet."
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
   /scans/{id}/notes:
     post:
@@ -1290,7 +1290,114 @@ paths:
           description: "`scan_failed`"
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
         "402":
-          description: "`pro_only` (feature lessons, limit 0): lessons from notes are Pro; the notes are not saved, so retry with makeLesson false to just keep them — `error.details` has feature, limit and resetsAt. Show the Go Pro sheet."
+          description: "`pro_only` (feature lessons, limit 0): lessons from notes are Pro; the notes are not saved, so retry with makeLesson false to just keep them: `error.details` has feature, limit and resetsAt. Show the Go Pro sheet."
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+  /app/config:
+    get:
+      summary: Remote update policy and optional feature flags. No auth.
+      parameters:
+        - in: header
+          name: X-App-Build
+          schema: { type: integer }
+          description: Installed versionCode from the app (informational on this route).
+      responses:
+        "200":
+          description: Update thresholds and Play URL.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [minBuild, recommendedBuild, updateMessage, updateUrl]
+                properties:
+                  minBuild: { type: integer, description: "Force update when installed build is below this; 0 disables." }
+                  recommendedBuild: { type: integer, description: "Soft nudge when below this; 0 disables." }
+                  updateMessage: { type: string }
+                  updateUrl: { type: string, format: uri }
+  /me/feedback:
+    post:
+      summary: Signed-in help and feedback. At most 2 submissions per account per IST day and 5 per IST week (Monday start).
+      security: [{ bearer: [] }]
+      parameters:
+        - in: header
+          name: X-App-Build
+          schema: { type: integer }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [category, message]
+              properties:
+                category: { type: string, enum: [wrong_answer, bug, feature] }
+                message: { type: string, minLength: 10, maxLength: 2000 }
+                context: { type: object, additionalProperties: true }
+      responses:
+        "201":
+          description: Stored.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [id]
+                properties:
+                  id: { type: string, format: uuid }
+        "401":
+          description: "`invalid_token`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "422":
+          description: "`invalid_feedback`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "429":
+          description: "`too_many_requests`: daily (2) or weekly (5) cap; `error.details.scope` is `day` or `week`."
+          headers:
+            Retry-After: { description: Seconds until the next slot., schema: { type: integer } }
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "403":
+          description: "`upgrade_required` when `X-App-Build` is below `ACADEME_MIN_BUILD`."
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+  /me/progress:
+    get:
+      summary: Pro-only weekly study summary from existing progress tables.
+      security: [{ bearer: [] }]
+      parameters:
+        - in: header
+          name: X-App-Build
+          schema: { type: integer }
+      responses:
+        "200":
+          description: Weekly aggregates (IST week, Monday start).
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - weekStartsOn
+                  - daysActiveThisWeek
+                  - lessonsFinishedThisWeek
+                  - chapterTestsThisWeek
+                  - xpThisWeek
+                  - bySubject
+                properties:
+                  weekStartsOn: { type: string, format: date }
+                  daysActiveThisWeek: { type: integer }
+                  lessonsFinishedThisWeek: { type: integer }
+                  chapterTestsThisWeek: { type: integer }
+                  xpThisWeek: { type: integer }
+                  bySubject:
+                    type: array
+                    items:
+                      type: object
+                      required: [id, name, lessonsDone]
+                      properties:
+                        id: { type: string }
+                        name: { type: string }
+                        lessonsDone: { type: integer }
+        "401":
+          description: "`invalid_token`"
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "403":
+          description: "`pro_required` or `upgrade_required`."
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
   /me/plan:
     get:
@@ -1379,7 +1486,7 @@ paths:
         "200": { description: The form., content: { text/html: { schema: { type: string } } } }
         "400": { description: No or malformed link; asks to open the email link again., content: { text/html: { schema: { type: string } } } }
     post:
-      summary: Set the new password from the web form. Same rules and effects as the app flow — every session ends and every earlier access token answers 401. The student is not logged in on the web.
+      summary: Set the new password from the web form. Same rules and effects as the app flow: every session ends and every earlier access token answers 401. The student is not logged in on the web.
       requestBody:
         required: true
         content:
@@ -1462,7 +1569,7 @@ components:
       description: "`invalid_json`, `body_too_large` or `internal`"
       content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
     Throttled:
-      description: "`too_many_requests` — this IP address (IPv6 grouped by /64), this email from this IP address, or this email from any IP address tried too often."
+      description: "`too_many_requests`: this IP address (IPv6 grouped by /64), this email from this IP address, or this email from any IP address tried too often."
       headers:
         Retry-After: { description: Seconds until the next try is allowed., schema: { type: integer } }
       content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }

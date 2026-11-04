@@ -2,7 +2,7 @@
 
 Use this when filling Play Console, Data safety, and `server/internal/site/pages/*.html`.
 
-## Product naming (fixed — do not change without a store update)
+## Product naming (do not change without a store update)
 
 | Field | Value |
 |-------|--------|
