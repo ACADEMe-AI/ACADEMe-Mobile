@@ -21,7 +21,9 @@ func TestTrustClientIP(t *testing.T) {
 		{"untrusted header ignored", "", "203.0.113.7", "192.0.2.1:1234"},
 		{"trusted ipv4", "X-Real-IP", "203.0.113.7", "203.0.113.7:0"},
 		{"trusted ipv6", "X-Real-IP", "2001:db8::1", "[2001:db8::1]:0"},
-		{"xff chain uses client first", "X-Forwarded-For", "203.0.113.7, 192.0.2.1", "203.0.113.7:0"},
+		{"xff uses client before proxy", "X-Forwarded-For", "203.0.113.7, 192.0.2.1", "203.0.113.7:0"},
+		{"xff skips spoofed leftmost", "X-Forwarded-For", "198.51.100.1, 203.0.113.7, 192.0.2.1", "203.0.113.7:0"},
+		{"xff single hop", "X-Forwarded-For", "203.0.113.7", "203.0.113.7:0"},
 		{"garbage kept", "X-Real-IP", "not-an-ip", "192.0.2.1:1234"},
 	}
 	for _, tt := range tests {

@@ -97,7 +97,7 @@ func (s *PostgresStore) WeekUsage(ctx context.Context, accountID string, start, 
 	var total int
 	err := s.pool.QueryRow(ctx, `
 		SELECT COALESCE(SUM(count), 0) FROM usage_counts
-		WHERE account_id = $1 AND day >= $2 AND day < $3`, accountID, start, end).Scan(&total)
+		WHERE account_id = $1 AND day >= $2 AND day < $3 AND feature = ANY($4)`, accountID, start, end, []string{string(AskMe), string(Scan), string(Check)}).Scan(&total)
 	return total, err
 }
 

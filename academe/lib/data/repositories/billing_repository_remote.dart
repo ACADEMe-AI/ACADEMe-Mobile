@@ -40,11 +40,11 @@ class BillingRepositoryRemote extends BillingRepository {
   String get manageUrl =>
       _customer.managementUrl ?? BillingRepository.playSubscriptionsUrl;
 
-  void _setCustomer(StoreCustomer customer) {
+  void _setCustomer(StoreCustomer customer, {bool syncPlan = true}) {
     final wasPro = _plan.isPro || _customer.isPro;
     _customer = customer;
-    if (!wasPro && customer.isPro) {
-      unawaited(refresh());
+    if (syncPlan && !wasPro && customer.isPro) {
+      unawaited(_server(_api.sync));
     }
     notifyListeners();
   }
@@ -84,7 +84,7 @@ class BillingRepositoryRemote extends BillingRepository {
         return Result.error(error);
       case Ok(value: (final outcome, final customer)):
         if (outcome == PurchaseOutcome.purchased) {
-          _setCustomer(customer);
+          _setCustomer(customer, syncPlan: false);
           await _server(_api.sync);
         }
         return Result.ok(outcome);
@@ -98,7 +98,7 @@ class BillingRepositoryRemote extends BillingRepository {
       case Error(:final error):
         return Result.error(error);
       case Ok(value: final customer):
-        _setCustomer(customer);
+        _setCustomer(customer, syncPlan: false);
         await _server(_api.sync);
         return Result.ok(isPro);
     }

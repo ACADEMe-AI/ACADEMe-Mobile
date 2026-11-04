@@ -27,14 +27,37 @@ func TrustClientIP(header string, next http.Handler) http.Handler {
 		return next
 	}
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		for part := range strings.SplitSeq(r.Header.Get(header), ",") {
-			if ip, err := netip.ParseAddr(strings.TrimSpace(part)); err == nil {
-				r.RemoteAddr = netip.AddrPortFrom(ip, 0).String()
-				break
-			}
+		raw := r.Header.Get(header)
+		if ip, ok := clientIPFromTrustedHeader(header, raw); ok {
+			r.RemoteAddr = netip.AddrPortFrom(ip, 0).String()
 		}
 		next.ServeHTTP(w, r)
 	})
+}
+
+func clientIPFromTrustedHeader(header, raw string) (netip.Addr, bool) {
+	if raw == "" {
+		return netip.Addr{}, false
+	}
+	if strings.EqualFold(header, "X-Forwarded-For") {
+		var ips []netip.Addr
+		for part := range strings.SplitSeq(raw, ",") {
+			if ip, err := netip.ParseAddr(strings.TrimSpace(part)); err == nil {
+				ips = append(ips, ip)
+			}
+		}
+		if len(ips) == 0 {
+			return netip.Addr{}, false
+		}
+		if len(ips) >= 2 {
+			return ips[len(ips)-2], true
+		}
+		return ips[0], true
+	}
+	if ip, err := netip.ParseAddr(strings.TrimSpace(raw)); err == nil {
+		return ip, true
+	}
+	return netip.Addr{}, false
 }
 
 func RequestID(ctx context.Context) string {

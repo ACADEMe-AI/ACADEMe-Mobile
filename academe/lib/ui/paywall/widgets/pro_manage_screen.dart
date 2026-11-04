@@ -121,6 +121,7 @@ class _ProManageScreenState extends State<ProManageScreen> {
                     used: plan.usedWeek,
                     limit: plan.weekLimit,
                     tint: context.palette.tintSky,
+                    usageLabel: 'used this week',
                     resetLabel: plan.weekResetsAt == null
                         ? null
                         : 'Resets ${shortDay(plan.weekResetsAt!.toLocal())}',
@@ -167,7 +168,10 @@ class _ProManageScreenState extends State<ProManageScreen> {
     return switch (plan.state) {
       'billing_issue' => 'Fix payment in Google Play to keep Pro',
       _ when day == null => '3× daily limits · weekly safety cap',
-      _ when plan.autoRenew => 'Monthly · Renews $day · 3× limits',
+      _ when plan.autoRenew => switch (plan.period) {
+        ProPeriod.annual => 'Annual · Renews $day · 3× limits',
+        _ => 'Monthly · Renews $day · 3× limits',
+      },
       _ => 'Pro ends on $day',
     };
   }
@@ -208,6 +212,7 @@ class _LimitMeter extends StatelessWidget {
     required this.used,
     required this.limit,
     required this.tint,
+    this.usageLabel = 'used today',
     this.resetLabel,
   });
 
@@ -215,6 +220,7 @@ class _LimitMeter extends StatelessWidget {
   final int used;
   final int limit;
   final Color tint;
+  final String usageLabel;
   final String? resetLabel;
 
   @override
@@ -252,7 +258,7 @@ class _LimitMeter extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            '${(fill * 100).round()}% used today',
+            '${(fill * 100).round()}% $usageLabel',
             style: AppTextStyles.caption.copyWith(
               color: context.palette.textMuted,
             ),

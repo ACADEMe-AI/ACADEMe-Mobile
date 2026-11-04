@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:academe/data/repositories/authorizer.dart';
-import 'package:academe/data/repositories/billing_repository.dart';
 import 'package:academe/data/repositories/billing_repository_remote.dart';
 import 'package:academe/data/repositories/chat_repository_remote.dart';
 import 'package:academe/data/repositories/scan_repository_remote.dart';
@@ -125,7 +124,7 @@ void main() {
     repository.addListener(() => notified++);
     final result = await repository.purchase(ProPeriod.annual);
     expect((result as Ok<PurchaseOutcome>).value, PurchaseOutcome.purchased);
-    expect(requests, ['GET /me/plan', 'POST /billing/sync']);
+    expect(requests, ['POST /billing/sync']);
     expect(repository.isPro, isTrue);
     expect(repository.plan.period, ProPeriod.annual);
     expect(repository.plan.limitOf(ProFeature.askme), 30);
@@ -172,10 +171,11 @@ void main() {
     expect(requests, ['POST /billing/sync']);
   });
 
-  test('the store listener turns Pro on without the server', () {
+  test('the store listener syncs Pro with the server', () async {
     purchases.listener!(const StoreCustomer(isPro: true));
+    await Future<void>.delayed(Duration.zero);
     expect(repository.isPro, isTrue);
-    expect(repository.manageUrl, BillingRepository.playSubscriptionsUrl);
+    expect(requests, contains('POST /billing/sync'));
   });
 
   test('identify logs in and out of the store', () async {

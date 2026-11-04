@@ -8,8 +8,9 @@ new build must be signed with the **same upload key** as the old app.
 
 1. [ ] Fill every `[[FILL: ...]]` in `server/internal/site/pages/*.html`:
        legal name, registered address, Grievance Officer name and postal
-       address, court city (terms), and Sarvam's retention answer. `grep -rn
-       "FILL:" server/internal/site/pages` must print nothing.
+       address, court city (terms), and Sarvam's retention answer. See
+       `docs/play/legal-entity.md` for confirmed product URLs and naming.
+       `./tool/check_legal_placeholders.sh` must exit 0 (no `FILL:` left).
 2. [ ] Deploy the server (see `docs/hosting.md`). The public pages live on
        `api.academe.cc`; `academe.cc` stays the marketing site. Open
        https://api.academe.cc/, /privacy, /terms, /delete-account and /support
@@ -49,7 +50,15 @@ new build must be signed with the **same upload key** as the old app.
        every versionCode ever uploaded to **any** track (Play Console → App
        bundle explorer), and at least 7.
 11. [ ] Build without `API_BASE_URL` (it defaults to `https://api.academe.cc`
-       in release):
+       in release). Preferred:
+
+       ```
+       export GOOGLE_SERVER_CLIENT_ID=<web OAuth client ID>
+       export REVENUECAT_GOOGLE_API_KEY=goog_<public Play SDK key>
+       ./tool/build_release_aab.sh
+       ```
+
+       Same flags manually:
 
        ```
        flutter build appbundle --release \

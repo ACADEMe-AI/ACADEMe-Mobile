@@ -10,6 +10,5 @@ abstract final class TabBarLayout {
       MediaQuery.paddingOf(context).bottom +
       barHeight +
       depth +
-      outerBottomPadding +
-      listTrailingPadding;
+      outerBottomPadding;
 }

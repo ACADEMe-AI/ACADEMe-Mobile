@@ -88,6 +88,9 @@ func (f *fakeStore) WeekUsage(_ context.Context, accountID string, start, end ti
 		if k.account != accountID {
 			continue
 		}
+		if k.feature == Lessons {
+			continue
+		}
 		if !k.day.Before(start) && k.day.Before(end) {
 			total += n
 		}

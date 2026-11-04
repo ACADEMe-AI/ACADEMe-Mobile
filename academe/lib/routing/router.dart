@@ -273,10 +273,8 @@ Route<Object?> _route(
       backgroundColor: dependencies.appearance.isDark
           ? AppPalette.dark.surface
           : AppPalette.light.surface,
-      builder: (context) => UpgradeSheet(
-        viewModel: ProViewModel(
-          billingRepository: dependencies.billingRepository,
-        ),
+      builder: (context) => _OwnedProUpgradeSheet(
+        billingRepository: dependencies.billingRepository,
       ),
     ),
     Routes.home => PageRouteBuilder<void>(
@@ -467,4 +465,28 @@ class _RiseRoute<T> extends PageRouteBuilder<T> {
           );
         },
       );
+}
+
+class _OwnedProUpgradeSheet extends StatefulWidget {
+  const _OwnedProUpgradeSheet({required this.billingRepository});
+
+  final BillingRepository billingRepository;
+
+  @override
+  State<_OwnedProUpgradeSheet> createState() => _OwnedProUpgradeSheetState();
+}
+
+class _OwnedProUpgradeSheetState extends State<_OwnedProUpgradeSheet> {
+  late final ProViewModel _viewModel = ProViewModel(
+    billingRepository: widget.billingRepository,
+  );
+
+  @override
+  void dispose() {
+    _viewModel.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => UpgradeSheet(viewModel: _viewModel);
 }

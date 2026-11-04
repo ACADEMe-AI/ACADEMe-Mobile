@@ -418,12 +418,15 @@ Full order in `docs/play/release-checklist.md`.
 - [x] Security review fixes: reset-complete Argon2 DoS, per-account log-in limit, fixed welcome subject, scan quota before upload
 - [x] `server/railway.json`: health check `/healthz`, restart policy `ALWAYS`
 - [x] Data safety, content rating, target audience, listing, subscription and AI answers written (`docs/play/`)
-- [ ] [[FILL]] placeholders filled; lawyer review
+- [x] In-app and Play policy URLs / support email naming confirmed (`docs/play/legal-entity.md`, `lib/config/links.dart`)
+- [ ] [[FILL]] placeholders filled; lawyer review (`./tool/check_legal_placeholders.sh`)
 - [ ] Redeploy the server so api.academe.cc serves this build (migrations 0023–0025)
 - [ ] Upload key copied in (`android/key.properties` + keystore, never committed), SHA-256 `66:40:CE:…:57:CD` matches Play's upload key
 - [ ] `ACADEME_ANDROID_CERT_SHA256` set (upload + app signing) so reset links open the app
-- [ ] Release bundle built with `GOOGLE_SERVER_CLIENT_ID` and `REVENUECAT_GOOGLE_API_KEY=goog_…`
-- [ ] Large screens: width-capped content, landscape welcome layout
+- [x] Release AAB script with `GOOGLE_SERVER_CLIENT_ID` + `REVENUECAT_GOOGLE_API_KEY` (`tool/build_release_aab.sh`, `docs/play/release-checklist.md` step 11)
+- [ ] Run `./tool/build_release_aab.sh` on a machine with upload keystore + env vars; upload to Play
+- [x] Large screens: width-capped content (600px shell cap)
+- [ ] Landscape welcome layout
 - [ ] Keyboard focus rings on custom buttons
 - [ ] Reviewer account `play-review@academe.cc` with content
 - [ ] Play Console forms submitted; subscription products active; RevenueCat live

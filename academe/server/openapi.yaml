@@ -1469,7 +1469,7 @@ components:
   schemas:
     Plan:
       type: object
-      required: [plan, expiresAt, autoRenew, productId, basePlanId, platform, state, limits, usedToday, resetsAt]
+      required: [plan, expiresAt, autoRenew, productId, basePlanId, platform, state, limits, usedToday, resetsAt, usedWeek, weekLimit, weekResetsAt]
       properties:
         plan: { type: string, enum: [free, pro] }
         expiresAt: { type: string, format: date-time, nullable: true, description: "null on free, and on a lifetime promotional Pro" }
@@ -1486,6 +1486,9 @@ components:
           type: object
           additionalProperties: { type: integer }
         resetsAt: { type: string, format: date-time, description: Next midnight in India. }
+        usedWeek: { type: integer, description: "Combined capped-feature uses since Monday 00:00 IST." }
+        weekLimit: { type: integer, description: "Seven times the sum of daily caps (askme, scan, check); lessons do not count." }
+        weekResetsAt: { type: string, format: date-time, description: Next Monday 00:00 IST. }
     ReviewItem:
       type: object
       required: [deckId, card, reason, lessonTitle, chapterTitle, content]
@@ -1757,4 +1760,4 @@ components:
             code: { type: string }
             message: { type: string }
             requestId: { type: string }
-            details: { type: object, description: "Only on some errors, e.g. limit_reached and pro_only: {feature, limit, resetsAt}." }
+            details: { type: object, description: "On limit_reached, pro_only and weekly pool hits: {feature, limit, resetsAt, scope?} where scope is day or week." }
