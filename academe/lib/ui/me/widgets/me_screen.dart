@@ -62,6 +62,7 @@ class MeScreen extends StatelessWidget {
           SettingsGroup(
             title: 'Learning',
             children: [
+              SettingsRow(label: 'My Progress', onTap: onProgress),
               SettingsRow(
                 label: 'Class and board',
                 value: viewModel.syllabusLabel,
@@ -92,7 +93,6 @@ class MeScreen extends StatelessWidget {
           SettingsGroup(
             title: 'Account',
             children: [
-              SettingsRow(label: 'My Progress', onTap: onProgress),
               SettingsRow(label: 'Account', onTap: onAccount),
               SettingsRow(label: 'Help and feedback', onTap: onHelp),
               SettingsRow(label: 'Privacy and terms', onTap: onPrivacy),

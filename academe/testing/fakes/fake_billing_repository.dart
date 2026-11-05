@@ -5,11 +5,11 @@ import 'package:academe/utils/result.dart';
 class FakeBillingRepository extends BillingRepository {
   FakeBillingRepository({
     this.isAvailable = true,
-    ProPlan plan = freePlan,
+    ProPlan? plan,
     this.offerList = const [],
-  }) : _plan = plan;
+  }) : _plan = plan ?? freePlan;
 
-  static const freePlan = ProPlan(
+  static final freePlan = ProPlan(
     isPro: false,
     limits: {
       ProFeature.askme: 10,
@@ -17,17 +17,25 @@ class FakeBillingRepository extends BillingRepository {
       ProFeature.check: 1,
       ProFeature.lessons: 0,
     },
+    usedToday: {ProFeature.askme: 8, ProFeature.scan: 2, ProFeature.check: 1},
+    resetsAt: DateTime.utc(2026, 11, 6, 18, 30),
     weekLimit: 98,
+    usedWeek: 70,
+    weekResetsAt: DateTime.utc(2026, 11, 10),
   );
 
   static final proPlan = ProPlan(
     isPro: true,
-    expiresAt: DateTime.utc(2026, 10, 25),
+    expiresAt: DateTime.utc(2026, 12, 3),
     autoRenew: true,
     period: ProPeriod.monthly,
     state: 'active',
     limits: {ProFeature.askme: 30, ProFeature.scan: 9, ProFeature.check: 3},
+    usedToday: {ProFeature.askme: 8, ProFeature.scan: 2, ProFeature.check: 1},
+    resetsAt: DateTime.utc(2026, 11, 6, 18, 30),
     weekLimit: 294,
+    usedWeek: 70,
+    weekResetsAt: DateTime.utc(2026, 11, 10),
   );
 
   @override

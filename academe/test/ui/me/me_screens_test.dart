@@ -84,6 +84,8 @@ void main() {
     );
 
     expect(find.text('Ada Lovelace'), findsOneWidget);
+    expect(find.text('My Progress'), findsOneWidget);
+    expect(find.text('Class and board'), findsOneWidget);
     expect(find.text('Class 10 · CBSE'), findsWidgets);
     expect(find.text('App language'), findsOneWidget);
     expect(find.text('Appearance'), findsOneWidget);

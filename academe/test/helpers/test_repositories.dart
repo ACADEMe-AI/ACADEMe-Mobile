@@ -44,6 +44,8 @@ class FakeProgressRepository extends ProgressRepository {
     lessonsFinishedThisWeek: 5,
     chapterTestsThisWeek: 1,
     xpThisWeek: 30,
+    activeDays: [true, false, true, false, false, false, false],
+    overallGrade: 72.5,
     bySubject: [
       ProgressSubjectSummary(id: 'science', name: 'Science', lessonsDone: 3),
     ],

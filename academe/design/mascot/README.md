@@ -14,8 +14,8 @@ hand-tracing an SVG was from an earlier round and has been deleted. This is v5.
 | File | `assets/academe/mascot/animations/pebby.riv` (437 KB) |
 | Artboard | `Pebby` (440×440) |
 | State machine | `PebbySM` |
-| Inputs | `pose` (number 0–50) · `appear` (number 0–100) · `reduceMotion` (bool) |
-| Poses | 49 built + 1 static |
+| Inputs | `pose` (number 0–57) · `appear` (number 0–100) · `reduceMotion` (bool) |
+| Poses | 55 built + 1 static |
 | Catalog | `assets/academe/mascot/catalog.json` |
 
 ## The toolchain
@@ -55,6 +55,8 @@ while glancing at a button" without drawing a new animation.
 Emotion: `idle` `wave` `think` `cheer` `sleep` `sad` `wow` `determined`
 `confused` `happy` `excited` `laughing` `proud` `loved` `surprised` `tired`
 `shy` `focused` `sleepy` `encourage`
+
+Invite / reaction: `beckon` `point_up` `nod_yes` `stand_tall` `double_take`
 
 Action: `act_achieved` `act_highfive` `act_idea` `act_reading` `act_solving`
 `act_studying` `studying` `practice` `upload` `mastery` `chat` `cta` `hero`

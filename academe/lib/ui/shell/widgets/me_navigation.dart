@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../routing/routes.dart';
 import '../../../utils/dates.dart';
 import '../../../utils/result.dart';
 import '../../core/themes/app_theme.dart';
@@ -12,7 +13,6 @@ import '../../me/widgets/delete_account_screen.dart';
 import '../../me/widgets/language_sheet.dart';
 import '../../me/widgets/language_switch_screen.dart';
 import '../../me/widgets/notifications_screen.dart';
-import '../../paywall/widgets/upgrade_sheet.dart';
 import '../../progress/view_models/progress_view_model.dart';
 import '../../progress/widgets/progress_screen.dart';
 import 'app_shell.dart';
@@ -98,7 +98,10 @@ mixin MeNavigation on State<AppShell> {
         me: widget.me,
         progress: progress,
         onGoPro: () async {
-          final bought = await UpgradeSheet.show(context, pro);
+          final bought = await Navigator.of(
+            context,
+            rootNavigator: true,
+          ).pushNamed<bool>(Routes.paywall);
           if (!mounted) return;
           if (bought == true) {
             await pro.load.execute();

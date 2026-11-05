@@ -82,7 +82,7 @@ class _PaywallScreenState extends State<PaywallScreen> {
                     ),
                     Expanded(
                       child: ListView(
-                        padding: EdgeInsets.symmetric(horizontal: padding),
+                        padding: EdgeInsets.fromLTRB(padding, 0, padding, 16),
                         children: [
                           const _Hero(),
                           const SizedBox(height: 16),
@@ -114,12 +114,14 @@ class _PaywallScreenState extends State<PaywallScreen> {
 class _Hero extends StatelessWidget {
   const _Hero();
 
+  static const _pebbySize = 112.0;
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         const SizedBox.square(
-          dimension: 112,
+          dimension: _pebbySize,
           child: Pebby(pose: PebbyPose.celebrateSmall),
         ),
         const SizedBox(height: 8),
@@ -131,9 +133,9 @@ class _Hero extends StatelessWidget {
             color: context.palette.text,
           ),
         ),
-        const SizedBox(height: 4),
+        const SizedBox(height: 6),
         Text(
-          'Ask, scan and check as much as you like.',
+          '3× daily & weekly limits. Same refill clock — more room to study.',
           textAlign: TextAlign.center,
           style: AppTextStyles.label.copyWith(color: context.palette.textMuted),
         ),
@@ -151,7 +153,7 @@ class _Plans extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        for (final period in ProPeriod.values) ...[
+        for (final period in [ProPeriod.annual, ProPeriod.monthly]) ...[
           PlanTile(
             offer: viewModel.offerFor(period),
             isSelected: viewModel.selected == period,

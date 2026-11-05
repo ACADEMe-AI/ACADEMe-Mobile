@@ -19,4 +19,19 @@ void main() {
     expect(label(-1), 'Yesterday');
     expect(label(-3), '3 days ago');
   });
+
+  test('india clock shifts UTC by five and a half hours', () {
+    final utc = DateTime.utc(2026, 11, 2, 18, 30);
+    final ist = indiaClock(utc);
+    expect(ist.year, 2026);
+    expect(ist.month, 11);
+    expect(ist.day, 3);
+    expect(ist.hour, 0);
+    expect(ist.minute, 0);
+  });
+
+  test('india weekday index matches the IST calendar day', () {
+    final utc = DateTime.utc(2026, 11, 2, 18, 30);
+    expect(indiaWeekdayIndex(utc), indiaClock(utc).weekday - 1);
+  });
 }

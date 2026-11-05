@@ -1,16 +1,24 @@
 {
   "mascot": "pebby",
-  "version": "5.0.0",
+  "version": "5.1.0",
   "style": "flat-vector-rive",
   "artSource": "source/pebby_3d_master.png",
   "runtime": "rive",
   "riv": "animations/pebby.riv",
   "stateMachine": "PebbySM",
   "inputs": {
-    "pose": "number 0-50",
+    "pose": "number 0-58",
     "reduceMotion": "bool",
     "appear": "number 0-100"
   },
-  "widget": "lib/widgets/pebby.dart \u2014 PebbyView(pose: PebbyPose.idle)",
-  "generator": "design/mascot/rive/"
+  "widget": "lib/ui/core/ui/pebby.dart — Pebby(pose: PebbyPose.idle)",
+  "generator": "design/mascot/rive/",
+  "newPoses": {
+    "beckon": 53,
+    "point_up": 54,
+    "nod_yes": 55,
+    "stand_tall": 56,
+    "double_take": 57,
+    "progress_gate": 58
+  }
 }

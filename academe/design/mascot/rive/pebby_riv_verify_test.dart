@@ -24,6 +24,9 @@ const expectedStates = [
   'cheering', 'peek_left', 'peek_right', 'dissolve_in', 'dissolve_out', 'summon',
   'encourage', 'celebrate_small', 'celebrate_big', 'sleepy',
   'thinking', 'sleeping', 'celebrate', 'cover_eyes',
+  'act_laptop', 'wake_up',
+  'beckon', 'point_up', 'nod_yes', 'stand_tall', 'double_take',
+  'progress_gate',
 ];
 
 /// ids that reuse another state's animation, so they carry no clip of their own

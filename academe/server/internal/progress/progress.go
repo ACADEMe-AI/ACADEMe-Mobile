@@ -23,6 +23,8 @@ type Summary struct {
 	LessonsFinishedThisWeek int            `json:"lessonsFinishedThisWeek"`
 	ChapterTestsThisWeek    int            `json:"chapterTestsThisWeek"`
 	XPThisWeek              int            `json:"xpThisWeek"`
+	ActiveDays              []bool         `json:"activeDays"`
+	OverallGrade            *float64       `json:"overallGrade"`
 	BySubject               []SubjectCount `json:"bySubject"`
 }
 
@@ -84,12 +86,16 @@ func (s *Service) Summary(ctx context.Context, accountID string) (Summary, error
 	for _, row := range bySubject {
 		out = append(out, *row)
 	}
+	active := make([]bool, 7)
+	copy(active, counts.ActiveDays[:])
 	return Summary{
 		WeekStartsOn:            start.In(india.Loc).Format("2006-01-02"),
 		DaysActiveThisWeek:      counts.DaysActive,
 		LessonsFinishedThisWeek: counts.Lessons,
 		ChapterTestsThisWeek:    counts.ChapterTests,
 		XPThisWeek:              counts.XP,
+		ActiveDays:              active,
+		OverallGrade:            counts.OverallGrade,
 		BySubject:               out,
 	}, nil
 }

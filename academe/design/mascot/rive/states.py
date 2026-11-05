@@ -772,6 +772,139 @@ def _wake_up(a):
     a.dur = 28
 
 
+def _beckon(a):
+    a.dur = 8 * FPS
+    d = a.dur
+    mouth(a, 'grin')
+    brows(a, 'raise')
+    look(a, 2, -2)
+    arms(a, left=ARM_OUT_L, bend_l=-48.0, right=-18.0, bend_r=-14.0)
+    alive(a, 40, breath=0.012, tilt=1.3, blink=False)
+    base = ARM_OUT_L
+    pts = [(0, base - 6, 'out')]
+    for i in range(5):
+        t = d * (0.12 + 0.14 * i)
+        pts.append((t, base + (14 if i % 2 == 0 else -10), 'sine'))
+    pts.append((d, base - 4, 'out'))
+    a.key('armL', 'rot', pts)
+    elbow_follow(a, 'L', gain=0.78, lag=1.2)
+    a.key('head', 'rot', layered(d, [(2, 4.0, 0.0), (3, 1.6, 0.35)], 2.0))
+
+
+def _point_up(a):
+    a.dur = 9 * FPS
+    d = a.dur
+    mouth(a, 'open')
+    brows(a, 'raise')
+    look(a, 0, -5)
+    arm = 128.0
+    arms(a, left=arm, bend_l=-18.0, right=-20.0, bend_r=-16.0)
+    alive(a, 41, breath=0.011, tilt=1.4, reach=2.0, blink=False)
+    a.key('armL', 'rot', layered(d, [(2, 7, 0.0), (3, 2.4, 0.35)], arm))
+    elbow_follow(a, 'L', gain=0.55, lag=1.3)
+    hy = REST['head']['y']
+    a.key('head', 'y', layered(d, [(2, -2.5, 0.0), (3, -0.8, 0.4)], hy - 1.5))
+
+
+def _nod_yes(a):
+    a.dur = 6 * FPS
+    d = a.dur
+    mouth(a, 'smile')
+    eyes(a, 'squint')
+    arms(a, left=28.0, right=-28.0)
+    breathe(a, 0.012, phase=0.2)
+    saccades(a, reach=1.8, seed=42)
+    hy = REST['head']['y']
+    nods = []
+    for i in range(3):
+        t0 = d * (0.12 + 0.26 * i)
+        nods += [
+            (t0, 5.0, 'in'),
+            (t0 + d * 0.08, -8.0, 'outSoft'),
+            (t0 + d * 0.16, 1.5, 'settle'),
+        ]
+    a.key('head', 'rot', [(0, 0.0, 'out')] + nods + [(d, 0.0, 'smooth')])
+    a.key('head', 'y', [(0, hy, 'out')] + [
+        (f, hy + v * 0.28, e) for f, v, e in nods
+    ] + [(d, hy, 'smooth')])
+
+
+def _stand_tall(a):
+    a.dur = 10 * FPS
+    mouth(a, 'grin')
+    brows(a, 'raise')
+    look(a, 0, -2)
+    arms(a, left=18.0, right=-18.0, bend_l=-8.0, bend_r=-8.0)
+    a.set('motion', 'y', -2.5)
+    a.set('motion', 'sx', 1.03)
+    a.set('motion', 'sy', 1.03)
+    a.set('head', 'y', REST['head']['y'] - 2.0)
+    alive(a, 43, breath=0.010, tilt=0.9, reach=1.6, blink=False)
+    a.key('tuftL', 'rot', layered(a.dur, [(2, -6.0, 0.0), (3, -2.0, 0.4)], -4.0))
+    a.key('tuftR', 'rot', layered(a.dur, [(2, 6.0, 0.0), (3, 2.0, 0.4)], 4.0))
+
+
+def _double_take(a):
+    a.dur = 8 * FPS
+    d = a.dur
+    mouth(a, 'flat')
+    brows(a, 'raise')
+    arms(a, left=34.0, right=-34.0)
+    breathe(a, 0.011, phase=0.15)
+    blinks(a, [int(d * 0.20), int(d * 0.55), int(d * 0.82)])
+    gaze(a, [
+        (0, 0.0, 0.0, 'hold'),
+        (d * 0.18, 7.0, -1.0, 'snap'),
+        (d * 0.38, 7.0, -1.0, 'hold'),
+        (d * 0.48, -6.5, 0.5, 'snap'),
+        (d * 0.68, -6.5, 0.5, 'hold'),
+        (d * 0.78, 0.0, 0.0, 'snap'),
+        (d, 0.0, 0.0, 'hold'),
+    ])
+    a.key('head', 'rot', [
+        (0, 0.0, 'out'),
+        (d * 0.18, 8.0, 'snap'),
+        (d * 0.38, 8.0, 'hold'),
+        (d * 0.48, -7.0, 'snap'),
+        (d * 0.68, -7.0, 'hold'),
+        (d * 0.78, 0.0, 'outBackSoft'),
+        (d, 0.0, 'smooth'),
+    ])
+    mouth_morph(a, [
+        (0, 'flat', 'hold'),
+        (d * 0.48, 'open', 'out'),
+        (d * 0.70, 'smile', 'out'),
+        (d, 'smile', 'hold'),
+    ])
+
+
+def _progress_gate(a):
+    a.dur = 9 * FPS
+    d = a.dur
+    mouth(a, 'grin')
+    brows(a, 'raise')
+    look(a, 0, -3)
+    left, right = 78.0, -78.0
+    arms(a, left=left, bend_l=-28.0, right=right, bend_r=-28.0)
+    a.set('head', 'y', REST['head']['y'])
+    a.set('motion', 'y', -1.5)
+    a.set('motion', 'sx', 1.02)
+    a.set('motion', 'sy', 1.02)
+    alive(a, 44, breath=0.012, tilt=1.2, reach=2.0, blink=False)
+    a.key('armL', 'rot', layered(d, [(2, 6.0, 0.0), (3, 2.2, 0.4)], left))
+    a.key('armR', 'rot', layered(d, [(2, -6.0, 0.15), (3, -2.2, 0.55)], right))
+    elbow_follow(a, 'L', gain=0.62, lag=1.3)
+    elbow_follow(a, 'R', gain=0.62, lag=1.3)
+    hy = REST['head']['y']
+    a.key('head', 'y', [
+        (0, hy, 'out'),
+        (d * 0.35, hy - 2.0, 'sine'),
+        (d * 0.70, hy + 1.0, 'sine'),
+        (d, hy, 'smooth'),
+    ])
+    a.key('head', 'rot', layered(d, [(2, 3.0, 0.0), (3, 1.2, 0.35)], 1.0))
+
+
 STATES = [
     ('idle', _idle), ('wave', _wave), ('think', _think), ('cheer', _cheer),
     ('sleep', _sleep), ('sad', _sad), ('wow', _wow), ('determined', _determined),
@@ -797,6 +930,12 @@ STATES = [
     ('cover_eyes', _cover_eyes),
     ('act_laptop', _act_laptop),
     ('wake_up', _wake_up),
+    ('beckon', _beckon),
+    ('point_up', _point_up),
+    ('nod_yes', _nod_yes),
+    ('stand_tall', _stand_tall),
+    ('double_take', _double_take),
+    ('progress_gate', _progress_gate),
 ]
 
 STATIC_NAME = 'idle_static'

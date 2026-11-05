@@ -1377,6 +1377,7 @@ paths:
                   - lessonsFinishedThisWeek
                   - chapterTestsThisWeek
                   - xpThisWeek
+                  - activeDays
                   - bySubject
                 properties:
                   weekStartsOn: { type: string, format: date }
@@ -1384,6 +1385,16 @@ paths:
                   lessonsFinishedThisWeek: { type: integer }
                   chapterTestsThisWeek: { type: integer }
                   xpThisWeek: { type: integer }
+                  activeDays:
+                    type: array
+                    minItems: 7
+                    maxItems: 7
+                    items: { type: boolean }
+                    description: Monday-first week flags from study_days.
+                  overallGrade:
+                    type: number
+                    nullable: true
+                    description: Average chapter score percent, or null when none.
                   bySubject:
                     type: array
                     items:

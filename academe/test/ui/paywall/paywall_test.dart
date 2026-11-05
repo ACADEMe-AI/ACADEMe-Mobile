@@ -182,7 +182,7 @@ void main() {
     );
   });
 
-  testWidgets('the Pro card opens Plan & limits, then Go Pro sheet', (
+  testWidgets('the Pro card opens Plan & limits, then Go Pro paywall', (
     tester,
   ) async {
     final card = viewModel();
@@ -193,6 +193,8 @@ void main() {
     await tester.tap(find.byType(ProCard));
     await tester.pumpAndSettle();
     expect(find.text('Plan & limits'), findsOneWidget);
+    expect(find.text('You’re on Free'), findsOneWidget);
+    expect(find.text('Daily limits'), findsOneWidget);
 
     await tester.tap(find.text('Go Pro · 3× limits'));
     await tester.pumpAndSettle();
@@ -200,6 +202,7 @@ void main() {
 
     await tester.tap(find.text('Continue'));
     await tester.pumpAndSettle();
+    expect(find.text('You’re on Pro'), findsOneWidget);
     expect(find.text('Manage in Google Play'), findsOneWidget);
   });
 

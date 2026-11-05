@@ -11,12 +11,19 @@ abstract final class PebbyPose {
   static const focused = 17.0;
   static const reading = 21.0;
   static const peekRight = 39.0;
+  static const cta = 26.0;
   static const encourage = 43.0;
   static const celebrateSmall = 44.0;
   static const celebrateBig = 45.0;
   static const coverEyes = 50.0;
   static const working = 51.0;
   static const wakeUp = 52.0;
+  static const beckon = 53.0;
+  static const pointUp = 54.0;
+  static const nodYes = 55.0;
+  static const standTall = 56.0;
+  static const doubleTake = 57.0;
+  static const progressGate = 58.0;
 }
 
 class PebbyStandIn extends InheritedWidget {
@@ -96,7 +103,7 @@ class _PebbyState extends State<Pebby> {
   @override
   Widget build(BuildContext context) {
     final controller = _controller;
-    if (controller == null) return const SizedBox.expand();
-    return RiveWidget(controller: controller);
+    if (controller == null) return const SizedBox.shrink();
+    return ClipRect(child: RiveWidget(controller: controller));
   }
 }

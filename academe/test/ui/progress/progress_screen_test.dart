@@ -41,23 +41,28 @@ void main() {
         ),
       ),
     );
-    await tester.pumpAndSettle();
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 50));
   }
 
   testWidgets('free user sees the Pro hold on My Progress', (tester) async {
     await pump(tester, billing: FakeBillingRepository());
     expect(find.text('My Progress is part of Pro'), findsOneWidget);
+    expect(find.bySemanticsLabel('Pebby'), findsOneWidget);
   });
 
-  testWidgets('Pro user sees progress stats and weekly summary', (
-    tester,
-  ) async {
+  testWidgets('Pro user sees Board summary and study days', (tester) async {
     await pump(
       tester,
       billing: FakeBillingRepository(plan: FakeBillingRepository.proPlan),
     );
     expect(find.text('My Progress is part of Pro'), findsNothing);
-    expect(find.textContaining('Your streak, level and XP'), findsOneWidget);
-    expect(find.textContaining('This week:'), findsOneWidget);
+    expect(find.text('Study days'), findsOneWidget);
+    expect(find.text('Summary'), findsOneWidget);
+    expect(find.text('Overall grade'), findsOneWidget);
+    expect(find.text('72.50'), findsOneWidget);
+    expect(find.text('Subjects this week'), findsOneWidget);
+    expect(find.text('Keep your momentum going'), findsOneWidget);
+    expect(find.text('See where to focus next'), findsOneWidget);
   });
 }
