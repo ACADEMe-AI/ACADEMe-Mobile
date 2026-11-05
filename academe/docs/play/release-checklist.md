@@ -1,7 +1,7 @@
 # Play release checklist: ACADEMe (update to com.academe.flutter)
 
 Every step in order. ACADEMe ships as an **update to the existing listing**
-(closed testing reached 1.1.0+10; older production was 1.0.5+6), so there's
+(closed testing reached 1.1.1+11; older production was 1.0.5+6), so there's
 no "Create app" step, and the new build must be signed with the **same
 upload key** as the old app.
 
@@ -49,7 +49,7 @@ upload key** as the old app.
        upload key reset (takes a few days).
 10. [ ] Version: `version: x.y.z+N` in `pubspec.yaml`, with `N` higher than
        every versionCode ever uploaded to **any** track (Play Console → App
-       bundle explorer). Do not use 2.0.0; current line is 1.1.0+N.
+       bundle explorer). Do not use 2.0.0; current line is 1.1.1+N.
 11. [ ] Build without `API_BASE_URL` (it defaults to `https://api.academe.cc`
        in release). Preferred:
 
@@ -157,7 +157,7 @@ Do these before uploading to production; Play blocks review until all are done.
        14 days with 12 testers only for new personal accounts). Recommended:
        one week with 20+ real students and a parent or two.
 37. [ ] Production release: release name matches `pubspec` versionName (e.g.
-       "1.1.0"), release notes = "What's new" from `store-listing.md`.
+       "1.1.1"), release notes = "What's new" from `store-listing.md`.
        **Staged rollout 10%**.
 38. [ ] After review passes: watch Android vitals (crash rate < 1.09%, ANR
        < 0.47%), `chat_reports` and support mail for 48 hours, then 50%, then
