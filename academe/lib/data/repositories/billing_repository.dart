@@ -18,6 +18,8 @@ abstract class BillingRepository extends ChangeNotifier {
 
   Future<Result<ProPlan>> refresh();
 
+  Future<Result<ProPlan>> sync();
+
   Future<Result<List<ProOffer>>> offers();
 
   Future<Result<PurchaseOutcome>> purchase(ProPeriod period);

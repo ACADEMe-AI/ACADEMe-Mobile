@@ -7,16 +7,43 @@ import '../../../testing/fakes/fake_billing_repository.dart';
 import '../../helpers/test_repositories.dart';
 
 void main() {
-  test('load stores weekly summary', () async {
+  test('ensureLoaded stores weekly summary for Pro', () async {
     final repo = FakeProgressRepository();
     final vm = ProgressViewModel(
       progress: repo,
       billing: FakeBillingRepository(plan: FakeBillingRepository.proPlan),
     );
     addTearDown(vm.dispose);
-    vm.loadIfPro(true);
-    await Future<void>.delayed(Duration.zero);
+    await vm.ensureLoaded();
     expect(vm.summary?.lessonsFinishedThisWeek, 5);
     expect(vm.load.result, isA<Ok<ProgressSummary>>());
+  });
+
+  test('ensureLoaded skips when free', () async {
+    final repo = FakeProgressRepository();
+    final vm = ProgressViewModel(
+      progress: repo,
+      billing: FakeBillingRepository(),
+    );
+    addTearDown(vm.dispose);
+    await vm.ensureLoaded();
+    expect(vm.load.result, isNull);
+    expect(vm.summary, isNull);
+  });
+
+  test('ensureLoaded force runs again after a failed load', () async {
+    final repo = FakeProgressRepository()
+      ..next = Result.error(Exception('offline'));
+    final vm = ProgressViewModel(
+      progress: repo,
+      billing: FakeBillingRepository(plan: FakeBillingRepository.proPlan),
+    );
+    addTearDown(vm.dispose);
+    await vm.ensureLoaded();
+    expect(vm.load.result, isA<Error<ProgressSummary>>());
+    expect(vm.summary, isNull);
+    repo.next = null;
+    await vm.ensureLoaded(force: true);
+    expect(vm.summary?.lessonsFinishedThisWeek, 5);
   });
 }

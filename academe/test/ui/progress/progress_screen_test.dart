@@ -1,9 +1,11 @@
+import 'package:academe/data/model/api_models.dart';
 import 'package:academe/data/repositories/appearance_repository.dart';
 import 'package:academe/ui/core/themes/app_theme.dart';
 import 'package:academe/ui/core/ui/pebby.dart';
 import 'package:academe/ui/me/view_models/me_view_model.dart';
 import 'package:academe/ui/progress/view_models/progress_view_model.dart';
 import 'package:academe/ui/progress/widgets/progress_screen.dart';
+import 'package:academe/utils/result.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -18,6 +20,7 @@ void main() {
   Future<void> pump(
     WidgetTester tester, {
     required FakeBillingRepository billing,
+    FakeProgressRepository? progressRepo,
   }) async {
     final me = MeViewModel(
       authRepository: FakeAuthRepository(signedIn: FakeAuthRepository.ada),
@@ -27,10 +30,9 @@ void main() {
       billing: billing,
     );
     final progress = ProgressViewModel(
-      progress: testProgressRepository(),
+      progress: progressRepo ?? testProgressRepository(),
       billing: billing,
     );
-    progress.loadIfPro(billing.isPro);
     addTearDown(me.dispose);
     addTearDown(progress.dispose);
     await tester.pumpWidget(
@@ -49,6 +51,7 @@ void main() {
     await pump(tester, billing: FakeBillingRepository());
     expect(find.text('My Progress is part of Pro'), findsOneWidget);
     expect(find.bySemanticsLabel('Pebby'), findsOneWidget);
+    expect(find.text('Study days'), findsOneWidget);
   });
 
   testWidgets('Pro user sees Board summary and study days', (tester) async {
@@ -63,6 +66,24 @@ void main() {
     expect(find.text('72.50'), findsOneWidget);
     expect(find.text('Subjects this week'), findsOneWidget);
     expect(find.text('Keep your momentum going'), findsOneWidget);
-    expect(find.text('See where to focus next'), findsOneWidget);
+    expect(find.text('See what to do next'), findsOneWidget);
+  });
+
+  testWidgets('Pro user keeps the board when the week summary fails', (
+    tester,
+  ) async {
+    final repo = FakeProgressRepository()
+      ..next = Result.error(const ApiException(ApiException.network));
+    await pump(
+      tester,
+      billing: FakeBillingRepository(plan: FakeBillingRepository.proPlan),
+      progressRepo: repo,
+    );
+    expect(find.text('My Progress is part of Pro'), findsNothing);
+    expect(find.text('Couldn’t load this week’s summary.'), findsOneWidget);
+    expect(find.text('Retry'), findsOneWidget);
+    expect(find.text('Study days'), findsOneWidget);
+    expect(find.text('Summary'), findsOneWidget);
+    expect(find.text('Overall grade'), findsOneWidget);
   });
 }

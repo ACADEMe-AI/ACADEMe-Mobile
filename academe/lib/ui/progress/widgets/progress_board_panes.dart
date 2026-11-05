@@ -122,22 +122,14 @@ class _GoldCta extends StatelessWidget {
   final VoidCallback onTap;
 
   (String, String) get _copy {
-    if (summary.lessonsFinishedThisWeek == 0 && summary.daysActiveThisWeek == 0) {
-      return (
-        'It’s time to start your journey!',
-        'Learn about your weak points',
-      );
+    if (summary.lessonsFinishedThisWeek == 0 &&
+        summary.daysActiveThisWeek == 0) {
+      return ('It’s time to start your journey!', 'See what to do next');
     }
     if (summary.overallGrade != null) {
-      return (
-        'Keep your momentum going',
-        'See where to focus next',
-      );
+      return ('Keep your momentum going', 'See what to do next');
     }
-    return (
-      'You’re building a habit',
-      'Learn about your weak points',
-    );
+    return ('You’re building a habit', 'See what to do next');
   }
 
   @override
@@ -148,55 +140,40 @@ class _GoldCta extends StatelessWidget {
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(AppRadius.lg),
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-            color: AppColors.selected,
-            borderRadius: BorderRadius.circular(AppRadius.lg),
-            border: Border.all(
-              color: context.palette.edge,
-              width: AppKeycap.borderWidth,
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: context.palette.edge,
-                offset: const Offset(0, 3),
+        child: KeycapSurface(
+          face: AppColors.selected,
+          padding: const EdgeInsets.fromLTRB(12, 12, 8, 12),
+          child: Row(
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: AppTextStyles.display.copyWith(
+                        fontSize: 18,
+                        height: 1.05,
+                        color: AppColors.keycapEdge,
+                      ),
+                    ),
+                    const SizedBox(height: 3),
+                    Text(
+                      subtitle,
+                      style: AppTextStyles.labelStrong.copyWith(
+                        fontSize: 13,
+                        color: AppColors.keycapEdge,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const Icon(
+                Icons.chevron_right_rounded,
+                color: AppColors.keycapEdge,
+                size: 22,
               ),
             ],
-          ),
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(12, 12, 8, 12),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        title,
-                        style: AppTextStyles.display.copyWith(
-                          fontSize: 18,
-                          height: 1.05,
-                          color: AppColors.keycapEdge,
-                        ),
-                      ),
-                      const SizedBox(height: 3),
-                      Text(
-                        subtitle,
-                        style: AppTextStyles.labelStrong.copyWith(
-                          fontSize: 13,
-                          color: AppColors.keycapEdge,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const Icon(
-                  Icons.chevron_right_rounded,
-                  color: AppColors.keycapEdge,
-                  size: 22,
-                ),
-              ],
-            ),
           ),
         ),
       ),

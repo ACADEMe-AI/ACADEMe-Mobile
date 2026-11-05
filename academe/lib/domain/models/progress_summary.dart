@@ -34,6 +34,15 @@ class ProgressSummary {
     );
   }
 
+  static const empty = ProgressSummary(
+    weekStartsOn: '',
+    daysActiveThisWeek: 0,
+    lessonsFinishedThisWeek: 0,
+    chapterTestsThisWeek: 0,
+    xpThisWeek: 0,
+    bySubject: [],
+  );
+
   final String weekStartsOn;
   final int daysActiveThisWeek;
   final int lessonsFinishedThisWeek;

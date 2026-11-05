@@ -15,11 +15,11 @@ class ProgressBoard extends StatefulWidget {
   const ProgressBoard({
     super.key,
     required this.summary,
-    required this.onAskWeakPoints,
+    required this.onOpenNextSteps,
   });
 
   final ProgressSummary summary;
-  final VoidCallback onAskWeakPoints;
+  final VoidCallback onOpenNextSteps;
 
   @override
   State<ProgressBoard> createState() => _ProgressBoardState();
@@ -47,7 +47,7 @@ class _ProgressBoardState extends State<ProgressBoard> {
           ProgressBoardTab.activity => _ActivityPane(summary: summary),
         },
         const SizedBox(height: 10),
-        _GoldCta(summary: summary, onTap: widget.onAskWeakPoints),
+        _GoldCta(summary: summary, onTap: widget.onOpenNextSteps),
       ],
     );
   }

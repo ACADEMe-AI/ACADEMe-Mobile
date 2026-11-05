@@ -74,6 +74,9 @@ class BillingRepositoryRemote extends BillingRepository {
   Future<Result<ProPlan>> refresh() => _server(_api.plan);
 
   @override
+  Future<Result<ProPlan>> sync() => _server(_api.sync);
+
+  @override
   Future<Result<List<ProOffer>>> offers() => _purchases.offers();
 
   @override

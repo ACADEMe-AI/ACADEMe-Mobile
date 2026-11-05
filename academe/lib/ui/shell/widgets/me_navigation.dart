@@ -92,21 +92,18 @@ mixin MeNavigation on State<AppShell> {
       progress: widget.progressRepository,
       billing: widget.billingRepository,
     );
-    progress.loadIfPro(widget.me.isPro);
     pushMe<void>(
       ProgressScreen(
         me: widget.me,
         progress: progress,
         onGoPro: () async {
-          final bought = await Navigator.of(
+          await Navigator.of(
             context,
             rootNavigator: true,
           ).pushNamed<bool>(Routes.paywall);
           if (!mounted) return;
-          if (bought == true) {
-            await pro.load.execute();
-            progress.loadIfPro(widget.me.isPro);
-          }
+          await pro.load.execute();
+          await progress.ensureLoaded(force: true);
         },
       ),
     ).whenComplete(progress.dispose);

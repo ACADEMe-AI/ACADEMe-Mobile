@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../data/model/api_models.dart';
 import '../../../data/repositories/billing_repository.dart';
 import '../../../data/repositories/progress_repository.dart';
 import '../../../domain/models/progress_summary.dart';
@@ -20,9 +19,10 @@ class ProgressViewModel extends ChangeNotifier {
   final BillingRepository _billing;
   late final Command0<ProgressSummary> load;
 
-  void loadIfPro(bool isPro) {
-    if (!isPro || load.isRunning || load.isCompleted) return;
-    load.execute();
+  Future<void> ensureLoaded({bool force = false}) async {
+    if (!_billing.isPro || load.isRunning) return;
+    if (!force && load.isCompleted) return;
+    await load.execute();
   }
 
   ProgressSummary? get summary {
@@ -31,14 +31,10 @@ class ProgressViewModel extends ChangeNotifier {
   }
 
   Future<Result<ProgressSummary>> _load() async {
-    var result = await _progress.load();
-    if (result case Error(
-      error: ApiException(:final code),
-    ) when code == 'pro_required' && _billing.isPro) {
-      await _billing.refresh();
-      result = await _progress.load();
+    if (_billing.isPro && !_billing.plan.isPro) {
+      await _billing.sync();
     }
-    return result;
+    return _progress.load();
   }
 
   @override

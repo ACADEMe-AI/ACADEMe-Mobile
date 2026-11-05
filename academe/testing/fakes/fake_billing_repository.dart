@@ -66,6 +66,9 @@ class FakeBillingRepository extends BillingRepository {
   Future<Result<ProPlan>> refresh() async => _answer(() => _plan);
 
   @override
+  Future<Result<ProPlan>> sync() async => refresh();
+
+  @override
   Future<Result<List<ProOffer>>> offers() async => _answer(() => offerList);
 
   @override
