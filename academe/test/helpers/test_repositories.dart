@@ -1,3 +1,4 @@
+import 'package:academe/data/model/api_models.dart';
 import 'package:academe/data/repositories/app_config_repository.dart';
 import 'package:academe/data/repositories/feedback_repository.dart';
 import 'package:academe/data/repositories/progress_repository.dart';
@@ -53,9 +54,17 @@ class FakeProgressRepository extends ProgressRepository {
 
   ProgressSummary summary;
   Result<ProgressSummary>? next;
+  bool failProRequiredOnce = false;
+  int loadCalls = 0;
 
   @override
-  Future<Result<ProgressSummary>> load() async => next ?? Result.ok(summary);
+  Future<Result<ProgressSummary>> load() async {
+    loadCalls++;
+    if (failProRequiredOnce && loadCalls == 1) {
+      return Result.error(const ApiException('pro_required'));
+    }
+    return next ?? Result.ok(summary);
+  }
 }
 
 ProgressRepository testProgressRepository() => FakeProgressRepository();

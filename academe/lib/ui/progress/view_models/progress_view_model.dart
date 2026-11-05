@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../data/model/api_models.dart';
 import '../../../data/repositories/billing_repository.dart';
 import '../../../data/repositories/progress_repository.dart';
 import '../../../domain/models/progress_summary.dart';
@@ -34,7 +35,14 @@ class ProgressViewModel extends ChangeNotifier {
     if (_billing.isPro && !_billing.plan.isPro) {
       await _billing.sync();
     }
-    return _progress.load();
+    var result = await _progress.load();
+    if (result case Error(
+      error: ApiException(:final code),
+    ) when code == 'pro_required' && _billing.isPro) {
+      await _billing.sync();
+      result = await _progress.load();
+    }
+    return result;
   }
 
   @override

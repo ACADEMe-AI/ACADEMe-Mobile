@@ -46,13 +46,15 @@ class FakeBillingRepository extends BillingRepository {
   bool restoresPro = false;
   final purchased = <ProPeriod>[];
   final identities = <String?>[];
+  bool storeSaysPro = false;
+  int syncCalls = 0;
   ProPlan _plan;
 
   @override
   ProPlan get plan => _plan;
 
   @override
-  bool get isPro => _plan.isPro;
+  bool get isPro => _plan.isPro || storeSaysPro;
 
   @override
   String get manageUrl => BillingRepository.playSubscriptionsUrl;
@@ -66,7 +68,14 @@ class FakeBillingRepository extends BillingRepository {
   Future<Result<ProPlan>> refresh() async => _answer(() => _plan);
 
   @override
-  Future<Result<ProPlan>> sync() async => refresh();
+  Future<Result<ProPlan>> sync() async {
+    syncCalls++;
+    if (storeSaysPro) {
+      _plan = proPlan;
+      notifyListeners();
+    }
+    return refresh();
+  }
 
   @override
   Future<Result<List<ProOffer>>> offers() async => _answer(() => offerList);

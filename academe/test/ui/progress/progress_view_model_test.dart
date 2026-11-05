@@ -46,4 +46,16 @@ void main() {
     await vm.ensureLoaded(force: true);
     expect(vm.summary?.lessonsFinishedThisWeek, 5);
   });
+
+  test('ensureLoaded syncs and retries once after pro_required', () async {
+    final billing = FakeBillingRepository(plan: FakeBillingRepository.freePlan)
+      ..storeSaysPro = true;
+    final repo = FakeProgressRepository()..failProRequiredOnce = true;
+    final vm = ProgressViewModel(progress: repo, billing: billing);
+    addTearDown(vm.dispose);
+    await vm.ensureLoaded();
+    expect(billing.syncCalls, 2);
+    expect(repo.loadCalls, 2);
+    expect(vm.summary?.lessonsFinishedThisWeek, 5);
+  });
 }
