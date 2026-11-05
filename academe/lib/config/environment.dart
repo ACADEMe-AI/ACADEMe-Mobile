@@ -29,6 +29,13 @@ abstract final class Environment {
 
   static const buildNumber = int.fromEnvironment('APP_BUILD', defaultValue: 8);
 
+  static const appVersion = String.fromEnvironment(
+    'APP_VERSION',
+    defaultValue: '1.1.2',
+  );
+
+  static String get displayVersion => 'ACADEMe $appVersion ($buildNumber)';
+
   static final playStoreUrl = Uri.parse(
     'https://play.google.com/store/apps/details?id=com.academe.flutter',
   );

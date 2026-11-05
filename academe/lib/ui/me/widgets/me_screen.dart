@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../config/environment.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/keycap.dart';
 import '../../core/ui/screen_scale.dart';
@@ -36,7 +37,7 @@ class MeScreen extends StatelessWidget {
   final VoidCallback onLogOut;
   final Widget? pro;
 
-  static const version = 'ACADEMe 2.0.0';
+  static String get version => Environment.displayVersion;
 
   @override
   Widget build(BuildContext context) {
