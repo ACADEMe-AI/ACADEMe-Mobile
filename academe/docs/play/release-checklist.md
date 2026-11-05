@@ -1,8 +1,9 @@
-# Play release checklist: ACADEMe 2.0.0 (update to com.academe.flutter)
+# Play release checklist: ACADEMe (update to com.academe.flutter)
 
 Every step in order. ACADEMe ships as an **update to the existing listing**
-(last upload 1.0.5, versionCode 6), so there's no "Create app" step, and the
-new build must be signed with the **same upload key** as the old app.
+(closed testing reached 1.1.0+10; older production was 1.0.5+6), so there's
+no "Create app" step, and the new build must be signed with the **same
+upload key** as the old app.
 
 ## A. Before touching Play Console
 
@@ -46,9 +47,9 @@ new build must be signed with the **same upload key** as the old app.
        academe` must show SHA-256 `66:40:CE:…:57:CD`, the same as Play Console
        → App signing → Upload key certificate. If the key is lost: Request
        upload key reset (takes a few days).
-10. [ ] Version: `version: 2.0.0+N` in `pubspec.yaml`, with `N` higher than
+10. [ ] Version: `version: x.y.z+N` in `pubspec.yaml`, with `N` higher than
        every versionCode ever uploaded to **any** track (Play Console → App
-       bundle explorer), and at least 7.
+       bundle explorer). Do not use 2.0.0; current line is 1.1.0+N.
 11. [ ] Build without `API_BASE_URL` (it defaults to `https://api.academe.cc`
        in release). Preferred:
 
@@ -144,7 +145,7 @@ Do these before uploading to production; Play blocks review until all are done.
 32. [ ] Category Education; tags; contact email support@academe.cc; website
        https://academe.cc (the marketing site; leave empty if it isn't live
        with a valid certificate).
-33. [ ] Countries/regions: **India only** for 2.0.0.
+33. [ ] Countries/regions: **India only** for this release.
 
 ## E. Testing tracks and release
 
@@ -155,8 +156,9 @@ Do these before uploading to production; Play blocks review until all are done.
 36. [ ] Closed testing (optional for an existing production app; mandatory
        14 days with 12 testers only for new personal accounts). Recommended:
        one week with 20+ real students and a parent or two.
-37. [ ] Production release: release name "2.0.0", release notes = "What's new"
-       from `store-listing.md`. **Staged rollout 10%**.
+37. [ ] Production release: release name matches `pubspec` versionName (e.g.
+       "1.1.0"), release notes = "What's new" from `store-listing.md`.
+       **Staged rollout 10%**.
 38. [ ] After review passes: watch Android vitals (crash rate < 1.09%, ANR
        < 0.47%), `chat_reports` and support mail for 48 hours, then 50%, then
        100%.
