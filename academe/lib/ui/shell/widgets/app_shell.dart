@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import '../../../data/repositories/billing_repository.dart';
 import '../../../data/repositories/feedback_repository.dart';
 import '../../../data/repositories/progress_repository.dart';
+import '../../../domain/models/app_config.dart';
 import '../../../domain/models/chat.dart';
 import '../../../domain/models/scan.dart';
 import '../../askme/view_models/askme_view_model.dart';
@@ -32,6 +33,7 @@ import '../../study/widgets/study_screen.dart';
 import 'app_nav_bar.dart';
 import 'me_navigation.dart';
 import 'scan_navigation.dart';
+import 'soft_update_banner.dart';
 import 'study_navigation.dart';
 
 class AppShell extends StatefulWidget {
@@ -53,6 +55,8 @@ class AppShell extends StatefulWidget {
     this.onRemindersWanted,
     this.opensSetup = false,
     this.onLoggedOut,
+    this.softUpdate,
+    this.onDismissSoftUpdate,
   });
 
   final HomeViewModel viewModel;
@@ -71,6 +75,8 @@ class AppShell extends StatefulWidget {
   final VoidCallback? onRemindersWanted;
   final bool opensSetup;
   final VoidCallback? onLoggedOut;
+  final AppConfig? softUpdate;
+  final VoidCallback? onDismissSoftUpdate;
 
   @override
   State<AppShell> createState() => _AppShellState();
@@ -200,98 +206,112 @@ class _AppShellState extends State<AppShell>
 
   @override
   Widget build(BuildContext context) {
-    return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: context.palette.systemBars,
-      child: PopScope(
-        canPop: _tab == 0,
-        onPopInvokedWithResult: (didPop, _) {
-          if (!didPop) _select(_isAsking ? _returnTab : 0);
-        },
-        child: Scaffold(
-          extendBody: true,
-          resizeToAvoidBottomInset: false,
-          backgroundColor: context.palette.surface,
-          body: SafeArea(
-            bottom: false,
-            child: Align(
-              alignment: Alignment.topCenter,
-              child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 600),
-                child: IndexedStack(
-                  index: _tab,
-                  children: [
-                    HomeScreen(
-                      viewModel: _viewModel,
-                      opensSetup: widget.opensSetup,
-                      onAsk: _openAskMe,
-                      today: widget.today,
-                      onOpenTask: studyActions.openTask,
-                      onFlashcards: () => openReview(null),
-                      onSolve: () => startScan(ScanMode.solve),
-                      onCheck: () => startScan(ScanMode.check),
-                      study: widget.study,
-                      onOpenSubject: _openSubject,
-                    ),
-                    ListenableBuilder(
-                      listenable: _viewModel,
-                      builder: (context, _) => AskMeScreen(
-                        viewModel: _askMe,
-                        name: _viewModel.account?.firstName ?? 'there',
-                        syllabus: _viewModel.syllabusLabel,
-                        onBack: () => _select(_returnTab),
-                        onHistory: _history,
+    final softUpdate = widget.softUpdate;
+    return SoftUpdateInset(
+      height: softUpdate == null ? 0 : SoftUpdateBanner.reservedHeight,
+      child: AnnotatedRegion<SystemUiOverlayStyle>(
+        value: context.palette.systemBars,
+        child: PopScope(
+          canPop: _tab == 0,
+          onPopInvokedWithResult: (didPop, _) {
+            if (!didPop) _select(_isAsking ? _returnTab : 0);
+          },
+          child: Scaffold(
+            extendBody: true,
+            resizeToAvoidBottomInset: false,
+            backgroundColor: context.palette.surface,
+            body: SafeArea(
+              bottom: false,
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 600),
+                  child: IndexedStack(
+                    index: _tab,
+                    children: [
+                      HomeScreen(
+                        viewModel: _viewModel,
+                        opensSetup: widget.opensSetup,
+                        onAsk: _openAskMe,
+                        today: widget.today,
+                        onOpenTask: studyActions.openTask,
+                        onFlashcards: () => openReview(null),
+                        onSolve: () => startScan(ScanMode.solve),
+                        onCheck: () => startScan(ScanMode.check),
+                        study: widget.study,
+                        onOpenSubject: _openSubject,
                       ),
-                    ),
-                    ScanScreen(
-                      viewModel: widget.scan,
-                      onStart: startScan,
-                      onOpen: openScan,
-                    ),
-                    StudyScreen(
-                      viewModel: widget.study,
-                      folders: widget.folders,
-                      actions: studyActions,
-                      onNewFolder: newFolder,
-                    ),
-                    MeScreen(
-                      viewModel: _me,
-                      onClassAndBoard: openClassAndBoard,
-                      onLanguage: openLanguage,
-                      onAppearance: openAppearance,
-                      onNotifications: openNotifications,
-                      onAccount: openAccount,
-                      onHelp: () {
-                        final help = HelpViewModel(
-                          feedback: widget.feedbackRepository,
-                        );
-                        pushMe<void>(
-                          HelpScreen(viewModel: help),
-                        ).whenComplete(help.dispose);
-                      },
-                      onPrivacy: () => pushMe<void>(const PrivacyScreen()),
-                      onProgress: openProgress,
-                      onLogOut: confirmLogOut,
-                      pro: switch (widget.pro) {
-                        final pro? => ProCard(viewModel: pro),
-                        null => null,
-                      },
-                    ),
-                  ],
+                      ListenableBuilder(
+                        listenable: _viewModel,
+                        builder: (context, _) => AskMeScreen(
+                          viewModel: _askMe,
+                          name: _viewModel.account?.firstName ?? 'there',
+                          syllabus: _viewModel.syllabusLabel,
+                          onBack: () => _select(_returnTab),
+                          onHistory: _history,
+                        ),
+                      ),
+                      ScanScreen(
+                        viewModel: widget.scan,
+                        onStart: startScan,
+                        onOpen: openScan,
+                      ),
+                      StudyScreen(
+                        viewModel: widget.study,
+                        folders: widget.folders,
+                        actions: studyActions,
+                        onNewFolder: newFolder,
+                      ),
+                      MeScreen(
+                        viewModel: _me,
+                        onClassAndBoard: openClassAndBoard,
+                        onLanguage: openLanguage,
+                        onAppearance: openAppearance,
+                        onNotifications: openNotifications,
+                        onAccount: openAccount,
+                        onHelp: () {
+                          final help = HelpViewModel(
+                            feedback: widget.feedbackRepository,
+                          );
+                          pushMe<void>(
+                            HelpScreen(viewModel: help),
+                          ).whenComplete(help.dispose);
+                        },
+                        onPrivacy: () => pushMe<void>(const PrivacyScreen()),
+                        onProgress: openProgress,
+                        onLogOut: confirmLogOut,
+                        pro: switch (widget.pro) {
+                          final pro? => ProCard(viewModel: pro),
+                          null => null,
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-          bottomNavigationBar: ListenableBuilder(
-            listenable: Listenable.merge([_ask, _askMe]),
-            builder: (context, _) => AppNavBar(
-              selected: _tab,
-              onSelect: _select,
-              isAsking: _isAsking,
-              askController: _ask,
-              askFocus: _askFocus,
-              canSend: _ask.text.trim().isNotEmpty && !_askMe.isThinking,
-              onSend: _send,
-              onAttach: _attach,
+            bottomNavigationBar: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                if (softUpdate case final config?)
+                  SoftUpdateBanner(
+                    config: config,
+                    onDismiss: widget.onDismissSoftUpdate ?? () {},
+                  ),
+                ListenableBuilder(
+                  listenable: Listenable.merge([_ask, _askMe]),
+                  builder: (context, _) => AppNavBar(
+                    selected: _tab,
+                    onSelect: _select,
+                    isAsking: _isAsking,
+                    askController: _ask,
+                    askFocus: _askFocus,
+                    canSend: _ask.text.trim().isNotEmpty && !_askMe.isThinking,
+                    onSend: _send,
+                    onAttach: _attach,
+                  ),
+                ),
+              ],
             ),
           ),
         ),

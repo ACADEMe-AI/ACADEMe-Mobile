@@ -42,7 +42,7 @@ import '../ui/paywall/widgets/upgrade_sheet.dart';
 import '../ui/scan/scan_factory.dart';
 import '../ui/scan/view_models/scan_view_model.dart';
 import '../ui/shell/widgets/app_shell.dart';
-import '../ui/shell/widgets/soft_update_banner.dart';
+
 import '../ui/shell/widgets/update_required_screen.dart';
 import '../ui/splash/widgets/splash_screen.dart';
 import '../ui/study/study_factory.dart';
@@ -431,47 +431,35 @@ class _HomePageState extends State<_HomePage> {
   Widget build(BuildContext context) {
     return NotificationPrimerHost(
       viewModel: _primer,
-      child: Column(
-        children: [
-          if (_softUpdate case final config?)
-            SafeArea(
-              bottom: false,
-              child: SoftUpdateBanner(
-                config: config,
-                onDismiss: () async {
-                  await _dependencies.appConfigRepository.dismissSoftBanner(
-                    config,
-                  );
-                  if (mounted) setState(() => _softUpdate = null);
-                },
-              ),
-            ),
-          Expanded(
-            child: AppShell(
-              viewModel: _home,
-              askMe: _askMe,
-              me: _me,
-              study: _study,
-              folders: _folders,
-              today: _today,
-              factory: _factory,
-              scan: _scan,
-              scans: _dependencies.scans,
-              pro: _pro,
-              feedbackRepository: _dependencies.feedbackRepository,
-              progressRepository: _dependencies.progressRepository,
-              billingRepository: _dependencies.billingRepository,
-              onRemindersWanted: _dependencies.reminders.refreshSoon,
-              opensSetup: widget.opensSetup,
-              onLoggedOut: () {
-                _dependencies.billingRepository.identify(null);
-                Navigator.of(
-                  context,
-                ).pushNamedAndRemoveUntil(Routes.welcome, (_) => false);
-              },
-            ),
-          ),
-        ],
+      child: AppShell(
+        viewModel: _home,
+        askMe: _askMe,
+        me: _me,
+        study: _study,
+        folders: _folders,
+        today: _today,
+        factory: _factory,
+        scan: _scan,
+        scans: _dependencies.scans,
+        pro: _pro,
+        feedbackRepository: _dependencies.feedbackRepository,
+        progressRepository: _dependencies.progressRepository,
+        billingRepository: _dependencies.billingRepository,
+        onRemindersWanted: _dependencies.reminders.refreshSoon,
+        opensSetup: widget.opensSetup,
+        softUpdate: _softUpdate,
+        onDismissSoftUpdate: () async {
+          final config = _softUpdate;
+          if (config == null) return;
+          await _dependencies.appConfigRepository.dismissSoftBanner(config);
+          if (mounted) setState(() => _softUpdate = null);
+        },
+        onLoggedOut: () {
+          _dependencies.billingRepository.identify(null);
+          Navigator.of(
+            context,
+          ).pushNamedAndRemoveUntil(Routes.welcome, (_) => false);
+        },
       ),
     );
   }

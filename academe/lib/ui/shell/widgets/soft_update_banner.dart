@@ -5,6 +5,26 @@ import '../../../domain/models/app_config.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/keycap.dart';
 import '../../core/ui/pebby.dart';
+import '../../core/ui/tab_bar_layout.dart';
+
+/// Extra bottom scroll clearance while the soft-update banner is showing.
+class SoftUpdateInset extends InheritedWidget {
+  const SoftUpdateInset({
+    super.key,
+    required this.height,
+    required super.child,
+  });
+
+  final double height;
+
+  static double of(BuildContext context) =>
+      context.dependOnInheritedWidgetOfExactType<SoftUpdateInset>()?.height ??
+      0;
+
+  @override
+  bool updateShouldNotify(SoftUpdateInset oldWidget) =>
+      height != oldWidget.height;
+}
 
 class SoftUpdateBanner extends StatelessWidget {
   const SoftUpdateBanner({
@@ -13,8 +33,17 @@ class SoftUpdateBanner extends StatelessWidget {
     required this.onDismiss,
   });
 
-  static const _bannerHeight = 72.0;
-  static const _pebbySlot = 64.0;
+  /// Face height of the keycap (matches nav bar face, slightly shorter).
+  static const faceHeight = 52.0;
+
+  /// Gap between banner and the nav row (mock: 8).
+  static const gapAboveNav = 8.0;
+
+  /// Total height reserved above the nav for scroll padding.
+  static double get reservedHeight =>
+      faceHeight + TabBarLayout.depth + gapAboveNav;
+
+  static const _pebbySlot = 44.0;
 
   final AppConfig config;
   final VoidCallback onDismiss;
@@ -31,15 +60,16 @@ class SoftUpdateBanner extends StatelessWidget {
     const ink = AppColors.keycapEdge;
     final message = config.updateMessage.isNotEmpty
         ? config.updateMessage
-        : 'A new version of ACADEMe is on Google Play.';
+        : 'New version just dropped, you don\'t wanna miss this!';
     return Padding(
-      padding: const EdgeInsets.fromLTRB(8, 4, 8, 6),
+      padding: const EdgeInsets.fromLTRB(16, 0, 16, gapAboveNav),
       child: Keycap(
         face: palette.tintLavender,
-        depth: AppKeycap.optionDepth,
-        height: _bannerHeight,
+        depth: TabBarLayout.depth,
+        height: faceHeight,
+        radius: AppRadius.xl,
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(6, 4, 4, 4),
+          padding: const EdgeInsets.fromLTRB(8, 4, 4, 4),
           child: Row(
             children: [
               SizedBox(
@@ -50,13 +80,16 @@ class SoftUpdateBanner extends StatelessWidget {
                   child: const Pebby(pose: PebbyPose.encourage),
                 ),
               ),
-              const SizedBox(width: 4),
+              const SizedBox(width: 6),
               Expanded(
                 child: Text(
                   message,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: AppTextStyles.caption.copyWith(color: ink),
+                  style: AppTextStyles.caption.copyWith(
+                    color: ink,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
               TextButton(

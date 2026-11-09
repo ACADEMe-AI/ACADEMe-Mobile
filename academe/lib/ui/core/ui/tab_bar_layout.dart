@@ -1,5 +1,7 @@
 import 'package:flutter/widgets.dart';
 
+import '../../shell/widgets/soft_update_banner.dart';
+
 abstract final class TabBarLayout {
   static const barHeight = 64.0;
   static const depth = 4.0;
@@ -10,5 +12,6 @@ abstract final class TabBarLayout {
       MediaQuery.paddingOf(context).bottom +
       barHeight +
       depth +
-      outerBottomPadding;
+      outerBottomPadding +
+      SoftUpdateInset.of(context);
 }
