@@ -25,7 +25,7 @@ func (p Policy) public() map[string]any {
 	}
 	msg := p.UpdateMessage
 	if msg == "" {
-		msg = "Update ACADEMe from Google Play to keep studying."
+		msg = "New version just dropped, you don't wanna miss this!"
 	}
 	return map[string]any{
 		"minBuild":          p.MinBuild,

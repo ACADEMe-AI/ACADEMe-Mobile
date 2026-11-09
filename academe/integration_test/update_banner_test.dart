@@ -10,13 +10,10 @@ void main() {
     await newStudent(tester, 'update-banner');
     // Server default message when ACADEME_UPDATE_MESSAGE is unset.
     // ui_test.sh sets ACADEME_RECOMMENDED_BUILD above APP_BUILD for this journey.
-    await tester.waitFor(
-      find.text('Update ACADEMe from Google Play to keep studying.'),
-    );
+    const message = 'New version just dropped, you don\'t wanna miss this!';
+    await tester.waitFor(find.text(message));
     await tester.shot('update-banner');
     await tester.tapOn(find.byTooltip('Not now'));
-    await tester.waitGone(
-      find.text('Update ACADEMe from Google Play to keep studying.'),
-    );
+    await tester.waitGone(find.text(message));
   });
 }
