@@ -23,23 +23,24 @@ Use this when filling Play Console, Data safety, and `server/internal/site/pages
 
 In-app sources: `lib/config/links.dart`, `lib/ui/me/widgets/privacy_screen.dart`, Paywall small print (`Routes` / hosting docs).
 
-## Data fiduciary placeholders (still need you)
+## Data fiduciary (filled for site pages)
 
-These strings must be filled in `server/internal/site/pages/*.html` before production deploy. Until then, pages show highlighted `[[FILL: …]]` spans.
+| Field | Value |
+|-------|--------|
+| Legal / public operator name | ACADEMe |
+| Registered / contact address | Hyderabad, Telangana, India |
+| Grievance Officer (published title) | ACADEMe Grievance Officer |
+| Grievance Officer email | support@academe.cc (subject: Grievance) |
+| Grievance Officer postal address | Hyderabad, Telangana, India |
+| Court jurisdiction | Hyderabad, Telangana |
+| Scan / Document AI retention | Online Document AI: processed in memory, not persisted to disk; not used to train Document AI models; Google Cloud ToS + DPA; region asia-south1 |
 
-| Placeholder | Files |
-|-------------|--------|
-| Legal name of developer or company | `privacy.html`, `layout.html` |
-| Registered address, India | `privacy.html` |
-| Grievance Officer name | `support.html` |
-| Grievance Officer postal address | `support.html` |
-| Court city (jurisdiction) | `terms.html` |
-| Sarvam Document AI retention | `privacy.html` |
+**Note:** DPDP expects a published grievance contact. We publish a role title plus email and Hyderabad address. Replace the officer **name** with a real India-based individual when you appoint one. Lawyer review of `docs/play/dpdp.md` is still recommended before a large production push.
 
 Check locally:
 
 ```bash
-grep -rn 'FILL:' academe/server/internal/site/pages
+./tool/check_legal_placeholders.sh
 ```
 
 Must print nothing before launch (`docs/play/release-checklist.md` step A1).
