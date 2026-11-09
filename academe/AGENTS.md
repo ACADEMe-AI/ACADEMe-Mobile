@@ -202,7 +202,7 @@ the first build, not the week of release.
   `namespace` stays `com.academe.flutter_app` so `MainActivity` keeps the
   published class name and home-screen shortcuts survive the update.
 - **Every upload raises the build number** (`version: x.y.z+N` in
-  `pubspec.yaml`). The closed-testing baseline is 1.1.2+12 (prior uploads
+  `pubspec.yaml`). The closed-testing baseline is 1.1.3+13 (prior uploads
   reached 2.0.0+9; the old production listing was 1.0.5+6).
 - **16 KB memory pages**: every native library in a release APK has a LOAD
   alignment of 0x4000 or more. Check after adding or upgrading any plugin with
