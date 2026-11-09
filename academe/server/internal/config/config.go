@@ -15,6 +15,11 @@ type Config struct {
 	DatabaseURL     string
 	TokenKey        []byte
 	GoogleClientIDs []string
+	AIProvider      string
+	GoogleProject   string
+	GoogleLocation  string
+	GoogleModel     string
+	GoogleProcessor string
 	SarvamAPIKey    string
 	SarvamModel     string
 	ClientIPHeader  string
@@ -42,14 +47,19 @@ func FromEnv() (Config, error) {
 		port = ":" + port
 	}
 	c := Config{
-		Addr:           cmp.Or(os.Getenv("ACADEME_ADDR"), port, ":8080"),
-		ClientIPHeader: os.Getenv("ACADEME_CLIENT_IP_HEADER"),
-		DatabaseURL:    os.Getenv("ACADEME_DATABASE_URL"),
-		SarvamAPIKey:   os.Getenv("ACADEME_SARVAM_API_KEY"),
-		SarvamModel:    cmp.Or(os.Getenv("ACADEME_SARVAM_MODEL"), "sarvam-105b"),
-		ResendAPIKey:   os.Getenv("ACADEME_RESEND_API_KEY"),
-		EmailFrom:      os.Getenv("ACADEME_EMAIL_FROM"),
-		EmailDev:       os.Getenv("ACADEME_EMAIL_DEV") == "1",
+		Addr:            cmp.Or(os.Getenv("ACADEME_ADDR"), port, ":8080"),
+		ClientIPHeader:  os.Getenv("ACADEME_CLIENT_IP_HEADER"),
+		DatabaseURL:     os.Getenv("ACADEME_DATABASE_URL"),
+		AIProvider:      cmp.Or(os.Getenv("ACADEME_AI_PROVIDER"), "google"),
+		GoogleProject:   os.Getenv("ACADEME_GOOGLE_PROJECT"),
+		GoogleLocation:  cmp.Or(os.Getenv("ACADEME_GOOGLE_LOCATION"), "asia-south1"),
+		GoogleModel:     cmp.Or(os.Getenv("ACADEME_GOOGLE_MODEL"), "gemini-3.5-flash-lite"),
+		GoogleProcessor: os.Getenv("ACADEME_GOOGLE_DOCUMENT_PROCESSOR"),
+		SarvamAPIKey:    os.Getenv("ACADEME_SARVAM_API_KEY"),
+		SarvamModel:     cmp.Or(os.Getenv("ACADEME_SARVAM_MODEL"), "sarvam-105b"),
+		ResendAPIKey:    os.Getenv("ACADEME_RESEND_API_KEY"),
+		EmailFrom:       os.Getenv("ACADEME_EMAIL_FROM"),
+		EmailDev:        os.Getenv("ACADEME_EMAIL_DEV") == "1",
 	}
 	if c.DatabaseURL == "" {
 		return Config{}, errors.New("ACADEME_DATABASE_URL is not set")

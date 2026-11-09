@@ -11,8 +11,8 @@ Until the domain is verified, Resend refuses every send with 403. No real emails
    - **TXT** DKIM record, host `resend._domainkey`, with the long `p=…` public key Resend gives you.
    - Optional but recommended: a **DMARC** TXT record, host `_dmarc`, value `v=DMARC1; p=none; rua=mailto:support@academe.cc`. Tighten it to `p=quarantine` once mail is flowing.
 3. Back in Resend, click **Verify DNS records** and wait until the domain shows **Verified**. Namecheap usually takes minutes, sometimes up to an hour.
-4. Go to **API Keys → Create API key** with *Sending access* limited to `academe.cc`, and set `ACADEME_RESEND_API_KEY=re_…` on Railway. `ACADEME_EMAIL_FROM` is optional; the default is `ACADEME <no-reply@academe.cc>`.
-5. `academe.cc` must point at the Railway service (see `hosting.md`), because email images, fonts and the Reset password / Open ACADEMe buttons are served from `https://academe.cc`.
+4. Go to **API Keys → Create API key** with *Sending access* limited to `academe.cc`, and set `ACADEME_RESEND_API_KEY=re_…` in the deployment provider's secret manager. `ACADEME_EMAIL_FROM` is optional; the default is `ACADEME <no-reply@academe.cc>`.
+5. `academe.cc` must point at the deployed web service, because email images, fonts and the Reset password / Open ACADEMe buttons are served from `https://academe.cc`.
 6. For Android App Links: when the release keystore exists, set `ACADEME_ANDROID_CERT_SHA256` to its SHA-256 fingerprint. If you use Play App Signing, also add the **app signing key** fingerprint from Play Console → Setup → App signing. Separate the two with a comma, like `AB:CD:…:EF,12:34:…:56`. Until then, `/.well-known/assetlinks.json` returns 404 and Android opens reset links in the browser (the web page works fine on its own).
 
 ## What was built
@@ -142,7 +142,7 @@ Added `POST /auth/password-reset/link`, `GET`/`POST /reset-password`, `GET /open
 ## Known limits
 
 - **Gmail** ignores `@font-face` and dark-mode media queries, so it shows the fallback fonts. The Gmail apps apply their own dark-mode colour inversion. The layout avoids white-on-light text, so inverted emails stay readable.
-- **App Links are unverified** until `ACADEME_ANDROID_CERT_SHA256` is set and academe.cc is served by Railway. Until then, Android opens the reset link in the browser, where the web page works, and the page offers "Open in the app".
+- **App Links are unverified** until `ACADEME_ANDROID_CERT_SHA256` is set and academe.cc is served over HTTPS. Until then, Android opens the reset link in the browser, where the web page works, and the page offers "Open in the app".
 - **Cold start**: a reset link opens New password as the only page, without the splash. Back from there closes the app, which is fine for a one-off task.
 - **Opening the app from email while it's running**: `/open` and `academe://open` just bring ACADEMe to the front.
 - **Old codes stay valid**: link tokens from before this deploy don't exist, so existing codes simply work as before.

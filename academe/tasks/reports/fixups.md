@@ -64,18 +64,18 @@ The server reads (`grep -rhoE 'ACADEME_[A-Z0-9_]+' server --include='*.go'`):
 `ACADEME_FREE_LIMITS`, `ACADEME_BILLING_TESTERS`; tests only:
 `ACADEME_TEST_DATABASE_URL`, `ACADEME_EMAIL_PREVIEW`.
 
-- `docs/hosting.md`: removed `ACADEME_GOOGLE_PLAY_SERVICE_ACCOUNT` and
+- `docs/deployment.md`: removed `ACADEME_GOOGLE_PLAY_SERVICE_ACCOUNT` and
   `ACADEME_BILLING_RTDN_SECRET`. Added `ACADEME_REVENUECAT_ENTITLEMENT`,
   `ACADEME_BILLING_TESTERS` and `ACADEME_ANDROID_CERT_SHA256`, the real
   `ACADEME_FREE_LIMITS` default and the two test-only variables. The grep in
   the doc missed names with digits (`SHA256`), so it now uses `[A-Z0-9_]`.
-- `tasks/reports/deploy.md`: `ACADEME_ANDROID_CERT_SHA256` added to "unset on
+- `docs/deployment.md`: `ACADEME_ANDROID_CERT_SHA256` added to "unset on
   purpose" (`assetlinks.json` answers 404 until it is set).
 - `server/AGENTS.md` §12: added the eight variables it was missing and a
   line about the test-only ones. The app `AGENTS.md` table lists
   `--dart-define`s, and it was already correct.
-- `tasks/reports/hosting.md` (an old report) still names the two legacy
-  variables. I left it as a record of that time.
+- The deployment runbook now names only current variables and keeps provider
+  details outside the application contract.
 
 ## 4. Small known-issue fixes (§11)
 

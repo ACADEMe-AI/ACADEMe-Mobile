@@ -4,7 +4,7 @@
 <p class="lead">Last updated 5 October 2026. This policy covers the ACADEMe app (package com.academe.flutter) and the ACADEMe pages on api.academe.cc and academe.cc.</p>
 
 <div class="card note">
-<p><strong>The short version.</strong> We collect what we need to run your account and help you study: your name, email, class, board, subjects, language, your study progress and streak, your folders and notes, and your chats with Pebby. We send your questions and homework photos to Sarvam AI in India so Pebby can answer. We don't store your photos. We don't show ads, we don't use the advertising ID, we don't track your location and we never sell your data. You can delete your account from inside the app at any time.</p>
+<p><strong>The short version.</strong> We collect what we need to run your account and help you study: your name, email, class, board, subjects, language, your study progress and streak, your folders and notes, and your chats with Pebby. We send your questions and homework photos to our configured AI provider, currently Google Cloud, so Pebby can answer. We don't store your photos. We don't show ads, we don't use the advertising ID, we don't track your location and we never sell your data. You can delete your account from inside the app at any time.</p>
 </div>
 
 <h2>1. Who we are</h2>
@@ -27,7 +27,7 @@
 <tr><td>Folders, notes, to-dos and exam dates</td><td>When you create them</td><td>To keep your plan and checklist</td></tr>
 <tr><td>Your questions to Pebby, Pebby's answers, your thumbs up or down, and answers you report</td><td>When you use ASKMe</td><td>To answer you, keep your chat history, and improve answer quality and safety</td></tr>
 <tr><td>Reports on Check my answer marks and on lessons made from your notes: which one, the reason and an optional note</td><td>When you tap Report</td><td>To review AI output and improve its quality and safety</td></tr>
-<tr><td>Homework and notes photos</td><td>When you use Scan</td><td>To read the text in the photo. The photo is sent to Sarvam AI for reading and is <strong>not stored</strong> by us; we keep only the text that was read, your marks and the links to your chats and folders</td></tr>
+<tr><td>Homework and notes photos</td><td>When you use Scan</td><td>To read the text in the photo. The photo is sent to our configured AI provider, currently Google Cloud, for reading and is <strong>not stored</strong> by us; we keep only the text that was read, your marks and the links to your chats and folders</td></tr>
 <tr><td>Subscription and purchase details: plan, status, renewal and expiry dates, purchase token, and a daily count of the features you use</td><td>If you buy or try ACADEMe Pro, and each day you use ASKMe or Scan</td><td>To unlock Pro and apply the free daily limits</td></tr>
 <tr><td>Account deletion reason</td><td>If you delete your account and choose to tell us why</td><td>To improve ACADEMe</td></tr>
 <tr><td>Email address and IP address</td><td>If you use the web form on <a href="/delete-account">api.academe.cc/delete-account</a></td><td>To handle the deletion request and prevent abuse of the form</td></tr>
@@ -46,8 +46,8 @@
 <table>
 <thead><tr><th>Provider</th><th>What they receive</th><th>Why</th><th>Where</th></tr></thead>
 <tbody>
-<tr><td>Sarvam AI</td><td>Your questions and recent chat history, your first name, class, board and language; the photos you scan; the text of notes you turn into a lesson</td><td>To generate Pebby's answers, read photos and mark answers</td><td>India</td></tr>
-<tr><td>Railway</td><td>Everything stored on our server and database</td><td>Hosting</td><td>Singapore</td></tr>
+<tr><td>Google Cloud</td><td>Your questions and recent chat history, your first name, class, board and language; the photos you scan; the text of notes you turn into a lesson</td><td>To generate Pebby's answers, read photos and mark answers</td><td>Google Cloud processing location configured by us</td></tr>
+<tr><td>Hosting and database provider</td><td>Everything stored on our server and database</td><td>Hosting</td><td>Configured deployment region</td></tr>
 <tr><td>Resend</td><td>Your email address and the message</td><td>Sending the welcome email, password reset codes and links, and deletion confirmations</td><td>United States</td></tr>
 <tr><td>Google</td><td>Sign-in with Google; purchases through Google Play</td><td>Login and payments</td><td>Global</td></tr>
 <tr><td>RevenueCat</td><td>Your ACADEMe account ID, your purchase and subscription details, and the basic device details its app library sends (such as Android and app version, country and IP address)</td><td>Managing subscriptions</td><td>United States</td></tr>
@@ -62,7 +62,7 @@
 <ul>
 <li>Your account data is kept while you have an account.</li>
 <li>When you delete your account, you are logged out at once and everything linked to it (profile, progress, folders, notes, chats, scans, reports and subscription records on our server) is erased 30 days later. Logging in again within the 30 days cancels the deletion.</li>
-<li>Scan photos are not stored by us. Sarvam AI keeps the files of a reading job only as long as its own terms allow <span class="fill">[[FILL: confirm Sarvam retention]]</span>.</li>
+<li>Scan photos are not stored by us. Google Cloud processes the files under its applicable service terms and configured processing location; provider retention details remain <span class="fill">[[FILL: confirm Google Cloud retention]]</span>.</li>
 <li>Deletion requests made through the web form and technical logs are kept for up to one year for security and legal reasons.</li>
 <li>Google and RevenueCat keep purchase records as their own policies and payment laws require.</li>
 </ul>

@@ -61,7 +61,7 @@ Consequences:
 | `purchases_flutter` (RevenueCat) + Google Play Billing | Purchase data, our account UUID | Runs for every signed-in student, not only buyers: `BillingRepositoryRemote` calls `logIn(accountId)` whenever the shell opens (`lib/routing/router.dart`), which configures the SDK with the account UUID as `appUserID` (never an anonymous ID), so the SDK talks to RevenueCat on every session. **Check RevenueCat's terms of service for a child-directed clause before release.** If it forbids child-directed use, either keep the paywall behind a parent step or talk to Play Billing directly from our server |
 | `flutter_local_notifications`, `flutter_secure_storage`, `shared_preferences`, `image_picker`, `url_launcher`, `http`, `rive`, `timezone` | Nothing sent off the phone | Fine |
 
-Server-side processors (Sarvam, Railway, Resend) aren't SDKs in the app. They
+Server-side processors (Google Cloud and Resend) aren't SDKs in the app. They
 are covered by the privacy policy and Data safety, not by the SDK rule.
 
 ## What we are not doing, and when it would be needed

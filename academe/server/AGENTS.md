@@ -1,5 +1,9 @@
 # ACADEMe server: engineering rules
 
+Before planning backend work, read `../about/README.md` and
+`../about/roadmap/backend.md`. This file remains the canonical Go server rule
+set.
+
 Every change to the Go backend follows these rules. They are distilled from the
 official Go docs and the Google and Uber style guides, saved verbatim in
 `../docs/go-reference/`: read the file named in brackets when a rule needs
@@ -225,8 +229,13 @@ export ACADEME_DATABASE_URL='postgres://academe:academe@localhost:5432/academe?s
 export ACADEME_TOKEN_KEY=$(openssl rand -base64 32)   # new key = apps refresh once
 export ACADEME_ADDR=:8080                             # default
 export ACADEME_GOOGLE_CLIENT_IDS=<web>,<android>,<ios> # optional; unset = Google returns 503
-export ACADEME_SARVAM_API_KEY=<key>                   # optional; unset = ASKMe and Scan return 503
-export ACADEME_SARVAM_MODEL=sarvam-105b               # default
+export ACADEME_AI_PROVIDER=google                     # google or sarvam; one complete bundle
+export ACADEME_GOOGLE_PROJECT=<project-id>            # required for Google AI
+export ACADEME_GOOGLE_LOCATION=asia-south1            # default
+export ACADEME_GOOGLE_MODEL=gemini-3.5-flash-lite     # default, cost-efficient
+export ACADEME_GOOGLE_DOCUMENT_PROCESSOR=<processor>  # required for API Scan
+export ACADEME_SARVAM_API_KEY=<key>                   # required only when provider=sarvam
+export ACADEME_SARVAM_MODEL=sarvam-105b               # default when provider=sarvam
 export ACADEME_REVENUECAT_SECRET_KEY=<sk_…>            # optional; unset = /billing/sync returns 503
 export ACADEME_REVENUECAT_WEBHOOK_AUTH='Bearer <long random>' # optional; unset = the webhook returns 503
 export ACADEME_REVENUECAT_ENTITLEMENT=academe_pro           # default
@@ -236,7 +245,7 @@ export ACADEME_AUTH_LIMIT_SCALE=1                    # default; multiplies the l
 export ACADEME_RESEND_API_KEY=<re_…>                          # optional; unset = emails are only logged
 export ACADEME_EMAIL_FROM='ACADEMe <no-reply@academe.cc>'     # default
 export ACADEME_EMAIL_DEV=1                                    # optional; logs reset codes, never in production
-export ACADEME_CLIENT_IP_HEADER=X-Real-IP                     # only behind a proxy that overwrites it (Railway)
+export ACADEME_CLIENT_IP_HEADER=X-Real-IP                     # only behind a proxy that overwrites it
 export ACADEME_ANDROID_CERT_SHA256=<AA:BB:…>                  # optional; unset = /.well-known/assetlinks.json is 404
 export ACADEME_MIN_BUILD=0                                      # optional; force-update below this X-App-Build
 export ACADEME_RECOMMENDED_BUILD=0                            # optional; soft-update banner above this build

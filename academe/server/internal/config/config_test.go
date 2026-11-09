@@ -11,7 +11,7 @@ func TestAddr(t *testing.T) {
 		name, addr, port, want string
 	}{
 		{"default", "", "", ":8080"},
-		{"railway port", "", "9000", ":9000"},
+		{"platform port", "", "9000", ":9000"},
 		{"explicit addr wins", "127.0.0.1:7000", "9000", "127.0.0.1:7000"},
 	}
 	for _, tt := range tests {
@@ -44,5 +44,35 @@ func TestAuthLimitScale(t *testing.T) {
 	t.Setenv("ACADEME_AUTH_LIMIT_SCALE", "0")
 	if _, err := config.FromEnv(); err == nil {
 		t.Error("FromEnv() with scale 0 succeeded, want an error")
+	}
+}
+
+func TestAIProviderConfig(t *testing.T) {
+	t.Setenv("ACADEME_DATABASE_URL", "postgres://x")
+	t.Setenv("ACADEME_TOKEN_KEY", "MDEyMzQ1Njc4OWFiY2RlZjAxMjM0NTY3ODlhYmNkZWY=")
+	t.Setenv("ACADEME_AI_PROVIDER", "google")
+	t.Setenv("ACADEME_GOOGLE_PROJECT", "project")
+	t.Setenv("ACADEME_GOOGLE_LOCATION", "us-central1")
+	t.Setenv("ACADEME_GOOGLE_MODEL", "gemini-test")
+	t.Setenv("ACADEME_GOOGLE_DOCUMENT_PROCESSOR", "processor")
+	c, err := config.FromEnv()
+	if err != nil {
+		t.Fatal(err)
+	}
+	if c.AIProvider != "google" || c.GoogleProject != "project" || c.GoogleLocation != "us-central1" || c.GoogleModel != "gemini-test" || c.GoogleProcessor != "processor" {
+		t.Fatalf("Google config = %#v", c)
+	}
+
+	t.Setenv("ACADEME_AI_PROVIDER", "")
+	t.Setenv("ACADEME_GOOGLE_PROJECT", "")
+	t.Setenv("ACADEME_GOOGLE_LOCATION", "")
+	t.Setenv("ACADEME_GOOGLE_MODEL", "")
+	t.Setenv("ACADEME_GOOGLE_DOCUMENT_PROCESSOR", "")
+	c, err = config.FromEnv()
+	if err != nil {
+		t.Fatal(err)
+	}
+	if c.AIProvider != "google" || c.GoogleLocation != "asia-south1" || c.GoogleModel != "gemini-3.5-flash-lite" {
+		t.Fatalf("Google defaults = %#v", c)
 	}
 }

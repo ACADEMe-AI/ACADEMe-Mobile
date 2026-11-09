@@ -9,15 +9,15 @@ upload key** as the old app.
 
 1. [ ] Fill every `[[FILL: ...]]` in `server/internal/site/pages/*.html`:
        legal name, registered address, Grievance Officer name and postal
-       address, court city (terms), and Sarvam's retention answer. See
+       address, court city (terms), and Google Cloud's retention answer. See
        `docs/play/legal-entity.md` for confirmed product URLs and naming.
        `./tool/check_legal_placeholders.sh` must exit 0 (no `FILL:` left).
-2. [ ] Deploy the server (see `docs/hosting.md`). The public pages live on
+2. [ ] Deploy the server (see `docs/deployment.md`). The public pages live on
        `api.academe.cc`; `academe.cc` stays the marketing site. Open
        https://api.academe.cc/, /privacy, /terms, /delete-account and /support
        on a phone. They must load without logging in, and
        `curl -s https://api.academe.cc/privacy | grep -c FILL` prints `0`.
-3. [ ] Server variables on Railway (`docs/hosting.md`):
+3. [ ] Server variables in the deployment provider's secret manager (`docs/deployment.md`):
        `ACADEME_GOOGLE_CLIENT_IDS` contains the **web** client ID the app
        passes as `GOOGLE_SERVER_CLIENT_ID`; `ACADEME_REVENUECAT_SECRET_KEY` and
        `ACADEME_REVENUECAT_WEBHOOK_AUTH` are set (`POST /billing/sync` no longer
@@ -34,7 +34,7 @@ upload key** as the old app.
        verified, `ACADEME_RESEND_API_KEY` set). Reply-to is support@academe.cc.
 6. [ ] support@academe.cc receives mail and someone reads it. Grievances
        acknowledged within 48 hours.
-7. [ ] `ACADEME_SARVAM_API_KEY` set in production; ASKMe and Scan work.
+7. [ ] Google provider settings and credentials set in production; ASKMe and Scan work.
 8. [ ] Reviewer account: create `play-review@academe.cc` with a password, class
        10 CBSE, English, with one folder and one finished lesson so every
        screen has content.

@@ -20,8 +20,8 @@ These are fixes for the findings in the release, backend and security audits fro
   - The previews were regenerated.
   - A test now fails if `https://academe.cc` appears in an email.
 - **Docs:**
-  - Every Play Console URL in `docs/play/*.md` and `docs/hosting.md` is now `https://api.academe.cc/privacy` and `https://api.academe.cc/delete-account`. This covers the data safety, store listing, release checklist, app-store-privacy and subscriptions docs.
-  - `docs/hosting.md` now says that `academe.cc` stays the marketing site, and that only the `api` record is needed on Railway.
+  - Every Play Console URL in `docs/play/*.md` and `docs/deployment.md` is now `https://api.academe.cc/privacy` and `https://api.academe.cc/delete-account`. This covers the data safety, store listing, release checklist, app-store-privacy and subscriptions docs.
+  - `docs/deployment.md` records that `academe.cc` stays the marketing site and that only the `api` service is needed for the API.
 
 ### 3. H1: Argon2 memory DoS through reset complete
 - **Token checked first:** `setPassword` in `internal/auth/reset.go` now looks up the reset token before doing anything else (`ResetAccount`: a SELECT on `reset_token_hash` that also requires `completed_at IS NULL` and `used_at > now − 15 min`). Only then does it hash the password. The `CompleteReset` transaction then re-checks the token in its `UPDATE … RETURNING`.
@@ -118,9 +118,9 @@ These are fixes for the findings in the release, backend and security audits fro
   - the SDK is configured once;
   - `logOut` is never sent.
 
-### 13. `server/railway.json`
+### 13. Deployment configuration
 - **Settings:** `healthcheckPath: "/healthz"` and `restartPolicyType: "ALWAYS"`. `restartPolicyMaxRetries` was dropped because it only applies to `ON_FAILURE`.
-- **Schema check:** every key exists in `https://railway.com/railway.schema.json`.
+- **Configuration check:** the container, health check, secret manager, and rollback requirements are recorded in `docs/deployment.md`.
 
 ### 14. Play docs and the privacy page
 - **`data-safety.md`:**
@@ -186,7 +186,7 @@ The copy is in the session scratchpad and has no `build`, `.dart_tool`, keystore
 4. **Play status:** check in Play Console that Production is unlocked for this app. The public Play page returns 404 (release audit, B5).
 5. **Legal:** fill every `[[FILL: …]]` in `server/internal/site/pages/*.html`. `grep -rn "FILL:" server/internal/site/pages` must print nothing.
 6. **Deploy:** commit this work, then deploy the server from a clean tree. That applies migrations 0023, 0024 and 0025, plus the security fixes and the new email templates. Re-run the probes in the backend audit, B1.
-7. **Railway variables:**
+7. **Deployment variables:**
    - `ACADEME_GOOGLE_CLIENT_IDS` (must include the web client ID);
    - `ACADEME_REVENUECAT_SECRET_KEY` and `ACADEME_REVENUECAT_WEBHOOK_AUTH`, with the same value in the RevenueCat webhook;
    - `ACADEME_ANDROID_CERT_SHA256`: the Play App Signing SHA-256 and the upload key SHA-256, comma-separated. Check that `https://api.academe.cc/.well-known/assetlinks.json` returns 200.
@@ -199,7 +199,7 @@ The copy is in the session scratchpad and has no `build`, `.dart_tool`, keystore
    - Upload `assets/icon/play_store_512.png` as the app icon.
    - Make sure nothing still points at the old `www.academe.cc/privacy`, which is the 13+ policy.
 10. **DNS:** delete the Namecheap parking A record on the `academe.cc` apex, which breaks TLS there. Optionally add a DMARC record.
-11. **Railway hygiene** (backend audit S1–S4): set backup schedules, grow the volume, upgrade to Pro, and add an uptime monitor on `/healthz`.
+11. **Deployment hygiene** (backend audit S1–S4): set backup schedules, size the database, and add an uptime monitor on `/healthz`.
 12. **After installing from Play:**
     - Check the themed icon and the status-bar icon.
     - Open a reset email link (it should open the app once App Links verify).

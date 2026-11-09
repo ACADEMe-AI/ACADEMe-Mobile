@@ -24,7 +24,7 @@ grievance officer, all of which we have or are adding now.
 
 - **Data Fiduciary**: the ACADEMe developer/company (fill in the legal name on
   `/privacy`).
-- **Data Processors**: Sarvam AI, Railway, Resend, RevenueCat. Google (Sign-In,
+- **Data Processors**: Google Cloud, Resend, RevenueCat. Google (Sign-In,
   Play Billing) acts mostly as an independent fiduciary for its own data.
 - **Children**: under the Act a child is anyone **under 18**. With Class 6–12,
   almost every user is a child.
@@ -47,7 +47,7 @@ grievance officer, all of which we have or are adding now.
 | **Verifiable parental consent before processing any child's data** | Act s.9(1), **Rule 10** | Nothing | The **parent consent flow** below. This is the biggest piece of work |
 | No processing likely to harm a child's well-being | Act s.9(2) | No ads, no selling, AI limited to study help, report button | Output moderation (see `ai-content.md`) |
 | **No tracking or behavioural monitoring of children, and no targeted advertising at children** | Act s.9(3) | No ads, no analytics, no profiling | **Ask counsel**: is per-student study progress, spaced revision and XP "behavioural monitoring"? We think it is the service the student asked for, but streak nudges and usage-based reminders should be reviewed. Keep any future analytics aggregate and anonymous |
-| Reasonable security safeguards: encryption, access control, logs and monitoring, backups, processor contracts | s.8(5), **Rule 6** | HTTPS, argon2id, short-lived tokens, request IDs in logs, account ownership checks on every query | Encryption at rest confirmation for Railway Postgres; backups; **access logs kept 1 year** (Rule 6(1)(e)); data processing agreements with Sarvam, Railway, Resend, RevenueCat |
+| Reasonable security safeguards: encryption, access control, logs and monitoring, backups, processor contracts | s.8(5), **Rule 6** | HTTPS, argon2id, short-lived tokens, request IDs in logs, account ownership checks on every query | Encryption at rest confirmation for managed Postgres; backups; **access logs kept 1 year** (Rule 6(1)(e)); data processing agreements with Google Cloud, Resend, RevenueCat |
 | Breach notice: to each affected user without delay (what happened, likely impact, what we did, what they can do, a contact); to the Board without delay, detailed report within 72 hours | s.8(6), **Rule 7** | Nothing | A written breach runbook and email template (Resend is ready). Also CERT-In: report cyber incidents within **6 hours** (CERT-In Directions, April 2022) |
 | Erase data when the purpose is served or consent is withdrawn; tell processors to erase too | s.8(7) | Account deletion: 30-day grace, then hourly purge cascades every table | Purge must also **delete the RevenueCat customer** (REST API) and ask Sarvam to delete anything it holds. Today neither happens |
 | **Keep personal data, traffic data and processing logs for at least 1 year** (for the Seventh Schedule purposes), then erase | **Rule 8(3)** | Web deletion requests kept 1 year | **Conflict with our 30-day purge.** Counsel to confirm what must survive deletion. Likely answer: keep a minimal log (account ID, what was processed, when) for 1 year after processing, not the content. Build before May 2027 |
@@ -55,7 +55,7 @@ grievance officer, all of which we have or are adding now.
 | Publish contact details of a person who answers data questions, in the app and on the website, and in every reply to a rights request | s.8(9), **Rule 9** | `/support` has the Grievance Officer (placeholders) and support@academe.cc; the app's Privacy screen links to it | Fill in the name and address. Add the contact line to support email replies |
 | Grievance redressal within **90 days** | s.8(10), s.13, **Rule 14(3)** | Promised on `/support` (acknowledge in 48 h, resolve within 90 days) | A tracked inbox or ticket label for grievances |
 | Rights: access (summary of data and processing, processors it went to), correction, completion, updating, erasure, nomination | ss.11–14, Rule 14 | Correction in the app (name, class, board, language); erasure in the app and on the web | **Data export** ("Get a copy of my data" currently sends people to email us). A `GET /me/export` returning JSON of everything we hold would make this self-service. **Nomination** by email only |
-| Cross-border transfer allowed unless the government restricts a country | s.16, Rule 15 | Railway Singapore, Resend and RevenueCat US: no restriction notified today | Watch for notifications |
+| Cross-border transfer allowed unless the government restricts a country | s.16, Rule 15 | Hosting, Google Cloud, Resend and RevenueCat locations are deployment settings | Watch for notifications |
 | Consent Managers | s.6(7)–(9), Rule 4 | n/a | Optional to support |
 
 ## The parent consent flow we need (Rule 10)
@@ -94,10 +94,10 @@ is expected, and how to treat 18-year-olds in Class 12.
    requirement).
 3. Consent notice + tick at sign-up, consent records table (before launch is
    better; required by May 2027).
-4. Data processing agreements with Sarvam, Railway, Resend, RevenueCat; ask
+4. Data processing agreements with Google Cloud, Resend, RevenueCat; ask
    Sarvam about retention of chat and Document AI job data.
 5. Breach runbook; CERT-In 6-hour reporting; decide log retention (1 year per
-   Rule 6/8, and CERT-In asks for 180 days of logs kept in India, which Railway
+  Rule 6/8, and CERT-In asks for 180 days of logs kept in India, which the
    Singapore doesn't satisfy on its own).
 6. Data export endpoint and screen.
 7. Parent consent flow with DigiLocker (by May 2027).

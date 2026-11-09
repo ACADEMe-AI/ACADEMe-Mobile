@@ -1,5 +1,9 @@
 # ACADEMe: engineering rules
 
+Before planning work, read `about/README.md` and the relevant workstream
+roadmap in `about/roadmap/`. This file remains the canonical Flutter and
+repository engineering rule set.
+
 Every change to this app follows these rules. They are distilled from the
 official Flutter and Dart guidance, saved verbatim in `docs/flutter-reference/`
 :  read the source file named in brackets when a rule needs more context.

@@ -13,6 +13,7 @@ import (
 	"syscall"
 	"time"
 
+	"academe/server/internal/ai/providers"
 	"academe/server/internal/lessons"
 	"academe/server/internal/sarvam"
 	"academe/server/internal/syllabus"
@@ -44,11 +45,12 @@ func run(ctx context.Context, logger *slog.Logger, args []string) error {
 	review := flags.Bool("review", false, "write the teacher review report instead of generating")
 	report := flags.String("html", "content-review/index.html", "where -review writes the report")
 	source := flags.String("syllabus", "", "read the syllabus from this folder instead of the embedded data")
-	model := flags.String("model", "sarvam-105b", "Sarvam chat model")
+	providerName := flags.String("provider", "", "AI provider: google or sarvam; defaults to ACADEME_AI_PROVIDER or google")
+	model := flags.String("model", "", "provider model; defaults to ACADEME_GOOGLE_MODEL or ACADEME_SARVAM_MODEL")
 	maxTokens := flags.Int("max-tokens", 24000, "Sarvam completion budget for a reasoning call; calls without reasoning get at most 8000")
 	authorReasoning := flags.String("author-reasoning", "none", "Sarvam reasoning effort when writing: none, low, medium, high")
 	reviewReasoning := flags.String("review-reasoning", "medium", "Sarvam reasoning effort when reviewing: none, low, medium, high")
-	timeout := flags.Duration("timeout", 300*time.Second, "limit for one Sarvam request")
+	timeout := flags.Duration("timeout", 300*time.Second, "limit for one AI provider request")
 	if err := flags.Parse(args); err != nil {
 		return err
 	}
@@ -70,21 +72,39 @@ func run(ctx context.Context, logger *slog.Logger, args []string) error {
 		return fmt.Errorf("load syllabus: %w", err)
 	}
 	jobs := lessons.Jobs(syllabi, f)
-	key := os.Getenv("ACADEME_SARVAM_API_KEY")
-	if key == "" && !*dryRun {
-		return errors.New("set ACADEME_SARVAM_API_KEY")
+	selectedProvider := *providerName
+	if selectedProvider == "" {
+		selectedProvider = os.Getenv("ACADEME_AI_PROVIDER")
 	}
-	client := func(reasoning string) *sarvam.Client {
-		c := sarvam.New(key, *model, &http.Client{})
-		c.MaxTokens, c.Reasoning = min(*maxTokens, 8000), json.RawMessage(`null`)
-		if reasoning != "none" {
-			c.MaxTokens = *maxTokens
-			c.Reasoning, _ = json.Marshal(reasoning)
+	if selectedProvider == "" {
+		selectedProvider = "google"
+	}
+	selectedModel := *model
+	if selectedModel == "" {
+		if selectedProvider == "google" {
+			selectedModel = os.Getenv("ACADEME_GOOGLE_MODEL")
+			if selectedModel == "" {
+				selectedModel = "gemini-3.5-flash-lite"
+			}
+		} else {
+			selectedModel = os.Getenv("ACADEME_SARVAM_MODEL")
+			if selectedModel == "" {
+				selectedModel = "sarvam-105b"
+			}
 		}
-		return c
+	}
+	var author, reviewer lessons.Chatter
+	var closeProvider func() error
+	if !*dryRun {
+		var err error
+		author, reviewer, closeProvider, err = buildChatters(selectedProvider, selectedModel, *maxTokens, *authorReasoning, *reviewReasoning)
+		if err != nil {
+			return err
+		}
+		defer func() { _ = closeProvider() }()
 	}
 	g := &lessons.Generator{
-		Author: client(*authorReasoning), Reviewer: client(*reviewReasoning), Model: *model, Out: *out, Force: *force,
+		Author: author, Reviewer: reviewer, Model: selectedModel, Out: *out, Force: *force,
 		Timeout: *timeout, Backoff: 5 * time.Second, Retries: 6, Logger: logger,
 	}
 	if *dryRun {
@@ -114,4 +134,38 @@ func run(ctx context.Context, logger *slog.Logger, args []string) error {
 		return fmt.Errorf("%d lessons failed; run again to retry them", sum.Failed)
 	}
 	return nil
+}
+
+func buildChatters(providerName, model string, maxTokens int, authorReasoning, reviewReasoning string) (lessons.Chatter, lessons.Chatter, func() error, error) {
+	switch providerName {
+	case "google":
+		project := os.Getenv("ACADEME_GOOGLE_PROJECT")
+		location := os.Getenv("ACADEME_GOOGLE_LOCATION")
+		if location == "" {
+			location = "global"
+		}
+		processor := os.Getenv("ACADEME_GOOGLE_DOCUMENT_PROCESSOR")
+		provider, err := providers.NewGoogleText(context.Background(), providers.Config{Project: project, Location: location, Model: model, Processor: processor})
+		if err != nil {
+			return nil, nil, nil, fmt.Errorf("configure google provider: %w", err)
+		}
+		return provider, provider, provider.Close, nil
+	case "sarvam":
+		key := os.Getenv("ACADEME_SARVAM_API_KEY")
+		if key == "" {
+			return nil, nil, nil, errors.New("set ACADEME_SARVAM_API_KEY")
+		}
+		client := func(reasoning string) *sarvam.Client {
+			c := sarvam.New(key, model, &http.Client{})
+			c.MaxTokens, c.Reasoning = min(maxTokens, 8000), json.RawMessage(`null`)
+			if reasoning != "none" {
+				c.MaxTokens = maxTokens
+				c.Reasoning, _ = json.Marshal(reasoning)
+			}
+			return c
+		}
+		return client(authorReasoning), client(reviewReasoning), func() error { return nil }, nil
+	default:
+		return nil, nil, nil, fmt.Errorf("AI provider must be google or sarvam, got %q", providerName)
+	}
 }

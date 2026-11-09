@@ -14,7 +14,7 @@ import (
 	"sync"
 	"time"
 
-	"academe/server/internal/sarvam"
+	"academe/server/internal/ai"
 	"academe/server/internal/study"
 )
 
@@ -27,7 +27,7 @@ const (
 )
 
 type Chatter interface {
-	Chat(ctx context.Context, messages []sarvam.Message, temperature float64) (string, error)
+	Chat(ctx context.Context, messages []ai.Message, temperature float64) (string, error)
 }
 
 type Generator struct {
@@ -137,7 +137,7 @@ func (g *Generator) Run(ctx context.Context, jobs []Job, workers int) (Summary, 
 }
 
 func refused(err error) bool {
-	se, ok := errors.AsType[*sarvam.StatusError](err)
+	se, ok := errors.AsType[*ai.StatusError](err)
 	return ok && (se.Code == http.StatusUnauthorized || se.Code == http.StatusPaymentRequired || se.Code == http.StatusForbidden)
 }
 
@@ -174,7 +174,7 @@ func (g *Generator) one(ctx context.Context, j Job) (string, error) {
 }
 
 func (g *Generator) write(ctx context.Context, j Job, previous study.Deck, issues []string) (study.Deck, error) {
-	messages := []sarvam.Message{{Role: "system", Content: authorSystem}, {Role: "user", Content: authorPrompt(j)}}
+	messages := []ai.Message{{Role: "system", Content: authorSystem}, {Role: "user", Content: authorPrompt(j)}}
 	if previous.Cards != nil {
 		raw, err := json.Marshal(struct {
 			Cards []study.Card `json:"cards"`
@@ -182,7 +182,7 @@ func (g *Generator) write(ctx context.Context, j Job, previous study.Deck, issue
 		if err != nil {
 			return study.Deck{}, fmt.Errorf("encode previous lesson: %w", err)
 		}
-		messages = append(messages, sarvam.Message{Role: "assistant", Content: string(raw)}, sarvam.Message{Role: "user", Content: revisePrompt(issues)})
+		messages = append(messages, ai.Message{Role: "assistant", Content: string(raw)}, ai.Message{Role: "user", Content: revisePrompt(issues)})
 	}
 	var last error
 	for range authorAttempts {
@@ -196,13 +196,13 @@ func (g *Generator) write(ctx context.Context, j Job, previous study.Deck, issue
 		}
 		last = err
 		g.Logger.Warn("lesson reply rejected", "id", j.ID(), "error", err)
-		messages = append(messages, sarvam.Message{Role: "assistant", Content: reply}, sarvam.Message{Role: "user", Content: invalidPrompt(err)})
+		messages = append(messages, ai.Message{Role: "assistant", Content: reply}, ai.Message{Role: "user", Content: invalidPrompt(err)})
 	}
 	return study.Deck{}, fmt.Errorf("no valid lesson after %d replies: %w", authorAttempts, last)
 }
 
 func (g *Generator) review(ctx context.Context, j Job, d study.Deck) (verdict, error) {
-	messages := []sarvam.Message{{Role: "system", Content: reviewerSystem}, {Role: "user", Content: reviewPrompt(j, d.Cards)}}
+	messages := []ai.Message{{Role: "system", Content: reviewerSystem}, {Role: "user", Content: reviewPrompt(j, d.Cards)}}
 	var last error
 	for range reviewAttempts {
 		reply, err := g.ask(ctx, g.Reviewer, messages, reviewerHeat)
@@ -218,7 +218,7 @@ func (g *Generator) review(ctx context.Context, j Job, d study.Deck) (verdict, e
 	return verdict{}, fmt.Errorf("no usable review after %d replies: %w", reviewAttempts, last)
 }
 
-func (g *Generator) ask(ctx context.Context, chat Chatter, messages []sarvam.Message, temperature float64) (string, error) {
+func (g *Generator) ask(ctx context.Context, chat Chatter, messages []ai.Message, temperature float64) (string, error) {
 	for attempt := 0; ; attempt++ {
 		callCtx, cancel := context.WithTimeout(ctx, g.Timeout)
 		reply, err := chat.Chat(callCtx, messages, temperature)
@@ -229,15 +229,15 @@ func (g *Generator) ask(ctx context.Context, chat Chatter, messages []sarvam.Mes
 		if ctx.Err() != nil {
 			return "", ctx.Err()
 		}
-		if se, ok := errors.AsType[*sarvam.StatusError](err); ok && se.Code != http.StatusTooManyRequests && se.Code < 500 {
+		if se, ok := errors.AsType[*ai.StatusError](err); ok && se.Code != http.StatusTooManyRequests && se.Code < 500 {
 			return "", err
 		}
 		if attempt >= g.Retries {
-			return "", fmt.Errorf("sarvam gave up after %d tries: %w", attempt+1, err)
+			return "", fmt.Errorf("AI provider gave up after %d tries: %w", attempt+1, err)
 		}
 		wait := min(g.Backoff<<attempt, 5*time.Minute)
 		wait += rand.N(wait/2 + 1) //nolint:gosec
-		g.Logger.Warn("sarvam retry", "attempt", attempt+1, "wait", wait.String(), "error", err)
+		g.Logger.Warn("AI provider retry", "attempt", attempt+1, "wait", wait.String(), "error", err)
 		select {
 		case <-ctx.Done():
 			return "", ctx.Err()

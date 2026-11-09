@@ -98,7 +98,7 @@ Everything else (streaks, levels, share cards, mock exams) serves these five:
 | “Here’s the answer” homework help | Hint-first solve + board-scheme marking |
 | Peer note feeds / social | Curated lessons; no social surface for minors |
 | Paywall in onboarding | Free core; one simple Pro; limits only on AI |
-| English UI, languages later | Indic languages planned from the start (via Sarvam) |
+| English UI, languages later | Indic languages planned from the start (via the active provider bundle) |
 
 ---
 
@@ -132,12 +132,14 @@ This folder (`academe/`) is the product monorepo:
 | `lib/` | Flutter app (MVVM: UI → view models → repositories → services) |
 | `server/` | Go API (`cmd/academe-api`), PostgreSQL migrations, public legal/support pages |
 | `design/` | Design sources (e.g. Pebby Rive pipeline under `design/mascot/`) |
+| `about/` | Durable project context, rules index, workstream roadmaps, USPs, and telemetry direction |
 | `docs/` | Play store / Pro / AI content docs; Flutter & Go reference extracts |
 | `tasks/` | Strategy, roadmap, workstream reports — **source of truth for “what’s next”** |
 | `test/`, `testing/fakes/` | Flutter tests and fakes |
 | `AGENTS.md` | Flutter engineering rules (required reading before code changes) |
 | `server/AGENTS.md` | Go engineering rules + how to run the API locally |
 | `server/openapi.yaml` | HTTP contract the app codes against |
+| `about/roadmap/roadmap.md` | Workstream roadmap index and planning checklists |
 
 **Never** call competitor apps’ services or ship their assets.
 
@@ -150,19 +152,20 @@ This folder (`academe/`) is the product monorepo:
 | Mobile | Flutter (Android first; iOS later) | Student app; Pixel 10 is the reference device |
 | API | Go 1.25+, standard library HTTP | Auth, study, chat, scan, billing, progress, site pages |
 | Database | PostgreSQL | Accounts, study progress, limits, content metadata |
-| AI | **Sarvam** (server-side only) | Chat (Pebby), Document Intelligence (Scan OCR), lesson generation; STT/TTS/translate planned |
+| AI | **Google Cloud** (server-side only) | Vertex AI Gemini for Pebby and lesson work; Document AI for Scan OCR; Sarvam remains an inactive switchable bundle |
 | Billing | Google Play + RevenueCat | Pro subscription; webhook + `/billing/sync` |
 | Email | Resend | Password reset, welcome, etc. |
 | Auth | Email/password + Google Sign-In | Tokens; refresh in secure storage on device |
 | Production API | `https://api.academe.cc` | Cloud Run (`academe-api`, `asia-south1` / Mumbai) + Postgres; public pages on the same host |
 
-The Flutter app **never** holds Sarvam or RevenueCat secret keys. Release
+The Flutter app **never** holds Google, Sarvam, or RevenueCat secret keys. Release
 builds talk to production by default; debug builds talk to the Mac via
 `http://10.0.2.2:8080` from the emulator.
 
-Optional later: a second LLM (e.g. Claude) for hard Maths checks and
-independent lesson review — decision **D2** in the roadmap — not required for
-day-to-day Indic tutoring/OCR.
+Google is the first active provider bundle. Provider selection is deployment
+wide: production uses Google or Sarvam as one complete bundle and never mixes
+providers by capability. Independent review is a separate Google model call,
+with human review for high-risk or publication-bound content.
 
 ---
 
@@ -304,12 +307,14 @@ Detail and checkboxes: **`tasks/roadmap.md`**. Strategy and GTM:
 |---|---|
 | Why / USP / pricing / GTM | `tasks/strategy.md` |
 | Built vs next / open decisions | `tasks/roadmap.md` |
+| Project context and workstream roadmaps | `about/` |
+| Telemetry checklist | `about/roadmap/telemetry.md` |
 | Flutter rules | `AGENTS.md` |
 | Go rules + local server | `server/AGENTS.md` |
 | API contract | `server/openapi.yaml` |
 | Pro limits | `docs/play/pro-limits-spec.md` |
 | Play listing / release | `docs/play/` |
-| Hosting runbook | `docs/hosting.md` (may lag Cloud Run cutover — prefer live `api.academe.cc` + ops notes) |
+| Deployment runbook | `docs/deployment.md` (Cloud Run is the current deployment target) |
 
 ---
 

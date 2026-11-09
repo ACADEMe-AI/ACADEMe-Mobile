@@ -40,8 +40,8 @@ this, but step 10 of the release checklist missed two of the permissions (fixed)
   report row disappeared.
 - **Pebby's prompt** carries the first name, class, board and language, plus the
   last 20 messages.
-- **Access tokens** last 15 minutes. **Hosting** is Railway Singapore
-  (`docs/hosting.md`).
+- **Access tokens** last 15 minutes. **Hosting** is a managed deployment service
+  (`docs/deployment.md`).
 - **Request logs** record method, path, status, duration and request ID. There's
   no IP and no email; `email.Log.SendNotice` logs only the subject.
 - **The app sends no device info.** Its headers are only Content-Type, Accept and

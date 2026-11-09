@@ -105,7 +105,7 @@ Sarvam list price: ₹29.28 per 1M input tokens, ₹73.2 per 1M output tokens.
 | One lesson generated | ~12k input + 18k output (writer + reviewer) | ≈ ₹1.7–2.2, one-off |
 | All 5,777 lessons, one language | one pass + retries | ≈ ₹10,000–13,000, one-off |
 | Scan (Document AI) and marking | not yet measured | measure in the first month |
-| Hosting | Railway Pro, usage ≈ $7 inside the $20 fee | ≈ ₹1,700/month fixed |
+| Hosting | Managed container and PostgreSQL service | Budget and region to be selected |
 
 Revenue per subscriber (Play prices include 18% GST; Play keeps 15% of
 subscriptions): monthly ₹200 → ≈ ₹144 net; first month ₹100 → ≈ ₹72;
@@ -160,7 +160,7 @@ launch or compute these from the server tables.
 - **DPDP:** every user is a child in law. Verifiable parental consent, notice, consent records, retention and breach rules apply from **13 May 2027**; design and build them in the 90-day plan, with a lawyer.
 - **Play Families:** target ages 9–12, 13–15, 16–17; no ads, no advertising ID, only Families-suitable SDKs; Data safety answers written.
 - **Generative AI:** Report on every Pebby answer, weekly review; moderation filter and helpline answer before scale.
-- **Data:** photos never stored; hosting in Singapore disclosed; account deletion in the app and on the web; processors (Sarvam, Railway, Resend, RevenueCat) under DPAs.
+- **Data:** photos never stored; hosting region disclosed after selection; account deletion in the app and on the web; processors (Google Cloud, Resend, RevenueCat) under DPAs.
 - **No ads, ever.** Pro pays for the product.
 
 ## 12. Risks and mitigations
@@ -180,7 +180,7 @@ launch or compute these from the server tables.
 
 | By | Goals |
 |---|---|
-| **30 days (25 Oct 2026)** | Shipaton submission 30 Sep; Railway Pro, DNS, RevenueCat live; Sarvam funded; CBSE and ICSE Class 10 and 12 lessons generated and spot-checked; UI journeys green; internal testing track |
+| **30 days (25 Oct 2026)** | Shipaton submission 30 Sep; hosting and DNS selected; RevenueCat live; Google provider funded; CBSE and ICSE Class 10 and 12 lessons generated and spot-checked; UI journeys green; internal testing track |
 | **60 days (24 Nov 2026)** | all 5,777 lessons generated; closed test with 20+ students and parents; Play 2.0.0 staged rollout in India; streaks and levels; rate limits; Scan part 2 started; metrics in place |
 | **90 days (24 Dec 2026)** | app text in Hindi first, then the other three; mock exams (Pro) for Class 10 and 12 before boards; weekly parent report (Pro); board-date folders; DPDP consent design and lawyer sign-off |
 

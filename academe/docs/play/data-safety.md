@@ -16,7 +16,7 @@ RevenueCat's own guidance:
   app sends to `api.academe.cc` is collected.
 - **Shared** = sent to a third party, **except** service providers acting on our
   instructions, legal requests, user-initiated transfers and anonymous data.
-  Sarvam AI, Railway, Resend and RevenueCat are service providers, and Google
+  Google Cloud, Resend and RevenueCat are service providers, and Google
   Sign-In and Google Play Billing are started by the user, so **nothing is
   "shared"**.
 - **Processed ephemerally** = kept only in memory and only for the request.
@@ -29,7 +29,7 @@ RevenueCat's own guidance:
 | Question | Answer |
 |---|---|
 | Does your app collect or share any of the required user data types? | **Yes** |
-| Is all of the user data collected by your app encrypted in transit? | **Yes**. Release builds refuse plain `http` (debug-only network config), the API is `https://api.academe.cc` behind Railway's TLS edge, and Sarvam, Resend, RevenueCat and Google are all called over HTTPS |
+| Is all of the user data collected by your app encrypted in transit? | **Yes**. Release builds refuse plain `http` (debug-only network config), the API is served over HTTPS, and Google Cloud, Resend, RevenueCat and Google Sign-In are all called over HTTPS |
 | Which of the following methods of account creation does your app support? | **Username and password** (email + password) and **OAuth** (Sign in with Google) |
 | Do you provide a way for users to request that their data is deleted? | **Yes** |
 | Delete account URL | `https://api.academe.cc/delete-account` |

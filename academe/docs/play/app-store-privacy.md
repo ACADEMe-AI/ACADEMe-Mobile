@@ -7,7 +7,7 @@ Source: [App privacy details on the App Store](https://developer.apple.com/app-s
 Apple's rules differ from Play's in two ways that matter:
 
 - Apple has **no "service provider" exemption for disclosure**: data sent to
-  Sarvam, Railway, Resend or RevenueCat on our behalf is still "collected" by us.
+  Google Cloud, Resend or RevenueCat on our behalf is still "collected" by us.
   (Play's "shared" and Apple's "collected" are different questions.)
 - Data processed only in real time and not kept can be left out only if it meets
   *all* of Apple's optional-disclosure criteria. Scan photos are core to a

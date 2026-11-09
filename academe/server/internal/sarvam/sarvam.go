@@ -13,6 +13,8 @@ import (
 	"path"
 	"strings"
 	"time"
+
+	"academe/server/internal/ai"
 )
 
 const (
@@ -22,19 +24,9 @@ const (
 
 var ErrTimeout = errors.New("sarvam took too long")
 
-type StatusError struct {
-	Code   int
-	Detail string
-}
+type StatusError = ai.StatusError
 
-func (e *StatusError) Error() string { return fmt.Sprintf("sarvam status %d: %s", e.Code, e.Detail) }
-
-var ErrUnavailable = errors.New("sarvam unavailable")
-
-func (e *StatusError) Is(target error) bool {
-	return target == ErrUnavailable && (e.Code == http.StatusUnauthorized || e.Code == http.StatusPaymentRequired ||
-		e.Code == http.StatusForbidden || e.Code == http.StatusTooManyRequests || e.Code >= http.StatusInternalServerError)
-}
+var ErrUnavailable = ai.ErrUnavailable
 
 type Client struct {
 	ChatURL   string
@@ -52,10 +44,9 @@ func New(key, model string, client *http.Client) *Client {
 	return &Client{ChatURL: ChatURL, DocURL: DocURL, Key: key, Model: model, HTTP: client, Poll: time.Second, Deadline: 45 * time.Second}
 }
 
-type Message struct {
-	Role    string `json:"role"`
-	Content string `json:"content"`
-}
+func (c *Client) Name() string { return "sarvam" }
+
+type Message = ai.Message
 
 type chatRequest struct {
 	Model       string          `json:"model"`
@@ -80,7 +71,7 @@ func (c *Client) do(req *http.Request, out any) error {
 	defer res.Body.Close() //nolint:errcheck
 	if res.StatusCode/100 != 2 {
 		detail, _ := io.ReadAll(io.LimitReader(res.Body, 512))
-		return &StatusError{Code: res.StatusCode, Detail: string(detail)}
+		return &StatusError{Provider: "sarvam", Code: res.StatusCode, Detail: string(detail)}
 	}
 	if err := json.NewDecoder(io.LimitReader(res.Body, 4<<20)).Decode(out); err != nil {
 		return fmt.Errorf("decode sarvam response: %w", err)
@@ -108,10 +99,7 @@ func (c *Client) Chat(ctx context.Context, messages []Message, temperature float
 	return strings.TrimSpace(out.Choices[0].Message.Content), nil
 }
 
-type Page struct {
-	Name string
-	Data []byte
-}
+type Page = ai.Page
 
 func zipPages(pages []Page) ([]byte, error) {
 	var buf bytes.Buffer

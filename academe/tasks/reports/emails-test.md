@@ -5,7 +5,7 @@ I checked the work in `emails.md` on my own server build (port 8102, throwaway s
 ## Bugs found and fixed
 
 1. **The web reset page broke on any plain-http host other than localhost.** The page always set a `__Host-` cookie, and a `__Host-` cookie must be `Secure`. Chrome only keeps a Secure cookie on http for `localhost`. On the emulator (`http://10.0.2.2:…`) or a LAN IP, Chrome dropped the cookie (CDP showed `blockedReasons: InvalidPrefix`). Every save then answered 403 with the misleading "Open the link again" page. I reproduced this with headless Chrome against `http://192.168.29.2:8102`.
-   - **Fix** (`server/internal/site/reset.go`): the cookie now depends on the request scheme. Over TLS, or with `X-Forwarded-Proto: https` (Railway sets it), it stays `__Host-academe-reset` (Secure, HttpOnly, SameSite=Strict, Path=/). Over plain http it becomes `academe-reset` (HttpOnly, SameSite=Strict, no Secure). The POST reads the cookie for its own scheme, so an http cookie is refused over https.
+   - **Fix** (`server/internal/site/reset.go`): the cookie now depends on the request scheme. Over TLS, or with `X-Forwarded-Proto: https`, it stays `__Host-academe-reset` (Secure, HttpOnly, SameSite=Strict, Path=/). Over plain http it becomes `academe-reset` (HttpOnly, SameSite=Strict, no Secure). The POST reads the cookie for its own scheme, so an http cookie is refused over https.
    - Retested in Chrome over the LAN IP: the form saved ("Password changed"), the same link then showed "This link has expired", the new password logged in and the old one got 401.
    - **Test:** `TestResetPageOverPlainHTTP`. The existing tests now send `X-Forwarded-Proto: https` and check the exact `__Host-academe-reset` name.
 2. **The reset page accepted any string as the link.** Crafted `c=` values were escaped correctly (see below), but they still got a form, a cookie and an `academe://` link.
@@ -33,7 +33,7 @@ I checked the work in `emails.md` on my own server build (port 8102, throwaway s
 | Reuse | `/auth/password-reset/link` gave 200 then 410 `reset_expired`. A reused link on the web page gave 410 "This link has expired". |
 | Attempts shared with the code | The link claim does `attempts = attempts + 1` on the same row. After 5 wrong codes the link gives 429 `too_many_attempts`, and using the link kills the code (410). Covered by the existing tests and the Postgres store test. |
 | Code vs link race | Exactly one winner, since `MarkResetCodeUsed … WHERE used_at IS NULL` is the atomic gate. New Postgres test above. |
-| `/auth/password-reset/link` limits | Shares the 30-per-IP-per-hour verify limiter. Empty or over-long tokens give 410 without a DB hit. The client IP comes from `TrustClientIP`, so it's the real client behind Railway. |
+| `/auth/password-reset/link` limits | Shares the 30-per-IP-per-hour verify limiter. Empty or over-long tokens give 410 without a DB hit. The client IP comes from `TrustClientIP`, so it is the real client when the configured reverse proxy supplies the trusted header. |
 | Form token | `HMAC-SHA256(token key, "reset-form\0" + nonce + "\0" + link)`, compared with `hmac.Equal`. It is bound to both the cookie nonce and the link. Moving a token to another link or another cookie gives 403. |
 | CSRF | The SameSite=Strict cookie and the HMAC form token are required. A cross-site POST has no cookie, so it gets 403. CSRF gains an attacker little here anyway, because they would need the link token, and with it they could reset directly. |
 | Weak or mismatched password | 422, and the link is not used (checked before redemption). |
@@ -113,7 +113,7 @@ The manifest uses `autoVerify` only on the https filter, whose host is `academe.
 
 ## Known limits and notes
 
-- **Proxy header:** production depends on Railway sending `X-Forwarded-Proto: https`, which it does for every https request. If a deploy dropped that header, the page would use the plain cookie over https, which still works but without the `__Host-` guarantees.
+- **Proxy header:** production depends on the reverse proxy sending `X-Forwarded-Proto: https` for HTTPS requests. If a deploy drops that header, the page uses the plain cookie over https, which still works but without the `__Host-` guarantees.
 - **Email fonts:**
   - `baloo2-800.ttf` is 421 KB. That's heavy for a font that is only loaded by clients that support `@font-face`; a subset (Latin, only the heading glyphs) would cut it to about 30 KB.
   - The font is cached for a week, and so is a 404 for an unknown name.

@@ -40,7 +40,7 @@ I also added `reset_race_test.go`, `TestPasswordResetRacesPostgres`, which runs 
 | Google-only account | PASS. It gets the "use Continue with Google" email and no code. Verify gives 410. If the account links Google between verify and complete, `CompleteReset` refuses (`password_hash IS NOT NULL`). |
 | Email case and whitespace | PASS. `normalizeEmail` (trim + lower) runs on request, verify, sign-up and log-in. Live: requested as `"  Tess@Example.COM "`, verified as `TESS@example.com`. Mail goes to the stored address, never the typed one. Google-created accounts store `identity.Email` unnormalised (outside reset scope; Google already returns lowercase). |
 | Limiter memory | FIXED (#1, #2, #3). Growth is now bounded by the request rate × 1 h, with amortised sweeps. |
-| Limiter IP source with `ACADEME_CLIENT_IP_HEADER` unset | `RemoteAddr`. Correct when directly exposed. **Behind Railway's proxy, an unset header makes every client share the proxy IP**, so there are 10 reset requests an hour for the whole service. Production must set `ACADEME_CLIENT_IP_HEADER=X-Real-IP` (as `hosting.md` says). |
+| Limiter IP source with `ACADEME_CLIENT_IP_HEADER` unset | `RemoteAddr`. Correct when directly exposed. Behind a reverse proxy, configure `ACADEME_CLIENT_IP_HEADER` to the header that proxy overwrites; otherwise every client may share the proxy IP. |
 | Log lines never contain the code | PASS. `email.Log` adds `code` only with `ShowCode` (= `ACADEME_EMAIL_DEV=1`). The access log records only method, path and status. Errors carry no code. Live: the code appeared exactly once, in the dev line. `email_test.go` checks both modes. |
 | Resend request format | PASS against the current docs (resend.com/docs/api-reference/emails/send-email): `POST https://api.resend.com/emails`, `Authorization: Bearer`, JSON `from`, `to[]`, `subject`, `html`, `text`, and snake_case `reply_to` (notice). Resend rejects a missing `User-Agent` with 403; Go sends `Go-http-client/1.1`, so this is fine. There is no `Idempotency-Key`: a timeout plus a retry by the student could send two emails, which is harmless because the second code replaces the first. Resend's default limit is 10 requests a second per team, and a Resend 429 becomes a 500. |
 | HTML email escaping | PASS. `html/template` (contextual escaping). The only data is digits. JSON encoding escapes the subject. The recipient comes from the DB. |
@@ -77,7 +77,7 @@ I also added `reset_race_test.go`, `TestPasswordResetRacesPostgres`, which runs 
 2. FIXED (#4): tokens now carry the issue time in microseconds, so they differ below a second.
 3. Low: outstanding reset tokens from earlier verifies are not revoked by a later completed reset. Each is still good for 15 min. Anyone holding one could already reset, so this is low value. `CompleteReset` could mark every row of the account complete.
 4. Low: two perfectly concurrent requests can leave two unused codes. After the newer one is used, the older one becomes claimable (5 more guesses). This is negligible.
-5. Deployment: `ACADEME_CLIENT_IP_HEADER` must be set behind Railway (see the checklist), and `ACADEME_EMAIL_DEV` must never be `1` in production.
+5. Deployment: `ACADEME_CLIENT_IP_HEADER` must be set behind a reverse proxy when required, and `ACADEME_EMAIL_DEV` must never be `1` in production.
 
 ## Definitions of done
 

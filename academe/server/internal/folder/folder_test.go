@@ -286,7 +286,7 @@ func TestRoutes(t *testing.T) {
 	if status, _ := call("PUT", fmt.Sprintf("/folders/%s/todos/%d", id, todoID), "riya", `{"done":true}`); status != http.StatusNoContent {
 		t.Errorf("PUT todo done = %d, want 204", status)
 	}
-	if status, got := call("GET", "/today", "riya", ""); status != http.StatusOK || got["reviewDue"] != 2.0 || len(got["tasks"].([]any)) != 3 {
+	if status, got := call("GET", "/today?today=2026-10-09&offset=330", "riya", ""); status != http.StatusOK || got["reviewDue"] != 2.0 || len(got["tasks"].([]any)) != 3 {
 		t.Errorf("GET /today = %d %v, want one review, one lesson and the to-do", status, got)
 	}
 	if status, got := call("GET", "/folders?today=2026-10-09", "riya", ""); status != http.StatusOK || len(got["folders"].([]any)) != 1 {

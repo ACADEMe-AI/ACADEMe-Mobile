@@ -14,6 +14,8 @@ import (
 	"syscall"
 	"time"
 
+	"academe/server/internal/ai"
+	"academe/server/internal/ai/providers"
 	"academe/server/internal/appconfig"
 	"academe/server/internal/auth"
 	"academe/server/internal/billing"
@@ -87,16 +89,29 @@ func run(ctx context.Context, logger *slog.Logger) error {
 	auth.RegisterRoutes(mux, logger, authService)
 	profiles := profile.NewService(profile.NewPostgresStore(pool))
 	profile.RegisterRoutes(mux, logger, profiles, authService.RequireAccount)
-	var tutor chat.Tutor
-	var reader scan.Reader
-	var model scan.Model
-	if cfg.SarvamAPIKey != "" {
+	var provider ai.Provider
+	var closeProvider func() error
+	switch cfg.AIProvider {
+	case "google":
+		googleProvider, err := providers.NewGoogle(ctx, providers.Config{
+			Project: cfg.GoogleProject, Location: cfg.GoogleLocation,
+			Model: cfg.GoogleModel, Processor: cfg.GoogleProcessor,
+		})
+		if err != nil {
+			return fmt.Errorf("configure google provider: %w", err)
+		}
+		provider, closeProvider = googleProvider, googleProvider.Close
+	case "sarvam":
+		if cfg.SarvamAPIKey == "" {
+			return errors.New("ACADEME_SARVAM_API_KEY is not set")
+		}
 		client := sarvam.New(cfg.SarvamAPIKey, cfg.SarvamModel, &http.Client{Timeout: 60 * time.Second})
 		client.Reasoning = json.RawMessage(`null`)
-		tutor, reader, model = chat.NewSarvam(client), client, client
-	} else {
-		logger.Warn("askme and scan disabled", "reason", "ACADEME_SARVAM_API_KEY is not set")
+		provider = client
+	default:
+		return fmt.Errorf("ACADEME_AI_PROVIDER must be google or sarvam")
 	}
+	defer closeProvider()
 	var revenueCat *billing.RevenueCat
 	if cfg.RevenueCatSecretKey != "" {
 		revenueCat = billing.NewRevenueCat(cfg.RevenueCatSecretKey, billing.RevenueCatAPI, &http.Client{Timeout: 15 * time.Second})
@@ -108,7 +123,7 @@ func run(ctx context.Context, logger *slog.Logger) error {
 	plans.SetTesters(cfg.BillingTesters)
 	plans.SetEntitlement(cfg.RevenueCatEntitlement)
 	billing.RegisterRoutes(mux, logger, plans, authService.RequireAccount, cfg.RevenueCatWebhookAuth)
-	chats := chat.NewService(chat.NewPostgresStore(pool), tutor, profiles, authService)
+	chats := chat.NewService(chat.NewPostgresStore(pool), chat.NewProvider(provider), profiles, authService)
 	chats.SetLimiter(plans)
 	chat.RegisterRoutes(mux, logger, chats, authService.RequireAccount)
 	decks, err := study.Library()
@@ -123,7 +138,7 @@ func run(ctx context.Context, logger *slog.Logger) error {
 	study.RegisterRoutes(mux, logger, studyService, authService.RequireAccount)
 	folders := folder.NewService(folder.NewPostgresStore(pool), studyService)
 	folder.RegisterRoutes(mux, logger, folders, authService.RequireAccount)
-	scans := scan.NewService(scan.NewPostgresStore(pool), reader, model, profiles, studyService, folders)
+	scans := scan.NewService(scan.NewPostgresStore(pool), provider, provider, profiles, studyService, folders)
 	scans.SetLimiter(plans)
 	scan.RegisterRoutes(mux, logger, scans, authService.RequireAccount)
 	report.RegisterRoutes(mux, logger, report.NewService(report.NewPostgresStore(pool)), authService.RequireAccount)
@@ -143,7 +158,7 @@ func run(ctx context.Context, logger *slog.Logger) error {
 	}
 
 	srv := &http.Server{
-	Handler: httpx.TrustClientIP(cfg.ClientIPHeader, httpx.WithRequestID(httpx.Recover(logger, httpx.LogRequests(logger, appconfig.RequireBuild(updatePolicy, mux))))),
+		Handler:           httpx.TrustClientIP(cfg.ClientIPHeader, httpx.WithRequestID(httpx.Recover(logger, httpx.LogRequests(logger, appconfig.RequireBuild(updatePolicy, mux))))),
 		ReadHeaderTimeout: 5 * time.Second,
 		ReadTimeout:       10 * time.Second,
 		WriteTimeout:      60 * time.Second,

@@ -59,7 +59,7 @@ func TestPages(t *testing.T) {
 		want string
 	}{
 		{"/", "Get it on Google Play"},
-		{"/privacy", "Sarvam AI"},
+		{"/privacy", "Google Cloud"},
 		{"/terms", "Terms of use"},
 		{"/delete-account", "Request deletion"},
 		{"/support", "Grievance Officer"},

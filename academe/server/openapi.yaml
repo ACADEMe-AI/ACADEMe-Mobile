@@ -1143,7 +1143,7 @@ paths:
                   reviewDue: { type: integer }
   /scans:
     post:
-      summary: Read up to 10 photos with Sarvam Document AI. Photos are not kept; only the text is. The daily limit is checked before the upload is read.
+      summary: Read up to 10 photos with the configured AI provider's OCR service. Photos are not kept; only the text is. The daily limit is checked before the upload is read.
       security: [{ bearer: [] }]
       requestBody:
         required: true
@@ -1176,7 +1176,7 @@ paths:
           description: "`limit_reached` (feature scan): a free student read 3 scans today: `error.details` has feature, limit and resetsAt. Show the Go Pro sheet."
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
         "503":
-          description: "`scan_unavailable`: no Sarvam key on the server."
+          description: "`scan_unavailable`: the configured AI provider is unavailable."
           content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
     get:
       summary: The 20 newest scans.
@@ -1551,7 +1551,7 @@ components:
         id: { type: string, format: uuid }
         mode: { type: string, enum: [solve, check, notes, ask] }
         title: { type: string }
-        text: { type: string, description: What Sarvam read, as Markdown. }
+        text: { type: string, description: Text read by the configured AI provider, as Markdown. }
         chapter: { type: string, description: "e.g. Science · Ch 10 · Light; empty when unsure" }
         threadId: { type: string, nullable: true }
         folderId: { type: string, nullable: true }

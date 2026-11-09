@@ -86,7 +86,7 @@ Privacy screen and a Report action on Pebby's answers.
   "Designed for Families" is no longer a separate program, and Teacher Approved
   is optional and chosen by Google. No ads, no AAID, no location, no unapproved
   ad SDKs. Email sign-up keeps Google Sign-In optional.
-- **Nothing is "shared"** in Data safety: Sarvam, Railway, Resend and RevenueCat
+- **Nothing is "shared"** in Data safety: Google Cloud, Resend and RevenueCat
   are service providers; Google Sign-In and Play Billing are user-initiated.
 - **Photos: ephemeral = No** until Sarvam confirms Document AI job files are
   deleted. Our server never stores them, but Sarvam keeps the job for a while.
@@ -120,8 +120,8 @@ Privacy screen and a Report action on Pebby's answers.
 1. Fill the `[[FILL: ...]]` placeholders: legal name, registered address,
    Grievance Officer name and postal address, court city, and Sarvam's retention
    of chat and Document AI data.
-2. Point `academe.cc` and `www.academe.cc` at the Railway service
-   (`docs/hosting.md`).
+2. Point `academe.cc` and `www.academe.cc` at the deployed web service
+   (`docs/deployment.md`).
 3. Make support@academe.cc a real, monitored inbox, and have someone review
    `chat_reports` and `deletion_requests` every week.
 4. Get a lawyer to review `dpdp.md`, especially s.9(3) (is study progress

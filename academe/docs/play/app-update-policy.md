@@ -14,7 +14,7 @@ Reinstalling an old APK from elsewhere still hits the server gate. Uninstall is 
 
 ## Server variables
 
-Set on the API service (e.g. Railway):
+Set on the API service's deployment environment:
 
 | Variable | Meaning |
 |----------|---------|

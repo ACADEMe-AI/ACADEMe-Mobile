@@ -217,7 +217,7 @@ func (h handler) submit(w http.ResponseWriter, r *http.Request) error {
 2. Free user: My Progress shows hold; Pro user: stats + **`GET /me/progress`** data; after Test Store purchase, hold clears without app restart.
 3. Setting `ACADEME_MIN_BUILD` above device build shows force screen; `recommendedBuild` alone shows dismissible soft prompt.
 4. `flutter analyze` zero issues; `flutter test` green; new Go packages tested; `openapi.yaml` documents all three endpoints.
-5. `docs/play/app-update-policy.md` explains how you choose force vs soft on Railway/env.
+5. `docs/play/app-update-policy.md` explains how you choose force vs soft in the deployment environment.
 
 ---
 

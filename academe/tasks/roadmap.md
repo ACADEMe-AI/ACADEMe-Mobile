@@ -8,6 +8,15 @@ detail lives in `tasks/reports/*.md`.
 
 Last updated 2026-09-25, 22:00 IST. Branch `academe-rebuild`, PR #1 (open).
 
+Current context and workstream planning indexes live in `about/`. The canonical
+engineering rules remain `AGENTS.md` and `server/AGENTS.md`.
+
+Current AI decision: Google Cloud is the first provider bundle to activate after
+the quality, safety, and cost benchmark. Vertex AI handles Gemini text work and
+Document AI handles OCR. The current implementation still has Sarvam wiring;
+the migration must switch the complete bundle and must never mix providers by
+capability.
+
 ---
 
 ## 1. What ACADEMe is
@@ -35,7 +44,7 @@ a date into a plan, a checklist and reminders; XP and streaks bring them back.
 | 2 | The whole app in your language, switchable any time | Pebby answers in the profile language; app text and lessons English (Hindi and Sanskrit lessons in Hindi) until Stage 2. "Understands Hinglish" dropped from the listing: nothing backs it yet |
 | 3 | Learn by swiping: lessons as card decks, a quick check every few cards, "here's why" on mistakes | Built (text only) |
 | 4 | Knows the syllabus: class and board decide subjects, chapters and lessons | Full CBSE + ICSE/ISC 6–12 catalogue (14 files, 5,777 planned lessons) served; 6 lessons written and live, the rest "Coming soon" until the pipeline runs |
-| 5 | Pebby: a tutor with personality, step by step rather than just answers | Built; live on Railway (needs Sarvam credits) |
+| 5 | Pebby: a tutor with personality, step by step rather than just answers | Built; current implementation uses Sarvam while the Google bundle migration is pending |
 | 6 | Fair: no paywall in onboarding; every lesson free; no metered "generations" on the syllabus | Holds for lessons. ASKMe (10/day), Scan (3/day) and Check (1/day) are metered on Free, see D10 |
 | 7 | Built right for Indian Android phones and for minors: Play Families-ready, itemised permissions, no ads, real account deletion | Built; legal pages and Play documents written, [[FILL]]s and lawyer review left |
 | 8 | Check my answer: a photo of a written answer marked by the CBSE / ICSE scheme, point by point | Built (Scan D3) |
@@ -49,7 +58,7 @@ a date into a plan, a checklist and reminders; XP and streaks bring them back.
 | 2026-09-25 | **ACADEMe Pro on RevenueCat.** One Play subscription `academe_pro`: `monthly` ₹200 with intro offer `first-month` ₹100, `annual` ₹1,999 (headline; "about ₹167/month · save 17%" only as small text). Entitlement `academe_pro`, offering `default` (`$rc_monthly`, `$rc_annual`). Closes D6. |
 | 2026-09-25 | **Free vs Pro.** Free: every lesson, revision, folders, reminders, ASKMe 10 messages/day, Scan 3 reads/day, Check my answer 1/day, "just keep the notes". Pro: unlimited, lessons from notes, and future Pro features (mock exams, weekly parent report). Day resets at IST midnight. Server is the authority on limits; RevenueCat on who paid. |
 | 2026-09-25 | Sandbox purchases grant Pro only to accounts in `ACADEME_BILLING_TESTERS` (`*` on staging). Shipaton judges get a RevenueCat promotional entitlement (no payment). |
-| 2026-09-25 | **Hosting: Railway, Singapore** (`asia-southeast1-eqsg3a`), project `academe-cc`, Pro plan before launch; move to Mumbai only if latency or residency demands it. Closes D4. |
+| 2026-09-25 | **Hosting:** Google Cloud Run service `academe-api` in `asia-south1` (Mumbai); managed PostgreSQL, backups, and rollback remain operational requirements. |
 | 2026-09-25 | **Email: Resend** from `ACADEMe <no-reply@academe.cc>`, reply-to support@academe.cc; domain `academe.cc` verified. Closes D5. |
 | 2026-09-25 | **Password reset = 6-digit code + one-tap link** in the same email (15 min, 5 attempts shared); a web reset page on academe.cc for phones without the app. Reset, password change, Google link and deletion revoke every token at once (`tokens_valid_after`). |
 | 2026-09-25 | **Syllabus catalogue is data**: `server/internal/syllabus/data/<board>-<class>.json`, session 2026-27. ICSE/ISC files follow the exam each class sits (Class 10 → 2027, Class 9 → 2028; ISC 12 → 2027, ISC 11 → 2028). Chapter IDs are stable lesson IDs. Formative-only chapters show "Not in board exam". |
@@ -116,7 +125,7 @@ a date into a plan, a checklist and reminders; XP and streaks bring them back.
 | Public site | `/`, `/privacy`, `/terms`, `/support`, `/delete-account` (+ POST), `/reset-password` (GET/POST), `/open`, `/email/{name}`, `/.well-known/assetlinks.json` | `server/internal/site/` |
 | Email | Resend; themed HTML + text: reset (code + link), Google-only, welcome, deletion notice | `server/internal/email/` |
 | API contract | `server/openapi.yaml` (52 paths) | |
-| Hosting | Railway project `academe-cc`, services `api` + `Postgres` (PITR on), Singapore; `https://api-production-ac92.up.railway.app` | `server/railway.json`, `docs/hosting.md` |
+| Hosting | Google Cloud Run `academe-api` in `asia-south1` + managed PostgreSQL; public endpoint `https://api.academe.cc` | `docs/deployment.md` |
 | Android permissions | `INTERNET`, `POST_NOTIFICATIONS`, `RECEIVE_BOOT_COMPLETED`, `ACCESS_NETWORK_STATE` (RevenueCat), `com.android.vending.BILLING`; `VIBRATE` and `AD_ID` stripped | `android/app/src/main/AndroidManifest.xml` |
 | iOS | project builds (`flutter build ios --no-codesign --debug`); notification delegate wired; not signed, no App Store products | `ios/` |
 | App config | `--dart-define`: `API_BASE_URL` (release default `https://api.academe.cc`, debug `http://10.0.2.2:8080`), `GOOGLE_SERVER_CLIENT_ID`, `REVENUECAT_GOOGLE_API_KEY`, `REVENUECAT_APPLE_API_KEY`, `REVENUECAT_ENTITLEMENT` | `lib/config/environment.dart` |
@@ -177,7 +186,7 @@ a date into a plan, a checklist and reminders; XP and streaks bring them back.
 
 **Server, hosting and Play groundwork**
 - [x] Auth (+ reset, token revocation, settings), profile, catalogue, chat, study, folders, scans, billing, site, email; tests incl. real Postgres and race tests
-- [x] Deployed to Railway (Singapore): API, public pages, sign-up, profile and Scan verified live
+- [x] Deploy API through Google Cloud Run; verify API, public pages, sign-up, profile, and Scan
 - [x] Play documents in `docs/play/`: data safety, content rating, target audience, store listing, subscriptions, AI content, DPDP, App Store privacy, release checklist
 - [x] 16 KB pages, edge-to-edge, no orientation lock, minimal permissions, backups off
 - [x] Competitor artwork, sounds and animations removed (121 files); no other brand names in the repo
@@ -190,8 +199,8 @@ a date into a plan, a checklist and reminders; XP and streaks bring them back.
 
 ## 6. What's next, in order
 
-1. **Shipaton submission (30 Sep 2026)**: upgrade Railway to Pro, point academe.cc DNS, set the RevenueCat secrets and webhook, redeploy the current build, internal-testing build with the RevenueCat key, promotional Pro for judges. Checklist in §11.
-2. **Sarvam credits → lessons**: top up (₹10–13k for one full pass, plus live ASKMe/Scan), smoke run (CBSE 10 science 9: Refraction, Lenses), then generate Class 10 and 12 first, then everything; teacher spot-check drafts first.
+1. **Shipaton submission (30 Sep 2026)**: point academe.cc DNS, set the RevenueCat secrets and webhook, deploy the current Cloud Run build, internal-testing build with the RevenueCat key, promotional Pro for judges. Checklist in §11.
+2. **Google AI bundle → lessons**: configure Vertex AI and Document AI, run the cost/quality/safety benchmark, smoke test ASKMe and Scan, then generate Class 10 and 12 first; teacher spot-check drafts before serving them.
 3. **Fix what the UI run finds**: F2 (Add chapters opens on an empty subject), the failing journeys once the run finishes, F1 re-check against production.
 4. **Launch hardening**: rate limits on log-in and sign-up, limiters in Postgres before a second instance, [[FILL]]s, lawyer review, monochrome notification icon, focus rings, width cap.
 5. **Play release 2.0.0**: the `docs/play/release-checklist.md` steps, internal → closed (20+ students) → staged production, India only.
@@ -416,7 +425,7 @@ Full order in `docs/play/release-checklist.md`.
 - [x] Only the verified `https://api.academe.cc/reset-password` App Link opens the app (`academe://` removed)
 - [x] "Coming soon" dead taps removed (ASKMe attach PDF and From Study, Make flashcards)
 - [x] Security review fixes: reset-complete Argon2 DoS, per-account log-in limit, fixed welcome subject, scan quota before upload
-- [x] `server/railway.json`: health check `/healthz`, restart policy `ALWAYS`
+- [x] `server/Dockerfile` and `docs/deployment.md`: container build, health check `/healthz`, secret and rollback requirements
 - [x] Data safety, content rating, target audience, listing, subscription and AI answers written (`docs/play/`)
 - [x] In-app and Play policy URLs / support email naming confirmed (`docs/play/legal-entity.md`, `lib/config/links.dart`)
 - [ ] [[FILL]] placeholders filled; lawyer review (`./tool/check_legal_placeholders.sh`)
@@ -442,7 +451,8 @@ Full order in `docs/play/release-checklist.md`.
 | # | Question |
 |---|---|
 | D1 | Parental consent method (DPDP Rule 10, from 13 May 2027), with legal advice. |
-| D2 | LLM for Pebby and for reviewing lessons: Sarvam alone, or a second model for hard maths and cross-review? |
+| D2 | Independent review policy: resolved; use a separate Google review call, with human review for high-risk or publication-bound content. |
+| D16 | Support automation: telemetry creates a sanitized, deduplicated GitHub issue labelled `agent`; an agent may open a draft PR, but a human must merge and deploy. |
 | D3 | Who reviews Hindi, Telugu, Tamil and Bengali text and lessons (and the Hindi / Sanskrit syllabus topics)? |
 | D7 | Existing users of the old app: migrate or start fresh? |
 | D8 | Rewards: what can XP buy, if anything? Until decided, XP only drives levels. |
@@ -453,28 +463,28 @@ Full order in `docs/play/release-checklist.md`.
 | D13 | ISC Class 11 "Commerce (Business Studies)" label; hide PE Section B games unless picked? |
 | D14 | Listing mentions the ₹100 first month; drop it if Play review objects. |
 | D15 | Mumbai hosting later if latency or data residency is required. |
-| Closed | D4 hosting → Railway Singapore · D5 email → Resend · D6 pricing → Pro on RevenueCat (§2) |
+| Closed | D4 hosting architecture · D5 email → Resend · D6 pricing → Pro on RevenueCat (§2) |
 
 ### Needs the user (one checklist)
 
 **Money and keys**
 - [ ] Top up **Sarvam credits** (out since 21:20 IST; ASKMe and Scan in production fail too until then). Full lesson pass ≈ ₹10–13k.
-- [ ] Google OAuth clients (web, Android with debug + Play-signing SHA-1, iOS) → `ACADEME_GOOGLE_CLIENT_IDS` on Railway, `GOOGLE_SERVER_CLIENT_ID` in the app build.
-- [ ] RevenueCat on Railway: `ACADEME_REVENUECAT_SECRET_KEY` (v2 secret key) and `ACADEME_REVENUECAT_WEBHOOK_AUTH` (commands in `tasks/reports/deploy.md`).
+- [ ] Google OAuth clients (web, Android with debug + Play-signing SHA-1, iOS) → `ACADEME_GOOGLE_CLIENT_IDS` in the deployment secret manager, `GOOGLE_SERVER_CLIENT_ID` in the app build.
+- [ ] RevenueCat: `ACADEME_REVENUECAT_SECRET_KEY` (v2 secret key) and `ACADEME_REVENUECAT_WEBHOOK_AUTH` in the deployment secret manager.
 - [ ] RevenueCat public key `goog_…` into the release build (`REVENUECAT_GOOGLE_API_KEY`); Test Store key only in debug builds.
 - [ ] Release keystore: the **existing upload key** in `android/key.properties` (or request an upload key reset in Play).
 - [ ] `ACADEME_ANDROID_CERT_SHA256` = upload key + Play app signing SHA-256, comma-separated.
 
-**Railway**
-- [ ] Upgrade the workspace from Hobby trial to **Pro** ($20/month); set `railway usage limit set --target workspace --soft 40 --hard 50`.
-- [ ] Turn on **Daily and Weekly backups** (Pro only; today only PITR), rehearse one restore, keep an encrypted off-platform `pg_dump`.
-- [ ] Redeploy the current build (includes the ASKMe reasoning fix and the reset 202 fix) and re-test ASKMe, Scan solve and a reset email.
-- [ ] External uptime monitor on `/healthz` (Railway checks only at deploy).
-- [ ] Delete the old `ACADEMe` Railway project when no longer needed; connect GitHub auto-deploys (root `/server`) after merge.
+**Hosting provider**
+- [x] Use Cloud Run in `asia-south1` with HTTPS and a managed PostgreSQL dependency.
+- [ ] Configure automated backups, rehearse one restore, and keep an encrypted off-platform `pg_dump`.
+- [ ] Deploy the current build and re-test ASKMe, Scan solve, and a reset email.
+- [ ] Add an external uptime monitor on `/healthz`.
+- [ ] Connect GitHub auto-deploys only after the Cloud Run rollback process is approved.
 
 **DNS (Namecheap, academe.cc → Advanced DNS)**
 - [ ] Delete the two apex A records (parking `162.255.119.53`, the old site host `216.198.79.1`) and the old `www` CNAME; keep MX `eforward*` and the SPF TXT.
-- [ ] Add `CNAME api → qk1tncxf.up.railway.app` and `TXT _railway-verify.api` (value in `deploy.md`).
+- [ ] Confirm the DNS records for `api.academe.cc` point to the Cloud Run custom domain mapping.
 - [ ] Optional: DMARC `TXT _dmarc` `v=DMARC1; p=none; rua=mailto:support@academe.cc`, tighten later.
 
 **Play Console**
@@ -491,14 +501,14 @@ Full order in `docs/play/release-checklist.md`.
 
 **RevenueCat dashboard**
 - [ ] Play app with the service-account JSON; import `academe_pro:monthly` and `:annual`; entitlement `academe_pro`; offering `default` (`$rc_monthly`, `$rc_annual`).
-- [ ] Webhook `https://api.academe.cc/billing/revenuecat/webhook` (the Railway URL until DNS is live) with the same Authorization value; all events, both environments.
+- [ ] Webhook `https://api.academe.cc/billing/revenuecat/webhook` with the same Authorization value; all events, both environments.
 - [ ] **Shipaton judges:** promotional entitlement `academe_pro` on their account UUID (or Play promo codes, or license testers).
 - [ ] Confirm the v2 parser against one real customer with an entitlement (curl recipe in `pro-plan-test.md`).
 - [ ] Check RevenueCat's terms for a child-directed-services clause.
 
 **Legal and support**
 - [ ] Fill every `[[FILL]]`: legal name, registered address, Grievance Officer name and postal address, court city, Sarvam's retention answer (`grep -rn "FILL:" server/internal/site/pages` must print nothing).
-- [ ] Lawyer review of `docs/play/dpdp.md` (s.9(3) "behavioural monitoring", Rule 8(3) one-year retention vs our 30-day purge), then DPAs with Sarvam, Railway, Resend, RevenueCat.
+- [ ] Lawyer review of `docs/play/dpdp.md` (s.9(3) "behavioural monitoring", Rule 8(3) one-year retention vs our 30-day purge), then DPAs with Google Cloud, Resend, RevenueCat, and the selected hosting provider.
 - [ ] Ask Sarvam: chat and Document AI retention, training use, job-file deletion.
 - [ ] Make support@academe.cc a monitored inbox; weekly review of `chat_reports` and `deletion_requests`.
 
@@ -546,14 +556,14 @@ Full order in `docs/play/release-checklist.md`.
 | Web | Data export by email only; policy pages English only | G6; Stage 2 |
 | Billing | Failed RevenueCat customer delete on purge must be redone by hand | H8 |
 | Billing | Refund across IST midnight lands on the new day; catalogue cache 10 min; subscriptions read without paging (100) | acceptable |
-| Billing | Webhook ordering assumes an NTP-synced server clock | Railway default |
+| Billing | Webhook ordering assumes an NTP-synced server clock | Deployment provider requirement |
 | Billing | "save 17%" hard-coded; annual caption can clip; Manage Restore gives no feedback; limit sheet re-opens on scroll | H9 |
 | Play | Photos "ephemeral = No" until Sarvam confirms Document AI deletion | Sarvam answer |
 | Play | Google Sign-In and RevenueCat flagged for Families SDK review | re-check at submission |
 | Hosting | Hobby trial: 1 custom domain per service, no scheduled backups, trial credit runs out | Pro upgrade |
 | Hosting | **Backups gap:** PITR only; no scheduled backups, no restore rehearsed, no off-platform copy | Pro + runbook |
 | Hosting | `academe.cc` apex still has the parking A record, so `https://academe.cc` fails TLS; nothing the app, emails or Play Console use points there now | delete the parking record |
-| Hosting | `X-Real-IP` is trusted only while traffic comes through Railway's edge; never add a TCP proxy to `api` | |
+| Hosting | `X-Real-IP` is trusted only while traffic comes through a configured reverse proxy that overwrites it; never trust a client-supplied value | |
 | Hosting | No India region (Singapore ≈ 50–90 ms); Postgres major upgrades need dump/restore | D15 |
 | Hosting | Profile builds need `--dart-define=API_BASE_URL=https://…` (no cleartext allowance) | |
 | App | Router never disposes Home / ASKMe / Study / Me view models (small listener leak per log-out) | router fix |
@@ -573,7 +583,7 @@ Full order in `docs/play/release-checklist.md`.
 Newest first. One line per change that landed; details live in git and `tasks/reports/`.
 
 **2026-10-05**
-- Pre-launch fixes from the release, backend and security audits (report: `tasks/reports/prod-fixes.md`): release signing from `android/key.properties` with `bundleRelease` refusing the debug key; advertising-ID library excluded; adaptive and themed launcher icon, white notification icon, opaque Play icon; public links, email assets and Play docs on `https://api.academe.cc`; `academe://` scheme and "Open in the app" removed, reset links only via the verified https App Link; reset complete checks the token before hashing, per-IP limit on reset complete and link, at most 4 Argon2 hashes at once; per-account log-in limit (20 an hour); fixed welcome subject; scan quota checked before the upload is read, caps 4 MB a page and 24 MB; Report on Check my answer marks and lessons made from notes (`POST /reports`, `content_reports`, migration 0025); "coming soon" dead taps removed; RevenueCat never makes an anonymous ID; `railway.json` restarts `ALWAYS`; data safety, privacy page, listing, checklist and AI-content docs brought up to date.
+- Pre-launch fixes from the release, backend and security audits (report: `tasks/reports/prod-fixes.md`): release signing from `android/key.properties` with `bundleRelease` refusing the debug key; advertising-ID library excluded; adaptive and themed launcher icon, white notification icon, opaque Play icon; public links, email assets and Play docs on `https://api.academe.cc`; `academe://` scheme and "Open in the app" removed, reset links only via the verified https App Link; reset complete checks the token before hashing, per-IP limit on reset complete and link, at most 4 Argon2 hashes at once; per-account log-in limit (20 an hour); fixed welcome subject; scan quota checked before the upload is read, caps 4 MB a page and 24 MB; Report on Check my answer marks and lessons made from notes (`POST /reports`, `content_reports`, migration 0025); "coming soon" dead taps removed; RevenueCat never makes an anonymous ID; deployment health checks and restart policy documented; data safety, privacy page, listing, checklist and AI-content docs brought up to date.
 - Bug fixes from §11 (report: `tasks/reports/bugfixes.md`): due dates show the weekday once ("Fri 9 Oct · in 5 days", "Today", "Tomorrow", "3 days ago"); counts are singular or plural through one `pluralize` helper (lessons, cards, quick checks, chapters, pages, minutes, scans, marks; server "Revise 1 kept card"); real streak (F1 basic: `study_days`, migration 0024, `streak` on the profile, Home flame and Me); "Back to chapter" returns to the lesson's chapter from Home, Today, folders and Continue; Log in stays above the keyboard; Courses and Folders pad by the real tab bar height.
 
 **2026-10-04**
@@ -581,7 +591,7 @@ Newest first. One line per change that landed; details live in git and `tasks/re
 - Subjects and filters: `profiles.subjects` (migration 0023), `PATCH /me/profile` takes `subjects` (checked against class and board, English required, +25 XP once; class or board changes filter picks, crossing Class 10/11 clears them), `GET /catalog/streams`, and the catalogue adds subject counts, lesson minutes, chapter marks, `revisionDue` and `lastStudiedAt`. App: setup step 5 (stream cards for 11–12), Home subject rows, Courses and Add chapters show only picked subjects with a Filters sheet and chips, Me → Class and board gets Stream and Subjects. Report: `tasks/reports/subjects.md`.
 
 **2026-09-26**
-- Public pages and email links move to `https://api.academe.cc` (privacy, terms, delete-account, support, reset-password, open, email images); academe.cc stays the marketing website on Vercel and redirects those paths. No Railway Pro or apex DNS change needed for them.
+- Public pages and email links move to `https://api.academe.cc` (privacy, terms, delete-account, support, reset-password, open, email images); academe.cc stays the marketing website and redirects those paths. Hosting provider and DNS records remain to be selected.
 - The app's reset App Link host is `api.academe.cc`.
 - Auth pages keep the field and button above the keyboard (the Save button on New password was hidden).
 - `ACADEME_AUTH_LIMIT_SCALE` multiplies the log-in, sign-up and Google limits (UI tests use 100; raise for schools behind one IP).
@@ -592,8 +602,7 @@ Newest first. One line per change that landed; details live in git and `tasks/re
 - UI test automation: 21 `integration_test/` journeys with shared support flows and `tool/ui_test.sh` (screen recording, screenshots, per-journey logs in `build/ui-test/`). Findings so far: F1 ASKMe empty answers (fixed in code), F2 Add chapters empty subject (open). A 12-journey run is in progress.
 - Lesson pipeline: `internal/syllabus` loads and validates the 14 files (5,777 lessons); `GET /study/decks` returns every chapter with planned lessons (gzipped); `academe-lessons` writes and reviews lessons on Sarvam (prompt `lessons-v4`, resumable, stops on 402), `-review` renders the teacher page; app shows "Coming soon" and "Not in board exam". Trial on CBSE 10 chapter 1: 23 lessons, 12 approved, 7 drafts, 4 failed, ~62 s per lesson at 6 workers. Sarvam ran out of credits at 21:20 IST. Seeds renumbered to the plan (science 9-1, 9-2; maths 3-3). Tester: GO once credits are topped up.
 - Syllabus catalogue for 2026-27: CBSE 6–8 (NCERT books), CBSE 9–10 (new Class 9 books, provisional Part II chapters), CBSE 11–12 (2026-27 curriculum, formative-only chapters), ICSE 6–8 (publishers' books), ICSE 9–10 (2027 / 2028 exam syllabuses), ISC 11–12 (2028 / 2027). Sources are boards and textbook publishers only; confidence and teacher checks in each report.
-- Deployed to Railway project `academe-cc` (Singapore, API + Postgres with PITR): health, pages, sign-up, profile and Scan verified live; ASKMe reasoning fix and reset-mail 202 fix landed in code afterwards; domains beyond `api` and scheduled backups blocked by the Hobby plan.
-- Hosting prepared: `PORT` fallback, `ACADEME_CLIENT_IP_HEADER` + `TrustClientIP`, pool override, slim distroless image (~27 MB), `.dockerignore` hardened, `railway.json`; release builds default to `https://api.academe.cc`; `docs/hosting.md` runbook.
+- Hosting architecture prepared: `PORT` fallback, `ACADEME_CLIENT_IP_HEADER` + `TrustClientIP`, pool override, slim distroless image (~27 MB), `.dockerignore` hardened; release builds default to `https://api.academe.cc`; `docs/deployment.md` runbook.
 - Resend domain `academe.cc` verified.
 - Themed emails (reset with code + one-tap link, Google-only, welcome, deletion notice), web reset page with cookie + HMAC form token (http-safe cookie fix), `/open`, email assets, `assetlinks.json`; App Links and `academe://` deep links; migration 0022.
 - Password reset A6–A8: code by email, 5 attempts, throttles by email and IP (IPv6 by /64), single-use reset token, all sessions revoked; migration 0009; race tests on Postgres.

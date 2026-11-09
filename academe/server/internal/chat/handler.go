@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"strconv"
 
+	"academe/server/internal/ai"
 	"academe/server/internal/auth"
 	"academe/server/internal/billing"
 	"academe/server/internal/httpx"
@@ -108,7 +109,7 @@ func toHTTP(err error) error {
 	switch {
 	case errors.Is(err, ErrNotFound):
 		return &httpx.Error{Status: http.StatusNotFound, Code: "not_found", Message: "That chat doesn't exist."}
-	case errors.Is(err, ErrUnavailable), errors.Is(err, sarvam.ErrUnavailable):
+	case errors.Is(err, ErrUnavailable), errors.Is(err, ai.ErrUnavailable), errors.Is(err, sarvam.ErrUnavailable):
 		return &httpx.Error{Status: http.StatusServiceUnavailable, Code: "askme_unavailable", Message: "ASKMe isn't ready yet."}
 	case errors.Is(err, ErrEmpty):
 		return &httpx.Error{Status: http.StatusUnprocessableEntity, Code: "invalid_text", Message: "Type a question first."}
