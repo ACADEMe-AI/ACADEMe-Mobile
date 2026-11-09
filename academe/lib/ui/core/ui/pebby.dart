@@ -24,6 +24,7 @@ abstract final class PebbyPose {
   static const standTall = 56.0;
   static const doubleTake = 57.0;
   static const progressGate = 58.0;
+  static const headSway = 59.0;
 }
 
 class PebbyStandIn extends InheritedWidget {

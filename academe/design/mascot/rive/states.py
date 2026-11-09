@@ -905,6 +905,36 @@ def _progress_gate(a):
     a.key('head', 'rot', layered(d, [(2, 3.0, 0.0), (3, 1.2, 0.35)], 1.0))
 
 
+def _head_sway(a):
+    """Gentle left–right head sway for the force-update gate."""
+    a.dur = 8 * FPS
+    d = a.dur
+    mouth(a, 'smile')
+    brows(a, 'raise')
+    arms(a, left=22.0, right=-22.0, bend_l=-6.0, bend_r=-6.0)
+    a.set('head', 'y', REST['head']['y'])
+    a.set('motion', 'y', -1.0)
+    breathe(a, 0.010, phase=0.12)
+    blinks(a, [int(d * 0.22), int(d * 0.58), int(d * 0.88)])
+    # Head turns back and forth; gaze follows so it reads as looking around.
+    a.key('head', 'rot', [
+        (0, 0.0, 'out'),
+        (d * 0.22, 10.0, 'sine'),
+        (d * 0.48, -10.0, 'sine'),
+        (d * 0.74, 8.0, 'sine'),
+        (d, 0.0, 'smooth'),
+    ])
+    gaze(a, [
+        (0, 0.0, -1.0, 'hold'),
+        (d * 0.22, 5.0, -1.5, 'out'),
+        (d * 0.48, -5.0, -1.0, 'out'),
+        (d * 0.74, 4.0, -1.5, 'out'),
+        (d, 0.0, -1.0, 'smooth'),
+    ])
+    a.key('tuftL', 'rot', layered(d, [(2, -4.0, 0.05), (3, -1.5, 0.4)], -2.0))
+    a.key('tuftR', 'rot', layered(d, [(2, 4.0, 0.05), (3, 1.5, 0.4)], 2.0))
+
+
 STATES = [
     ('idle', _idle), ('wave', _wave), ('think', _think), ('cheer', _cheer),
     ('sleep', _sleep), ('sad', _sad), ('wow', _wow), ('determined', _determined),
@@ -936,6 +966,7 @@ STATES = [
     ('stand_tall', _stand_tall),
     ('double_take', _double_take),
     ('progress_gate', _progress_gate),
+    ('head_sway', _head_sway),
 ]
 
 STATIC_NAME = 'idle_static'

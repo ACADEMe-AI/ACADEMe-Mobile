@@ -5,6 +5,7 @@ import '../../../config/environment.dart';
 import '../../../domain/models/app_config.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/app_button.dart';
+import '../../core/ui/pebby.dart';
 
 class UpdateRequiredScreen extends StatelessWidget {
   const UpdateRequiredScreen({super.key, required this.config});
@@ -22,7 +23,7 @@ class UpdateRequiredScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final message = config.updateMessage.isNotEmpty
         ? config.updateMessage
-        : 'Update ACADEMe from Google Play to keep studying.';
+        : 'New version just dropped, you don\'t wanna miss this!';
     return Scaffold(
       backgroundColor: AppColors.lightSurface,
       body: SafeArea(
@@ -32,19 +33,41 @@ class UpdateRequiredScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const Spacer(),
+              SizedBox(
+                height: 140,
+                child: Semantics(
+                  label: 'Pebby',
+                  child: const Pebby(pose: PebbyPose.headSway),
+                ),
+              ),
+              const SizedBox(height: 16),
               Text(
-                'Update required',
+                'Hold up',
                 textAlign: TextAlign.center,
                 style: AppTextStyles.sheetTitle.copyWith(
                   color: AppColors.lightText,
                 ),
               ),
               const SizedBox(height: 12),
-              Text(message, textAlign: TextAlign.center),
+              Text(
+                message,
+                textAlign: TextAlign.center,
+                style: AppTextStyles.labelStrong.copyWith(
+                  color: AppColors.lightText,
+                ),
+              ),
               const SizedBox(height: 8),
               Text(
-                'Installed build ${Environment.buildNumber}. '
-                'This version no longer works with our servers.',
+                'This build can’t talk to our servers anymore. '
+                'Update on Play to keep studying.',
+                textAlign: TextAlign.center,
+                style: AppTextStyles.caption.copyWith(
+                  color: AppColors.textMuted,
+                ),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                'Installed build ${Environment.buildNumber}.',
                 textAlign: TextAlign.center,
                 style: AppTextStyles.caption.copyWith(
                   color: AppColors.textMuted,
