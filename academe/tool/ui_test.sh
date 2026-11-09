@@ -166,6 +166,10 @@ start_dev_server() {
   server_log="$out/server-8099.log"
   : >"$server_log"
   ACADEME_ADDR=:8099 \
+    ACADEME_AI_PROVIDER=stub \
+    ACADEME_TEST_MODE=1 \
+    ACADEME_RECOMMENDED_BUILD="${UI_TEST_RECOMMENDED_BUILD:-${default_recommended_build:-0}}" \
+    ACADEME_UPDATE_MESSAGE="${UI_TEST_UPDATE_MESSAGE:-}" \
     ACADEME_DATABASE_URL="${ACADEME_DATABASE_URL:-postgres://academe:academe@localhost:5432/academe?sslmode=disable}" \
     ACADEME_TOKEN_KEY="$(openssl rand -base64 32)" \
     ACADEME_SARVAM_API_KEY="$(sed -n 's/^SARVAM_API_KEY=//p' ../.env .env 2>/dev/null | head -1 | tr -d '"\n\r')" \
@@ -197,11 +201,23 @@ type_reset_code() {
   [ -n "$code" ] && "${adb[@]}" shell input text "$code"
 }
 
-sarvam_status=$(curl -s -m 30 -o /dev/null -w '%{http_code}' https://api.sarvam.ai/v1/chat/completions \
-  -H "api-subscription-key: $(sed -n 's/^SARVAM_API_KEY=//p' .env | tr -d '"\n\r')" \
-  -H 'content-type: application/json' \
-  -d '{"model":"sarvam-105b","messages":[{"role":"user","content":"Say ok"}],"max_tokens":5}')
-echo "ui_test: Sarvam answers HTTP $sarvam_status"
+# Soft-update journey needs recommendedBuild above the app's APP_BUILD default (8).
+default_recommended_build=0
+for journey in "${journeys[@]}"; do
+  case "$journey" in
+    update_banner*) default_recommended_build="${UI_TEST_RECOMMENDED_BUILD:-999}" ;;
+  esac
+done
+
+ui_test_api_base="${API_BASE_URL:-}"
+if [ -z "$ui_test_api_base" ] && [ "${UI_TEST_LIVE_API:-0}" != 1 ]; then
+  start_dev_server
+  if [[ "$device" == emulator-* ]]; then
+    ui_test_api_base=http://10.0.2.2:8099
+  else
+    ui_test_api_base=http://127.0.0.1:8099
+  fi
+fi
 
 summary=()
 started=$(date +%s)
@@ -210,6 +226,7 @@ for journey in "${journeys[@]}"; do
   mkdir -p "$out/$journey"
   began=$(date +%s)
   journey_defines=()
+  [ -n "$ui_test_api_base" ] && journey_defines+=(--dart-define="API_BASE_URL=$ui_test_api_base")
   case "$journey" in
     password_reset* | deeplink* | account*)
       if [ -n "${UI_TEST_SERVER_LOG:-}" ]; then
@@ -217,16 +234,13 @@ for journey in "${journeys[@]}"; do
         reset_base=http://localhost:8080
       else
         start_dev_server
-        journey_defines=(--dart-define=API_BASE_URL=http://10.0.2.2:8099)
         reset_base=http://localhost:8099
       fi
       ;;
     limits*)
-      start_dev_server
-      journey_defines=(--dart-define=API_BASE_URL=http://10.0.2.2:8099)
       ;;
     pro*)
-      journey_defines=(
+      journey_defines+=(
         --dart-define="REVENUECAT_GOOGLE_API_KEY=$(sed -n 's/^REVENUE_CAT_SDK_KEY=//p' .env | tr -d '"\n\r')"
         --dart-define=REVENUECAT_ENTITLEMENT=academe_pro
       )
@@ -248,7 +262,7 @@ for journey in "${journeys[@]}"; do
   grep -qs "UITEST-HOST FAIL" "$out/$journey/host.txt" && result=FAIL
   case "$journey" in
     askme* | scan* | limits*)
-      [ "$result" = FAIL ] && [ "$sarvam_status" != 200 ] && result="BLOCKED(sarvam-$sarvam_status)"
+      [ "$result" = FAIL ] && [ "${UI_TEST_LIVE_API:-0}" = 1 ] && result="BLOCKED(live-ai)"
       ;;
   esac
   summary+=("$result $journey $(($(date +%s) - began))s")

@@ -92,6 +92,12 @@ func run(ctx context.Context, logger *slog.Logger) error {
 	var provider ai.Provider
 	var closeProvider func() error
 	switch cfg.AIProvider {
+	case "stub":
+		if !cfg.TestMode {
+			return errors.New("stub provider requires ACADEME_TEST_MODE=1")
+		}
+		stub := providers.NewStub()
+		provider, closeProvider = stub, stub.Close
 	case "google":
 		googleProvider, err := providers.NewGoogle(ctx, providers.Config{
 			Project: cfg.GoogleProject, Location: cfg.GoogleLocation,
@@ -109,7 +115,7 @@ func run(ctx context.Context, logger *slog.Logger) error {
 		client.Reasoning = json.RawMessage(`null`)
 		provider = client
 	default:
-		return fmt.Errorf("ACADEME_AI_PROVIDER must be google or sarvam")
+		return fmt.Errorf("ACADEME_AI_PROVIDER must be google, sarvam, or stub (with ACADEME_TEST_MODE=1)")
 	}
 	defer closeProvider()
 	var revenueCat *billing.RevenueCat

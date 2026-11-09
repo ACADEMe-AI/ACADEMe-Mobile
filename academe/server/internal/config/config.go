@@ -16,6 +16,7 @@ type Config struct {
 	TokenKey        []byte
 	GoogleClientIDs []string
 	AIProvider      string
+	TestMode        bool
 	GoogleProject   string
 	GoogleLocation  string
 	GoogleModel     string
@@ -51,6 +52,7 @@ func FromEnv() (Config, error) {
 		ClientIPHeader:  os.Getenv("ACADEME_CLIENT_IP_HEADER"),
 		DatabaseURL:     os.Getenv("ACADEME_DATABASE_URL"),
 		AIProvider:      cmp.Or(os.Getenv("ACADEME_AI_PROVIDER"), "google"),
+		TestMode:        os.Getenv("ACADEME_TEST_MODE") == "1",
 		GoogleProject:   os.Getenv("ACADEME_GOOGLE_PROJECT"),
 		GoogleLocation:  cmp.Or(os.Getenv("ACADEME_GOOGLE_LOCATION"), "asia-south1"),
 		GoogleModel:     cmp.Or(os.Getenv("ACADEME_GOOGLE_MODEL"), "gemini-3.5-flash-lite"),
