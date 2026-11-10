@@ -160,6 +160,26 @@ func (b brief) student() string {
 	return fmt.Sprintf("a Class %d %s student in India", b.class, b.board)
 }
 
+func (b brief) languageName() string {
+	switch b.language {
+	case "hi":
+		return "Hindi"
+	case "te":
+		return "Telugu"
+	case "ta":
+		return "Tamil"
+	case "bn":
+		return "Bengali"
+	default:
+		return "English"
+	}
+}
+
+func ChapterPrompt(b brief) string {
+	return "You label study material for " + b.student() + ". Reply with one short line only, in " + b.languageName() +
+		": Subject · Ch <number> · <chapter name>, using the textbook chapter this belongs to. Keep subject and chapter names in the student's language when you know them; keep the Subject · Ch <number> · shape. If you are unsure of the chapter, reply with just the subject."
+}
+
 func clip(text string, n int) string {
 	if utf8.RuneCountInString(text) <= n {
 		return text
@@ -219,7 +239,7 @@ func (s *Service) read(ctx context.Context, accountID string, mode Mode, pages [
 		return Scan{}, ErrNoText
 	}
 	chapter, err := s.model.Chat(ctx, []sarvam.Message{
-		{Role: "system", Content: "You label study material for " + b.student() + ". Reply with one short line only, in English: Subject · Ch <number> · <chapter name>, using the textbook chapter this belongs to. If you are unsure of the chapter, reply with just the subject."},
+		{Role: "system", Content: ChapterPrompt(b)},
 		{Role: "user", Content: text},
 	}, 0)
 	if err != nil || utf8.RuneCountInString(chapter) > 80 || strings.Contains(chapter, "\n") {
@@ -344,7 +364,8 @@ func CheckPrompt(b brief) string {
 		`{"question": "the question", "marks": total marks for the question, "awarded": marks earned, ` +
 		`"points": [{"text": "one expected idea", "marks": marks for it, "awarded": marks the student earned for it}], ` +
 		`"fullMarks": "one or two sentences on exactly what to add for full marks", "modelAnswer": "a short full-marks answer"}. ` +
-		"The awarded marks of the points must add up to awarded. Write the text in English."
+		"The awarded marks of the points must add up to awarded. Write question, points, fullMarks and modelAnswer in " + b.languageName() +
+		". Keep exam and science terms in English in brackets when you write in another language. JSON keys stay in English."
 }
 
 type lessonJSON struct {
@@ -362,7 +383,8 @@ func LessonPrompt(b brief) string {
 		`{"kind": "quiz", "question": "...", "options": ["...", "...", "..."], "answer": index of the right option, "why": "why it is right"}; ` +
 		`{"kind": "summary", "points": ["three one-line points"]}. ` +
 		"Rules: the first card is start; the last two are a quiz then the summary; put a quiz after every 2 or 3 teaching cards; 6 to 12 cards in all. " +
-		"Only use facts from the notes and the textbook; do not invent. Write in English."
+		"Only use facts from the notes and the textbook; do not invent. Write the title and every card's text in " + b.languageName() +
+		". Keep exam and science terms in English in brackets when you write in another language. JSON keys and kind values stay in English."
 }
 
 func (s *Service) SaveNotes(ctx context.Context, accountID, id, folderID string, makeLesson bool) (*string, error) {
@@ -423,7 +445,7 @@ func (s *Service) makeLesson(ctx context.Context, accountID, text string) (study
 			continue
 		}
 		d, err := s.lessons.CreateLesson(ctx, accountID, study.Deck{
-			Board: b.board, Class: b.class, Title: strings.TrimSpace(l.Title), Language: "en", Position: 1, Cards: l.Cards,
+			Board: b.board, Class: b.class, Title: strings.TrimSpace(l.Title), Language: b.language, Position: 1, Cards: l.Cards,
 		})
 		if errors.Is(err, study.ErrBadLesson) {
 			continue

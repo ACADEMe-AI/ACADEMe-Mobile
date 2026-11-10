@@ -7,14 +7,14 @@ import 'xp_chip.dart';
 class HomeGreeting extends StatelessWidget {
   const HomeGreeting({
     super.key,
-    required this.name,
+    required this.hello,
     required this.syllabus,
     required this.xpKey,
     required this.xp,
     required this.streak,
   });
 
-  final String name;
+  final String hello;
   final String? syllabus;
   final GlobalKey xpKey;
   final int xp;
@@ -29,7 +29,7 @@ class HomeGreeting extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Hi, $name!',
+                hello,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: AppTextStyles.display.copyWith(

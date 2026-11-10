@@ -50,7 +50,7 @@ class _LanguageSheetState extends State<LanguageSheet> {
               ),
             ),
             Text(
-              'Pebby and your study cards will use this language.',
+              'Pebby and Scan teaching replies use this language. App menus stay in English for now.',
               style: AppTextStyles.label.copyWith(
                 color: context.palette.textMuted,
               ),

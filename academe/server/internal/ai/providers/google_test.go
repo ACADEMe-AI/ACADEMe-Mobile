@@ -81,6 +81,21 @@ func TestGoogleDigitise(t *testing.T) {
 	if got := document.requests[1].GetRawDocument().GetMimeType(); got != "image/png" {
 		t.Errorf("second MIME type = %q, want image/png", got)
 	}
+	hints := document.requests[0].GetProcessOptions().GetOcrConfig().GetHints().GetLanguageHints()
+	if len(hints) != 1 || hints[0] != "hi" {
+		t.Errorf("language hints = %v, want [hi]", hints)
+	}
+}
+
+func TestGoogleDigitiseSkipsEnglishHint(t *testing.T) {
+	document := &fakeDocument{texts: []string{"page"}}
+	provider := NewGoogleForClients(nil, document, "processor", "gemini-test")
+	if _, err := provider.Digitise(t.Context(), []ai.Page{{Name: "one.jpg", Data: []byte("one")}}, "en-IN"); err != nil {
+		t.Fatal(err)
+	}
+	if opts := document.requests[0].GetProcessOptions(); opts != nil && len(opts.GetOcrConfig().GetHints().GetLanguageHints()) > 0 {
+		t.Errorf("ProcessOptions = %#v, want no OCR language hint for English", opts)
+	}
 }
 
 func TestGoogleDigitiseError(t *testing.T) {

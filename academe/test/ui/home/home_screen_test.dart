@@ -81,6 +81,12 @@ void main() {
     expectOnlyAppFonts(tester);
   });
 
+  testWidgets('home greeting follows the profile language', (tester) async {
+    await pumpHome(tester, profile: const Profile(language: AppLanguage.hindi));
+    expect(find.text('नमस्ते, there!'), findsOneWidget);
+    expect(find.text('Hi, there!'), findsNothing);
+  });
+
   testWidgets('the ask field and quick actions open their features', (
     tester,
   ) async {

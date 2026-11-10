@@ -121,6 +121,12 @@ void main() {
     );
     await tester.tap(find.text('open'));
     await tester.pumpAndSettle();
+    expect(
+      find.text(
+        'Pebby and Scan teaching replies use this language. App menus stay in English for now.',
+      ),
+      findsOneWidget,
+    );
     expect(find.text('More languages coming soon'), findsOneWidget);
     await tester.tap(find.text('తెలుగు'));
     await tester.pumpAndSettle();

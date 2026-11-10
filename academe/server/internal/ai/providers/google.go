@@ -153,6 +153,7 @@ func (g *Google) Digitise(ctx context.Context, pages []ai.Page, language string)
 		return "", ai.ErrUnavailable
 	}
 	var parts []string
+	options := ocrProcessOptions(language)
 	for _, page := range pages {
 		mime := mimeType(page.Name)
 		result, err := g.document.ProcessDocument(ctx, &documentaipb.ProcessRequest{
@@ -160,6 +161,7 @@ func (g *Google) Digitise(ctx context.Context, pages []ai.Page, language string)
 			Source: &documentaipb.ProcessRequest_RawDocument{RawDocument: &documentaipb.RawDocument{
 				Content: page.Data, MimeType: mime, DisplayName: filepath.Base(page.Name),
 			}},
+			ProcessOptions: options,
 		})
 		if err != nil {
 			return "", fmt.Errorf("google document ai: %w", ai.ErrUnavailable)
@@ -168,8 +170,32 @@ func (g *Google) Digitise(ctx context.Context, pages []ai.Page, language string)
 			parts = append(parts, strings.TrimSpace(result.GetDocument().GetText()))
 		}
 	}
-	_ = language
 	return strings.TrimSpace(strings.Join(parts, "\n\n")), nil
+}
+
+func ocrProcessOptions(language string) *documentaipb.ProcessOptions {
+	hint := ocrLanguageHint(language)
+	if hint == "" {
+		return nil
+	}
+	return &documentaipb.ProcessOptions{
+		OcrConfig: &documentaipb.OcrConfig{
+			Hints: &documentaipb.OcrConfig_Hints{LanguageHints: []string{hint}},
+		},
+	}
+}
+
+func ocrLanguageHint(language string) string {
+	code := strings.TrimSpace(language)
+	if i := strings.IndexByte(code, '-'); i >= 0 {
+		code = code[:i]
+	}
+	switch strings.ToLower(code) {
+	case "hi", "te", "ta", "bn":
+		return strings.ToLower(code)
+	default:
+		return ""
+	}
 }
 
 func mimeType(name string) string {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../domain/models/app_language.dart';
 import '../../../domain/models/folder.dart';
 import '../../core/ui/screen_scale.dart';
 import '../../core/ui/tab_bar_layout.dart';
@@ -155,7 +156,8 @@ class _HomeScreenState extends State<HomeScreen>
               ),
               children: [
                 HomeGreeting(
-                  name: _viewModel.account?.firstName ?? 'there',
+                  hello: (_viewModel.profile.language ?? AppLanguage.english)
+                      .hello(_viewModel.account?.firstName ?? 'there'),
                   syllabus: syllabusLabel,
                   xpKey: _xpKey,
                   xp: _viewModel.displayedXp,

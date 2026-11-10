@@ -19,6 +19,13 @@ enum AppLanguage {
   final String greeting;
   final String sample;
 
+  String hello(String name) {
+    final base = greeting.endsWith('!')
+        ? greeting.substring(0, greeting.length - 1)
+        : greeting;
+    return '$base, $name!';
+  }
+
   static const comingSoon = [
     'मराठी',
     'ಕನ್ನಡ',
