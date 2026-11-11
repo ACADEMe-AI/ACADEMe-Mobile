@@ -1,6 +1,7 @@
 import 'package:academe/domain/models/app_language.dart';
 import 'package:academe/domain/models/deck.dart';
 import 'package:academe/domain/models/profile.dart';
+import 'package:academe/l10n/generated/app_localizations.dart';
 import 'package:academe/ui/core/themes/app_theme.dart';
 import 'package:academe/ui/home/view_models/home_view_model.dart';
 import 'package:academe/ui/home/widgets/home_screen.dart';
@@ -47,6 +48,9 @@ void main() {
     tapped = [];
     await tester.pumpWidget(
       MaterialApp(
+        locale: const Locale('en'),
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
         theme: AppTheme.dark(),
         home: Scaffold(
           body: HomeScreen(

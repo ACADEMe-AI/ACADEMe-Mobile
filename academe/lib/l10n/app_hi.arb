@@ -107,5 +107,19 @@
   "signUpCreatingAccount": "अकाउंट बन रहा है…",
   "signUpCreateAccount": "अकाउंट बनाएँ",
   "signUpLetsGo": "चलो शुरू करें",
-  "authContinue": "जारी रखें"
+  "authContinue": "जारी रखें",
+  "homeSetupTitle": "अपना डैशबोर्ड सेट करो",
+  "homeSetupXpProgress": "{done} / {total} XP",
+  "homeSetupTaskLanguage": "भाषा",
+  "homeSetupTaskAge": "तुम्हारी उम्र",
+  "homeSetupTaskClass": "तुम्हारी कक्षा",
+  "homeSetupTaskBoard": "तुम्हारा बोर्ड",
+  "homeSetupTaskSubjects": "तुम्हारे विषय",
+  "homeSetupXpDone": "✓ {xp} XP",
+  "homeSetupXpEarn": "+{xp} XP",
+  "homeSolveHomework": "होमवर्क हल करो",
+  "homeCheckAnswer": "जवाब जाँचो",
+  "homeFlashcards": "फ्लैशकार्ड्स",
+  "homePickSubjects": "अपने विषय चुनो",
+  "homePickSubjectsBody": "होम और स्टडी में वही विषय दिखेंगे जो तुम पढ़ते हो। +{xp} XP"
 }

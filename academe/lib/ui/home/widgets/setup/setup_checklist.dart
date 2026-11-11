@@ -3,6 +3,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../../core/l10n/app_l10n.dart';
 import '../../../core/themes/app_theme.dart';
 import '../../view_models/home_view_model.dart';
 import 'setup_reward_pill.dart';
@@ -17,16 +18,18 @@ class SetupChecklist extends StatelessWidget {
   final HomeViewModel viewModel;
   final ValueChanged<SetupTask> onOpen;
 
-  static const labels = {
-    SetupTask.language: 'Language',
-    SetupTask.age: 'Your age',
-    SetupTask.classLevel: 'Your class',
-    SetupTask.board: 'Your board',
-    SetupTask.subjects: 'Your subjects',
-  };
+  static String labelFor(AppLocalizations l10n, SetupTask task) =>
+      switch (task) {
+        SetupTask.language => l10n.homeSetupTaskLanguage,
+        SetupTask.age => l10n.homeSetupTaskAge,
+        SetupTask.classLevel => l10n.homeSetupTaskClass,
+        SetupTask.board => l10n.homeSetupTaskBoard,
+        SetupTask.subjects => l10n.homeSetupTaskSubjects,
+      };
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final done = viewModel.doneCount;
     final total = SetupTask.values.length;
     return DecoratedBox(
@@ -50,7 +53,7 @@ class SetupChecklist extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    'Set up your dashboard',
+                    l10n.homeSetupTitle,
                     style: AppTextStyles.display.copyWith(
                       fontSize: 18,
                       color: context.palette.text,
@@ -58,8 +61,10 @@ class SetupChecklist extends StatelessWidget {
                   ),
                 ),
                 SetupRewardPill(
-                  label:
-                      '${done * HomeViewModel.xpPerTask} / ${total * HomeViewModel.xpPerTask} XP',
+                  label: l10n.homeSetupXpProgress(
+                    done * HomeViewModel.xpPerTask,
+                    total * HomeViewModel.xpPerTask,
+                  ),
                 ),
               ],
             ),
@@ -79,7 +84,7 @@ class SetupChecklist extends StatelessWidget {
             const SizedBox(height: 4),
             for (final task in SetupTask.values)
               _ChecklistItem(
-                label: labels[task]!,
+                label: labelFor(l10n, task),
                 isDone: viewModel.isDone(task),
                 onTap: () => onOpen(task),
               ),
@@ -158,8 +163,8 @@ class _ChecklistItemState extends State<_ChecklistItem>
             ),
             Text(
               done
-                  ? '✓ ${HomeViewModel.xpPerTask} XP'
-                  : '+${HomeViewModel.xpPerTask} XP',
+                  ? context.l10n.homeSetupXpDone(HomeViewModel.xpPerTask)
+                  : context.l10n.homeSetupXpEarn(HomeViewModel.xpPerTask),
               style: AppTextStyles.caption.copyWith(
                 fontWeight: FontWeight.w600,
                 color: done ? context.palette.success : AppColors.selectedInk,

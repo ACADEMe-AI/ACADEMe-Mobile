@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../domain/models/app_language.dart';
 import '../../../domain/models/folder.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/ui/screen_scale.dart';
 import '../../core/ui/tab_bar_layout.dart';
 import '../../study/view_models/study_view_model.dart';
@@ -174,17 +175,17 @@ class _HomeScreenState extends State<HomeScreen>
                   actions: [
                     QuickAction(
                       icon: Icons.photo_camera_rounded,
-                      label: 'Solve homework',
+                      label: context.l10n.homeSolveHomework,
                       onTap: widget.onSolve,
                     ),
                     QuickAction(
                       icon: Icons.fact_check_rounded,
-                      label: 'Check my answer',
+                      label: context.l10n.homeCheckAnswer,
                       onTap: widget.onCheck,
                     ),
                     QuickAction(
                       icon: Icons.style_rounded,
-                      label: 'Flashcards',
+                      label: context.l10n.homeFlashcards,
                       onTap: widget.onFlashcards,
                     ),
                   ],

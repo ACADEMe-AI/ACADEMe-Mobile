@@ -377,4 +377,54 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get authContinue => 'కొనసాగించు';
+
+  @override
+  String get homeSetupTitle => 'మీ డాష్‌బోర్డ్ సెటప్ చేయండి';
+
+  @override
+  String homeSetupXpProgress(int done, int total) {
+    return '$done / $total XP';
+  }
+
+  @override
+  String get homeSetupTaskLanguage => 'భాష';
+
+  @override
+  String get homeSetupTaskAge => 'మీ వయస్సు';
+
+  @override
+  String get homeSetupTaskClass => 'మీ తరగతి';
+
+  @override
+  String get homeSetupTaskBoard => 'మీ బోర్డు';
+
+  @override
+  String get homeSetupTaskSubjects => 'మీ సబ్జెక్టులు';
+
+  @override
+  String homeSetupXpDone(int xp) {
+    return '✓ $xp XP';
+  }
+
+  @override
+  String homeSetupXpEarn(int xp) {
+    return '+$xp XP';
+  }
+
+  @override
+  String get homeSolveHomework => 'హోమ్‌వర్క్ సాల్వ్ చేయండి';
+
+  @override
+  String get homeCheckAnswer => 'సమాధానం చెక్ చేయండి';
+
+  @override
+  String get homeFlashcards => 'ఫ్లాష్‌కార్డ్‌లు';
+
+  @override
+  String get homePickSubjects => 'మీ సబ్జెక్టులు ఎంచుకోండి';
+
+  @override
+  String homePickSubjectsBody(int xp) {
+    return 'హోమ్ మరియు స్టడీలో మీరు చదివేవి మాత్రమే కనిపిస్తాయి. +$xp XP';
+  }
 }

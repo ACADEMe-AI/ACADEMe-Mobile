@@ -379,4 +379,54 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get authContinue => 'தொடரவும்';
+
+  @override
+  String get homeSetupTitle => 'உங்கள் டாஷ்போர்டை அமைக்கவும்';
+
+  @override
+  String homeSetupXpProgress(int done, int total) {
+    return '$done / $total XP';
+  }
+
+  @override
+  String get homeSetupTaskLanguage => 'மொழி';
+
+  @override
+  String get homeSetupTaskAge => 'உங்கள் வயது';
+
+  @override
+  String get homeSetupTaskClass => 'உங்கள் வகுப்பு';
+
+  @override
+  String get homeSetupTaskBoard => 'உங்கள் போர்டு';
+
+  @override
+  String get homeSetupTaskSubjects => 'உங்கள் பாடங்கள்';
+
+  @override
+  String homeSetupXpDone(int xp) {
+    return '✓ $xp XP';
+  }
+
+  @override
+  String homeSetupXpEarn(int xp) {
+    return '+$xp XP';
+  }
+
+  @override
+  String get homeSolveHomework => 'வீட்டுப்பாடம் தீர்க்கவும்';
+
+  @override
+  String get homeCheckAnswer => 'பதிலைச் சரிபார்க்கவும்';
+
+  @override
+  String get homeFlashcards => 'ஃபிளாஷ் கார்டுகள்';
+
+  @override
+  String get homePickSubjects => 'உங்கள் பாடங்களைத் தேர்ந்தெடுக்கவும்';
+
+  @override
+  String homePickSubjectsBody(int xp) {
+    return 'முகப்பு மற்றும் படிப்பில் நீங்கள் படிப்பவை மட்டுமே தெரியும். +$xp XP';
+  }
 }

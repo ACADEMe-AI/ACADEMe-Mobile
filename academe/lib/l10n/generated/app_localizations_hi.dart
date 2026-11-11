@@ -372,4 +372,54 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get authContinue => 'जारी रखें';
+
+  @override
+  String get homeSetupTitle => 'अपना डैशबोर्ड सेट करो';
+
+  @override
+  String homeSetupXpProgress(int done, int total) {
+    return '$done / $total XP';
+  }
+
+  @override
+  String get homeSetupTaskLanguage => 'भाषा';
+
+  @override
+  String get homeSetupTaskAge => 'तुम्हारी उम्र';
+
+  @override
+  String get homeSetupTaskClass => 'तुम्हारी कक्षा';
+
+  @override
+  String get homeSetupTaskBoard => 'तुम्हारा बोर्ड';
+
+  @override
+  String get homeSetupTaskSubjects => 'तुम्हारे विषय';
+
+  @override
+  String homeSetupXpDone(int xp) {
+    return '✓ $xp XP';
+  }
+
+  @override
+  String homeSetupXpEarn(int xp) {
+    return '+$xp XP';
+  }
+
+  @override
+  String get homeSolveHomework => 'होमवर्क हल करो';
+
+  @override
+  String get homeCheckAnswer => 'जवाब जाँचो';
+
+  @override
+  String get homeFlashcards => 'फ्लैशकार्ड्स';
+
+  @override
+  String get homePickSubjects => 'अपने विषय चुनो';
+
+  @override
+  String homePickSubjectsBody(int xp) {
+    return 'होम और स्टडी में वही विषय दिखेंगे जो तुम पढ़ते हो। +$xp XP';
+  }
 }

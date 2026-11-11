@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/keycap.dart';
 
@@ -21,7 +22,7 @@ class AskBar extends StatelessWidget {
           children: [
             Expanded(
               child: Text(
-                'Ask anything…',
+                context.l10n.askAnythingHint,
                 style: AppTextStyles.label.copyWith(
                   color: context.palette.textMuted,
                 ),

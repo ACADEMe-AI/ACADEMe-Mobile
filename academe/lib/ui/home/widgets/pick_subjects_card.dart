@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../domain/models/profile.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 
 class PickSubjectsCard extends StatelessWidget {
@@ -15,6 +16,7 @@ class PickSubjectsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final palette = context.palette;
     return Semantics(
       button: true,
@@ -44,15 +46,14 @@ class PickSubjectsCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Pick your subjects',
+                        l10n.homePickSubjects,
                         style: AppTextStyles.display.copyWith(
                           fontSize: 18,
                           color: palette.text,
                         ),
                       ),
                       Text(
-                        'Home and Study show only the ones you take. '
-                        '+${Profile.subjectsReward} XP',
+                        l10n.homePickSubjectsBody(Profile.subjectsReward),
                         style: AppTextStyles.caption.copyWith(
                           color: palette.textMuted,
                         ),
@@ -62,7 +63,7 @@ class PickSubjectsCard extends StatelessWidget {
                 ),
                 IconButton(
                   onPressed: onDismiss,
-                  tooltip: 'Not now',
+                  tooltip: l10n.softUpdateDismiss,
                   icon: Icon(Icons.close_rounded, color: palette.textMuted),
                 ),
               ],

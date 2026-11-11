@@ -107,5 +107,19 @@
   "signUpCreatingAccount": "অ্যাকাউন্ট তৈরি হচ্ছে…",
   "signUpCreateAccount": "অ্যাকাউন্ট তৈরি করো",
   "signUpLetsGo": "চলো",
-  "authContinue": "এগোও"
+  "authContinue": "এগোও",
+  "homeSetupTitle": "তোমার ড্যাশবোর্ড সেট আপ করো",
+  "homeSetupXpProgress": "{done} / {total} XP",
+  "homeSetupTaskLanguage": "ভাষা",
+  "homeSetupTaskAge": "তোমার বয়স",
+  "homeSetupTaskClass": "তোমার ক্লাস",
+  "homeSetupTaskBoard": "তোমার বোর্ড",
+  "homeSetupTaskSubjects": "তোমার বিষয়",
+  "homeSetupXpDone": "✓ {xp} XP",
+  "homeSetupXpEarn": "+{xp} XP",
+  "homeSolveHomework": "হোমওয়ার্ক সলভ করো",
+  "homeCheckAnswer": "উত্তর চেক করো",
+  "homeFlashcards": "ফ্ল্যাশকার্ড",
+  "homePickSubjects": "তোমার বিষয় বেছে নাও",
+  "homePickSubjectsBody": "হোম ও স্টাডিতে শুধু যেগুলো পড়ো সেগুলোই দেখাবে। +{xp} XP"
 }

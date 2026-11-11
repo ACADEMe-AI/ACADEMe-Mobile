@@ -751,6 +751,90 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Continue'**
   String get authContinue;
+
+  /// Home setup checklist card title
+  ///
+  /// In en, this message translates to:
+  /// **'Set up your dashboard'**
+  String get homeSetupTitle;
+
+  /// Setup checklist XP progress pill
+  ///
+  /// In en, this message translates to:
+  /// **'{done} / {total} XP'**
+  String homeSetupXpProgress(int done, int total);
+
+  /// Setup checklist language row
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get homeSetupTaskLanguage;
+
+  /// Setup checklist age row
+  ///
+  /// In en, this message translates to:
+  /// **'Your age'**
+  String get homeSetupTaskAge;
+
+  /// Setup checklist class row
+  ///
+  /// In en, this message translates to:
+  /// **'Your class'**
+  String get homeSetupTaskClass;
+
+  /// Setup checklist board row
+  ///
+  /// In en, this message translates to:
+  /// **'Your board'**
+  String get homeSetupTaskBoard;
+
+  /// Setup checklist subjects row
+  ///
+  /// In en, this message translates to:
+  /// **'Your subjects'**
+  String get homeSetupTaskSubjects;
+
+  /// Setup checklist earned XP label
+  ///
+  /// In en, this message translates to:
+  /// **'✓ {xp} XP'**
+  String homeSetupXpDone(int xp);
+
+  /// Setup checklist pending XP label
+  ///
+  /// In en, this message translates to:
+  /// **'+{xp} XP'**
+  String homeSetupXpEarn(int xp);
+
+  /// Home quick action for Scan solve
+  ///
+  /// In en, this message translates to:
+  /// **'Solve homework'**
+  String get homeSolveHomework;
+
+  /// Home quick action for Check
+  ///
+  /// In en, this message translates to:
+  /// **'Check my answer'**
+  String get homeCheckAnswer;
+
+  /// Home quick action for flashcards
+  ///
+  /// In en, this message translates to:
+  /// **'Flashcards'**
+  String get homeFlashcards;
+
+  /// Home card prompting subject selection
+  ///
+  /// In en, this message translates to:
+  /// **'Pick your subjects'**
+  String get homePickSubjects;
+
+  /// Home pick-subjects card body with XP reward
+  ///
+  /// In en, this message translates to:
+  /// **'Home and Study show only the ones you take. +{xp} XP'**
+  String homePickSubjectsBody(int xp);
 }
 
 class _AppLocalizationsDelegate

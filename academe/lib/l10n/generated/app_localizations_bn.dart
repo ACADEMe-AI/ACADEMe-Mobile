@@ -372,4 +372,54 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get authContinue => 'এগোও';
+
+  @override
+  String get homeSetupTitle => 'তোমার ড্যাশবোর্ড সেট আপ করো';
+
+  @override
+  String homeSetupXpProgress(int done, int total) {
+    return '$done / $total XP';
+  }
+
+  @override
+  String get homeSetupTaskLanguage => 'ভাষা';
+
+  @override
+  String get homeSetupTaskAge => 'তোমার বয়স';
+
+  @override
+  String get homeSetupTaskClass => 'তোমার ক্লাস';
+
+  @override
+  String get homeSetupTaskBoard => 'তোমার বোর্ড';
+
+  @override
+  String get homeSetupTaskSubjects => 'তোমার বিষয়';
+
+  @override
+  String homeSetupXpDone(int xp) {
+    return '✓ $xp XP';
+  }
+
+  @override
+  String homeSetupXpEarn(int xp) {
+    return '+$xp XP';
+  }
+
+  @override
+  String get homeSolveHomework => 'হোমওয়ার্ক সলভ করো';
+
+  @override
+  String get homeCheckAnswer => 'উত্তর চেক করো';
+
+  @override
+  String get homeFlashcards => 'ফ্ল্যাশকার্ড';
+
+  @override
+  String get homePickSubjects => 'তোমার বিষয় বেছে নাও';
+
+  @override
+  String homePickSubjectsBody(int xp) {
+    return 'হোম ও স্টাডিতে শুধু যেগুলো পড়ো সেগুলোই দেখাবে। +$xp XP';
+  }
 }

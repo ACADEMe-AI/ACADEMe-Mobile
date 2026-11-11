@@ -503,5 +503,89 @@
   "authContinue": "Continue",
   "@authContinue": {
     "description": "Generic continue primary button on sign-up steps"
+  },
+  "homeSetupTitle": "Set up your dashboard",
+  "@homeSetupTitle": {
+    "description": "Home setup checklist card title"
+  },
+  "homeSetupXpProgress": "{done} / {total} XP",
+  "@homeSetupXpProgress": {
+    "description": "Setup checklist XP progress pill",
+    "placeholders": {
+      "done": {
+        "type": "int",
+        "example": "25"
+      },
+      "total": {
+        "type": "int",
+        "example": "125"
+      }
+    }
+  },
+  "homeSetupTaskLanguage": "Language",
+  "@homeSetupTaskLanguage": {
+    "description": "Setup checklist language row"
+  },
+  "homeSetupTaskAge": "Your age",
+  "@homeSetupTaskAge": {
+    "description": "Setup checklist age row"
+  },
+  "homeSetupTaskClass": "Your class",
+  "@homeSetupTaskClass": {
+    "description": "Setup checklist class row"
+  },
+  "homeSetupTaskBoard": "Your board",
+  "@homeSetupTaskBoard": {
+    "description": "Setup checklist board row"
+  },
+  "homeSetupTaskSubjects": "Your subjects",
+  "@homeSetupTaskSubjects": {
+    "description": "Setup checklist subjects row"
+  },
+  "homeSetupXpDone": "✓ {xp} XP",
+  "@homeSetupXpDone": {
+    "description": "Setup checklist earned XP label",
+    "placeholders": {
+      "xp": {
+        "type": "int",
+        "example": "25"
+      }
+    }
+  },
+  "homeSetupXpEarn": "+{xp} XP",
+  "@homeSetupXpEarn": {
+    "description": "Setup checklist pending XP label",
+    "placeholders": {
+      "xp": {
+        "type": "int",
+        "example": "25"
+      }
+    }
+  },
+  "homeSolveHomework": "Solve homework",
+  "@homeSolveHomework": {
+    "description": "Home quick action for Scan solve"
+  },
+  "homeCheckAnswer": "Check my answer",
+  "@homeCheckAnswer": {
+    "description": "Home quick action for Check"
+  },
+  "homeFlashcards": "Flashcards",
+  "@homeFlashcards": {
+    "description": "Home quick action for flashcards"
+  },
+  "homePickSubjects": "Pick your subjects",
+  "@homePickSubjects": {
+    "description": "Home card prompting subject selection"
+  },
+  "homePickSubjectsBody": "Home and Study show only the ones you take. +{xp} XP",
+  "@homePickSubjectsBody": {
+    "description": "Home pick-subjects card body with XP reward",
+    "placeholders": {
+      "xp": {
+        "type": "int",
+        "example": "25"
+      }
+    }
   }
 }

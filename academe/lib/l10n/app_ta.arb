@@ -107,5 +107,19 @@
   "signUpCreatingAccount": "கணக்கை உருவாக்குகிறது…",
   "signUpCreateAccount": "கணக்கை உருவாக்கு",
   "signUpLetsGo": "போகலாம்",
-  "authContinue": "தொடரவும்"
+  "authContinue": "தொடரவும்",
+  "homeSetupTitle": "உங்கள் டாஷ்போர்டை அமைக்கவும்",
+  "homeSetupXpProgress": "{done} / {total} XP",
+  "homeSetupTaskLanguage": "மொழி",
+  "homeSetupTaskAge": "உங்கள் வயது",
+  "homeSetupTaskClass": "உங்கள் வகுப்பு",
+  "homeSetupTaskBoard": "உங்கள் போர்டு",
+  "homeSetupTaskSubjects": "உங்கள் பாடங்கள்",
+  "homeSetupXpDone": "✓ {xp} XP",
+  "homeSetupXpEarn": "+{xp} XP",
+  "homeSolveHomework": "வீட்டுப்பாடம் தீர்க்கவும்",
+  "homeCheckAnswer": "பதிலைச் சரிபார்க்கவும்",
+  "homeFlashcards": "ஃபிளாஷ் கார்டுகள்",
+  "homePickSubjects": "உங்கள் பாடங்களைத் தேர்ந்தெடுக்கவும்",
+  "homePickSubjectsBody": "முகப்பு மற்றும் படிப்பில் நீங்கள் படிப்பவை மட்டுமே தெரியும். +{xp} XP"
 }

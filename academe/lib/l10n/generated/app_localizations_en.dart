@@ -376,4 +376,54 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get authContinue => 'Continue';
+
+  @override
+  String get homeSetupTitle => 'Set up your dashboard';
+
+  @override
+  String homeSetupXpProgress(int done, int total) {
+    return '$done / $total XP';
+  }
+
+  @override
+  String get homeSetupTaskLanguage => 'Language';
+
+  @override
+  String get homeSetupTaskAge => 'Your age';
+
+  @override
+  String get homeSetupTaskClass => 'Your class';
+
+  @override
+  String get homeSetupTaskBoard => 'Your board';
+
+  @override
+  String get homeSetupTaskSubjects => 'Your subjects';
+
+  @override
+  String homeSetupXpDone(int xp) {
+    return '✓ $xp XP';
+  }
+
+  @override
+  String homeSetupXpEarn(int xp) {
+    return '+$xp XP';
+  }
+
+  @override
+  String get homeSolveHomework => 'Solve homework';
+
+  @override
+  String get homeCheckAnswer => 'Check my answer';
+
+  @override
+  String get homeFlashcards => 'Flashcards';
+
+  @override
+  String get homePickSubjects => 'Pick your subjects';
+
+  @override
+  String homePickSubjectsBody(int xp) {
+    return 'Home and Study show only the ones you take. +$xp XP';
+  }
 }

@@ -107,5 +107,19 @@
   "signUpCreatingAccount": "అకౌంట్ సృష్టిస్తోంది…",
   "signUpCreateAccount": "అకౌంట్ సృష్టించు",
   "signUpLetsGo": "వెళ్దాం",
-  "authContinue": "కొనసాగించు"
+  "authContinue": "కొనసాగించు",
+  "homeSetupTitle": "మీ డాష్‌బోర్డ్ సెటప్ చేయండి",
+  "homeSetupXpProgress": "{done} / {total} XP",
+  "homeSetupTaskLanguage": "భాష",
+  "homeSetupTaskAge": "మీ వయస్సు",
+  "homeSetupTaskClass": "మీ తరగతి",
+  "homeSetupTaskBoard": "మీ బోర్డు",
+  "homeSetupTaskSubjects": "మీ సబ్జెక్టులు",
+  "homeSetupXpDone": "✓ {xp} XP",
+  "homeSetupXpEarn": "+{xp} XP",
+  "homeSolveHomework": "హోమ్‌వర్క్ సాల్వ్ చేయండి",
+  "homeCheckAnswer": "సమాధానం చెక్ చేయండి",
+  "homeFlashcards": "ఫ్లాష్‌కార్డ్‌లు",
+  "homePickSubjects": "మీ సబ్జెక్టులు ఎంచుకోండి",
+  "homePickSubjectsBody": "హోమ్ మరియు స్టడీలో మీరు చదివేవి మాత్రమే కనిపిస్తాయి. +{xp} XP"
 }
