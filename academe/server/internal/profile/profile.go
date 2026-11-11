@@ -60,13 +60,18 @@ type Store interface {
 	AwardXP(ctx context.Context, accountID string, xp int, reason string) (Profile, error)
 }
 
-type Service struct {
-	store Store
-	now   func() time.Time
+type Welcomer interface {
+	Welcome(ctx context.Context, accountID, language string)
 }
 
-func NewService(store Store) *Service {
-	return &Service{store: store, now: time.Now}
+type Service struct {
+	store    Store
+	now      func() time.Time
+	welcomer Welcomer
+}
+
+func NewService(store Store, welcomer Welcomer) *Service {
+	return &Service{store: store, now: time.Now, welcomer: welcomer}
 }
 
 func (s *Service) Profile(ctx context.Context, accountID string) (Profile, error) {
@@ -99,6 +104,9 @@ func (s *Service) Update(ctx context.Context, accountID string, u Update) (Profi
 		p, err = s.store.CompleteSetup(ctx, accountID, SetupXP, SetupReason)
 		if err != nil {
 			return Profile{}, fmt.Errorf("complete setup: %w", err)
+		}
+		if s.welcomer != nil && p.Language != nil {
+			s.welcomer.Welcome(ctx, accountID, *p.Language)
 		}
 	}
 	if u.Subjects != nil && *u.Subjects != nil {

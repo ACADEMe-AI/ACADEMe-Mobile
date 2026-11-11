@@ -87,7 +87,7 @@ func run(ctx context.Context, logger *slog.Logger) error {
 	authService.SetLogger(logger)
 	defer authService.Wait()
 	auth.RegisterRoutes(mux, logger, authService)
-	profiles := profile.NewService(profile.NewPostgresStore(pool))
+	profiles := profile.NewService(profile.NewPostgresStore(pool), authService)
 	profile.RegisterRoutes(mux, logger, profiles, authService.RequireAccount)
 	var provider ai.Provider
 	var closeProvider func() error

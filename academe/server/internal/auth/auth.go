@@ -149,7 +149,6 @@ func (s *Service) SignUp(ctx context.Context, in SignUpInput) (Account, Tokens, 
 	if err != nil {
 		return Account{}, Tokens{}, fmt.Errorf("sign up: %w", err)
 	}
-	s.welcome(ctx, a)
 	return a, tokens, nil
 }
 
@@ -196,9 +195,6 @@ func (s *Service) SignInWithGoogle(ctx context.Context, idToken string) (Account
 	tokens, err := s.startSession(ctx, a.ID)
 	if err != nil {
 		return Account{}, Tokens{}, false, fmt.Errorf("google sign-in: %w", err)
-	}
-	if created {
-		s.welcome(ctx, a)
 	}
 	return a, tokens, created, nil
 }

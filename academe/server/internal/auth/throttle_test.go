@@ -93,7 +93,7 @@ func TestLogInLimitPerAccountAcrossIPs(t *testing.T) {
 	})
 }
 
-func TestThrottledSignUpSendsNoWelcome(t *testing.T) {
+func TestSignUpSendsNoWelcome(t *testing.T) {
 	e := newResetEnv(t)
 	for i := range signUpsPerIPHour + 3 {
 		body := `{"firstName":"Maya","lastName":"Rao","email":"maya` + strconv.Itoa(i) + `@example.com","password":"sunflower"}`
@@ -102,8 +102,8 @@ func TestThrottledSignUpSendsNoWelcome(t *testing.T) {
 	e.service.Wait()
 	e.mailer.mu.Lock()
 	defer e.mailer.mu.Unlock()
-	if got := len(e.mailer.welcomed); got != signUpsPerIPHour {
-		t.Errorf("welcome emails after %d sign-ups from one IP = %d, want %d", signUpsPerIPHour+3, got, signUpsPerIPHour)
+	if got := len(e.mailer.welcomed); got != 0 {
+		t.Errorf("welcome emails after sign-up = %d, want 0 (welcome waits for setup)", got)
 	}
 }
 

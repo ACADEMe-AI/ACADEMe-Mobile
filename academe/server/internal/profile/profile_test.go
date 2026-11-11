@@ -86,7 +86,7 @@ func (f *fakeStore) CompleteSetup(_ context.Context, accountID string, xp int, _
 func ptr[T any](v T) *T { return &v }
 
 func newService(store Store) *Service {
-	s := NewService(store)
+	s := NewService(store, nil)
 	s.now = func() time.Time { return time.Date(2026, 9, 24, 0, 0, 0, 0, time.UTC) }
 	return s
 }

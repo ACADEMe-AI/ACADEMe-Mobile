@@ -4,7 +4,6 @@ import (
 	"context"
 	"encoding/base64"
 	"errors"
-	"log/slog"
 	"net/http"
 	"strconv"
 	"strings"
@@ -16,7 +15,6 @@ import (
 	"github.com/google/go-cmp/cmp/cmpopts"
 
 	"academe/server/internal/email"
-	"academe/server/internal/httpx"
 )
 
 func linkBody(link string) string { return `{"linkToken":"` + link + `"}` }
@@ -131,13 +129,13 @@ func TestWelcomeEmail(t *testing.T) {
 	e := newResetEnv(t)
 	e.signUp(t)
 	e.post(t, "/auth/google", `{"idToken":"new-student"}`)
-	e.post(t, "/auth/google", `{"idToken":"new-student"}`)
-	e.post(t, "/auth/log-in", `{"email":"maya.rao@example.com","password":"sunflower"}`)
+	e.service.Welcome(t.Context(), "account-1", "hi")
+	e.service.Welcome(t.Context(), "account-2", "te")
 	e.service.Wait()
 
 	want := []email.Welcome{
-		{AccountID: "account-1", To: "maya.rao@example.com", FirstName: "Maya"},
-		{AccountID: "account-2", To: "ada@gmail.com", FirstName: "Ada"},
+		{AccountID: "account-1", To: "maya.rao@example.com", FirstName: "Maya", Language: "hi"},
+		{AccountID: "account-2", To: "ada@gmail.com", FirstName: "Ada", Language: "te"},
 	}
 	e.mailer.mu.Lock()
 	defer e.mailer.mu.Unlock()
@@ -186,16 +184,18 @@ func (h *hangingMailer) SendWelcome(ctx context.Context, _ email.Welcome) error 
 	return ctx.Err()
 }
 
-func TestWelcomeEmailNeverBlocksSignUp(t *testing.T) {
+func TestWelcomeEmailNeverBlocksCaller(t *testing.T) {
 	synctest.Test(t, func(t *testing.T) {
-		s := NewService(newFakeStore(), []byte("0123456789abcdef0123456789abcdef"), testGoogle, &hangingMailer{})
-		mux := http.NewServeMux()
-		RegisterRoutes(mux, slog.New(slog.DiscardHandler), s)
-		e := resetEnv{handler: httpx.WithRequestID(mux), service: s}
+		store := newFakeStore()
+		s := NewService(store, []byte("0123456789abcdef0123456789abcdef"), testGoogle, &hangingMailer{})
+		maya, err := store.CreateAccount(t.Context(), Account{FirstName: "Maya", LastName: "Rao", Email: "maya@example.com"}, "hash")
+		if err != nil {
+			t.Fatal(err)
+		}
 		start := time.Now()
-		e.signUp(t)
+		s.Welcome(t.Context(), maya.ID, "hi")
 		if waited := time.Since(start); waited != 0 {
-			t.Errorf("sign-up waited %v for a hanging mail provider, want 0", waited)
+			t.Errorf("Welcome waited %v for a hanging mail provider, want 0", waited)
 		}
 		s.Wait()
 		if waited := time.Since(start); waited != welcomeTimeout {

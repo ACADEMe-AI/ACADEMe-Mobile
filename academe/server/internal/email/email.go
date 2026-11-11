@@ -33,6 +33,7 @@ type Welcome struct {
 	AccountID string
 	To        string
 	FirstName string
+	Language  string
 }
 
 type message struct {
