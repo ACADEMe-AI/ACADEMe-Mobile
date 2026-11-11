@@ -1,4 +1,5 @@
 import 'package:academe/domain/models/auth_method.dart';
+import 'package:academe/l10n/generated/app_localizations.dart';
 import 'package:academe/ui/auth/widgets/welcome_screen.dart';
 import 'package:academe/ui/core/themes/app_theme.dart';
 import 'package:academe/ui/core/ui/pebby.dart';
@@ -15,6 +16,9 @@ void main() {
   }) async {
     await tester.pumpWidget(
       MaterialApp(
+        locale: const Locale('en'),
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
         theme: AppTheme.dark(),
         builder: (context, child) => PebbyStandIn(child: child!),
         home: WelcomeScreen(onSignUp: onSignUp, onLogIn: onLogIn),

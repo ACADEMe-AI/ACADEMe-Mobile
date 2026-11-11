@@ -76,4 +76,42 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get pebbySemantics => 'पेबी';
+
+  @override
+  String get welcomeHeadlineLead => 'स्मार्ट\nपढ़ो।';
+
+  @override
+  String get welcomeHeadlineAccent => 'ज़्यादा नहीं।';
+
+  @override
+  String get welcomeBody =>
+      'नोट्स, क्विज़ और फ्लैशकार्ड्स — वही जो तुम असल में पढ़ रहे हो।';
+
+  @override
+  String get welcomeGetStarted => 'शुरू करें';
+
+  @override
+  String get welcomeAlreadyHaveAccount => 'पहले से अकाउंट है? ';
+
+  @override
+  String get welcomeNewUser => 'नए हो? ';
+
+  @override
+  String get welcomeLegal =>
+      'आगे बढ़कर आप हमारी शर्तों और गोपनीयता नीति से सहमत होते हैं।';
+
+  @override
+  String get authSignUp => 'साइन अप';
+
+  @override
+  String get authLogIn => 'लॉग इन';
+
+  @override
+  String get authContinueGoogle => 'Google से जारी रखें';
+
+  @override
+  String get authContinueApple => 'Apple से जारी रखें';
+
+  @override
+  String get authContinueEmail => 'ईमेल से जारी रखें';
 }

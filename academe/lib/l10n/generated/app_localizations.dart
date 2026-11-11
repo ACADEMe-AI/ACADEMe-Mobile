@@ -229,6 +229,78 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Pebby'**
   String get pebbySemantics;
+
+  /// Welcome hero lead; keep the line break
+  ///
+  /// In en, this message translates to:
+  /// **'Study\nsmarter.'**
+  String get welcomeHeadlineLead;
+
+  /// Welcome hero accent next to the lead
+  ///
+  /// In en, this message translates to:
+  /// **'Not longer.'**
+  String get welcomeHeadlineAccent;
+
+  /// Welcome hero body under the headline
+  ///
+  /// In en, this message translates to:
+  /// **'Notes, quizzes and flashcards made from what you are actually studying.'**
+  String get welcomeBody;
+
+  /// Welcome start primary button
+  ///
+  /// In en, this message translates to:
+  /// **'Get started'**
+  String get welcomeGetStarted;
+
+  /// Inline link lead on welcome start and sign-up sheet
+  ///
+  /// In en, this message translates to:
+  /// **'Already have an account? '**
+  String get welcomeAlreadyHaveAccount;
+
+  /// Inline link lead on welcome log-in sheet
+  ///
+  /// In en, this message translates to:
+  /// **'New user? '**
+  String get welcomeNewUser;
+
+  /// Welcome legal footer under start actions
+  ///
+  /// In en, this message translates to:
+  /// **'By continuing you agree to our Terms and Privacy Policy.'**
+  String get welcomeLegal;
+
+  /// Sign-up sheet title and footer action
+  ///
+  /// In en, this message translates to:
+  /// **'Sign up'**
+  String get authSignUp;
+
+  /// Log-in sheet title and footer action
+  ///
+  /// In en, this message translates to:
+  /// **'Log in'**
+  String get authLogIn;
+
+  /// OAuth Google button on welcome account options
+  ///
+  /// In en, this message translates to:
+  /// **'Continue with Google'**
+  String get authContinueGoogle;
+
+  /// OAuth Apple button on welcome account options
+  ///
+  /// In en, this message translates to:
+  /// **'Continue with Apple'**
+  String get authContinueApple;
+
+  /// Email auth button on welcome account options
+  ///
+  /// In en, this message translates to:
+  /// **'Continue with email'**
+  String get authContinueEmail;
 }
 
 class _AppLocalizationsDelegate

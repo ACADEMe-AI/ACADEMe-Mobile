@@ -77,4 +77,42 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get pebbySemantics => 'Pebby';
+
+  @override
+  String get welcomeHeadlineLead => 'Study\nsmarter.';
+
+  @override
+  String get welcomeHeadlineAccent => 'Not longer.';
+
+  @override
+  String get welcomeBody =>
+      'Notes, quizzes and flashcards made from what you are actually studying.';
+
+  @override
+  String get welcomeGetStarted => 'Get started';
+
+  @override
+  String get welcomeAlreadyHaveAccount => 'Already have an account? ';
+
+  @override
+  String get welcomeNewUser => 'New user? ';
+
+  @override
+  String get welcomeLegal =>
+      'By continuing you agree to our Terms and Privacy Policy.';
+
+  @override
+  String get authSignUp => 'Sign up';
+
+  @override
+  String get authLogIn => 'Log in';
+
+  @override
+  String get authContinueGoogle => 'Continue with Google';
+
+  @override
+  String get authContinueApple => 'Continue with Apple';
+
+  @override
+  String get authContinueEmail => 'Continue with email';
 }

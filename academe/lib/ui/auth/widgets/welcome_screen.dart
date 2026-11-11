@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../../domain/models/auth_method.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/academe_wordmark.dart';
 import '../../core/ui/app_button.dart';
@@ -83,17 +84,17 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                   ),
                   _SheetMode.signUp => _AccountOptions(
                     key: const ValueKey(_SheetMode.signUp),
-                    title: 'Sign up',
-                    footerLead: 'Already have an account? ',
-                    footerAction: 'Log in',
+                    title: context.l10n.authSignUp,
+                    footerLead: context.l10n.welcomeAlreadyHaveAccount,
+                    footerAction: context.l10n.authLogIn,
                     onFooter: () => _show(_SheetMode.logIn),
                     onMethod: widget.onSignUp,
                   ),
                   _SheetMode.logIn => _AccountOptions(
                     key: const ValueKey(_SheetMode.logIn),
-                    title: 'Log in',
-                    footerLead: 'New user? ',
-                    footerAction: 'Sign up',
+                    title: context.l10n.authLogIn,
+                    footerLead: context.l10n.welcomeNewUser,
+                    footerAction: context.l10n.authSignUp,
                     onFooter: () => _show(_SheetMode.signUp),
                     onMethod: _logIn,
                   ),
@@ -166,8 +167,8 @@ class _Intro extends StatelessWidget {
             RiseIn(
               animation: entrance.at(90),
               child: SplitHeadline(
-                lead: 'Study\nsmarter.',
-                accent: 'Not longer.',
+                lead: context.l10n.welcomeHeadlineLead,
+                accent: context.l10n.welcomeHeadlineAccent,
                 size: scale.headlineSize,
               ),
             ),
@@ -175,8 +176,7 @@ class _Intro extends StatelessWidget {
             RiseIn(
               animation: entrance.at(180),
               child: Text(
-                'Notes, quizzes and flashcards made from what you are '
-                'actually studying.',
+                context.l10n.welcomeBody,
                 style: TextStyle(
                   fontSize: scale.bodySize,
                   height: 1.45,
@@ -482,6 +482,7 @@ class _StartActions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -489,7 +490,7 @@ class _StartActions extends StatelessWidget {
         RiseIn(
           animation: entrance.at(800),
           child: AppButton(
-            label: 'Get started',
+            label: l10n.welcomeGetStarted,
             isPrimary: true,
             onTap: onGetStarted,
           ),
@@ -498,8 +499,8 @@ class _StartActions extends StatelessWidget {
         RiseIn(
           animation: entrance.at(870),
           child: InlineLink(
-            lead: 'Already have an account? ',
-            action: 'Log in',
+            lead: l10n.welcomeAlreadyHaveAccount,
+            action: l10n.authLogIn,
             onTap: onLogIn,
           ),
         ),
@@ -507,7 +508,7 @@ class _StartActions extends StatelessWidget {
         RiseIn(
           animation: entrance.at(940),
           child: Text(
-            'By continuing you agree to our Terms and Privacy Policy.',
+            l10n.welcomeLegal,
             textAlign: TextAlign.center,
             style: AppTextStyles.caption.copyWith(
               color: AppColors.lightTextMuted,
@@ -537,6 +538,7 @@ class _AccountOptions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final showApple = defaultTargetPlatform == TargetPlatform.iOS;
     return Stagger(
       delay: const Duration(milliseconds: 120),
@@ -546,18 +548,18 @@ class _AccountOptions extends StatelessWidget {
           style: AppTextStyles.sheetTitle.copyWith(color: AppColors.lightText),
         ),
         AppButton(
-          label: 'Continue with Google',
+          label: l10n.authContinueGoogle,
           icon: const GoogleLogo(size: 20),
           onTap: () => onMethod?.call(AuthMethod.google),
         ),
         if (showApple)
           AppButton(
-            label: 'Continue with Apple',
+            label: l10n.authContinueApple,
             icon: const Icon(Icons.apple, size: 22, color: AppColors.lightText),
             onTap: () => onMethod?.call(AuthMethod.apple),
           ),
         AppButton(
-          label: 'Continue with email',
+          label: l10n.authContinueEmail,
           icon: const Icon(
             Icons.mail_outline_rounded,
             size: 20,

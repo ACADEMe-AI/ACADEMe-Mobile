@@ -20,5 +20,17 @@
   "updateRequiredBody": "இந்த பில்டு இனி எங்கள் சேவையகங்களுடன் பேசாது. படிப்பைத் தொடர Play-இல் புதுப்பிக்கவும்.",
   "updateRequiredBuild": "நிறுவிய பில்டு {build}.",
   "updateRequiredAction": "Google Play-இல் புதுப்பிக்கவும்",
-  "pebbySemantics": "பெப்பி"
+  "pebbySemantics": "பெப்பி",
+  "welcomeHeadlineLead": "ஸ்மார்ட்டாக\nபடியுங்கள்.",
+  "welcomeHeadlineAccent": "நீண்டதல்ல.",
+  "welcomeBody": "நீங்கள் உண்மையில் படிக்கும்வற்றிலிருந்து குறிப்புகள், வினாடி வினா மற்றும் ஃபிளாஷ் கார்டுகள்.",
+  "welcomeGetStarted": "தொடங்கு",
+  "welcomeAlreadyHaveAccount": "ஏற்கனவே கணக்கு உள்ளதா? ",
+  "welcomeNewUser": "புதியவரா? ",
+  "welcomeLegal": "தொடர்வதன் மூலம் எங்கள் விதிமுறைகள் மற்றும் தனியுரிமைக் கொள்கையை ஏற்கிறீர்கள்.",
+  "authSignUp": "சைன் அப்",
+  "authLogIn": "லாக் இன்",
+  "authContinueGoogle": "Google மூலம் தொடரவும்",
+  "authContinueApple": "Apple மூலம் தொடரவும்",
+  "authContinueEmail": "மின்னஞ்சல் மூலம் தொடரவும்"
 }

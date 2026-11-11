@@ -20,5 +20,17 @@
   "updateRequiredBody": "यह बिल्ड अब हमारे सर्वर से बात नहीं कर सकता। पढ़ाई जारी रखने के लिए Play पर अपडेट करो।",
   "updateRequiredBuild": "इंस्टॉल बिल्ड {build}।",
   "updateRequiredAction": "Google Play पर अपडेट करो",
-  "pebbySemantics": "पेबी"
+  "pebbySemantics": "पेबी",
+  "welcomeHeadlineLead": "स्मार्ट\nपढ़ो।",
+  "welcomeHeadlineAccent": "ज़्यादा नहीं।",
+  "welcomeBody": "नोट्स, क्विज़ और फ्लैशकार्ड्स — वही जो तुम असल में पढ़ रहे हो।",
+  "welcomeGetStarted": "शुरू करें",
+  "welcomeAlreadyHaveAccount": "पहले से अकाउंट है? ",
+  "welcomeNewUser": "नए हो? ",
+  "welcomeLegal": "आगे बढ़कर आप हमारी शर्तों और गोपनीयता नीति से सहमत होते हैं।",
+  "authSignUp": "साइन अप",
+  "authLogIn": "लॉग इन",
+  "authContinueGoogle": "Google से जारी रखें",
+  "authContinueApple": "Apple से जारी रखें",
+  "authContinueEmail": "ईमेल से जारी रखें"
 }

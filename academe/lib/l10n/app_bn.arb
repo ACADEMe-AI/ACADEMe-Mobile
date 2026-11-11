@@ -20,5 +20,17 @@
   "updateRequiredBody": "এই বিল্ড আর আমাদের সার্ভারের সাথে কথা বলতে পারে না। পড়া চালিয়ে যেতে Play-এ আপডেট করুন।",
   "updateRequiredBuild": "ইনস্টল করা বিল্ড {build}।",
   "updateRequiredAction": "Google Play-এ আপডেট করুন",
-  "pebbySemantics": "পেবি"
+  "pebbySemantics": "পেবি",
+  "welcomeHeadlineLead": "স্মার্টভাবে\nপড়ো।",
+  "welcomeHeadlineAccent": "বেশি নয়।",
+  "welcomeBody": "নোট, কুইজ ও ফ্ল্যাশকার্ড — যা তুমি আসলে পড়ছো সেখান থেকেই।",
+  "welcomeGetStarted": "শুরু করো",
+  "welcomeAlreadyHaveAccount": "আগে থেকে অ্যাকাউন্ট আছে? ",
+  "welcomeNewUser": "নতুন? ",
+  "welcomeLegal": "এগোলে তুমি আমাদের শর্তাবলী ও গোপনীয়তা নীতিতে সম্মত হচ্ছো।",
+  "authSignUp": "সাইন আপ",
+  "authLogIn": "লগ ইন",
+  "authContinueGoogle": "Google দিয়ে চালিয়ে যাও",
+  "authContinueApple": "Apple দিয়ে চালিয়ে যাও",
+  "authContinueEmail": "ইমেইল দিয়ে চালিয়ে যাও"
 }

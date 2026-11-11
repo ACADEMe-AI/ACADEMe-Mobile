@@ -77,4 +77,42 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get pebbySemantics => 'పెబ్బీ';
+
+  @override
+  String get welcomeHeadlineLead => 'స్మార్ట్‌గా\nచదవండి.';
+
+  @override
+  String get welcomeHeadlineAccent => 'ఎక్కువ కాదు.';
+
+  @override
+  String get welcomeBody =>
+      'మీరు నిజంగా చదువుతున్న వాటి నుండి నోట్స్, క్విజ్‌లు మరియు ఫ్లాష్‌కార్డ్‌లు.';
+
+  @override
+  String get welcomeGetStarted => 'ప్రారంభించండి';
+
+  @override
+  String get welcomeAlreadyHaveAccount => 'ఇప్పటికే అకౌంట్ ఉందా? ';
+
+  @override
+  String get welcomeNewUser => 'కొత్త వాడా? ';
+
+  @override
+  String get welcomeLegal =>
+      'కొనసాగించడం ద్వారా మీరు మా నిబంధనలు మరియు గోప్యతా విధానాన్ని అంగీకరిస్తున్నారు.';
+
+  @override
+  String get authSignUp => 'సైన్ అప్';
+
+  @override
+  String get authLogIn => 'లాగిన్';
+
+  @override
+  String get authContinueGoogle => 'Googleతో కొనసాగించండి';
+
+  @override
+  String get authContinueApple => 'Appleతో కొనసాగించండి';
+
+  @override
+  String get authContinueEmail => 'ఇమెయిల్‌తో కొనసాగించండి';
 }

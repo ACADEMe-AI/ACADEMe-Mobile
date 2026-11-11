@@ -95,5 +95,53 @@
   "pebbySemantics": "Pebby",
   "@pebbySemantics": {
     "description": "Accessibility label for the Pebby mascot"
+  },
+  "welcomeHeadlineLead": "Study\nsmarter.",
+  "@welcomeHeadlineLead": {
+    "description": "Welcome hero lead; keep the line break"
+  },
+  "welcomeHeadlineAccent": "Not longer.",
+  "@welcomeHeadlineAccent": {
+    "description": "Welcome hero accent next to the lead"
+  },
+  "welcomeBody": "Notes, quizzes and flashcards made from what you are actually studying.",
+  "@welcomeBody": {
+    "description": "Welcome hero body under the headline"
+  },
+  "welcomeGetStarted": "Get started",
+  "@welcomeGetStarted": {
+    "description": "Welcome start primary button"
+  },
+  "welcomeAlreadyHaveAccount": "Already have an account? ",
+  "@welcomeAlreadyHaveAccount": {
+    "description": "Inline link lead on welcome start and sign-up sheet"
+  },
+  "welcomeNewUser": "New user? ",
+  "@welcomeNewUser": {
+    "description": "Inline link lead on welcome log-in sheet"
+  },
+  "welcomeLegal": "By continuing you agree to our Terms and Privacy Policy.",
+  "@welcomeLegal": {
+    "description": "Welcome legal footer under start actions"
+  },
+  "authSignUp": "Sign up",
+  "@authSignUp": {
+    "description": "Sign-up sheet title and footer action"
+  },
+  "authLogIn": "Log in",
+  "@authLogIn": {
+    "description": "Log-in sheet title and footer action"
+  },
+  "authContinueGoogle": "Continue with Google",
+  "@authContinueGoogle": {
+    "description": "OAuth Google button on welcome account options"
+  },
+  "authContinueApple": "Continue with Apple",
+  "@authContinueApple": {
+    "description": "OAuth Apple button on welcome account options"
+  },
+  "authContinueEmail": "Continue with email",
+  "@authContinueEmail": {
+    "description": "Email auth button on welcome account options"
   }
 }

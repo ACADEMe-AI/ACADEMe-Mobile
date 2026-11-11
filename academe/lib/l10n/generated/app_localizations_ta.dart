@@ -77,4 +77,42 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get pebbySemantics => 'பெப்பி';
+
+  @override
+  String get welcomeHeadlineLead => 'ஸ்மார்ட்டாக\nபடியுங்கள்.';
+
+  @override
+  String get welcomeHeadlineAccent => 'நீண்டதல்ல.';
+
+  @override
+  String get welcomeBody =>
+      'நீங்கள் உண்மையில் படிக்கும்வற்றிலிருந்து குறிப்புகள், வினாடி வினா மற்றும் ஃபிளாஷ் கார்டுகள்.';
+
+  @override
+  String get welcomeGetStarted => 'தொடங்கு';
+
+  @override
+  String get welcomeAlreadyHaveAccount => 'ஏற்கனவே கணக்கு உள்ளதா? ';
+
+  @override
+  String get welcomeNewUser => 'புதியவரா? ';
+
+  @override
+  String get welcomeLegal =>
+      'தொடர்வதன் மூலம் எங்கள் விதிமுறைகள் மற்றும் தனியுரிமைக் கொள்கையை ஏற்கிறீர்கள்.';
+
+  @override
+  String get authSignUp => 'சைன் அப்';
+
+  @override
+  String get authLogIn => 'லாக் இன்';
+
+  @override
+  String get authContinueGoogle => 'Google மூலம் தொடரவும்';
+
+  @override
+  String get authContinueApple => 'Apple மூலம் தொடரவும்';
+
+  @override
+  String get authContinueEmail => 'மின்னஞ்சல் மூலம் தொடரவும்';
 }

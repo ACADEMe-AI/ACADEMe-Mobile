@@ -76,4 +76,42 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get pebbySemantics => 'পেবি';
+
+  @override
+  String get welcomeHeadlineLead => 'স্মার্টভাবে\nপড়ো।';
+
+  @override
+  String get welcomeHeadlineAccent => 'বেশি নয়।';
+
+  @override
+  String get welcomeBody =>
+      'নোট, কুইজ ও ফ্ল্যাশকার্ড — যা তুমি আসলে পড়ছো সেখান থেকেই।';
+
+  @override
+  String get welcomeGetStarted => 'শুরু করো';
+
+  @override
+  String get welcomeAlreadyHaveAccount => 'আগে থেকে অ্যাকাউন্ট আছে? ';
+
+  @override
+  String get welcomeNewUser => 'নতুন? ';
+
+  @override
+  String get welcomeLegal =>
+      'এগোলে তুমি আমাদের শর্তাবলী ও গোপনীয়তা নীতিতে সম্মত হচ্ছো।';
+
+  @override
+  String get authSignUp => 'সাইন আপ';
+
+  @override
+  String get authLogIn => 'লগ ইন';
+
+  @override
+  String get authContinueGoogle => 'Google দিয়ে চালিয়ে যাও';
+
+  @override
+  String get authContinueApple => 'Apple দিয়ে চালিয়ে যাও';
+
+  @override
+  String get authContinueEmail => 'ইমেইল দিয়ে চালিয়ে যাও';
 }

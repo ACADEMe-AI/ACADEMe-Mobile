@@ -20,5 +20,17 @@
   "updateRequiredBody": "ఈ బిల్డ్ ఇక మా సర్వర్‌లతో మాట్లాడదు. చదువు కొనసాగించడానికి Playలో అప్‌డేట్ చేయండి.",
   "updateRequiredBuild": "ఇన్‌స్టాల్ బిల్డ్ {build}.",
   "updateRequiredAction": "Google Playలో అప్‌డేట్ చేయండి",
-  "pebbySemantics": "పెబ్బీ"
+  "pebbySemantics": "పెబ్బీ",
+  "welcomeHeadlineLead": "స్మార్ట్‌గా\nచదవండి.",
+  "welcomeHeadlineAccent": "ఎక్కువ కాదు.",
+  "welcomeBody": "మీరు నిజంగా చదువుతున్న వాటి నుండి నోట్స్, క్విజ్‌లు మరియు ఫ్లాష్‌కార్డ్‌లు.",
+  "welcomeGetStarted": "ప్రారంభించండి",
+  "welcomeAlreadyHaveAccount": "ఇప్పటికే అకౌంట్ ఉందా? ",
+  "welcomeNewUser": "కొత్త వాడా? ",
+  "welcomeLegal": "కొనసాగించడం ద్వారా మీరు మా నిబంధనలు మరియు గోప్యతా విధానాన్ని అంగీకరిస్తున్నారు.",
+  "authSignUp": "సైన్ అప్",
+  "authLogIn": "లాగిన్",
+  "authContinueGoogle": "Googleతో కొనసాగించండి",
+  "authContinueApple": "Appleతో కొనసాగించండి",
+  "authContinueEmail": "ఇమెయిల్‌తో కొనసాగించండి"
 }
