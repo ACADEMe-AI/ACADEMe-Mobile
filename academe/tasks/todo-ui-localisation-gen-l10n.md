@@ -9,5 +9,6 @@
 - [x] C2a: Welcome auth chrome → ARB
 - [x] C2b: Login + forgot/reset/new-password chrome → ARB
 - [x] C2c: Sign-up prompts + AuthFailure messages → ARB
-- [ ] C3: Home chrome (checklist/quick actions) → ARB
+- [x] C3: Home chrome (checklist/quick actions) → ARB
+- [ ] C3b: Home setup sheet steps + subject rows / today card → ARB
 - [ ] C…: Remaining UI extract / email locales / legal / Play
