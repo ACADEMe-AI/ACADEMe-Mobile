@@ -77,6 +77,7 @@ class _SubjectsSheetState extends State<SubjectsSheet> {
   @override
   Widget build(BuildContext context) {
     final palette = context.palette;
+    final l10n = context.l10n;
     return ListenableBuilder(
       listenable: _viewModel,
       builder: (context, _) {
@@ -96,7 +97,9 @@ class _SubjectsSheetState extends State<SubjectsSheet> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
-                  picksStream ? 'Your stream' : 'Your subjects',
+                  picksStream
+                      ? l10n.subjectsStreamTitle
+                      : l10n.homeYourSubjects,
                   style: AppTextStyles.display.copyWith(
                     fontSize: 24,
                     color: palette.text,
@@ -122,10 +125,10 @@ class _SubjectsSheetState extends State<SubjectsSheet> {
                 const SizedBox(height: 16),
                 AppButton(
                   label: saving
-                      ? 'Saving…'
+                      ? l10n.authSaving
                       : picksStream
-                      ? 'Choose ${_viewModel.focusedStream?.name ?? ''}'
-                      : 'Save',
+                      ? l10n.streamChoose(_viewModel.focusedStream?.name ?? '')
+                      : l10n.subjectsSave,
                   isPrimary: true,
                   isEnabled: _viewModel.isReady && !saving,
                   onTap: picksStream ? _choose : _save,

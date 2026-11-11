@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../view_models/study_view_model.dart';
 import 'filters_sheet.dart';
@@ -32,11 +33,17 @@ class StatusFilterRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    String label(ChapterFilter f) => switch (f) {
+      ChapterFilter.all => l10n.filterAll,
+      ChapterFilter.inProgress => l10n.filterInProgress,
+      ChapterFilter.done => l10n.filterDone,
+    };
     return Row(
       children: [
         Expanded(
           child: PillChoices(
-            choices: [for (final f in ChapterFilter.values) (f, f.label)],
+            choices: [for (final f in ChapterFilter.values) (f, label(f))],
             selected: status,
             onSelect: onStatus,
             isOneRow: true,
@@ -58,9 +65,10 @@ class _FiltersKey extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = context.palette;
+    final l10n = context.l10n;
     return Semantics(
       button: true,
-      label: count == 0 ? 'Filters' : 'Filters, $count on',
+      label: count == 0 ? l10n.filterFilters : l10n.filterFiltersOn(count),
       child: GestureDetector(
         onTap: onTap,
         child: Container(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/keycap.dart';
 import '../view_models/me_view_model.dart';
@@ -17,6 +18,7 @@ class AppearanceScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return ListenableBuilder(
       listenable: viewModel,
       builder: (context, _) {
@@ -26,12 +28,12 @@ class AppearanceScreen extends StatelessWidget {
         }
 
         return SettingsPage(
-          title: 'Appearance',
+          title: l10n.meAppearance,
           children: [
             Padding(
               padding: const EdgeInsets.fromLTRB(4, 20, 4, 8),
               child: Text(
-                'THEME',
+                l10n.appearanceTheme,
                 style: AppTextStyles.caption.copyWith(
                   color: context.palette.textMuted,
                   fontWeight: FontWeight.w600,
@@ -43,7 +45,7 @@ class AppearanceScreen extends StatelessWidget {
               children: [
                 Expanded(
                   child: _ThemeKey(
-                    label: 'Light',
+                    label: l10n.appearanceLight,
                     icon: Icons.light_mode_rounded,
                     isSelected: !isDark,
                     onTap: () => pick(false),
@@ -52,7 +54,7 @@ class AppearanceScreen extends StatelessWidget {
                 const SizedBox(width: 12),
                 Expanded(
                   child: _ThemeKey(
-                    label: 'Dark',
+                    label: l10n.appearanceDark,
                     icon: Icons.dark_mode_rounded,
                     isSelected: isDark,
                     onTap: () => pick(true),
@@ -62,7 +64,7 @@ class AppearanceScreen extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             Text(
-              'Dark mode is easier on your eyes at night.',
+              l10n.appearanceDarkHint,
               style: AppTextStyles.label.copyWith(
                 color: context.palette.textMuted,
               ),

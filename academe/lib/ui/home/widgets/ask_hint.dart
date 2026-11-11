@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 
 class AskHint extends StatelessWidget {
@@ -27,14 +28,14 @@ class AskHint extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Ask Pebby anything',
+                  context.l10n.homeAskHintTitle,
                   style: AppTextStyles.labelStrong.copyWith(
                     color: AppColors.onPrimary,
                   ),
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  'Type a question, or tap Solve homework to snap one.',
+                  context.l10n.homeAskHintBody,
                   style: AppTextStyles.caption.copyWith(
                     color: AppColors.onPrimary,
                     height: 1.4,
@@ -48,7 +49,10 @@ class AskHint extends StatelessWidget {
                     foregroundColor: AppColors.keycapEdge,
                     visualDensity: VisualDensity.compact,
                   ),
-                  child: const Text('Got it', style: AppTextStyles.labelStrong),
+                  child: Text(
+                    context.l10n.homeAskHintGotIt,
+                    style: AppTextStyles.labelStrong,
+                  ),
                 ),
               ],
             ),

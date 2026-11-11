@@ -53,7 +53,7 @@ class _ClassBoardScreenState extends State<ClassBoardScreen> {
       case Ok():
         Navigator.of(
           context,
-        ).pop('Now showing Class $_classLevel · ${_board.code} subjects');
+        ).pop(context.l10n.classBoardSavedSnack(_classLevel, _board.code));
       case Error(:final error):
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(failureMessage(error, context.l10n))),
@@ -65,14 +65,15 @@ class _ClassBoardScreenState extends State<ClassBoardScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return ListenableBuilder(
       listenable: widget.viewModel.saveSyllabus,
       builder: (context, _) => SettingsPage(
-        title: 'Class and board',
+        title: l10n.meClassAndBoard,
         bottom: AppButton(
           label: widget.viewModel.saveSyllabus.isRunning
-              ? 'Saving…'
-              : 'Save · Class $_classLevel · ${_board.code}',
+              ? l10n.authSaving
+              : l10n.classBoardSave(_classLevel, _board.code),
           isPrimary: true,
           isEnabled: _isChanged && !widget.viewModel.saveSyllabus.isRunning,
           onTap: _save,
@@ -80,7 +81,7 @@ class _ClassBoardScreenState extends State<ClassBoardScreen> {
         children: [
           const SizedBox(height: 8),
           Text(
-            'Your class',
+            l10n.classBoardYourClass,
             textAlign: TextAlign.center,
             style: AppTextStyles.label.copyWith(
               color: context.palette.textMuted,
@@ -95,7 +96,7 @@ class _ClassBoardScreenState extends State<ClassBoardScreen> {
           ),
           const SizedBox(height: 24),
           Text(
-            'Your board',
+            l10n.classBoardYourBoard,
             style: AppTextStyles.label.copyWith(
               color: context.palette.textMuted,
             ),
@@ -117,8 +118,7 @@ class _ClassBoardScreenState extends State<ClassBoardScreen> {
               child: Padding(
                 padding: const EdgeInsets.all(12),
                 child: Text(
-                  'Your subjects and plan will switch to Class $_classLevel · '
-                  '${_board.code}. Everything you’ve done so far stays saved.',
+                  l10n.classBoardSwitchNote(_classLevel, _board.code),
                   style: AppTextStyles.label.copyWith(
                     color: context.palette.text,
                   ),
@@ -139,18 +139,19 @@ class _SubjectSettings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return ListenableBuilder(
       listenable: picker,
       builder: (context, _) {
         final picked = picker.savedSubjects;
         final names = [for (final s in picked ?? const <Subject>[]) s.name];
         return SettingsGroup(
-          title: 'Subjects',
+          title: l10n.classBoardSubjects,
           children: [
             if (picker.isSenior)
               SettingsRow(
-                label: 'Stream',
-                value: picker.savedStream?.name ?? 'Not set',
+                label: l10n.classBoardStream,
+                value: picker.savedStream?.name ?? l10n.meNotSet,
                 onTap: () => SubjectsSheet.show(
                   context,
                   viewModel: picker,
@@ -158,10 +159,10 @@ class _SubjectSettings extends StatelessWidget {
                 ),
               ),
             SettingsRow(
-              label: 'Subjects',
+              label: l10n.classBoardSubjects,
               value: picked == null
-                  ? 'All subjects'
-                  : '${names.length} · ${names.join(', ')}',
+                  ? l10n.classBoardAllSubjects
+                  : l10n.classBoardSubjectCount(names.length, names.join(', ')),
               onTap: () => SubjectsSheet.show(context, viewModel: picker),
             ),
           ],

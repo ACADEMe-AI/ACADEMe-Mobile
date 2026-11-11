@@ -2,7 +2,7 @@
 
 --
 {{.Reason}}
-Questions? Write to support@academe.cc
+{{.Questions}} support@academe.cc
 
 ACADEMe · {{.Site}}
 {{end}}

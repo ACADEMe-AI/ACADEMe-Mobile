@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../domain/models/pro.dart';
 import '../../../routing/routes.dart';
-import '../../../utils/plural.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/app_button.dart';
 import '../../core/ui/pebby.dart';
@@ -43,27 +43,16 @@ class _LimitSheetState extends State<LimitSheet> {
     super.dispose();
   }
 
-  (String, String) _words(int limit) => switch (widget.feature) {
-    ProFeature.askme => (
-      'That’s today’s free questions',
-      'Free includes ${pluralize(limit, 'ASKMe question')} a day. Pro gives 3× '
-          'every day.',
-    ),
-    ProFeature.scan => (
-      'That’s today’s free scans',
-      'Free includes ${pluralize(limit, 'scan')} a day. Pro gives 3× every day.',
-    ),
-    ProFeature.check => (
-      limit == 1 ? 'That’s today’s free check' : 'That’s today’s free checks',
-      'Free includes ${limit == 1 ? 'one answer check' : '$limit answer checks'} '
-          'a day. Pro gives 3× every day.',
-    ),
-    ProFeature.lessons => (
-      'Lessons from notes are Pro',
-      'Keeping your notes is free. With Pro, Pebby turns them into swipe '
-          'lessons with quizzes.',
-    ),
-  };
+  (String, String) _words(AppLocalizations l10n, int limit) =>
+      switch (widget.feature) {
+        ProFeature.askme => (l10n.limitAskmeTitle, l10n.limitAskmeBody(limit)),
+        ProFeature.scan => (l10n.limitScanTitle, l10n.limitScanBody(limit)),
+        ProFeature.check => (
+          l10n.limitCheckTitle(limit),
+          l10n.limitCheckBody(limit),
+        ),
+        ProFeature.lessons => (l10n.limitLessonsTitle, l10n.limitLessonsBody),
+      };
 
   void _goPro() {
     final navigator = Navigator.of(context);
@@ -76,11 +65,12 @@ class _LimitSheetState extends State<LimitSheet> {
     return ListenableBuilder(
       listenable: widget.viewModel,
       builder: (context, _) {
+        final l10n = context.l10n;
         final limit =
             widget.viewModel.plan.limitOf(widget.feature) ??
             LimitSheet._fallbackLimits[widget.feature] ??
             0;
-        final (title, text) = _words(limit);
+        final (title, text) = _words(l10n, limit);
         return SafeArea(
           child: Padding(
             padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
@@ -109,14 +99,14 @@ class _LimitSheetState extends State<LimitSheet> {
                   ),
                 ),
                 const SizedBox(height: 20),
-                AppButton(label: 'Go Pro', isPrimary: true, onTap: _goPro),
+                AppButton(label: l10n.actionGoPro, isPrimary: true, onTap: _goPro),
                 TextButton(
                   onPressed: () => Navigator.of(context).pop(),
                   style: TextButton.styleFrom(
                     foregroundColor: context.palette.textMuted,
                   ),
-                  child: const Text(
-                    'Maybe later',
+                  child: Text(
+                    l10n.limitMaybeLater,
                     style: AppTextStyles.labelStrong,
                   ),
                 ),

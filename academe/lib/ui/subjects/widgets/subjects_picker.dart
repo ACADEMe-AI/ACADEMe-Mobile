@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../view_models/subjects_view_model.dart';
 import 'stream_cards.dart';
@@ -14,6 +15,7 @@ class SubjectsPicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = context.palette;
+    final l10n = context.l10n;
     if (!viewModel.isReady) {
       return SizedBox(
         height: 120,
@@ -21,7 +23,7 @@ class SubjectsPicker extends StatelessWidget {
           child: viewModel.load.hasError
               ? TextButton(
                   onPressed: viewModel.load.execute,
-                  child: const Text('Couldn’t load your subjects. Retry'),
+                  child: Text(l10n.subjectsLoadError),
                 )
               : const CircularProgressIndicator(color: AppColors.primary),
         ),
@@ -36,10 +38,10 @@ class SubjectsPicker extends StatelessWidget {
     }
     final pills = viewModel.isSenior
         ? [
-            const _Label('Main'),
+            _Label(l10n.subjectsMain),
             _Pills(viewModel: viewModel, isMain: true),
             const SizedBox(height: 12),
-            const _Label('Optional'),
+            _Label(l10n.subjectsOptional),
             _Pills(viewModel: viewModel, isMain: false),
           ]
         : [_Pills(viewModel: viewModel, isMain: true)];

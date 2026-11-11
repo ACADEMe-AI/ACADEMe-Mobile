@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../utils/plural.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/app_button.dart';
 import '../../core/ui/screen_scale.dart';
@@ -40,6 +40,7 @@ class _AddChaptersScreenState extends State<AddChaptersScreen> {
   Widget build(BuildContext context) {
     final padding = ScreenScale.of(context).pagePadding;
     final palette = context.palette;
+    final l10n = context.l10n;
     final ready = [
       for (final c in widget.viewModel.allChapters)
         if (!c.isComingSoon) c.subject,
@@ -51,7 +52,7 @@ class _AddChaptersScreenState extends State<AddChaptersScreen> {
     final subject = _subject ?? subjects.firstOrNull?.id;
     final chapters = _chaptersWith(subject, _filters);
     return StudyPage(
-      title: 'Add chapters',
+      title: l10n.chapterAddChaptersTitle,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -60,7 +61,7 @@ class _AddChaptersScreenState extends State<AddChaptersScreen> {
               padding: EdgeInsets.fromLTRB(padding, 0, padding, 16),
               children: [
                 if (subjects.isEmpty)
-                  const StudyNote('No chapters for your class yet.')
+                  StudyNote(l10n.chapterNoChaptersYet)
                 else ...[
                   PillChoices(
                     choices: [for (final s in subjects) (s.id, s.name)],
@@ -101,15 +102,18 @@ class _AddChaptersScreenState extends State<AddChaptersScreen> {
                     activeColor: AppColors.primary,
                     side: BorderSide(color: palette.edge, width: 2),
                     title: Text(
-                      'Ch ${c.number} · ${c.title}',
+                      l10n.studyChTitle(c.number, c.title),
                       style: AppTextStyles.labelStrong.copyWith(
                         color: palette.text,
                       ),
                     ),
                     subtitle: Text(
                       widget.alreadyIn.contains(c.id)
-                          ? 'Already in this folder'
-                          : '${pluralize(c.lessons.length, 'lesson')} · ${c.lessonsDone} done',
+                          ? l10n.chapterAlreadyInFolder
+                          : l10n.chapterLessonsDoneShort(
+                              l10n.studyLessonsCount(c.lessons.length),
+                              c.lessonsDone,
+                            ),
                       style: AppTextStyles.caption.copyWith(
                         color: palette.textMuted,
                       ),
@@ -122,8 +126,8 @@ class _AddChaptersScreenState extends State<AddChaptersScreen> {
             padding: EdgeInsets.fromLTRB(padding, 8, padding, 16),
             child: AppButton(
               label: _picked.isEmpty
-                  ? 'Pick chapters'
-                  : 'Add ${pluralize(_picked.length, 'chapter')}',
+                  ? l10n.chapterPickChapters
+                  : l10n.chapterAddCount(_picked.length),
               isPrimary: true,
               isEnabled: _picked.isNotEmpty,
               onTap: () => Navigator.of(context).pop(_picked.toList()),

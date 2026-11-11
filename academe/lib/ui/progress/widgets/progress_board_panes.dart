@@ -7,6 +7,7 @@ class _ProgressPane extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final rows = summary.bySubject.where((row) => row.lessonsDone > 0).toList();
     if (rows.isEmpty) {
       return KeycapSurface(
@@ -14,7 +15,7 @@ class _ProgressPane extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Course progress',
+              l10n.progressCourseProgress,
               style: AppTextStyles.display.copyWith(
                 fontSize: 22,
                 color: context.palette.text,
@@ -22,7 +23,7 @@ class _ProgressPane extends StatelessWidget {
             ),
             const SizedBox(height: 6),
             Text(
-              'Lessons you finish will show up here.',
+              l10n.progressLessonsEmpty,
               style: AppTextStyles.label.copyWith(
                 color: context.palette.textMuted,
               ),
@@ -36,7 +37,7 @@ class _ProgressPane extends StatelessWidget {
         for (final row in rows) ...[
           KeycapSurface(
             child: Text(
-              '${row.name}: ${row.lessonsDone} lesson${row.lessonsDone == 1 ? '' : 's'}',
+              l10n.progressSubjectLessons(row.name, row.lessonsDone),
               style: AppTextStyles.labelStrong.copyWith(
                 color: context.palette.text,
               ),
@@ -56,13 +57,15 @@ class _ActivityPane extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    final initials = _weekdayInitials(l10n);
     final todayIndex = indiaWeekdayIndex();
     return KeycapSurface(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Activity',
+            l10n.progressActivity,
             style: AppTextStyles.display.copyWith(
               fontSize: 22,
               color: context.palette.text,
@@ -71,8 +74,8 @@ class _ActivityPane extends StatelessWidget {
           const SizedBox(height: 6),
           Text(
             summary.daysActiveThisWeek == 0
-                ? 'Your study days will show up here.'
-                : '${summary.daysActiveThisWeek} active day${summary.daysActiveThisWeek == 1 ? '' : 's'} this week.',
+                ? l10n.progressStudyDaysEmpty
+                : l10n.progressActiveDays(summary.daysActiveThisWeek),
             style: AppTextStyles.label.copyWith(
               color: context.palette.textMuted,
             ),
@@ -85,7 +88,7 @@ class _ActivityPane extends StatelessWidget {
                   child: Column(
                     children: [
                       Text(
-                        weekDayInitials[i],
+                        initials[i],
                         style: AppTextStyles.caption.copyWith(
                           fontSize: 10,
                           fontWeight: FontWeight.w600,
@@ -121,20 +124,20 @@ class _GoldCta extends StatelessWidget {
   final ProgressSummary summary;
   final VoidCallback onTap;
 
-  (String, String) get _copy {
+  (String, String) _copy(AppLocalizations l10n) {
     if (summary.lessonsFinishedThisWeek == 0 &&
         summary.daysActiveThisWeek == 0) {
-      return ('It’s time to start your journey!', 'See what to do next');
+      return (l10n.progressCtaStart, l10n.progressCtaNext);
     }
     if (summary.overallGrade != null) {
-      return ('Keep your momentum going', 'See what to do next');
+      return (l10n.progressCtaMomentum, l10n.progressCtaNext);
     }
-    return ('You’re building a habit', 'See what to do next');
+    return (l10n.progressCtaHabit, l10n.progressCtaNext);
   }
 
   @override
   Widget build(BuildContext context) {
-    final (title, subtitle) = _copy;
+    final (title, subtitle) = _copy(context.l10n);
     return Material(
       type: MaterialType.transparency,
       child: InkWell(

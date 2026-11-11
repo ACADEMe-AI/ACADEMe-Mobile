@@ -77,8 +77,9 @@ func (s *Service) RequestPasswordReset(ctx context.Context, address, ip string) 
 	if err != nil {
 		return fmt.Errorf("request reset: %w", err)
 	}
+	lang := s.accountLanguage(ctx, a.ID)
 	if hash == "" {
-		if err := s.mailer.SendReset(ctx, email.Reset{AccountID: a.ID, To: a.Email, GoogleOnly: true}); err != nil {
+		if err := s.mailer.SendReset(ctx, email.Reset{AccountID: a.ID, To: a.Email, GoogleOnly: true, Language: lang}); err != nil {
 			s.logger.ErrorContext(ctx, "google reset notice not sent", "accountID", a.ID, "error", err)
 		}
 		return nil
@@ -91,7 +92,7 @@ func (s *Service) RequestPasswordReset(ctx context.Context, address, ip string) 
 	if err := s.store.CreateResetCode(ctx, a.ID, s.resetCodeHash(a.ID, code), hashToken(link), time.Now().Add(resetCodeTTL)); err != nil {
 		return fmt.Errorf("request reset: %w", err)
 	}
-	if err := s.mailer.SendReset(ctx, email.Reset{AccountID: a.ID, To: a.Email, Code: code, LinkToken: link}); err != nil {
+	if err := s.mailer.SendReset(ctx, email.Reset{AccountID: a.ID, To: a.Email, Code: code, LinkToken: link, Language: lang}); err != nil {
 		s.logger.ErrorContext(ctx, "reset code not sent", "accountID", a.ID, "error", err)
 	}
 	return nil

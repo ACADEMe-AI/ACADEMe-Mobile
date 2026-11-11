@@ -7,20 +7,21 @@ class _SummaryPane extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Column(
       children: [
         Row(
           children: [
             Expanded(
               child: _StatKey(
-                label: 'Subjects this week',
+                label: l10n.progressSubjectsThisWeek,
                 value: '${summary.bySubject.length}',
               ),
             ),
             const SizedBox(width: 8),
             Expanded(
               child: _StatKey(
-                label: 'Completed',
+                label: l10n.progressCompleted,
                 value: '${summary.lessonsFinishedThisWeek}',
               ),
             ),
@@ -75,6 +76,7 @@ class _GradeKey extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final hasGrade = summary.overallGrade != null;
     return KeycapSurface(
       child: Row(
@@ -84,7 +86,7 @@ class _GradeKey extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Overall grade',
+                  l10n.progressOverallGrade,
                   style: AppTextStyles.caption.copyWith(
                     fontSize: 13,
                     fontWeight: FontWeight.w600,
@@ -120,7 +122,7 @@ class _GradeKey extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  hasGrade ? 'Keep it up' : 'Start your journey',
+                  hasGrade ? l10n.progressKeepItUp : l10n.progressStartJourney,
                   textAlign: TextAlign.center,
                   style: AppTextStyles.caption.copyWith(
                     fontSize: 11,

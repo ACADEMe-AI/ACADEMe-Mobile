@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/l10n/app_l10n.dart';
 import '../../../core/themes/app_theme.dart';
 import '../../../core/ui/number_wheel.dart';
 import 'setup_step_frame.dart';
@@ -36,9 +37,9 @@ class _AgeStepState extends State<AgeStep> {
   @override
   Widget build(BuildContext context) {
     return SetupStepFrame(
-      title: 'When were you born?',
-      subtitle: 'So we keep things right for your age.',
-      buttonLabel: 'Continue',
+      title: context.l10n.setupAgeTitle,
+      subtitle: context.l10n.setupAgeSubtitle,
+      buttonLabel: context.l10n.authContinue,
       isSaving: widget.isSaving,
       onSubmit: () => widget.onSubmit(_year),
       body: Column(
@@ -48,7 +49,7 @@ class _AgeStepState extends State<AgeStep> {
             values: _years,
             value: _year,
             label: (year) => '$year',
-            semanticsLabel: 'Birth year',
+            semanticsLabel: context.l10n.setupBirthYear,
             onChanged: (year) => setState(() => _year = year),
           ),
           const SizedBox(height: 12),
@@ -60,7 +61,7 @@ class _AgeStepState extends State<AgeStep> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
               child: Text(
-                'You’re ${_thisYear - _year}.',
+                context.l10n.setupYouAreAge(_thisYear - _year),
                 style: AppTextStyles.labelStrong.copyWith(
                   color: context.palette.text,
                 ),

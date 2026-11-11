@@ -4,7 +4,8 @@ import 'package:academe/domain/models/account.dart';
 import 'package:academe/domain/models/auth_failure.dart';
 import 'package:academe/l10n/generated/app_localizations.dart';
 import 'package:academe/l10n/generated/app_localizations_en.dart';
-import 'package:academe/ui/core/themes/app_theme.dart';import 'package:academe/ui/core/ui/pebby.dart';
+import 'package:academe/ui/core/themes/app_theme.dart';
+import 'package:academe/ui/core/ui/pebby.dart';
 import 'package:academe/ui/me/view_models/me_view_model.dart';
 import 'package:academe/ui/me/widgets/account_screen.dart';
 import 'package:academe/ui/me/widgets/delete_account_screen.dart';
@@ -161,7 +162,10 @@ void main() {
       await tester.tap(find.text('Google'));
       await tester.pumpAndSettle();
       expect(find.text('Unlink Google?'), findsNothing);
-      expect(find.text(AppLocalizationsEn().authFailurePasswordRequired), findsOneWidget);
+      expect(
+        find.text(AppLocalizationsEn().authFailurePasswordRequired),
+        findsOneWidget,
+      );
       expect(auth.googleUnlinks, 0);
     });
   });
@@ -196,7 +200,10 @@ void main() {
       await tester.pumpAndSettle();
       expect(auth.passwordChanges, [('sunflower', 'marigold1')]);
       expect(find.byType(PasswordScreen), findsNothing);
-      expect(find.text(PasswordScreen.changedMessage), findsOneWidget);
+      expect(
+        find.text(AppLocalizationsEn().passwordChangedSnack),
+        findsOneWidget,
+      );
     });
 
     testWidgets('a wrong current password keeps the screen open', (
@@ -224,7 +231,7 @@ void main() {
       await tester.tap(find.text('Save password'));
       await tester.pumpAndSettle();
       expect(auth.passwordChanges, [(null, 'marigold1')]);
-      expect(find.text(PasswordScreen.setMessage), findsOneWidget);
+      expect(find.text(AppLocalizationsEn().passwordSetSnack), findsOneWidget);
       expect(find.text('Change password'), findsOneWidget);
     });
   });
@@ -237,7 +244,10 @@ void main() {
       tester,
     ) async {
       await pump(tester, emailOnly, delete, billing: FakeBillingRepository());
-      expect(find.text(DeleteAccountScreen.subscriptionNotice), findsOneWidget);
+      expect(
+        find.text(AppLocalizationsEn().deleteSubscriptionNotice),
+        findsOneWidget,
+      );
       expect(find.text('Manage subscription'), findsNothing);
     });
 
@@ -248,7 +258,10 @@ void main() {
         delete,
         billing: FakeBillingRepository(plan: FakeBillingRepository.proPlan),
       );
-      expect(find.text(DeleteAccountScreen.subscriptionNotice), findsOneWidget);
+      expect(
+        find.text(AppLocalizationsEn().deleteSubscriptionNotice),
+        findsOneWidget,
+      );
       expect(find.text('Manage subscription'), findsOneWidget);
       expect(
         viewModel.manageSubscriptionUrl,

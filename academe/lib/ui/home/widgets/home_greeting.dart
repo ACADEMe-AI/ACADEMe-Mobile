@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../domain/models/streak.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import 'xp_chip.dart';
 
@@ -50,7 +51,7 @@ class HomeGreeting extends StatelessWidget {
         ),
         const SizedBox(width: 8),
         Semantics(
-          label: '${streak.current} day streak',
+          label: context.l10n.homeStreakSemantics(streak.current),
           excludeSemantics: true,
           child: Row(
             mainAxisSize: MainAxisSize.min,

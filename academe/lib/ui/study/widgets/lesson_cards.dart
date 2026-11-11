@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../domain/models/deck.dart';
-import '../../../utils/plural.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/reply_text.dart';
 import 'card_parts.dart';
@@ -23,14 +23,15 @@ class StartCardView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = context.palette;
+    final l10n = context.l10n;
     return CardBody(
       children: [
-        const CardKicker(icon: Icons.flag_rounded, text: 'New lesson'),
+        CardKicker(icon: Icons.flag_rounded, text: l10n.deckNewLesson),
         const SizedBox(height: 8),
         CardTitle(title, size: 28),
         const SizedBox(height: 16),
         Text(
-          'By the end you can:',
+          l10n.deckByTheEnd,
           style: AppTextStyles.labelStrong.copyWith(color: palette.text),
         ),
         const SizedBox(height: 4),
@@ -60,7 +61,11 @@ class StartCardView extends StatelessWidget {
           ),
         const SizedBox(height: 16),
         Text(
-          '${pluralize(cards, 'card')} · ${pluralize(quizzes, 'quick check')} · about ${card.minutes} min',
+          l10n.deckMetaLine(
+            l10n.studyCardsCount(cards),
+            l10n.studyQuickChecksCount(quizzes),
+            card.minutes,
+          ),
           style: AppTextStyles.caption.copyWith(color: palette.textMuted),
         ),
       ],
@@ -76,13 +81,14 @@ class ConceptCardView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final remember = card.remember;
     return CardBody(
       tools: tools,
       children: [
-        const CardKicker(
+        CardKicker(
           icon: Icons.lightbulb_outline_rounded,
-          text: 'Concept',
+          text: l10n.deckConcept,
         ),
         const SizedBox(height: 8),
         CardTitle(card.title),
@@ -106,11 +112,12 @@ class TableCardView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = context.palette;
+    final l10n = context.l10n;
     final remember = card.remember;
     return CardBody(
       tools: tools,
       children: [
-        const CardKicker(icon: Icons.table_rows_outlined, text: 'In one look'),
+        CardKicker(icon: Icons.table_rows_outlined, text: l10n.deckInOneLook),
         const SizedBox(height: 8),
         CardTitle(card.title),
         const SizedBox(height: 12),
@@ -163,11 +170,12 @@ class SummaryCardView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = context.palette;
+    final l10n = context.l10n;
     return CardBody(
       children: [
-        const CardKicker(icon: Icons.summarize_outlined, text: 'Summary'),
+        CardKicker(icon: Icons.summarize_outlined, text: l10n.deckSummary),
         const SizedBox(height: 8),
-        const CardTitle('The lesson in three lines'),
+        CardTitle(l10n.deckThreeLines),
         const SizedBox(height: 12),
         for (var i = 0; i < card.points.length; i++)
           Padding(
@@ -209,11 +217,11 @@ class SummaryCardView extends StatelessWidget {
         if (kept > 0) ...[
           const SizedBox(height: 16),
           RememberBox(
-            label: 'Kept for revision',
+            label: l10n.deckKeptForRevision,
             icon: Icons.bookmark_rounded,
             text: kept == 1
-                ? '1 card from this lesson comes back in your revision.'
-                : '$kept cards from this lesson come back in your revision.',
+                ? l10n.deckKeptRevisionOne
+                : l10n.deckKeptRevisionMany(kept),
           ),
         ],
       ],

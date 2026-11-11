@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/subject_icons.dart';
 import '../../study/view_models/study_view_model.dart';
@@ -21,6 +22,7 @@ class SubjectRows extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = context.palette;
+    final l10n = context.l10n;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -28,7 +30,7 @@ class SubjectRows extends StatelessWidget {
           children: [
             Expanded(
               child: Text(
-                'Your subjects',
+                l10n.homeYourSubjects,
                 style: AppTextStyles.subhead.copyWith(
                   fontSize: 16,
                   color: palette.text,
@@ -43,13 +45,13 @@ class SubjectRows extends StatelessWidget {
                   minimumSize: const Size(48, 32),
                   tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 ),
-                child: const Text('Edit', style: AppTextStyles.labelStrong),
+                child: Text(l10n.homeEdit, style: AppTextStyles.labelStrong),
               ),
           ],
         ),
         const SizedBox(height: 8),
         if (!hasSyllabus)
-          const _Placeholder('Set your class and board to see your subjects')
+          _Placeholder(l10n.homeSubjectsNeedSyllabus)
         else
           ListenableBuilder(
             listenable: study,
@@ -58,8 +60,8 @@ class SubjectRows extends StatelessWidget {
               if (rows.isEmpty) {
                 return _Placeholder(
                   study.load.isRunning
-                      ? 'Loading your subjects…'
-                      : 'Your subjects show up here soon.',
+                      ? l10n.homeSubjectsLoading
+                      : l10n.homeSubjectsSoon,
                 );
               }
               return DecoratedBox(
@@ -96,12 +98,13 @@ class _SubjectRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = context.palette;
+    final l10n = context.l10n;
     final next = row.next;
     final subtitle = next != null
-        ? 'Next: Ch ${next.chapterNumber} · ${next.title}'
+        ? l10n.homeNextChapter(next.chapterNumber, next.title)
         : row.hasLessons
-        ? 'All lessons done'
-        : 'Lessons coming soon';
+        ? l10n.homeAllLessonsDone
+        : l10n.homeLessonsComingSoon;
     return Semantics(
       button: true,
       child: InkWell(

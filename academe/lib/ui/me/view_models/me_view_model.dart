@@ -13,9 +13,11 @@ import '../../../domain/models/level.dart';
 import '../../../domain/models/profile.dart';
 import '../../../domain/models/reminder.dart';
 import '../../../domain/models/study_preferences.dart';
+import '../../../l10n/generated/app_localizations.dart';
 import '../../../utils/command.dart';
 import '../../../utils/result.dart';
 import '../../../utils/safe_notifier.dart';
+import '../../core/l10n/syllabus_label.dart';
 import '../../subjects/view_models/subjects_view_model.dart';
 
 typedef Syllabus = ({int classLevel, Board board});
@@ -88,23 +90,24 @@ class MeViewModel extends ChangeNotifier with SafeNotifier {
 
   bool get isDark => _appearance.isDark;
 
-  String get appearanceLabel => isDark ? 'Dark' : 'Light';
+  String appearanceLabelFor(AppLocalizations l10n) =>
+      isDark ? l10n.appearanceDark : l10n.appearanceLight;
 
   Future<void> setDark(bool isDark) => _appearance.setDark(isDark);
 
   AppLanguage get language => profile.language ?? AppLanguage.english;
 
-  String get syllabusLabel {
-    final classLevel = profile.classLevel;
-    final board = profile.board;
-    if (classLevel == null) return 'Not set';
-    return board == null
-        ? 'Class $classLevel'
-        : 'Class $classLevel · ${board.code}';
-  }
+  String syllabusLabelFor(AppLocalizations l10n) =>
+      syllabusLabelForProfile(l10n, profile) ?? l10n.meNotSet;
 
-  String get notificationsLabel =>
-      _preferences.remindsToStudy ? _preferences.reminderLabel : 'Off';
+  String notificationsLabelFor(AppLocalizations l10n) {
+    if (!_preferences.remindsToStudy) return l10n.meOff;
+    final hour = _preferences.reminderHour;
+    final hour12 = hour % 12 == 0 ? 12 : hour % 12;
+    final minute = _preferences.reminderMinute.toString().padLeft(2, '0');
+    final period = hour < 12 ? l10n.reminderAm : l10n.reminderPm;
+    return '$hour12:$minute $period';
+  }
 
   NotificationAccess get notificationAccess =>
       _reminders?.access ?? NotificationAccess.unknown;

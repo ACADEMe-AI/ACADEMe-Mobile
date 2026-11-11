@@ -2,6 +2,7 @@ import 'package:academe/data/repositories/appearance_repository.dart';
 import 'package:academe/domain/models/app_language.dart';
 import 'package:academe/domain/models/board.dart';
 import 'package:academe/domain/models/profile.dart';
+import 'package:academe/l10n/generated/app_localizations_en.dart';
 import 'package:academe/ui/me/view_models/me_view_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -40,23 +41,25 @@ void main() {
 
   tearDown(() => viewModel.dispose());
 
+  final l10n = AppLocalizationsEn();
+
   test('switching to dark mode updates the label and is saved', () async {
-    expect(viewModel.appearanceLabel, 'Light');
+    expect(viewModel.appearanceLabelFor(l10n), 'Light');
     await viewModel.setDark(true);
     expect(viewModel.isDark, isTrue);
-    expect(viewModel.appearanceLabel, 'Dark');
+    expect(viewModel.appearanceLabelFor(l10n), 'Dark');
     expect(appearanceStore.isDark, isTrue);
   });
 
   test('labels read from the profile and preferences', () {
-    expect(viewModel.syllabusLabel, 'Class 10 · CBSE');
+    expect(viewModel.syllabusLabelFor(l10n), 'Class 10 · CBSE');
     expect(viewModel.language, AppLanguage.english);
-    expect(viewModel.notificationsLabel, 'Off');
+    expect(viewModel.notificationsLabelFor(l10n), 'Off');
   });
 
   test('class, board and language are saved to the profile', () async {
     await viewModel.saveSyllabus.execute((classLevel: 11, board: Board.icse));
-    expect(viewModel.syllabusLabel, 'Class 11 · ICSE');
+    expect(viewModel.syllabusLabelFor(l10n), 'Class 11 · ICSE');
 
     await viewModel.saveLanguage.execute(AppLanguage.telugu);
     expect(viewModel.language, AppLanguage.telugu);
@@ -72,7 +75,7 @@ void main() {
         dailyGoalMinutes: 45,
       ),
     );
-    expect(viewModel.notificationsLabel, '7:30 pm');
+    expect(viewModel.notificationsLabelFor(l10n), '7:30 pm');
     expect(store.stored.dailyGoalMinutes, 45);
   });
 

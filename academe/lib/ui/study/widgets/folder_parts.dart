@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../domain/models/folder.dart';
-import '../../../utils/dates.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/pebby.dart';
 import 'folders_view.dart';
@@ -15,6 +15,7 @@ class FolderHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = context.palette;
+    final l10n = context.l10n;
     final due = folder.summary.dueOn;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -36,7 +37,7 @@ class FolderHeader extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    due == null ? 'No date' : dueLine(due),
+                    due == null ? l10n.folderNoDate : folderDueLine(l10n, due),
                     style: AppTextStyles.caption.copyWith(
                       color: palette.textMuted,
                     ),
@@ -61,7 +62,7 @@ class FolderHeader extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               Text(
-                '${folder.summary.progress}% ready',
+                l10n.folderPercentReady(folder.summary.progress),
                 style: AppTextStyles.caption.copyWith(
                   fontWeight: FontWeight.w600,
                   color: palette.textMuted,
@@ -90,6 +91,7 @@ class FolderEmpty extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = context.palette;
+    final l10n = context.l10n;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -101,7 +103,7 @@ class FolderEmpty extends StatelessWidget {
           ),
         ),
         Text(
-          'What’s this folder for?',
+          l10n.folderWhatsFor,
           textAlign: TextAlign.center,
           style: AppTextStyles.display.copyWith(
             fontSize: 20,
@@ -109,7 +111,7 @@ class FolderEmpty extends StatelessWidget {
           ),
         ),
         Text(
-          'Add chapters and Pebby plans your days.',
+          l10n.folderAddChaptersPlan,
           textAlign: TextAlign.center,
           style: AppTextStyles.label.copyWith(color: palette.textMuted),
         ),
@@ -138,29 +140,30 @@ class AddOptions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final onScanNotes = this.onScanNotes;
     final plus = Icon(Icons.add_rounded, color: context.palette.text);
     return Column(
       children: [
         LinkRow(
           icon: Icons.menu_book_rounded,
-          title: 'Add chapters',
-          subtitle: 'From your syllabus',
+          title: l10n.folderAddChapters,
+          subtitle: l10n.folderFromSyllabus,
           trailing: plus,
           onTap: onAddChapters,
         ),
         LinkRow(
           icon: Icons.edit_note_rounded,
-          title: 'Write a note',
-          subtitle: 'Anything you want to remember',
+          title: l10n.folderWriteNote,
+          subtitle: l10n.folderNoteSubtitle,
           trailing: plus,
           onTap: onAddNote,
         ),
         if (onScanNotes != null)
           LinkRow(
             icon: Icons.document_scanner_rounded,
-            title: 'Scan notes',
-            subtitle: 'Photos of pages, made into a lesson',
+            title: l10n.folderScanNotes,
+            subtitle: l10n.folderScanNotesSubtitle,
             trailing: plus,
             onTap: onScanNotes,
           ),
@@ -197,6 +200,7 @@ class _AddTodoFieldState extends State<AddTodoField> {
   @override
   Widget build(BuildContext context) {
     final palette = context.palette;
+    final l10n = context.l10n;
     return TextField(
       controller: _text,
       textCapitalization: TextCapitalization.sentences,
@@ -206,12 +210,12 @@ class _AddTodoFieldState extends State<AddTodoField> {
       cursorColor: AppColors.primary,
       decoration: InputDecoration(
         isDense: true,
-        hintText: 'Add a to-do',
+        hintText: l10n.folderAddTodo,
         hintStyle: AppTextStyles.label.copyWith(color: palette.textMuted),
         prefixIcon: Icon(Icons.add_rounded, color: palette.textMuted),
         suffixIcon: IconButton(
           onPressed: _submit,
-          tooltip: 'Add',
+          tooltip: l10n.studyAdd,
           icon: const Icon(
             Icons.arrow_upward_rounded,
             color: AppColors.primary,

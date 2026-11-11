@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../domain/models/folder.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 
 class TaskRow extends StatelessWidget {
@@ -65,7 +66,7 @@ class TaskRow extends StatelessWidget {
               ),
               if (task.minutes > 0 && !task.isDone)
                 Text(
-                  '${task.minutes} min',
+                  context.l10n.studyMinutesShort(task.minutes),
                   style: AppTextStyles.caption.copyWith(
                     color: palette.textMuted,
                   ),

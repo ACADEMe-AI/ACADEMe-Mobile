@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../../domain/models/profile.dart';
+import '../l10n/app_l10n.dart';
 import '../themes/app_theme.dart';
 
 class ClassDial extends StatelessWidget {
@@ -37,8 +38,9 @@ class ClassDial extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Semantics(
-      label: 'Class $value',
+      label: l10n.classDialSemantics(value),
       child: GestureDetector(
         onTapUp: (details) => _pick(details.localPosition),
         onPanUpdate: (details) => _pick(details.localPosition),
@@ -96,7 +98,7 @@ class ClassDial extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            'CLASS',
+                            l10n.classDialLabel,
                             style: AppTextStyles.caption.copyWith(
                               color: AppColors.onPrimary,
                               fontWeight: FontWeight.w600,

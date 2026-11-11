@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 
 import '../../../data/repositories/billing_repository.dart';
 import '../../../domain/models/pro.dart';
+import '../../../l10n/generated/app_localizations.dart';
 import '../../../utils/command.dart';
 import '../../../utils/result.dart';
 import '../../../utils/safe_notifier.dart';
@@ -36,26 +37,25 @@ class ProViewModel extends ChangeNotifier with SafeNotifier {
     orElse: () => ProOffer.defaults.firstWhere((o) => o.period == period),
   );
 
-  String? get notice {
+  String? notice(AppLocalizations l10n) {
     if (purchase.result case Ok(value: PurchaseOutcome.pending)) {
-      return 'Your payment is pending. Pro turns on as soon as Google Play '
-          'confirms it.';
+      return l10n.proNoticePending;
     }
     if (restore.result case Ok(value: false)) {
-      return 'No ACADEMe Pro purchase was found on this Google account.';
+      return l10n.proNoticeNoPurchase;
     }
     for (final Command<Object?> command in [purchase, restore]) {
       if (command.result case Error(:final error)) {
         return switch (error) {
           BillingException(failure: BillingFailure.network) =>
-            'No connection. Check your internet and try again.',
+            l10n.failureNetwork,
           BillingException(failure: BillingFailure.notAllowed) =>
-            'Purchases are turned off for this Google account.',
+            l10n.proNoticeNotAllowed,
           BillingException(failure: BillingFailure.alreadyOwned) =>
-            'This Google account already has Pro. Tap Restore purchases.',
+            l10n.proNoticeAlreadyOwned,
           BillingException(failure: BillingFailure.unavailable) =>
-            'Purchases aren’t available on this device.',
-          _ => 'Google Play couldn’t finish that. Try again.',
+            l10n.proNoticeUnavailable,
+          _ => l10n.proNoticeStoreError,
         };
       }
     }

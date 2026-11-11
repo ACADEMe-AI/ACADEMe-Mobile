@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../domain/models/chat.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 
 class ModeBar extends StatelessWidget {
@@ -16,8 +17,15 @@ class ModeBar extends StatelessWidget {
     ChatMode.quiz: Icons.task_alt_rounded,
   };
 
+  String _label(AppLocalizations l10n, ChatMode mode) => switch (mode) {
+    ChatMode.explain => l10n.askmeModeExplain,
+    ChatMode.solve => l10n.askmeModeSolve,
+    ChatMode.quiz => l10n.askmeModeQuiz,
+  };
+
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final count = ChatMode.values.length;
     return DecoratedBox(
       decoration: BoxDecoration(
@@ -72,7 +80,7 @@ class ModeBar extends StatelessWidget {
                       Expanded(
                         child: _ModeOption(
                           icon: icons[value]!,
-                          label: value.label,
+                          label: _label(l10n, value),
                           isSelected: value == mode,
                           onTap: () => onSelect(value),
                         ),

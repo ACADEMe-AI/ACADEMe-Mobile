@@ -1,4 +1,5 @@
 import 'package:academe/domain/models/chat.dart';
+import 'package:academe/l10n/generated/app_localizations.dart';
 import 'package:academe/ui/askme/view_models/askme_view_model.dart';
 import 'package:academe/ui/askme/widgets/askme_screen.dart';
 import 'package:academe/ui/core/themes/app_theme.dart';
@@ -25,6 +26,9 @@ void main() {
     await tester.pumpWidget(
       PebbyStandIn(
         child: MaterialApp(
+          locale: const Locale('en'),
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
           theme: AppTheme.dark(),
           home: Scaffold(
             body: AskMeScreen(

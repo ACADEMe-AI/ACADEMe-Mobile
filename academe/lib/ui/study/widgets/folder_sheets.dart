@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../domain/models/folder.dart';
 import '../../../utils/dates.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/app_button.dart';
 import '../../core/ui/light_field.dart';
@@ -84,6 +85,7 @@ class _FolderSheetState extends State<FolderSheet> {
   @override
   Widget build(BuildContext context) {
     final palette = context.palette;
+    final l10n = context.l10n;
     final due = _due;
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
@@ -92,7 +94,7 @@ class _FolderSheetState extends State<FolderSheet> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
-            _isEditing ? 'Edit folder' : 'New folder',
+            _isEditing ? l10n.folderEdit : l10n.folderNew,
             style: AppTextStyles.display.copyWith(
               fontSize: 24,
               color: palette.text,
@@ -100,7 +102,7 @@ class _FolderSheetState extends State<FolderSheet> {
           ),
           const SizedBox(height: 16),
           LightField(
-            label: 'Name',
+            label: l10n.studyName,
             controller: _name,
             textCapitalization: TextCapitalization.sentences,
             onChanged: (_) => setState(() {}),
@@ -125,7 +127,7 @@ class _FolderSheetState extends State<FolderSheet> {
                     const SizedBox(width: 12),
                     Expanded(
                       child: Text(
-                        due == null ? 'Add a date' : shortDay(due),
+                        due == null ? l10n.folderAddDate : shortDay(due),
                         style: AppTextStyles.label.copyWith(
                           fontSize: 16,
                           color: due == null ? palette.textMuted : palette.text,
@@ -134,7 +136,7 @@ class _FolderSheetState extends State<FolderSheet> {
                     ),
                     if (due == null)
                       Text(
-                        'optional',
+                        l10n.studyOptional,
                         style: AppTextStyles.caption.copyWith(
                           color: palette.textMuted,
                         ),
@@ -142,7 +144,7 @@ class _FolderSheetState extends State<FolderSheet> {
                     else
                       IconButton(
                         onPressed: () => setState(() => _due = null),
-                        tooltip: 'Remove date',
+                        tooltip: l10n.folderRemoveDate,
                         icon: Icon(
                           Icons.close_rounded,
                           color: palette.textMuted,
@@ -161,14 +163,14 @@ class _FolderSheetState extends State<FolderSheet> {
               onChanged: (v) => setState(() => _reminds = v),
               activeThumbColor: AppColors.primary,
               title: Text(
-                'Reminders for this folder',
+                l10n.folderReminders,
                 style: AppTextStyles.labelStrong.copyWith(color: palette.text),
               ),
             ),
           ],
           const SizedBox(height: 16),
           AppButton(
-            label: _isEditing ? 'Save' : 'Create',
+            label: _isEditing ? l10n.studySave : l10n.studyCreate,
             isPrimary: true,
             isEnabled: _name.text.trim().isNotEmpty,
             onTap: () => Navigator.of(
@@ -189,9 +191,18 @@ class NoteSheet extends StatefulWidget {
 
   static Future<String?> show(
     BuildContext context, {
-    String title = 'Write a note',
-    String action = 'Save note',
-  }) => studySheet(context, NoteSheet(title: title, action: action));
+    String? title,
+    String? action,
+  }) {
+    final l10n = context.l10n;
+    return studySheet(
+      context,
+      NoteSheet(
+        title: title ?? l10n.folderWriteNote,
+        action: action ?? l10n.folderSaveNote,
+      ),
+    );
+  }
 
   @override
   State<NoteSheet> createState() => _NoteSheetState();
@@ -209,6 +220,7 @@ class _NoteSheetState extends State<NoteSheet> {
   @override
   Widget build(BuildContext context) {
     final palette = context.palette;
+    final l10n = context.l10n;
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
       child: Column(
@@ -233,7 +245,7 @@ class _NoteSheetState extends State<NoteSheet> {
             style: AppTextStyles.input.copyWith(color: palette.text),
             cursorColor: AppColors.primary,
             decoration: InputDecoration(
-              hintText: 'Type here…',
+              hintText: l10n.folderTypeHere,
               hintStyle: AppTextStyles.input.copyWith(color: palette.textMuted),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(AppRadius.lg),

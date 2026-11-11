@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../domain/models/chat.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/pebby_peek.dart';
 import '../../core/ui/reply_text.dart';
@@ -200,7 +201,7 @@ class _ThinkingBubbleState extends State<ThinkingBubble>
   Widget build(BuildContext context) {
     return PebbyMessage(
       child: Semantics(
-        label: 'Pebby is thinking',
+        label: context.l10n.askmeThinking,
         child: SizedBox(
           width: 32,
           height: 16,

@@ -18,7 +18,7 @@ extension AuthFailureText on AuthFailure {
     AuthFailure.wrongPassword => l10n.authFailureWrongPassword,
     AuthFailure.googleTaken => l10n.authFailureGoogleTaken,
     AuthFailure.passwordRequired => l10n.authFailurePasswordRequired,
-    AuthFailure.unknown => l10n.authFailureUnknown,
+    AuthFailure.unknown => l10n.failureUnknown,
   };
 }
 

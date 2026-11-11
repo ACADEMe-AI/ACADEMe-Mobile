@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../data/repositories/photo_repository.dart';
 import '../../../domain/models/chat.dart';
 import '../../../domain/models/scan.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../scan/view_models/scan_flow_view_model.dart';
 import '../../scan/widgets/check_result_screen.dart';
 import '../../scan/widgets/scan_flow_screen.dart';
@@ -33,7 +34,7 @@ mixin ScanNavigation on State<AppShell> {
     await flow.addPages.execute(from);
     if (!mounted || flow.pages.isEmpty) {
       if (flow.addPages.hasError && mounted) {
-        showMessage('Couldn’t open the camera. Try the gallery.');
+        showMessage(context.l10n.scanCameraOpenFailed);
       }
       flow.dispose();
       return;
@@ -71,6 +72,7 @@ mixin ScanNavigation on State<AppShell> {
   }
 
   void _showMarks(Scan scan, Marking marking, {bool replace = false}) {
+    final l10n = context.l10n;
     final route = MaterialPageRoute<void>(
       builder: (_) => CheckResultScreen(
         marking: marking,
@@ -79,10 +81,10 @@ mixin ScanNavigation on State<AppShell> {
           ChatMode.explain,
           String.fromCharCodes(
             [
-              if (marking.question.isNotEmpty) 'Question: ${marking.question}',
-              'My answer:\n${scan.text}',
-              'I got ${marking.awarded}/${marking.marks}. '
-                  'How do I get full marks?',
+              if (marking.question.isNotEmpty)
+                l10n.checkAskQuestion(marking.question),
+              l10n.checkAskMyAnswer(scan.text),
+              l10n.checkAskHowFullMarks(marking.awarded, marking.marks),
             ].join('\n\n').runes.take(_maxAsk),
           ),
         ),

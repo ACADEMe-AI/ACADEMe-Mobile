@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../data/repositories/feedback_repository.dart';
 import '../../../domain/models/feedback.dart';
 import '../../../utils/result.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/app_button.dart';
 import '../view_models/help_view_model.dart';
@@ -49,7 +50,9 @@ class _FeedbackFormScreenState extends State<FeedbackFormScreen> {
         ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
           ..showSnackBar(
-            SnackBar(content: Text(feedbackFailureMessage(error))),
+            SnackBar(
+              content: Text(feedbackFailureMessage(error, context.l10n)),
+            ),
           );
       case null:
         break;
@@ -63,10 +66,20 @@ class _FeedbackFormScreenState extends State<FeedbackFormScreen> {
     ));
   }
 
+  String get _title {
+    final l10n = context.l10n;
+    return switch (widget.category) {
+      FeedbackCategory.wrongAnswer => l10n.feedbackWrongAnswer,
+      FeedbackCategory.bug => l10n.feedbackBug,
+      FeedbackCategory.feature => l10n.feedbackFeature,
+    };
+  }
+
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return SettingsPage(
-      title: widget.category.label,
+      title: _title,
       children: [
         Padding(
           padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
@@ -77,8 +90,8 @@ class _FeedbackFormScreenState extends State<FeedbackFormScreen> {
             minLines: 4,
             maxLines: 8,
             maxLength: 2000,
-            decoration: const InputDecoration(
-              hintText: 'Tell us what happened (at least 10 characters).',
+            decoration: InputDecoration(
+              hintText: l10n.feedbackHint,
               counterText: '',
             ),
           ),
@@ -90,7 +103,7 @@ class _FeedbackFormScreenState extends State<FeedbackFormScreen> {
             builder: (context, _) {
               final sending = widget.viewModel.submit.isRunning;
               return AppButton(
-                label: sending ? 'Sending…' : 'Send',
+                label: sending ? l10n.authSending : l10n.feedbackSend,
                 onTap: sending ? null : _send,
                 isPrimary: true,
               );
@@ -100,7 +113,7 @@ class _FeedbackFormScreenState extends State<FeedbackFormScreen> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Text(
-            'You can send up to 2 messages a day and 5 a week.',
+            l10n.feedbackLimitNote,
             style: AppTextStyles.caption.copyWith(color: AppColors.textMuted),
           ),
         ),

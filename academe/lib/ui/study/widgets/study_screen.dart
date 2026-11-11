@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/screen_scale.dart';
 import '../study_actions.dart';
@@ -37,6 +38,7 @@ class _StudyScreenState extends State<StudyScreen> {
   @override
   Widget build(BuildContext context) {
     final padding = ScreenScale.of(context).pagePadding;
+    final l10n = context.l10n;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -46,7 +48,7 @@ class _StudyScreenState extends State<StudyScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                'Study',
+                l10n.studyTitle,
                 style: AppTextStyles.display.copyWith(
                   fontSize: 28,
                   color: context.palette.text,
@@ -92,6 +94,7 @@ class _Tabs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = context.palette;
+    final l10n = context.l10n;
     return DecoratedBox(
       decoration: BoxDecoration(
         color: palette.surfaceRaised,
@@ -102,8 +105,8 @@ class _Tabs extends StatelessWidget {
         child: Row(
           children: [
             for (final (value, label, icon) in [
-              (false, 'Courses', Icons.menu_book_rounded),
-              (true, 'Folders', Icons.folder_rounded),
+              (false, l10n.studyCourses, Icons.menu_book_rounded),
+              (true, l10n.studyFolders, Icons.folder_rounded),
             ])
               Expanded(
                 child: Semantics(

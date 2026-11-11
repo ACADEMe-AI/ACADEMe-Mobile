@@ -17,6 +17,7 @@ class _ManageFooter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final padding = ScreenScale.of(context).pagePadding;
     return DecoratedBox(
       decoration: BoxDecoration(
@@ -32,20 +33,20 @@ class _ManageFooter extends StatelessWidget {
             children: [
               if (!isPro)
                 AppButton(
-                  label: 'Go Pro · 3× limits',
+                  label: l10n.upgradeTitle,
                   isPrimary: true,
                   onTap: onGoPro,
                 )
               else ...[
                 AppButton(
-                  label: 'Manage in Google Play',
+                  label: l10n.proManageInPlay,
                   isPrimary: true,
                   onTap: onManage,
                 ),
                 TextButton(
                   onPressed: onRestore,
                   child: Text(
-                    'Restore purchases',
+                    l10n.paywallRestore,
                     style: AppTextStyles.labelStrong.copyWith(
                       color: AppColors.primary,
                     ),

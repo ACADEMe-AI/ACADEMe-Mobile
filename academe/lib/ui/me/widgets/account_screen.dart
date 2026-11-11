@@ -50,7 +50,7 @@ class _AccountScreenState extends State<AccountScreen> {
     await command.execute((first: _first.text.trim(), last: _last.text.trim()));
     if (!mounted) return;
     final message = switch (command.result) {
-      Ok() => 'Name saved',
+      Ok() => context.l10n.accountNameSaved,
       Error(:final error) => failureMessage(error, context.l10n),
       null => null,
     };
@@ -64,39 +64,40 @@ class _AccountScreenState extends State<AccountScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final saving = widget.viewModel.saveName;
     return ListenableBuilder(
       listenable: saving,
       builder: (context, _) => SettingsPage(
-        title: 'Account',
+        title: l10n.meAccount,
         children: [
           const SizedBox(height: 8),
           LightField(
-            label: 'First name',
+            label: l10n.signUpFirstName,
             controller: _first,
             textCapitalization: TextCapitalization.words,
             onChanged: (_) => setState(() {}),
           ),
           const SizedBox(height: 12),
           LightField(
-            label: 'Last name',
+            label: l10n.signUpLastName,
             controller: _last,
             textCapitalization: TextCapitalization.words,
             onChanged: (_) => setState(() {}),
           ),
           const SizedBox(height: 12),
           AppButton(
-            label: saving.isRunning ? 'Saving…' : 'Save name',
+            label: saving.isRunning ? l10n.authSaving : l10n.accountSaveName,
             isPrimary: true,
             isEnabled: _isChanged && !saving.isRunning,
             onTap: _save,
           ),
           SignInGroup(viewModel: widget.viewModel),
           SettingsGroup(
-            title: 'Danger zone',
+            title: l10n.accountDangerZone,
             children: [
               SettingsRow(
-                label: 'Delete my account',
+                label: l10n.accountDeleteMyAccount,
                 isDanger: true,
                 onTap: widget.onDeleteAccount,
               ),
@@ -105,7 +106,7 @@ class _AccountScreenState extends State<AccountScreen> {
           Padding(
             padding: const EdgeInsets.only(top: 8),
             child: Text(
-              'Your account is deleted 30 days after you ask. Log in before then to keep it.',
+              l10n.accountDeleteGraceNote,
               style: AppTextStyles.caption.copyWith(
                 color: context.palette.textMuted,
               ),

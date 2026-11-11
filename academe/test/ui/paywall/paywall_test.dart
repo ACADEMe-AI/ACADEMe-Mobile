@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:academe/domain/models/chat.dart';
 import 'package:academe/domain/models/pro.dart';
 import 'package:academe/domain/models/scan.dart';
+import 'package:academe/l10n/generated/app_localizations.dart';
 import 'package:academe/routing/routes.dart';
 import 'package:academe/ui/askme/view_models/askme_view_model.dart';
 import 'package:academe/ui/askme/widgets/askme_screen.dart';
@@ -64,6 +65,8 @@ void main() {
       PebbyStandIn(
         child: MaterialApp(
           theme: AppTheme.dark(),
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
           onGenerateRoute: (settings) => route(settings, home),
         ),
       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/celebration.dart';
 
@@ -18,9 +19,10 @@ class ResultLine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = context.palette;
+    final l10n = context.l10n;
     if (!isCorrect) {
       return Text(
-        'Not quite. Next: why.',
+        l10n.quizNotQuite,
         textAlign: TextAlign.center,
         style: AppTextStyles.labelStrong.copyWith(color: palette.errorInk),
       );
@@ -66,6 +68,7 @@ class StreakChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = context.palette;
+    final l10n = context.l10n;
     return DecoratedBox(
       decoration: BoxDecoration(
         color: palette.tintAmber,
@@ -83,7 +86,7 @@ class StreakChip extends StatelessWidget {
             ),
             const SizedBox(width: 4),
             Text(
-              '$streak in a row',
+              l10n.quizStreak(streak),
               style: AppTextStyles.labelStrong.copyWith(color: palette.text),
             ),
           ],
@@ -100,6 +103,7 @@ class XpChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return DecoratedBox(
       decoration: BoxDecoration(
         color: AppColors.selected,
@@ -117,7 +121,7 @@ class XpChip extends StatelessWidget {
               color: AppColors.keycapEdge,
             ),
             Text(
-              '+$xp XP',
+              l10n.quizXpTag(xp),
               style: AppTextStyles.caption.copyWith(
                 color: AppColors.keycapEdge,
                 fontWeight: FontWeight.w800,

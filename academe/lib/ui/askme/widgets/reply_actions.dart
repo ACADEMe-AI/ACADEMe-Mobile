@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../../domain/models/chat.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/report_button.dart';
 
@@ -21,13 +22,14 @@ class ReplyActions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Row(
       children: [
         _ActionIcon(
           icon: message.rating == 1
               ? Icons.thumb_up_alt_rounded
               : Icons.thumb_up_alt_outlined,
-          tooltip: 'Helpful',
+          tooltip: l10n.replyHelpful,
           isOn: message.rating == 1,
           onTap: () => onRate(1),
         ),
@@ -35,29 +37,29 @@ class ReplyActions extends StatelessWidget {
           icon: message.rating == -1
               ? Icons.thumb_down_alt_rounded
               : Icons.thumb_down_alt_outlined,
-          tooltip: 'Not helpful',
+          tooltip: l10n.replyNotHelpful,
           isOn: message.rating == -1,
           onTap: () => onRate(-1),
         ),
         _ActionIcon(
           icon: Icons.content_copy_rounded,
-          tooltip: 'Copy',
+          tooltip: l10n.replyCopy,
           onTap: () {
             Clipboard.setData(ClipboardData(text: message.body));
             ScaffoldMessenger.of(context)
               ..hideCurrentSnackBar()
-              ..showSnackBar(const SnackBar(content: Text('Copied')));
+              ..showSnackBar(SnackBar(content: Text(l10n.replyCopied)));
           },
         ),
         if (onRetry case final retry?)
           _ActionIcon(
             icon: Icons.refresh_rounded,
-            tooltip: 'Try again',
+            tooltip: l10n.actionTryAgain,
             onTap: retry,
           ),
         ReportButton(
-          title: 'Report this answer',
-          thanks: 'Thanks. We’ll review this answer.',
+          title: l10n.replyReportTitle,
+          thanks: l10n.replyReportThanks,
           onReport: onReport,
           iconSize: 18,
         ),

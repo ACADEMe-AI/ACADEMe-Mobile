@@ -52,7 +52,7 @@ func (c *Resend) SendWelcome(ctx context.Context, w Welcome) error {
 }
 
 func (c *Resend) SendDeletionNotice(ctx context.Context, to string) error {
-	m, err := deletionMessage()
+	m, err := deletionMessage("")
 	if err != nil {
 		return err
 	}

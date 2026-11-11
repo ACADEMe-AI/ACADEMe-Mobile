@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../domain/models/folder.dart';
-import '../../../utils/plural.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/screen_scale.dart';
 import '../study_actions.dart';
@@ -76,21 +76,20 @@ class _FolderScreenState extends State<FolderScreen> {
   }
 
   Future<void> _delete() async {
+    final l10n = context.l10n;
     final sure = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Delete this folder?'),
-        content: const Text(
-          'Its notes and to-dos go too. Your lessons and progress stay.',
-        ),
+        title: Text(l10n.folderDeleteTitle),
+        content: Text(l10n.folderDeleteBody),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
-            child: const Text('Keep'),
+            child: Text(l10n.studyKeep),
           ),
           TextButton(
             onPressed: () => Navigator.of(context).pop(true),
-            child: const Text('Delete'),
+            child: Text(l10n.studyDelete),
           ),
         ],
       ),
@@ -101,6 +100,7 @@ class _FolderScreenState extends State<FolderScreen> {
   }
 
   Future<void> _openNote(FolderNote note) async {
+    final l10n = context.l10n;
     final remove = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
@@ -108,11 +108,11 @@ class _FolderScreenState extends State<FolderScreen> {
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(true),
-            child: const Text('Delete'),
+            child: Text(l10n.studyDelete),
           ),
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
-            child: const Text('Close'),
+            child: Text(l10n.actionClose),
           ),
         ],
       ),
@@ -130,16 +130,17 @@ class _FolderScreenState extends State<FolderScreen> {
   @override
   Widget build(BuildContext context) {
     final padding = ScreenScale.of(context).pagePadding;
+    final l10n = context.l10n;
     return ListenableBuilder(
       listenable: _viewModel,
       builder: (context, _) {
         final detail = _viewModel.detail;
         return StudyPage(
-          title: 'Folder',
+          title: l10n.folderTitle,
           actions: [
             IconButton(
               onPressed: _edit,
-              tooltip: 'Edit and reminders',
+              tooltip: l10n.folderEditRemindersTooltip,
               icon: Icon(
                 detail?.summary.reminds ?? true
                     ? Icons.notifications_active_rounded
@@ -151,7 +152,7 @@ class _FolderScreenState extends State<FolderScreen> {
             ),
             IconButton(
               onPressed: _delete,
-              tooltip: 'Delete folder',
+              tooltip: l10n.folderDeleteTooltip,
               icon: const Icon(Icons.delete_outline_rounded),
               color: context.palette.errorInk,
             ),
@@ -161,7 +162,7 @@ class _FolderScreenState extends State<FolderScreen> {
                   child: _viewModel.load.hasError
                       ? TextButton(
                           onPressed: _viewModel.load.execute,
-                          child: const Text('Couldn’t load this folder. Retry'),
+                          child: Text(l10n.folderLoadError),
                         )
                       : const CircularProgressIndicator(
                           color: AppColors.primary,
@@ -217,6 +218,7 @@ class _FolderBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = context.palette;
+    final l10n = context.l10n;
     final minutes = detail.today
         .where((t) => !t.isDone)
         .fold(0, (sum, t) => sum + t.minutes);
@@ -224,7 +226,7 @@ class _FolderBody extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         SectionTitle(
-          minutes > 0 ? 'Today · $minutes min' : 'Today',
+          minutes > 0 ? l10n.folderTodayMinutes(minutes) : l10n.studyToday,
           trailing: detail.plan.isEmpty
               ? null
               : TextButton(
@@ -233,14 +235,14 @@ class _FolderBody extends StatelessWidget {
                       builder: (_) => PlanScreen(folder: detail),
                     ),
                   ),
-                  child: const Text('See plan'),
+                  child: Text(l10n.folderSeePlan),
                 ),
         ),
         if (detail.today.isEmpty)
           Text(
             detail.summary.dueOn == null && detail.chapters.isEmpty
-                ? 'Add chapters or to-dos.'
-                : 'Nothing left for today.',
+                ? l10n.folderAddChaptersOrTodos
+                : l10n.folderNothingLeftForToday,
             style: AppTextStyles.label.copyWith(color: palette.textMuted),
           ),
         for (final task in detail.today)
@@ -252,18 +254,17 @@ class _FolderBody extends StatelessWidget {
         const SizedBox(height: 8),
         AddTodoField(onAdd: viewModel.addTodo),
         SectionTitle(
-          'In this folder',
+          l10n.folderInThisFolder,
           trailing: TextButton(
             onPressed: onAddChapters,
-            child: const Text('Add chapters'),
+            child: Text(l10n.folderAddChapters),
           ),
         ),
         for (final c in detail.chapters)
           LinkRow(
             icon: Icons.menu_book_rounded,
-            title: 'Ch ${c.number} · ${c.title}',
-            subtitle:
-                '${c.lessonsDone} of ${pluralize(c.lessons, 'lesson')} done',
+            title: l10n.studyChTitle(c.number, c.title),
+            subtitle: l10n.studyLessonsDoneOf(c.lessonsDone, c.lessons),
             onTap: () => actions.openChapter(c.chapterId),
           ),
         for (final l in detail.lessons)
@@ -271,15 +272,15 @@ class _FolderBody extends StatelessWidget {
             icon: Icons.style_rounded,
             title: l.title,
             subtitle: l.isDone
-                ? 'From your notes · done'
-                : 'From your notes · ${l.minutes} min',
+                ? l10n.folderFromNotesDone
+                : l10n.folderFromNotesMinutes(l.minutes),
             onTap: () => actions.openLesson(l.deckId),
           ),
         for (final n in detail.notes)
           LinkRow(
             icon: Icons.description_outlined,
             title: n.text.split('\n').first,
-            subtitle: 'Note',
+            subtitle: l10n.folderNote,
             onTap: () => onOpenNote(n),
           ),
         const SizedBox(height: 8),

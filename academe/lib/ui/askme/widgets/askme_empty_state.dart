@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../domain/models/chat.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/pebby.dart';
 import '../../core/ui/screen_scale.dart';
@@ -21,32 +22,31 @@ class AskMeEmptyState extends StatelessWidget {
 
   static const swap = Duration(milliseconds: 320);
 
-  static const _lines = {
-    ChatMode.explain: 'Pebby explains it simply, step by step.',
-    ChatMode.solve: 'Pebby gives hints. You solve it.',
-    ChatMode.quiz: 'Pebby asks, you answer, you earn XP.',
-  };
-
-  static const _suggestions = {
-    ChatMode.explain: [
-      'Explain reflection of light simply',
-      'Why is the sky blue?',
-      'What is photosynthesis?',
-    ],
-    ChatMode.solve: [
-      'Help me solve 2x + 3y = 11 and x − 2y = −12',
-      'Find the area of a circle with r = 7 cm',
-      'Balance H₂ + O₂ → H₂O',
-    ],
-    ChatMode.quiz: [
-      'Quiz me on Light',
-      'Give me 5 questions on linear equations',
-      'Quiz me on the French Revolution',
-    ],
-  };
-
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    final lines = {
+      ChatMode.explain: l10n.askmeModeExplainLine,
+      ChatMode.solve: l10n.askmeModeSolveLine,
+      ChatMode.quiz: l10n.askmeModeQuizLine,
+    };
+    final suggestions = {
+      ChatMode.explain: [
+        l10n.askmeSuggestExplain1,
+        l10n.askmeSuggestExplain2,
+        l10n.askmeSuggestExplain3,
+      ],
+      ChatMode.solve: [
+        l10n.askmeSuggestSolve1,
+        l10n.askmeSuggestSolve2,
+        l10n.askmeSuggestSolve3,
+      ],
+      ChatMode.quiz: [
+        l10n.askmeSuggestQuiz1,
+        l10n.askmeSuggestQuiz2,
+        l10n.askmeSuggestQuiz3,
+      ],
+    };
     final padding = ScreenScale.of(context).pagePadding;
     final bottom = MediaQuery.paddingOf(context).bottom;
     return LayoutBuilder(
@@ -71,7 +71,7 @@ class AskMeEmptyState extends StatelessWidget {
               ),
               const SizedBox(height: 12),
               Text(
-                'What are we studying, $name?',
+                l10n.askmeStudying(name),
                 textAlign: TextAlign.center,
                 style: AppTextStyles.display.copyWith(
                   fontSize: 24,
@@ -107,8 +107,8 @@ class AskMeEmptyState extends StatelessWidget {
                 ),
                 child: _ModeContent(
                   key: ValueKey(mode),
-                  line: _lines[mode]!,
-                  suggestions: _suggestions[mode]!,
+                  line: lines[mode]!,
+                  suggestions: suggestions[mode]!,
                   onAsk: onAsk,
                 ),
               ),

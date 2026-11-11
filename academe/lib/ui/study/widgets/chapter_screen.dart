@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../domain/models/deck.dart';
-import '../../../utils/plural.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/app_button.dart';
 import '../../core/ui/screen_scale.dart';
@@ -26,12 +26,13 @@ class ChapterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final padding = ScreenScale.of(context).pagePadding;
+    final l10n = context.l10n;
     return ListenableBuilder(
       listenable: viewModel,
       builder: (context, _) {
         final chapter = viewModel.chapter(chapterId);
         return StudyPage(
-          title: chapter == null ? '' : 'Chapter ${chapter.number}',
+          title: chapter == null ? '' : l10n.chapterTitle(chapter.number),
           child: chapter == null
               ? const Center(
                   child: CircularProgressIndicator(color: AppColors.primary),
@@ -46,7 +47,7 @@ class ChapterScreen extends StatelessWidget {
                         chapter: chapter,
                         onTap: () => actions.openLesson(chapter.resume.id),
                       ),
-                    const SectionTitle('Lessons'),
+                    SectionTitle(l10n.chapterLessons),
                     for (final entry in chapter.outline)
                       if (entry.lesson case final lesson?)
                         _LessonRow(
@@ -64,26 +65,24 @@ class ChapterScreen extends StatelessWidget {
                       const SizedBox(height: 8),
                       LinkRow(
                         icon: Icons.quiz_outlined,
-                        title: 'Chapter test',
+                        title: l10n.chapterTest,
                         subtitle: switch (chapter.result) {
-                          final r? =>
-                            'Last time ${r.correct}/${r.total} · try again',
-                          null =>
-                            '${pluralize(chapter.quizzes, 'question')} from every lesson',
+                          final r? => l10n.chapterTestLast(r.correct, r.total),
+                          null => l10n.chapterTestSubtitle(chapter.quizzes),
                         },
                         onTap: () => actions.openChapterTest(chapter.id),
                       ),
                       LinkRow(
                         icon: Icons.bookmark_rounded,
-                        title: 'Kept cards',
+                        title: l10n.chapterKeptCards,
                         subtitle: chapter.kept == 0
-                            ? 'Tap Keep on any card to save it here'
-                            : '${chapter.kept} to revise',
+                            ? l10n.chapterKeptEmpty
+                            : l10n.chapterKeptCount(chapter.kept),
                         onTap: () => actions.openReview(chapter.id),
                       ),
                       const SizedBox(height: 16),
                       AppButton(
-                        label: 'Add to a folder',
+                        label: l10n.folderAddTo,
                         icon: Icon(
                           Icons.create_new_folder_outlined,
                           color: context.palette.text,
@@ -107,6 +106,7 @@ class _ChapterHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = context.palette;
+    final l10n = context.l10n;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -121,10 +121,13 @@ class _ChapterHeader extends StatelessWidget {
         const SizedBox(height: 4),
         Text(
           [
-            '${chapter.lessonsDone} of ${pluralize(chapter.lessons.length, 'lesson')} done',
+            l10n.studyLessonsDoneOf(
+              chapter.lessonsDone,
+              chapter.lessons.length,
+            ),
             if (chapter.lessonsComing > 0)
-              '${chapter.lessonsComing} coming soon',
-            if (chapter.isFormativeOnly) 'Not in board exam',
+              l10n.studyComingSoonCount(chapter.lessonsComing),
+            if (chapter.isFormativeOnly) l10n.studyNotInBoardExam,
           ].join(' · '),
           style: AppTextStyles.caption.copyWith(color: palette.textMuted),
         ),
@@ -149,16 +152,19 @@ class _ResumeKey extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final lesson = chapter.resume;
     return ContinueKey(
       kicker: chapter.isDone
-          ? 'All lessons done · go again'
+          ? l10n.chapterAllDoneGoAgain
           : lesson.resumeCard > 0
-          ? 'Resume · card ${lesson.resumeCard + 1} of ${lesson.cards}'
-          : 'Next lesson',
+          ? l10n.chapterResumeCard(lesson.resumeCard + 1, lesson.cards)
+          : l10n.chapterNextLesson,
       title: lesson.title,
-      subtitle:
-          'Lesson ${lesson.position} · ${pluralize(lesson.cards, 'card')}',
+      subtitle: l10n.chapterLessonMeta(
+        lesson.position,
+        l10n.studyCardsCount(lesson.cards),
+      ),
       onTap: onTap,
     );
   }
@@ -178,6 +184,7 @@ class _LessonRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = context.palette;
+    final l10n = context.l10n;
     final progress = lesson.cards == 0 ? 0.0 : lesson.resumeCard / lesson.cards;
     return Semantics(
       button: true,
@@ -237,8 +244,15 @@ class _LessonRow extends StatelessWidget {
                     ),
                     Text(
                       lesson.isDone
-                          ? '${pluralize(lesson.cards, 'card')} · ${lesson.correct}/${lesson.quizzes} right'
-                          : '${pluralize(lesson.cards, 'card')} · ${pluralize(lesson.quizzes, 'quick check')}',
+                          ? l10n.chapterCardsRight(
+                              l10n.studyCardsCount(lesson.cards),
+                              lesson.correct,
+                              lesson.quizzes,
+                            )
+                          : l10n.chapterCardsChecks(
+                              l10n.studyCardsCount(lesson.cards),
+                              l10n.studyQuickChecksCount(lesson.quizzes),
+                            ),
                       style: AppTextStyles.caption.copyWith(
                         color: palette.textMuted,
                       ),

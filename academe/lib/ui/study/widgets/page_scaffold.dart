@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/screen_scale.dart';
 
@@ -18,6 +19,7 @@ class StudyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final padding = ScreenScale.of(context).pagePadding;
+    final l10n = context.l10n;
     return AnnotatedRegion(
       value: context.palette.systemBars,
       child: Scaffold(
@@ -32,7 +34,7 @@ class StudyPage extends StatelessWidget {
                   children: [
                     IconButton(
                       onPressed: () => Navigator.of(context).maybePop(),
-                      tooltip: 'Back',
+                      tooltip: l10n.actionBack,
                       icon: const Icon(Icons.chevron_left_rounded, size: 28),
                       color: context.palette.text,
                     ),

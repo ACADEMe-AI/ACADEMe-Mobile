@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../domain/models/deck.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/screen_scale.dart';
 import '../../core/ui/tab_bar_layout.dart';
@@ -53,10 +54,9 @@ class _CoursesBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     if (!viewModel.hasSyllabus) {
-      return const StudyNote(
-        'Set your class and board on Home to see your courses.',
-      );
+      return StudyNote(l10n.coursesNeedSyllabus);
     }
     final next = viewModel.continueLesson;
     if (next == null && viewModel.allChapters.isEmpty) {
@@ -69,14 +69,11 @@ class _CoursesBody extends StatelessWidget {
         return Center(
           child: TextButton(
             onPressed: viewModel.load.execute,
-            child: const Text('Couldn’t load your courses. Retry'),
+            child: Text(l10n.coursesLoadError),
           ),
         );
       }
-      return StudyNote(
-        'Lessons for ${viewModel.syllabusLabel} are on their way. '
-        'Ask Pebby anything in ASKMe meanwhile.',
-      );
+      return StudyNote(l10n.coursesComingSoon(viewModel.syllabusLabel));
     }
     final chapters = viewModel.chapters;
     return Column(
@@ -120,10 +117,10 @@ class _CoursesBody extends StatelessWidget {
             padding: const EdgeInsets.only(top: 16),
             child: StudyNote(
               !viewModel.filters.isEmpty
-                  ? 'No chapters match these filters.'
+                  ? l10n.coursesNoFilterMatch
                   : viewModel.filter == ChapterFilter.done
-                  ? 'Finished chapters show up here.'
-                  : 'Chapters you’ve started show up here.',
+                  ? l10n.coursesFinishedEmpty
+                  : l10n.coursesStartedEmpty,
             ),
           ),
         for (final chapter in chapters)
@@ -146,15 +143,16 @@ class _ContinueKey extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final kicker = lesson.isDone
-        ? 'Go again'
+        ? l10n.coursesGoAgain
         : lesson.resumeCard > 0
-        ? 'Continue · card ${lesson.resumeCard + 1} of ${lesson.cards}'
-        : 'Start';
+        ? l10n.coursesContinueCard(lesson.resumeCard + 1, lesson.cards)
+        : l10n.coursesStart;
     return ContinueKey(
       kicker: kicker,
       title: lesson.title,
-      subtitle: 'Ch ${lesson.chapterNumber} · ${lesson.chapterTitle}',
+      subtitle: l10n.studyChTitle(lesson.chapterNumber, lesson.chapterTitle),
       onTap: onTap,
     );
   }

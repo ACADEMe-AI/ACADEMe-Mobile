@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../domain/models/pro.dart';
 import '../../../utils/result.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/app_button.dart';
 import '../../core/ui/pebby.dart';
@@ -60,6 +61,7 @@ class _UpgradeSheetState extends State<UpgradeSheet> {
   @override
   Widget build(BuildContext context) {
     final padding = ScreenScale.of(context).pagePadding;
+    final l10n = context.l10n;
     return ListenableBuilder(
       listenable: _viewModel,
       builder: (context, _) => Padding(
@@ -73,7 +75,7 @@ class _UpgradeSheetState extends State<UpgradeSheet> {
               child: Pebby(pose: PebbyPose.celebrateSmall),
             ),
             Text(
-              'Go Pro · 3× limits',
+              l10n.upgradeTitle,
               textAlign: TextAlign.center,
               style: AppTextStyles.sheetTitle.copyWith(
                 color: context.palette.text,
@@ -93,7 +95,7 @@ class _UpgradeSheetState extends State<UpgradeSheet> {
                   ),
                 ),
               AppButton(
-                label: 'Continue',
+                label: l10n.authContinue,
                 isPrimary: true,
                 isEnabled: !_viewModel.isBusy,
                 onTap: _viewModel.isBusy ? null : _viewModel.purchase.execute,
@@ -102,18 +104,18 @@ class _UpgradeSheetState extends State<UpgradeSheet> {
                 onPressed: _viewModel.isBusy
                     ? null
                     : _viewModel.restore.execute,
-                child: const Text('Restore purchases'),
+                child: Text(l10n.paywallRestore),
               ),
               const PaywallSmallPrint(),
             ] else
               Text(
-                'Purchases aren’t available on this device',
+                l10n.paywallUnavailableTitle,
                 textAlign: TextAlign.center,
                 style: AppTextStyles.label.copyWith(
                   color: context.palette.textMuted,
                 ),
               ),
-            if (_viewModel.notice case final notice?)
+            if (_viewModel.notice(l10n) case final notice?)
               Padding(
                 padding: const EdgeInsets.only(top: 8),
                 child: Text(

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../../data/repositories/photo_repository.dart';
 import '../../../domain/models/scan.dart';
-import '../../../utils/plural.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/app_button.dart';
 import '../../core/ui/screen_scale.dart';
@@ -33,19 +33,20 @@ class ScanPagesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = context.palette;
+    final l10n = context.l10n;
     final padding = ScreenScale.of(context).pagePadding;
     return ListView(
       padding: EdgeInsets.fromLTRB(padding, 8, padding, 32),
       children: [
         Text(
-          'Your pages',
+          l10n.scanYourPages,
           style: AppTextStyles.display.copyWith(
             fontSize: 24,
             color: palette.text,
           ),
         ),
         Text(
-          '${pages.length} of ${ScanFlowViewModel.maxPages}',
+          l10n.scanPagesOf(pages.length, ScanFlowViewModel.maxPages),
           style: AppTextStyles.label.copyWith(color: palette.textMuted),
         ),
         const SizedBox(height: 16),
@@ -62,7 +63,7 @@ class ScanPagesView extends StatelessWidget {
           children: [
             Expanded(
               child: AppButton(
-                label: 'Camera',
+                label: l10n.scanCamera,
                 isEnabled: !isFull,
                 icon: Icon(Icons.photo_camera_rounded, color: palette.text),
                 onTap: () => onAdd(PhotoSource.camera),
@@ -71,7 +72,7 @@ class ScanPagesView extends StatelessWidget {
             const SizedBox(width: 12),
             Expanded(
               child: AppButton(
-                label: 'Gallery',
+                label: l10n.scanGallery,
                 isEnabled: !isFull,
                 icon: Icon(Icons.photo_library_rounded, color: palette.text),
                 onTap: () => onAdd(PhotoSource.gallery),
@@ -81,7 +82,7 @@ class ScanPagesView extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         AppButton(
-          label: 'Read ${pluralize(pages.length, 'page')}',
+          label: l10n.scanReadPages(pages.length),
           isPrimary: true,
           isEnabled: pages.isNotEmpty,
           onTap: onRead,
@@ -121,7 +122,7 @@ class _Page extends StatelessWidget {
             top: 0,
             child: IconButton(
               onPressed: onRemove,
-              tooltip: 'Remove page',
+              tooltip: context.l10n.scanRemovePage,
               style: IconButton.styleFrom(backgroundColor: palette.surface),
               icon: Icon(Icons.close_rounded, size: 16, color: palette.text),
             ),
@@ -170,6 +171,7 @@ class _ScanNotesViewState extends State<ScanNotesView> {
   @override
   Widget build(BuildContext context) {
     final palette = context.palette;
+    final l10n = context.l10n;
     final padding = ScreenScale.of(context).pagePadding;
     final folder = _folder;
     final chapter = widget.scan.chapter;
@@ -178,8 +180,8 @@ class _ScanNotesViewState extends State<ScanNotesView> {
       children: [
         Text(
           switch (widget.pages) {
-            0 => 'Your notes',
-            final n => 'Pebby read ${pluralize(n, 'page')}',
+            0 => l10n.scanYourNotes,
+            final n => l10n.scanPebbyReadPages(n),
           },
           style: AppTextStyles.display.copyWith(
             fontSize: 24,
@@ -193,7 +195,7 @@ class _ScanNotesViewState extends State<ScanNotesView> {
           ),
         const SizedBox(height: 12),
         ScanTextBox(text: widget.scan.text),
-        const SectionTitle('Where should these go?'),
+        SectionTitle(l10n.scanWhereShouldTheseGo),
         InkWell(
           onTap: _pick,
           borderRadius: BorderRadius.circular(AppRadius.md),
@@ -205,7 +207,7 @@ class _ScanNotesViewState extends State<ScanNotesView> {
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(
-                    folder?.name ?? 'Choose a folder',
+                    folder?.name ?? l10n.scanChooseFolder,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: AppTextStyles.labelStrong.copyWith(
@@ -214,7 +216,7 @@ class _ScanNotesViewState extends State<ScanNotesView> {
                   ),
                 ),
                 Text(
-                  folder == null ? '' : 'Change',
+                  folder == null ? '' : l10n.scanChange,
                   style: AppTextStyles.labelStrong.copyWith(
                     color: AppColors.primary,
                   ),
@@ -223,17 +225,17 @@ class _ScanNotesViewState extends State<ScanNotesView> {
             ),
           ),
         ),
-        const SectionTitle('Make from your notes'),
+        SectionTitle(l10n.scanMakeFromNotes),
         LinkRow(
           icon: Icons.style_rounded,
-          title: 'Swipe lesson',
-          subtitle: 'Cards and quick checks, added to the plan',
+          title: l10n.scanSwipeLesson,
+          subtitle: l10n.scanSwipeLessonSubtitle,
           onTap: () => _save(makeLesson: true),
         ),
         LinkRow(
           icon: Icons.description_outlined,
-          title: 'Just keep the notes',
-          subtitle: 'The text goes into the folder',
+          title: l10n.scanKeepNotes,
+          subtitle: l10n.scanKeepNotesSubtitle,
           onTap: () => _save(makeLesson: false),
         ),
       ],

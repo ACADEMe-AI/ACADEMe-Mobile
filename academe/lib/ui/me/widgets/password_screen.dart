@@ -16,11 +16,6 @@ class PasswordScreen extends StatefulWidget {
 
   final MeViewModel viewModel;
 
-  static const changedMessage =
-      'Password changed. Other devices have been logged out.';
-  static const setMessage =
-      'Password set. You can now log in with your email too.';
-
   @override
   State<PasswordScreen> createState() => _PasswordScreenState();
 }
@@ -56,8 +51,8 @@ class _PasswordScreenState extends State<PasswordScreen> {
       case Ok():
         Navigator.of(context).pop(
           _hasPassword
-              ? PasswordScreen.changedMessage
-              : PasswordScreen.setMessage,
+              ? context.l10n.passwordChangedSnack
+              : context.l10n.passwordSetSnack,
         );
       case Error(:final error):
         ScaffoldMessenger.of(context)
@@ -72,13 +67,16 @@ class _PasswordScreenState extends State<PasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final saving = widget.viewModel.changePassword;
     return SettingsPage(
-      title: _hasPassword ? 'Change password' : 'Set a password',
+      title: _hasPassword
+          ? l10n.accountChangePassword
+          : l10n.accountSetPassword,
       bottom: ListenableBuilder(
         listenable: Listenable.merge([saving, _current, _next]),
         builder: (context, _) => AppButton(
-          label: saving.isRunning ? 'Saving…' : 'Save password',
+          label: saving.isRunning ? l10n.authSaving : l10n.passwordSave,
           isPrimary: true,
           isEnabled: _canSave,
           onTap: _save,
@@ -87,11 +85,7 @@ class _PasswordScreenState extends State<PasswordScreen> {
       children: [
         const SizedBox(height: 8),
         Text(
-          _hasPassword
-              ? 'Use the same rules as when you signed up. Other devices '
-                    'are logged out when you save.'
-              : 'Add a password so you can also log in with your email, '
-                    'not just Google.',
+          _hasPassword ? l10n.passwordChangeBody : l10n.passwordSetBody,
           style: AppTextStyles.label.copyWith(
             color: context.palette.textMuted,
             height: 1.5,
@@ -101,14 +95,14 @@ class _PasswordScreenState extends State<PasswordScreen> {
         if (_hasPassword) ...[
           AppPasswordField(
             controller: _current,
-            label: 'Current password',
+            label: l10n.passwordCurrent,
             textInputAction: TextInputAction.next,
           ),
           const SizedBox(height: 12),
         ],
         AppPasswordField(
           controller: _next,
-          label: 'New password',
+          label: l10n.authNewPassword,
           autofillHints: const [AutofillHints.newPassword],
           onSubmitted: (_) => _canSave ? _save() : null,
         ),

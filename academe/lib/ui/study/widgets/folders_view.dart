@@ -2,12 +2,20 @@ import 'package:flutter/material.dart';
 
 import '../../../domain/models/folder.dart';
 import '../../../utils/dates.dart';
+import '../../core/l10n/app_l10n.dart';
+import '../../core/l10n/relative_day.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/app_button.dart';
 import '../../core/ui/screen_scale.dart';
 import '../../core/ui/tab_bar_layout.dart';
 import '../view_models/folders_view_model.dart';
 import 'study_note.dart';
+
+String folderDueLabel(AppLocalizations l10n, DateTime due, {DateTime? now}) =>
+    relativeDayLabel(l10n, due, now: now);
+
+String folderDueLine(AppLocalizations l10n, DateTime due, {DateTime? now}) =>
+    relativeDayLine(l10n, due, now: now);
 
 class FoldersView extends StatelessWidget {
   const FoldersView({
@@ -24,6 +32,7 @@ class FoldersView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final padding = ScreenScale.of(context).pagePadding;
+    final l10n = context.l10n;
     return ListenableBuilder(
       listenable: viewModel,
       builder: (context, _) => RefreshIndicator(
@@ -42,10 +51,7 @@ class FoldersView extends StatelessWidget {
                 child: CircularProgressIndicator(color: AppColors.primary),
               )
             else if (viewModel.folders.isEmpty)
-              const StudyNote(
-                'Make a folder for a test, your homework, or anything you’re '
-                'preparing. Add a date and it plans your days.',
-              ),
+              StudyNote(l10n.folderEmptyHint),
             for (final folder in viewModel.folders)
               Padding(
                 padding: const EdgeInsets.only(bottom: 12),
@@ -56,7 +62,7 @@ class FoldersView extends StatelessWidget {
               ),
             const SizedBox(height: 4),
             AppButton(
-              label: 'New folder',
+              label: l10n.folderNew,
               icon: Icon(
                 Icons.create_new_folder_outlined,
                 color: context.palette.text,
@@ -103,12 +109,13 @@ class FolderTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = context.palette;
+    final l10n = context.l10n;
     final due = folder.dueOn;
     final subtitle = folder.todayLeft > 0
-        ? '${folder.todayLeft} to do today'
+        ? l10n.folderTodoToday(folder.todayLeft)
         : folder.items == 0
-        ? 'Empty'
-        : 'Nothing left today';
+        ? l10n.folderEmpty
+        : l10n.folderNothingLeftToday;
     return Semantics(
       button: true,
       child: GestureDetector(
@@ -170,6 +177,7 @@ class DueTag extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = context.palette;
+    final l10n = context.l10n;
     final days = dateOnly(due).difference(dateOnly(DateTime.now())).inDays;
     final isSoon = days <= 1;
     return DecoratedBox(
@@ -180,7 +188,7 @@ class DueTag extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
         child: Text(
-          dueLabel(due),
+          folderDueLabel(l10n, due),
           style: AppTextStyles.caption.copyWith(
             fontWeight: FontWeight.w800,
             color: isSoon ? palette.errorInk : palette.text,

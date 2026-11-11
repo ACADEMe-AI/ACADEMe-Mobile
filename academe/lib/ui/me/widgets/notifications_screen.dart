@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../domain/models/reminder.dart';
 import '../../../domain/models/study_preferences.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../view_models/me_view_model.dart';
 import 'daily_goal_sheet.dart';
@@ -18,13 +19,19 @@ class NotificationsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return ListenableBuilder(
       listenable: viewModel,
       builder: (context, _) {
         final p = viewModel.preferences;
         void update(StudyPreferences next) => viewModel.updatePreferences(next);
+        final hour = p.reminderHour;
+        final hour12 = hour % 12 == 0 ? 12 : hour % 12;
+        final minute = p.reminderMinute.toString().padLeft(2, '0');
+        final period = hour < 12 ? l10n.reminderAm : l10n.reminderPm;
+        final reminderLabel = '$hour12:$minute $period';
         return SettingsPage(
-          title: 'Reminders and goal',
+          title: l10n.notifRemindersAndGoalTitle,
           children: [
             if (viewModel.notificationAccess != NotificationAccess.unknown)
               _AccessGroup(
@@ -32,10 +39,10 @@ class NotificationsScreen extends StatelessWidget {
                 onTurnOn: viewModel.turnOnNotifications,
               ),
             SettingsGroup(
-              title: 'Study reminder',
+              title: l10n.notifStudyReminder,
               children: [
                 SettingsSwitchRow(
-                  label: 'Remind me to study',
+                  label: l10n.notifRemindMeToStudy,
                   value: p.remindsToStudy,
                   onChanged: (on) => update(p.copyWith(remindsToStudy: on)),
                 ),
@@ -51,11 +58,11 @@ class NotificationsScreen extends StatelessWidget {
                       children: [
                         const SizedBox(height: 12),
                         SettingsGroup(
-                          title: 'Time',
+                          title: l10n.notifTime,
                           children: [
                             SettingsRow(
-                              label: 'Remind me at',
-                              value: p.reminderLabel,
+                              label: l10n.notifRemindMeAt,
+                              value: reminderLabel,
                               onTap: () async {
                                 final picked = await ReminderTimeSheet.show(
                                   context,
@@ -100,31 +107,31 @@ class NotificationsScreen extends StatelessWidget {
                   : const SizedBox(width: double.infinity),
             ),
             SettingsGroup(
-              title: 'Also tell me',
+              title: l10n.notifAlsoTellMe,
               children: [
                 SettingsSwitchRow(
-                  label: 'When my streak is about to end',
+                  label: l10n.notifStreakAboutToEnd,
                   value: p.savesStreak,
                   onChanged: (on) => update(p.copyWith(savesStreak: on)),
                 ),
                 SettingsSwitchRow(
-                  label: 'The evening before a test',
+                  label: l10n.notifEveningBeforeTest,
                   value: p.warnsBeforeTests,
                   onChanged: (on) => update(p.copyWith(warnsBeforeTests: on)),
                 ),
                 SettingsSwitchRow(
-                  label: 'When I level up',
+                  label: l10n.notifWhenLevelUp,
                   value: p.celebratesLevelUps,
                   onChanged: (on) => update(p.copyWith(celebratesLevelUps: on)),
                 ),
               ],
             ),
             SettingsGroup(
-              title: 'Daily goal',
+              title: l10n.dailyGoalTitle,
               children: [
                 SettingsRow(
-                  label: 'Study each day',
-                  value: '${p.dailyGoalMinutes} min',
+                  label: l10n.dailyGoalStudyEachDay,
+                  value: l10n.dailyGoalMinutesLabel(p.dailyGoalMinutes),
                   onTap: () async {
                     final picked = await DailyGoalSheet.show(
                       context,
@@ -156,19 +163,20 @@ class _AccessGroup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final isAllowed = access == NotificationAccess.allowed;
     return SettingsGroup(
-      title: 'Notifications',
+      title: l10n.notifNotifications,
       children: [
         SettingsRow(
-          label: 'Notifications',
-          value: isAllowed ? 'Allowed' : 'Not allowed',
+          label: l10n.notifNotifications,
+          value: isAllowed ? l10n.notifAllowed : l10n.notifNotAllowed,
         ),
         if (!isAllowed)
           SettingsRow(
             label: access == NotificationAccess.askable
-                ? 'Turn on notifications'
-                : 'Turn on in Settings',
+                ? l10n.notifTurnOn
+                : l10n.notifTurnOnInSettings,
             onTap: onTurnOn,
           ),
       ],

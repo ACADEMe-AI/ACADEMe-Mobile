@@ -3,22 +3,23 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../config/links.dart';
 import '../../../domain/models/pro.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/keycap.dart';
 
 class ProBenefits extends StatelessWidget {
   const ProBenefits({super.key});
 
-  static const items = [
-    (Icons.chat_bubble_rounded, '3× ASKMe questions every day'),
-    (Icons.document_scanner_rounded, '3× scans every day'),
-    (Icons.fact_check_rounded, '3× answer checks every day'),
-    (Icons.auto_stories_rounded, 'Swipe lessons made from your notes'),
-    (Icons.insights_rounded, 'My Progress weekly study summary'),
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    final items = [
+      (Icons.chat_bubble_rounded, l10n.paywallBenefitAskme),
+      (Icons.document_scanner_rounded, l10n.paywallBenefitScan),
+      (Icons.fact_check_rounded, l10n.paywallBenefitCheck),
+      (Icons.auto_stories_rounded, l10n.paywallBenefitLessons),
+      (Icons.insights_rounded, l10n.paywallBenefitProgress),
+    ];
     return Column(
       children: [
         for (final (icon, label) in items)
@@ -67,28 +68,34 @@ class PlanTile extends StatelessWidget {
 
   static const height = 96.0;
 
-  String get _title => offer.period == ProPeriod.monthly ? 'Monthly' : 'Annual';
+  String _title(AppLocalizations l10n) => offer.period == ProPeriod.monthly
+      ? l10n.paywallMonthly
+      : l10n.paywallAnnual;
 
-  String get _price => switch (offer) {
+  String _price(AppLocalizations l10n) => switch (offer) {
     ProOffer(period: ProPeriod.monthly, :final introPrice?, :final price) =>
-      '$introPrice for the first month, then $price/month',
-    ProOffer(period: ProPeriod.monthly, :final price) => '$price/month',
-    ProOffer(:final price) => '$price/year',
+      l10n.paywallPriceIntroMonth(introPrice, price),
+    ProOffer(period: ProPeriod.monthly, :final price) => l10n.paywallPriceMonth(
+      price,
+    ),
+    ProOffer(:final price) => l10n.paywallPriceYear(price),
   };
 
-  String get _detail => switch (offer) {
+  String _detail(AppLocalizations l10n) => switch (offer) {
     ProOffer(period: ProPeriod.annual, :final monthlyPrice?) =>
-      'About $monthlyPrice/month · save 17% · renews automatically',
-    ProOffer(period: ProPeriod.annual) => 'Save 17% · renews automatically',
-    _ => 'Renews automatically',
+      l10n.paywallDetailAnnualMonthly(monthlyPrice),
+    ProOffer(period: ProPeriod.annual) => l10n.paywallDetailAnnual,
+    _ => l10n.paywallDetailRenews,
   };
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    final title = _title(l10n);
     final ink = isSelected ? AppColors.keycapEdge : context.palette.text;
     return Semantics(
       selected: isSelected,
-      label: '$_title plan',
+      label: l10n.paywallPlanSemantics(title),
       child: Keycap(
         face: isSelected ? AppColors.selected : context.palette.surface,
         depth: AppKeycap.optionDepth,
@@ -112,17 +119,17 @@ class PlanTile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      _title,
+                      title,
                       style: AppTextStyles.caption.copyWith(color: ink),
                     ),
                     Text(
-                      _price,
+                      _price(l10n),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: AppTextStyles.labelStrong.copyWith(color: ink),
                     ),
                     Text(
-                      _detail,
+                      _detail(l10n),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: AppTextStyles.caption.copyWith(color: ink),
@@ -152,7 +159,7 @@ class _BestValue extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
         child: Text(
-          'Best value',
+          context.l10n.paywallBestValue,
           style: AppTextStyles.caption.copyWith(
             color: AppColors.onPrimary,
             fontWeight: FontWeight.w600,
@@ -168,22 +175,19 @@ class PaywallSmallPrint extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final muted = AppTextStyles.caption.copyWith(
       color: context.palette.textMuted,
     );
     return Column(
       children: [
-        Text(
-          'Renews automatically. Cancel anytime in Google Play.',
-          textAlign: TextAlign.center,
-          style: muted,
-        ),
+        Text(l10n.paywallSmallPrint, textAlign: TextAlign.center, style: muted),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            _Link(label: 'Terms', url: Links.terms),
+            _Link(label: l10n.paywallTerms, url: Links.terms),
             Text('·', style: muted),
-            _Link(label: 'Privacy', url: Links.privacy),
+            _Link(label: l10n.paywallPrivacy, url: Links.privacy),
           ],
         ),
       ],

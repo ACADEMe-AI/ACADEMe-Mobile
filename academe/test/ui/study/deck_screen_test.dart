@@ -3,6 +3,7 @@ import 'package:academe/domain/models/chat.dart';
 import 'package:academe/domain/models/deck.dart';
 import 'package:academe/domain/models/folder.dart';
 import 'package:academe/domain/models/profile.dart';
+import 'package:academe/l10n/generated/app_localizations.dart';
 import 'package:academe/ui/core/themes/app_theme.dart';
 import 'package:academe/ui/core/ui/pebby.dart';
 import 'package:academe/ui/study/study_actions.dart';
@@ -35,7 +36,12 @@ void main() {
     addTearDown(tester.view.reset);
     await tester.pumpWidget(
       PebbyStandIn(
-        child: MaterialApp(theme: AppTheme.dark(), home: page),
+        child: MaterialApp(
+          theme: AppTheme.dark(),
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: page,
+        ),
       ),
     );
     await tester.pumpAndSettle();

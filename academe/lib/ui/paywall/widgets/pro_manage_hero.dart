@@ -8,6 +8,7 @@ class _PlanHero extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return KeycapSurface(
       padding: const EdgeInsets.all(14),
       shadowDepth: 4,
@@ -18,7 +19,7 @@ class _PlanHero extends StatelessWidget {
           _StatusPill(isPro: isPro),
           const SizedBox(height: 8),
           Text(
-            isPro ? 'You’re on Pro' : 'You’re on Free',
+            isPro ? l10n.proOnPro : l10n.proOnFree,
             style: AppTextStyles.display.copyWith(
               fontSize: 24,
               color: context.palette.text,
@@ -26,7 +27,7 @@ class _PlanHero extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Text(
-            _metaLine(plan, isPro),
+            _metaLine(l10n, plan, isPro),
             style: AppTextStyles.label.copyWith(
               fontSize: 13,
               color: context.palette.textMuted,
@@ -37,18 +38,18 @@ class _PlanHero extends StatelessWidget {
     );
   }
 
-  String _metaLine(ProPlan plan, bool isPro) {
-    if (!isPro) return 'Daily & weekly limits · 12:00 AM IST';
+  String _metaLine(AppLocalizations l10n, ProPlan plan, bool isPro) {
+    if (!isPro) return l10n.proMetaFree;
     final expires = plan.expiresAt?.toLocal();
     final day = expires == null ? null : longDate(expires);
     return switch (plan.state) {
-      'billing_issue' => 'Fix payment in Google Play to keep Pro',
-      _ when day == null => '3× daily limits · weekly safety cap',
+      'billing_issue' => l10n.proMetaBillingIssue,
+      _ when day == null => l10n.proMetaActiveNoExpiry,
       _ when plan.autoRenew => switch (plan.period) {
-        ProPeriod.annual => 'Annual · Renews $day · 3× limits',
-        _ => 'Monthly · Renews $day · 3× limits',
+        ProPeriod.annual => l10n.proMetaAnnualRenews(day),
+        _ => l10n.proMetaMonthlyRenews(day),
       },
-      _ => 'Pro ends on $day',
+      _ => l10n.proMetaEnds(day),
     };
   }
 }
@@ -60,6 +61,7 @@ class _StatusPill extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return DecoratedBox(
       decoration: BoxDecoration(
         color: context.palette.surface,
@@ -89,7 +91,7 @@ class _StatusPill extends StatelessWidget {
             ),
             const SizedBox(width: 7),
             Text(
-              isPro ? 'Active' : 'Free',
+              isPro ? l10n.proStatusActive : l10n.proStatusFree,
               style: AppTextStyles.caption.copyWith(
                 fontSize: 11,
                 fontWeight: FontWeight.w600,

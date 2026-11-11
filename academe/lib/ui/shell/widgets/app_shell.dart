@@ -11,6 +11,8 @@ import '../../askme/view_models/askme_view_model.dart';
 import '../../askme/widgets/askme_history_screen.dart';
 import '../../askme/widgets/askme_screen.dart';
 import '../../askme/widgets/attach_sheet.dart';
+import '../../core/l10n/app_l10n.dart';
+import '../../core/l10n/syllabus_label.dart';
 import '../../core/themes/app_theme.dart';
 import '../../home/view_models/home_view_model.dart';
 import '../../home/view_models/today_view_model.dart';
@@ -245,8 +247,13 @@ class _AppShellState extends State<AppShell>
                         listenable: _viewModel,
                         builder: (context, _) => AskMeScreen(
                           viewModel: _askMe,
-                          name: _viewModel.account?.firstName ?? 'there',
-                          syllabus: _viewModel.syllabusLabel,
+                          name:
+                              _viewModel.account?.firstName ??
+                              context.l10n.helloFallbackName,
+                          syllabus: syllabusLabelForProfile(
+                            context.l10n,
+                            _viewModel.profile,
+                          ),
                           onBack: () => _select(_returnTab),
                           onHistory: _history,
                         ),

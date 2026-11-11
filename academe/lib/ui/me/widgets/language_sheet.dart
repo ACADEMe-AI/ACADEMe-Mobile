@@ -77,8 +77,8 @@ class _LanguageSheetState extends State<LanguageSheet> {
             const SizedBox(height: 12),
             AppButton(
               label: _picked == widget.current
-                  ? 'OK'
-                  : 'OK · Switch to ${_picked.nativeName}',
+                  ? context.l10n.meOk
+                  : context.l10n.meOkSwitchTo(_picked.nativeName),
               isPrimary: true,
               onTap: () => Navigator.of(
                 context,

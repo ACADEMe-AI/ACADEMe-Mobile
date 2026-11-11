@@ -87,8 +87,17 @@ func run(ctx context.Context, logger *slog.Logger) error {
 	authService.SetLogger(logger)
 	defer authService.Wait()
 	auth.RegisterRoutes(mux, logger, authService)
-	profiles := profile.NewService(profile.NewPostgresStore(pool), authService)
+	profileStore := profile.NewPostgresStore(pool)
+	profiles := profile.NewService(profileStore, authService)
 	profile.RegisterRoutes(mux, logger, profiles, authService.RequireAccount)
+	accountLanguage := func(ctx context.Context, accountID string) string {
+		p, err := profileStore.Profile(ctx, accountID)
+		if err != nil || p.Language == nil {
+			return ""
+		}
+		return *p.Language
+	}
+	authService.SetLanguage(accountLanguage)
 	var provider ai.Provider
 	var closeProvider func() error
 	switch cfg.AIProvider {
@@ -148,7 +157,7 @@ func run(ctx context.Context, logger *slog.Logger) error {
 	scans.SetLimiter(plans)
 	scan.RegisterRoutes(mux, logger, scans, authService.RequireAccount)
 	report.RegisterRoutes(mux, logger, report.NewService(report.NewPostgresStore(pool)), authService.RequireAccount)
-	feedbackSvc := feedback.NewService(feedback.NewPostgresStore(pool), feedbackNotifier(mailer, authStore, logger))
+	feedbackSvc := feedback.NewService(feedback.NewPostgresStore(pool), feedbackNotifier(mailer, authStore, accountLanguage, logger))
 	feedback.RegisterRoutes(mux, logger, feedbackSvc, authService.RequireAccount)
 	defer feedbackSvc.Wait()
 	progress.RegisterRoutes(mux, logger, progress.NewService(plans, studyService, progress.NewPostgresStore(pool)), authService.RequireAccount)
@@ -201,7 +210,7 @@ func run(ctx context.Context, logger *slog.Logger) error {
 	return nil
 }
 
-func feedbackNotifier(m auth.Mailer, store *auth.PostgresStore, logger *slog.Logger) *feedback.Notifier {
+func feedbackNotifier(m auth.Mailer, store *auth.PostgresStore, language auth.LanguageFunc, logger *slog.Logger) *feedback.Notifier {
 	var mail feedback.Mailer
 	if sender, ok := m.(interface {
 		SendFeedback(context.Context, email.FeedbackTicket) error
@@ -214,6 +223,12 @@ func feedbackNotifier(m auth.Mailer, store *auth.PostgresStore, logger *slog.Log
 		Email: func(ctx context.Context, accountID string) (string, error) {
 			a, err := store.AccountByID(ctx, accountID)
 			return a.Email, err
+		},
+		Language: func(ctx context.Context, accountID string) string {
+			if language == nil {
+				return ""
+			}
+			return language(ctx, accountID)
 		},
 		Log: logger,
 	}

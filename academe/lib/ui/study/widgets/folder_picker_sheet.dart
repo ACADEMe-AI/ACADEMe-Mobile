@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../domain/models/folder.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/app_button.dart';
 import 'folder_sheets.dart';
@@ -21,6 +22,7 @@ class FolderPickerSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = context.palette;
+    final l10n = context.l10n;
     return ConstrainedBox(
       constraints: BoxConstraints(
         maxHeight: MediaQuery.sizeOf(context).height * .7,
@@ -30,7 +32,7 @@ class FolderPickerSheet extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
         children: [
           Text(
-            'Add to a folder',
+            l10n.folderAddTo,
             style: AppTextStyles.display.copyWith(
               fontSize: 24,
               color: palette.text,
@@ -46,7 +48,7 @@ class FolderPickerSheet extends StatelessWidget {
               ),
             ),
           AppButton(
-            label: 'New folder',
+            label: l10n.folderNew,
             icon: Icon(Icons.create_new_folder_outlined, color: palette.text),
             onTap: () => Navigator.of(context).pop(newFolder),
           ),

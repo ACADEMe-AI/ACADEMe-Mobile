@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../domain/models/progress_summary.dart';
 import '../../../utils/result.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/keycap_surface.dart';
 import '../../core/ui/screen_scale.dart';
@@ -53,7 +54,7 @@ class _ProgressScreenState extends State<ProgressScreen> {
       showDragHandle: true,
       isScrollControlled: true,
       builder: (context) => ProgressNextStepsSheet(
-        syllabusLabel: widget.me.syllabusLabel,
+        syllabusLabel: widget.me.syllabusLabelFor(context.l10n),
         languageName: widget.me.language.nativeName,
         summary: summary,
       ),
@@ -62,6 +63,7 @@ class _ProgressScreenState extends State<ProgressScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final padding = ScreenScale.of(context).pagePadding;
     return ListenableBuilder(
       listenable: Listenable.merge([widget.me, widget.progress]),
@@ -76,7 +78,7 @@ class _ProgressScreenState extends State<ProgressScreen> {
               KeycapSurface(
                 face: context.palette.surfaceRaised,
                 child: Text(
-                  'Loading this week…',
+                  l10n.progressLoading,
                   style: AppTextStyles.label.copyWith(
                     color: context.palette.textMuted,
                   ),
@@ -90,7 +92,7 @@ class _ProgressScreenState extends State<ProgressScreen> {
                   children: [
                     Expanded(
                       child: Text(
-                        'Couldn’t load this week’s summary.',
+                        l10n.progressLoadError,
                         style: AppTextStyles.label.copyWith(
                           color: context.palette.textMuted,
                         ),
@@ -100,7 +102,7 @@ class _ProgressScreenState extends State<ProgressScreen> {
                       onPressed: progress.load.isRunning
                           ? null
                           : () => progress.ensureLoaded(force: true),
-                      child: const Text('Retry'),
+                      child: Text(l10n.homeRetry),
                     ),
                   ],
                 ),
@@ -116,7 +118,7 @@ class _ProgressScreenState extends State<ProgressScreen> {
         return Scaffold(
           backgroundColor: context.palette.surface,
           appBar: AppBar(
-            title: const Text('My Progress'),
+            title: Text(l10n.progressTitle),
             backgroundColor: context.palette.surface,
             foregroundColor: context.palette.text,
           ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../domain/models/deck.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/app_button.dart';
 import '../view_models/deck_view_model.dart';
@@ -160,12 +161,13 @@ class _StepCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final step = viewModel.step;
     final at = step.card;
     final tools = CardTools(
       isKept: viewModel.isKept(at),
       onKeep: () => viewModel.toggleKeep(at),
-      onAsk: () => onAsk(_question(viewModel.current.content)),
+      onAsk: () => onAsk(_question(l10n, viewModel.current.content)),
     );
     return switch (viewModel.current.content) {
       final QuizCard quiz when step.isWhy => WhyCardView(
@@ -179,8 +181,8 @@ class _StepCard extends StatelessWidget {
         result: viewModel.resultOf(at),
         onPick: viewModel.pick,
         kicker: viewModel.isChapterTest
-            ? 'Question ${at + 1} of ${viewModel.cards.length}'
-            : 'Quick check',
+            ? l10n.quizQuestionOf(at + 1, viewModel.cards.length)
+            : l10n.quizQuickCheck,
         streak: viewModel.streakAt(at),
         xp: viewModel.xpAt(at),
       ),
@@ -204,15 +206,20 @@ class _StepCard extends StatelessWidget {
     };
   }
 
-  static String _question(DeckCard card) => switch (card) {
-    ConceptCard(:final title, :final body) =>
-      'Can you explain this more simply? $title: $body',
-    TableCard(:final title) => 'Can you explain "$title" with an example?',
-    ExampleCard(:final question) => 'Can you explain how to solve: $question',
-    QuizCard(:final question, :final why) =>
-      'I got this wrong: $question Why is it: $why',
-    _ => 'Can you explain this lesson?',
-  };
+  static String _question(AppLocalizations l10n, DeckCard card) =>
+      switch (card) {
+        ConceptCard(:final title, :final body) => l10n.deckAskExplainSimply(
+          title,
+          body,
+        ),
+        TableCard(:final title) => l10n.deckAskExplainExample(title),
+        ExampleCard(:final question) => l10n.deckAskExplainSolve(question),
+        QuizCard(:final question, :final why) => l10n.deckAskWrongWhy(
+          question,
+          why,
+        ),
+        _ => l10n.deckAskExplainLesson,
+      };
 }
 
 class _DeckControls extends StatelessWidget {
@@ -220,17 +227,17 @@ class _DeckControls extends StatelessWidget {
 
   final DeckViewModel viewModel;
 
-  String get _label {
-    if (viewModel.current.content is StartCard) return 'Start';
-    if (viewModel.hasHiddenStep) {
-      return 'Show step ${viewModel.revealedOf(viewModel.step.card) + 1}';
-    }
-    if (viewModel.needsCheck) return 'Check';
-    return viewModel.hasNext ? 'Next' : 'Finish';
-  }
-
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    final label = () {
+      if (viewModel.current.content is StartCard) return l10n.deckStart;
+      if (viewModel.hasHiddenStep) {
+        return l10n.deckShowStep(viewModel.revealedOf(viewModel.step.card) + 1);
+      }
+      if (viewModel.needsCheck) return l10n.deckCheck;
+      return viewModel.hasNext ? l10n.deckNext : l10n.deckFinish;
+    }();
     final isEnabled =
         !viewModel.needsCheck || viewModel.pickOf(viewModel.step.card) != null;
     return Padding(
@@ -240,7 +247,7 @@ class _DeckControls extends StatelessWidget {
           SizedBox(
             width: 64,
             child: Semantics(
-              label: 'Previous card',
+              label: l10n.deckPreviousCard,
               child: AppButton(
                 label: '',
                 icon: Icon(
@@ -255,7 +262,7 @@ class _DeckControls extends StatelessWidget {
           const SizedBox(width: 12),
           Expanded(
             child: AppButton(
-              label: _label,
+              label: label,
               isPrimary: true,
               isEnabled: isEnabled,
               onTap: viewModel.primary,

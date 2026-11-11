@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../utils/plural.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../view_models/study_view_model.dart';
 
@@ -13,22 +13,27 @@ class ChapterRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = context.palette;
+    final l10n = context.l10n;
     final result = chapter.result;
     final soon = chapter.isComingSoon;
     final coming = chapter.lessonsComing > 0 && !soon
-        ? ' · ${chapter.lessonsComing} coming soon'
+        ? l10n.chapterComingSoonSuffix(chapter.lessonsComing)
         : '';
     final subtitle = soon
         ? chapter.lessonsPlanned == 0
-              ? 'Coming soon'
-              : 'Coming soon · ${pluralize(chapter.lessonsPlanned, 'lesson')}'
+              ? l10n.studyComingSoon
+              : l10n.chapterComingSoonLessons(
+                  l10n.studyLessonsCount(chapter.lessonsPlanned),
+                )
         : chapter.isDone
         ? result == null
-              ? 'Lessons done · test next$coming'
-              : 'Done · test ${result.percent}%$coming'
-        : '${chapter.lessonsDone} of ${pluralize(chapter.lessons.length, 'lesson')}$coming';
+              ? '${l10n.chapterLessonsDoneTestNext}$coming'
+              : '${l10n.chapterDoneTestPercent(result.percent)}$coming'
+        : '${l10n.studyLessonsOf(chapter.lessonsDone, chapter.lessons.length)}$coming';
     final ink = soon ? palette.textMuted : palette.text;
-    final exam = chapter.isFormativeOnly ? ' · Not in board exam' : '';
+    final exam = chapter.isFormativeOnly
+        ? l10n.chapterNotInBoardExamSuffix
+        : '';
     return Semantics(
       button: !soon,
       child: InkWell(

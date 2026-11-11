@@ -195,12 +195,13 @@ class _SheetHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Row(
       children: [
         if (onBack != null)
           IconButton(
             onPressed: onBack,
-            tooltip: 'Back',
+            tooltip: l10n.actionBack,
             visualDensity: VisualDensity.compact,
             padding: EdgeInsets.zero,
             constraints: const BoxConstraints.tightFor(width: 36, height: 36),
@@ -212,7 +213,10 @@ class _SheetHeader extends StatelessWidget {
             children: [
               Flexible(
                 child: Text(
-                  'SET UP · ${task.index + 1}/${SetupTask.values.length}',
+                  l10n.setupProgress(
+                    task.index + 1,
+                    SetupTask.values.length,
+                  ),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: AppTextStyles.caption.copyWith(
@@ -236,7 +240,7 @@ class _SheetHeader extends StatelessWidget {
             tapTargetSize: MaterialTapTargetSize.shrinkWrap,
             alignment: Alignment.centerRight,
           ),
-          child: const Text('Later', style: AppTextStyles.labelStrong),
+          child: Text(l10n.setupLater, style: AppTextStyles.labelStrong),
         ),
       ],
     );

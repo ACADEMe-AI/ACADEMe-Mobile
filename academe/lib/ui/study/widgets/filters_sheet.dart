@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../utils/plural.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/app_button.dart';
 import '../view_models/chapter_filters.dart';
@@ -11,12 +11,18 @@ class FiltersSheet extends StatefulWidget {
   final ChapterFilters initial;
   final int Function(ChapterFilters filters) count;
 
-  static const descriptions = {
-    ChapterFlag.boardOnly: ('Board exam only', 'Hide school-assessed chapters'),
-    ChapterFlag.ready: ('Ready to study', 'Hide chapters still coming soon'),
-    ChapterFlag.revisionDue: (
-      'Revision due',
-      'Chapters with kept cards to revise',
+  static (String, String) description(
+    AppLocalizations l10n,
+    ChapterFlag flag,
+  ) => switch (flag) {
+    ChapterFlag.boardOnly => (
+      l10n.filterBoardExamOnly,
+      l10n.filterBoardExamOnlyDesc,
+    ),
+    ChapterFlag.ready => (l10n.filterReadyToStudy, l10n.filterReadyToStudyDesc),
+    ChapterFlag.revisionDue => (
+      l10n.filterRevisionDue,
+      l10n.filterRevisionDueDesc,
     ),
   };
 
@@ -44,6 +50,7 @@ class _FiltersSheetState extends State<FiltersSheet> {
   @override
   Widget build(BuildContext context) {
     final palette = context.palette;
+    final l10n = context.l10n;
     final count = widget.count(_filters);
     return SafeArea(
       top: false,
@@ -57,7 +64,7 @@ class _FiltersSheetState extends State<FiltersSheet> {
               children: [
                 Expanded(
                   child: Text(
-                    'Filters',
+                    l10n.filterFilters,
                     style: AppTextStyles.display.copyWith(
                       fontSize: 24,
                       color: palette.text,
@@ -70,7 +77,10 @@ class _FiltersSheetState extends State<FiltersSheet> {
                   style: TextButton.styleFrom(
                     foregroundColor: AppColors.primary,
                   ),
-                  child: const Text('Clear', style: AppTextStyles.labelStrong),
+                  child: Text(
+                    l10n.filterClear,
+                    style: AppTextStyles.labelStrong,
+                  ),
                 ),
               ],
             ),
@@ -82,13 +92,13 @@ class _FiltersSheetState extends State<FiltersSheet> {
                     setState(() => _filters = _filters.toggle(flag)),
                 activeTrackColor: AppColors.primary,
                 title: Text(
-                  FiltersSheet.descriptions[flag]!.$1,
+                  FiltersSheet.description(l10n, flag).$1,
                   style: AppTextStyles.labelStrong.copyWith(
                     color: palette.text,
                   ),
                 ),
                 subtitle: Text(
-                  FiltersSheet.descriptions[flag]!.$2,
+                  FiltersSheet.description(l10n, flag).$2,
                   style: AppTextStyles.caption.copyWith(
                     color: palette.textMuted,
                   ),
@@ -96,7 +106,7 @@ class _FiltersSheetState extends State<FiltersSheet> {
               ),
             const SizedBox(height: 12),
             Text(
-              'SORT',
+              l10n.filterSort,
               style: AppTextStyles.caption.copyWith(
                 color: palette.textMuted,
                 fontWeight: FontWeight.w600,
@@ -111,7 +121,7 @@ class _FiltersSheetState extends State<FiltersSheet> {
             ),
             const SizedBox(height: 16),
             AppButton(
-              label: 'Show ${pluralize(count, 'chapter')}',
+              label: l10n.filterShowChapters(count),
               isPrimary: true,
               onTap: () => Navigator.of(context).pop(_filters),
             ),
@@ -131,6 +141,12 @@ class _SortChoice extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = context.palette;
+    final l10n = context.l10n;
+    String label(ChapterSort sort) => switch (sort) {
+      ChapterSort.textbook => l10n.filterSortTextbook,
+      ChapterSort.marks => l10n.filterSortMostMarks,
+      ChapterSort.recent => l10n.filterSortRecent,
+    };
     return DecoratedBox(
       decoration: BoxDecoration(
         color: palette.surfaceRaised,
@@ -164,7 +180,7 @@ class _SortChoice extends StatelessWidget {
                             : null,
                       ),
                       child: Text(
-                        sort.label,
+                        label(sort),
                         style: AppTextStyles.labelStrong.copyWith(
                           color: sort == value
                               ? palette.text

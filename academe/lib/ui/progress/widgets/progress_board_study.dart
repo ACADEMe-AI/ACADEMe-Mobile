@@ -1,5 +1,15 @@
 part of 'progress_board.dart';
 
+List<String> _weekdayInitials(AppLocalizations l10n) => [
+  l10n.progressWeekdayMon,
+  l10n.progressWeekdayTue,
+  l10n.progressWeekdayWed,
+  l10n.progressWeekdayThu,
+  l10n.progressWeekdayFri,
+  l10n.progressWeekdaySat,
+  l10n.progressWeekdaySun,
+];
+
 class _StudyWeekCard extends StatelessWidget {
   const _StudyWeekCard({required this.summary});
 
@@ -7,6 +17,8 @@ class _StudyWeekCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    final initials = _weekdayInitials(l10n);
     final todayIndex = indiaWeekdayIndex();
     final todayActive =
         todayIndex >= 0 &&
@@ -21,7 +33,7 @@ class _StudyWeekCard extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  'Study days',
+                  l10n.progressStudyDays,
                   style: AppTextStyles.display.copyWith(
                     fontSize: 18,
                     color: context.palette.text,
@@ -43,7 +55,7 @@ class _StudyWeekCard extends StatelessWidget {
                     vertical: 3,
                   ),
                   child: Text(
-                    'This week',
+                    l10n.progressThisWeek,
                     style: AppTextStyles.caption.copyWith(
                       color: context.palette.text,
                       fontWeight: FontWeight.w600,
@@ -55,7 +67,7 @@ class _StudyWeekCard extends StatelessWidget {
           ),
           const SizedBox(height: 2),
           Text(
-            todayActive ? 'Today · studied' : 'Today · not yet',
+            todayActive ? l10n.progressTodayStudied : l10n.progressTodayNotYet,
             style: AppTextStyles.labelStrong.copyWith(
               color: context.palette.text,
             ),
@@ -118,7 +130,7 @@ class _StudyWeekCard extends StatelessWidget {
                           for (var i = 0; i < 7; i++)
                             Expanded(
                               child: Text(
-                                weekDayInitials[i],
+                                initials[i],
                                 textAlign: TextAlign.center,
                                 style: AppTextStyles.caption.copyWith(
                                   fontSize: 10,
@@ -179,6 +191,7 @@ class _BoardTabs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Row(
       children: [
         for (final tab in ProgressBoardTab.values) ...[
@@ -186,9 +199,9 @@ class _BoardTabs extends StatelessWidget {
           Expanded(
             child: _TabKey(
               label: switch (tab) {
-                ProgressBoardTab.summary => 'Summary',
-                ProgressBoardTab.progress => 'Progress',
-                ProgressBoardTab.activity => 'Activity',
+                ProgressBoardTab.summary => l10n.progressTabSummary,
+                ProgressBoardTab.progress => l10n.progressTabProgress,
+                ProgressBoardTab.activity => l10n.progressTabActivity,
               },
               isOn: selected == tab,
               onTap: () => onSelect(tab),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../routing/routes.dart';
 import '../../../utils/dates.dart';
 import '../../../utils/result.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/app_button.dart';
 import '../../me/widgets/account_screen.dart';
@@ -22,10 +23,7 @@ mixin MeNavigation on State<AppShell> {
 
   void onLeft() {
     if (widget.me.deleteAccount.result case Ok(:final value)) {
-      showMessage(
-        'Your account will be deleted on ${longDate(value.toLocal())}. '
-        'Log in before then to keep it.',
-      );
+      showMessage(context.l10n.deleteScheduledSnack(longDate(value.toLocal())));
       widget.onLoggedOut?.call();
     } else if (widget.me.logOut.isCompleted) {
       widget.onLoggedOut?.call();
@@ -54,8 +52,8 @@ mixin MeNavigation on State<AppShell> {
     if (!mounted) return;
     showMessage(
       switched == true
-          ? '${picked.greeting} Pebby will now answer in ${picked.nativeName}.'
-          : 'Couldn’t switch the language. Try again.',
+          ? context.l10n.meLanguageSwitched(picked.greeting, picked.nativeName)
+          : context.l10n.meLanguageSwitchFailed,
     );
   }
 
@@ -125,6 +123,7 @@ class _LogOutSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
@@ -133,7 +132,7 @@ class _LogOutSheet extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              'Log out?',
+              l10n.meLogOutTitle,
               style: AppTextStyles.display.copyWith(
                 fontSize: 24,
                 color: context.palette.text,
@@ -141,19 +140,19 @@ class _LogOutSheet extends StatelessWidget {
             ),
             const SizedBox(height: 4),
             Text(
-              'Your progress is saved to your account. Log in again any time.',
+              l10n.meLogOutBody,
               style: AppTextStyles.label.copyWith(
                 color: context.palette.textMuted,
               ),
             ),
             const SizedBox(height: 16),
             AppButton(
-              label: 'Stay',
+              label: l10n.meLogOutStay,
               onTap: () => Navigator.of(context).pop(false),
             ),
             const SizedBox(height: 12),
             AppButton(
-              label: 'Log out',
+              label: l10n.meLogOut,
               isPrimary: true,
               onTap: () => Navigator.of(context).pop(true),
             ),

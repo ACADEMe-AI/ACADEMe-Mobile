@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/l10n/app_l10n.dart';
 import '../../../core/themes/app_theme.dart';
 import '../../../core/ui/app_button.dart';
 
@@ -50,7 +51,7 @@ class SetupStepFrame extends StatelessWidget {
           child: Center(child: body),
         ),
         AppButton(
-          label: isSaving ? 'Saving…' : buttonLabel,
+          label: isSaving ? context.l10n.authSaving : buttonLabel,
           isPrimary: true,
           isEnabled: isEnabled && !isSaving,
           onTap: onSubmit,

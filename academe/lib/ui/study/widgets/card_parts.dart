@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import 'swipe_deck.dart';
 
@@ -56,17 +57,19 @@ class RememberBox extends StatelessWidget {
   const RememberBox({
     super.key,
     required this.text,
-    this.label = 'Remember',
+    this.label,
     this.icon = Icons.priority_high_rounded,
   });
 
   final String text;
-  final String label;
+  final String? label;
   final IconData icon;
 
   @override
   Widget build(BuildContext context) {
     final palette = context.palette;
+    final l10n = context.l10n;
+    final label = this.label ?? l10n.deckRemember;
     return DecoratedBox(
       decoration: BoxDecoration(
         color: palette.tintCream,
@@ -154,18 +157,19 @@ class CardTools extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Row(
       children: [
         _Tool(
           icon: isKept ? Icons.bookmark_rounded : Icons.bookmark_border_rounded,
-          label: isKept ? 'Kept' : 'Keep',
+          label: isKept ? l10n.deckKept : l10n.studyKeep,
           isOn: isKept,
           onTap: onKeep,
         ),
         const SizedBox(width: 8),
         _Tool(
           icon: Icons.chat_bubble_outline_rounded,
-          label: 'Ask Pebby',
+          label: l10n.deckAskPebby,
           onTap: onAsk,
         ),
       ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/app_button.dart';
 import '../../core/ui/celebration.dart';
@@ -30,6 +31,7 @@ class ChapterReportView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = context.palette;
+    final l10n = context.l10n;
     final ratio = total == 0 ? 0.0 : correct / total;
     final onRevise = this.onRevise;
     final onAddToFolder = this.onAddToFolder;
@@ -40,7 +42,7 @@ class ChapterReportView extends StatelessWidget {
           alignment: Alignment.centerLeft,
           child: IconButton(
             onPressed: onClose,
-            tooltip: 'Close',
+            tooltip: l10n.actionClose,
             icon: const Icon(Icons.close_rounded),
             color: palette.text,
           ),
@@ -92,17 +94,17 @@ class ChapterReportView extends StatelessWidget {
                 children: [
                   Text(
                     ratio >= .8
-                        ? 'Great work'
+                        ? l10n.chapterReportGreat
                         : ratio >= .5
-                        ? 'Good going'
-                        : 'Worth another go',
+                        ? l10n.chapterReportGood
+                        : l10n.chapterReportRetry,
                     style: AppTextStyles.display.copyWith(
                       fontSize: 24,
                       color: palette.text,
                     ),
                   ),
                   Text(
-                    '$title · +$xp XP',
+                    l10n.chapterReportXp(title, xp),
                     style: AppTextStyles.label.copyWith(
                       color: palette.textMuted,
                     ),
@@ -114,7 +116,7 @@ class ChapterReportView extends StatelessWidget {
         ),
         const SizedBox(height: 24),
         Text(
-          'By lesson',
+          l10n.chapterReportByLesson,
           style: AppTextStyles.subhead.copyWith(
             fontSize: 15,
             color: palette.text,
@@ -160,7 +162,7 @@ class ChapterReportView extends StatelessWidget {
         const SizedBox(height: 24),
         if (onRevise != null && correct < total) ...[
           AppButton(
-            label: 'Revise what you missed',
+            label: l10n.chapterReviseMissed,
             isPrimary: true,
             onTap: onRevise,
           ),
@@ -168,14 +170,14 @@ class ChapterReportView extends StatelessWidget {
         ],
         if (onAddToFolder != null) ...[
           AppButton(
-            label: 'Add chapter to a folder',
+            label: l10n.chapterAddToFolderAction,
             icon: Icon(Icons.create_new_folder_outlined, color: palette.text),
             onTap: onAddToFolder,
           ),
           const SizedBox(height: 12),
         ],
         AppButton(
-          label: 'Back to chapter',
+          label: l10n.chapterBackToChapter,
           isPrimary: onRevise == null || correct == total,
           onTap: onClose,
         ),

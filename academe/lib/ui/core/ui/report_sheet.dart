@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../domain/models/chat.dart';
+import '../l10n/app_l10n.dart';
 import '../themes/app_theme.dart';
 
 class ReportSheet extends StatelessWidget {
@@ -18,8 +19,17 @@ class ReportSheet extends StatelessWidget {
         builder: (_) => ReportSheet(title: title),
       );
 
+  String _reasonLabel(AppLocalizations l10n, ReportReason reason) =>
+      switch (reason) {
+        ReportReason.wrong => l10n.reportReasonWrong,
+        ReportReason.harmful => l10n.reportReasonHarmful,
+        ReportReason.offensive => l10n.reportReasonOffensive,
+        ReportReason.other => l10n.reportReasonOther,
+      };
+
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return SafeArea(
       child: SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
@@ -36,7 +46,7 @@ class ReportSheet extends StatelessWidget {
             ),
             const SizedBox(height: 4),
             Text(
-              'We read every report and use it to make Pebby safer.',
+              l10n.reportBody,
               style: AppTextStyles.label.copyWith(
                 color: context.palette.textMuted,
               ),
@@ -46,7 +56,7 @@ class ReportSheet extends StatelessWidget {
               ListTile(
                 contentPadding: EdgeInsets.zero,
                 title: Text(
-                  reason.label,
+                  _reasonLabel(l10n, reason),
                   style: AppTextStyles.label.copyWith(
                     color: context.palette.text,
                   ),

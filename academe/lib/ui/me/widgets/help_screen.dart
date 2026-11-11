@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../config/links.dart';
 import '../../../domain/models/feedback.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../view_models/help_view_model.dart';
 import 'feedback_form_screen.dart';
 import 'settings_list.dart';
@@ -27,34 +28,42 @@ class HelpScreen extends StatelessWidget {
     if (sent == true && context.mounted) {
       ScaffoldMessenger.of(context)
         ..hideCurrentSnackBar()
-        ..showSnackBar(
-          const SnackBar(content: Text('Thanks, we got your message.')),
-        );
+        ..showSnackBar(SnackBar(content: Text(context.l10n.helpThanks)));
       viewModel.submit.clearResult();
     }
   }
 
+  String _categoryLabel(BuildContext context, FeedbackCategory category) {
+    final l10n = context.l10n;
+    return switch (category) {
+      FeedbackCategory.wrongAnswer => l10n.feedbackWrongAnswer,
+      FeedbackCategory.bug => l10n.feedbackBug,
+      FeedbackCategory.feature => l10n.feedbackFeature,
+    };
+  }
+
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return SettingsPage(
-      title: 'Help and feedback',
+      title: l10n.meHelpAndFeedback,
       children: [
         SettingsGroup(
-          title: 'Tell us',
+          title: l10n.helpTellUs,
           children: [
             SettingsRow(
-              label: FeedbackCategory.wrongAnswer.label,
+              label: _categoryLabel(context, FeedbackCategory.wrongAnswer),
               onTap: () => _openCategory(context, FeedbackCategory.wrongAnswer),
             ),
             SettingsRow(
-              label: FeedbackCategory.bug.label,
+              label: _categoryLabel(context, FeedbackCategory.bug),
               onTap: () => _openCategory(context, FeedbackCategory.bug),
             ),
             SettingsRow(
-              label: FeedbackCategory.feature.label,
+              label: _categoryLabel(context, FeedbackCategory.feature),
               onTap: () => _openCategory(context, FeedbackCategory.feature),
             ),
-            const SettingsRow(label: 'Email us', value: email),
+            SettingsRow(label: l10n.helpEmailUs, value: email),
           ],
         ),
       ],

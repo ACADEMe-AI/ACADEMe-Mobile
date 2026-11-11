@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/number_wheel.dart';
 import 'picker_sheet.dart';
@@ -37,8 +38,9 @@ class _ReminderTimeSheetState extends State<ReminderTimeSheet> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return PickerSheet(
-      title: 'Reminder time',
+      title: l10n.reminderTimeTitle,
       onDone: () =>
           Navigator.of(context).pop((_hour12 % 12 + (_isPm ? 12 : 0), _minute)),
       child: Row(
@@ -48,7 +50,7 @@ class _ReminderTimeSheetState extends State<ReminderTimeSheet> {
             values: _hours,
             value: _hour12,
             width: 80,
-            semanticsLabel: 'Hour',
+            semanticsLabel: l10n.reminderHour,
             label: (h) => '$h',
             onChanged: (h) => setState(() => _hour12 = h),
           ),
@@ -63,7 +65,7 @@ class _ReminderTimeSheetState extends State<ReminderTimeSheet> {
             values: _minutes,
             value: _minute,
             width: 80,
-            semanticsLabel: 'Minute',
+            semanticsLabel: l10n.reminderMinute,
             label: (m) => m.toString().padLeft(2, '0'),
             onChanged: (m) => setState(() => _minute = m),
           ),
@@ -71,8 +73,8 @@ class _ReminderTimeSheetState extends State<ReminderTimeSheet> {
             values: const [false, true],
             value: _isPm,
             width: 72,
-            semanticsLabel: 'Morning or evening',
-            label: (pm) => pm ? 'pm' : 'am',
+            semanticsLabel: l10n.reminderAmPm,
+            label: (pm) => pm ? l10n.reminderPm : l10n.reminderAm,
             onChanged: (pm) => setState(() => _isPm = pm),
           ),
         ],

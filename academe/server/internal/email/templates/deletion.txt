@@ -1,11 +1,11 @@
-{{define "content"}}We got your deletion request
+{{define "content"}}{{.Heading}}
 
-Someone asked to delete the ACADEMe account that uses this email address.
+{{.Lead}}
 
-Can you open the app?
-Go to Me > Account > Delete my account. Your account closes straight away and everything is erased after 30 days. Logging in again within those 30 days cancels the deletion.
+{{.OpenTitle}}
+{{.Before}}{{.Emphasis}}{{.After}}
 
-Can't open the app?
-Reply to this email from this address to confirm. We'll delete the account and its data and write back within 30 days.
+{{.CantTitle}}
+{{.CantBody}}
 
-Didn't ask for this? You can ignore this email. Nothing will be deleted.{{end}}
+{{.Ignore}}{{end}}

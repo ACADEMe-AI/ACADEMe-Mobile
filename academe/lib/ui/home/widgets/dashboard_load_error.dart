@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 
 class DashboardLoadError extends StatelessWidget {
@@ -9,18 +10,19 @@ class DashboardLoadError extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Row(
       children: [
         Expanded(
           child: Text(
-            'Couldn’t load your dashboard.',
+            l10n.homeDashboardLoadError,
             style: AppTextStyles.label.copyWith(color: AppColors.error),
           ),
         ),
         TextButton(
           onPressed: onRetry,
           style: TextButton.styleFrom(foregroundColor: AppColors.primary),
-          child: const Text('Retry', style: AppTextStyles.labelStrong),
+          child: Text(l10n.homeRetry, style: AppTextStyles.labelStrong),
         ),
       ],
     );

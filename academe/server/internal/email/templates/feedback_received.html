@@ -1,5 +1,5 @@
 {{define "content"}}{{template "heading" .Heading}}
-{{template "text" "Thanks for helping us improve ACADEMe. We read every message and reply from support@academe.cc when we need more detail."}}
+{{template "text" .Lead}}
 {{template "button" .Button}}
-<p class="muted" style="margin:32px 0 0;font-size:14px;line-height:22px;color:#5C6578;">This is not a chat thread. If something is urgent, email support@academe.cc from this address.</p>
+<p class="muted" style="margin:32px 0 0;font-size:14px;line-height:22px;color:#5C6578;">{{.Ignore}}</p>
 {{end}}

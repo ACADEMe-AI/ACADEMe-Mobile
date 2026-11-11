@@ -3,6 +3,8 @@ package site
 import (
 	"net/http"
 	"strings"
+
+	"academe/server/internal/lang"
 )
 
 const defaultLang = "en"
@@ -99,25 +101,22 @@ type pageView struct {
 }
 
 func resolveLang(r *http.Request) string {
-	if lang := normalizeLang(r.URL.Query().Get("lang")); supportedLangs[lang] {
-		return lang
+	if q := strings.TrimSpace(r.URL.Query().Get("lang")); q != "" {
+		if code := strings.ToLower(q); supportedLangs[code] {
+			return lang.Normalize(code)
+		}
 	}
 	for _, part := range strings.Split(r.Header.Get("Accept-Language"), ",") {
 		tag := strings.TrimSpace(strings.SplitN(part, ";", 2)[0])
-		if lang := normalizeLang(tag); supportedLangs[lang] {
-			return lang
-		}
+		base := tag
 		if i := strings.IndexByte(tag, '-'); i > 0 {
-			if lang := normalizeLang(tag[:i]); supportedLangs[lang] {
-				return lang
-			}
+			base = tag[:i]
+		}
+		if code := strings.ToLower(strings.TrimSpace(base)); supportedLangs[code] {
+			return lang.Normalize(code)
 		}
 	}
 	return defaultLang
-}
-
-func normalizeLang(raw string) string {
-	return strings.ToLower(strings.TrimSpace(raw))
 }
 
 func langQuery(lang string) string {

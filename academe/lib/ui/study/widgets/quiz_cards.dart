@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../domain/models/deck.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/celebration.dart';
 import '../../core/ui/keycap.dart';
@@ -15,7 +16,7 @@ class QuizCardView extends StatelessWidget {
     required this.pick,
     required this.result,
     required this.onPick,
-    this.kicker = 'Quick check',
+    this.kicker,
     this.streak = 0,
     this.xp = 0,
   });
@@ -24,19 +25,30 @@ class QuizCardView extends StatelessWidget {
   final int? pick;
   final bool? result;
   final ValueChanged<int> onPick;
-  final String kicker;
+  final String? kicker;
   final int streak;
   final int xp;
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final result = this.result;
+    final praise = [
+      l10n.quizPraise1,
+      l10n.quizPraise2,
+      l10n.quizPraise3,
+      l10n.quizPraise4,
+      l10n.quizPraise5,
+    ];
     return CardBody(
       children: [
         Row(
           children: [
             Expanded(
-              child: CardKicker(icon: Icons.task_alt_rounded, text: kicker),
+              child: CardKicker(
+                icon: Icons.task_alt_rounded,
+                text: kicker ?? l10n.quizQuickCheck,
+              ),
             ),
             const _XpTag(),
           ],
@@ -59,19 +71,11 @@ class QuizCardView extends StatelessWidget {
           ResultLine(
             isCorrect: result,
             streak: streak,
-            praise: _praise[card.question.length % _praise.length],
+            praise: praise[card.question.length % praise.length],
           ),
       ],
     );
   }
-
-  static const _praise = [
-    'Nice! That’s right.',
-    'Spot on!',
-    'You got it!',
-    'Correct, well done!',
-    'Exactly right!',
-  ];
 
   OptionState _stateOf(int i) {
     if (result == null) {
@@ -97,11 +101,12 @@ class WhyCardView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final pick = this.pick;
     return CardBody(
       tools: tools,
       children: [
-        const CardKicker(icon: Icons.help_outline_rounded, text: 'Here’s why'),
+        CardKicker(icon: Icons.help_outline_rounded, text: l10n.quizHeresWhy),
         const SizedBox(height: 8),
         Text(
           card.question,
@@ -115,22 +120,22 @@ class WhyCardView extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 8),
             child: OptionKey(
               label: card.options[pick],
-              note: 'Your answer',
+              note: l10n.quizYourAnswer,
               state: OptionState.wrong,
             ),
           ),
         OptionKey(
           label: card.options[card.answer],
-          note: 'Right answer',
+          note: l10n.quizRightAnswer,
           state: OptionState.right,
         ),
         const SizedBox(height: 16),
         ReplyText(card.why, fontSize: 16),
         const SizedBox(height: 16),
-        const RememberBox(
-          label: 'Kept for you',
+        RememberBox(
+          label: l10n.quizKeptForYou,
           icon: Icons.bookmark_added_rounded,
-          text: 'This question comes back in your revision tomorrow.',
+          text: l10n.quizComesBack,
         ),
       ],
     );
@@ -248,6 +253,7 @@ class _XpTag extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return DecoratedBox(
       decoration: BoxDecoration(
         color: AppColors.selected,
@@ -257,7 +263,7 @@ class _XpTag extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
         child: Text(
-          '+${QuizCard.xp} XP',
+          l10n.quizXpTag(QuizCard.xp),
           style: AppTextStyles.caption.copyWith(
             color: AppColors.keycapEdge,
             fontWeight: FontWeight.w800,

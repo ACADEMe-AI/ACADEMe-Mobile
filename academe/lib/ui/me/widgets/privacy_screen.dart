@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../config/links.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import 'settings_list.dart';
 import 'settings_page.dart';
@@ -9,18 +10,16 @@ import 'settings_page.dart';
 class PrivacyScreen extends StatelessWidget {
   const PrivacyScreen({super.key});
 
-  static const summary = [
-    'We keep your account, class, board and subjects, study progress and '
-        'streak, folders, notes and chats with Pebby to run ACADEMe for you.',
-    'Your questions and scanned photos go to Sarvam AI in India so Pebby can '
-        'answer. We don’t store your photos, only the text read from them.',
-    'No ads, no advertising ID, no location, and we never sell your data.',
-    'Delete your account any time in Account. Everything is erased after '
-        '30 days.',
+  static List<String> summary(AppLocalizations l10n) => [
+    l10n.privacySummary1,
+    l10n.privacySummary2,
+    l10n.privacySummary3,
+    l10n.privacySummary4,
   ];
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     Future<void> open(Uri link) async {
       final opened = await launchUrl(
         link,
@@ -29,11 +28,13 @@ class PrivacyScreen extends StatelessWidget {
       if (opened || !context.mounted) return;
       ScaffoldMessenger.of(context)
         ..hideCurrentSnackBar()
-        ..showSnackBar(SnackBar(content: Text('Open $link in your browser')));
+        ..showSnackBar(
+          SnackBar(content: Text(context.l10n.meOpenInBrowser('$link'))),
+        );
     }
 
     return SettingsPage(
-      title: 'Privacy and terms',
+      title: l10n.mePrivacyAndTerms,
       children: [
         const SizedBox(height: 8),
         DecoratedBox(
@@ -46,7 +47,7 @@ class PrivacyScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                for (final line in summary)
+                for (final line in summary(l10n))
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 4),
                     child: Text(
@@ -61,27 +62,30 @@ class PrivacyScreen extends StatelessWidget {
           ),
         ),
         SettingsGroup(
-          title: 'Documents',
+          title: l10n.privacyDocuments,
           children: [
             SettingsRow(
-              label: 'Privacy policy',
+              label: l10n.privacyPolicy,
               onTap: () => open(Links.privacy),
             ),
-            SettingsRow(label: 'Terms of use', onTap: () => open(Links.terms)),
+            SettingsRow(
+              label: l10n.privacyTermsOfUse,
+              onTap: () => open(Links.terms),
+            ),
           ],
         ),
         SettingsGroup(
-          title: 'Your data',
+          title: l10n.privacyYourData,
           children: [
             SettingsRow(
-              label: 'Get a copy of my data',
+              label: l10n.privacyGetCopy,
               onTap: () => open(Links.support),
             ),
             SettingsRow(
-              label: 'Grievance Officer',
+              label: l10n.privacyGrievanceOfficer,
               onTap: () => open(Links.support.replace(fragment: 'grievance')),
             ),
-            const SettingsRow(label: 'Email', value: Links.supportEmail),
+            SettingsRow(label: l10n.authEmail, value: Links.supportEmail),
           ],
         ),
       ],

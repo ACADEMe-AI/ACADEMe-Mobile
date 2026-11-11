@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../domain/models/folder.dart';
 import '../../../utils/dates.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/screen_scale.dart';
 import 'page_scaffold.dart';
@@ -15,6 +16,7 @@ class PlanScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final padding = ScreenScale.of(context).pagePadding;
     final palette = context.palette;
+    final l10n = context.l10n;
     final due = folder.summary.dueOn;
     return StudyPage(
       title: folder.summary.name,
@@ -22,15 +24,14 @@ class PlanScreen extends StatelessWidget {
         padding: EdgeInsets.fromLTRB(padding, 0, padding, 24),
         children: [
           Text(
-            due == null ? 'Plan' : 'Plan to ${shortDay(due)}',
+            due == null ? l10n.folderPlan : l10n.folderPlanTo(shortDay(due)),
             style: AppTextStyles.display.copyWith(
               fontSize: 26,
               color: palette.text,
             ),
           ),
           Text(
-            'Made from the chapters in this folder. Missed something? It '
-            'moves to the next day on its own.',
+            l10n.folderPlanBody,
             style: AppTextStyles.label.copyWith(color: palette.textMuted),
           ),
           const SizedBox(height: 12),
@@ -60,10 +61,11 @@ class _PlanDayRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = context.palette;
+    final l10n = context.l10n;
     final lines = isDue
-        ? [('Test day · you’re ready', false)]
+        ? [(l10n.folderTestDay, false)]
         : day.tasks.isEmpty
-        ? [('Rest day', false)]
+        ? [(l10n.folderRestDay, false)]
         : [for (final t in day.tasks) (t.title, t.isDone)];
     return DecoratedBox(
       decoration: BoxDecoration(

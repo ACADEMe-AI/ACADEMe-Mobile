@@ -1,5 +1,16 @@
 part of 'pro_manage_screen.dart';
 
+String _resetsIn(AppLocalizations l10n, DateTime at, {DateTime? now}) {
+  final current = now ?? DateTime.now();
+  final diff = at.difference(current);
+  if (diff.isNegative) return l10n.proResetsSoon;
+  if (diff.inHours < 48) {
+    final hours = diff.inHours < 1 ? 1 : diff.inHours;
+    return l10n.proResetsInHours(hours);
+  }
+  return relativeDayLabel(l10n, at, now: current);
+}
+
 class _DailyLimitsCard extends StatelessWidget {
   const _DailyLimitsCard({required this.plan, required this.isPro});
 
@@ -8,11 +19,12 @@ class _DailyLimitsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final meters = _dailyMeters(plan, isPro);
+    final l10n = context.l10n;
+    final meters = _dailyMeters(l10n, plan, isPro);
     if (meters.isEmpty) return const SizedBox.shrink();
     final resetChip = plan.resetsAt == null
         ? null
-        : resetsIn(plan.resetsAt!.toLocal());
+        : _resetsIn(l10n, plan.resetsAt!.toLocal());
     return KeycapSurface(
       padding: const EdgeInsets.all(14),
       shadowDepth: 4,
@@ -20,8 +32,8 @@ class _DailyLimitsCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           _CardHead(
-            label: 'Daily limits',
-            when: 'Resets every day at 12:00 AM IST',
+            label: l10n.proDailyLimits,
+            when: l10n.proResetsDaily,
             chip: resetChip,
             chipCool: false,
           ),
@@ -40,12 +52,16 @@ class _DailyLimitsCard extends StatelessWidget {
     );
   }
 
-  List<(String, int, int)> _dailyMeters(ProPlan plan, bool isPro) {
-    const labels = {
-      ProFeature.askme: 'ASKMe',
-      ProFeature.scan: 'Scan',
-      ProFeature.check: 'Check',
-      ProFeature.lessons: 'Lessons',
+  List<(String, int, int)> _dailyMeters(
+    AppLocalizations l10n,
+    ProPlan plan,
+    bool isPro,
+  ) {
+    final labels = {
+      ProFeature.askme: l10n.proFeatureAskme,
+      ProFeature.scan: l10n.proFeatureScan,
+      ProFeature.check: l10n.proFeatureCheck,
+      ProFeature.lessons: l10n.proFeatureLessons,
     };
     final rows = <(String, int, int)>[];
     for (final feature in [
@@ -70,12 +86,13 @@ class _WeeklyLimitCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final when = plan.weekResetsAt == null
-        ? 'Resets Mondays · 12:00 AM IST'
-        : 'Resets ${shortDay(plan.weekResetsAt!.toLocal())} · 12:00 AM IST';
+        ? l10n.proResetsMondays
+        : l10n.proResetsOnDay(shortDay(plan.weekResetsAt!.toLocal()));
     final chip = plan.weekResetsAt == null
         ? null
-        : resetsIn(plan.weekResetsAt!.toLocal());
+        : _resetsIn(l10n, plan.weekResetsAt!.toLocal());
     return KeycapSurface(
       padding: const EdgeInsets.all(14),
       shadowDepth: 4,
@@ -84,14 +101,14 @@ class _WeeklyLimitCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           _CardHead(
-            label: 'Weekly limit',
+            label: l10n.proWeeklyLimit,
             when: when,
             chip: chip,
             chipCool: true,
           ),
           const SizedBox(height: 14),
           _MeterRow(
-            name: 'All features',
+            name: l10n.proAllFeatures,
             used: plan.usedWeek,
             limit: plan.weekLimit,
             isWeek: true,

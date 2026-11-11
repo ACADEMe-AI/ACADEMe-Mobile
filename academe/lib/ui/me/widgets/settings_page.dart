@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/screen_scale.dart';
 
@@ -32,7 +33,7 @@ class SettingsPage extends StatelessWidget {
                   children: [
                     IconButton(
                       onPressed: () => Navigator.of(context).maybePop(),
-                      tooltip: 'Back',
+                      tooltip: context.l10n.actionBack,
                       icon: const Icon(Icons.chevron_left_rounded, size: 28),
                       color: context.palette.text,
                     ),

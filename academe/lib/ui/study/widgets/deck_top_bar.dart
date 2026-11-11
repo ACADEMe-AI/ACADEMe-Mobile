@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/report_button.dart';
 
@@ -22,6 +23,7 @@ class DeckTopBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = context.palette;
+    final l10n = context.l10n;
     return Padding(
       padding: const EdgeInsets.fromLTRB(8, 4, 20, 0),
       child: Column(
@@ -31,7 +33,7 @@ class DeckTopBar extends StatelessWidget {
             children: [
               IconButton(
                 onPressed: onClose,
-                tooltip: 'Close',
+                tooltip: l10n.actionClose,
                 icon: const Icon(Icons.close_rounded),
                 color: palette.text,
               ),
@@ -47,8 +49,8 @@ class DeckTopBar extends StatelessWidget {
               ),
               if (onReport case final report?)
                 ReportButton(
-                  title: 'Report this lesson',
-                  thanks: 'Thanks. We’ll review this lesson.',
+                  title: l10n.deckReportTitle,
+                  thanks: l10n.deckReportThanks,
                   onReport: report,
                   iconSize: 20,
                 ),
@@ -102,14 +104,12 @@ class DeckLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Stack(
       children: [
         Center(
           child: hasError
-              ? TextButton(
-                  onPressed: onRetry,
-                  child: const Text('Couldn’t load this lesson. Retry'),
-                )
+              ? TextButton(onPressed: onRetry, child: Text(l10n.deckLoadError))
               : const CircularProgressIndicator(color: AppColors.primary),
         ),
         Positioned(
@@ -117,7 +117,7 @@ class DeckLoading extends StatelessWidget {
           top: 4,
           child: IconButton(
             onPressed: onClose,
-            tooltip: 'Close',
+            tooltip: l10n.actionClose,
             icon: const Icon(Icons.close_rounded),
             color: context.palette.text,
           ),

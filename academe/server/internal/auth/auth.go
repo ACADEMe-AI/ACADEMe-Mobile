@@ -92,11 +92,14 @@ type SubscriberDeleter interface {
 	DeleteSubscriber(ctx context.Context, accountID string) error
 }
 
+type LanguageFunc func(ctx context.Context, accountID string) string
+
 type Service struct {
 	store       Store
 	tokenKey    []byte
 	google      GoogleVerifier
 	mailer      Mailer
+	language    LanguageFunc
 	limits      resetLimits
 	entry       entryLimits
 	dummyHash   string
@@ -110,6 +113,15 @@ type Service struct {
 func (s *Service) SetSubscriberDeleter(d SubscriberDeleter) { s.subscribers = d }
 
 func (s *Service) SetEntryLimitScale(scale int) { s.entry = newEntryLimits(scale) }
+
+func (s *Service) SetLanguage(fn LanguageFunc) { s.language = fn }
+
+func (s *Service) accountLanguage(ctx context.Context, accountID string) string {
+	if s.language == nil {
+		return ""
+	}
+	return s.language(ctx, accountID)
+}
 
 func NewService(store Store, tokenKey []byte, google GoogleVerifier, mailer Mailer) *Service {
 	return &Service{

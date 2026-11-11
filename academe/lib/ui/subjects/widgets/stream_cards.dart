@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../../domain/models/study_stream.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/page_dots.dart';
 import '../../core/ui/subject_icons.dart';
@@ -68,8 +69,8 @@ class _StreamCardsState extends State<StreamCards> {
         const SizedBox(height: 8),
         Text(
           widget.index < last
-              ? 'Swipe for ${streams[last].name}. Change it any time in Me.'
-              : 'Change it any time in Me.',
+              ? context.l10n.streamSwipeFor(streams[last].name)
+              : context.l10n.streamChangeInMe,
           textAlign: TextAlign.center,
           style: AppTextStyles.caption.copyWith(
             color: context.palette.textMuted,

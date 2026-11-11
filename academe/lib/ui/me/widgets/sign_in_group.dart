@@ -32,7 +32,7 @@ class SignInGroup extends StatelessWidget {
       if (!context.mounted) return;
       switch (viewModel.linkGoogle.result) {
         case Ok():
-          show('Google linked. You can log in with it now.');
+          show(context.l10n.accountGoogleLinked);
         case Error(error: AuthException(failure: AuthFailure.canceled)):
           break;
         case Error(:final error):
@@ -56,10 +56,11 @@ class SignInGroup extends StatelessWidget {
       if (!context.mounted) return;
       show(switch (viewModel.unlinkGoogle.result) {
         Error(:final error) => failureMessage(error, context.l10n),
-        _ => 'Google unlinked. Log in with your email and password.',
+        _ => context.l10n.accountGoogleUnlinked,
       });
     }
 
+    final l10n = context.l10n;
     return ListenableBuilder(
       listenable: viewModel,
       builder: (context, _) {
@@ -67,22 +68,27 @@ class SignInGroup extends StatelessWidget {
         final isLinking = viewModel.linkGoogle.isRunning;
         final isUnlinking = viewModel.unlinkGoogle.isRunning;
         return SettingsGroup(
-          title: 'Sign-in',
+          title: l10n.accountSignIn,
           children: [
-            SettingsRow(label: 'Email', value: viewModel.account?.email ?? ''),
+            SettingsRow(
+              label: l10n.authEmail,
+              value: viewModel.account?.email ?? '',
+            ),
             SettingsRow(
               label: viewModel.hasPassword
-                  ? 'Change password'
-                  : 'Set a password',
+                  ? l10n.accountChangePassword
+                  : l10n.accountSetPassword,
               onTap: openPassword,
             ),
             SettingsRow(
-              label: googleEmail == null ? 'Link Google' : 'Google',
+              label: googleEmail == null
+                  ? l10n.accountLinkGoogle
+                  : l10n.accountGoogle,
               value: isLinking
-                  ? 'Linking…'
+                  ? l10n.accountLinking
                   : isUnlinking
-                  ? 'Unlinking…'
-                  : googleEmail ?? 'Not linked',
+                  ? l10n.accountUnlinking
+                  : googleEmail ?? l10n.accountNotLinked,
               onTap: isLinking || isUnlinking
                   ? null
                   : googleEmail == null

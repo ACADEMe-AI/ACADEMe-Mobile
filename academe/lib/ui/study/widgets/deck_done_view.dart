@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/app_button.dart';
 import '../../core/ui/celebration.dart';
@@ -33,6 +34,7 @@ class DeckDoneView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final nextTitle = this.nextTitle;
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
@@ -61,7 +63,7 @@ class DeckDoneView extends StatelessWidget {
             ),
           ),
           Text(
-            _isPerfect ? 'Perfect lesson!' : 'Lesson done!',
+            _isPerfect ? l10n.deckPerfect : l10n.deckLessonDone,
             textAlign: TextAlign.center,
             style: AppTextStyles.display.copyWith(
               fontSize: 30,
@@ -79,29 +81,32 @@ class DeckDoneView extends StatelessWidget {
           Row(
             children: [
               Expanded(
-                child: _Stat(value: '$correct/$quizzes', label: 'right'),
+                child: _Stat(
+                  value: '$correct/$quizzes',
+                  label: l10n.deckStatRight,
+                ),
               ),
               const SizedBox(width: 8),
               Expanded(
-                child: _Stat(value: '+$xp', label: 'XP', countsUp: xp),
+                child: _Stat(value: '+$xp', label: l10n.studyXp, countsUp: xp),
               ),
               const SizedBox(width: 8),
               Expanded(
-                child: _Stat(value: '$kept', label: 'kept'),
+                child: _Stat(value: '$kept', label: l10n.deckStatKept),
               ),
             ],
           ),
           const Spacer(),
           if (nextTitle != null) ...[
             AppButton(
-              label: 'Next: $nextTitle',
+              label: l10n.deckNextTitle(nextTitle),
               isPrimary: true,
               onTap: onNext,
             ),
             const SizedBox(height: 12),
           ],
           AppButton(
-            label: hasChapter ? 'Back to chapter' : 'Done',
+            label: hasChapter ? l10n.chapterBackToChapter : l10n.studyDone,
             isPrimary: nextTitle == null,
             onTap: onClose,
           ),

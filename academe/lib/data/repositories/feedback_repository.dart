@@ -1,4 +1,5 @@
 import '../../domain/models/feedback.dart';
+import '../../l10n/generated/app_localizations.dart';
 import '../../utils/result.dart';
 import '../model/api_models.dart';
 import '../services/feedback_api_service.dart';
@@ -31,20 +32,17 @@ class FeedbackRepositoryRemote extends FeedbackRepository {
   );
 }
 
-String feedbackFailureMessage(Object error) {
+String feedbackFailureMessage(Object error, AppLocalizations l10n) {
   if (error is! ApiException) {
-    return 'Couldn’t send that. Try again.';
+    return l10n.feedbackFailGeneric;
   }
   return switch (error.code) {
     'too_many_requests' => switch (error.details['scope']) {
-      'week' =>
-        'You’ve sent the most feedback we can take this week. Try again next week.',
-      _ =>
-        'You’ve sent the most feedback we can take today. Try again tomorrow.',
+      'week' => l10n.feedbackFailWeek,
+      _ => l10n.feedbackFailDay,
     },
-    'invalid_feedback' => 'Write at least 10 characters so we can help.',
-    ApiException.network =>
-      'You’re offline. Check your connection and try again.',
-    _ => 'Couldn’t send that. Try again.',
+    'invalid_feedback' => l10n.feedbackFailTooShort,
+    ApiException.network => l10n.feedbackFailOffline,
+    _ => l10n.feedbackFailGeneric,
   };
 }

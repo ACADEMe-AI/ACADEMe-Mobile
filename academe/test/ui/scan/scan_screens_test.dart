@@ -1,5 +1,6 @@
 import 'package:academe/domain/models/chat.dart';
 import 'package:academe/domain/models/scan.dart';
+import 'package:academe/l10n/generated/app_localizations.dart';
 import 'package:academe/ui/core/themes/app_theme.dart';
 import 'package:academe/ui/core/ui/pebby.dart';
 import 'package:academe/ui/scan/view_models/scan_flow_view_model.dart';
@@ -23,7 +24,12 @@ void main() {
     addTearDown(tester.view.reset);
     await tester.pumpWidget(
       PebbyStandIn(
-        child: MaterialApp(theme: AppTheme.dark(), home: page),
+        child: MaterialApp(
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          theme: AppTheme.dark(),
+          home: page,
+        ),
       ),
     );
     await tester.pump();

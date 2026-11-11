@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../domain/models/scan.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/app_button.dart';
 import '../../core/ui/celebration.dart';
@@ -26,23 +27,24 @@ class CheckResultScreen extends StatelessWidget {
   final VoidCallback onCheckAgain;
   final ReportAnswer onReport;
 
-  String get _verdict {
-    if (marking.isFull) return 'Full marks!';
-    if (marking.awarded * 2 >= marking.marks) return 'Nearly there';
-    return 'Keep going';
+  String _verdict(AppLocalizations l10n) {
+    if (marking.isFull) return l10n.checkFullMarks;
+    if (marking.awarded * 2 >= marking.marks) return l10n.checkNearlyThere;
+    return l10n.checkKeepGoing;
   }
 
   @override
   Widget build(BuildContext context) {
     final palette = context.palette;
+    final l10n = context.l10n;
     final padding = ScreenScale.of(context).pagePadding;
     final ring = _MarksRing(marking: marking);
     return StudyPage(
-      title: 'Check my answer',
+      title: l10n.homeCheckAnswer,
       actions: [
         ReportButton(
-          title: 'Report these marks',
-          thanks: 'Thanks. We’ll review these marks.',
+          title: l10n.checkReportTitle,
+          thanks: l10n.checkReportThanks,
           onReport: onReport,
         ),
       ],
@@ -58,7 +60,7 @@ class CheckResultScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      _verdict,
+                      _verdict(l10n),
                       style: AppTextStyles.display.copyWith(
                         fontSize: 24,
                         color: palette.text,
@@ -85,11 +87,11 @@ class CheckResultScreen extends StatelessWidget {
               ),
             ),
           ],
-          const SectionTitle('What got marks'),
+          SectionTitle(l10n.checkWhatGotMarks),
           for (final point in marking.points) _PointRow(point: point),
           const SizedBox(height: 16),
           RememberBox(
-            label: marking.isFull ? 'Well done' : 'For full marks',
+            label: marking.isFull ? l10n.checkWellDone : l10n.checkForFullMarks,
             icon: marking.isFull
                 ? Icons.emoji_events_rounded
                 : Icons.priority_high_rounded,
@@ -102,7 +104,7 @@ class CheckResultScreen extends StatelessWidget {
             children: [
               Expanded(
                 child: AppButton(
-                  label: 'Ask Pebby',
+                  label: l10n.scanAskPebby,
                   icon: Icon(Icons.chat_rounded, color: palette.text),
                   onTap: onAskPebby,
                 ),
@@ -110,7 +112,7 @@ class CheckResultScreen extends StatelessWidget {
               const SizedBox(width: 12),
               Expanded(
                 child: AppButton(
-                  label: 'Check again',
+                  label: l10n.checkAgain,
                   isPrimary: true,
                   icon: const Icon(
                     Icons.photo_camera_rounded,
@@ -213,6 +215,7 @@ class _ModelAnswerState extends State<_ModelAnswer> {
   @override
   Widget build(BuildContext context) {
     final palette = context.palette;
+    final l10n = context.l10n;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -224,7 +227,9 @@ class _ModelAnswerState extends State<_ModelAnswer> {
             icon: Icon(
               _isOpen ? Icons.expand_less_rounded : Icons.expand_more_rounded,
             ),
-            label: Text(_isOpen ? 'Hide model answer' : 'Show model answer'),
+            label: Text(
+              _isOpen ? l10n.checkHideModelAnswer : l10n.checkShowModelAnswer,
+            ),
           ),
         ),
         if (_isOpen)

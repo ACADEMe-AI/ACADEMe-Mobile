@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../domain/models/board.dart';
+import '../../../core/l10n/app_l10n.dart';
 import '../../../core/themes/app_theme.dart';
 import '../../../core/ui/board_picker.dart';
 import 'setup_step_frame.dart';
@@ -29,9 +30,9 @@ class _BoardStepState extends State<BoardStep> {
   @override
   Widget build(BuildContext context) {
     return SetupStepFrame(
-      title: 'Which board?',
-      subtitle: 'We follow your board’s syllabus.',
-      buttonLabel: widget.isLast ? 'Finish setup' : 'Continue',
+      title: context.l10n.setupBoardTitle,
+      subtitle: context.l10n.setupBoardSubtitle,
+      buttonLabel: widget.isLast ? context.l10n.setupFinish : context.l10n.authContinue,
       isSaving: widget.isSaving,
       onSubmit: () => widget.onSubmit(_board),
       body: Column(
@@ -43,7 +44,7 @@ class _BoardStepState extends State<BoardStep> {
           ),
           const SizedBox(height: 16),
           Text(
-            'State boards are coming soon.',
+            context.l10n.setupStateBoardsSoon,
             style: AppTextStyles.caption.copyWith(
               color: context.palette.textMuted,
             ),

@@ -1,4 +1,6 @@
 import 'package:academe/domain/models/chat.dart';
+import 'package:academe/l10n/generated/app_localizations.dart';
+import 'package:academe/l10n/generated/app_localizations_en.dart';
 import 'package:academe/ui/askme/widgets/reply_actions.dart';
 import 'package:academe/ui/core/themes/app_theme.dart';
 import 'package:academe/utils/result.dart';
@@ -18,6 +20,9 @@ void main() {
     final reports = <ReportReason>[];
     await tester.pumpWidget(
       MaterialApp(
+        locale: const Locale('en'),
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
         theme: AppTheme.dark(),
         home: Scaffold(
           body: ReplyActions(
@@ -43,11 +48,13 @@ void main() {
     await tester.tap(find.byTooltip('Report'));
     await tester.pumpAndSettle();
     expect(find.text('Report this answer'), findsOneWidget);
-    for (final reason in ReportReason.values) {
-      expect(find.text(reason.label), findsOneWidget);
-    }
+    final en = AppLocalizationsEn();
+    expect(find.text(en.reportReasonWrong), findsOneWidget);
+    expect(find.text(en.reportReasonHarmful), findsOneWidget);
+    expect(find.text(en.reportReasonOffensive), findsOneWidget);
+    expect(find.text(en.reportReasonOther), findsOneWidget);
 
-    await tester.tap(find.text(ReportReason.offensive.label));
+    await tester.tap(find.text(en.reportReasonOffensive));
     await tester.pumpAndSettle();
     expect(reports, [ReportReason.offensive]);
     expect(find.text('Thanks. We’ll review this answer.'), findsOneWidget);
@@ -66,7 +73,7 @@ void main() {
 
     await tester.tap(find.byTooltip('Report'));
     await tester.pumpAndSettle();
-    await tester.tap(find.text(ReportReason.wrong.label));
+    await tester.tap(find.text(AppLocalizationsEn().reportReasonWrong));
     await tester.pumpAndSettle();
     expect(reports, [ReportReason.wrong]);
     expect(find.text('Couldn’t send the report. Try again.'), findsOneWidget);

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../domain/models/pro.dart';
 import '../../../routing/routes.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/keycap.dart';
 import '../view_models/pro_view_model.dart';
@@ -13,12 +14,12 @@ class ProCard extends StatelessWidget {
 
   static const height = 72.0;
 
-  String _subtitle(ProViewModel viewModel) {
-    if (!viewModel.isPro) return 'Plan & limits · 3× with Pro';
+  String _subtitle(AppLocalizations l10n, ProViewModel viewModel) {
+    if (!viewModel.isPro) return l10n.proCardSubtitleFree;
     return switch (viewModel.plan.period) {
-      ProPeriod.monthly => 'Pro · monthly',
-      ProPeriod.annual => 'Pro · annual',
-      null => 'Pro',
+      ProPeriod.monthly => l10n.proCardSubtitleMonthly,
+      ProPeriod.annual => l10n.proCardSubtitleAnnual,
+      null => l10n.proCardSubtitlePro,
     };
   }
 
@@ -27,6 +28,7 @@ class ProCard extends StatelessWidget {
     return ListenableBuilder(
       listenable: viewModel,
       builder: (context, _) {
+        final l10n = context.l10n;
         final isPro = viewModel.isPro;
         final ink = isPro ? context.palette.text : AppColors.keycapEdge;
         return Keycap(
@@ -49,12 +51,12 @@ class ProCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'ACADEMe Pro',
+                        l10n.proTitle,
                         style: AppTextStyles.labelStrong.copyWith(color: ink),
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        _subtitle(viewModel),
+                        _subtitle(l10n, viewModel),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: AppTextStyles.caption.copyWith(color: ink),
@@ -63,7 +65,7 @@ class ProCard extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  isPro ? 'Manage' : 'Go Pro',
+                  isPro ? l10n.proManage : l10n.actionGoPro,
                   style: AppTextStyles.labelStrong.copyWith(color: ink),
                 ),
                 Icon(Icons.chevron_right_rounded, color: ink),

@@ -24,14 +24,15 @@ class StudyFactory {
     deckId: deckId,
   );
 
-  DeckViewModel chapterTest(StudyChapter chapter) => DeckViewModel.chapterTest(
-    studyRepository: studyRepository,
-    profileRepository: profileRepository,
-    folderRepository: folderRepository,
-    chapterId: chapter.id,
-    deckIds: [for (final l in chapter.lessons) l.id],
-    title: 'Ch ${chapter.number} test',
-  );
+  DeckViewModel chapterTest(StudyChapter chapter, {required String title}) =>
+      DeckViewModel.chapterTest(
+        studyRepository: studyRepository,
+        profileRepository: profileRepository,
+        folderRepository: folderRepository,
+        chapterId: chapter.id,
+        deckIds: [for (final l in chapter.lessons) l.id],
+        title: title,
+      );
 
   ReviewViewModel review(String? chapterId) => ReviewViewModel(
     studyRepository: studyRepository,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../../../domain/models/app_language.dart';
+import '../../../core/l10n/app_l10n.dart';
 import '../../../core/themes/app_theme.dart';
 import '../../../core/ui/page_dots.dart';
 import 'setup_step_frame.dart';
@@ -44,8 +45,8 @@ class _LanguageStepState extends State<LanguageStep> {
   Widget build(BuildContext context) {
     final language = AppLanguage.values[_index];
     return SetupStepFrame(
-      title: 'Which language do you learn in?',
-      buttonLabel: 'Choose ${language.nativeName}',
+      title: context.l10n.setupLanguageTitle,
+      buttonLabel: context.l10n.setupChooseLanguage(language.nativeName),
       isSaving: widget.isSaving,
       onSubmit: () => widget.onSubmit(language),
       body: Column(
@@ -74,7 +75,7 @@ class _LanguageStepState extends State<LanguageStep> {
           PageDots(count: AppLanguage.values.length, active: _index),
           const SizedBox(height: 12),
           Text(
-            'You can change it any time in Settings.',
+            context.l10n.setupLanguageFootnote,
             style: AppTextStyles.caption.copyWith(
               color: context.palette.textMuted,
             ),

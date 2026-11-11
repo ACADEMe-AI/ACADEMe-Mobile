@@ -3,6 +3,7 @@ package email
 import (
 	"bytes"
 	"encoding/json"
+	"html"
 	"log/slog"
 	"net/http"
 	"net/http/httptest"
@@ -210,10 +211,12 @@ func allMessages(t *testing.T) map[string]message {
 	t.Helper()
 	all := map[string]message{}
 	for name, build := range map[string]func() (message, error){
-		"reset":    Reset{Code: "042917", LinkToken: "Xq3vP0kE2mR8sT1uW5yZ7a"}.message, //nolint:gosec
-		"google":   Reset{GoogleOnly: true}.message,
-		"welcome":  Welcome{FirstName: "Maya"}.message,
-		"deletion": deletionMessage,
+		"reset":   Reset{Code: "042917", LinkToken: "Xq3vP0kE2mR8sT1uW5yZ7a"}.message, //nolint:gosec
+		"google":  Reset{GoogleOnly: true}.message,
+		"welcome": Welcome{FirstName: "Maya"}.message,
+		"deletion": func() (message, error) {
+			return deletionMessage("")
+		},
 		"feedback_ops": func() (message, error) {
 			return FeedbackTicket{ID: "t1", StudentEmail: "s@ex.com", Category: "feature", Message: "Dark mode"}.opsMessage()
 		},
@@ -228,6 +231,98 @@ func allMessages(t *testing.T) map[string]message {
 		all[name] = m
 	}
 	return all
+}
+
+func TestNormalizeLanguage(t *testing.T) {
+	for _, tc := range []struct {
+		in, want string
+	}{
+		{"", "en"}, {"EN", "en"}, {"fr", "en"}, {"hi", "hi"}, {" HI ", "hi"},
+		{"te", "te"}, {"ta", "ta"}, {"bn", "bn"}, {"hi-IN", "en"},
+	} {
+		if got := locale(tc.in).Lang; got != tc.want {
+			t.Errorf("locale(%q).Lang = %q, want %q", tc.in, got, tc.want)
+		}
+	}
+}
+
+func TestLocalesRenderSubjectHTMLText(t *testing.T) {
+	langs := []string{"en", "hi", "te", "ta", "bn"}
+	for _, lang := range langs {
+		c := locale(lang)
+		t.Run("welcome/"+lang, func(t *testing.T) {
+			m, err := Welcome{FirstName: "Maya", Language: lang}.message()
+			if err != nil {
+				t.Fatalf("Welcome.message() = %v", err)
+			}
+			if m.Subject != c.WelcomeSubject {
+				t.Errorf("subject = %q, want %q", m.Subject, c.WelcomeSubject)
+			}
+			heading := c.welcomeHeading("Maya")
+			containsAll(t, "html", m.HTML, `lang="`+c.Lang+`"`, html.EscapeString(heading), html.EscapeString(c.WelcomeLead), html.EscapeString(c.OpenButton), html.EscapeString(c.Questions))
+			containsAll(t, "text", m.Text, heading, c.WelcomeBody, c.OpenButton, c.Questions)
+		})
+		t.Run("reset/"+lang, func(t *testing.T) {
+			m, err := Reset{Code: "042917", LinkToken: "tok", Language: lang}.message()
+			if err != nil {
+				t.Fatalf("Reset.message() = %v", err)
+			}
+			wantSubject := strings.ReplaceAll(c.ResetSubject, "%s", "042917")
+			if m.Subject != wantSubject {
+				t.Errorf("subject = %q, want %q", m.Subject, wantSubject)
+			}
+			containsAll(t, "html", m.HTML, `lang="`+c.Lang+`"`, html.EscapeString(c.ResetHeading), html.EscapeString(c.ResetButton), html.EscapeString(c.ResetPill), ">0<", ">4<", html.EscapeString(c.ResetIgnore))
+			containsAll(t, "text", m.Text, c.ResetHeading, "042917", c.ResetIgnore, c.Questions)
+		})
+		t.Run("google/"+lang, func(t *testing.T) {
+			m, err := Reset{GoogleOnly: true, Language: lang}.message()
+			if err != nil {
+				t.Fatalf("Reset(google).message() = %v", err)
+			}
+			if m.Subject != c.GoogleSubject {
+				t.Errorf("subject = %q, want %q", m.Subject, c.GoogleSubject)
+			}
+			containsAll(t, "html", m.HTML, `lang="`+c.Lang+`"`, html.EscapeString(c.GoogleHeading), html.EscapeString(c.GoogleEmphasis), html.EscapeString(c.OpenButton), html.EscapeString(c.GoogleIgnore))
+			containsAll(t, "text", m.Text, c.GoogleHeading, c.GoogleBodyText, c.OpenButton)
+			if strings.Contains(m.HTML, "reset-password") || strings.Contains(m.Text, "042917") {
+				t.Errorf("google-only mail offers a reset link or code")
+			}
+		})
+		t.Run("deletion/"+lang, func(t *testing.T) {
+			m, err := deletionMessage(lang)
+			if err != nil {
+				t.Fatalf("deletionMessage() = %v", err)
+			}
+			if m.Subject != c.DeletionSubject {
+				t.Errorf("subject = %q, want %q", m.Subject, c.DeletionSubject)
+			}
+			containsAll(t, "html", m.HTML, `lang="`+c.Lang+`"`, html.EscapeString(c.DeletionHeading), html.EscapeString(c.DeletionPath), html.EscapeString(c.DeletionButton), html.EscapeString(c.DeletionIgnore))
+			containsAll(t, "text", m.Text, c.DeletionHeading, c.DeletionPath, c.DeletionCantBody)
+		})
+		t.Run("feedback_received/"+lang, func(t *testing.T) {
+			m, err := FeedbackTicket{Language: lang}.receivedMessage()
+			if err != nil {
+				t.Fatalf("receivedMessage() = %v", err)
+			}
+			if m.Subject != c.FeedbackSubject {
+				t.Errorf("subject = %q, want %q", m.Subject, c.FeedbackSubject)
+			}
+			containsAll(t, "html", m.HTML, `lang="`+c.Lang+`"`, html.EscapeString(c.FeedbackHeading), html.EscapeString(c.FeedbackLead), html.EscapeString(c.OpenButton), html.EscapeString(c.FeedbackNote))
+			containsAll(t, "text", m.Text, c.FeedbackHeading, c.FeedbackLead, c.OpenButton)
+		})
+	}
+}
+
+func TestFeedbackOpsStaysEnglish(t *testing.T) {
+	m, err := FeedbackTicket{ID: "t1", StudentEmail: "s@ex.com", Category: "bug", Message: "x", Language: "hi"}.opsMessage()
+	if err != nil {
+		t.Fatalf("opsMessage() = %v", err)
+	}
+	containsAll(t, "html", m.HTML, `lang="en"`, "New in-app feedback", "Something isn&#39;t working", "Questions? Write to")
+	containsAll(t, "text", m.Text, "New in-app feedback", "Questions? Write to")
+	if strings.Contains(m.HTML, "धन्यवाद") || strings.Contains(m.Subject, "फ़ीडबैक") {
+		t.Errorf("ops mail localized unexpectedly: subject %q", m.Subject)
+	}
 }
 
 // Sends real feedback receipt (and ops copy) when ACADEME_LIVE_EMAIL=1 and ACADEME_RESEND_API_KEY is set.
@@ -246,7 +341,7 @@ func TestSendFeedbackLive(t *testing.T) {
 	}
 	c := NewResend(key, os.Getenv("ACADEME_EMAIL_FROM"), &http.Client{Timeout: 15 * time.Second})
 	ticket := FeedbackTicket{
-		ID: "sample-" + time.Now().UTC().Format("20060102-150405"),
+		ID:           "sample-" + time.Now().UTC().Format("20060102-150405"),
 		StudentEmail: to,
 		Category:     "feature",
 		Message:      "Sample branded feedback email from ACADEMe dev — safe to ignore. Checking ops + receipt templates match reset/welcome.",

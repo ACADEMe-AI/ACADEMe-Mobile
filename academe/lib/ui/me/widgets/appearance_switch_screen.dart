@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/pebby.dart';
 import '../view_models/me_view_model.dart';
@@ -54,6 +55,7 @@ class _AppearanceSwitchScreenState extends State<AppearanceSwitchScreen>
   @override
   Widget build(BuildContext context) {
     final isDark = widget.isDark;
+    final l10n = context.l10n;
     return AnnotatedRegion(
       value: context.palette.systemBars,
       child: PopScope(
@@ -74,7 +76,9 @@ class _AppearanceSwitchScreenState extends State<AppearanceSwitchScreen>
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    isDark ? 'Lights off…' : 'Good morning!',
+                    isDark
+                        ? l10n.appearanceLightsOff
+                        : l10n.appearanceGoodMorning,
                     textAlign: TextAlign.center,
                     style: AppTextStyles.display.copyWith(
                       fontSize: 24,
@@ -83,8 +87,8 @@ class _AppearanceSwitchScreenState extends State<AppearanceSwitchScreen>
                   ),
                   Text(
                     isDark
-                        ? 'Pebby is dimming the room'
-                        : 'Pebby is opening the curtains',
+                        ? l10n.appearanceDimming
+                        : l10n.appearanceOpeningCurtains,
                     textAlign: TextAlign.center,
                     style: AppTextStyles.label.copyWith(
                       color: context.palette.textMuted,

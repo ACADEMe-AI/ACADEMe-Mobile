@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../domain/models/progress_summary.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 
 class ProgressNextStepsSheet extends StatelessWidget {
@@ -15,8 +16,23 @@ class ProgressNextStepsSheet extends StatelessWidget {
   final String languageName;
   final ProgressSummary summary;
 
+  String _weekLine(AppLocalizations l10n) {
+    final parts = <String>[
+      if (summary.daysActiveThisWeek > 0)
+        l10n.progressWeekActiveDays(summary.daysActiveThisWeek),
+      if (summary.lessonsFinishedThisWeek > 0)
+        l10n.progressWeekLessons(summary.lessonsFinishedThisWeek),
+      if (summary.chapterTestsThisWeek > 0)
+        l10n.progressWeekChapterTests(summary.chapterTestsThisWeek),
+      if (summary.xpThisWeek > 0) l10n.progressWeekXp(summary.xpThisWeek),
+    ];
+    if (parts.isEmpty) return l10n.progressWeekEmpty;
+    return l10n.progressWeekSummary(parts.join(' · '));
+  }
+
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final hasStudy =
         summary.lessonsFinishedThisWeek > 0 || summary.daysActiveThisWeek > 0;
     final grade = summary.overallGrade;
@@ -28,7 +44,7 @@ class ProgressNextStepsSheet extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              'Next steps',
+              l10n.progressNextSteps,
               style: AppTextStyles.display.copyWith(
                 fontSize: 22,
                 color: context.palette.text,
@@ -36,7 +52,7 @@ class ProgressNextStepsSheet extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             Text(
-              'This week',
+              l10n.progressThisWeek,
               style: AppTextStyles.subhead.copyWith(
                 fontSize: 15,
                 color: context.palette.text,
@@ -44,7 +60,7 @@ class ProgressNextStepsSheet extends StatelessWidget {
             ),
             const SizedBox(height: 4),
             Text(
-              summary.weekLine,
+              _weekLine(l10n),
               style: AppTextStyles.label.copyWith(
                 color: context.palette.textMuted,
               ),
@@ -52,7 +68,7 @@ class ProgressNextStepsSheet extends StatelessWidget {
             if (grade != null) ...[
               const SizedBox(height: 12),
               Text(
-                'Overall grade',
+                l10n.progressOverallGrade,
                 style: AppTextStyles.subhead.copyWith(
                   fontSize: 15,
                   color: context.palette.text,
@@ -68,7 +84,7 @@ class ProgressNextStepsSheet extends StatelessWidget {
             ],
             const SizedBox(height: 12),
             Text(
-              'Your setup',
+              l10n.progressYourSetup,
               style: AppTextStyles.subhead.copyWith(
                 fontSize: 15,
                 color: context.palette.text,
@@ -83,7 +99,7 @@ class ProgressNextStepsSheet extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             Text(
-              'What to do next',
+              l10n.progressWhatNext,
               style: AppTextStyles.subhead.copyWith(
                 fontSize: 15,
                 color: context.palette.text,
@@ -91,9 +107,7 @@ class ProgressNextStepsSheet extends StatelessWidget {
             ),
             const SizedBox(height: 4),
             Text(
-              hasStudy
-                  ? 'Keep finishing lessons this week. Your grade updates when you complete them.'
-                  : 'On Me, confirm class and board. Then open Study and finish your first lesson.',
+              hasStudy ? l10n.progressNextWithStudy : l10n.progressNextNoStudy,
               style: AppTextStyles.labelStrong.copyWith(
                 color: context.palette.text,
               ),

@@ -194,7 +194,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     SignUpViewModel vm,
   ) => switch (vm.step) {
     SignUpStep.hello when vm.connectProvider.isRunning => l10n.signUpConnecting,
-    SignUpStep.hello when vm.connectProvider.hasError => l10n.signUpTryAgain,
+    SignUpStep.hello when vm.connectProvider.hasError => l10n.actionTryAgain,
     SignUpStep.hello => l10n.signUpHiPebbyAction,
     SignUpStep.password when vm.createAccount.isRunning =>
       l10n.signUpCreatingAccount,

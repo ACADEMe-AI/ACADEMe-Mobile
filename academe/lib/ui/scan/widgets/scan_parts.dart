@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../data/repositories/photo_repository.dart';
 import '../../../domain/models/pro.dart';
 import '../../../domain/models/scan.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/app_button.dart';
 import '../../core/ui/pebby.dart';
@@ -15,11 +16,18 @@ extension ScanModeLook on ScanMode {
     ScanMode.ask => Icons.chat_rounded,
   };
 
-  String get hint => switch (this) {
-    ScanMode.solve => 'Hints first',
-    ScanMode.check => 'Board-style marks',
-    ScanMode.notes => 'Pages into a lesson',
-    ScanMode.ask => 'Anything else',
+  String title(AppLocalizations l10n) => switch (this) {
+    ScanMode.solve => l10n.homeSolveHomework,
+    ScanMode.check => l10n.homeCheckAnswer,
+    ScanMode.notes => l10n.scanModeNotes,
+    ScanMode.ask => l10n.scanModeAsk,
+  };
+
+  String hint(AppLocalizations l10n) => switch (this) {
+    ScanMode.solve => l10n.scanHintSolve,
+    ScanMode.check => l10n.scanHintCheck,
+    ScanMode.notes => l10n.scanHintNotes,
+    ScanMode.ask => l10n.scanHintAsk,
   };
 
   Color tint(AppPalette palette) => switch (this) {
@@ -47,6 +55,7 @@ class ScanSourceSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = context.palette;
+    final l10n = context.l10n;
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
@@ -55,7 +64,7 @@ class ScanSourceSheet extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              mode.label,
+              mode.title(l10n),
               style: AppTextStyles.display.copyWith(
                 fontSize: 24,
                 color: palette.text,
@@ -64,13 +73,13 @@ class ScanSourceSheet extends StatelessWidget {
             const SizedBox(height: 4),
             Text(
               mode == ScanMode.notes
-                  ? 'Up to 10 pages. Only the text is kept, not the photos.'
-                  : 'Only the text is kept, not the photo.',
+                  ? l10n.scanSourceNotesBlurb
+                  : l10n.scanSourceBlurb,
               style: AppTextStyles.label.copyWith(color: palette.textMuted),
             ),
             const SizedBox(height: 16),
             AppButton(
-              label: 'Take a photo',
+              label: l10n.scanTakePhoto,
               isPrimary: true,
               icon: const Icon(
                 Icons.photo_camera_rounded,
@@ -80,7 +89,7 @@ class ScanSourceSheet extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             AppButton(
-              label: 'Choose from gallery',
+              label: l10n.scanChooseGallery,
               icon: Icon(Icons.photo_library_rounded, color: palette.text),
               onTap: () => Navigator.of(context).pop(PhotoSource.gallery),
             ),
@@ -160,45 +169,43 @@ class ScanProblem extends StatelessWidget {
   final VoidCallback onRetake;
   final VoidCallback? onGoPro;
 
-  (String, String) get _words => switch (failure) {
+  (String, String) _words(AppLocalizations l10n) => switch (failure) {
     ScanFailure.unavailable => (
-      'Scan isn’t ready yet',
-      'Pebby can’t read photos right now. Try again later.',
+      l10n.scanFailUnavailableTitle,
+      l10n.scanFailUnavailableBody,
     ),
-    ScanFailure.noText => (
-      'No words here',
-      'Point the camera at your homework, a textbook page or your notes.',
-    ),
+    ScanFailure.noText => (l10n.scanFailNoTextTitle, l10n.scanFailNoTextBody),
     ScanFailure.tooLarge => (
-      'Too many big photos',
-      'Try fewer pages at a time.',
+      l10n.scanFailTooLargeTitle,
+      l10n.scanFailTooLargeBody,
     ),
     ScanFailure.network => (
-      'You’re offline',
-      'Check your internet and try again.',
+      l10n.scanFailNetworkTitle,
+      l10n.scanFailNetworkBody,
     ),
     ScanFailure.scanLimit => (
-      'That’s today’s free scans',
-      'They come back at midnight. Go Pro to scan as much as you like.',
+      l10n.scanFailScanLimitTitle,
+      l10n.scanFailScanLimitBody,
     ),
     ScanFailure.checkLimit => (
-      'That’s today’s free check',
-      'It comes back at midnight. Go Pro to check every answer.',
+      l10n.scanFailCheckLimitTitle,
+      l10n.scanFailCheckLimitBody,
     ),
     ScanFailure.proOnly => (
-      'Lessons from notes are Pro',
-      'Keep your notes for free, or go Pro and Pebby makes them a lesson.',
+      l10n.scanFailProOnlyTitle,
+      l10n.scanFailProOnlyBody,
     ),
     ScanFailure.unknown => (
-      'Pebby couldn’t read that',
-      'Try again, or retake the photo in better light.',
+      l10n.scanFailUnknownTitle,
+      l10n.scanFailUnknownBody,
     ),
   };
 
   @override
   Widget build(BuildContext context) {
     final palette = context.palette;
-    final (title, text) = _words;
+    final l10n = context.l10n;
+    final (title, text) = _words(l10n);
     final canRetry = failure != ScanFailure.noText;
     return Center(
       child: Padding(
@@ -229,23 +236,27 @@ class ScanProblem extends StatelessWidget {
             const SizedBox(height: 20),
             if (onGoPro case final goPro?
                 when failure.limitFeature != null) ...[
-              AppButton(label: 'Go Pro', isPrimary: true, onTap: goPro),
+              AppButton(label: l10n.actionGoPro, isPrimary: true, onTap: goPro),
               if (failure != ScanFailure.scanLimit) ...[
                 const SizedBox(height: 12),
                 AppButton(
                   label: failure == ScanFailure.proOnly
-                      ? 'Just keep the notes'
-                      : 'Back to your answer',
+                      ? l10n.scanKeepNotes
+                      : l10n.scanBackToAnswer,
                   onTap: onRetry,
                 ),
               ],
             ] else ...[
               if (canRetry) ...[
-                AppButton(label: 'Try again', isPrimary: true, onTap: onRetry),
+                AppButton(
+                  label: l10n.actionTryAgain,
+                  isPrimary: true,
+                  onTap: onRetry,
+                ),
                 const SizedBox(height: 12),
               ],
               AppButton(
-                label: 'Retake',
+                label: l10n.scanRetake,
                 isPrimary: !canRetry,
                 icon: Icon(
                   Icons.photo_camera_rounded,

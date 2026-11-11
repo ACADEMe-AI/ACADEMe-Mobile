@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/l10n/app_l10n.dart';
 import '../../../core/ui/class_dial.dart';
 import 'setup_step_frame.dart';
 
@@ -27,9 +28,9 @@ class _ClassStepState extends State<ClassStep> {
   @override
   Widget build(BuildContext context) {
     return SetupStepFrame(
-      title: 'Spin to your class',
-      subtitle: 'Turn the dial or tap a number.',
-      buttonLabel: 'I’m in Class $_classLevel',
+      title: context.l10n.setupClassTitle,
+      subtitle: context.l10n.setupClassSubtitle,
+      buttonLabel: context.l10n.setupImInClass(_classLevel),
       isSaving: widget.isSaving,
       onSubmit: () => widget.onSubmit(_classLevel),
       body: ClassDial(

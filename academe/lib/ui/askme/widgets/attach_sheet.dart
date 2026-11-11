@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../data/repositories/photo_repository.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 
 class AttachSheet extends StatelessWidget {
@@ -19,24 +20,24 @@ class AttachSheet extends StatelessWidget {
     builder: (_) => AttachSheet(onPick: onPick),
   );
 
-  static final _options =
-      <(IconData, String, PhotoSource, Color Function(AppPalette))>[
-        (
-          Icons.photo_camera_rounded,
-          'Camera',
-          PhotoSource.camera,
-          (p) => p.tintAmber,
-        ),
-        (
-          Icons.photo_library_rounded,
-          'Photos',
-          PhotoSource.gallery,
-          (p) => p.tintLavender,
-        ),
-      ];
-
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    final options =
+        <(IconData, String, PhotoSource, Color Function(AppPalette))>[
+          (
+            Icons.photo_camera_rounded,
+            l10n.attachCamera,
+            PhotoSource.camera,
+            (p) => p.tintAmber,
+          ),
+          (
+            Icons.photo_library_rounded,
+            l10n.attachPhotos,
+            PhotoSource.gallery,
+            (p) => p.tintLavender,
+          ),
+        ];
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.fromLTRB(16, 0, 16, 24),
@@ -45,7 +46,7 @@ class AttachSheet extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Add to your question',
+              l10n.attachTitle,
               style: AppTextStyles.subhead.copyWith(
                 fontSize: 16,
                 color: context.palette.text,
@@ -54,7 +55,7 @@ class AttachSheet extends StatelessWidget {
             const SizedBox(height: 16),
             Row(
               children: [
-                for (final (icon, label, source, tint) in _options)
+                for (final (icon, label, source, tint) in options)
                   Expanded(
                     child: _Option(
                       icon: icon,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/app_button.dart';
 import '../../core/ui/pebby.dart';
@@ -20,6 +21,7 @@ class NotificationPrimerSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = context.palette;
+    final l10n = context.l10n;
     return SingleChildScrollView(
       padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
       child: Column(
@@ -34,34 +36,32 @@ class NotificationPrimerSheet extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            'Get a nudge before your test',
+            l10n.reminderPrimerTitle,
             textAlign: TextAlign.center,
             style: AppTextStyles.sheetTitle.copyWith(color: palette.text),
           ),
           const SizedBox(height: 16),
-          const _Promise(
+          _Promise(
             icon: Icons.event_outlined,
-            text:
-                'A heads-up 3 days before, the evening before and the '
-                'morning of each test',
+            text: l10n.reminderPrimerPromise1,
           ),
-          const _Promise(
+          _Promise(
             icon: Icons.schedule_outlined,
-            text: 'Your study reminder, only on the days and time you pick',
+            text: l10n.reminderPrimerPromise2,
           ),
-          const _Promise(
+          _Promise(
             icon: Icons.tune_outlined,
-            text: 'Nothing else. Change it any time in Me',
+            text: l10n.reminderPrimerPromise3,
           ),
           const SizedBox(height: 16),
           AppButton(
-            label: 'Allow',
+            label: l10n.reminderPrimerAllow,
             isPrimary: true,
             onTap: () => Navigator.of(context).pop(true),
           ),
           const SizedBox(height: 12),
           AppButton(
-            label: 'Not now',
+            label: l10n.softUpdateDismiss,
             onTap: () => Navigator.of(context).pop(false),
           ),
         ],

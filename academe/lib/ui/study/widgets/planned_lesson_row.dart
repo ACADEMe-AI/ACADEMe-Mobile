@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 
 class PlannedLessonRow extends StatelessWidget {
@@ -15,6 +16,7 @@ class PlannedLessonRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = context.palette;
+    final l10n = context.l10n;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
@@ -51,7 +53,7 @@ class PlannedLessonRow extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'Coming soon',
+                  l10n.studyComingSoon,
                   style: AppTextStyles.caption.copyWith(
                     color: palette.textMuted,
                   ),

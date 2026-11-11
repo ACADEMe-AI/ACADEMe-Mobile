@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../domain/models/deck.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import 'card_parts.dart';
 
@@ -19,10 +20,11 @@ class ExampleCardView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = context.palette;
+    final l10n = context.l10n;
     return CardBody(
       tools: tools,
       children: [
-        const CardKicker(icon: Icons.edit_note_rounded, text: 'Worked example'),
+        CardKicker(icon: Icons.edit_note_rounded, text: l10n.deckWorkedExample),
         const SizedBox(height: 8),
         CardTitle(card.question, size: 19),
         const SizedBox(height: 12),
@@ -48,7 +50,7 @@ class ExampleCardView extends StatelessWidget {
                         height: 40,
                         child: Center(
                           child: Text(
-                            'Step ${i + 1} · try it first',
+                            l10n.deckStepTryFirst(i + 1),
                             style: AppTextStyles.caption.copyWith(
                               color: palette.textMuted,
                             ),

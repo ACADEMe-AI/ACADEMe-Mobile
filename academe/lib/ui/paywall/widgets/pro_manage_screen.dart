@@ -5,6 +5,8 @@ import '../../../domain/models/pro.dart';
 import '../../../routing/routes.dart';
 import '../../../utils/dates.dart';
 import '../../../utils/result.dart';
+import '../../core/l10n/app_l10n.dart';
+import '../../core/l10n/relative_day.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/app_button.dart';
 import '../../core/ui/keycap_surface.dart';
@@ -77,12 +79,13 @@ class _ProManageScreenState extends State<ProManageScreen> {
     return ListenableBuilder(
       listenable: viewModel,
       builder: (context, _) {
+        final l10n = context.l10n;
         final plan = viewModel.plan;
         final isPro = viewModel.isPro;
         return Scaffold(
           backgroundColor: context.palette.surface,
           appBar: AppBar(
-            title: Text(isPro ? 'ACADEMe Pro' : 'Plan & limits'),
+            title: Text(isPro ? l10n.proTitle : l10n.proPlanLimitsTitle),
             backgroundColor: context.palette.surface,
             foregroundColor: context.palette.text,
             centerTitle: true,
@@ -108,7 +111,7 @@ class _ProManageScreenState extends State<ProManageScreen> {
               ),
               _ManageFooter(
                 isPro: isPro,
-                notice: viewModel.notice,
+                notice: viewModel.notice(l10n),
                 onGoPro: _goPro,
                 onManage: () => launchUrl(
                   Uri.parse(viewModel.manageUrl),

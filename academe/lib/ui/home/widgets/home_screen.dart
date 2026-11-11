@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../domain/models/app_language.dart';
 import '../../../domain/models/folder.dart';
 import '../../core/l10n/app_l10n.dart';
+import '../../core/l10n/syllabus_label.dart';
 import '../../core/ui/screen_scale.dart';
 import '../../core/ui/tab_bar_layout.dart';
 import '../../study/view_models/study_view_model.dart';
@@ -143,7 +144,10 @@ class _HomeScreenState extends State<HomeScreen>
     return ListenableBuilder(
       listenable: _viewModel,
       builder: (context, _) {
-        final syllabusLabel = _viewModel.syllabusLabel;
+        final syllabusLabel = syllabusLabelForProfile(
+          context.l10n,
+          _viewModel.profile,
+        );
         final flightPath = _flightPath;
         return Stack(
           key: _stackKey,
@@ -158,7 +162,10 @@ class _HomeScreenState extends State<HomeScreen>
               children: [
                 HomeGreeting(
                   hello: (_viewModel.profile.language ?? AppLanguage.english)
-                      .hello(_viewModel.account?.firstName ?? 'there'),
+                      .hello(
+                        _viewModel.account?.firstName ??
+                            context.l10n.helloFallbackName,
+                      ),
                   syllabus: syllabusLabel,
                   xpKey: _xpKey,
                   xp: _viewModel.displayedXp,

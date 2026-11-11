@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/app_button.dart';
 
@@ -58,7 +59,7 @@ class PickerSheet extends StatelessWidget {
               ),
             ),
           const SizedBox(height: 16),
-          AppButton(label: 'OK', isPrimary: true, onTap: onDone),
+          AppButton(label: context.l10n.meOk, isPrimary: true, onTap: onDone),
         ],
       ),
     );

@@ -4,6 +4,7 @@ import '../../../data/repositories/photo_repository.dart';
 import '../../../domain/models/scan.dart';
 import '../../../routing/routes.dart';
 import '../../../utils/result.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../paywall/widgets/limit_sheet.dart';
 import '../../study/widgets/page_scaffold.dart';
 import '../view_models/scan_flow_view_model.dart';
@@ -111,7 +112,7 @@ class _ScanFlowScreenState extends State<ScanFlowScreen> {
     return ListenableBuilder(
       listenable: _viewModel,
       builder: (context, _) => StudyPage(
-        title: _viewModel.mode.label,
+        title: _viewModel.mode.title(context.l10n),
         child: _FlowBody(
           viewModel: _viewModel,
           isMakingLesson: _target?.makeLesson ?? false,
@@ -156,25 +157,26 @@ class _FlowBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final scan = viewModel.scan;
     final failure = viewModel.failure;
     final pages = viewModel.pages.length;
     if (viewModel.read.isRunning) {
       return ScanWaiting(
-        title: pages > 1 ? 'Reading $pages pages…' : 'Reading your page…',
-        text: 'This takes a few seconds.',
+        title: l10n.scanReadingPages(pages),
+        text: l10n.scanReadingWait,
       );
     }
     if (viewModel.check.isRunning) {
-      return const ScanWaiting(
-        title: 'Marking your answer…',
-        text: 'Using the board’s marking scheme.',
+      return ScanWaiting(
+        title: l10n.checkMarkingAnswer,
+        text: l10n.checkMarkingScheme,
       );
     }
     if (viewModel.saveNotes.isRunning) {
       return ScanWaiting(
-        title: isMakingLesson ? 'Making your lesson…' : 'Saving your notes…',
-        text: 'It’ll be in your folder.',
+        title: isMakingLesson ? l10n.scanMakingLesson : l10n.scanSavingNotes,
+        text: l10n.scanSavingWait,
       );
     }
     if (failure != null) {

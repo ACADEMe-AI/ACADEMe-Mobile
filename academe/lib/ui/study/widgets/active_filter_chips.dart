@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../utils/plural.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../view_models/chapter_filters.dart';
 
@@ -19,6 +19,17 @@ class ActiveFilterChips extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = context.palette;
+    final l10n = context.l10n;
+    String flagLabel(ChapterFlag flag) => switch (flag) {
+      ChapterFlag.boardOnly => l10n.filterFlagBoardExam,
+      ChapterFlag.ready => l10n.filterFlagReady,
+      ChapterFlag.revisionDue => l10n.filterFlagRevisionDue,
+    };
+    String sortLabel(ChapterSort sort) => switch (sort) {
+      ChapterSort.textbook => l10n.filterSortTextbook,
+      ChapterSort.marks => l10n.filterSortMostMarks,
+      ChapterSort.recent => l10n.filterSortRecent,
+    };
     return Padding(
       padding: const EdgeInsets.only(top: 12),
       child: Row(
@@ -30,12 +41,12 @@ class ActiveFilterChips extends StatelessWidget {
               children: [
                 for (final flag in filters.flags)
                   _Chip(
-                    label: flag.label,
+                    label: flagLabel(flag),
                     onRemove: () => onChanged(filters.toggle(flag)),
                   ),
                 if (filters.sort != ChapterSort.textbook)
                   _Chip(
-                    label: filters.sort.label,
+                    label: sortLabel(filters.sort),
                     onRemove: () =>
                         onChanged(filters.sortBy(ChapterSort.textbook)),
                   ),
@@ -44,7 +55,7 @@ class ActiveFilterChips extends StatelessWidget {
           ),
           const SizedBox(width: 8),
           Text(
-            pluralize(count, 'chapter'),
+            l10n.studyChaptersCount(count),
             style: AppTextStyles.caption.copyWith(
               color: palette.textMuted,
               fontWeight: FontWeight.w600,
@@ -65,9 +76,10 @@ class _Chip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = context.palette;
+    final l10n = context.l10n;
     return Semantics(
       button: true,
-      label: 'Remove $label',
+      label: l10n.filterRemove(label),
       excludeSemantics: true,
       child: GestureDetector(
         onTap: onRemove,

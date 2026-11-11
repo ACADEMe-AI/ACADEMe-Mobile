@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../domain/models/level.dart';
 import '../../../domain/models/streak.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 
 class MeStats extends StatelessWidget {
@@ -30,14 +31,17 @@ class MeStats extends StatelessWidget {
                   : context.palette.border,
             ),
             value: '${streak.current}',
-            label: 'day streak',
+            label: context.l10n.meDayStreak,
           ),
         ),
         const SizedBox(width: 8),
         Expanded(
           child: _Stat(
-            value: 'Lv ${level.number}',
-            label: '${level.toNext(xp)} XP to Lv ${level.number + 1}',
+            value: context.l10n.meLevelValue(level.number),
+            label: context.l10n.meXpToNextLevel(
+              level.toNext(xp),
+              level.number + 1,
+            ),
           ),
         ),
         const SizedBox(width: 8),
@@ -49,7 +53,7 @@ class MeStats extends StatelessWidget {
               color: AppColors.selected,
             ),
             value: '$xp',
-            label: 'XP',
+            label: context.l10n.meXpLabel,
           ),
         ),
       ],

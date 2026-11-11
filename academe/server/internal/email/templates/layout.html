@@ -1,5 +1,5 @@
 {{define "layout"}}<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<html lang="{{.Lang}}" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -70,7 +70,7 @@ a[x-apple-data-detectors]{color:inherit !important;text-decoration:none !importa
 </td></tr>
 <tr><td align="center" class="muted" style="padding:28px 16px 0;font-family:'Noto Sans','Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:13px;line-height:20px;color:#5C6578;">
 <p style="margin:0 0 10px;">{{.Reason}}</p>
-<p style="margin:0 0 10px;">Questions? Write to <a href="mailto:support@academe.cc" class="link" style="color:#564CF1;text-decoration:underline;">support@academe.cc</a></p>
+<p style="margin:0 0 10px;">{{.Questions}} <a href="mailto:support@academe.cc" class="link" style="color:#564CF1;text-decoration:underline;">support@academe.cc</a></p>
 <p style="margin:0;font-weight:600;">ACADEMe · <a href="{{.Site}}" class="muted" style="color:#5C6578;text-decoration:underline;">{{.Host}}</a></p>
 </td></tr>
 </table>

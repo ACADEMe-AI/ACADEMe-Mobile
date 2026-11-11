@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../domain/models/scan.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/app_button.dart';
 import '../../core/ui/light_field.dart';
@@ -29,13 +30,13 @@ class _ScanReadViewState extends State<ScanReadView> {
   late final _text = TextEditingController(text: widget.scan.text);
   final _extra = TextEditingController();
 
-  static const _suggestions = [
-    'Explain this simply',
-    'Summarise it',
-    'What are the key terms?',
-  ];
-
   ScanMode get _mode => widget.scan.mode;
+
+  List<(String, String)> _suggestions(AppLocalizations l10n) => [
+    (l10n.scanSuggestExplain, l10n.scanSuggestExplain),
+    (l10n.scanSuggestSummarise, l10n.scanSuggestSummarise),
+    (l10n.scanSuggestKeyTerms, l10n.scanSuggestKeyTerms),
+  ];
 
   @override
   void dispose() {
@@ -45,6 +46,7 @@ class _ScanReadViewState extends State<ScanReadView> {
   }
 
   void _go() {
+    final l10n = context.l10n;
     final text = _text.text.trim();
     switch (_mode) {
       case ScanMode.solve:
@@ -53,8 +55,8 @@ class _ScanReadViewState extends State<ScanReadView> {
         final question = _extra.text.trim();
         widget.onAsk(
           [
-            question.isEmpty ? _suggestions.first : question,
-            'From my photo:',
+            question.isEmpty ? l10n.scanSuggestExplain : question,
+            l10n.scanFromMyPhoto,
             text,
           ].join('\n\n'),
         );
@@ -68,6 +70,7 @@ class _ScanReadViewState extends State<ScanReadView> {
   @override
   Widget build(BuildContext context) {
     final palette = context.palette;
+    final l10n = context.l10n;
     final padding = ScreenScale.of(context).pagePadding;
     final chapter = widget.scan.chapter;
     return ListView(
@@ -75,8 +78,8 @@ class _ScanReadViewState extends State<ScanReadView> {
       children: [
         Text(
           switch (_mode) {
-            ScanMode.check => 'Pebby read your answer',
-            _ => 'Pebby read this',
+            ScanMode.check => l10n.checkPebbyReadAnswer,
+            _ => l10n.scanPebbyReadThis,
           },
           style: AppTextStyles.display.copyWith(
             fontSize: 24,
@@ -84,18 +87,20 @@ class _ScanReadViewState extends State<ScanReadView> {
           ),
         ),
         Text(
-          chapter.isEmpty
-              ? 'Fix anything that’s wrong.'
-              : '$chapter · fix anything that’s wrong.',
+          chapter.isEmpty ? l10n.scanFixAnything : l10n.scanChapterFix(chapter),
           style: AppTextStyles.label.copyWith(color: palette.textMuted),
         ),
         const SizedBox(height: 16),
-        LightField(label: 'From your photo', controller: _text, maxLines: 10),
+        LightField(
+          label: l10n.scanFromYourPhoto,
+          controller: _text,
+          maxLines: 10,
+        ),
         if (_mode == ScanMode.check) ...[
           const SizedBox(height: 12),
           LightField(
-            label: 'The question',
-            hint: 'Only if it isn’t in the photo',
+            label: l10n.checkTheQuestion,
+            hint: l10n.checkQuestionHint,
             controller: _extra,
             maxLines: 3,
           ),
@@ -103,13 +108,13 @@ class _ScanReadViewState extends State<ScanReadView> {
         if (_mode == ScanMode.ask) ...[
           const SizedBox(height: 12),
           LightField(
-            label: 'What do you want to know?',
+            label: l10n.scanWhatDoYouWant,
             controller: _extra,
             maxLines: 3,
           ),
           const SizedBox(height: 12),
           PillChoices<String>(
-            choices: [for (final s in _suggestions) (s, s)],
+            choices: _suggestions(l10n),
             selected: null,
             onSelect: (s) => _extra.text = s,
           ),
@@ -119,9 +124,9 @@ class _ScanReadViewState extends State<ScanReadView> {
           listenable: _text,
           builder: (context, _) => AppButton(
             label: switch (_mode) {
-              ScanMode.solve => 'Solve this',
-              ScanMode.check => 'Mark it',
-              _ => 'Ask Pebby',
+              ScanMode.solve => l10n.scanSolveThis,
+              ScanMode.check => l10n.checkMarkIt,
+              _ => l10n.scanAskPebby,
             },
             isPrimary: true,
             isEnabled: _text.text.trim().isNotEmpty,
@@ -131,7 +136,7 @@ class _ScanReadViewState extends State<ScanReadView> {
         if (_mode == ScanMode.solve) ...[
           const SizedBox(height: 8),
           Text(
-            'Pebby gives you a hint first, then the steps.',
+            l10n.scanHintFirst,
             textAlign: TextAlign.center,
             style: AppTextStyles.caption.copyWith(color: palette.textMuted),
           ),

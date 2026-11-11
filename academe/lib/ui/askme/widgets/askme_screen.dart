@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../domain/models/chat.dart';
 import '../../../domain/models/pro.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/appear.dart';
 import '../../core/ui/screen_scale.dart';
@@ -104,16 +105,17 @@ class _Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Row(
       children: [
         IconButton(
           onPressed: onBack,
-          tooltip: 'Back',
+          tooltip: l10n.actionBack,
           icon: const Icon(Icons.chevron_left_rounded, size: 28),
           color: context.palette.text,
         ),
         Text(
-          'ASKMe',
+          l10n.navAskMe,
           style: AppTextStyles.display.copyWith(
             fontSize: 24,
             color: context.palette.text,
@@ -122,13 +124,13 @@ class _Header extends StatelessWidget {
         const Spacer(),
         IconButton(
           onPressed: onHistory,
-          tooltip: 'History',
+          tooltip: l10n.historyTitle,
           icon: const Icon(Icons.history_rounded),
           color: context.palette.text,
         ),
         IconButton(
           onPressed: onNew,
-          tooltip: 'New chat',
+          tooltip: l10n.askmeNewChat,
           icon: const Icon(Icons.add_rounded, size: 28),
           color: context.palette.text,
           disabledColor: context.palette.border,
@@ -148,36 +150,43 @@ class _Conversation extends StatelessWidget {
   final AskMeViewModel viewModel;
   final double padding;
 
-  List<FollowUp> _followUps() => switch (viewModel.mode) {
+  List<FollowUp> _followUps(AppLocalizations l10n) => switch (viewModel.mode) {
     ChatMode.solve => [
       FollowUp(
-        label: 'Next step',
+        label: l10n.askmeFollowNextStep,
         isHighlighted: true,
-        onTap: () => viewModel.send.execute('Next step, please.'),
+        onTap: () => viewModel.send.execute(l10n.askmeSendNextStep),
       ),
       FollowUp(
-        label: 'Full solution',
-        onTap: () => viewModel.send.execute('Show me the full solution.'),
+        label: l10n.askmeFollowFullSolution,
+        onTap: () => viewModel.send.execute(l10n.askmeSendFullSolution),
       ),
     ],
     ChatMode.quiz => [
       FollowUp(
-        label: 'Next question',
+        label: l10n.askmeFollowNextQuestion,
         isHighlighted: true,
-        onTap: () => viewModel.send.execute('Next question.'),
+        onTap: () => viewModel.send.execute(l10n.askmeSendNextQuestion),
       ),
     ],
     ChatMode.explain => [
-      FollowUp(label: 'Quiz me', onTap: viewModel.quizMe),
       FollowUp(
-        label: 'Go deeper',
-        onTap: () => viewModel.send.execute('Go deeper.'),
+        label: l10n.askmeFollowQuizMe,
+        onTap: () {
+          viewModel.setMode(ChatMode.quiz);
+          viewModel.send.execute(l10n.askmeSendQuizMe);
+        },
+      ),
+      FollowUp(
+        label: l10n.askmeFollowGoDeeper,
+        onTap: () => viewModel.send.execute(l10n.askmeSendGoDeeper),
       ),
     ],
   };
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final messages = viewModel.messages;
     final lastIndex = messages.length - 1;
     final isIdle = !viewModel.isThinking;
@@ -193,7 +202,9 @@ class _Conversation extends StatelessWidget {
                   onRetry: i == lastIndex && isIdle
                       ? viewModel.regenerate.execute
                       : null,
-                  followUps: i == lastIndex && isIdle ? _followUps() : const [],
+                  followUps: i == lastIndex && isIdle
+                      ? _followUps(l10n)
+                      : const [],
                 )
               : StudentBubble(text: messages[i].body),
         ),
@@ -246,25 +257,24 @@ class _SendFailed extends StatelessWidget {
   final ChatFailure failure;
   final VoidCallback onRetry;
 
-  String get _message => switch (failure) {
-    ChatFailure.unavailable =>
-      'ASKMe isn’t ready yet. Pebby will be here soon.',
-    ChatFailure.network => 'No connection. Check your internet and try again.',
-    ChatFailure.signedOut => 'You’ve been logged out. Log in again.',
-    ChatFailure.limitReached =>
-      'That’s all your free questions for today. They come back at midnight.',
-    ChatFailure.unknown => 'Something went wrong. Try again.',
+  String _message(AppLocalizations l10n) => switch (failure) {
+    ChatFailure.unavailable => l10n.askmeFailureUnavailable,
+    ChatFailure.network => l10n.failureNetwork,
+    ChatFailure.signedOut => l10n.askmeFailureSignedOut,
+    ChatFailure.limitReached => l10n.askmeFailureLimitReached,
+    ChatFailure.unknown => l10n.failureUnknown,
   };
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final isLimit = failure == ChatFailure.limitReached;
     final message = PebbyMessage(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            _message,
+            _message(l10n),
             style: AppTextStyles.label.copyWith(color: context.palette.text),
           ),
           if (isLimit)
@@ -274,7 +284,7 @@ class _SendFailed extends StatelessWidget {
                 foregroundColor: AppColors.primary,
                 padding: EdgeInsets.zero,
               ),
-              child: const Text('Go Pro', style: AppTextStyles.labelStrong),
+              child: Text(l10n.actionGoPro, style: AppTextStyles.labelStrong),
             )
           else if (failure != ChatFailure.unavailable)
             TextButton(
@@ -283,7 +293,7 @@ class _SendFailed extends StatelessWidget {
                 foregroundColor: AppColors.primary,
                 padding: EdgeInsets.zero,
               ),
-              child: const Text('Try again', style: AppTextStyles.labelStrong),
+              child: Text(l10n.actionTryAgain, style: AppTextStyles.labelStrong),
             ),
         ],
       ),

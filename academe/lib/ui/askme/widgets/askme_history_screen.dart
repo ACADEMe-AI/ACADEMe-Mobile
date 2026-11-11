@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../domain/models/chat.dart';
 import '../../../utils/result.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/screen_scale.dart';
 import '../view_models/askme_view_model.dart';
@@ -40,6 +41,7 @@ class _AskMeHistoryScreenState extends State<AskMeHistoryScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final padding = ScreenScale.of(context).pagePadding;
     return AnnotatedRegion(
       value: context.palette.systemBars,
@@ -55,12 +57,12 @@ class _AskMeHistoryScreenState extends State<AskMeHistoryScreen> {
                   children: [
                     IconButton(
                       onPressed: () => Navigator.of(context).pop(),
-                      tooltip: 'Back',
+                      tooltip: l10n.actionBack,
                       icon: const Icon(Icons.chevron_left_rounded, size: 28),
                       color: context.palette.text,
                     ),
                     Text(
-                      'History',
+                      l10n.historyTitle,
                       style: AppTextStyles.display.copyWith(
                         fontSize: 24,
                         color: context.palette.text,
@@ -78,7 +80,7 @@ class _AskMeHistoryScreenState extends State<AskMeHistoryScreen> {
                     color: context.palette.text,
                   ),
                   decoration: InputDecoration(
-                    hintText: 'Search your questions',
+                    hintText: l10n.historySearchHint,
                     hintStyle: AppTextStyles.label.copyWith(
                       color: context.palette.textMuted,
                     ),
@@ -145,20 +147,24 @@ class _ThreadList extends StatelessWidget {
     ChatMode.quiz: (Icons.task_alt_rounded, (p) => p.tintMint),
   };
 
+  String _modeLabel(AppLocalizations l10n, ChatMode mode) => switch (mode) {
+    ChatMode.explain => l10n.askmeModeExplain,
+    ChatMode.solve => l10n.askmeModeSolve,
+    ChatMode.quiz => l10n.askmeModeQuiz,
+  };
+
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final padding = ScreenScale.of(context).pagePadding;
     if (threads.isEmpty) {
       return Center(
         child: isLoading
             ? const CircularProgressIndicator(color: AppColors.primary)
             : hasError
-            ? TextButton(
-                onPressed: onRetry,
-                child: const Text('Couldn’t load your chats. Retry'),
-              )
+            ? TextButton(onPressed: onRetry, child: Text(l10n.historyLoadError))
             : Text(
-                'Your questions to Pebby will show up here.',
+                l10n.historyEmpty,
                 style: AppTextStyles.label.copyWith(
                   color: context.palette.textMuted,
                 ),
@@ -178,8 +184,8 @@ class _ThreadList extends StatelessWidget {
       padding: EdgeInsets.fromLTRB(padding, 8, padding, 24),
       children: [
         for (final (title, group) in [
-          ('This week', recent),
-          ('Earlier', earlier),
+          (l10n.historyThisWeek, recent),
+          (l10n.historyEarlier, earlier),
         ])
           if (group.isNotEmpty) ...[
             Padding(
@@ -219,13 +225,13 @@ class _ThreadList extends StatelessWidget {
                   ),
                 ),
                 subtitle: Text(
-                  thread.mode.label,
+                  _modeLabel(l10n, thread.mode),
                   style: AppTextStyles.caption.copyWith(
                     color: context.palette.textMuted,
                   ),
                 ),
                 trailing: Text(
-                  _when(thread.updatedAt),
+                  _when(l10n, thread.updatedAt),
                   style: AppTextStyles.caption.copyWith(
                     color: context.palette.textMuted,
                   ),
@@ -236,29 +242,39 @@ class _ThreadList extends StatelessWidget {
     );
   }
 
-  static const _days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-  static const _months = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-  ];
-
-  static String _when(DateTime time) {
+  static String _when(AppLocalizations l10n, DateTime time) {
     final local = time.toLocal();
     final age = DateTime.now().difference(local);
     if (age.inHours < 24) {
-      return age.inHours < 1 ? 'Now' : '${age.inHours}h';
+      return age.inHours < 1
+          ? l10n.historyNow
+          : l10n.historyHoursAgo(age.inHours);
     }
-    if (age.inDays < 7) return _days[local.weekday - 1];
-    return '${local.day} ${_months[local.month - 1]}';
+    if (age.inDays < 7) {
+      return [
+        l10n.historyWeekdayMon,
+        l10n.historyWeekdayTue,
+        l10n.historyWeekdayWed,
+        l10n.historyWeekdayThu,
+        l10n.historyWeekdayFri,
+        l10n.historyWeekdaySat,
+        l10n.historyWeekdaySun,
+      ][local.weekday - 1];
+    }
+    final month = [
+      l10n.historyMonthJan,
+      l10n.historyMonthFeb,
+      l10n.historyMonthMar,
+      l10n.historyMonthApr,
+      l10n.historyMonthMay,
+      l10n.historyMonthJun,
+      l10n.historyMonthJul,
+      l10n.historyMonthAug,
+      l10n.historyMonthSep,
+      l10n.historyMonthOct,
+      l10n.historyMonthNov,
+      l10n.historyMonthDec,
+    ][local.month - 1];
+    return l10n.historyDayMonth(local.day, month);
   }
 }

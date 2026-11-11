@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../domain/models/deck.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/app_button.dart';
 import '../../core/ui/celebration.dart';
@@ -39,6 +40,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return AnnotatedRegion(
       value: context.palette.systemBars,
       child: Scaffold(
@@ -54,22 +56,20 @@ class _ReviewScreenState extends State<ReviewScreen> {
               }
               if (_viewModel.items.isEmpty) {
                 return _ReviewEnd(
-                  title: 'Nothing to revise',
-                  text:
-                      'Keep cards in a lesson, or miss a question, and they '
-                      'come back here.',
+                  title: l10n.studyRevisionEmptyTitle,
+                  text: l10n.studyRevisionEmptyBody,
                   onClose: _close,
                 );
               }
               if (_viewModel.isFinished) {
                 return _ReviewEnd(
                   isDone: true,
-                  title: 'Revision done',
-                  text:
-                      '${_viewModel.countOf(ReviewRating.knew)} knew it · '
-                      '${_viewModel.countOf(ReviewRating.almost)} almost · '
-                      '${_viewModel.countOf(ReviewRating.again)} to see again '
-                      'tomorrow',
+                  title: l10n.studyRevisionDone,
+                  text: l10n.studyRevisionSummary(
+                    _viewModel.countOf(ReviewRating.knew),
+                    _viewModel.countOf(ReviewRating.almost),
+                    _viewModel.countOf(ReviewRating.again),
+                  ),
                   onClose: _close,
                 );
               }
@@ -90,14 +90,15 @@ class _ReviewPlayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final item = viewModel.current;
-    final (front, back) = _faces(item.content);
+    final (front, back) = _faces(l10n, item.content);
     final palette = context.palette;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         DeckTopBar(
-          title: 'Revision',
+          title: l10n.studyRevision,
           total: viewModel.items.length,
           current: viewModel.index,
           onClose: onClose,
@@ -135,7 +136,7 @@ class _ReviewPlayer extends StatelessWidget {
                                 ),
                               )
                             : Text(
-                                'Think of the answer, then tap to check.',
+                                l10n.studyRevisionHint,
                                 key: const ValueKey('front'),
                                 style: AppTextStyles.label.copyWith(
                                   color: palette.textMuted,
@@ -166,7 +167,7 @@ class _ReviewPlayer extends StatelessWidget {
                   ],
                 )
               : AppButton(
-                  label: 'Show answer',
+                  label: l10n.studyRevisionShowAnswer,
                   isPrimary: true,
                   onTap: viewModel.reveal,
                 ),
@@ -175,23 +176,22 @@ class _ReviewPlayer extends StatelessWidget {
     );
   }
 
-  static (String, String) _faces(DeckCard card) => switch (card) {
-    ConceptCard(:final title, :final body) => (title, body),
-    TableCard(:final title, :final rows) => (
-      title,
-      rows.map((r) => '${r.$1}: ${r.$2}').join('\n'),
-    ),
-    ExampleCard(:final question, :final steps) => (question, steps.join('\n')),
-    QuizCard(:final question, :final options, :final answer, :final why) => (
-      question,
-      '${options[answer]}\n\n$why',
-    ),
-    SummaryCard(:final points) => (
-      'The lesson in three lines',
-      points.join('\n'),
-    ),
-    StartCard(:final goals) => ('Goals', goals.join('\n')),
-  };
+  static (String, String) _faces(AppLocalizations l10n, DeckCard card) =>
+      switch (card) {
+        ConceptCard(:final title, :final body) => (title, body),
+        TableCard(:final title, :final rows) => (
+          title,
+          rows.map((r) => '${r.$1}: ${r.$2}').join('\n'),
+        ),
+        ExampleCard(:final question, :final steps) => (
+          question,
+          steps.join('\n'),
+        ),
+        QuizCard(:final question, :final options, :final answer, :final why) =>
+          (question, '${options[answer]}\n\n$why'),
+        SummaryCard(:final points) => (l10n.deckThreeLines, points.join('\n')),
+        StartCard(:final goals) => (l10n.deckGoals, goals.join('\n')),
+      };
 }
 
 class _RatingKey extends StatelessWidget {
@@ -203,6 +203,12 @@ class _RatingKey extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = context.palette;
+    final l10n = context.l10n;
+    final label = switch (rating) {
+      ReviewRating.again => l10n.studyRevisionAgain,
+      ReviewRating.almost => l10n.studyRevisionAlmost,
+      ReviewRating.knew => l10n.studyRevisionKnew,
+    };
     return Keycap(
       face: switch (rating) {
         ReviewRating.again => palette.tintRose,
@@ -214,7 +220,7 @@ class _RatingKey extends StatelessWidget {
       onTap: onTap,
       child: Center(
         child: Text(
-          rating.label,
+          label,
           textAlign: TextAlign.center,
           style: AppTextStyles.labelStrong.copyWith(color: palette.text),
         ),
@@ -238,6 +244,7 @@ class _ReviewEnd extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
       child: Column(
@@ -278,7 +285,7 @@ class _ReviewEnd extends StatelessWidget {
             ),
           ),
           const Spacer(),
-          AppButton(label: 'Done', isPrimary: true, onTap: onClose),
+          AppButton(label: l10n.studyDone, isPrimary: true, onTap: onClose),
         ],
       ),
     );

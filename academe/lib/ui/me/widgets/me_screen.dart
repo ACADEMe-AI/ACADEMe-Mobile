@@ -62,12 +62,12 @@ class MeScreen extends StatelessWidget {
           ),
           if (pro case final card?) ...[const SizedBox(height: 16), card],
           SettingsGroup(
-            title: 'Learning',
+            title: context.l10n.meLearningSection,
             children: [
-              SettingsRow(label: 'My Progress', onTap: onProgress),
+              SettingsRow(label: context.l10n.meMyProgress, onTap: onProgress),
               SettingsRow(
-                label: 'Class and board',
-                value: viewModel.syllabusLabel,
+                label: context.l10n.meClassAndBoard,
+                value: viewModel.syllabusLabelFor(context.l10n),
                 onTap: onClassAndBoard,
               ),
               SettingsRow(
@@ -76,28 +76,31 @@ class MeScreen extends StatelessWidget {
                 onTap: onLanguage,
               ),
               SettingsRow(
-                label: 'Appearance',
-                value: viewModel.appearanceLabel,
+                label: context.l10n.meAppearance,
+                value: viewModel.appearanceLabelFor(context.l10n),
                 onTap: onAppearance,
               ),
             ],
           ),
           SettingsGroup(
-            title: 'Notifications',
+            title: context.l10n.meNotificationsSection,
             children: [
               SettingsRow(
-                label: 'Reminders and daily goal',
-                value: viewModel.notificationsLabel,
+                label: context.l10n.meRemindersAndDailyGoal,
+                value: viewModel.notificationsLabelFor(context.l10n),
                 onTap: onNotifications,
               ),
             ],
           ),
           SettingsGroup(
-            title: 'Account',
+            title: context.l10n.meAccountSection,
             children: [
-              SettingsRow(label: 'Account', onTap: onAccount),
-              SettingsRow(label: 'Help and feedback', onTap: onHelp),
-              SettingsRow(label: 'Privacy and terms', onTap: onPrivacy),
+              SettingsRow(label: context.l10n.meAccount, onTap: onAccount),
+              SettingsRow(label: context.l10n.meHelpAndFeedback, onTap: onHelp),
+              SettingsRow(
+                label: context.l10n.mePrivacyAndTerms,
+                onTap: onPrivacy,
+              ),
             ],
           ),
           const SizedBox(height: 24),
@@ -109,7 +112,9 @@ class MeScreen extends StatelessWidget {
             onTap: onLogOut,
             child: Center(
               child: Text(
-                viewModel.logOut.isRunning ? 'Logging out…' : 'Log out',
+                viewModel.logOut.isRunning
+                    ? context.l10n.meLoggingOut
+                    : context.l10n.meLogOut,
                 style: AppTextStyles.button.copyWith(
                   color: context.palette.errorInk,
                 ),
@@ -177,7 +182,7 @@ class _ProfileCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                name.isEmpty ? 'Student' : name,
+                name.isEmpty ? context.l10n.meStudentFallback : name,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: AppTextStyles.display.copyWith(
@@ -199,7 +204,7 @@ class _ProfileCard extends StatelessWidget {
                 spacing: 4,
                 runSpacing: 4,
                 children: [
-                  _Chip(viewModel.syllabusLabel),
+                  _Chip(viewModel.syllabusLabelFor(context.l10n)),
                   _Chip(viewModel.language.nativeName),
                 ],
               ),

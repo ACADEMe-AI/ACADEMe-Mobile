@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../domain/models/folder.dart';
-import '../../../utils/plural.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../study/widgets/task_row.dart';
 import '../view_models/today_view_model.dart';
@@ -22,6 +22,7 @@ class TodayCard extends StatelessWidget {
         final plan = viewModel.plan;
         if (plan.tasks.isEmpty) return const SizedBox(width: double.infinity);
         final palette = context.palette;
+        final l10n = context.l10n;
         final folders = {
           for (final t in plan.tasks)
             if (t.folderId != null) t.folderId,
@@ -50,8 +51,8 @@ class TodayCard extends StatelessWidget {
                     children: [
                       Text(
                         minutes > 0
-                            ? 'Today · $minutes min'
-                            : 'Today · all done',
+                            ? l10n.homeTodayMinutes(minutes)
+                            : l10n.homeTodayDone,
                         style: AppTextStyles.display.copyWith(
                           fontSize: 19,
                           color: palette.text,
@@ -60,7 +61,7 @@ class TodayCard extends StatelessWidget {
                       const Spacer(),
                       if (folders > 0)
                         Text(
-                          'from ${pluralize(folders, 'folder')}',
+                          l10n.homeFromFolders(folders),
                           style: AppTextStyles.caption.copyWith(
                             color: palette.textMuted,
                           ),
@@ -78,7 +79,9 @@ class TodayCard extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(bottom: 8),
                       child: Text(
-                        'and ${plan.tasks.length - TodayCard.shown} more in your folders',
+                        l10n.homeMoreInFolders(
+                          plan.tasks.length - TodayCard.shown,
+                        ),
                         style: AppTextStyles.caption.copyWith(
                           fontWeight: FontWeight.w600,
                           color: palette.textMuted,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../domain/models/folder.dart';
 import '../../../utils/result.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../scan/widgets/scan_flow_screen.dart';
 import '../../study/study_actions.dart';
 import '../../study/widgets/chapter_screen.dart';
@@ -82,7 +83,10 @@ mixin StudyNavigation on State<AppShell> {
     if (chapter == null) return;
     _push(
       DeckScreen(
-        viewModel: widget.factory.chapterTest(chapter),
+        viewModel: widget.factory.chapterTest(
+          chapter,
+          title: context.l10n.chapterTestDeckTitle(chapter.number),
+        ),
         onAsk: askAbout,
         onRevise: () => _push(
           ReviewScreen(viewModel: widget.factory.review(chapterId)),
@@ -110,12 +114,13 @@ mixin StudyNavigation on State<AppShell> {
   void scanNotes(FolderChoice folder);
 
   Future<FolderSummary?> newFolder({bool opens = true}) async {
+    final couldntMake = context.l10n.folderCouldntMake;
     final edit = await FolderSheet.show(context);
     if (edit == null || !mounted) return null;
     await widget.folders.create.execute((name: edit.name, dueOn: edit.dueOn));
     final result = widget.folders.create.result;
     if (result is! Ok<FolderSummary>) {
-      showMessage('Couldn’t make the folder. Try again.');
+      showMessage(couldntMake);
       return null;
     }
     if (edit.dueOn != null) widget.onRemindersWanted?.call();
@@ -124,6 +129,7 @@ mixin StudyNavigation on State<AppShell> {
   }
 
   Future<FolderChoice?> pickFolder() async {
+    final yourFolder = context.l10n.folderYourFolder;
     await widget.folders.load.execute();
     if (!mounted) return null;
     final picked = await FolderPickerSheet.show(
@@ -139,15 +145,16 @@ mixin StudyNavigation on State<AppShell> {
         .where((f) => f.id == picked)
         .firstOrNull
         ?.name;
-    return (id: picked, name: name ?? 'your folder');
+    return (id: picked, name: name ?? yourFolder);
   }
 
   Future<void> addToFolder(List<String> chapterIds) async {
+    final addedTo = context.l10n.folderAddedTo;
     final picked = await pickFolder();
     if (picked == null) return;
     final folder = widget.factory.folder(picked.id);
     await folder.addChapters(chapterIds);
     folder.dispose();
-    showMessage('Added to ${picked.name}');
+    showMessage(addedTo(picked.name));
   }
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../domain/models/scan.dart';
-import '../../../utils/dates.dart';
-import '../../../utils/plural.dart';
+import '../../core/l10n/app_l10n.dart';
+import '../../core/l10n/relative_day.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/keycap.dart';
 import '../../core/ui/screen_scale.dart';
@@ -38,6 +38,7 @@ class _ScanScreenState extends State<ScanScreen> {
   Widget build(BuildContext context) {
     final padding = ScreenScale.of(context).pagePadding;
     final palette = context.palette;
+    final l10n = context.l10n;
     return ListView(
       padding: EdgeInsets.fromLTRB(
         padding,
@@ -47,14 +48,14 @@ class _ScanScreenState extends State<ScanScreen> {
       ),
       children: [
         Text(
-          'Scan',
+          l10n.navScan,
           style: AppTextStyles.display.copyWith(
             fontSize: 28,
             color: palette.text,
           ),
         ),
         Text(
-          'What’s on the paper?',
+          l10n.scanWhatsOnPaper,
           style: AppTextStyles.label.copyWith(color: palette.textMuted),
         ),
         const SizedBox(height: 16),
@@ -97,9 +98,11 @@ class _ModeTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = context.palette;
+    final l10n = context.l10n;
+    final title = mode.title(l10n);
     return Semantics(
       button: true,
-      label: mode.label,
+      label: title,
       excludeSemantics: true,
       child: Keycap(
         face: mode.tint(palette),
@@ -117,7 +120,7 @@ class _ModeTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    mode.label,
+                    title,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: AppTextStyles.labelStrong.copyWith(
@@ -125,7 +128,7 @@ class _ModeTile extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    mode.hint,
+                    mode.hint(l10n),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: AppTextStyles.caption.copyWith(
@@ -148,36 +151,43 @@ class _Recent extends StatelessWidget {
   final List<Scan> scans;
   final ValueChanged<Scan> onOpen;
 
-  static String _subtitle(Scan scan) {
+  static String _subtitle(Scan scan, AppLocalizations l10n) {
     final what = switch (scan.mode) {
-      ScanMode.solve => scan.threadId == null ? 'Read' : 'Solved in ASKMe',
-      ScanMode.ask => scan.threadId == null ? 'Read' : 'Asked in ASKMe',
+      ScanMode.solve =>
+        scan.threadId == null
+            ? l10n.scanStatusRead
+            : l10n.scanStatusSolvedInAskMe,
+      ScanMode.ask =>
+        scan.threadId == null
+            ? l10n.scanStatusRead
+            : l10n.scanStatusAskedInAskMe,
       ScanMode.check => switch (scan.result) {
-        final result? => '${result.awarded}/${pluralize(result.marks, 'mark')}',
-        null => 'Not marked yet',
+        final result? => l10n.scanStatusMarks(result.awarded, result.marks),
+        null => l10n.scanStatusNotMarked,
       },
       ScanMode.notes => switch ((scan.folderId, scan.deckId)) {
-        (_, _?) => 'Lesson in a folder',
-        (_?, null) => 'Notes in a folder',
-        _ => 'Not saved yet',
+        (_, _?) => l10n.scanStatusLessonInFolder,
+        (_?, null) => l10n.scanStatusNotesInFolder,
+        _ => l10n.scanStatusNotSaved,
       },
     };
-    final when = dueLabel(scan.createdAt.toLocal());
+    final when = relativeDayLabel(l10n, scan.createdAt.toLocal());
     return [what, if (scan.chapter.isNotEmpty) scan.chapter, when].join(' · ');
   }
 
   @override
   Widget build(BuildContext context) {
     if (scans.isEmpty) return const SizedBox.shrink();
+    final l10n = context.l10n;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        const SectionTitle('Recent scans'),
+        SectionTitle(l10n.scanRecent),
         for (final scan in scans)
           LinkRow(
             icon: scan.mode.icon,
             title: scan.title,
-            subtitle: _subtitle(scan),
+            subtitle: _subtitle(scan, l10n),
             onTap: () => onOpen(scan),
           ),
       ],

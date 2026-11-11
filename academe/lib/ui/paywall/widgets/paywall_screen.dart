@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../domain/models/pro.dart';
 import '../../../utils/result.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/app_button.dart';
 import '../../core/ui/pebby.dart';
@@ -48,7 +49,7 @@ class _PaywallScreenState extends State<PaywallScreen> {
     if (!done || !mounted) return;
     ScaffoldMessenger.of(
       context,
-    ).showSnackBar(const SnackBar(content: Text('Welcome to ACADEMe Pro')));
+    ).showSnackBar(SnackBar(content: Text(context.l10n.paywallWelcomeSnack)));
     Navigator.of(context).maybePop(true);
   }
 
@@ -74,7 +75,7 @@ class _PaywallScreenState extends State<PaywallScreen> {
                         padding: EdgeInsets.only(left: padding - 12, top: 4),
                         child: IconButton(
                           onPressed: () => Navigator.of(context).maybePop(),
-                          tooltip: 'Close',
+                          tooltip: context.l10n.actionClose,
                           icon: const Icon(Icons.close_rounded),
                           color: context.palette.text,
                         ),
@@ -118,6 +119,7 @@ class _Hero extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Column(
       children: [
         const SizedBox.square(
@@ -126,7 +128,7 @@ class _Hero extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         Text(
-          'ACADEMe Pro',
+          l10n.proTitle,
           textAlign: TextAlign.center,
           style: AppTextStyles.display.copyWith(
             fontSize: 32,
@@ -135,7 +137,7 @@ class _Hero extends StatelessWidget {
         ),
         const SizedBox(height: 6),
         Text(
-          '3× daily & weekly limits. Same refill clock — more room to study.',
+          l10n.paywallTagline,
           textAlign: TextAlign.center,
           style: AppTextStyles.label.copyWith(color: context.palette.textMuted),
         ),
@@ -161,7 +163,7 @@ class _Plans extends StatelessWidget {
           ),
           const SizedBox(height: 12),
         ],
-        if (viewModel.notice case final text?)
+        if (viewModel.notice(context.l10n) case final text?)
           Text(
             text,
             textAlign: TextAlign.center,
@@ -181,13 +183,14 @@ class _Actions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         AppButton(
           label: viewModel.purchase.isRunning
-              ? 'Opening Google Play…'
-              : 'Continue',
+              ? l10n.paywallOpeningPlay
+              : l10n.authContinue,
           isPrimary: true,
           isEnabled: !viewModel.isBusy,
           onTap: viewModel.purchase.execute,
@@ -196,7 +199,9 @@ class _Actions extends StatelessWidget {
           onPressed: viewModel.isBusy ? null : viewModel.restore.execute,
           style: TextButton.styleFrom(foregroundColor: AppColors.primary),
           child: Text(
-            viewModel.restore.isRunning ? 'Restoring…' : 'Restore purchases',
+            viewModel.restore.isRunning
+                ? l10n.paywallRestoring
+                : l10n.paywallRestore,
             style: AppTextStyles.labelStrong,
           ),
         ),
@@ -211,6 +216,7 @@ class _Unavailable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return DecoratedBox(
       decoration: BoxDecoration(
         color: context.palette.tintCream,
@@ -223,7 +229,7 @@ class _Unavailable extends StatelessWidget {
             Icon(Icons.storefront_rounded, color: context.palette.text),
             const SizedBox(height: 8),
             Text(
-              'Purchases aren’t available on this device',
+              l10n.paywallUnavailableTitle,
               textAlign: TextAlign.center,
               style: AppTextStyles.labelStrong.copyWith(
                 color: context.palette.text,
@@ -231,7 +237,7 @@ class _Unavailable extends StatelessWidget {
             ),
             const SizedBox(height: 4),
             Text(
-              'Install ACADEMe from Google Play and sign in to Play to go Pro.',
+              l10n.paywallUnavailableBody,
               textAlign: TextAlign.center,
               style: AppTextStyles.label.copyWith(
                 color: context.palette.textMuted,
