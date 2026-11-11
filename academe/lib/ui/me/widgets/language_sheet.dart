@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../domain/models/app_language.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/app_button.dart';
 import '../../core/ui/keycap.dart';
@@ -43,14 +44,14 @@ class _LanguageSheetState extends State<LanguageSheet> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              'App language',
+              context.l10n.meAppLanguage,
               style: AppTextStyles.display.copyWith(
                 fontSize: 24,
                 color: context.palette.text,
               ),
             ),
             Text(
-              'Pebby and Scan teaching replies use this language. App menus stay in English for now.',
+              context.l10n.meLanguageSheetBody,
               style: AppTextStyles.label.copyWith(
                 color: context.palette.textMuted,
               ),
@@ -177,7 +178,7 @@ class _ComingSoon extends StatelessWidget {
               ),
             ),
             Text(
-              'More languages coming soon',
+              context.l10n.meMoreLanguagesComing,
               style: AppTextStyles.caption.copyWith(
                 color: context.palette.textMuted,
               ),

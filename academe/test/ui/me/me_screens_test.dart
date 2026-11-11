@@ -3,6 +3,7 @@ import 'package:academe/domain/models/app_language.dart';
 import 'package:academe/domain/models/board.dart';
 import 'package:academe/domain/models/profile.dart';
 import 'package:academe/domain/models/streak.dart';
+import 'package:academe/l10n/generated/app_localizations.dart';
 import 'package:academe/ui/core/themes/app_theme.dart';
 import 'package:academe/ui/core/ui/number_wheel.dart';
 import 'package:academe/ui/core/ui/pebby.dart';
@@ -52,6 +53,9 @@ void main() {
         child: ListenableBuilder(
           listenable: appearance,
           builder: (context, _) => MaterialApp(
+            locale: AppLanguage.english.locale,
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
             theme: AppTheme.dark(
               palette: appearance.isDark ? AppPalette.dark : AppPalette.light,
             ),

@@ -1,0 +1,8 @@
+{
+  "@@locale": "bn",
+  "appTitle": "ACADEMe",
+  "meAppLanguage": "অ্যাপের ভাষা",
+  "meLanguageSheetBody": "পেবি ও স্ক্যানের উত্তর এই ভাষায় হবে। অ্যাপ মেনু এখনো ইংরেজিতে।",
+  "meMoreLanguagesComing": "আরও ভাষা শীঘ্রই আসছে",
+  "languageSwitchingTo": "{name}-এ স্যুইচ হচ্ছে…"
+}

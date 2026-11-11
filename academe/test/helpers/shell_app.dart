@@ -1,7 +1,9 @@
 import 'package:academe/data/repositories/appearance_repository.dart';
 import 'package:academe/data/repositories/reminder_repository.dart';
+import 'package:academe/domain/models/app_language.dart';
 import 'package:academe/domain/models/board.dart';
 import 'package:academe/domain/models/profile.dart';
+import 'package:academe/l10n/generated/app_localizations.dart';
 import 'package:academe/routing/router.dart';
 import 'package:academe/routing/routes.dart';
 import 'package:academe/ui/core/themes/app_theme.dart';
@@ -67,6 +69,9 @@ Future<void> pumpShellApp(
   await tester.pumpWidget(
     PebbyStandIn(
       child: MaterialApp(
+        locale: AppLanguage.english.locale,
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
         theme: AppTheme.dark(),
         initialRoute: Routes.home,
         onGenerateRoute: router,

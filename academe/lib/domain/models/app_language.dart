@@ -1,3 +1,5 @@
+import 'package:flutter/widgets.dart';
+
 enum AppLanguage {
   english('en', 'English', 'English', 'Hi!', 'What are we studying today?'),
   hindi('hi', 'हिन्दी', 'Hindi', 'नमस्ते!', 'आज हम क्या पढ़ें?'),
@@ -18,6 +20,11 @@ enum AppLanguage {
   final String englishName;
   final String greeting;
   final String sample;
+
+  Locale get locale => Locale(code);
+
+  static Locale materialLocale(AppLanguage? language) =>
+      (language ?? AppLanguage.english).locale;
 
   String hello(String name) {
     final base = greeting.endsWith('!')

@@ -1,0 +1,8 @@
+{
+  "@@locale": "hi",
+  "appTitle": "ACADEMe",
+  "meAppLanguage": "ऐप की भाषा",
+  "meLanguageSheetBody": "पेबी और स्कैन के जवाब इस भाषा में होंगे। ऐप मेनू अभी अंग्रेज़ी में हैं।",
+  "meMoreLanguagesComing": "और भाषाएँ जल्द आ रही हैं",
+  "languageSwitchingTo": "{name} पर स्विच हो रहा है…"
+}

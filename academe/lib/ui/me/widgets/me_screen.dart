@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../config/environment.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/keycap.dart';
 import '../../core/ui/screen_scale.dart';
@@ -70,7 +71,7 @@ class MeScreen extends StatelessWidget {
                 onTap: onClassAndBoard,
               ),
               SettingsRow(
-                label: 'App language',
+                label: context.l10n.meAppLanguage,
                 value: viewModel.language.nativeName,
                 onTap: onLanguage,
               ),

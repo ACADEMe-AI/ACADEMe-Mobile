@@ -41,8 +41,10 @@ import 'data/services/scan_api_service.dart';
 import 'data/services/session_store.dart';
 import 'data/services/study_api_service.dart';
 import 'domain/models/account.dart';
+import 'domain/models/app_language.dart';
 import 'routing/deep_links.dart';
 import 'routing/router.dart';
+import 'ui/core/l10n/app_l10n.dart';
 import 'ui/core/themes/app_theme.dart';
 import 'ui/scan/scan_factory.dart';
 import 'utils/result.dart';
@@ -186,10 +188,13 @@ class AcademeApp extends StatelessWidget {
       restoredSession: restoredSession,
     );
     return ListenableBuilder(
-      listenable: appearance,
+      listenable: Listenable.merge([appearance, profileRepository]),
       builder: (context, _) => MaterialApp(
-        title: 'ACADEMe',
+        onGenerateTitle: (context) => context.l10n.appTitle,
         debugShowCheckedModeBanner: false,
+        locale: AppLanguage.materialLocale(profileRepository.profile?.language),
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
         theme: AppTheme.dark(
           palette: appearance.isDark ? AppPalette.dark : AppPalette.light,
         ),

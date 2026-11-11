@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../../domain/models/app_language.dart';
 import '../../../utils/result.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/pebby.dart';
 import '../view_models/me_view_model.dart';
@@ -74,7 +75,7 @@ class _LanguageSwitchScreenState extends State<LanguageSwitchScreen>
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    'Switching to ${language.nativeName}…',
+                    context.l10n.languageSwitchingTo(language.nativeName),
                     textAlign: TextAlign.center,
                     style: AppTextStyles.display.copyWith(
                       fontSize: 24,
@@ -83,7 +84,7 @@ class _LanguageSwitchScreenState extends State<LanguageSwitchScreen>
                   ),
                   if (language != AppLanguage.english)
                     Text(
-                      'Switching to ${language.englishName}',
+                      context.l10n.languageSwitchingTo(language.englishName),
                       style: AppTextStyles.label.copyWith(
                         color: context.palette.textMuted,
                       ),

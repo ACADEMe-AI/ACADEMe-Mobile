@@ -1,0 +1,29 @@
+{
+  "@@locale": "en",
+  "appTitle": "ACADEMe",
+  "@appTitle": {
+    "description": "MaterialApp title and brand name"
+  },
+  "meAppLanguage": "App language",
+  "@meAppLanguage": {
+    "description": "Me settings row and language sheet title"
+  },
+  "meLanguageSheetBody": "Pebby and Scan teaching replies use this language. App menus stay in English for now.",
+  "@meLanguageSheetBody": {
+    "description": "Language sheet explainer while UI chrome is still being migrated"
+  },
+  "meMoreLanguagesComing": "More languages coming soon",
+  "@meMoreLanguagesComing": {
+    "description": "Footer on language sheet for languages not yet shipped"
+  },
+  "languageSwitchingTo": "Switching to {name}…",
+  "@languageSwitchingTo": {
+    "description": "Language switch screen primary line; name is native language name",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "हिन्दी"
+      }
+    }
+  }
+}
