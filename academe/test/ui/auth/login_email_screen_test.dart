@@ -1,4 +1,5 @@
 import 'package:academe/domain/models/auth_failure.dart';
+import 'package:academe/l10n/generated/app_localizations.dart';
 import 'package:academe/ui/auth/view_models/login_view_model.dart';
 import 'package:academe/ui/auth/widgets/login_email_screen.dart';
 import 'package:academe/ui/core/themes/app_theme.dart';
@@ -19,6 +20,9 @@ void main() {
     loggedIn = false;
     await tester.pumpWidget(
       MaterialApp(
+        locale: const Locale('en'),
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
         theme: AppTheme.dark(),
         builder: (context, child) => PebbyStandIn(child: child!),
         home: LoginEmailScreen(

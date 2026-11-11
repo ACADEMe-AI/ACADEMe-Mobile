@@ -115,4 +115,116 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get authContinueEmail => 'ఇమెయిల్‌తో కొనసాగించండి';
+
+  @override
+  String get loginHeadlineLead => 'మళ్లీ';
+
+  @override
+  String get loginHeadlineAccent => 'స్వాగతం.';
+
+  @override
+  String get loginSubtitle => 'మీరు ఆపిన చోట నుంచి కొనసాగండి.';
+
+  @override
+  String get authEmail => 'ఇమెయిల్';
+
+  @override
+  String get authPassword => 'పాస్‌వర్డ్';
+
+  @override
+  String get authShowPassword => 'పాస్‌వర్డ్ చూపించు';
+
+  @override
+  String get authHidePassword => 'పాస్‌వర్డ్ దాచు';
+
+  @override
+  String get authForgotPassword => 'పాస్‌వర్డ్ మర్చిపోయారా?';
+
+  @override
+  String get authLoggingIn => 'లాగిన్ అవుతోంది…';
+
+  @override
+  String get authNewHere => 'కొత్తవారా? ';
+
+  @override
+  String get forgotPasswordLead => 'పాస్‌వర్డ్';
+
+  @override
+  String get forgotPasswordAccent => 'మర్చిపోయారా?';
+
+  @override
+  String get forgotPasswordSubtitle =>
+      'మీ ఇమెయిల్ టైప్ చేయండి, 6 అంకెల కోడ్ పంపుతాను.';
+
+  @override
+  String get authSending => 'పంపుతోంది…';
+
+  @override
+  String get authSendCode => 'కోడ్ పంపు';
+
+  @override
+  String get resetCodeLead => 'మీ';
+
+  @override
+  String get resetCodeAccent => 'ఇమెయిల్ చూడండి.';
+
+  @override
+  String resetCodeSubtitle(String email) {
+    return '$emailకి ACADEMe అకౌంట్ ఉంటే, 6 అంకెల కోడ్ వస్తోంది. ఇది 15 నిమిషాల్లో ముగుస్తుంది.';
+  }
+
+  @override
+  String get authPasteCode => 'కోడ్ పేస్ట్ చేయి';
+
+  @override
+  String get authChecking => 'తనిఖీ చేస్తోంది…';
+
+  @override
+  String get authVerify => 'వెరిఫై';
+
+  @override
+  String get resetDidntGetIt => 'రాలేదా? ';
+
+  @override
+  String get resetSendNewCode => 'కొత్త కోడ్ పంపు';
+
+  @override
+  String get resetSendingNewCode => 'కొత్త కోడ్ పంపుతోంది…';
+
+  @override
+  String resetNewCodeSent(String seconds) {
+    return 'కొత్త కోడ్ పంపబడింది. మళ్లీ అడగవచ్చు 0:$secondsలో';
+  }
+
+  @override
+  String resetAskAgainIn(String seconds) {
+    return 'కొత్త కోడ్ 0:$secondsలో అడగవచ్చు';
+  }
+
+  @override
+  String get newPasswordLead => 'కొత్త';
+
+  @override
+  String get newPasswordAccent => 'పాస్‌వర్డ్ ఎంచుకోండి.';
+
+  @override
+  String get newPasswordSubtitle =>
+      'కనీసం 8 అక్షరాలు. చింతించకండి, నేను చూడను.';
+
+  @override
+  String get authNewPassword => 'కొత్త పాస్‌వర్డ్';
+
+  @override
+  String authPasswordMinLength(int count) {
+    return '$count+ అక్షరాలు';
+  }
+
+  @override
+  String get authStartAgain => 'మళ్లీ ప్రారంభించు';
+
+  @override
+  String get authSaving => 'సేవ్ అవుతోంది…';
+
+  @override
+  String get authSaveAndLogIn => 'సేవ్ చేసి లాగిన్';
 }

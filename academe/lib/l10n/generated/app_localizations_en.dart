@@ -115,4 +115,116 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get authContinueEmail => 'Continue with email';
+
+  @override
+  String get loginHeadlineLead => 'Welcome';
+
+  @override
+  String get loginHeadlineAccent => 'back.';
+
+  @override
+  String get loginSubtitle => 'Log in to pick up where you left off.';
+
+  @override
+  String get authEmail => 'Email';
+
+  @override
+  String get authPassword => 'Password';
+
+  @override
+  String get authShowPassword => 'Show password';
+
+  @override
+  String get authHidePassword => 'Hide password';
+
+  @override
+  String get authForgotPassword => 'Forgot password?';
+
+  @override
+  String get authLoggingIn => 'Logging in…';
+
+  @override
+  String get authNewHere => 'New here? ';
+
+  @override
+  String get forgotPasswordLead => 'Forgot your';
+
+  @override
+  String get forgotPasswordAccent => 'password?';
+
+  @override
+  String get forgotPasswordSubtitle =>
+      'Type your email and I\'ll send you a 6-digit code.';
+
+  @override
+  String get authSending => 'Sending…';
+
+  @override
+  String get authSendCode => 'Send code';
+
+  @override
+  String get resetCodeLead => 'Check your';
+
+  @override
+  String get resetCodeAccent => 'email.';
+
+  @override
+  String resetCodeSubtitle(String email) {
+    return 'If $email has an ACADEMe account, a 6-digit code is on its way. It expires in 15 minutes.';
+  }
+
+  @override
+  String get authPasteCode => 'Paste code';
+
+  @override
+  String get authChecking => 'Checking…';
+
+  @override
+  String get authVerify => 'Verify';
+
+  @override
+  String get resetDidntGetIt => 'Didn\'t get it? ';
+
+  @override
+  String get resetSendNewCode => 'Send a new code';
+
+  @override
+  String get resetSendingNewCode => 'Sending a new code…';
+
+  @override
+  String resetNewCodeSent(String seconds) {
+    return 'New code sent. You can ask again in 0:$seconds';
+  }
+
+  @override
+  String resetAskAgainIn(String seconds) {
+    return 'You can ask for a new code in 0:$seconds';
+  }
+
+  @override
+  String get newPasswordLead => 'Choose a new';
+
+  @override
+  String get newPasswordAccent => 'password.';
+
+  @override
+  String get newPasswordSubtitle =>
+      'At least 8 characters. Don\'t worry, I won\'t look.';
+
+  @override
+  String get authNewPassword => 'New password';
+
+  @override
+  String authPasswordMinLength(int count) {
+    return '$count+ characters';
+  }
+
+  @override
+  String get authStartAgain => 'Start again';
+
+  @override
+  String get authSaving => 'Saving…';
+
+  @override
+  String get authSaveAndLogIn => 'Save and log in';
 }

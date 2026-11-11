@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../core/l10n/app_l10n.dart';
 import '../../core/ui/app_button.dart';
 import '../../core/ui/app_password_field.dart';
 import '../../core/ui/pebby.dart';
@@ -68,10 +69,11 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return AuthPage(
-      lead: 'Choose a new',
-      accent: 'password.',
-      subtitle: "At least 8 characters. Don't worry, I won't look.",
+      lead: l10n.newPasswordLead,
+      accent: l10n.newPasswordAccent,
+      subtitle: l10n.newPasswordSubtitle,
       pebby: ListenableBuilder(
         listenable: Listenable.merge([_viewModel, _isPasswordHidden]),
         builder: (context, _) => Pebby(
@@ -89,7 +91,7 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
       children: [
         AppPasswordField(
           controller: _password,
-          label: 'New password',
+          label: l10n.authNewPassword,
           autofillHints: const [AutofillHints.newPassword],
           isAutofocused: true,
           onSubmitted: (_) => _save(),
@@ -110,14 +112,14 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
           listenable: _viewModel,
           builder: (context, _) => _viewModel.hasExpired
               ? AppButton(
-                  label: 'Start again',
+                  label: l10n.authStartAgain,
                   isPrimary: true,
                   onTap: widget.onStartOver,
                 )
               : AppButton(
                   label: _viewModel.save.isRunning
-                      ? 'Saving…'
-                      : 'Save and log in',
+                      ? l10n.authSaving
+                      : l10n.authSaveAndLogIn,
                   isPrimary: true,
                   isEnabled: _viewModel.canSave,
                   onTap: _save,

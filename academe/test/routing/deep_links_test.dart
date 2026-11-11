@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:academe/data/repositories/appearance_repository.dart';
 import 'package:academe/data/repositories/reminder_repository.dart';
 import 'package:academe/domain/models/auth_failure.dart';
+import 'package:academe/l10n/generated/app_localizations.dart';
 import 'package:academe/routing/deep_links.dart';
 import 'package:academe/routing/router.dart';
 import 'package:academe/routing/routes.dart';
@@ -77,6 +78,9 @@ void main() {
       await tester.pumpWidget(
         PebbyStandIn(
           child: MaterialApp(
+            locale: const Locale('en'),
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
             theme: AppTheme.dark(),
             initialRoute: initialRoute,
             onGenerateRoute: appRouter(

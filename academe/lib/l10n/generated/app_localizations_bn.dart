@@ -114,4 +114,116 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get authContinueEmail => 'ইমেইল দিয়ে চালিয়ে যাও';
+
+  @override
+  String get loginHeadlineLead => 'আবার';
+
+  @override
+  String get loginHeadlineAccent => 'স্বাগত।';
+
+  @override
+  String get loginSubtitle => 'যেখানে ছেড়েছিলে সেখান থেকে চালিয়ে যাও।';
+
+  @override
+  String get authEmail => 'ইমেইল';
+
+  @override
+  String get authPassword => 'পাসওয়ার্ড';
+
+  @override
+  String get authShowPassword => 'পাসওয়ার্ড দেখাও';
+
+  @override
+  String get authHidePassword => 'পাসওয়ার্ড লুকাও';
+
+  @override
+  String get authForgotPassword => 'পাসওয়ার্ড ভুলে গেছো?';
+
+  @override
+  String get authLoggingIn => 'লগ ইন হচ্ছে…';
+
+  @override
+  String get authNewHere => 'নতুন? ';
+
+  @override
+  String get forgotPasswordLead => 'পাসওয়ার্ড';
+
+  @override
+  String get forgotPasswordAccent => 'ভুলে গেছো?';
+
+  @override
+  String get forgotPasswordSubtitle =>
+      'তোমার ইমেইল লিখো, আমি ৬ অঙ্কের কোড পাঠাব।';
+
+  @override
+  String get authSending => 'পাঠানো হচ্ছে…';
+
+  @override
+  String get authSendCode => 'কোড পাঠাও';
+
+  @override
+  String get resetCodeLead => 'তোমার';
+
+  @override
+  String get resetCodeAccent => 'ইমেইল দেখো।';
+
+  @override
+  String resetCodeSubtitle(String email) {
+    return '$email-এ ACADEMe অ্যাকাউন্ট থাকলে, ৬ অঙ্কের কোড আসছে। এটি ১৫ মিনিটে মেয়াদ শেষ হবে।';
+  }
+
+  @override
+  String get authPasteCode => 'কোড পেস্ট করো';
+
+  @override
+  String get authChecking => 'যাচাই হচ্ছে…';
+
+  @override
+  String get authVerify => 'যাচাই';
+
+  @override
+  String get resetDidntGetIt => 'পাওনি? ';
+
+  @override
+  String get resetSendNewCode => 'নতুন কোড পাঠাও';
+
+  @override
+  String get resetSendingNewCode => 'নতুন কোড পাঠানো হচ্ছে…';
+
+  @override
+  String resetNewCodeSent(String seconds) {
+    return 'নতুন কোড পাঠানো হয়েছে। আবার চাইতে পারো ০:$seconds-এ';
+  }
+
+  @override
+  String resetAskAgainIn(String seconds) {
+    return 'নতুন কোড ০:$seconds-এ চাইতে পারো';
+  }
+
+  @override
+  String get newPasswordLead => 'নতুন';
+
+  @override
+  String get newPasswordAccent => 'পাসওয়ার্ড বেছে নাও।';
+
+  @override
+  String get newPasswordSubtitle =>
+      'কমপক্ষে ৮ অক্ষর। চিন্তা কোরো না, আমি দেখব না।';
+
+  @override
+  String get authNewPassword => 'নতুন পাসওয়ার্ড';
+
+  @override
+  String authPasswordMinLength(int count) {
+    return '$count+ অক্ষর';
+  }
+
+  @override
+  String get authStartAgain => 'আবার শুরু করো';
+
+  @override
+  String get authSaving => 'সেভ হচ্ছে…';
+
+  @override
+  String get authSaveAndLogIn => 'সেভ করে লগ ইন';
 }

@@ -114,4 +114,116 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get authContinueEmail => 'ईमेल से जारी रखें';
+
+  @override
+  String get loginHeadlineLead => 'फिर से';
+
+  @override
+  String get loginHeadlineAccent => 'स्वागत है।';
+
+  @override
+  String get loginSubtitle => 'जहाँ छोड़ा था वहीं से जारी रखो।';
+
+  @override
+  String get authEmail => 'ईमेल';
+
+  @override
+  String get authPassword => 'पासवर्ड';
+
+  @override
+  String get authShowPassword => 'पासवर्ड दिखाएँ';
+
+  @override
+  String get authHidePassword => 'पासवर्ड छिपाएँ';
+
+  @override
+  String get authForgotPassword => 'पासवर्ड भूल गए?';
+
+  @override
+  String get authLoggingIn => 'लॉग इन हो रहा है…';
+
+  @override
+  String get authNewHere => 'नए हो? ';
+
+  @override
+  String get forgotPasswordLead => 'पासवर्ड';
+
+  @override
+  String get forgotPasswordAccent => 'भूल गए?';
+
+  @override
+  String get forgotPasswordSubtitle =>
+      'अपना ईमेल लिखो, मैं 6 अंकों का कोड भेजूँगा।';
+
+  @override
+  String get authSending => 'भेजा जा रहा है…';
+
+  @override
+  String get authSendCode => 'कोड भेजें';
+
+  @override
+  String get resetCodeLead => 'अपना';
+
+  @override
+  String get resetCodeAccent => 'ईमेल देखो।';
+
+  @override
+  String resetCodeSubtitle(String email) {
+    return 'अगर $email पर ACADEMe अकाउंट है, तो 6 अंकों का कोड आ रहा है। यह 15 मिनट में खत्म हो जाएगा।';
+  }
+
+  @override
+  String get authPasteCode => 'कोड पेस्ट करें';
+
+  @override
+  String get authChecking => 'जाँच हो रही है…';
+
+  @override
+  String get authVerify => 'वेरिफाई';
+
+  @override
+  String get resetDidntGetIt => 'नहीं मिला? ';
+
+  @override
+  String get resetSendNewCode => 'नया कोड भेजें';
+
+  @override
+  String get resetSendingNewCode => 'नया कोड भेजा जा रहा है…';
+
+  @override
+  String resetNewCodeSent(String seconds) {
+    return 'नया कोड भेज दिया। फिर माँग सकते हो 0:$seconds में';
+  }
+
+  @override
+  String resetAskAgainIn(String seconds) {
+    return 'नया कोड 0:$seconds में माँग सकते हो';
+  }
+
+  @override
+  String get newPasswordLead => 'नया';
+
+  @override
+  String get newPasswordAccent => 'पासवर्ड चुनो।';
+
+  @override
+  String get newPasswordSubtitle =>
+      'कम से कम 8 अक्षर। चिंता मत करो, मैं नहीं देखूँगा।';
+
+  @override
+  String get authNewPassword => 'नया पासवर्ड';
+
+  @override
+  String authPasswordMinLength(int count) {
+    return '$count+ अक्षर';
+  }
+
+  @override
+  String get authStartAgain => 'फिर से शुरू करें';
+
+  @override
+  String get authSaving => 'सेव हो रहा है…';
+
+  @override
+  String get authSaveAndLogIn => 'सेव करके लॉग इन';
 }

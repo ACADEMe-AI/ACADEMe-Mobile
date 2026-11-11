@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 
 import '../../../domain/models/auth_failure.dart';
 import '../../../utils/result.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/app_button.dart';
 import '../../core/ui/inline_link.dart';
@@ -73,12 +74,11 @@ class _ResetCodeScreenState extends State<ResetCodeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return AuthPage(
-      lead: 'Check your',
-      accent: 'email.',
-      subtitle:
-          'If ${_viewModel.email} has an ACADEMe account, a 6-digit code '
-          'is on its way. It expires in 15 minutes.',
+      lead: l10n.resetCodeLead,
+      accent: l10n.resetCodeAccent,
+      subtitle: l10n.resetCodeSubtitle(_viewModel.email),
       pebby: ListenableBuilder(
         listenable: _viewModel,
         builder: (context, _) => Pebby(
@@ -111,7 +111,7 @@ class _ResetCodeScreenState extends State<ResetCodeScreen> {
             onPressed: _paste,
             style: TextButton.styleFrom(foregroundColor: AppColors.primary),
             icon: const Icon(Icons.content_paste_rounded, size: 18),
-            label: const Text('Paste code', style: AppTextStyles.labelStrong),
+            label: Text(l10n.authPasteCode, style: AppTextStyles.labelStrong),
           ),
         ),
         ListenableBuilder(
@@ -122,7 +122,9 @@ class _ResetCodeScreenState extends State<ResetCodeScreen> {
         ListenableBuilder(
           listenable: _viewModel,
           builder: (context, _) => AppButton(
-            label: _viewModel.verify.isRunning ? 'Checking…' : 'Verify',
+            label: _viewModel.verify.isRunning
+                ? l10n.authChecking
+                : l10n.authVerify,
             isPrimary: true,
             isEnabled: _viewModel.canVerify,
             onTap: _verify,
@@ -145,19 +147,20 @@ class _Resend extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     if (viewModel.canResend) {
       return InlineLink(
-        lead: "Didn't get it? ",
-        action: 'Send a new code',
+        lead: l10n.resetDidntGetIt,
+        action: l10n.resetSendNewCode,
         onTap: viewModel.resend.execute,
       );
     }
     final seconds = viewModel.resendIn.inSeconds.toString().padLeft(2, '0');
     final text = viewModel.resend.isRunning
-        ? 'Sending a new code…'
+        ? l10n.resetSendingNewCode
         : viewModel.resend.isCompleted
-        ? 'New code sent. You can ask again in 0:$seconds'
-        : 'You can ask for a new code in 0:$seconds';
+        ? l10n.resetNewCodeSent(seconds)
+        : l10n.resetAskAgainIn(seconds);
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Text(

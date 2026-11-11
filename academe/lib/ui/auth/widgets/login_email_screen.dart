@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/app_back_button.dart';
 import '../../core/ui/app_button.dart';
@@ -155,13 +156,13 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                             step: const Duration(milliseconds: 60),
                             children: [
                               SplitHeadline(
-                                lead: 'Welcome',
-                                accent: 'back.',
+                                lead: context.l10n.loginHeadlineLead,
+                                accent: context.l10n.loginHeadlineAccent,
                                 size: scale.headlineSize * .82,
                               ),
                               const SizedBox(height: 12),
                               Text(
-                                'Log in to pick up where you left off.',
+                                context.l10n.loginSubtitle,
                                 style: TextStyle(
                                   fontSize: scale.bodySize,
                                   height: 1.45,
@@ -170,7 +171,7 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                               ),
                               const SizedBox(height: 24),
                               AppTextField(
-                                label: 'Email',
+                                label: context.l10n.authEmail,
                                 controller: _email,
                                 focusNode: _emailFocus,
                                 keyboardType: TextInputType.emailAddress,
@@ -192,8 +193,8 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                                   style: TextButton.styleFrom(
                                     foregroundColor: AppColors.primary,
                                   ),
-                                  child: const Text(
-                                    'Forgot password?',
+                                  child: Text(
+                                    context.l10n.authForgotPassword,
                                     style: AppTextStyles.labelStrong,
                                   ),
                                 ),
@@ -209,8 +210,8 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                                 listenable: _viewModel,
                                 builder: (context, _) => AppButton(
                                   label: _viewModel.logIn.isRunning
-                                      ? 'Logging in…'
-                                      : 'Log in',
+                                      ? context.l10n.authLoggingIn
+                                      : context.l10n.authLogIn,
                                   isPrimary: true,
                                   isEnabled: _viewModel.canLogIn,
                                   onTap: _logIn,
@@ -220,8 +221,8 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                           ),
                           const SizedBox(height: 8),
                           InlineLink(
-                            lead: 'New here? ',
-                            action: 'Sign up',
+                            lead: context.l10n.authNewHere,
+                            action: context.l10n.authSignUp,
                             onTap: widget.onSignUp,
                           ),
                         ],

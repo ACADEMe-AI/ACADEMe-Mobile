@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../view_models/sign_up_view_model.dart';
 
@@ -20,7 +21,7 @@ class PasswordLengthCheck extends StatelessWidget {
         ),
         const SizedBox(width: 8),
         Text(
-          '${SignUpViewModel.minPasswordLength}+ characters',
+          context.l10n.authPasswordMinLength(SignUpViewModel.minPasswordLength),
           style: AppTextStyles.label.copyWith(color: color),
         ),
       ],

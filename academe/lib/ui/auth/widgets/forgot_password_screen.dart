@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../utils/result.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/ui/app_button.dart';
 import '../../core/ui/app_text_field.dart';
 import '../../core/ui/pebby.dart';
@@ -58,10 +59,11 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return AuthPage(
-      lead: 'Forgot your',
-      accent: 'password?',
-      subtitle: "Type your email and I'll send you a 6-digit code.",
+      lead: l10n.forgotPasswordLead,
+      accent: l10n.forgotPasswordAccent,
+      subtitle: l10n.forgotPasswordSubtitle,
       pebby: ListenableBuilder(
         listenable: _viewModel,
         builder: (context, _) => Pebby(
@@ -76,7 +78,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
       ),
       children: [
         AppTextField(
-          label: 'Email',
+          label: l10n.authEmail,
           controller: _email,
           keyboardType: TextInputType.emailAddress,
           textInputAction: TextInputAction.send,
@@ -92,7 +94,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
         ListenableBuilder(
           listenable: _viewModel,
           builder: (context, _) => AppButton(
-            label: _viewModel.sendCode.isRunning ? 'Sending…' : 'Send code',
+            label: _viewModel.sendCode.isRunning
+                ? l10n.authSending
+                : l10n.authSendCode,
             isPrimary: true,
             isEnabled: _viewModel.canSend,
             onTap: _send,

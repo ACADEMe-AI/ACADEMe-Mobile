@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../l10n/app_l10n.dart';
 import '../themes/app_theme.dart';
 import 'app_text_field.dart';
 
@@ -7,7 +8,7 @@ class AppPasswordField extends StatefulWidget {
   const AppPasswordField({
     super.key,
     required this.controller,
-    this.label = 'Password',
+    this.label,
     this.focusNode,
     this.textInputAction = TextInputAction.done,
     this.autofillHints = const [AutofillHints.password],
@@ -17,7 +18,7 @@ class AppPasswordField extends StatefulWidget {
   });
 
   final TextEditingController controller;
-  final String label;
+  final String? label;
   final FocusNode? focusNode;
   final TextInputAction textInputAction;
   final Iterable<String> autofillHints;
@@ -39,6 +40,7 @@ class _AppPasswordFieldState extends State<AppPasswordField> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return TextField(
       controller: widget.controller,
       focusNode: widget.focusNode,
@@ -50,9 +52,9 @@ class _AppPasswordFieldState extends State<AppPasswordField> {
       style: AppTextStyles.input.copyWith(color: context.palette.text),
       decoration: appFieldDecoration(
         context,
-        widget.label,
+        widget.label ?? l10n.authPassword,
         suffix: IconButton(
-          tooltip: _isHidden ? 'Show password' : 'Hide password',
+          tooltip: _isHidden ? l10n.authShowPassword : l10n.authHidePassword,
           onPressed: _toggle,
           icon: Icon(
             _isHidden

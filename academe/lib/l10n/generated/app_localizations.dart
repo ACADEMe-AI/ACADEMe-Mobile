@@ -301,6 +301,210 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Continue with email'**
   String get authContinueEmail;
+
+  /// Login email screen headline lead
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome'**
+  String get loginHeadlineLead;
+
+  /// Login email screen headline accent
+  ///
+  /// In en, this message translates to:
+  /// **'back.'**
+  String get loginHeadlineAccent;
+
+  /// Login email screen subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Log in to pick up where you left off.'**
+  String get loginSubtitle;
+
+  /// Email field label on auth screens
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get authEmail;
+
+  /// Default password field label
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get authPassword;
+
+  /// Password field reveal tooltip
+  ///
+  /// In en, this message translates to:
+  /// **'Show password'**
+  String get authShowPassword;
+
+  /// Password field conceal tooltip
+  ///
+  /// In en, this message translates to:
+  /// **'Hide password'**
+  String get authHidePassword;
+
+  /// Login link to password reset
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot password?'**
+  String get authForgotPassword;
+
+  /// Login button while the request runs
+  ///
+  /// In en, this message translates to:
+  /// **'Logging in…'**
+  String get authLoggingIn;
+
+  /// Login footer lead linking to sign up
+  ///
+  /// In en, this message translates to:
+  /// **'New here? '**
+  String get authNewHere;
+
+  /// Forgot-password headline lead
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot your'**
+  String get forgotPasswordLead;
+
+  /// Forgot-password headline accent
+  ///
+  /// In en, this message translates to:
+  /// **'password?'**
+  String get forgotPasswordAccent;
+
+  /// Forgot-password subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Type your email and I\'ll send you a 6-digit code.'**
+  String get forgotPasswordSubtitle;
+
+  /// Send-code button while the request runs
+  ///
+  /// In en, this message translates to:
+  /// **'Sending…'**
+  String get authSending;
+
+  /// Forgot-password primary action
+  ///
+  /// In en, this message translates to:
+  /// **'Send code'**
+  String get authSendCode;
+
+  /// Reset-code headline lead
+  ///
+  /// In en, this message translates to:
+  /// **'Check your'**
+  String get resetCodeLead;
+
+  /// Reset-code headline accent
+  ///
+  /// In en, this message translates to:
+  /// **'email.'**
+  String get resetCodeAccent;
+
+  /// Reset-code subtitle including the target email
+  ///
+  /// In en, this message translates to:
+  /// **'If {email} has an ACADEMe account, a 6-digit code is on its way. It expires in 15 minutes.'**
+  String resetCodeSubtitle(String email);
+
+  /// Reset-code paste action
+  ///
+  /// In en, this message translates to:
+  /// **'Paste code'**
+  String get authPasteCode;
+
+  /// Verify button while the request runs
+  ///
+  /// In en, this message translates to:
+  /// **'Checking…'**
+  String get authChecking;
+
+  /// Reset-code verify action
+  ///
+  /// In en, this message translates to:
+  /// **'Verify'**
+  String get authVerify;
+
+  /// Resend link lead when resend is available
+  ///
+  /// In en, this message translates to:
+  /// **'Didn\'t get it? '**
+  String get resetDidntGetIt;
+
+  /// Resend link action
+  ///
+  /// In en, this message translates to:
+  /// **'Send a new code'**
+  String get resetSendNewCode;
+
+  /// Resend status while the request runs
+  ///
+  /// In en, this message translates to:
+  /// **'Sending a new code…'**
+  String get resetSendingNewCode;
+
+  /// Resend cooldown after a successful resend
+  ///
+  /// In en, this message translates to:
+  /// **'New code sent. You can ask again in 0:{seconds}'**
+  String resetNewCodeSent(String seconds);
+
+  /// Resend cooldown before the next request
+  ///
+  /// In en, this message translates to:
+  /// **'You can ask for a new code in 0:{seconds}'**
+  String resetAskAgainIn(String seconds);
+
+  /// New-password headline lead
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a new'**
+  String get newPasswordLead;
+
+  /// New-password headline accent
+  ///
+  /// In en, this message translates to:
+  /// **'password.'**
+  String get newPasswordAccent;
+
+  /// New-password subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'At least 8 characters. Don\'t worry, I won\'t look.'**
+  String get newPasswordSubtitle;
+
+  /// New-password field label
+  ///
+  /// In en, this message translates to:
+  /// **'New password'**
+  String get authNewPassword;
+
+  /// Password length checklist row
+  ///
+  /// In en, this message translates to:
+  /// **'{count}+ characters'**
+  String authPasswordMinLength(int count);
+
+  /// Expired reset primary action
+  ///
+  /// In en, this message translates to:
+  /// **'Start again'**
+  String get authStartAgain;
+
+  /// Save button while the request runs
+  ///
+  /// In en, this message translates to:
+  /// **'Saving…'**
+  String get authSaving;
+
+  /// New-password primary action
+  ///
+  /// In en, this message translates to:
+  /// **'Save and log in'**
+  String get authSaveAndLogIn;
 }
 
 class _AppLocalizationsDelegate

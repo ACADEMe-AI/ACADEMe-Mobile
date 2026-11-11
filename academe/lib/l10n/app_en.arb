@@ -143,5 +143,165 @@
   "authContinueEmail": "Continue with email",
   "@authContinueEmail": {
     "description": "Email auth button on welcome account options"
+  },
+  "loginHeadlineLead": "Welcome",
+  "@loginHeadlineLead": {
+    "description": "Login email screen headline lead"
+  },
+  "loginHeadlineAccent": "back.",
+  "@loginHeadlineAccent": {
+    "description": "Login email screen headline accent"
+  },
+  "loginSubtitle": "Log in to pick up where you left off.",
+  "@loginSubtitle": {
+    "description": "Login email screen subtitle"
+  },
+  "authEmail": "Email",
+  "@authEmail": {
+    "description": "Email field label on auth screens"
+  },
+  "authPassword": "Password",
+  "@authPassword": {
+    "description": "Default password field label"
+  },
+  "authShowPassword": "Show password",
+  "@authShowPassword": {
+    "description": "Password field reveal tooltip"
+  },
+  "authHidePassword": "Hide password",
+  "@authHidePassword": {
+    "description": "Password field conceal tooltip"
+  },
+  "authForgotPassword": "Forgot password?",
+  "@authForgotPassword": {
+    "description": "Login link to password reset"
+  },
+  "authLoggingIn": "Logging in…",
+  "@authLoggingIn": {
+    "description": "Login button while the request runs"
+  },
+  "authNewHere": "New here? ",
+  "@authNewHere": {
+    "description": "Login footer lead linking to sign up"
+  },
+  "forgotPasswordLead": "Forgot your",
+  "@forgotPasswordLead": {
+    "description": "Forgot-password headline lead"
+  },
+  "forgotPasswordAccent": "password?",
+  "@forgotPasswordAccent": {
+    "description": "Forgot-password headline accent"
+  },
+  "forgotPasswordSubtitle": "Type your email and I'll send you a 6-digit code.",
+  "@forgotPasswordSubtitle": {
+    "description": "Forgot-password subtitle"
+  },
+  "authSending": "Sending…",
+  "@authSending": {
+    "description": "Send-code button while the request runs"
+  },
+  "authSendCode": "Send code",
+  "@authSendCode": {
+    "description": "Forgot-password primary action"
+  },
+  "resetCodeLead": "Check your",
+  "@resetCodeLead": {
+    "description": "Reset-code headline lead"
+  },
+  "resetCodeAccent": "email.",
+  "@resetCodeAccent": {
+    "description": "Reset-code headline accent"
+  },
+  "resetCodeSubtitle": "If {email} has an ACADEMe account, a 6-digit code is on its way. It expires in 15 minutes.",
+  "@resetCodeSubtitle": {
+    "description": "Reset-code subtitle including the target email",
+    "placeholders": {
+      "email": {
+        "type": "String",
+        "example": "ada@school.in"
+      }
+    }
+  },
+  "authPasteCode": "Paste code",
+  "@authPasteCode": {
+    "description": "Reset-code paste action"
+  },
+  "authChecking": "Checking…",
+  "@authChecking": {
+    "description": "Verify button while the request runs"
+  },
+  "authVerify": "Verify",
+  "@authVerify": {
+    "description": "Reset-code verify action"
+  },
+  "resetDidntGetIt": "Didn't get it? ",
+  "@resetDidntGetIt": {
+    "description": "Resend link lead when resend is available"
+  },
+  "resetSendNewCode": "Send a new code",
+  "@resetSendNewCode": {
+    "description": "Resend link action"
+  },
+  "resetSendingNewCode": "Sending a new code…",
+  "@resetSendingNewCode": {
+    "description": "Resend status while the request runs"
+  },
+  "resetNewCodeSent": "New code sent. You can ask again in 0:{seconds}",
+  "@resetNewCodeSent": {
+    "description": "Resend cooldown after a successful resend",
+    "placeholders": {
+      "seconds": {
+        "type": "String",
+        "example": "30"
+      }
+    }
+  },
+  "resetAskAgainIn": "You can ask for a new code in 0:{seconds}",
+  "@resetAskAgainIn": {
+    "description": "Resend cooldown before the next request",
+    "placeholders": {
+      "seconds": {
+        "type": "String",
+        "example": "29"
+      }
+    }
+  },
+  "newPasswordLead": "Choose a new",
+  "@newPasswordLead": {
+    "description": "New-password headline lead"
+  },
+  "newPasswordAccent": "password.",
+  "@newPasswordAccent": {
+    "description": "New-password headline accent"
+  },
+  "newPasswordSubtitle": "At least 8 characters. Don't worry, I won't look.",
+  "@newPasswordSubtitle": {
+    "description": "New-password subtitle"
+  },
+  "authNewPassword": "New password",
+  "@authNewPassword": {
+    "description": "New-password field label"
+  },
+  "authPasswordMinLength": "{count}+ characters",
+  "@authPasswordMinLength": {
+    "description": "Password length checklist row",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "8"
+      }
+    }
+  },
+  "authStartAgain": "Start again",
+  "@authStartAgain": {
+    "description": "Expired reset primary action"
+  },
+  "authSaving": "Saving…",
+  "@authSaving": {
+    "description": "Save button while the request runs"
+  },
+  "authSaveAndLogIn": "Save and log in",
+  "@authSaveAndLogIn": {
+    "description": "New-password primary action"
   }
 }
