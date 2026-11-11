@@ -6,6 +6,8 @@
 - [x] B1: Remove welcome from auth signup/Google create
 - [x] B2: Send welcome once on profile CompleteSetup with language + Go tests
 - [x] C1: Shell tab labels + ask bar + soft/force update → ARB
-- [ ] C2: Auth/welcome chrome → ARB
+- [x] C2a: Welcome auth chrome → ARB
+- [x] C2b: Login + forgot/reset/new-password chrome → ARB
+- [ ] C2c: Sign-up prompts + AuthFailure messages → ARB
 - [ ] C3: Home chrome (checklist/quick actions) → ARB
 - [ ] C…: Remaining UI extract / email locales / legal / Play
