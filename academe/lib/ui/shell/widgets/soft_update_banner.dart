@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../domain/models/app_config.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/keycap.dart';
 import '../../core/ui/pebby.dart';
@@ -56,11 +57,12 @@ class SoftUpdateBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final palette = context.palette;
     const ink = AppColors.keycapEdge;
     final message = config.updateMessage.isNotEmpty
         ? config.updateMessage
-        : 'New version just dropped, you don\'t wanna miss this!';
+        : l10n.softUpdateDefaultMessage;
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 0, 16, gapAboveNav),
       child: Keycap(
@@ -76,7 +78,7 @@ class SoftUpdateBanner extends StatelessWidget {
                 width: _pebbySlot,
                 height: _pebbySlot,
                 child: Semantics(
-                  label: 'Pebby',
+                  label: l10n.pebbySemantics,
                   child: const Pebby(pose: PebbyPose.encourage),
                 ),
               ),
@@ -100,10 +102,10 @@ class SoftUpdateBanner extends StatelessWidget {
                   minimumSize: Size.zero,
                   tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 ),
-                child: const Text('Update'),
+                child: Text(l10n.softUpdateAction),
               ),
               IconButton(
-                tooltip: 'Not now',
+                tooltip: l10n.softUpdateDismiss,
                 onPressed: onDismiss,
                 padding: EdgeInsets.zero,
                 constraints: const BoxConstraints(minWidth: 36, minHeight: 36),

@@ -4,16 +4,16 @@ import 'package:academe/ui/shell/widgets/app_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import '../../../testing/l10n.dart';
+
 void main() {
   Future<List<int>> pumpBar(WidgetTester tester, {int selected = 0}) async {
     final taps = <int>[];
-    await tester.pumpWidget(
-      MaterialApp(
-        home: Scaffold(
-          bottomNavigationBar: AppNavBar(
-            selected: selected,
-            onSelect: taps.add,
-          ),
+    await tester.pumpL10n(
+      Scaffold(
+        bottomNavigationBar: AppNavBar(
+          selected: selected,
+          onSelect: taps.add,
         ),
       ),
     );
@@ -55,18 +55,16 @@ void main() {
     addTearDown(controller.dispose);
     var sent = 0;
     var attached = 0;
-    Future<void> pumpAsk({required bool canSend}) => tester.pumpWidget(
-      MaterialApp(
-        home: Scaffold(
-          bottomNavigationBar: AppNavBar(
-            selected: 1,
-            onSelect: (_) {},
-            isAsking: true,
-            askController: controller,
-            canSend: canSend,
-            onSend: () => sent++,
-            onAttach: () => attached++,
-          ),
+    Future<void> pumpAsk({required bool canSend}) => tester.pumpL10n(
+      Scaffold(
+        bottomNavigationBar: AppNavBar(
+          selected: 1,
+          onSelect: (_) {},
+          isAsking: true,
+          askController: controller,
+          canSend: canSend,
+          onSend: () => sent++,
+          onAttach: () => attached++,
         ),
       ),
     );
@@ -93,8 +91,8 @@ void main() {
   testWidgets('the tabs slide out left while the ask field slides in', (
     tester,
   ) async {
-    Widget bar({required bool isAsking}) => MaterialApp(
-      home: Scaffold(
+    Future<void> pumpAsk({required bool isAsking}) => tester.pumpL10n(
+      Scaffold(
         bottomNavigationBar: AppNavBar(
           selected: 0,
           onSelect: (_) {},
@@ -103,10 +101,10 @@ void main() {
       ),
     );
 
-    await tester.pumpWidget(bar(isAsking: false));
+    await pumpAsk(isAsking: false);
     final homeAtRest = tester.getCenter(find.text('Home')).dx;
 
-    await tester.pumpWidget(bar(isAsking: true));
+    await pumpAsk(isAsking: true);
     await tester.pump(AppNavBar.morph ~/ 2);
     final askField = tester.getCenter(find.text('Ask anything…')).dx;
     final homeMoving = tester.getCenter(find.text('Home')).dx;

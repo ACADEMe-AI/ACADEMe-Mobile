@@ -116,10 +116,10 @@ abstract class AppLocalizations {
   /// **'App language'**
   String get meAppLanguage;
 
-  /// Language sheet explainer while UI chrome is still being migrated
+  /// Language sheet explainer while remaining screens migrate
   ///
   /// In en, this message translates to:
-  /// **'Pebby and Scan teaching replies use this language. App menus stay in English for now.'**
+  /// **'Pebby and Scan teaching replies use this language. App chrome follows it as we finish translating.'**
   String get meLanguageSheetBody;
 
   /// Footer on language sheet for languages not yet shipped
@@ -133,6 +133,102 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Switching to {name}…'**
   String languageSwitchingTo(String name);
+
+  /// Bottom nav Home tab label
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get navHome;
+
+  /// Bottom nav ASKMe tab label
+  ///
+  /// In en, this message translates to:
+  /// **'ASKMe'**
+  String get navAskMe;
+
+  /// Bottom nav Study tab label
+  ///
+  /// In en, this message translates to:
+  /// **'Study'**
+  String get navStudy;
+
+  /// Bottom nav Me tab label
+  ///
+  /// In en, this message translates to:
+  /// **'Me'**
+  String get navMe;
+
+  /// Semantics label for the Scan camera key
+  ///
+  /// In en, this message translates to:
+  /// **'Scan'**
+  String get navScan;
+
+  /// Semantics label for the ask-bar send key
+  ///
+  /// In en, this message translates to:
+  /// **'Send'**
+  String get navSend;
+
+  /// Placeholder in the shell ask text field
+  ///
+  /// In en, this message translates to:
+  /// **'Ask anything…'**
+  String get askAnythingHint;
+
+  /// Tooltip for attach on the ask bar
+  ///
+  /// In en, this message translates to:
+  /// **'Attach'**
+  String get askAttach;
+
+  /// Fallback soft-update banner copy when the server sends an empty message
+  ///
+  /// In en, this message translates to:
+  /// **'New version just dropped, you don\'t wanna miss this!'**
+  String get softUpdateDefaultMessage;
+
+  /// Soft-update banner primary action
+  ///
+  /// In en, this message translates to:
+  /// **'Update'**
+  String get softUpdateAction;
+
+  /// Soft-update banner dismiss tooltip
+  ///
+  /// In en, this message translates to:
+  /// **'Not now'**
+  String get softUpdateDismiss;
+
+  /// Force-update screen title
+  ///
+  /// In en, this message translates to:
+  /// **'Hold up'**
+  String get updateRequiredTitle;
+
+  /// Force-update explanation under the server message
+  ///
+  /// In en, this message translates to:
+  /// **'This build can’t talk to our servers anymore. Update on Play to keep studying.'**
+  String get updateRequiredBody;
+
+  /// Force-update footer showing the installed build number
+  ///
+  /// In en, this message translates to:
+  /// **'Installed build {build}.'**
+  String updateRequiredBuild(String build);
+
+  /// Force-update primary button
+  ///
+  /// In en, this message translates to:
+  /// **'Update on Google Play'**
+  String get updateRequiredAction;
+
+  /// Accessibility label for the Pebby mascot
+  ///
+  /// In en, this message translates to:
+  /// **'Pebby'**
+  String get pebbySemantics;
 }
 
 class _AppLocalizationsDelegate

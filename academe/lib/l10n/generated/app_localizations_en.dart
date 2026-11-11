@@ -16,7 +16,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get meLanguageSheetBody =>
-      'Pebby and Scan teaching replies use this language. App menus stay in English for now.';
+      'Pebby and Scan teaching replies use this language. App chrome follows it as we finish translating.';
 
   @override
   String get meMoreLanguagesComing => 'More languages coming soon';
@@ -25,4 +25,56 @@ class AppLocalizationsEn extends AppLocalizations {
   String languageSwitchingTo(String name) {
     return 'Switching to $name…';
   }
+
+  @override
+  String get navHome => 'Home';
+
+  @override
+  String get navAskMe => 'ASKMe';
+
+  @override
+  String get navStudy => 'Study';
+
+  @override
+  String get navMe => 'Me';
+
+  @override
+  String get navScan => 'Scan';
+
+  @override
+  String get navSend => 'Send';
+
+  @override
+  String get askAnythingHint => 'Ask anything…';
+
+  @override
+  String get askAttach => 'Attach';
+
+  @override
+  String get softUpdateDefaultMessage =>
+      'New version just dropped, you don\'t wanna miss this!';
+
+  @override
+  String get softUpdateAction => 'Update';
+
+  @override
+  String get softUpdateDismiss => 'Not now';
+
+  @override
+  String get updateRequiredTitle => 'Hold up';
+
+  @override
+  String get updateRequiredBody =>
+      'This build can’t talk to our servers anymore. Update on Play to keep studying.';
+
+  @override
+  String updateRequiredBuild(String build) {
+    return 'Installed build $build.';
+  }
+
+  @override
+  String get updateRequiredAction => 'Update on Google Play';
+
+  @override
+  String get pebbySemantics => 'Pebby';
 }

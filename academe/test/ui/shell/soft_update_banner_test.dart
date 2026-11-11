@@ -1,4 +1,5 @@
 import 'package:academe/domain/models/app_config.dart';
+import 'package:academe/l10n/generated/app_localizations.dart';
 import 'package:academe/ui/core/themes/app_theme.dart';
 import 'package:academe/ui/core/ui/pebby.dart';
 import 'package:academe/ui/shell/widgets/soft_update_banner.dart';
@@ -19,6 +20,9 @@ void main() {
     await tester.pumpWidget(
       PebbyStandIn(
         child: MaterialApp(
+          locale: const Locale('en'),
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
           theme: AppTheme.dark(),
           home: Scaffold(
             body: SoftUpdateBanner(

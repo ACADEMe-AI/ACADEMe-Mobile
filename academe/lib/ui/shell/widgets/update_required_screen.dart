@@ -3,6 +3,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../config/environment.dart';
 import '../../../domain/models/app_config.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/app_button.dart';
 import '../../core/ui/pebby.dart';
@@ -21,9 +22,10 @@ class UpdateRequiredScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final message = config.updateMessage.isNotEmpty
         ? config.updateMessage
-        : 'New version just dropped, you don\'t wanna miss this!';
+        : l10n.softUpdateDefaultMessage;
     return Scaffold(
       backgroundColor: AppColors.lightSurface,
       body: SafeArea(
@@ -36,13 +38,13 @@ class UpdateRequiredScreen extends StatelessWidget {
               SizedBox(
                 height: 140,
                 child: Semantics(
-                  label: 'Pebby',
+                  label: l10n.pebbySemantics,
                   child: const Pebby(pose: PebbyPose.headSway),
                 ),
               ),
               const SizedBox(height: 16),
               Text(
-                'Hold up',
+                l10n.updateRequiredTitle,
                 textAlign: TextAlign.center,
                 style: AppTextStyles.sheetTitle.copyWith(
                   color: AppColors.lightText,
@@ -58,8 +60,7 @@ class UpdateRequiredScreen extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               Text(
-                'This build can’t talk to our servers anymore. '
-                'Update on Play to keep studying.',
+                l10n.updateRequiredBody,
                 textAlign: TextAlign.center,
                 style: AppTextStyles.caption.copyWith(
                   color: AppColors.textMuted,
@@ -67,7 +68,7 @@ class UpdateRequiredScreen extends StatelessWidget {
               ),
               const SizedBox(height: 4),
               Text(
-                'Installed build ${Environment.buildNumber}.',
+                l10n.updateRequiredBuild('${Environment.buildNumber}'),
                 textAlign: TextAlign.center,
                 style: AppTextStyles.caption.copyWith(
                   color: AppColors.textMuted,
@@ -75,7 +76,7 @@ class UpdateRequiredScreen extends StatelessWidget {
               ),
               const Spacer(),
               AppButton(
-                label: 'Update on Google Play',
+                label: l10n.updateRequiredAction,
                 onTap: _openStore,
                 isPrimary: true,
               ),

@@ -8,9 +8,9 @@
   "@meAppLanguage": {
     "description": "Me settings row and language sheet title"
   },
-  "meLanguageSheetBody": "Pebby and Scan teaching replies use this language. App menus stay in English for now.",
+  "meLanguageSheetBody": "Pebby and Scan teaching replies use this language. App chrome follows it as we finish translating.",
   "@meLanguageSheetBody": {
-    "description": "Language sheet explainer while UI chrome is still being migrated"
+    "description": "Language sheet explainer while remaining screens migrate"
   },
   "meMoreLanguagesComing": "More languages coming soon",
   "@meMoreLanguagesComing": {
@@ -25,5 +25,75 @@
         "example": "हिन्दी"
       }
     }
+  },
+  "navHome": "Home",
+  "@navHome": {
+    "description": "Bottom nav Home tab label"
+  },
+  "navAskMe": "ASKMe",
+  "@navAskMe": {
+    "description": "Bottom nav ASKMe tab label"
+  },
+  "navStudy": "Study",
+  "@navStudy": {
+    "description": "Bottom nav Study tab label"
+  },
+  "navMe": "Me",
+  "@navMe": {
+    "description": "Bottom nav Me tab label"
+  },
+  "navScan": "Scan",
+  "@navScan": {
+    "description": "Semantics label for the Scan camera key"
+  },
+  "navSend": "Send",
+  "@navSend": {
+    "description": "Semantics label for the ask-bar send key"
+  },
+  "askAnythingHint": "Ask anything…",
+  "@askAnythingHint": {
+    "description": "Placeholder in the shell ask text field"
+  },
+  "askAttach": "Attach",
+  "@askAttach": {
+    "description": "Tooltip for attach on the ask bar"
+  },
+  "softUpdateDefaultMessage": "New version just dropped, you don't wanna miss this!",
+  "@softUpdateDefaultMessage": {
+    "description": "Fallback soft-update banner copy when the server sends an empty message"
+  },
+  "softUpdateAction": "Update",
+  "@softUpdateAction": {
+    "description": "Soft-update banner primary action"
+  },
+  "softUpdateDismiss": "Not now",
+  "@softUpdateDismiss": {
+    "description": "Soft-update banner dismiss tooltip"
+  },
+  "updateRequiredTitle": "Hold up",
+  "@updateRequiredTitle": {
+    "description": "Force-update screen title"
+  },
+  "updateRequiredBody": "This build can’t talk to our servers anymore. Update on Play to keep studying.",
+  "@updateRequiredBody": {
+    "description": "Force-update explanation under the server message"
+  },
+  "updateRequiredBuild": "Installed build {build}.",
+  "@updateRequiredBuild": {
+    "description": "Force-update footer showing the installed build number",
+    "placeholders": {
+      "build": {
+        "type": "String",
+        "example": "13"
+      }
+    }
+  },
+  "updateRequiredAction": "Update on Google Play",
+  "@updateRequiredAction": {
+    "description": "Force-update primary button"
+  },
+  "pebbySemantics": "Pebby",
+  "@pebbySemantics": {
+    "description": "Accessibility label for the Pebby mascot"
   }
 }

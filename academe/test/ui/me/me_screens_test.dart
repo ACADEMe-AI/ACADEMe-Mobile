@@ -127,7 +127,7 @@ void main() {
     await tester.pumpAndSettle();
     expect(
       find.text(
-        'Pebby and Scan teaching replies use this language. App menus stay in English for now.',
+        'Pebby and Scan teaching replies use this language. App chrome follows it as we finish translating.',
       ),
       findsOneWidget,
     );

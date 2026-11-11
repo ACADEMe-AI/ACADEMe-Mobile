@@ -5,4 +5,7 @@
 - [x] A3: Pilot migrate language sheet / Me row / switch screen; tests + shell helper
 - [x] B1: Remove welcome from auth signup/Google create
 - [x] B2: Send welcome once on profile CompleteSetup with language + Go tests
-- [ ] C…: Further UI extract / email locales / legal / Play (later slices)
+- [x] C1: Shell tab labels + ask bar + soft/force update → ARB
+- [ ] C2: Auth/welcome chrome → ARB
+- [ ] C3: Home chrome (checklist/quick actions) → ARB
+- [ ] C…: Remaining UI extract / email locales / legal / Play

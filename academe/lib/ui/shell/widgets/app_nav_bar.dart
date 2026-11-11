@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/ask_me_icon.dart';
 import '../../core/ui/keycap.dart';
@@ -81,7 +82,7 @@ class AppNavBar extends StatelessWidget {
               ),
               const SizedBox(width: 12),
               Semantics(
-                label: isAsking ? 'Send' : 'Scan',
+                label: isAsking ? context.l10n.navSend : context.l10n.navScan,
                 selected: !isAsking && selected == scanIndex,
                 child: SizedBox(
                   width: barHeight,
@@ -137,13 +138,14 @@ class _Tabs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Row(
       children: [
-        for (final (index, icon, label) in const [
-          (0, Icon(Icons.home_rounded), 'Home'),
-          (1, AskMeIcon(), 'ASKMe'),
-          (3, Icon(Icons.menu_book_rounded), 'Study'),
-          (4, Icon(Icons.person_rounded), 'Me'),
+        for (final (index, icon, label) in [
+          (0, const Icon(Icons.home_rounded), l10n.navHome),
+          (1, const AskMeIcon(), l10n.navAskMe),
+          (3, const Icon(Icons.menu_book_rounded), l10n.navStudy),
+          (4, const Icon(Icons.person_rounded), l10n.navMe),
         ])
           Expanded(
             child: _NavTab(
@@ -174,6 +176,7 @@ class _AskField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Row(
       children: [
         Expanded(
@@ -185,7 +188,7 @@ class _AskField extends StatelessWidget {
             style: AppTextStyles.input.copyWith(color: context.palette.text),
             cursorColor: AppColors.primary,
             decoration: InputDecoration(
-              hintText: 'Ask anything…',
+              hintText: l10n.askAnythingHint,
               hintStyle: AppTextStyles.label.copyWith(
                 color: context.palette.textMuted,
               ),
@@ -196,7 +199,7 @@ class _AskField extends StatelessWidget {
         ),
         IconButton(
           onPressed: onAttach,
-          tooltip: 'Attach',
+          tooltip: l10n.askAttach,
           icon: const Icon(Icons.add_rounded, size: 26),
           color: context.palette.text,
         ),
