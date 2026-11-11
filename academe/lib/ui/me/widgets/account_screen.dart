@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../utils/result.dart';
 import '../../auth/widgets/auth_failure_text.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/app_button.dart';
 import '../../core/ui/light_field.dart';
@@ -50,7 +51,7 @@ class _AccountScreenState extends State<AccountScreen> {
     if (!mounted) return;
     final message = switch (command.result) {
       Ok() => 'Name saved',
-      Error(:final error) => failureMessage(error),
+      Error(:final error) => failureMessage(error, context.l10n),
       null => null,
     };
     if (message != null) {

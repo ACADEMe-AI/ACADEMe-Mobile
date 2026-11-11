@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../utils/result.dart';
 import '../../auth/widgets/auth_failure_text.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/app_button.dart';
 import '../view_models/subjects_view_model.dart';
@@ -111,7 +112,7 @@ class _SubjectsSheetState extends State<SubjectsSheet> {
                   Padding(
                     padding: const EdgeInsets.only(top: 8),
                     child: Text(
-                      failureMessage(error),
+                      failureMessage(error, context.l10n),
                       textAlign: TextAlign.center,
                       style: AppTextStyles.label.copyWith(
                         color: AppColors.error,

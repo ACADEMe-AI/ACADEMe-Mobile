@@ -227,4 +227,156 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get authSaveAndLogIn => 'சேமித்து உள்நுழை';
+
+  @override
+  String get authFailureEmailTaken =>
+      'இந்த மின்னஞ்சலில் ஏற்கனவே கணக்கு உள்ளது. உள்நுழையுங்கள்.';
+
+  @override
+  String get authFailureWrongCredentials =>
+      'மின்னஞ்சலும் கடவுச்சொல்லும் பொருந்தவில்லை.';
+
+  @override
+  String get authFailureInvalidInput =>
+      'விவரங்களைச் சரிபார்த்து மீண்டும் முயலுங்கள்.';
+
+  @override
+  String get authFailureSignedOut =>
+      'அமர்வு முடிந்தது. மீண்டும் உள்நுழையுங்கள்.';
+
+  @override
+  String get authFailureNetwork =>
+      'ACADEMe-ஐ அடைய முடியவில்லை. இணைப்பைச் சரிபார்த்து மீண்டும் முயலுங்கள்.';
+
+  @override
+  String get authFailureCanceled => 'உள்நுழைவு ரத்து செய்யப்பட்டது.';
+
+  @override
+  String get authFailureProviderUnavailable =>
+      'இந்த உள்நுழைவு விருப்பம் இன்னும் தயாராகவில்லை. இப்போது மின்னஞ்சலைப் பயன்படுத்துங்கள்.';
+
+  @override
+  String get authFailureWrongCode =>
+      'குறியீடு சரியல்ல. மின்னஞ்சலைச் சரிபார்த்து மீண்டும் முயலுங்கள்.';
+
+  @override
+  String get authFailureTooManyAttempts =>
+      'பல தவறான முயற்சிகள். புதிய குறியீடு அனுப்பிக் கொள்ளுங்கள்.';
+
+  @override
+  String get authFailureCodeExpired =>
+      'குறியீடு காலாவதியானது. புதியதை அனுப்பிக் கொள்ளுங்கள்.';
+
+  @override
+  String get authFailureResetExpired =>
+      'மீட்டமை இணைப்பு காலாவதியானது. கடவுச்சொல் மறந்துவிட்டதா என்பதிலிருந்து மீண்டும் தொடங்குங்கள்.';
+
+  @override
+  String get authFailureTooManyRequests =>
+      'பல முயற்சிகள். சிறிது காத்திருந்து மீண்டும் முயலுங்கள்.';
+
+  @override
+  String get authFailureWrongPassword => 'இது உங்கள் தற்போதைய கடவுச்சொல் அல்ல.';
+
+  @override
+  String get authFailureGoogleTaken =>
+      'இந்த Google கணக்கு வேறொரு ACADEMe கணக்குடன் இணைக்கப்பட்டுள்ளது.';
+
+  @override
+  String get authFailurePasswordRequired =>
+      'முதலில் கடவுச்சொல்லை அமைங்கள், Google இல்லாமலும் உள்நுழைய.';
+
+  @override
+  String get authFailureUnknown => 'ஏதோ தவறு நடந்தது. மீண்டும் முயலுங்கள்.';
+
+  @override
+  String get signUpHiPebby => 'வணக்கம், நான் பெப்பி!';
+
+  @override
+  String signUpHiNamed(String name) {
+    return 'வணக்கம் $name, நான் பெப்பி!';
+  }
+
+  @override
+  String get signUpAskFirstName =>
+      'தொடங்குவதற்கு முன், உங்களை என்னவென்று அழைக்கலாம்?';
+
+  @override
+  String get signUpFirstName => 'முதல் பெயர்';
+
+  @override
+  String signUpAskLastName(String name) {
+    return 'சந்தித்ததில் மகிழ்ச்சி, $name! உங்கள் கடைசி பெயர்?';
+  }
+
+  @override
+  String get signUpLastName => 'கடைசி பெயர்';
+
+  @override
+  String signUpAskEmail(String name) {
+    return 'உங்கள் மின்னஞ்சல் என்ன, $name?';
+  }
+
+  @override
+  String get signUpEmailHint => 'உள்நுழைய இதைப் பயன்படுத்துவீர்கள்.';
+
+  @override
+  String get signUpEmailInvalid => 'இது இன்னும் மின்னஞ்சல் போல் தெரியவில்லை.';
+
+  @override
+  String get signUpCreatePassword => 'கடவுச்சொல்லை உருவாக்குங்கள்';
+
+  @override
+  String signUpPasswordHint(int count) {
+    return 'குறைந்தது $count எழுத்துகள். கவலைப்படாதீர்கள், நான் பார்க்கமாட்டேன்.';
+  }
+
+  @override
+  String signUpWelcomeBack(String name) {
+    return 'மீண்டும் வரவேற்கிறோம், $name!';
+  }
+
+  @override
+  String get signUpAlreadyLoggedIn =>
+      'உங்களுக்கு ஏற்கனவே கணக்கு உள்ளது, எனவே நீங்கள் உள்நுழைந்துள்ளீர்கள்.';
+
+  @override
+  String signUpYoureIn(String name) {
+    return 'நீங்கள் உள்ளே வந்துவிட்டீர்கள், $name!';
+  }
+
+  @override
+  String get signUpAccountReady =>
+      'கணக்கு தயார். அடுத்து நீங்கள் என்ன படிக்கிறீர்கள் என்று சொல்லுங்கள்.';
+
+  @override
+  String get signUpHelloEmail =>
+      'நான் ஸ்மார்ட்டாகப் படிக்க உதவுவேன். கணக்கை அமைப்போம், ஒரு நிமிடம் ஆகும்.';
+
+  @override
+  String get signUpConnectingAccount => 'உங்கள் கணக்கை இணைக்கிறது…';
+
+  @override
+  String get signUpCheckName => 'பெயரைச் சரிபார்ப்போம், பிறகு நீங்கள் உள்ளே.';
+
+  @override
+  String get signUpConnecting => 'இணைக்கிறது…';
+
+  @override
+  String get signUpTryAgain => 'மீண்டும் முயலுங்கள்';
+
+  @override
+  String get signUpHiPebbyAction => 'வணக்கம் பெப்பி!';
+
+  @override
+  String get signUpCreatingAccount => 'கணக்கை உருவாக்குகிறது…';
+
+  @override
+  String get signUpCreateAccount => 'கணக்கை உருவாக்கு';
+
+  @override
+  String get signUpLetsGo => 'போகலாம்';
+
+  @override
+  String get authContinue => 'தொடரவும்';
 }

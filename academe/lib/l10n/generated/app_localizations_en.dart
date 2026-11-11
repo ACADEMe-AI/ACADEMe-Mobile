@@ -227,4 +227,153 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get authSaveAndLogIn => 'Save and log in';
+
+  @override
+  String get authFailureEmailTaken =>
+      'An account already uses this email. Log in instead.';
+
+  @override
+  String get authFailureWrongCredentials =>
+      'That email and password don\'t match.';
+
+  @override
+  String get authFailureInvalidInput => 'Check your details and try again.';
+
+  @override
+  String get authFailureSignedOut => 'Your session ended. Log in again.';
+
+  @override
+  String get authFailureNetwork =>
+      'Can\'t reach ACADEMe. Check your connection and try again.';
+
+  @override
+  String get authFailureCanceled => 'Sign-in was canceled.';
+
+  @override
+  String get authFailureProviderUnavailable =>
+      'This sign-in option isn\'t ready yet. Use email for now.';
+
+  @override
+  String get authFailureWrongCode =>
+      'That code isn\'t right. Check the email and try again.';
+
+  @override
+  String get authFailureTooManyAttempts =>
+      'Too many wrong tries. Send yourself a new code.';
+
+  @override
+  String get authFailureCodeExpired =>
+      'That code has expired. Send yourself a new one.';
+
+  @override
+  String get authFailureResetExpired =>
+      'This reset link timed out. Start again from Forgot password.';
+
+  @override
+  String get authFailureTooManyRequests =>
+      'That\'s a lot of tries. Wait a little and try again.';
+
+  @override
+  String get authFailureWrongPassword => 'That isn\'t your current password.';
+
+  @override
+  String get authFailureGoogleTaken =>
+      'That Google account is linked to another ACADEMe account.';
+
+  @override
+  String get authFailurePasswordRequired =>
+      'Set a password first, so you can still log in without Google.';
+
+  @override
+  String get authFailureUnknown => 'Something went wrong. Try again.';
+
+  @override
+  String get signUpHiPebby => 'Hi, I\'m Pebby!';
+
+  @override
+  String signUpHiNamed(String name) {
+    return 'Hi $name, I\'m Pebby!';
+  }
+
+  @override
+  String get signUpAskFirstName => 'Before we start, what should I call you?';
+
+  @override
+  String get signUpFirstName => 'First name';
+
+  @override
+  String signUpAskLastName(String name) {
+    return 'Nice to meet you, $name! And your last name?';
+  }
+
+  @override
+  String get signUpLastName => 'Last name';
+
+  @override
+  String signUpAskEmail(String name) {
+    return 'What\'s your email, $name?';
+  }
+
+  @override
+  String get signUpEmailHint => 'You\'ll use it to log in.';
+
+  @override
+  String get signUpEmailInvalid => 'That doesn\'t look like an email yet.';
+
+  @override
+  String get signUpCreatePassword => 'Create a password';
+
+  @override
+  String signUpPasswordHint(int count) {
+    return 'At least $count characters. Don\'t worry, I won\'t look.';
+  }
+
+  @override
+  String signUpWelcomeBack(String name) {
+    return 'Welcome back, $name!';
+  }
+
+  @override
+  String get signUpAlreadyLoggedIn =>
+      'You already have an account, so you\'re logged in.';
+
+  @override
+  String signUpYoureIn(String name) {
+    return 'You\'re in, $name!';
+  }
+
+  @override
+  String get signUpAccountReady =>
+      'Your account is ready. Next, tell me what you study.';
+
+  @override
+  String get signUpHelloEmail =>
+      'I\'ll help you study smarter. Let\'s set up your account, it takes a minute.';
+
+  @override
+  String get signUpConnectingAccount => 'Connecting your account…';
+
+  @override
+  String get signUpCheckName => 'Let\'s check your name, then you\'re in.';
+
+  @override
+  String get signUpConnecting => 'Connecting…';
+
+  @override
+  String get signUpTryAgain => 'Try again';
+
+  @override
+  String get signUpHiPebbyAction => 'Hi Pebby!';
+
+  @override
+  String get signUpCreatingAccount => 'Creating your account…';
+
+  @override
+  String get signUpCreateAccount => 'Create account';
+
+  @override
+  String get signUpLetsGo => 'Let\'s go';
+
+  @override
+  String get authContinue => 'Continue';
 }

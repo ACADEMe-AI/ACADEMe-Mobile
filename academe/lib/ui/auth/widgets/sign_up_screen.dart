@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/app_back_button.dart';
 import '../../core/ui/app_button.dart';
@@ -165,7 +166,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ListenableBuilder(
                         listenable: changes,
                         builder: (context, _) => AppButton(
-                          label: _primaryLabel(_viewModel),
+                          label: _primaryLabel(context.l10n, _viewModel),
                           isPrimary: true,
                           isEnabled: _viewModel.canContinue,
                           onTap: _onPrimary,
@@ -188,16 +189,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 
-  static String _primaryLabel(SignUpViewModel vm) => switch (vm.step) {
-    SignUpStep.hello when vm.connectProvider.isRunning => 'Connecting…',
-    SignUpStep.hello when vm.connectProvider.hasError => 'Try again',
-    SignUpStep.hello => 'Hi Pebby!',
+  static String _primaryLabel(
+    AppLocalizations l10n,
+    SignUpViewModel vm,
+  ) => switch (vm.step) {
+    SignUpStep.hello when vm.connectProvider.isRunning => l10n.signUpConnecting,
+    SignUpStep.hello when vm.connectProvider.hasError => l10n.signUpTryAgain,
+    SignUpStep.hello => l10n.signUpHiPebbyAction,
     SignUpStep.password when vm.createAccount.isRunning =>
-      'Creating your account…',
-    SignUpStep.password => 'Create account',
-    SignUpStep.lastName when vm.saveName.isRunning => 'Saving…',
-    SignUpStep.done => "Let's go",
-    _ => 'Continue',
+      l10n.signUpCreatingAccount,
+    SignUpStep.password => l10n.signUpCreateAccount,
+    SignUpStep.lastName when vm.saveName.isRunning => l10n.authSaving,
+    SignUpStep.done => l10n.signUpLetsGo,
+    _ => l10n.authContinue,
   };
 }
 

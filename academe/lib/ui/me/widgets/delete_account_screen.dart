@@ -3,6 +3,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../utils/result.dart';
 import '../../auth/widgets/auth_failure_text.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/keycap.dart';
 import '../../core/ui/light_field.dart';
@@ -67,9 +68,9 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
       case Ok():
         widget.onDeleted();
       case Error(:final error):
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text(failureMessage(error))));
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(failureMessage(error, context.l10n))),
+        );
       case null:
         break;
     }

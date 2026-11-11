@@ -303,5 +303,205 @@
   "authSaveAndLogIn": "Save and log in",
   "@authSaveAndLogIn": {
     "description": "New-password primary action"
+  },
+  "authFailureEmailTaken": "An account already uses this email. Log in instead.",
+  "@authFailureEmailTaken": {
+    "description": "AuthFailure.emailTaken and sign-up email taken"
+  },
+  "authFailureWrongCredentials": "That email and password don't match.",
+  "@authFailureWrongCredentials": {
+    "description": "AuthFailure.wrongCredentials"
+  },
+  "authFailureInvalidInput": "Check your details and try again.",
+  "@authFailureInvalidInput": {
+    "description": "AuthFailure.invalidInput"
+  },
+  "authFailureSignedOut": "Your session ended. Log in again.",
+  "@authFailureSignedOut": {
+    "description": "AuthFailure.signedOut"
+  },
+  "authFailureNetwork": "Can't reach ACADEMe. Check your connection and try again.",
+  "@authFailureNetwork": {
+    "description": "AuthFailure.network"
+  },
+  "authFailureCanceled": "Sign-in was canceled.",
+  "@authFailureCanceled": {
+    "description": "AuthFailure.canceled"
+  },
+  "authFailureProviderUnavailable": "This sign-in option isn't ready yet. Use email for now.",
+  "@authFailureProviderUnavailable": {
+    "description": "AuthFailure.providerUnavailable"
+  },
+  "authFailureWrongCode": "That code isn't right. Check the email and try again.",
+  "@authFailureWrongCode": {
+    "description": "AuthFailure.wrongCode"
+  },
+  "authFailureTooManyAttempts": "Too many wrong tries. Send yourself a new code.",
+  "@authFailureTooManyAttempts": {
+    "description": "AuthFailure.tooManyAttempts"
+  },
+  "authFailureCodeExpired": "That code has expired. Send yourself a new one.",
+  "@authFailureCodeExpired": {
+    "description": "AuthFailure.codeExpired"
+  },
+  "authFailureResetExpired": "This reset link timed out. Start again from Forgot password.",
+  "@authFailureResetExpired": {
+    "description": "AuthFailure.resetExpired"
+  },
+  "authFailureTooManyRequests": "That's a lot of tries. Wait a little and try again.",
+  "@authFailureTooManyRequests": {
+    "description": "AuthFailure.tooManyRequests"
+  },
+  "authFailureWrongPassword": "That isn't your current password.",
+  "@authFailureWrongPassword": {
+    "description": "AuthFailure.wrongPassword"
+  },
+  "authFailureGoogleTaken": "That Google account is linked to another ACADEMe account.",
+  "@authFailureGoogleTaken": {
+    "description": "AuthFailure.googleTaken"
+  },
+  "authFailurePasswordRequired": "Set a password first, so you can still log in without Google.",
+  "@authFailurePasswordRequired": {
+    "description": "AuthFailure.passwordRequired"
+  },
+  "authFailureUnknown": "Something went wrong. Try again.",
+  "@authFailureUnknown": {
+    "description": "AuthFailure.unknown"
+  },
+  "signUpHiPebby": "Hi, I'm Pebby!",
+  "@signUpHiPebby": {
+    "description": "Sign-up hello title for email or unnamed Google"
+  },
+  "signUpHiNamed": "Hi {name}, I'm Pebby!",
+  "@signUpHiNamed": {
+    "description": "Sign-up hello title when Google already gave a first name",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Maya"
+      }
+    }
+  },
+  "signUpAskFirstName": "Before we start, what should I call you?",
+  "@signUpAskFirstName": {
+    "description": "Sign-up first-name step title"
+  },
+  "signUpFirstName": "First name",
+  "@signUpFirstName": {
+    "description": "Sign-up first-name field label"
+  },
+  "signUpAskLastName": "Nice to meet you, {name}! And your last name?",
+  "@signUpAskLastName": {
+    "description": "Sign-up last-name step title",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Maya"
+      }
+    }
+  },
+  "signUpLastName": "Last name",
+  "@signUpLastName": {
+    "description": "Sign-up last-name field label"
+  },
+  "signUpAskEmail": "What's your email, {name}?",
+  "@signUpAskEmail": {
+    "description": "Sign-up email step title",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Maya"
+      }
+    }
+  },
+  "signUpEmailHint": "You'll use it to log in.",
+  "@signUpEmailHint": {
+    "description": "Sign-up email step subtitle"
+  },
+  "signUpEmailInvalid": "That doesn't look like an email yet.",
+  "@signUpEmailInvalid": {
+    "description": "Sign-up email field validation"
+  },
+  "signUpCreatePassword": "Create a password",
+  "@signUpCreatePassword": {
+    "description": "Sign-up password step title"
+  },
+  "signUpPasswordHint": "At least {count} characters. Don't worry, I won't look.",
+  "@signUpPasswordHint": {
+    "description": "Sign-up password step subtitle",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "8"
+      }
+    }
+  },
+  "signUpWelcomeBack": "Welcome back, {name}!",
+  "@signUpWelcomeBack": {
+    "description": "Sign-up done title for a returning account",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Maya"
+      }
+    }
+  },
+  "signUpAlreadyLoggedIn": "You already have an account, so you're logged in.",
+  "@signUpAlreadyLoggedIn": {
+    "description": "Sign-up done subtitle for a returning account"
+  },
+  "signUpYoureIn": "You're in, {name}!",
+  "@signUpYoureIn": {
+    "description": "Sign-up done title for a new account",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Maya"
+      }
+    }
+  },
+  "signUpAccountReady": "Your account is ready. Next, tell me what you study.",
+  "@signUpAccountReady": {
+    "description": "Sign-up done subtitle for a new account"
+  },
+  "signUpHelloEmail": "I'll help you study smarter. Let's set up your account, it takes a minute.",
+  "@signUpHelloEmail": {
+    "description": "Sign-up hello subtitle for email method"
+  },
+  "signUpConnectingAccount": "Connecting your account…",
+  "@signUpConnectingAccount": {
+    "description": "Sign-up hello subtitle while OAuth runs"
+  },
+  "signUpCheckName": "Let's check your name, then you're in.",
+  "@signUpCheckName": {
+    "description": "Sign-up hello subtitle after OAuth succeeds"
+  },
+  "signUpConnecting": "Connecting…",
+  "@signUpConnecting": {
+    "description": "Sign-up primary button while OAuth runs"
+  },
+  "signUpTryAgain": "Try again",
+  "@signUpTryAgain": {
+    "description": "Sign-up primary button after OAuth error"
+  },
+  "signUpHiPebbyAction": "Hi Pebby!",
+  "@signUpHiPebbyAction": {
+    "description": "Sign-up primary button on hello step"
+  },
+  "signUpCreatingAccount": "Creating your account…",
+  "@signUpCreatingAccount": {
+    "description": "Sign-up primary button while createAccount runs"
+  },
+  "signUpCreateAccount": "Create account",
+  "@signUpCreateAccount": {
+    "description": "Sign-up primary button on password step"
+  },
+  "signUpLetsGo": "Let's go",
+  "@signUpLetsGo": {
+    "description": "Sign-up primary button on done step"
+  },
+  "authContinue": "Continue",
+  "@authContinue": {
+    "description": "Generic continue primary button on sign-up steps"
   }
 }

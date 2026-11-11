@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../domain/models/auth_method.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/app_password_field.dart';
 import '../../core/ui/app_text_field.dart';
@@ -63,21 +64,22 @@ class SignUpPrompt extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final vm = viewModel;
+    final l10n = context.l10n;
     void submit(String _) => vm.next();
 
     final (title, subtitle, field) = switch (vm.step) {
       SignUpStep.hello => (
         vm.method == AuthMethod.email || vm.firstName.isEmpty
-            ? "Hi, I'm Pebby!"
-            : "Hi ${vm.firstName}, I'm Pebby!",
-        _helloSubtitle(vm),
+            ? l10n.signUpHiPebby
+            : l10n.signUpHiNamed(vm.firstName),
+        _helloSubtitle(vm, l10n),
         null,
       ),
       SignUpStep.firstName => (
-        'Before we start, what should I call you?',
+        l10n.signUpAskFirstName,
         null,
         AppTextField(
-          label: 'First name',
+          label: l10n.signUpFirstName,
           controller: fields.firstName,
           focusNode: fields.firstNameFocus,
           textInputAction: TextInputAction.next,
@@ -87,10 +89,10 @@ class SignUpPrompt extends StatelessWidget {
         ),
       ),
       SignUpStep.lastName => (
-        'Nice to meet you, ${vm.firstName.trim()}! And your last name?',
+        l10n.signUpAskLastName(vm.firstName.trim()),
         null,
         AppTextField(
-          label: 'Last name',
+          label: l10n.signUpLastName,
           controller: fields.lastName,
           focusNode: fields.lastNameFocus,
           textInputAction: TextInputAction.next,
@@ -100,10 +102,10 @@ class SignUpPrompt extends StatelessWidget {
         ),
       ),
       SignUpStep.email => (
-        "What's your email, ${vm.firstName.trim()}?",
-        "You'll use it to log in.",
+        l10n.signUpAskEmail(vm.firstName.trim()),
+        l10n.signUpEmailHint,
         AppTextField(
-          label: 'Email',
+          label: l10n.authEmail,
           controller: fields.email,
           focusNode: fields.emailFocus,
           keyboardType: TextInputType.emailAddress,
@@ -111,17 +113,15 @@ class SignUpPrompt extends StatelessWidget {
           autofillHints: const [AutofillHints.email],
           onSubmitted: submit,
           errorText: switch (vm.emailProblem) {
-            EmailProblem.notAnEmail => "That doesn't look like an email yet.",
-            EmailProblem.taken =>
-              'An account already uses this email. Log in instead.',
+            EmailProblem.notAnEmail => l10n.signUpEmailInvalid,
+            EmailProblem.taken => l10n.authFailureEmailTaken,
             EmailProblem.none => null,
           },
         ),
       ),
       SignUpStep.password => (
-        'Create a password',
-        'At least ${SignUpViewModel.minPasswordLength} characters. '
-            "Don't worry, I won't look.",
+        l10n.signUpCreatePassword,
+        l10n.signUpPasswordHint(SignUpViewModel.minPasswordLength),
         AppPasswordField(
           controller: fields.password,
           focusNode: fields.passwordFocus,
@@ -131,13 +131,13 @@ class SignUpPrompt extends StatelessWidget {
         ),
       ),
       SignUpStep.done when vm.isReturning => (
-        'Welcome back, ${vm.firstName.trim()}!',
-        'You already have an account, so you\'re logged in.',
+        l10n.signUpWelcomeBack(vm.firstName.trim()),
+        l10n.signUpAlreadyLoggedIn,
         null,
       ),
       SignUpStep.done => (
-        "You're in, ${vm.firstName.trim()}!",
-        'Your account is ready. Next, tell me what you study.',
+        l10n.signUpYoureIn(vm.firstName.trim()),
+        l10n.signUpAccountReady,
         null,
       ),
     };
@@ -174,7 +174,7 @@ class SignUpPrompt extends StatelessWidget {
         if (vm.step != SignUpStep.hello && vm.failure != null) ...[
           const SizedBox(height: 8),
           Text(
-            vm.failure!.message,
+            vm.failure!.message(l10n),
             style: AppTextStyles.label.copyWith(color: AppColors.error),
           ),
         ],
@@ -182,13 +182,12 @@ class SignUpPrompt extends StatelessWidget {
     );
   }
 
-  static String _helloSubtitle(SignUpViewModel vm) {
+  static String _helloSubtitle(SignUpViewModel vm, AppLocalizations l10n) {
     if (vm.method == AuthMethod.email) {
-      return "I'll help you study smarter. Let's set up your account, it "
-          'takes a minute.';
+      return l10n.signUpHelloEmail;
     }
-    if (vm.connectProvider.isRunning) return 'Connecting your account…';
-    if (vm.failure case final failure?) return failure.message;
-    return "Let's check your name, then you're in.";
+    if (vm.connectProvider.isRunning) return l10n.signUpConnectingAccount;
+    if (vm.failure case final failure?) return failure.message(l10n);
+    return l10n.signUpCheckName;
   }
 }

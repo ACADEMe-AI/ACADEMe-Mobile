@@ -2,9 +2,9 @@ import 'package:academe/data/repositories/appearance_repository.dart';
 import 'package:academe/data/repositories/billing_repository.dart';
 import 'package:academe/domain/models/account.dart';
 import 'package:academe/domain/models/auth_failure.dart';
-import 'package:academe/ui/auth/widgets/auth_failure_text.dart';
-import 'package:academe/ui/core/themes/app_theme.dart';
-import 'package:academe/ui/core/ui/pebby.dart';
+import 'package:academe/l10n/generated/app_localizations.dart';
+import 'package:academe/l10n/generated/app_localizations_en.dart';
+import 'package:academe/ui/core/themes/app_theme.dart';import 'package:academe/ui/core/ui/pebby.dart';
 import 'package:academe/ui/me/view_models/me_view_model.dart';
 import 'package:academe/ui/me/widgets/account_screen.dart';
 import 'package:academe/ui/me/widgets/delete_account_screen.dart';
@@ -67,6 +67,9 @@ void main() {
     await tester.pumpWidget(
       PebbyStandIn(
         child: MaterialApp(
+          locale: const Locale('en'),
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
           theme: AppTheme.dark(),
           home: Scaffold(body: page()),
         ),
@@ -158,7 +161,7 @@ void main() {
       await tester.tap(find.text('Google'));
       await tester.pumpAndSettle();
       expect(find.text('Unlink Google?'), findsNothing);
-      expect(find.text(AuthFailure.passwordRequired.message), findsOneWidget);
+      expect(find.text(AppLocalizationsEn().authFailurePasswordRequired), findsOneWidget);
       expect(auth.googleUnlinks, 0);
     });
   });

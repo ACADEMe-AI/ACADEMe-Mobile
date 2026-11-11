@@ -2,6 +2,7 @@ import 'package:academe/data/repositories/appearance_repository.dart';
 import 'package:academe/domain/models/auth_failure.dart';
 import 'package:academe/domain/models/board.dart';
 import 'package:academe/domain/models/profile.dart';
+import 'package:academe/l10n/generated/app_localizations.dart';
 import 'package:academe/ui/core/themes/app_theme.dart';
 import 'package:academe/ui/core/ui/pebby.dart';
 import 'package:academe/ui/me/view_models/me_view_model.dart';
@@ -121,6 +122,9 @@ void main() {
       await tester.pumpWidget(
         PebbyStandIn(
           child: MaterialApp(
+            locale: const Locale('en'),
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
             theme: AppTheme.dark(),
             home: ClassBoardScreen(viewModel: viewModel),
           ),

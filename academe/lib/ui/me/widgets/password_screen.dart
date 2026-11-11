@@ -4,6 +4,7 @@ import '../../../utils/result.dart';
 import '../../auth/view_models/sign_up_view_model.dart';
 import '../../auth/widgets/auth_failure_text.dart';
 import '../../auth/widgets/password_length_check.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/app_button.dart';
 import '../../core/ui/app_password_field.dart';
@@ -61,7 +62,9 @@ class _PasswordScreenState extends State<PasswordScreen> {
       case Error(:final error):
         ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
-          ..showSnackBar(SnackBar(content: Text(failureMessage(error))));
+          ..showSnackBar(
+            SnackBar(content: Text(failureMessage(error, context.l10n))),
+          );
       case null:
         break;
     }

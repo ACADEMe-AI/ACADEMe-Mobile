@@ -4,6 +4,7 @@ import '../../../domain/models/board.dart';
 import '../../../domain/models/subject.dart';
 import '../../../utils/result.dart';
 import '../../auth/widgets/auth_failure_text.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/app_button.dart';
 import '../../core/ui/board_picker.dart';
@@ -54,9 +55,9 @@ class _ClassBoardScreenState extends State<ClassBoardScreen> {
           context,
         ).pop('Now showing Class $_classLevel · ${_board.code} subjects');
       case Error(:final error):
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text(failureMessage(error))));
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(failureMessage(error, context.l10n))),
+        );
       case null:
         break;
     }

@@ -28,6 +28,7 @@ import '../ui/auth/widgets/auth_failure_text.dart';
 import '../ui/auth/widgets/login_email_screen.dart';
 import '../ui/auth/widgets/sign_up_screen.dart';
 import '../ui/auth/widgets/welcome_screen.dart';
+import '../ui/core/l10n/app_l10n.dart';
 import '../ui/core/themes/app_theme.dart';
 import '../ui/home/view_models/home_view_model.dart';
 import '../ui/home/view_models/today_view_model.dart';
@@ -180,7 +181,7 @@ Future<bool> _logIn(
           : AuthFailure.unknown;
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(SnackBar(content: Text(failure.message)));
+      ).showSnackBar(SnackBar(content: Text(failure.message(context.l10n))));
   }
   return false;
 }

@@ -226,4 +226,150 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get authSaveAndLogIn => 'সেভ করে লগ ইন';
+
+  @override
+  String get authFailureEmailTaken =>
+      'এই ইমেইলে আগে থেকে অ্যাকাউন্ট আছে। লগ ইন করো।';
+
+  @override
+  String get authFailureWrongCredentials => 'ইমেইল ও পাসওয়ার্ড মেলে না।';
+
+  @override
+  String get authFailureInvalidInput => 'বিবরণ চেক করে আবার চেষ্টা করো।';
+
+  @override
+  String get authFailureSignedOut => 'সেশন শেষ। আবার লগ ইন করো।';
+
+  @override
+  String get authFailureNetwork =>
+      'ACADEMe-এ পৌঁছানো যাচ্ছে না। কানেকশন চেক করে আবার চেষ্টা করো।';
+
+  @override
+  String get authFailureCanceled => 'সাইন-ইন বাতিল হয়েছে।';
+
+  @override
+  String get authFailureProviderUnavailable =>
+      'এই সাইন-ইন অপশন এখনো তৈরি নয়। আপাতত ইমেইল ব্যবহার করো।';
+
+  @override
+  String get authFailureWrongCode =>
+      'কোড ঠিক নয়। ইমেইল চেক করে আবার চেষ্টা করো।';
+
+  @override
+  String get authFailureTooManyAttempts =>
+      'অনেক ভুল চেষ্টা। নতুন কোড পাঠিয়ে নাও।';
+
+  @override
+  String get authFailureCodeExpired => 'কোডের মেয়াদ শেষ। নতুনটা পাঠিয়ে নাও।';
+
+  @override
+  String get authFailureResetExpired =>
+      'রিসেট লিংকের মেয়াদ শেষ। পাসওয়ার্ড ভুলে গেছি থেকে আবার শুরু করো।';
+
+  @override
+  String get authFailureTooManyRequests =>
+      'অনেক চেষ্টা হয়ে গেছে। একটু অপেক্ষা করে আবার চেষ্টা করো।';
+
+  @override
+  String get authFailureWrongPassword => 'এটা তোমার বর্তমান পাসওয়ার্ড নয়।';
+
+  @override
+  String get authFailureGoogleTaken =>
+      'এই Google অ্যাকাউন্ট অন্য ACADEMe অ্যাকাউন্টের সাথে লিংক করা।';
+
+  @override
+  String get authFailurePasswordRequired =>
+      'আগে পাসওয়ার্ড সেট করো, যাতে Google ছাড়াও লগ ইন করতে পারো।';
+
+  @override
+  String get authFailureUnknown => 'কিছু ভুল হয়েছে। আবার চেষ্টা করো।';
+
+  @override
+  String get signUpHiPebby => 'হাই, আমি পেবি!';
+
+  @override
+  String signUpHiNamed(String name) {
+    return 'হাই $name, আমি পেবি!';
+  }
+
+  @override
+  String get signUpAskFirstName => 'শুরুর আগে, তোমাকে কী বলে ডাকব?';
+
+  @override
+  String get signUpFirstName => 'প্রথম নাম';
+
+  @override
+  String signUpAskLastName(String name) {
+    return 'দেখা করে ভালো লাগলো, $name! আর তোমার শেষ নাম?';
+  }
+
+  @override
+  String get signUpLastName => 'শেষ নাম';
+
+  @override
+  String signUpAskEmail(String name) {
+    return 'তোমার ইমেইল কী, $name?';
+  }
+
+  @override
+  String get signUpEmailHint => 'লগ ইনের জন্য এটাই ব্যবহার করবে।';
+
+  @override
+  String get signUpEmailInvalid => 'এটা এখনো ইমেইলের মতো লাগছে না।';
+
+  @override
+  String get signUpCreatePassword => 'পাসওয়ার্ড তৈরি করো';
+
+  @override
+  String signUpPasswordHint(int count) {
+    return 'কমপক্ষে $count অক্ষর। চিন্তা কোরো না, আমি দেখব না।';
+  }
+
+  @override
+  String signUpWelcomeBack(String name) {
+    return 'আবার স্বাগত, $name!';
+  }
+
+  @override
+  String get signUpAlreadyLoggedIn =>
+      'তোমার আগে থেকে অ্যাকাউন্ট আছে, তাই তুমি লগ ইন আছো।';
+
+  @override
+  String signUpYoureIn(String name) {
+    return 'তুমি ভিতরে এসেছো, $name!';
+  }
+
+  @override
+  String get signUpAccountReady => 'অ্যাকাউন্ট তৈরি। এবার বলো তুমি কী পড়ো।';
+
+  @override
+  String get signUpHelloEmail =>
+      'আমি স্মার্টভাবে পড়তে সাহায্য করব। অ্যাকাউন্ট সেট আপ করি, এক মিনিট লাগবে।';
+
+  @override
+  String get signUpConnectingAccount => 'অ্যাকাউন্ট কানেক্ট হচ্ছে…';
+
+  @override
+  String get signUpCheckName => 'নাম চেক করি, তারপর তুমি ভিতরে।';
+
+  @override
+  String get signUpConnecting => 'কানেক্ট হচ্ছে…';
+
+  @override
+  String get signUpTryAgain => 'আবার চেষ্টা করো';
+
+  @override
+  String get signUpHiPebbyAction => 'হাই পেবি!';
+
+  @override
+  String get signUpCreatingAccount => 'অ্যাকাউন্ট তৈরি হচ্ছে…';
+
+  @override
+  String get signUpCreateAccount => 'অ্যাকাউন্ট তৈরি করো';
+
+  @override
+  String get signUpLetsGo => 'চলো';
+
+  @override
+  String get authContinue => 'এগোও';
 }

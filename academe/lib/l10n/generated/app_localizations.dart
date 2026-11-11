@@ -505,6 +505,252 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Save and log in'**
   String get authSaveAndLogIn;
+
+  /// AuthFailure.emailTaken and sign-up email taken
+  ///
+  /// In en, this message translates to:
+  /// **'An account already uses this email. Log in instead.'**
+  String get authFailureEmailTaken;
+
+  /// AuthFailure.wrongCredentials
+  ///
+  /// In en, this message translates to:
+  /// **'That email and password don\'t match.'**
+  String get authFailureWrongCredentials;
+
+  /// AuthFailure.invalidInput
+  ///
+  /// In en, this message translates to:
+  /// **'Check your details and try again.'**
+  String get authFailureInvalidInput;
+
+  /// AuthFailure.signedOut
+  ///
+  /// In en, this message translates to:
+  /// **'Your session ended. Log in again.'**
+  String get authFailureSignedOut;
+
+  /// AuthFailure.network
+  ///
+  /// In en, this message translates to:
+  /// **'Can\'t reach ACADEMe. Check your connection and try again.'**
+  String get authFailureNetwork;
+
+  /// AuthFailure.canceled
+  ///
+  /// In en, this message translates to:
+  /// **'Sign-in was canceled.'**
+  String get authFailureCanceled;
+
+  /// AuthFailure.providerUnavailable
+  ///
+  /// In en, this message translates to:
+  /// **'This sign-in option isn\'t ready yet. Use email for now.'**
+  String get authFailureProviderUnavailable;
+
+  /// AuthFailure.wrongCode
+  ///
+  /// In en, this message translates to:
+  /// **'That code isn\'t right. Check the email and try again.'**
+  String get authFailureWrongCode;
+
+  /// AuthFailure.tooManyAttempts
+  ///
+  /// In en, this message translates to:
+  /// **'Too many wrong tries. Send yourself a new code.'**
+  String get authFailureTooManyAttempts;
+
+  /// AuthFailure.codeExpired
+  ///
+  /// In en, this message translates to:
+  /// **'That code has expired. Send yourself a new one.'**
+  String get authFailureCodeExpired;
+
+  /// AuthFailure.resetExpired
+  ///
+  /// In en, this message translates to:
+  /// **'This reset link timed out. Start again from Forgot password.'**
+  String get authFailureResetExpired;
+
+  /// AuthFailure.tooManyRequests
+  ///
+  /// In en, this message translates to:
+  /// **'That\'s a lot of tries. Wait a little and try again.'**
+  String get authFailureTooManyRequests;
+
+  /// AuthFailure.wrongPassword
+  ///
+  /// In en, this message translates to:
+  /// **'That isn\'t your current password.'**
+  String get authFailureWrongPassword;
+
+  /// AuthFailure.googleTaken
+  ///
+  /// In en, this message translates to:
+  /// **'That Google account is linked to another ACADEMe account.'**
+  String get authFailureGoogleTaken;
+
+  /// AuthFailure.passwordRequired
+  ///
+  /// In en, this message translates to:
+  /// **'Set a password first, so you can still log in without Google.'**
+  String get authFailurePasswordRequired;
+
+  /// AuthFailure.unknown
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong. Try again.'**
+  String get authFailureUnknown;
+
+  /// Sign-up hello title for email or unnamed Google
+  ///
+  /// In en, this message translates to:
+  /// **'Hi, I\'m Pebby!'**
+  String get signUpHiPebby;
+
+  /// Sign-up hello title when Google already gave a first name
+  ///
+  /// In en, this message translates to:
+  /// **'Hi {name}, I\'m Pebby!'**
+  String signUpHiNamed(String name);
+
+  /// Sign-up first-name step title
+  ///
+  /// In en, this message translates to:
+  /// **'Before we start, what should I call you?'**
+  String get signUpAskFirstName;
+
+  /// Sign-up first-name field label
+  ///
+  /// In en, this message translates to:
+  /// **'First name'**
+  String get signUpFirstName;
+
+  /// Sign-up last-name step title
+  ///
+  /// In en, this message translates to:
+  /// **'Nice to meet you, {name}! And your last name?'**
+  String signUpAskLastName(String name);
+
+  /// Sign-up last-name field label
+  ///
+  /// In en, this message translates to:
+  /// **'Last name'**
+  String get signUpLastName;
+
+  /// Sign-up email step title
+  ///
+  /// In en, this message translates to:
+  /// **'What\'s your email, {name}?'**
+  String signUpAskEmail(String name);
+
+  /// Sign-up email step subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ll use it to log in.'**
+  String get signUpEmailHint;
+
+  /// Sign-up email field validation
+  ///
+  /// In en, this message translates to:
+  /// **'That doesn\'t look like an email yet.'**
+  String get signUpEmailInvalid;
+
+  /// Sign-up password step title
+  ///
+  /// In en, this message translates to:
+  /// **'Create a password'**
+  String get signUpCreatePassword;
+
+  /// Sign-up password step subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'At least {count} characters. Don\'t worry, I won\'t look.'**
+  String signUpPasswordHint(int count);
+
+  /// Sign-up done title for a returning account
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome back, {name}!'**
+  String signUpWelcomeBack(String name);
+
+  /// Sign-up done subtitle for a returning account
+  ///
+  /// In en, this message translates to:
+  /// **'You already have an account, so you\'re logged in.'**
+  String get signUpAlreadyLoggedIn;
+
+  /// Sign-up done title for a new account
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re in, {name}!'**
+  String signUpYoureIn(String name);
+
+  /// Sign-up done subtitle for a new account
+  ///
+  /// In en, this message translates to:
+  /// **'Your account is ready. Next, tell me what you study.'**
+  String get signUpAccountReady;
+
+  /// Sign-up hello subtitle for email method
+  ///
+  /// In en, this message translates to:
+  /// **'I\'ll help you study smarter. Let\'s set up your account, it takes a minute.'**
+  String get signUpHelloEmail;
+
+  /// Sign-up hello subtitle while OAuth runs
+  ///
+  /// In en, this message translates to:
+  /// **'Connecting your account…'**
+  String get signUpConnectingAccount;
+
+  /// Sign-up hello subtitle after OAuth succeeds
+  ///
+  /// In en, this message translates to:
+  /// **'Let\'s check your name, then you\'re in.'**
+  String get signUpCheckName;
+
+  /// Sign-up primary button while OAuth runs
+  ///
+  /// In en, this message translates to:
+  /// **'Connecting…'**
+  String get signUpConnecting;
+
+  /// Sign-up primary button after OAuth error
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get signUpTryAgain;
+
+  /// Sign-up primary button on hello step
+  ///
+  /// In en, this message translates to:
+  /// **'Hi Pebby!'**
+  String get signUpHiPebbyAction;
+
+  /// Sign-up primary button while createAccount runs
+  ///
+  /// In en, this message translates to:
+  /// **'Creating your account…'**
+  String get signUpCreatingAccount;
+
+  /// Sign-up primary button on password step
+  ///
+  /// In en, this message translates to:
+  /// **'Create account'**
+  String get signUpCreateAccount;
+
+  /// Sign-up primary button on done step
+  ///
+  /// In en, this message translates to:
+  /// **'Let\'s go'**
+  String get signUpLetsGo;
+
+  /// Generic continue primary button on sign-up steps
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get authContinue;
 }
 
 class _AppLocalizationsDelegate

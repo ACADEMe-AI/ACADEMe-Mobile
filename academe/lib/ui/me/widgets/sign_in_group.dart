@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../domain/models/auth_failure.dart';
 import '../../../utils/result.dart';
 import '../../auth/widgets/auth_failure_text.dart';
+import '../../core/l10n/app_l10n.dart';
 import '../view_models/me_view_model.dart';
 import 'password_screen.dart';
 import 'settings_list.dart';
@@ -35,7 +36,7 @@ class SignInGroup extends StatelessWidget {
         case Error(error: AuthException(failure: AuthFailure.canceled)):
           break;
         case Error(:final error):
-          show(failureMessage(error));
+          show(failureMessage(error, context.l10n));
         case null:
           break;
       }
@@ -43,7 +44,7 @@ class SignInGroup extends StatelessWidget {
 
     Future<void> unlink() async {
       if (!viewModel.hasPassword) {
-        show(AuthFailure.passwordRequired.message);
+        show(AuthFailure.passwordRequired.message(context.l10n));
         return;
       }
       final confirmed = await UnlinkGoogleSheet.show(
@@ -54,7 +55,7 @@ class SignInGroup extends StatelessWidget {
       await viewModel.unlinkGoogle.execute();
       if (!context.mounted) return;
       show(switch (viewModel.unlinkGoogle.result) {
-        Error(:final error) => failureMessage(error),
+        Error(:final error) => failureMessage(error, context.l10n),
         _ => 'Google unlinked. Log in with your email and password.',
       });
     }

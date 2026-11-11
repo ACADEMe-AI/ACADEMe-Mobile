@@ -202,7 +202,9 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                               ListenableBuilder(
                                 listenable: _viewModel,
                                 builder: (context, _) => _Failure(
-                                  message: _viewModel.failure?.message,
+                                  message: _viewModel.failure?.message(
+                                    context.l10n,
+                                  ),
                                 ),
                               ),
                               const SizedBox(height: 8),

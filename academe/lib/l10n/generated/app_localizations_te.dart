@@ -227,4 +227,154 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get authSaveAndLogIn => 'సేవ్ చేసి లాగిన్';
+
+  @override
+  String get authFailureEmailTaken =>
+      'ఈ ఇమెయిల్‌తో ఇప్పటికే అకౌంట్ ఉంది. లాగిన్ అవ్వండి.';
+
+  @override
+  String get authFailureWrongCredentials =>
+      'ఇమెయిల్ మరియు పాస్‌వర్డ్ సరిపోలడం లేదు.';
+
+  @override
+  String get authFailureInvalidInput =>
+      'వివరాలు తనిఖీ చేసి మళ్లీ ప్రయత్నించండి.';
+
+  @override
+  String get authFailureSignedOut => 'సెషన్ ముగిసింది. మళ్లీ లాగిన్ అవ్వండి.';
+
+  @override
+  String get authFailureNetwork =>
+      'ACADEMeని చేరుకోలేకపోయాం. కనెక్షన్ చూసి మళ్లీ ప్రయత్నించండి.';
+
+  @override
+  String get authFailureCanceled => 'సైన్-ఇన్ రద్దు చేయబడింది.';
+
+  @override
+  String get authFailureProviderUnavailable =>
+      'ఈ సైన్-ఇన్ ఎంపిక ఇంకా సిద్ధం కాదు. ఇప్పుడు ఇమెయిల్ వాడండి.';
+
+  @override
+  String get authFailureWrongCode =>
+      'కోడ్ సరైనది కాదు. ఇమెయిల్ చూసి మళ్లీ ప్రయత్నించండి.';
+
+  @override
+  String get authFailureTooManyAttempts =>
+      'చాలా తప్పు ప్రయత్నాలు. కొత్త కోడ్ పంపించుకోండి.';
+
+  @override
+  String get authFailureCodeExpired =>
+      'కోడ్ గడువు ముగిసింది. కొత్తది పంపించుకోండి.';
+
+  @override
+  String get authFailureResetExpired =>
+      'రీసెట్ లింక్ గడువు ముగిసింది. పాస్‌వర్డ్ మర్చిపోయాను నుంచి మళ్లీ ప్రారంభించండి.';
+
+  @override
+  String get authFailureTooManyRequests =>
+      'చాలా ప్రయత్నాలు. కాసేపు ఆగి మళ్లీ ప్రయత్నించండి.';
+
+  @override
+  String get authFailureWrongPassword => 'ఇది మీ ప్రస్తుత పాస్‌వర్డ్ కాదు.';
+
+  @override
+  String get authFailureGoogleTaken =>
+      'ఈ Google అకౌంట్ మరొక ACADEMe అకౌంట్‌కి లింక్ అయింది.';
+
+  @override
+  String get authFailurePasswordRequired =>
+      'ముందు పాస్‌వర్డ్ సెట్ చేయండి, Google లేకుండా కూడా లాగిన్ అవ్వడానికి.';
+
+  @override
+  String get authFailureUnknown => 'ఏదో తప్పు జరిగింది. మళ్లీ ప్రయత్నించండి.';
+
+  @override
+  String get signUpHiPebby => 'హాయ్, నేను పెబ్బీ!';
+
+  @override
+  String signUpHiNamed(String name) {
+    return 'హాయ్ $name, నేను పెబ్బీ!';
+  }
+
+  @override
+  String get signUpAskFirstName => 'మొదలుపెట్టే ముందు, నిన్ను ఏమని పిలవాలి?';
+
+  @override
+  String get signUpFirstName => 'మొదటి పేరు';
+
+  @override
+  String signUpAskLastName(String name) {
+    return 'కలవడం సంతోషం, $name! మీ చివరి పేరు?';
+  }
+
+  @override
+  String get signUpLastName => 'చివరి పేరు';
+
+  @override
+  String signUpAskEmail(String name) {
+    return 'మీ ఇమెయిల్ ఏమిటి, $name?';
+  }
+
+  @override
+  String get signUpEmailHint => 'లాగిన్ కోసం దీన్ని వాడతారు.';
+
+  @override
+  String get signUpEmailInvalid => 'ఇది ఇంకా ఇమెయిల్‌లా కనిపించడం లేదు.';
+
+  @override
+  String get signUpCreatePassword => 'పాస్‌వర్డ్ సృష్టించండి';
+
+  @override
+  String signUpPasswordHint(int count) {
+    return 'కనీసం $count అక్షరాలు. చింతించకండి, నేను చూడను.';
+  }
+
+  @override
+  String signUpWelcomeBack(String name) {
+    return 'మళ్లీ స్వాగతం, $name!';
+  }
+
+  @override
+  String get signUpAlreadyLoggedIn =>
+      'మీకు ఇప్పటికే అకౌంట్ ఉంది, కాబట్టి మీరు లాగిన్ అయ్యారు.';
+
+  @override
+  String signUpYoureIn(String name) {
+    return 'మీరు లోపలికి వచ్చారు, $name!';
+  }
+
+  @override
+  String get signUpAccountReady =>
+      'అకౌంట్ సిద్ధం. తర్వాత మీరు ఏమి చదువుతున్నారో చెప్పండి.';
+
+  @override
+  String get signUpHelloEmail =>
+      'నేను స్మార్ట్‌గా చదవడంలో సహాయం చేస్తాను. అకౌంట్ సెటప్ చేద్దాం, ఒక నిమిషం పడుతుంది.';
+
+  @override
+  String get signUpConnectingAccount => 'మీ అకౌంట్ కనెక్ట్ అవుతోంది…';
+
+  @override
+  String get signUpCheckName => 'పేరు చూద్దాం, తర్వాత మీరు లోపలికి.';
+
+  @override
+  String get signUpConnecting => 'కనెక్ట్ అవుతోంది…';
+
+  @override
+  String get signUpTryAgain => 'మళ్లీ ప్రయత్నించండి';
+
+  @override
+  String get signUpHiPebbyAction => 'హాయ్ పెబ్బీ!';
+
+  @override
+  String get signUpCreatingAccount => 'అకౌంట్ సృష్టిస్తోంది…';
+
+  @override
+  String get signUpCreateAccount => 'అకౌంట్ సృష్టించు';
+
+  @override
+  String get signUpLetsGo => 'వెళ్దాం';
+
+  @override
+  String get authContinue => 'కొనసాగించు';
 }

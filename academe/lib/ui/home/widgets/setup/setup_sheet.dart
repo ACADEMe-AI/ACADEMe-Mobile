@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../domain/models/profile.dart';
 import '../../../../utils/result.dart';
 import '../../../auth/widgets/auth_failure_text.dart';
+import '../../../core/l10n/app_l10n.dart';
 import '../../../core/themes/app_theme.dart';
 import '../../../subjects/view_models/subjects_view_model.dart';
 import '../../view_models/home_view_model.dart';
@@ -134,7 +135,7 @@ class _SetupSheetState extends State<SetupSheet> {
                 Padding(
                   padding: const EdgeInsets.only(top: 8),
                   child: Text(
-                    failureMessage(error),
+                    failureMessage(error, context.l10n),
                     textAlign: TextAlign.center,
                     style: AppTextStyles.label.copyWith(color: AppColors.error),
                   ),
