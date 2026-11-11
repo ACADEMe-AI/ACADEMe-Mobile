@@ -15,7 +15,7 @@ import (
 	"academe/server/internal/httpx"
 )
 
-//go:embed pages/*.html
+//go:embed pages/*.html pages/*/*.html
 var pages embed.FS
 
 //go:embed email
@@ -60,30 +60,44 @@ type site struct {
 	pages   map[string]*template.Template
 }
 
+var legalFiles = []string{"privacy.html", "terms.html", "support.html", "delete.html"}
+
+var staticFiles = map[string]string{
+	"/{$}":            "index.html",
+	"/privacy":        "privacy.html",
+	"/terms":          "terms.html",
+	"/delete-account": "delete.html",
+	"/support":        "support.html",
+	"/open":           "open.html",
+	"/reset-password": "reset.html",
+}
+
 func RegisterRoutes(mux *http.ServeMux, logger *slog.Logger, o Options) error {
 	s := &site{logger: logger, store: o.Store, mailer: o.Mailer, resets: o.Resets, formKey: o.FormKey, pages: map[string]*template.Template{}}
 	layout, err := template.ParseFS(pages, "pages/layout.html")
 	if err != nil {
 		return fmt.Errorf("parse layout: %w", err)
 	}
-	routes := map[string]string{
-		"/{$}":            "index.html",
-		"/privacy":        "privacy.html",
-		"/terms":          "terms.html",
-		"/delete-account": "delete.html",
-		"/support":        "support.html",
-		"/open":           "open.html",
-		"/reset-password": "reset.html",
+	allFiles := map[string]bool{"index.html": true, "open.html": true, "reset.html": true}
+	for _, file := range legalFiles {
+		allFiles[file] = true
 	}
-	for path, file := range routes {
-		t, err := layout.Clone()
-		if err == nil {
-			_, err = t.ParseFS(pages, "pages/"+file)
+	for file := range allFiles {
+		if err := s.parsePage(layout, defaultLang, file); err != nil {
+			return err
 		}
-		if err != nil {
-			return fmt.Errorf("parse %s: %w", file, err)
+	}
+	for lang := range supportedLangs {
+		if lang == defaultLang {
+			continue
 		}
-		s.pages[file] = t
+		for _, file := range legalFiles {
+			if err := s.parsePage(layout, lang, file); err != nil {
+				return err
+			}
+		}
+	}
+	for path, file := range staticFiles {
 		if file == "reset.html" {
 			continue
 		}
@@ -100,6 +114,22 @@ func RegisterRoutes(mux *http.ServeMux, logger *slog.Logger, o Options) error {
 		return err
 	}
 	mux.HandleFunc("GET /.well-known/assetlinks.json", links)
+	return nil
+}
+
+func (s *site) parsePage(layout *template.Template, lang, file string) error {
+	path := "pages/" + file
+	if lang != defaultLang {
+		path = "pages/" + lang + "/" + file
+	}
+	t, err := layout.Clone()
+	if err == nil {
+		_, err = t.ParseFS(pages, path)
+	}
+	if err != nil {
+		return fmt.Errorf("parse %s: %w", path, err)
+	}
+	s.pages[lang+"/"+file] = t
 	return nil
 }
 
@@ -129,8 +159,13 @@ func (s *site) requestDeletion(w http.ResponseWriter, r *http.Request) {
 }
 
 func (s *site) render(w http.ResponseWriter, r *http.Request, status int, file string, v view) {
+	pv := s.page(r, v)
+	t := s.pages[pv.Lang+"/"+file]
+	if t == nil {
+		t = s.pages[defaultLang+"/"+file]
+	}
 	var buf bytes.Buffer
-	if err := s.pages[file].ExecuteTemplate(&buf, "layout", v); err != nil {
+	if err := t.ExecuteTemplate(&buf, "layout", pv); err != nil {
 		s.logger.ErrorContext(r.Context(), "render page", "requestID", httpx.RequestID(r.Context()), "page", file, "error", err)
 		http.Error(w, "Something went wrong on our side.", http.StatusInternalServerError)
 		return
@@ -140,6 +175,7 @@ func (s *site) render(w http.ResponseWriter, r *http.Request, status int, file s
 	h.Set("Content-Security-Policy", "default-src 'none'; style-src 'unsafe-inline'; img-src 'self' data:; font-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'")
 	h.Set("X-Content-Type-Options", "nosniff")
 	h.Set("Referrer-Policy", "no-referrer")
+	h.Set("Content-Language", pv.Lang)
 	w.WriteHeader(status)
 	_, _ = w.Write(buf.Bytes())
 }

@@ -1,5 +1,5 @@
 {{define "layout"}}<!doctype html>
-<html lang="en">
+<html lang="{{.Lang}}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -54,15 +54,15 @@ footer a{color:var(--muted)}
 </head>
 <body>
 <header>
-<a class="mark" href="/">ACADE<span>Me</span></a>
-<nav><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/delete-account">Delete account</a><a href="/support">Support</a></nav>
+<a class="mark" href="/{{if .Q}}{{.Q}}{{end}}">ACADE<span>Me</span></a>
+<nav><a href="/privacy{{.Q}}">{{.Nav.Privacy}}</a><a href="/terms{{.Q}}">{{.Nav.Terms}}</a><a href="/delete-account{{.Q}}">{{.Nav.DeleteAccount}}</a><a href="/support{{.Q}}">{{.Nav.Support}}</a></nav>
 </header>
 <main>
 {{template "content" .}}
 </main>
 <footer>
-<p>ACADEMe is run by ACADEMe, Hyderabad, Telangana, India. Questions: <a href="mailto:support@academe.cc">support@academe.cc</a>.</p>
-<p><a href="/privacy">Privacy policy</a> · <a href="/terms">Terms of use</a> · <a href="/delete-account">Delete your account</a> · <a href="/support">Support and grievances</a></p>
+<p>{{.Nav.FooterRunBy}} {{.Nav.FooterQuestions}} <a href="mailto:support@academe.cc">support@academe.cc</a>.</p>
+<p><a href="/privacy{{.Q}}">{{.Nav.PrivacyPolicy}}</a> · <a href="/terms{{.Q}}">{{.Nav.TermsOfUse}}</a> · <a href="/delete-account{{.Q}}">{{.Nav.DeleteYourAccount}}</a> · <a href="/support{{.Q}}">{{.Nav.SupportAndGrievance}}</a></p>
 </footer>
 </body>
 </html>{{end}}

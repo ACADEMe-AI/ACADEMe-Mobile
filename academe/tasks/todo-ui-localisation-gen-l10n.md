@@ -10,5 +10,9 @@
 - [x] C2b: Login + forgot/reset/new-password chrome → ARB
 - [x] C2c: Sign-up prompts + AuthFailure messages → ARB
 - [x] C3: Home chrome (checklist/quick actions) → ARB
-- [ ] C3b: Home setup sheet steps + subject rows / today card → ARB
-- [ ] C…: Remaining UI extract / email locales / legal / Play
+- [x] C3b: Home setup sheet steps + subject rows / today card → ARB
+- [ ] C4: Remaining UI (Me/paywall/errors/scan/study/askme/progress/subjects)
+- [ ] Emails: locale tables for welcome/reset/google/deletion/feedback_received
+- [x] Play: listing copy docs for hi/te/ta/bn
+- [x] Legal: ?lang= tables for privacy/terms/support/delete
+- [ ] Review: code quality + DRY

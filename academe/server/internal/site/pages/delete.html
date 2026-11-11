@@ -19,7 +19,7 @@
 </div>
 {{else}}
 <p>Enter the email address you signed up with. We'll email that address to confirm it's you, then delete the account and its data within 30 days.</p>
-<form class="card" method="post" action="/delete-account">
+<form class="card" method="post" action="/delete-account{{.Q}}">
 {{if .Invalid}}<p class="error">That doesn't look like an email address. Please check it and try again.</p>{{end}}
 <label for="email">Email address</label>
 <input id="email" name="email" type="email" required maxlength="254" autocomplete="email" value="{{.Email}}">
