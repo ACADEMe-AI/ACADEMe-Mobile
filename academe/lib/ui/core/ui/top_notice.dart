@@ -164,12 +164,21 @@ class _TopNoticeBannerState extends State<_TopNoticeBanner>
     duration: const Duration(milliseconds: 280),
   )..forward();
 
+  bool _isExiting = false;
+
   @override
   void initState() {
     super.initState();
     _life.addStatusListener((status) {
-      if (status == AnimationStatus.completed) widget.onFinished();
+      if (status == AnimationStatus.completed) _exit();
     });
+  }
+
+  Future<void> _exit() async {
+    if (_isExiting) return;
+    _isExiting = true;
+    await _enter.reverse();
+    if (mounted) widget.onFinished();
   }
 
   @override
@@ -183,17 +192,21 @@ class _TopNoticeBannerState extends State<_TopNoticeBanner>
   Widget build(BuildContext context) {
     final palette = context.palette;
     final notice = widget.notice;
-    final ink = palette.edge;
+    final ink = palette.text;
+    final motion = CurvedAnimation(
+      parent: _enter,
+      curve: Curves.easeOutCubic,
+      reverseCurve: Curves.easeInCubic,
+    );
     final slide = Tween<Offset>(
       begin: const Offset(0, -0.35),
       end: Offset.zero,
-    ).animate(CurvedAnimation(parent: _enter, curve: Curves.easeOutCubic));
-    final fade = CurvedAnimation(parent: _enter, curve: Curves.easeOut);
+    ).animate(motion);
 
     return SlideTransition(
       position: slide,
       child: FadeTransition(
-        opacity: fade,
+        opacity: motion,
         child: Material(
           type: MaterialType.transparency,
           child: PebbyKeycapBanner(

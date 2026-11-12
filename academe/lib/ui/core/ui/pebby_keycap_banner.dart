@@ -19,6 +19,7 @@ class PebbyKeycapBanner extends StatelessWidget {
 
   static const faceHeight = 52.0;
   static const pebbySlot = 44.0;
+  static const _innerRadius = AppRadius.xl - AppKeycap.borderWidth;
 
   final Color face;
   final String message;
@@ -29,45 +30,48 @@ class PebbyKeycapBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ink = context.palette.edge;
+    final ink = context.palette.text;
     return Keycap(
       face: face,
       depth: TabBarLayout.depth,
       height: faceHeight,
       radius: AppRadius.xl,
-      child: Stack(
-        children: [
-          Padding(
-            padding: contentPadding,
-            child: Row(
-              children: [
-                SizedBox(
-                  width: pebbySlot,
-                  height: pebbySlot,
-                  child: Semantics(
-                    label: context.l10n.pebbySemantics,
-                    child: Pebby(pose: pose),
-                  ),
-                ),
-                const SizedBox(width: 6),
-                Expanded(
-                  child: Text(
-                    message,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: AppTextStyles.caption.copyWith(
-                      color: ink,
-                      fontWeight: FontWeight.w600,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(_innerRadius),
+        child: Stack(
+          children: [
+            Padding(
+              padding: contentPadding,
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: pebbySlot,
+                    height: pebbySlot,
+                    child: Semantics(
+                      label: context.l10n.pebbySemantics,
+                      child: Pebby(pose: pose),
                     ),
                   ),
-                ),
-                ...?trailing,
-              ],
+                  const SizedBox(width: 6),
+                  Expanded(
+                    child: Text(
+                      message,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: AppTextStyles.caption.copyWith(
+                        color: ink,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                  ...?trailing,
+                ],
+              ),
             ),
-          ),
-          if (bottom != null)
-            Positioned(left: 0, right: 0, bottom: 0, child: bottom!),
-        ],
+            if (bottom != null)
+              Positioned(left: 0, right: 0, bottom: 0, child: bottom!),
+          ],
+        ),
       ),
     );
   }

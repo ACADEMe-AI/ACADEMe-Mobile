@@ -52,7 +52,7 @@ class SoftUpdateBanner extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final palette = context.palette;
-    const ink = AppColors.keycapEdge;
+    final ink = palette.text;
     final message = config.updateMessage.isNotEmpty
         ? config.updateMessage
         : l10n.softUpdateDefaultMessage;
@@ -79,7 +79,7 @@ class SoftUpdateBanner extends StatelessWidget {
             onPressed: onDismiss,
             padding: EdgeInsets.zero,
             constraints: const BoxConstraints(minWidth: 36, minHeight: 36),
-            icon: const Icon(Icons.close, color: ink, size: 20),
+            icon: Icon(Icons.close, color: ink, size: 20),
           ),
         ],
       ),
