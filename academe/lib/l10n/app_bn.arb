@@ -157,7 +157,7 @@
   "homeAskHintTitle": "পেবিকে যা খুশি জিজ্ঞাসা করো",
   "homeAskHintBody": "প্রশ্ন টাইপ করো, বা হোমওয়ার্ক সলভ ট্যাপ করে ছবি তোলো।",
   "homeAskHintGotIt": "বুঝেছি",
-  "homeDashboardLoadError": "ড্যাশবোর্ড লোড হয়নি।",
+  "homeDashboardLoadError": "আপনি এখন অফলাইন আছেন।",
   "homeRetry": "আবার চেষ্টা",
   "helloFallbackName": "বন্ধু",
   "homeStreakSemantics": "{count, plural, =1{১ দিনের স্ট্রিক} other{{count} দিনের স্ট্রিক}}",

@@ -4,6 +4,8 @@ import '../../../domain/models/auth_failure.dart';
 import '../../../utils/result.dart';
 import '../../auth/widgets/auth_failure_text.dart';
 import '../../core/l10n/app_l10n.dart';
+import '../../core/ui/pebby.dart';
+import '../../core/ui/top_notice.dart';
 import '../view_models/me_view_model.dart';
 import 'password_screen.dart';
 import 'settings_list.dart';
@@ -16,15 +18,19 @@ class SignInGroup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    void show(String message) => ScaffoldMessenger.of(context)
-      ..hideCurrentSnackBar()
-      ..showSnackBar(SnackBar(content: Text(message)));
+    void show(
+      String message, {
+      TopNoticeKind kind = TopNoticeKind.success,
+      double? pose,
+    }) => context.showTopNotice(message, kind: kind, pose: pose);
 
     Future<void> openPassword() async {
       final message = await Navigator.of(context).push<String>(
         MaterialPageRoute(builder: (_) => PasswordScreen(viewModel: viewModel)),
       );
-      if (message != null && context.mounted) show(message);
+      if (message != null && context.mounted) {
+        show(message, pose: PebbyPose.noticeSaved);
+      }
     }
 
     Future<void> link() async {
@@ -36,7 +42,7 @@ class SignInGroup extends StatelessWidget {
         case Error(error: AuthException(failure: AuthFailure.canceled)):
           break;
         case Error(:final error):
-          show(failureMessage(error, context.l10n));
+          show(failureMessage(error, context.l10n), kind: TopNoticeKind.error);
         case null:
           break;
       }
@@ -44,7 +50,10 @@ class SignInGroup extends StatelessWidget {
 
     Future<void> unlink() async {
       if (!viewModel.hasPassword) {
-        show(AuthFailure.passwordRequired.message(context.l10n));
+        show(
+          AuthFailure.passwordRequired.message(context.l10n),
+          kind: TopNoticeKind.error,
+        );
         return;
       }
       final confirmed = await UnlinkGoogleSheet.show(
@@ -54,10 +63,12 @@ class SignInGroup extends StatelessWidget {
       if (confirmed != true) return;
       await viewModel.unlinkGoogle.execute();
       if (!context.mounted) return;
-      show(switch (viewModel.unlinkGoogle.result) {
-        Error(:final error) => failureMessage(error, context.l10n),
-        _ => context.l10n.accountGoogleUnlinked,
-      });
+      switch (viewModel.unlinkGoogle.result) {
+        case Error(:final error):
+          show(failureMessage(error, context.l10n), kind: TopNoticeKind.error);
+        case _:
+          show(context.l10n.accountGoogleUnlinked);
+      }
     }
 
     final l10n = context.l10n;

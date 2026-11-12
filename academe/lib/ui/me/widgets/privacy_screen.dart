@@ -4,6 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../config/links.dart';
 import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
+import '../../core/ui/top_notice.dart';
 import 'settings_list.dart';
 import 'settings_page.dart';
 
@@ -26,11 +27,7 @@ class PrivacyScreen extends StatelessWidget {
         mode: LaunchMode.externalApplication,
       );
       if (opened || !context.mounted) return;
-      ScaffoldMessenger.of(context)
-        ..hideCurrentSnackBar()
-        ..showSnackBar(
-          SnackBar(content: Text(context.l10n.meOpenInBrowser('$link'))),
-        );
+      context.showTopNotice(context.l10n.meOpenInBrowser('$link'));
     }
 
     return SettingsPage(

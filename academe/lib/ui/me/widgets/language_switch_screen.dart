@@ -71,7 +71,7 @@ class _LanguageSwitchScreenState extends State<LanguageSwitchScreen>
                 children: [
                   const SizedBox.square(
                     dimension: 220,
-                    child: Pebby(pose: PebbyPose.working),
+                    child: Pebby(pose: PebbyPose.singing),
                   ),
                   const SizedBox(height: 16),
                   Text(

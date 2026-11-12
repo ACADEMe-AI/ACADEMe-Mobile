@@ -789,9 +789,9 @@
   "@homeAskHintGotIt": {
     "description": "Ask hint dismiss"
   },
-  "homeDashboardLoadError": "Couldn’t load your dashboard.",
+  "homeDashboardLoadError": "You’re currently offline.",
   "@homeDashboardLoadError": {
-    "description": "Dashboard load error"
+    "description": "Calm top notice when home can’t load"
   },
   "homeRetry": "Retry",
   "@homeRetry": {

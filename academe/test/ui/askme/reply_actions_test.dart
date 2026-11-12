@@ -3,9 +3,12 @@ import 'package:academe/l10n/generated/app_localizations.dart';
 import 'package:academe/l10n/generated/app_localizations_en.dart';
 import 'package:academe/ui/askme/widgets/reply_actions.dart';
 import 'package:academe/ui/core/themes/app_theme.dart';
+import 'package:academe/ui/core/ui/pebby.dart';
 import 'package:academe/utils/result.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+
+import '../../helpers/top_notice_host.dart';
 
 void main() {
   const answer = ChatMessage(id: 7, role: ChatRole.pebby, body: 'Light bends');
@@ -19,20 +22,21 @@ void main() {
     addTearDown(tester.view.reset);
     final reports = <ReportReason>[];
     await tester.pumpWidget(
-      MaterialApp(
-        locale: const Locale('en'),
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
-        supportedLocales: AppLocalizations.supportedLocales,
-        theme: AppTheme.dark(),
-        home: Scaffold(
-          body: ReplyActions(
-            message: answer,
-            onRate: (_) {},
-            onRetry: null,
-            onReport: (reason) async {
-              reports.add(reason);
-              return outcome;
-            },
+      PebbyStandIn(
+        child: wrapWithTopNotice(
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          theme: AppTheme.dark(),
+          home: Scaffold(
+            body: ReplyActions(
+              message: answer,
+              onRate: (_) {},
+              onRetry: null,
+              onReport: (reason) async {
+                reports.add(reason);
+                return outcome;
+              },
+            ),
           ),
         ),
       ),
@@ -55,7 +59,7 @@ void main() {
     expect(find.text(en.reportReasonOther), findsOneWidget);
 
     await tester.tap(find.text(en.reportReasonOffensive));
-    await tester.pumpAndSettle();
+    await pumpUntilNoticeVisible(tester);
     expect(reports, [ReportReason.offensive]);
     expect(find.text('Thanks. We’ll review this answer.'), findsOneWidget);
   });
@@ -74,7 +78,7 @@ void main() {
     await tester.tap(find.byTooltip('Report'));
     await tester.pumpAndSettle();
     await tester.tap(find.text(AppLocalizationsEn().reportReasonWrong));
-    await tester.pumpAndSettle();
+    await pumpUntilNoticeVisible(tester);
     expect(reports, [ReportReason.wrong]);
     expect(find.text('Couldn’t send the report. Try again.'), findsOneWidget);
   });

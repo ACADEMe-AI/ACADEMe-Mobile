@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../domain/models/folder.dart';
 import '../../../utils/result.dart';
 import '../../core/l10n/app_l10n.dart';
+import '../../core/ui/pebby.dart';
+import '../../core/ui/top_notice.dart';
 import '../../scan/widgets/scan_flow_screen.dart';
 import '../../study/study_actions.dart';
 import '../../study/widgets/chapter_screen.dart';
@@ -25,7 +27,11 @@ mixin StudyNavigation on State<AppShell> {
 
   void askAbout(String question);
 
-  void showMessage(String message);
+  void showMessage(
+    String message, {
+    TopNoticeKind kind = TopNoticeKind.success,
+    double? pose,
+  });
 
   final _chapterRoutes = <String, Route<void>>{};
 
@@ -120,7 +126,7 @@ mixin StudyNavigation on State<AppShell> {
     await widget.folders.create.execute((name: edit.name, dueOn: edit.dueOn));
     final result = widget.folders.create.result;
     if (result is! Ok<FolderSummary>) {
-      showMessage(couldntMake);
+      showMessage(couldntMake, kind: TopNoticeKind.error);
       return null;
     }
     if (edit.dueOn != null) widget.onRemindersWanted?.call();
@@ -155,6 +161,6 @@ mixin StudyNavigation on State<AppShell> {
     final folder = widget.factory.folder(picked.id);
     await folder.addChapters(chapterIds);
     folder.dispose();
-    showMessage(addedTo(picked.name));
+    showMessage(addedTo(picked.name), pose: PebbyPose.noticeSaved);
   }
 }

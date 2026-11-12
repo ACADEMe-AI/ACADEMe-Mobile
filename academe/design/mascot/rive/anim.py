@@ -7,7 +7,8 @@ ANIMATED = [
     ('motion', 'opacity'),
     ('motion', 'x'), ('motion', 'y'), ('motion', 'rot'), ('motion', 'sx'), ('motion', 'sy'),
     ('head', 'x'), ('head', 'y'), ('head', 'rot'), ('head', 'sx'), ('head', 'sy'),
-    ('armL', 'rot'), ('armR', 'rot'),
+    ('armL', 'rot'), ('armL', 'opacity'), ('armL', 'sx'), ('armL', 'sy'),
+    ('armR', 'rot'), ('armR', 'opacity'), ('armR', 'sx'), ('armR', 'sy'),
     ('armLBend', 'rot'), ('armRBend', 'rot'),
     ('tuftL', 'rot'), ('tuftR', 'rot'),
     ('face', 'x'), ('face', 'sx'), ('face', 'sy'),
@@ -33,8 +34,19 @@ ANIMATED = [
     ('bookPages', 'sx'), ('bookLines', 'sx'),
     ('laptopGlow', 'opacity'), ('laptopGlow', 'sx'), ('laptopLid', 'opacity'), ('laptopScreen', 'opacity'),
     ('laptopLogo', 'opacity'), ('laptopLogo', 'rot'), ('laptopBase', 'opacity'), ('laptopKeys', 'opacity'),
-    ('typePawL', 'opacity'), ('typePawL', 'y'), ('typePawR', 'opacity'), ('typePawR', 'y'),
+    ('typePawL', 'opacity'), ('typePawL', 'y'), ('typePawL', 'x'), ('typePawL', 'rot'),
+    ('typePawR', 'opacity'), ('typePawR', 'y'), ('typePawR', 'x'), ('typePawR', 'rot'),
+    ('micHandle', 'opacity'), ('micHandle', 'x'), ('micHandle', 'y'), ('micHandle', 'rot'),
+    ('micHandle', 'sx'), ('micHandle', 'sy'),
+    ('micBand', 'opacity'), ('micBand', 'x'), ('micBand', 'y'), ('micBand', 'rot'),
+    ('micBand', 'sx'), ('micBand', 'sy'),
+    ('micGrille', 'opacity'), ('micGrille', 'x'), ('micGrille', 'y'), ('micGrille', 'rot'),
+    ('micGrille', 'sx'), ('micGrille', 'sy'),
+    ('micPaw', 'opacity'), ('micPaw', 'x'), ('micPaw', 'y'), ('micPaw', 'rot'),
+    ('micPaw', 'sx'), ('micPaw', 'sy'),
     *[(z, prop) for z in ('zzzA', 'zzzB', 'zzzC')
+      for prop in ('opacity', 'x', 'y', 'sx', 'sy', 'rot')],
+    *[(n, prop) for n in ('noteA', 'noteB', 'noteC')
       for prop in ('opacity', 'x', 'y', 'sx', 'sy', 'rot')],
 ]
 

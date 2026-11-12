@@ -4,6 +4,7 @@ import '../../../data/repositories/photo_repository.dart';
 import '../../../domain/models/chat.dart';
 import '../../../domain/models/scan.dart';
 import '../../core/l10n/app_l10n.dart';
+import '../../core/ui/top_notice.dart';
 import '../../scan/view_models/scan_flow_view_model.dart';
 import '../../scan/widgets/check_result_screen.dart';
 import '../../scan/widgets/scan_flow_screen.dart';
@@ -13,7 +14,11 @@ import 'app_shell.dart';
 mixin ScanNavigation on State<AppShell> {
   static const _maxAsk = 1900;
 
-  void showMessage(String message);
+  void showMessage(
+    String message, {
+    TopNoticeKind kind = TopNoticeKind.success,
+    double? pose,
+  });
 
   void openFolder(String folderId);
 
@@ -34,7 +39,10 @@ mixin ScanNavigation on State<AppShell> {
     await flow.addPages.execute(from);
     if (!mounted || flow.pages.isEmpty) {
       if (flow.addPages.hasError && mounted) {
-        showMessage(context.l10n.scanCameraOpenFailed);
+        showMessage(
+          context.l10n.scanCameraOpenFailed,
+          kind: TopNoticeKind.error,
+        );
       }
       flow.dispose();
       return;

@@ -57,6 +57,24 @@ LAPTOP_SCREEN = rad((-20, -30), (60, 40), [
 LAPTOP_KEYS = solid('#CFD2DE')
 LAPTOP_GLOW = rad((0, 0), (90, 0), [(0.0, '#B8B9FF', 0.35), (1.0, '#B8B9FF', 0.0)])
 
+MIC_GRILLE = rad((-10, -12), (14, 16), [
+    (0.00, '#3A3D4E'), (0.45, '#2A2C38'), (1.00, '#1A1B24')])
+MIC_MESH = solid('#6E72E8', 0.55)
+MIC_HANDLE = rad((0, -20), (0, 30), [
+    (0.00, '#8B8CF5'), (0.50, '#6A6CD0'), (1.00, '#5054C8')])
+MIC_BAND = solid('#FFFEFF', 0.9)
+NOTE_FILL = rad((-6, -8), (10, 12), [
+    (0.00, '#C5C6FF'), (0.55, '#8B8CF5'), (1.00, '#564CF1')])
+
+
+def _music_note_paths():
+    """Eighth-note silhouette: head + stem + flag."""
+    return [
+        ell(22, 17, x=-3, y=11),
+        rect(5, 40, 2.2, x=9, y=-6),
+        ell(18, 11, x=17, y=-22, rot=-28),
+    ]
+
 FOOT_L_BASE = rad((0, -17), (0, 17), [(0.00, '#7072D7'), (0.45, '#6669CB'), (1.00, '#585BB6')])
 FOOT_R_BASE = rad((0, -17), (0, 17), [(0.00, '#696BCF'), (0.45, '#6063C4'), (1.00, '#5356B0')])
 
@@ -165,20 +183,35 @@ PARTS = [
          paths=[rect(176, 92, 14)]),
     dict(name='laptopScreen', parent='motion', x=0, y=82, opacity=0.0, paints=[fill(LAPTOP_SCREEN)],
          paths=[rect(158, 74, 9)]),
-    dict(name='laptopLogo', parent='motion', x=0, y=82, opacity=0.0, paints=[fill(solid('#FFFFFF', 0.85))],
-         paths=[rect(22, 22, 6, rot=45), rect(10, 10, 3, rot=45)]),
+    dict(name='laptopLogo', parent='motion', x=0, y=78, opacity=0.0, paints=[fill(solid('#FFFFFF', 0.55))],
+         paths=[rect(120, 5, 2.5, y=-18), rect(96, 5, 2.5, y=-4), rect(72, 5, 2.5, y=10)]),
     dict(name='laptopBase', parent='motion', x=0, y=132, opacity=0.0, paints=[fill(LAPTOP_BODY)],
          paths=[rect(212, 16, 8)]),
     dict(name='laptopKeys', parent='motion', x=0, y=131, opacity=0.0, paints=[fill(LAPTOP_KEYS)],
          paths=[rect(150, 5, 2.5)]),
-    dict(name='typePawL', parent='motion', x=-70, y=126, rot=-10, opacity=0.0,
-         paints=[fill(COVER_BASE), fill(COVER_SHEEN)], paths=[ell(40, 30)]),
-    dict(name='typePawR', parent='motion', x=70, y=126, rot=10, opacity=0.0,
-         paints=[fill(COVER_BASE), fill(COVER_SHEEN)], paths=[ell(40, 30)]),
+    dict(name='typePawL', parent='motion', x=-42, y=128, rot=8, opacity=0.0,
+         paints=[fill(COVER_BASE), fill(COVER_SHEEN)], paths=[ell(36, 28), ell(14, 14, x=8, y=-12)]),
+    dict(name='typePawR', parent='motion', x=42, y=128, rot=-8, opacity=0.0,
+         paints=[fill(COVER_BASE), fill(COVER_SHEEN)], paths=[ell(36, 28), ell(14, 14, x=-8, y=-12)]),
+    # Handheld mic for language-switch singing. Hidden unless act_sing shows it.
+    dict(name='micHandle', parent='motion', x=78, y=48, rot=18, opacity=0.0,
+         paints=[fill(MIC_HANDLE)], paths=[rect(18, 72, 9, y=28)]),
+    dict(name='micBand', parent='motion', x=78, y=48, rot=18, opacity=0.0,
+         paints=[fill(MIC_BAND)], paths=[rect(22, 8, 4, y=2)]),
+    dict(name='micGrille', parent='motion', x=78, y=48, rot=18, opacity=0.0,
+         paints=[fill(MIC_GRILLE), fill(MIC_MESH)],
+         paths=[ell(46, 46, y=-22), ell(26, 26, y=-22)]),
+    dict(name='micPaw', parent='motion', x=62, y=78, rot=28, opacity=0.0,
+         paints=[fill(COVER_BASE), fill(COVER_SHEEN)],
+         paths=[ell(42, 34), ell(16, 18, x=8, y=-16)]),
     *[dict(name=name, parent='root', x=70, y=-96, sx=scale, sy=scale, opacity=0.0,
            paints=[fill(solid(C['mid']))],
            paths=[rect(26, 6, 3, y=-11), rect(26, 6, 3, y=11), rect(34, 6, 3, rot=-40)])
       for name, scale in (('zzzA', 0.9), ('zzzB', 0.9), ('zzzC', 0.9))],
+    # Music notes float from the mouth while singing (same lifecycle as zzz).
+    *[dict(name=name, parent='head', x=42, y=H + 8, sx=scale, sy=scale, opacity=0.0,
+           paints=[fill(NOTE_FILL)], paths=_music_note_paths())
+      for name, scale in (('noteA', 0.85), ('noteB', 1.0), ('noteC', 0.72))],
     # Last in the list, so drawn over the face. Parked below it at opacity 0;
     # cover_eyes lifts them onto the eyes and the pose blend reads as a reach.
     dict(name='coverL', parent='head', x=-35, y=H + 74, rot=18, opacity=0.0,

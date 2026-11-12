@@ -7,6 +7,7 @@ import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/keycap.dart';
 import '../../core/ui/light_field.dart';
+import '../../core/ui/top_notice.dart';
 import '../view_models/me_view_model.dart';
 import 'settings_list.dart';
 import 'settings_page.dart';
@@ -53,11 +54,7 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
     final url = Uri.parse(widget.viewModel.manageSubscriptionUrl);
     final opened = await launchUrl(url, mode: LaunchMode.externalApplication);
     if (opened || !mounted) return;
-    ScaffoldMessenger.of(context)
-      ..hideCurrentSnackBar()
-      ..showSnackBar(
-        SnackBar(content: Text(context.l10n.meOpenInBrowser('$url'))),
-      );
+    context.showTopNotice(context.l10n.meOpenInBrowser('$url'));
   }
 
   Future<void> _delete() async {
@@ -68,8 +65,9 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
       case Ok():
         widget.onDeleted();
       case Error(:final error):
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(failureMessage(error, context.l10n))),
+        context.showTopNotice(
+          failureMessage(error, context.l10n),
+          kind: TopNoticeKind.error,
         );
       case null:
         break;

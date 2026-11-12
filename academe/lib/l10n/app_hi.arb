@@ -157,7 +157,7 @@
   "homeAskHintTitle": "पेबी से कुछ भी पूछो",
   "homeAskHintBody": "सवाल टाइप करो, या होमवर्क हल करो पर टैप करके फोटो लो।",
   "homeAskHintGotIt": "समझ गया",
-  "homeDashboardLoadError": "डैशबोर्ड लोड नहीं हो सका।",
+  "homeDashboardLoadError": "आप अभी ऑफ़लाइन हैं।",
   "homeRetry": "फिर कोशिश",
   "helloFallbackName": "दोस्त",
   "homeStreakSemantics": "{count, plural, =1{1 दिन की स्ट्रीक} other{{count} दिन की स्ट्रीक}}",

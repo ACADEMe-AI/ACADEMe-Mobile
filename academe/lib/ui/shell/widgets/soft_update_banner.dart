@@ -4,11 +4,10 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../domain/models/app_config.dart';
 import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
-import '../../core/ui/keycap.dart';
 import '../../core/ui/pebby.dart';
+import '../../core/ui/pebby_keycap_banner.dart';
 import '../../core/ui/tab_bar_layout.dart';
 
-/// Extra bottom scroll clearance while the soft-update banner is showing.
 class SoftUpdateInset extends InheritedWidget {
   const SoftUpdateInset({
     super.key,
@@ -34,17 +33,11 @@ class SoftUpdateBanner extends StatelessWidget {
     required this.onDismiss,
   });
 
-  /// Face height of the keycap (matches nav bar face, slightly shorter).
-  static const faceHeight = 52.0;
-
-  /// Gap between banner and the nav row (mock: 8).
+  static const faceHeight = PebbyKeycapBanner.faceHeight;
   static const gapAboveNav = 8.0;
 
-  /// Total height reserved above the nav for scroll padding.
   static double get reservedHeight =>
       faceHeight + TabBarLayout.depth + gapAboveNav;
-
-  static const _pebbySlot = 44.0;
 
   final AppConfig config;
   final VoidCallback onDismiss;
@@ -65,55 +58,30 @@ class SoftUpdateBanner extends StatelessWidget {
         : l10n.softUpdateDefaultMessage;
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 0, 16, gapAboveNav),
-      child: Keycap(
+      child: PebbyKeycapBanner(
         face: palette.tintLavender,
-        depth: TabBarLayout.depth,
-        height: faceHeight,
-        radius: AppRadius.xl,
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(8, 4, 4, 4),
-          child: Row(
-            children: [
-              SizedBox(
-                width: _pebbySlot,
-                height: _pebbySlot,
-                child: Semantics(
-                  label: l10n.pebbySemantics,
-                  child: const Pebby(pose: PebbyPose.encourage),
-                ),
-              ),
-              const SizedBox(width: 6),
-              Expanded(
-                child: Text(
-                  message,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: AppTextStyles.caption.copyWith(
-                    color: ink,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
-              TextButton(
-                onPressed: _openStore,
-                style: TextButton.styleFrom(
-                  foregroundColor: AppColors.primary,
-                  padding: const EdgeInsets.symmetric(horizontal: 6),
-                  minimumSize: Size.zero,
-                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                ),
-                child: Text(l10n.softUpdateAction),
-              ),
-              IconButton(
-                tooltip: l10n.softUpdateDismiss,
-                onPressed: onDismiss,
-                padding: EdgeInsets.zero,
-                constraints: const BoxConstraints(minWidth: 36, minHeight: 36),
-                icon: const Icon(Icons.close, color: ink, size: 20),
-              ),
-            ],
+        message: message,
+        pose: PebbyPose.encourage,
+        contentPadding: const EdgeInsets.fromLTRB(8, 4, 4, 4),
+        trailing: [
+          TextButton(
+            onPressed: _openStore,
+            style: TextButton.styleFrom(
+              foregroundColor: AppColors.primary,
+              padding: const EdgeInsets.symmetric(horizontal: 6),
+              minimumSize: Size.zero,
+              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            ),
+            child: Text(l10n.softUpdateAction),
           ),
-        ),
+          IconButton(
+            tooltip: l10n.softUpdateDismiss,
+            onPressed: onDismiss,
+            padding: EdgeInsets.zero,
+            constraints: const BoxConstraints(minWidth: 36, minHeight: 36),
+            icon: const Icon(Icons.close, color: ink, size: 20),
+          ),
+        ],
       ),
     );
   }

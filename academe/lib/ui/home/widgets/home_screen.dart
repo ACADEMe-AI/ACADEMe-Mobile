@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 
 import '../../../domain/models/app_language.dart';
+import '../../../domain/models/auth_failure.dart';
 import '../../../domain/models/folder.dart';
+import '../../../utils/result.dart';
+import '../../auth/widgets/auth_failure_text.dart';
 import '../../core/l10n/app_l10n.dart';
 import '../../core/l10n/syllabus_label.dart';
 import '../../core/ui/screen_scale.dart';
 import '../../core/ui/tab_bar_layout.dart';
+import '../../core/ui/top_notice.dart';
 import '../../study/view_models/study_view_model.dart';
 import '../../subjects/widgets/subjects_sheet.dart';
 import '../view_models/home_view_model.dart';
 import '../view_models/today_view_model.dart';
 import 'ask_bar.dart';
 import 'ask_hint.dart';
-import 'dashboard_load_error.dart';
 import 'home_greeting.dart';
 import 'pick_subjects_card.dart';
 import 'quick_actions.dart';
@@ -64,6 +67,7 @@ class _HomeScreenState extends State<HomeScreen>
 
   (Rect, Rect)? _flightPath;
   bool _hasOpenedSetup = false;
+  bool _didShowLoadNotice = false;
 
   HomeViewModel get _viewModel => widget.viewModel;
 
@@ -74,15 +78,20 @@ class _HomeScreenState extends State<HomeScreen>
       vsync: this,
       duration: SetupRewardFlight.duration,
     );
-    _viewModel.load.addListener(_maybeOpenSetup);
-    _maybeOpenSetup();
+    _viewModel.load.addListener(_onLoadChanged);
+    _onLoadChanged();
   }
 
   @override
   void dispose() {
-    _viewModel.load.removeListener(_maybeOpenSetup);
+    _viewModel.load.removeListener(_onLoadChanged);
     _flight.dispose();
     super.dispose();
+  }
+
+  void _onLoadChanged() {
+    _maybeOpenSetup();
+    _maybeShowLoadNotice();
   }
 
   void _maybeOpenSetup() {
@@ -92,6 +101,30 @@ class _HomeScreenState extends State<HomeScreen>
     _hasOpenedSetup = true;
     Future.delayed(HomeScreen.setupDelay, () {
       if (mounted) _openSetup(_viewModel.nextTask() ?? SetupTask.language);
+    });
+  }
+
+  void _maybeShowLoadNotice() {
+    if (!_viewModel.load.hasError) {
+      _didShowLoadNotice = false;
+      return;
+    }
+    if (_didShowLoadNotice || !mounted) return;
+    _didShowLoadNotice = true;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted || !_viewModel.load.hasError) return;
+      final error = switch (_viewModel.load.result) {
+        Error(:final error) => error,
+        _ => null,
+      };
+      final offline =
+          error is AuthException && error.failure == AuthFailure.network;
+      context.showTopNotice(
+        offline
+            ? context.l10n.homeDashboardLoadError
+            : failureMessage(error ?? Exception(), context.l10n),
+        kind: offline ? TopNoticeKind.offline : TopNoticeKind.error,
+      );
     });
   }
 
@@ -152,97 +185,95 @@ class _HomeScreenState extends State<HomeScreen>
         return Stack(
           key: _stackKey,
           children: [
-            ListView(
-              padding: EdgeInsets.fromLTRB(
-                scale.pagePadding,
-                8,
-                scale.pagePadding,
-                24 + TabBarLayout.scrollBottomPadding(context),
-              ),
-              children: [
-                HomeGreeting(
-                  hello: (_viewModel.profile.language ?? AppLanguage.english)
-                      .hello(
-                        _viewModel.account?.firstName ??
-                            context.l10n.helloFallbackName,
-                      ),
-                  syllabus: syllabusLabel,
-                  xpKey: _xpKey,
-                  xp: _viewModel.displayedXp,
-                  streak: _viewModel.profile.streak,
+            RefreshIndicator(
+              onRefresh: _viewModel.load.execute,
+              child: ListView(
+                padding: EdgeInsets.fromLTRB(
+                  scale.pagePadding,
+                  8,
+                  scale.pagePadding,
+                  24 + TabBarLayout.scrollBottomPadding(context),
                 ),
-                const SizedBox(height: 16),
-                AskBar(onTap: widget.onAsk),
-                if (_viewModel.showsAskHint) ...[
-                  const SizedBox(height: 4),
-                  AskHint(onDismiss: _viewModel.dismissAskHint),
-                ],
-                const SizedBox(height: 12),
-                QuickActions(
-                  actions: [
-                    QuickAction(
-                      icon: Icons.photo_camera_rounded,
-                      label: context.l10n.homeSolveHomework,
-                      onTap: widget.onSolve,
+                children: [
+                  HomeGreeting(
+                    hello: (_viewModel.profile.language ?? AppLanguage.english)
+                        .hello(
+                          _viewModel.account?.firstName ??
+                              context.l10n.helloFallbackName,
+                        ),
+                    syllabus: syllabusLabel,
+                    xpKey: _xpKey,
+                    xp: _viewModel.displayedXp,
+                    streak: _viewModel.profile.streak,
+                  ),
+                  const SizedBox(height: 16),
+                  AskBar(onTap: widget.onAsk),
+                  if (_viewModel.showsAskHint) ...[
+                    const SizedBox(height: 4),
+                    AskHint(onDismiss: _viewModel.dismissAskHint),
+                  ],
+                  const SizedBox(height: 12),
+                  QuickActions(
+                    actions: [
+                      QuickAction(
+                        icon: Icons.photo_camera_rounded,
+                        label: context.l10n.homeSolveHomework,
+                        onTap: widget.onSolve,
+                      ),
+                      QuickAction(
+                        icon: Icons.fact_check_rounded,
+                        label: context.l10n.homeCheckAnswer,
+                        onTap: widget.onCheck,
+                      ),
+                      QuickAction(
+                        icon: Icons.style_rounded,
+                        label: context.l10n.homeFlashcards,
+                        onTap: widget.onFlashcards,
+                      ),
+                    ],
+                  ),
+                  AnimatedSize(
+                    duration: const Duration(milliseconds: 320),
+                    curve: Curves.easeOutCubic,
+                    alignment: Alignment.topCenter,
+                    child: _viewModel.showsChecklist
+                        ? Padding(
+                            padding: const EdgeInsets.only(top: 16),
+                            child: Visibility(
+                              visible: flightPath == null,
+                              maintainSize: true,
+                              maintainAnimation: true,
+                              maintainState: true,
+                              child: SetupChecklist(
+                                key: _cardKey,
+                                viewModel: _viewModel,
+                                onOpen: _openSetup,
+                              ),
+                            ),
+                          )
+                        : const SizedBox(width: double.infinity),
+                  ),
+                  if (widget.today case final today?)
+                    TodayCard(
+                      viewModel: today,
+                      onOpen: widget.onOpenTask ?? (_) {},
                     ),
-                    QuickAction(
-                      icon: Icons.fact_check_rounded,
-                      label: context.l10n.homeCheckAnswer,
-                      onTap: widget.onCheck,
-                    ),
-                    QuickAction(
-                      icon: Icons.style_rounded,
-                      label: context.l10n.homeFlashcards,
-                      onTap: widget.onFlashcards,
+                  if (_viewModel.showsPickSubjects) ...[
+                    const SizedBox(height: 16),
+                    PickSubjectsCard(
+                      onPick: _pickFromCard,
+                      onDismiss: _viewModel.dismissPickSubjects,
                     ),
                   ],
-                ),
-                AnimatedSize(
-                  duration: const Duration(milliseconds: 320),
-                  curve: Curves.easeOutCubic,
-                  alignment: Alignment.topCenter,
-                  child: _viewModel.showsChecklist
-                      ? Padding(
-                          padding: const EdgeInsets.only(top: 16),
-                          child: Visibility(
-                            visible: flightPath == null,
-                            maintainSize: true,
-                            maintainAnimation: true,
-                            maintainState: true,
-                            child: SetupChecklist(
-                              key: _cardKey,
-                              viewModel: _viewModel,
-                              onOpen: _openSetup,
-                            ),
-                          ),
-                        )
-                      : const SizedBox(width: double.infinity),
-                ),
-                if (widget.today case final today?)
-                  TodayCard(
-                    viewModel: today,
-                    onOpen: widget.onOpenTask ?? (_) {},
-                  ),
-                if (_viewModel.load.hasError &&
-                    !_viewModel.profile.setupDone) ...[
-                  const SizedBox(height: 12),
-                  DashboardLoadError(onRetry: _viewModel.load.execute),
-                ],
-                if (_viewModel.showsPickSubjects) ...[
-                  const SizedBox(height: 16),
-                  PickSubjectsCard(
-                    onPick: _pickFromCard,
-                    onDismiss: _viewModel.dismissPickSubjects,
+                  const SizedBox(height: 24),
+                  SubjectRows(
+                    study: widget.study,
+                    hasSyllabus: _viewModel.profile.hasSyllabus,
+                    onEdit: _openSubjects,
+                    onOpen: widget.onOpenSubject ?? (_) {},
                   ),
                 ],
-                const SizedBox(height: 24),
-                SubjectRows(
-                  study: widget.study,
-                  hasSyllabus: _viewModel.profile.hasSyllabus,
-                  onEdit: _openSubjects,
-                  onOpen: widget.onOpenSubject ?? (_) {},
-                ),
-              ],
+              ),
             ),
             if (flightPath case (final from, final to))
               SetupRewardFlight(

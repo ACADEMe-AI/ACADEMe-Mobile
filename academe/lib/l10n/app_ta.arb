@@ -157,7 +157,7 @@
   "homeAskHintTitle": "பெப்பியிடம் எதையும் கேளுங்கள்",
   "homeAskHintBody": "கேள்வியைத் தட்டச்சு செய்யுங்கள், அல்லது வீட்டுப்பாடம் தீர்க்க தட்டிப் படம் எடுங்கள்.",
   "homeAskHintGotIt": "புரிந்தது",
-  "homeDashboardLoadError": "டாஷ்போர்டை ஏற்ற முடியவில்லை.",
+  "homeDashboardLoadError": "நீங்கள் தற்போது ஆஃப்லைனில் இருக்கிறீர்கள்.",
   "homeRetry": "மீண்டும் முயலு",
   "helloFallbackName": "நண்பா",
   "homeStreakSemantics": "{count, plural, =1{1 நாள் தொடர்ச்சி} other{{count} நாள் தொடர்ச்சி}}",

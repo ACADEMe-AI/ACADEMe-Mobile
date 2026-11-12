@@ -18,6 +18,7 @@ import '../../../testing/fakes/fake_auth_repository.dart';
 import '../../../testing/fakes/fake_billing_repository.dart';
 import '../../../testing/fakes/fake_preferences_store.dart';
 import '../../../testing/fakes/fake_profile_repository.dart';
+import '../../helpers/top_notice_host.dart';
 
 const emailOnly = Account(
   id: 'account-1',
@@ -67,8 +68,7 @@ void main() {
     addTearDown(viewModel.dispose);
     await tester.pumpWidget(
       PebbyStandIn(
-        child: MaterialApp(
-          locale: const Locale('en'),
+        child: wrapWithTopNotice(
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
           theme: AppTheme.dark(),
@@ -94,7 +94,7 @@ void main() {
       expect(find.textContaining('coming soon'), findsNothing);
 
       await tester.tap(find.text('Link Google'));
-      await tester.pumpAndSettle();
+      await pumpUntilNoticeVisible(tester);
       expect(auth.googleLinks, 1);
       expect(find.text('ada@gmail.com'), findsOneWidget);
       expect(find.text('Google'), findsOneWidget);
@@ -110,7 +110,7 @@ void main() {
       await pump(tester, emailOnly, account);
       auth.nextFailure = const AuthException(AuthFailure.googleTaken);
       await tester.tap(find.text('Link Google'));
-      await tester.pumpAndSettle();
+      await pumpUntilNoticeVisible(tester);
       expect(find.text('Not linked'), findsOneWidget);
       expect(
         find.text('That Google account is linked to another ACADEMe account.'),
@@ -122,8 +122,8 @@ void main() {
       await pump(tester, emailOnly, account);
       auth.nextFailure = const AuthException(AuthFailure.canceled);
       await tester.tap(find.text('Link Google'));
-      await tester.pumpAndSettle();
-      expect(find.byType(SnackBar), findsNothing);
+      await pumpUntilNoticeVisible(tester);
+      expect(find.text('Google linked. You can log in with it now.'), findsNothing);
       expect(find.text('Not linked'), findsOneWidget);
     });
 
@@ -143,7 +143,7 @@ void main() {
       await tester.tap(find.text('Google'));
       await tester.pumpAndSettle();
       await tester.tap(find.text('Unlink'));
-      await tester.pumpAndSettle();
+      await pumpUntilNoticeVisible(tester);
       expect(auth.googleUnlinks, 1);
       expect(find.text('Not linked'), findsOneWidget);
       expect(
@@ -160,7 +160,7 @@ void main() {
       expect(find.text('Change password'), findsNothing);
 
       await tester.tap(find.text('Google'));
-      await tester.pumpAndSettle();
+      await pumpUntilNoticeVisible(tester);
       expect(find.text('Unlink Google?'), findsNothing);
       expect(
         find.text(AppLocalizationsEn().authFailurePasswordRequired),
@@ -197,7 +197,8 @@ void main() {
 
       await type(tester, 'New password', 'marigold1');
       await tester.tap(find.text('Save password'));
-      await tester.pumpAndSettle();
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 600));
       expect(auth.passwordChanges, [('sunflower', 'marigold1')]);
       expect(find.byType(PasswordScreen), findsNothing);
       expect(
@@ -214,7 +215,7 @@ void main() {
       await type(tester, 'New password', 'marigold1');
       auth.nextFailure = const AuthException(AuthFailure.wrongPassword);
       await tester.tap(find.text('Save password'));
-      await tester.pumpAndSettle();
+      await pumpUntilNoticeVisible(tester);
       expect(find.byType(PasswordScreen), findsOneWidget);
       expect(find.text("That isn't your current password."), findsOneWidget);
     });
@@ -229,7 +230,7 @@ void main() {
 
       await type(tester, 'New password', 'marigold1');
       await tester.tap(find.text('Save password'));
-      await tester.pumpAndSettle();
+      await pumpUntilNoticeVisible(tester);
       expect(auth.passwordChanges, [(null, 'marigold1')]);
       expect(find.text(AppLocalizationsEn().passwordSetSnack), findsOneWidget);
       expect(find.text('Change password'), findsOneWidget);

@@ -559,7 +559,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get homeAskHintGotIt => 'समझ गया';
 
   @override
-  String get homeDashboardLoadError => 'डैशबोर्ड लोड नहीं हो सका।';
+  String get homeDashboardLoadError => 'आप अभी ऑफ़लाइन हैं।';
 
   @override
   String get homeRetry => 'फिर कोशिश';

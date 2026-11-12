@@ -681,34 +681,129 @@ def _cover_eyes(a):
     breathe(a, 0.008)
     head_life(a, tilt=0.6, drift=0.6)
 
-LAPTOP = ('laptopGlow', 'laptopLid', 'laptopScreen', 'laptopLogo', 'laptopBase', 'laptopKeys',
-          'typePawL', 'typePawR')
+LAPTOP = ('laptopGlow', 'laptopLid', 'laptopScreen', 'laptopLogo', 'laptopBase', 'laptopKeys')
+
+
+def _show_arms(a):
+    for side in ('armL', 'armR'):
+        a.set(side, 'opacity', 1.0)
+        a.set(side, 'sx', 1.0)
+        a.set(side, 'sy', 1.0)
 
 
 def _act_laptop(a):
-    a.dur = 4 * FPS
+    # Screen faces us. Skinned arms stay on — hands sit behind the lid (laptop
+    # draws on top), so no side-stick-out paws and no missing-arm look. No
+    # typePaw props.
+    a.dur = 5 * FPS
     d = a.dur
     mouth(a, 'small'); brows(a, 'furrow')
-    arms(a, left=-14.0, right=14.0)
+    _show_arms(a)
+    arms(a, left=-32.0, right=32.0, bend_l=0.0, bend_r=0.0)
     for part in LAPTOP:
         a.set(part, 'opacity', 1.0)
+    a.set('typePawL', 'opacity', 0.0)
+    a.set('typePawR', 'opacity', 0.0)
+    a.set('motion', 'y', 2.0)
+    a.set('motion', 'sy', 0.98)
+    a.set('head', 'rot', 4.0)
     breathe(a, 0.008)
-    head_life(a, tilt=0.8, drift=0.8)
+    head_life(a, tilt=0.6, drift=0.7)
     for e in GAZE:
         base_x, base_y = REST[e]['x'], a.get(e, 'y')
-        a.key(e, 'y', [(0, base_y + 6, 'hold')])
-        a.key(e, 'x', [(0, base_x - 5, 'smooth'), (d * 0.3, base_x + 5, 'smooth'),
-                       (d * 0.55, base_x - 2, 'snap'), (d * 0.8, base_x + 4, 'smooth'), (d, base_x - 5, 'smooth')])
-    taps = []
-    for i in range(8):
-        f = d * i / 8
-        taps += [(f, 0.0, 'snap'), (f + d / 32, 4.0, 'snap')]
-    y_l, y_r = REST['typePawL']['y'], REST['typePawR']['y']
-    a.key('typePawL', 'y', [(f, y_l + (v if i % 4 < 2 else 0), e) for i, (f, v, e) in enumerate(taps)])
-    a.key('typePawR', 'y', [(f, y_r + (v if i % 4 >= 2 else 0), e) for i, (f, v, e) in enumerate(taps)])
-    a.key('laptopLogo', 'rot', [(0, 45.0, 'smooth'), (d, 405.0, 'linear')])
+        a.key(e, 'y', [(0, base_y + 8, 'hold')])
+        a.key(e, 'x', [(0, base_x - 4, 'smooth'), (d * 0.3, base_x + 4, 'smooth'),
+                       (d * 0.55, base_x - 2, 'snap'), (d * 0.8, base_x + 3, 'smooth'), (d, base_x - 4, 'smooth')])
     a.key('laptopGlow', 'sx', [(0, 0.9, 'sine'), (d * 0.5, 1.1, 'sine'), (d, 0.9, 'sine')])
     blinks(a, blink_schedule(d, 51))
+
+
+MIC = ('micHandle', 'micBand', 'micGrille', 'micPaw')
+
+
+def _note_float(a, name, offset, cycle=2.4 * FPS):
+    """Music notes drift up and out from the mouth, same rhythm as sleep zzz."""
+    d = a.dur
+    cycle = int(cycle)
+    tracks = {p: [] for p in ('opacity', 'x', 'y', 'sx', 'sy', 'rot')}
+    for f in range(0, d + 1, 2):
+        p = ((f - offset) % cycle) / cycle
+        fade = min(1.0, p / 0.12, (1.0 - p) / 0.28)
+        tracks['opacity'].append((f, max(0.0, fade), 'smooth'))
+        tracks['x'].append((f, 18 + 42 * p + 6 * math.sin(p * 2.5 * math.pi), 'smooth'))
+        tracks['y'].append((f, -28 - 88 * p, 'smooth'))
+        tracks['sx'].append((f, 0.55 + 0.55 * p, 'smooth'))
+        tracks['sy'].append((f, 0.55 + 0.55 * p, 'smooth'))
+        tracks['rot'].append((f, -12 + 28 * p, 'smooth'))
+    for prop, keys in tracks.items():
+        a.key(name, prop, keys)
+
+
+def _act_sing(a):
+    """Language-switch beat: chin up, mic at the mouth (clear of eyes), paw grips it."""
+    a.dur = 8 * FPS
+    d = a.dur
+    # Grille is a ~46px circle 22px above the mic origin. Eyes sit near y≈-10, so
+    # the mic origin must stay around y≥48 or the grille covers an eye. Hold the
+    # mic just below/right of the mouth; forearm curls up to meet it.
+    _show_arms(a)
+    arms(a, left=44.0, right=2.0, bend_l=-18.0, bend_r=94.0)
+    for part in MIC:
+        a.set(part, 'opacity', 1.0)
+        a.set(part, 'sx', 0.78)
+        a.set(part, 'sy', 0.78)
+    brows(a, 'raise')
+    eyes(a, 'squint')
+    look(a, 2, -10)
+    a.set('motion', 'y', -3.0)
+    a.set('head', 'y', REST['head']['y'] - 5.0)
+    a.set('head', 'rot', -8.0)
+    breathe(a, 0.016, phase=0.1)
+    mouth_morph(a, [
+        (0, 'open', 'out'),
+        (d * 0.10, 'wide', 'sine'),
+        (d * 0.22, 'o', 'sine'),
+        (d * 0.34, 'wide', 'sine'),
+        (d * 0.48, 'agape', 'sine'),
+        (d * 0.60, 'o', 'sine'),
+        (d * 0.74, 'wide', 'sine'),
+        (d * 0.88, 'open', 'sine'),
+        (d, 'wide', 'smooth'),
+    ])
+    # Mic just under the mouth on the right; grille top stays below both eyes.
+    # Paw grips the handle. Slight bob with the phrasing.
+    base = dict(micHandle=(30.0, 50.0, 12.0), micBand=(30.0, 50.0, 12.0),
+                micGrille=(30.0, 50.0, 12.0), micPaw=(42.0, 68.0, 18.0))
+    for part, (bx, by, br) in base.items():
+        a.key(part, 'x', [(0, bx, 'out'), (d, bx, 'smooth')])
+        a.key(part, 'y', [
+            (0, by, 'out'),
+            (d * 0.18, by - 3, 'sine'),
+            (d * 0.38, by + 2, 'sine'),
+            (d * 0.58, by - 4, 'sine'),
+            (d * 0.78, by + 1, 'sine'),
+            (d, by, 'smooth'),
+        ])
+        a.key(part, 'rot', [
+            (0, br, 'out'),
+            (d * 0.25, br - 3, 'sine'),
+            (d * 0.55, br + 4, 'sine'),
+            (d * 0.80, br - 2, 'sine'),
+            (d, br, 'smooth'),
+        ])
+    a.key('head', 'rot', [
+        (0, -8.0, 'out'),
+        (d * 0.20, -12.0, 'sine'),
+        (d * 0.45, -5.0, 'sine'),
+        (d * 0.70, -11.0, 'sine'),
+        (d, -8.0, 'smooth'),
+    ])
+    a.key('armR', 'rot', layered(d, [(2, 4.0, 0.0), (3, 1.5, 0.35)], 2.0))
+    a.key('armRBend', 'rot', layered(d, [(2, 5.0, 0.1), (3, 2.0, 0.45)], 94.0))
+    a.key('motion', 'sy', layered(d, [(2, 0.014, 0.0), (3, 0.007, 0.35)], 1.0))
+    for name, offset in (('noteA', 0), ('noteB', int(0.8 * FPS)), ('noteC', int(1.6 * FPS))):
+        _note_float(a, name, offset)
+    blinks(a, [int(d * 0.30), int(d * 0.68)])
 
 
 def _wake_up(a):
@@ -935,6 +1030,274 @@ def _head_sway(a):
     a.key('tuftR', 'rot', layered(d, [(2, 4.0, 0.05), (3, 1.5, 0.4)], 2.0))
 
 
+def _notice_success(a):
+    a.dur = 7 * FPS
+    d = a.dur
+    mouth(a, 'grin')
+    eyes(a, 'squint')
+    brows(a, 'raise')
+    arms(a, left=ARM_HOLD_L + 8, right=ARM_HOLD_R - 8)
+    bounce(a, 12, 2, squash=0.024, seed=60)
+    head_life(a, tilt=1.6)
+    blinks(a, [int(d * 0.55)])
+
+
+def _notice_error(a):
+    a.dur = 8 * FPS
+    d = a.dur
+    mouth(a, 'frown')
+    brows(a, 'sad')
+    look(a, 0, 4)
+    a.set('motion', 'y', 4.0)
+    a.set('head', 'rot', -2.0)
+    arms(a, left=ARM_TUCK_L + 6, right=ARM_TUCK_R - 6)
+    alive(a, 61, breath=0.007, tilt=0.8, reach=1.4)
+    a.key('head', 'y', layered(d, [(2, 1.6, 0.0), (3, 0.5, 0.4)], REST['head']['y'] + 2))
+
+
+def _notice_offline(a):
+    a.dur = 10 * FPS
+    d = a.dur
+    mouth(a, 'flat')
+    brows(a, 'worry')
+    arms(a, left=28.0, right=-28.0)
+    breathe(a, 0.009, phase=0.2)
+    blinks(a, [int(d * 0.18), int(d * 0.48), int(d * 0.78)])
+    a.key('head', 'rot', [
+        (0, 0.0, 'out'),
+        (d * 0.20, 12.0, 'sine'),
+        (d * 0.45, -11.0, 'sine'),
+        (d * 0.70, 9.0, 'sine'),
+        (d, 0.0, 'smooth'),
+    ])
+    gaze(a, [
+        (0, 0.0, 0.0, 'hold'),
+        (d * 0.20, 6.0, -1.0, 'out'),
+        (d * 0.45, -6.0, 1.0, 'out'),
+        (d * 0.70, 5.0, -0.5, 'out'),
+        (d, 0.0, 0.0, 'smooth'),
+    ])
+
+
+def _notice_saved(a):
+    a.dur = 7 * FPS
+    d = a.dur
+    mouth(a, 'smile')
+    brows(a, 'raise')
+    eyes(a, 'squint')
+    arms(a, left=36.0, right=-36.0)
+    alive(a, 63, breath=0.012, tilt=1.2, blink=False)
+    hy = REST['head']['y']
+    a.key('head', 'rot', [
+        (0, 0.0, 'out'),
+        (d * 0.22, 6.0, 'in'),
+        (d * 0.38, -9.0, 'outSoft'),
+        (d * 0.52, 1.0, 'settle'),
+        (d * 0.68, -7.0, 'outSoft'),
+        (d * 0.82, 0.0, 'settle'),
+        (d, 0.0, 'smooth'),
+    ])
+    a.key('head', 'y', [
+        (0, hy, 'out'),
+        (d * 0.38, hy + 2.5, 'outSoft'),
+        (d * 0.52, hy, 'settle'),
+        (d * 0.68, hy + 2.0, 'outSoft'),
+        (d, hy, 'smooth'),
+    ])
+
+
+def _notice_tip(a):
+    a.dur = 8 * FPS
+    d = a.dur
+    mouth(a, 'open')
+    brows(a, 'raise')
+    look(a, 0, -4)
+    arm = 132.0
+    arms(a, left=arm, bend_l=-22.0, right=-18.0, bend_r=-12.0)
+    alive(a, 64, breath=0.011, tilt=1.3, reach=2.0, blink=False)
+    a.key('armL', 'rot', [
+        (0, arm - 10, 'out'),
+        (d * 0.25, arm + 8, 'sine'),
+        (d * 0.50, arm - 4, 'sine'),
+        (d * 0.75, arm + 6, 'sine'),
+        (d, arm, 'smooth'),
+    ])
+    elbow_follow(a, 'L', gain=0.58, lag=1.2)
+
+
+def _notice_limit(a):
+    a.dur = 9 * FPS
+    mouth(a, 'pout')
+    brows(a, 'worry')
+    look(a, 3, 3)
+    a.set('head', 'rot', 4.0)
+    a.set('motion', 'y', 3.0)
+    arms(a, left=ARM_TUCK_L + 10, right=ARM_TUCK_R - 10, bend_l=12.0, bend_r=-12.0)
+    alive(a, 65, breath=0.008, tilt=1.8, reach=2.2)
+
+
+def _notice_welcome(a):
+    a.dur = 8 * FPS
+    mouth(a, 'open')
+    eyes(a, 'squint')
+    arms(a, left=ARM_UP_L, right=-22.0)
+    alive(a, 66, breath=0.010, blink=False)
+    sway(a, 1.8)
+    arm_wave(a, 'armL', ARM_UP_L, 14, 4)
+    elbow_follow(a, 'L', gain=0.6, lag=1.4)
+
+
+def _notice_loading(a):
+    a.dur = 9 * FPS
+    d = a.dur
+    mouth(a, 'flat')
+    brows(a, 'raise')
+    look(a, 2, -3)
+    arms(a, left=120.0, bend_l=52.0, right=-16.0, bend_r=-18.0)
+    alive(a, 67, breath=0.008, tilt=2.0, reach=2.4, blink=False)
+    a.key('armL', 'rot', layered(d, [(2, 5.0, 0.0), (3.5, 2.0, 0.35)], 120.0))
+    elbow_follow(a, 'L', gain=0.55, lag=1.5)
+    a.key('head', 'rot', layered(d, [(2, 2.2, 0.1), (3, 0.8, 0.4)], 3.0))
+
+
+def _notice_fail_soft(a):
+    a.dur = 8 * FPS
+    d = a.dur
+    mouth(a, 'smile')
+    brows(a, 'raise')
+    look(a, -2, 2)
+    arms(a, left=ARM_HOLD_L, right=-ARM_HOLD_R)
+    alive(a, 68, breath=0.011, tilt=1.4, reach=2.0)
+    a.key('motion', 'y', [
+        (0, 0.0, 'out'),
+        (d * 0.20, 3.0, 'sine'),
+        (d * 0.45, -2.0, 'sine'),
+        (d * 0.70, 2.0, 'sine'),
+        (d, 0.0, 'smooth'),
+    ])
+    a.key('armL', 'rot', layered(d, [(2, 4.0, 0.0), (3, 1.5, 0.4)], ARM_HOLD_L))
+    a.key('armR', 'rot', layered(d, [(2, -4.0, 0.15), (3, -1.5, 0.5)], ARM_HOLD_R))
+
+
+def _notice_celebrate(a):
+    a.dur = 6 * FPS
+    mouth(a, 'wide')
+    eyes(a, 'squint')
+    arms(a, left=ARM_UP_L - 8, right=ARM_UP_R + 8)
+    bounce(a, 16, 2, squash=0.028, seed=69)
+    head_life(a, tilt=2.0)
+
+
+def _notice_update_nudge(a):
+    a.dur = 8 * FPS
+    d = a.dur
+    mouth(a, 'grin')
+    brows(a, 'raise')
+    look(a, 2, -2)
+    arms(a, left=ARM_OUT_L + 8, bend_l=-40.0, right=-20.0, bend_r=-12.0)
+    alive(a, 70, breath=0.012, tilt=1.2, blink=False)
+    base = ARM_OUT_L + 8
+    pts = [(0, base - 4, 'out')]
+    for i in range(4):
+        t = d * (0.15 + 0.16 * i)
+        pts.append((t, base + (12 if i % 2 == 0 else -8), 'sine'))
+    pts.append((d, base, 'out'))
+    a.key('armL', 'rot', pts)
+    elbow_follow(a, 'L', gain=0.72, lag=1.1)
+
+
+def _notice_network_blip(a):
+    a.dur = 7 * FPS
+    d = a.dur
+    mouth(a, 'o')
+    brows(a, 'worry')
+    arms(a, left=40.0, right=-40.0)
+    a.key('motion', 'x', [
+        (0, 0.0, 'out'),
+        (d * 0.12, -5.0, 'snap'),
+        (d * 0.24, 5.0, 'snap'),
+        (d * 0.36, -3.0, 'snap'),
+        (d * 0.48, 3.0, 'snap'),
+        (d * 0.60, 0.0, 'settle'),
+        (d, 0.0, 'smooth'),
+    ])
+    a.key('head', 'rot', [
+        (0, 0.0, 'out'),
+        (d * 0.12, -6.0, 'snap'),
+        (d * 0.24, 6.0, 'snap'),
+        (d * 0.48, -2.0, 'settle'),
+        (d, 0.0, 'smooth'),
+    ])
+    blinks(a, [int(d * 0.55)])
+    breathe(a, 0.010)
+
+
+def _notice_language_done(a):
+    a.dur = 8 * FPS
+    d = a.dur
+    mouth(a, 'grin')
+    brows(a, 'raise')
+    eyes(a, 'squint')
+    arms(a, left=ARM_HOLD_L + 4, right=ARM_HOLD_R - 4)
+    alive(a, 72, breath=0.013, tilt=1.5, blink=False)
+    bounce(a, 8, 2, squash=0.018, seed=72)
+    a.key('head', 'rot', [
+        (0, 0.0, 'out'),
+        (d * 0.30, 8.0, 'outSoft'),
+        (d * 0.55, -6.0, 'outSoft'),
+        (d, 0.0, 'smooth'),
+    ])
+
+
+def _notice_goodbye(a):
+    a.dur = 9 * FPS
+    d = a.dur
+    mouth(a, 'smile')
+    brows(a, 'flat')
+    arms(a, left=ARM_UP_L - 20, right=ARM_TUCK_R)
+    alive(a, 73, breath=0.009, tilt=1.0, blink=False)
+    arm_wave(a, 'armL', ARM_UP_L - 20, 10, 3)
+    elbow_follow(a, 'L', gain=0.5, lag=1.6)
+    a.key('motion', 'y', [
+        (0, 0.0, 'out'),
+        (d * 0.55, 2.0, 'sine'),
+        (d * 0.85, 8.0, 'in'),
+        (d, 14.0, 'smooth'),
+    ])
+    a.key('motion', 'opacity', [
+        (0, 1.0, 'hold'),
+        (d * 0.75, 1.0, 'hold'),
+        (d, 0.0, 'smooth'),
+    ])
+
+
+def _notice_alert(a):
+    a.dur = 6 * FPS
+    d = a.dur
+    mouth(a, 'o')
+    eyes(a, 'wide')
+    brows(a, 'raise')
+    for e in anim.EYES:
+        a.set(e, 'sx', 1.18)
+        a.set(e, 'sy', 1.26)
+    arms(a, left=110.0, right=-110.0)
+    a.key('motion', 'sy', [
+        (0, 1.0, 'anticipate'),
+        (2, 0.96, 'outBack'),
+        (5, 1.05, 'settle'),
+        (9, 1.0, 'smooth'),
+        (d, 1.0, 'smooth'),
+    ])
+    a.key('motion', 'y', [
+        (0, 0.0, 'anticipate'),
+        (2, 6.0, 'outBack'),
+        (5, -10.0, 'settle'),
+        (10, 0.0, 'smooth'),
+        (d, 0.0, 'smooth'),
+    ])
+    blinks(a, [int(d * 0.7)])
+
+
 STATES = [
     ('idle', _idle), ('wave', _wave), ('think', _think), ('cheer', _cheer),
     ('sleep', _sleep), ('sad', _sad), ('wow', _wow), ('determined', _determined),
@@ -967,6 +1330,22 @@ STATES = [
     ('double_take', _double_take),
     ('progress_gate', _progress_gate),
     ('head_sway', _head_sway),
+    ('notice_success', _notice_success),
+    ('notice_error', _notice_error),
+    ('notice_offline', _notice_offline),
+    ('notice_saved', _notice_saved),
+    ('notice_tip', _notice_tip),
+    ('notice_limit', _notice_limit),
+    ('notice_welcome', _notice_welcome),
+    ('notice_loading', _notice_loading),
+    ('notice_fail_soft', _notice_fail_soft),
+    ('notice_celebrate', _notice_celebrate),
+    ('notice_update_nudge', _notice_update_nudge),
+    ('notice_network_blip', _notice_network_blip),
+    ('notice_language_done', _notice_language_done),
+    ('notice_goodbye', _notice_goodbye),
+    ('notice_alert', _notice_alert),
+    ('act_sing', _act_sing),
 ]
 
 STATIC_NAME = 'idle_static'

@@ -5,6 +5,7 @@ import '../../../domain/models/chat.dart';
 import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/report_button.dart';
+import '../../core/ui/top_notice.dart';
 
 class ReplyActions extends StatelessWidget {
   const ReplyActions({
@@ -46,9 +47,7 @@ class ReplyActions extends StatelessWidget {
           tooltip: l10n.replyCopy,
           onTap: () {
             Clipboard.setData(ClipboardData(text: message.body));
-            ScaffoldMessenger.of(context)
-              ..hideCurrentSnackBar()
-              ..showSnackBar(SnackBar(content: Text(l10n.replyCopied)));
+            context.showTopNotice(l10n.replyCopied);
           },
         ),
         if (onRetry case final retry?)

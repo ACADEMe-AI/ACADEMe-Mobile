@@ -8,6 +8,7 @@ import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/app_button.dart';
 import '../../core/ui/app_password_field.dart';
+import '../../core/ui/top_notice.dart';
 import '../view_models/me_view_model.dart';
 import 'settings_page.dart';
 
@@ -55,11 +56,10 @@ class _PasswordScreenState extends State<PasswordScreen> {
               : context.l10n.passwordSetSnack,
         );
       case Error(:final error):
-        ScaffoldMessenger.of(context)
-          ..hideCurrentSnackBar()
-          ..showSnackBar(
-            SnackBar(content: Text(failureMessage(error, context.l10n))),
-          );
+        context.showTopNotice(
+          failureMessage(error, context.l10n),
+          kind: TopNoticeKind.error,
+        );
       case null:
         break;
     }

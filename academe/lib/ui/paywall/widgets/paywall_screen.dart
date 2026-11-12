@@ -7,6 +7,7 @@ import '../../core/themes/app_theme.dart';
 import '../../core/ui/app_button.dart';
 import '../../core/ui/pebby.dart';
 import '../../core/ui/screen_scale.dart';
+import '../../core/ui/top_notice.dart';
 import '../view_models/pro_view_model.dart';
 import 'paywall_parts.dart';
 
@@ -47,9 +48,10 @@ class _PaywallScreenState extends State<PaywallScreen> {
       _ => false,
     };
     if (!done || !mounted) return;
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(SnackBar(content: Text(context.l10n.paywallWelcomeSnack)));
+    context.showTopNotice(
+      context.l10n.paywallWelcomeSnack,
+      pose: PebbyPose.noticeWelcome,
+    );
     Navigator.of(context).maybePop(true);
   }
 

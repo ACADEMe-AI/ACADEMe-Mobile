@@ -1046,10 +1046,10 @@ abstract class AppLocalizations {
   /// **'Got it'**
   String get homeAskHintGotIt;
 
-  /// Dashboard load error
+  /// Calm top notice when home can’t load
   ///
   /// In en, this message translates to:
-  /// **'Couldn’t load your dashboard.'**
+  /// **'You’re currently offline.'**
   String get homeDashboardLoadError;
 
   /// Dashboard retry

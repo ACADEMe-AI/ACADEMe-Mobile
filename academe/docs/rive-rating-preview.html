@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ACADEMe · Pebby Rive rating board</title>
+<style>
+  :root {
+    --bg: #f6f7fa;
+    --surface: #fff;
+    --text: #12141a;
+    --muted: #2f3542;
+    --edge: #12141a;
+    --border: #d8dce6;
+    --primary: #564cf1;
+    --mint: #c8f0df;
+    --ok: #0d5c3d;
+    --rose: #ffd6d3;
+    --err: #8f1d2a;
+    --lavender: #e7e6ff;
+    --cream: #fff3cd;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+  }
+  header.page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 28px 20px 8px;
+  }
+  header.page h1 { margin: 0 0 6px; font-size: 26px; letter-spacing: -.02em; }
+  header.page p { margin: 0 0 10px; color: var(--muted); max-width: 70ch; }
+  .badge {
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: var(--cream);
+    color: #6a4a00;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    margin-top: 12px;
+  }
+  .toolbar a, .toolbar button {
+    border: 2px solid var(--edge);
+    border-radius: 999px;
+    background: #fff;
+    padding: 6px 12px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 2px 0 var(--edge);
+  }
+  .toolbar button.primary { background: var(--primary); color: #fff; }
+  .status {
+    font-size: 13px;
+    color: var(--muted);
+    margin-left: 4px;
+  }
+  section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  section h2 { margin: 0 0 4px; font-size: 20px; }
+  section .lead { margin: 0 0 14px; color: var(--muted); }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+  }
+  .card {
+    background: var(--surface);
+    border: 2px solid var(--edge);
+    border-radius: 16px;
+    box-shadow: 0 3px 0 var(--edge);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .card.new { outline: 3px solid #1f8f5a; outline-offset: -1px; }
+  .card.lang { outline: 3px solid var(--primary); outline-offset: -1px; }
+  .card.inapp { outline: 3px solid #163e78; outline-offset: -1px; }
+  .stage {
+    background: #eef0f5;
+    display: grid;
+    place-items: center;
+    padding: 10px;
+    min-height: 180px;
+  }
+  canvas.riv {
+    width: 160px;
+    height: 160px;
+    display: block;
+    background: #fff;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+  }
+  .meta { padding: 10px 12px 12px; }
+  .meta h3 {
+    margin: 0 0 2px;
+    font-size: 14px;
+  }
+  .meta .id {
+    font-size: 12px;
+    color: var(--muted);
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  .meta p {
+    margin: 6px 0 0;
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+  .tags { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 4px; }
+  .tag {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: #eef0f5;
+    color: #2f3542;
+  }
+  .tag.new { background: var(--mint); color: var(--ok); }
+  .tag.lang { background: var(--lavender); color: #2c2780; }
+  .tag.inapp { background: #dcebff; color: #163e78; }
+  .rates {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin-top: 10px;
+  }
+  .rates button {
+    border: 2px solid var(--edge);
+    border-radius: 10px;
+    background: #fff;
+    font-size: 12px;
+    font-weight: 800;
+    padding: 7px 4px;
+    cursor: pointer;
+  }
+  .rates button.on-good { background: var(--mint); }
+  .rates button.on-ok { background: var(--cream); }
+  .rates button.on-no { background: var(--rose); }
+  .summary {
+    background: #fff;
+    border: 2px solid var(--edge);
+    border-radius: 14px;
+    box-shadow: 0 3px 0 var(--edge);
+    padding: 12px 14px;
+    margin-bottom: 14px;
+    font-size: 13px;
+  }
+  .summary strong { font-weight: 800; }
+  footer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 8px 20px 40px;
+    color: var(--muted);
+    font-size: 12px;
+  }
+  code { background: #eef0f5; padding: 1px 5px; border-radius: 4px; font-size: 12px; }
+</style>
+</head>
+<body>
+<header class="page">
+  <div class="badge">Rate before we wire top notices</div>
+  <h1>Pebby Rive rating board</h1>
+  <p>
+    Live playback from the rebuilt <code>pebby.riv</code> (76 poses).
+    Rate the <strong>15 new notice clips</strong> first. Language switch now uses
+    <code>singing</code> / <code>act_sing</code> (pose 75: mic + music notes).
+    Laptop <code>working</code> (51) is fixed for Scan. Soft update still uses
+    <code>encourage</code> (43).
+  </p>
+  <div class="toolbar">
+    <a href="#new">15 new</a>
+    <a href="#language">Language switch</a>
+    <a href="#inapp">Used in app</a>
+    <a href="#all">Full catalog</a>
+    <a href="messaging-preview.html">Messaging preview</a>
+    <button type="button" class="primary" id="exportRatings">Copy ratings JSON</button>
+    <span class="status" id="loadStatus">Loading Rive…</span>
+  </div>
+</header>
+
+<section id="new">
+  <h2>15 new notice poses (rate these)</h2>
+  <p class="lead">Built for the top Pebby banner. Green outline = brand new in this rebuild.</p>
+  <div class="summary" id="ratingSummary">No ratings yet.</div>
+  <div class="grid" id="newGrid"></div>
+</section>
+
+<section id="language">
+  <h2>Language switch (already in app)</h2>
+  <p class="lead">
+    <code>LanguageSwitchScreen</code> plays <code>PebbyPose.singing</code> = pose
+    <strong>75</strong> (<code>act_sing</code>) while the language saves.
+    High-pitch lean, right arm raised with mic. Laptop below is Scan-only.
+  </p>
+  <div class="grid" id="langGrid"></div>
+</section>
+
+<section id="inapp">
+  <h2>Poses already used in the Flutter app</h2>
+  <p class="lead">Every <code>Pebby(pose: …)</code> call site we found, with where it shows up.</p>
+  <div class="grid" id="inappGrid"></div>
+</section>
+
+<section id="all">
+  <h2>Full catalog (all poses in pebby.riv)</h2>
+  <p class="lead">Including aliases and turnarounds. Tap a card’s stage to replay one-shots.</p>
+  <div class="grid" id="allGrid"></div>
+</section>
+
+<footer>
+  Serve from the <code>academe/</code> folder so the .riv path resolves:
+  <code>python3 -m http.server 8765</code> then open
+  <code>http://127.0.0.1:8765/docs/rive-rating-preview.html</code>
+</footer>
+
+<script src="https://unpkg.com/@rive-app/canvas@2.31.2/rive.js"></script>
+<script>
+const RIV = '../assets/academe/mascot/animations/pebby.riv?v=miceye';
+
+const NEW_POSES = [
+  { id: 60, name: 'notice_success', use: 'Top green · language saved, folder created, generic success' },
+  { id: 61, name: 'notice_error', use: 'Top rose · wrong password, failed save, hard errors' },
+  { id: 62, name: 'notice_offline', use: 'Top grey · dashboard offline, calm searching look' },
+  { id: 63, name: 'notice_saved', use: 'Top green · password / settings saved (nod)' },
+  { id: 64, name: 'notice_tip', use: 'Top green/grey · tip or “what’s new” secondary beat' },
+  { id: 65, name: 'notice_limit', use: 'Top rose · daily/weekly limit hit (soft, not mean)' },
+  { id: 66, name: 'notice_welcome', use: 'Top green · welcome / first success after login' },
+  { id: 67, name: 'notice_loading', use: 'Top grey · short “working on it” while a request runs' },
+  { id: 68, name: 'notice_fail_soft', use: 'Top rose · soft fail / encourage after a miss' },
+  { id: 69, name: 'notice_celebrate', use: 'Top green · bigger win inside a banner (rare)' },
+  { id: 70, name: 'notice_update_nudge', use: 'Optional · beckon toward Update (if ever top-slot)' },
+  { id: 71, name: 'notice_network_blip', use: 'Top rose · sudden network drop on an action' },
+  { id: 72, name: 'notice_language_done', use: 'Top green · after language switch completes' },
+  { id: 73, name: 'notice_goodbye', use: 'Optional · account delete scheduled / quiet exit' },
+  { id: 74, name: 'notice_alert', use: 'Top rose · important alert that needs attention' },
+];
+
+const LANG_POSES = [
+  {
+    id: 75,
+    name: 'act_sing / singing',
+    use: 'LanguageSwitchScreen: chin up, left arm out, right arm raised with paw gripping mic.',
+    tags: ['lang', 'inapp', 'new'],
+  },
+  {
+    id: 51,
+    name: 'act_laptop / working (facing us)',
+    use: 'Scan processing only. Screen faces us; skinned arms reach behind the lid (no typePaws).',
+    tags: ['inapp'],
+  },
+  {
+    id: 72,
+    name: 'notice_language_done (new)',
+    use: 'Proposed follow-up once language save succeeds (top green banner).',
+    tags: ['new', 'lang'],
+  },
+];
+
+const INAPP = [
+  { id: 0, name: 'idle', where: 'Welcome screen' },
+  { id: 1, name: 'wave', where: 'Splash · Sign-up hello' },
+  { id: 2, name: 'think', where: 'Auth loading · Scan fail · Folder empty' },
+  { id: 4, name: 'sleep', where: 'Appearance switch → dark' },
+  { id: 9, name: 'happy', where: 'Login default · Review · Forgot success path' },
+  { id: 16, name: 'shy', where: 'Password / sign-up password step' },
+  { id: 17, name: 'focused', where: 'Auth focused typing' },
+  { id: 21, name: 'act_reading / reading', where: 'ASKMe empty · Reset reading' },
+  { id: 39, name: 'peek_right', where: 'Splash entry' },
+  { id: 43, name: 'encourage', where: 'Soft update banner · Limit sheet · Auth failures' },
+  { id: 44, name: 'celebrate_small', where: 'Paywall · Upgrade · Auth success · Deck done' },
+  { id: 45, name: 'celebrate_big', where: 'Sign-up done · Deck perfect' },
+  { id: 50, name: 'cover_eyes', where: 'Password fields' },
+  { id: 51, name: 'act_laptop / working', where: 'Scan processing (arms fixed)' },
+  { id: 75, name: 'act_sing / singing', where: 'Language switch' },
+  { id: 52, name: 'wake_up', where: 'Appearance switch → light' },
+  { id: 58, name: 'progress_gate', where: 'Progress hold / gate' },
+  { id: 59, name: 'head_sway', where: 'Force update screen' },
+];
+
+const ALL_NAMES = [
+  'idle','wave','think','cheer','sleep','sad','wow','determined','confused','happy',
+  'excited','laughing','proud','loved','surprised','tired','shy','focused',
+  'act_achieved','act_highfive','act_idea','act_reading','act_solving','act_studying',
+  'adaptive','chat','cta','hero','mastery','practice','upload','studying',
+  'turn_front','turn_back','turn_side','turn_three_quarter','turn_three_quarter_back',
+  'cheering','peek_left','peek_right','dissolve_in','dissolve_out','summon',
+  'encourage','celebrate_small','celebrate_big','sleepy','thinking','sleeping','celebrate',
+  'cover_eyes','act_laptop','wake_up','beckon','point_up','nod_yes','stand_tall',
+  'double_take','progress_gate','head_sway',
+  'notice_success','notice_error','notice_offline','notice_saved','notice_tip',
+  'notice_limit','notice_welcome','notice_loading','notice_fail_soft','notice_celebrate',
+  'notice_update_nudge','notice_network_blip','notice_language_done','notice_goodbye',
+  'notice_alert','act_sing',
+];
+
+const ratings = JSON.parse(localStorage.getItem('pebbyNoticeRatings') || '{}');
+const instances = [];
+
+function updateSummary() {
+  const entries = Object.entries(ratings);
+  const el = document.getElementById('ratingSummary');
+  if (!entries.length) {
+    el.textContent = 'No ratings yet. Use Good / Okay / No on each new pose.';
+    return;
+  }
+  const counts = { good: 0, ok: 0, no: 0 };
+  for (const [, v] of entries) counts[v] = (counts[v] || 0) + 1;
+  el.innerHTML = `<strong>${entries.length}/15 rated</strong> ·
+    good ${counts.good || 0} · okay ${counts.ok || 0} · no ${counts.no || 0}.
+    Ratings stay in this browser until you clear site data.`;
+}
+
+function setRating(name, value, card) {
+  ratings[name] = value;
+  localStorage.setItem('pebbyNoticeRatings', JSON.stringify(ratings));
+  card.querySelectorAll('.rates button').forEach((b) => {
+    b.classList.remove('on-good', 'on-ok', 'on-no');
+  });
+  card.querySelector(`[data-rate="${value}"]`)?.classList.add(`on-${value}`);
+  updateSummary();
+}
+
+function makeCard(pose, opts = {}) {
+  const card = document.createElement('article');
+  card.className = 'card';
+  if (opts.kind) card.classList.add(opts.kind);
+  card.dataset.pose = String(pose.id);
+
+  const stage = document.createElement('div');
+  stage.className = 'stage';
+  const canvas = document.createElement('canvas');
+  canvas.className = 'riv';
+  canvas.width = 320;
+  canvas.height = 320;
+  stage.appendChild(canvas);
+
+  const meta = document.createElement('div');
+  meta.className = 'meta';
+  const tags = (opts.tags || []).map((t) => `<span class="tag ${t}">${t}</span>`).join('');
+  meta.innerHTML = `
+    <h3>${pose.name}</h3>
+    <div class="id">pose ${pose.id}</div>
+    <p>${pose.use || pose.where || ''}</p>
+    <div class="tags">${tags}</div>
+  `;
+
+  if (opts.rate) {
+    const rates = document.createElement('div');
+    rates.className = 'rates';
+    rates.innerHTML = `
+      <button type="button" data-rate="good">Good</button>
+      <button type="button" data-rate="ok">Okay</button>
+      <button type="button" data-rate="no">No</button>
+    `;
+    rates.addEventListener('click', (e) => {
+      const btn = e.target.closest('button[data-rate]');
+      if (!btn) return;
+      setRating(pose.name, btn.dataset.rate, card);
+    });
+    meta.appendChild(rates);
+    if (ratings[pose.name]) {
+      queueMicrotask(() => setRating(pose.name, ratings[pose.name], card));
+    }
+  }
+
+  card.appendChild(stage);
+  card.appendChild(meta);
+
+  instances.push({ canvas, poseId: pose.id, card });
+  return card;
+}
+
+function mountRive(canvas, poseId) {
+  return new rive.Rive({
+    src: RIV,
+    canvas,
+    autoplay: true,
+    artboard: 'Pebby',
+    stateMachines: 'PebbySM',
+    onLoad: () => {
+      const inputs = canvas.__rive?.stateMachineInputs?.('PebbySM')
+        || (typeof canvas.__rive?.stateMachineInputs === 'function'
+          ? canvas.__rive.stateMachineInputs('PebbySM')
+          : null);
+    },
+  });
+}
+
+async function boot() {
+  const status = document.getElementById('loadStatus');
+  const newGrid = document.getElementById('newGrid');
+  const langGrid = document.getElementById('langGrid');
+  const inappGrid = document.getElementById('inappGrid');
+  const allGrid = document.getElementById('allGrid');
+
+  NEW_POSES.forEach((p) => newGrid.appendChild(makeCard(p, { kind: 'new', tags: ['new'], rate: true })));
+  LANG_POSES.forEach((p) => langGrid.appendChild(makeCard(p, { kind: 'lang', tags: p.tags })));
+  INAPP.forEach((p) => inappGrid.appendChild(makeCard(p, { kind: 'inapp', tags: ['inapp'] })));
+  ALL_NAMES.forEach((name, id) => {
+    const isNew = id >= 60;
+    allGrid.appendChild(makeCard(
+      { id, name, use: isNew ? 'New notice candidate' : 'Shipped catalog pose' },
+      { kind: isNew ? 'new' : '', tags: isNew ? ['new'] : [] },
+    ));
+  });
+
+  updateSummary();
+
+  let ok = 0;
+  let fail = 0;
+  for (const item of instances) {
+    try {
+      await new Promise((resolve, reject) => {
+        const r = new rive.Rive({
+          src: RIV,
+          canvas: item.canvas,
+          autoplay: true,
+          artboard: 'Pebby',
+          stateMachines: 'PebbySM',
+          onLoad: () => {
+            try {
+              const inputs = r.stateMachineInputs('PebbySM');
+              const pose = inputs.find((i) => i.name === 'pose');
+              const appear = inputs.find((i) => i.name === 'appear');
+              if (appear) appear.value = 100;
+              if (pose) pose.value = item.poseId;
+              r.resizeDrawingSurfaceToCanvas();
+              ok += 1;
+              resolve();
+            } catch (e) {
+              reject(e);
+            }
+          },
+          onLoadError: (e) => reject(e),
+        });
+        item.card.addEventListener('click', (ev) => {
+          if (ev.target.closest('button')) return;
+          try {
+            const inputs = r.stateMachineInputs('PebbySM');
+            const pose = inputs.find((i) => i.name === 'pose');
+            if (pose) {
+              pose.value = -1;
+              requestAnimationFrame(() => { pose.value = item.poseId; });
+            }
+          } catch (_) {}
+        });
+      });
+    } catch (e) {
+      fail += 1;
+      console.warn('Rive load failed', item.poseId, e);
+    }
+  }
+  status.textContent = fail
+    ? `Loaded ${ok}, failed ${fail}. Serve from academe/ over http.`
+    : `Loaded ${ok} live canvases from pebby.riv.`;
+}
+
+document.getElementById('exportRatings').addEventListener('click', async () => {
+  const payload = {
+    ratedAt: new Date().toISOString(),
+    ratings,
+  };
+  const text = JSON.stringify(payload, null, 2);
+  try {
+    await navigator.clipboard.writeText(text);
+    document.getElementById('loadStatus').textContent = 'Ratings copied to clipboard.';
+  } catch (_) {
+    prompt('Copy ratings JSON:', text);
+  }
+});
+
+boot();
+</script>
+</body>
+</html>

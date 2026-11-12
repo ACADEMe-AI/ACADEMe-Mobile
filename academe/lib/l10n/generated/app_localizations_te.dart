@@ -564,7 +564,7 @@ class AppLocalizationsTe extends AppLocalizations {
   String get homeAskHintGotIt => 'అర్థమైంది';
 
   @override
-  String get homeDashboardLoadError => 'డాష్‌బోర్డ్ లోడ్ కాలేదు.';
+  String get homeDashboardLoadError => 'మీరు ప్రస్తుతం ఆఫ్‌లైన్‌లో ఉన్నారు.';
 
   @override
   String get homeRetry => 'మళ్లీ ప్రయత్నించు';

@@ -46,6 +46,7 @@ import 'routing/deep_links.dart';
 import 'routing/router.dart';
 import 'ui/core/l10n/app_l10n.dart';
 import 'ui/core/themes/app_theme.dart';
+import 'ui/core/ui/top_notice.dart';
 import 'ui/scan/scan_factory.dart';
 import 'utils/result.dart';
 
@@ -132,7 +133,7 @@ Future<void> main() async {
   );
 }
 
-class AcademeApp extends StatelessWidget {
+class AcademeApp extends StatefulWidget {
   const AcademeApp({
     super.key,
     required this.appearance,
@@ -169,36 +170,62 @@ class AcademeApp extends StatelessWidget {
   final Future<Result<Account>> restoredSession;
 
   @override
+  State<AcademeApp> createState() => _AcademeAppState();
+}
+
+class _AcademeAppState extends State<AcademeApp> {
+  final _notices = TopNoticeController();
+
+  @override
+  void dispose() {
+    _notices.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final router = appRouter(
-      appearance: appearance,
-      authRepository: authRepository,
-      profileRepository: profileRepository,
-      chatRepository: chatRepository,
-      billingRepository: billingRepository,
-      studyRepository: studyRepository,
-      folderRepository: folderRepository,
-      scans: scans,
-      reminders: reminders,
-      hintStore: hintStore,
-      preferencesStore: preferencesStore,
-      appConfigRepository: appConfigRepository,
-      feedbackRepository: feedbackRepository,
-      progressRepository: progressRepository,
-      restoredSession: restoredSession,
+      appearance: widget.appearance,
+      authRepository: widget.authRepository,
+      profileRepository: widget.profileRepository,
+      chatRepository: widget.chatRepository,
+      billingRepository: widget.billingRepository,
+      studyRepository: widget.studyRepository,
+      folderRepository: widget.folderRepository,
+      scans: widget.scans,
+      reminders: widget.reminders,
+      hintStore: widget.hintStore,
+      preferencesStore: widget.preferencesStore,
+      appConfigRepository: widget.appConfigRepository,
+      feedbackRepository: widget.feedbackRepository,
+      progressRepository: widget.progressRepository,
+      restoredSession: widget.restoredSession,
     );
     return ListenableBuilder(
-      listenable: Listenable.merge([appearance, profileRepository]),
-      builder: (context, _) => MaterialApp(
-        onGenerateTitle: (context) => context.l10n.appTitle,
-        debugShowCheckedModeBanner: false,
-        locale: AppLanguage.materialLocale(profileRepository.profile?.language),
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
-        supportedLocales: AppLocalizations.supportedLocales,
-        theme: AppTheme.dark(
-          palette: appearance.isDark ? AppPalette.dark : AppPalette.light,
+      listenable: Listenable.merge([widget.appearance, widget.profileRepository]),
+      builder: (context, _) => TopNoticeScope(
+        controller: _notices,
+        child: MaterialApp(
+          onGenerateTitle: (context) => context.l10n.appTitle,
+          debugShowCheckedModeBanner: false,
+          locale: AppLanguage.materialLocale(
+            widget.profileRepository.profile?.language,
+          ),
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          theme: AppTheme.dark(
+            palette: widget.appearance.isDark
+                ? AppPalette.dark
+                : AppPalette.light,
+          ),
+          onGenerateRoute: router,
+          builder: (context, child) => Stack(
+            children: [
+              child ?? const SizedBox.shrink(),
+              const TopNoticeHost(),
+            ],
+          ),
         ),
-        onGenerateRoute: router,
       ),
     );
   }

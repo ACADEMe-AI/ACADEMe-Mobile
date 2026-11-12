@@ -157,7 +157,7 @@
   "homeAskHintTitle": "పెబ్బీని ఏదైనా అడగండి",
   "homeAskHintBody": "ప్రశ్న టైప్ చేయండి, లేదా హోమ్‌వర్క్ సాల్వ్ తట్టి ఫోటో తీయండి.",
   "homeAskHintGotIt": "అర్థమైంది",
-  "homeDashboardLoadError": "డాష్‌బోర్డ్ లోడ్ కాలేదు.",
+  "homeDashboardLoadError": "మీరు ప్రస్తుతం ఆఫ్‌లైన్‌లో ఉన్నారు.",
   "homeRetry": "మళ్లీ ప్రయత్నించు",
   "helloFallbackName": "స్నేహితుడు",
   "homeStreakSemantics": "{count, plural, =1{1 రోజు స్ట్రీక్} other{{count} రోజుల స్ట్రీక్}}",

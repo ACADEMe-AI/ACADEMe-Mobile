@@ -14,6 +14,7 @@ import '../../askme/widgets/attach_sheet.dart';
 import '../../core/l10n/app_l10n.dart';
 import '../../core/l10n/syllabus_label.dart';
 import '../../core/themes/app_theme.dart';
+import '../../core/ui/top_notice.dart';
 import '../../home/view_models/home_view_model.dart';
 import '../../home/view_models/today_view_model.dart';
 import '../../home/widgets/home_screen.dart';
@@ -193,10 +194,12 @@ class _AppShellState extends State<AppShell>
   }
 
   @override
-  void showMessage(String message) {
-    ScaffoldMessenger.of(context)
-      ..hideCurrentSnackBar()
-      ..showSnackBar(SnackBar(content: Text(message)));
+  void showMessage(
+    String message, {
+    TopNoticeKind kind = TopNoticeKind.success,
+    double? pose,
+  }) {
+    context.showTopNotice(message, kind: kind, pose: pose);
   }
 
   @override

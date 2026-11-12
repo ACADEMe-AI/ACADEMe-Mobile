@@ -26,7 +26,12 @@ const expectedStates = [
   'thinking', 'sleeping', 'celebrate', 'cover_eyes',
   'act_laptop', 'wake_up',
   'beckon', 'point_up', 'nod_yes', 'stand_tall', 'double_take',
-  'progress_gate',
+  'progress_gate', 'head_sway',
+  'notice_success', 'notice_error', 'notice_offline', 'notice_saved',
+  'notice_tip', 'notice_limit', 'notice_welcome', 'notice_loading',
+  'notice_fail_soft', 'notice_celebrate', 'notice_update_nudge',
+  'notice_network_blip', 'notice_language_done', 'notice_goodbye',
+  'notice_alert', 'act_sing',
 ];
 
 /// ids that reuse another state's animation, so they carry no clip of their own

@@ -568,7 +568,8 @@ class AppLocalizationsTa extends AppLocalizations {
   String get homeAskHintGotIt => 'புரிந்தது';
 
   @override
-  String get homeDashboardLoadError => 'டாஷ்போர்டை ஏற்ற முடியவில்லை.';
+  String get homeDashboardLoadError =>
+      'நீங்கள் தற்போது ஆஃப்லைனில் இருக்கிறீர்கள்.';
 
   @override
   String get homeRetry => 'மீண்டும் முயலு';

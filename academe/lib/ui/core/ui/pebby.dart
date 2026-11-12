@@ -17,6 +17,7 @@ abstract final class PebbyPose {
   static const celebrateBig = 45.0;
   static const coverEyes = 50.0;
   static const working = 51.0;
+  static const singing = 75.0;
   static const wakeUp = 52.0;
   static const beckon = 53.0;
   static const pointUp = 54.0;
@@ -25,6 +26,21 @@ abstract final class PebbyPose {
   static const doubleTake = 57.0;
   static const progressGate = 58.0;
   static const headSway = 59.0;
+  static const noticeSuccess = 60.0;
+  static const noticeError = 61.0;
+  static const noticeOffline = 62.0;
+  static const noticeSaved = 63.0;
+  static const noticeTip = 64.0;
+  static const noticeLimit = 65.0;
+  static const noticeWelcome = 66.0;
+  static const noticeLoading = 67.0;
+  static const noticeFailSoft = 68.0;
+  static const noticeCelebrate = 69.0;
+  static const noticeUpdateNudge = 70.0;
+  static const noticeNetworkBlip = 71.0;
+  static const noticeLanguageDone = 72.0;
+  static const noticeGoodbye = 73.0;
+  static const noticeAlert = 74.0;
 }
 
 class PebbyStandIn extends InheritedWidget {

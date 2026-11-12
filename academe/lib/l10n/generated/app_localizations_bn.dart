@@ -558,7 +558,7 @@ class AppLocalizationsBn extends AppLocalizations {
   String get homeAskHintGotIt => 'বুঝেছি';
 
   @override
-  String get homeDashboardLoadError => 'ড্যাশবোর্ড লোড হয়নি।';
+  String get homeDashboardLoadError => 'আপনি এখন অফলাইন আছেন।';
 
   @override
   String get homeRetry => 'আবার চেষ্টা';

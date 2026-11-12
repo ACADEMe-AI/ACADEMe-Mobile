@@ -9,6 +9,7 @@ import '../../core/themes/app_theme.dart';
 import '../../core/ui/app_button.dart';
 import '../../core/ui/board_picker.dart';
 import '../../core/ui/class_dial.dart';
+import '../../core/ui/top_notice.dart';
 import '../../subjects/view_models/subjects_view_model.dart';
 import '../../subjects/widgets/subjects_sheet.dart';
 import '../view_models/me_view_model.dart';
@@ -55,8 +56,9 @@ class _ClassBoardScreenState extends State<ClassBoardScreen> {
           context,
         ).pop(context.l10n.classBoardSavedSnack(_classLevel, _board.code));
       case Error(:final error):
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(failureMessage(error, context.l10n))),
+        context.showTopNotice(
+          failureMessage(error, context.l10n),
+          kind: TopNoticeKind.error,
         );
       case null:
         break;

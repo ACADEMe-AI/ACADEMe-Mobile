@@ -6,6 +6,7 @@ import '../../../utils/result.dart';
 import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/app_button.dart';
+import '../../core/ui/top_notice.dart';
 import '../view_models/help_view_model.dart';
 import 'settings_page.dart';
 
@@ -47,13 +48,10 @@ class _FeedbackFormScreenState extends State<FeedbackFormScreen> {
       case Ok():
         Navigator.of(context).pop(true);
       case Error(:final error):
-        ScaffoldMessenger.of(context)
-          ..hideCurrentSnackBar()
-          ..showSnackBar(
-            SnackBar(
-              content: Text(feedbackFailureMessage(error, context.l10n)),
-            ),
-          );
+        context.showTopNotice(
+          feedbackFailureMessage(error, context.l10n),
+          kind: TopNoticeKind.error,
+        );
       case null:
         break;
     }

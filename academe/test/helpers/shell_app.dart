@@ -8,6 +8,7 @@ import 'package:academe/routing/router.dart';
 import 'package:academe/routing/routes.dart';
 import 'package:academe/ui/core/themes/app_theme.dart';
 import 'package:academe/ui/core/ui/pebby.dart';
+import 'package:academe/ui/core/ui/top_notice.dart';
 import 'package:academe/ui/scan/scan_factory.dart';
 import 'package:academe/utils/result.dart';
 import 'package:flutter/material.dart';
@@ -66,15 +67,22 @@ Future<void> pumpShellApp(
     progressRepository: testProgressRepository(),
     restoredSession: Future.value(Result.ok(FakeAuthRepository.ada)),
   );
+  final notices = TopNoticeController();
   await tester.pumpWidget(
     PebbyStandIn(
-      child: MaterialApp(
-        locale: AppLanguage.english.locale,
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
-        supportedLocales: AppLocalizations.supportedLocales,
-        theme: AppTheme.dark(),
-        initialRoute: Routes.home,
-        onGenerateRoute: router,
+      child: TopNoticeScope(
+        controller: notices,
+        child: MaterialApp(
+          locale: AppLanguage.english.locale,
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          theme: AppTheme.dark(),
+          initialRoute: Routes.home,
+          onGenerateRoute: router,
+          builder: (context, child) => Stack(
+            children: [child ?? const SizedBox.shrink(), const TopNoticeHost()],
+          ),
+        ),
       ),
     ),
   );

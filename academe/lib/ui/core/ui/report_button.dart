@@ -5,6 +5,7 @@ import '../../../utils/result.dart';
 import '../l10n/app_l10n.dart';
 import '../themes/app_theme.dart';
 import 'report_sheet.dart';
+import 'top_notice.dart';
 
 typedef ReportAnswer = Future<Result<void>> Function(ReportReason reason);
 
@@ -28,11 +29,11 @@ class ReportButton extends StatelessWidget {
     final result = await onReport(reason);
     if (!context.mounted) return;
     final l10n = context.l10n;
-    ScaffoldMessenger.of(context)
-      ..hideCurrentSnackBar()
-      ..showSnackBar(
-        SnackBar(content: Text(result is Ok ? thanks : l10n.reportSendFailed)),
-      );
+    if (result is Ok) {
+      context.showTopNotice(thanks);
+    } else {
+      context.showTopNotice(l10n.reportSendFailed, kind: TopNoticeKind.error);
+    }
   }
 
   @override

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../config/links.dart';
 import '../../../domain/models/feedback.dart';
 import '../../core/l10n/app_l10n.dart';
+import '../../core/ui/top_notice.dart';
 import '../view_models/help_view_model.dart';
 import 'feedback_form_screen.dart';
 import 'settings_list.dart';
@@ -26,9 +27,7 @@ class HelpScreen extends StatelessWidget {
       ),
     );
     if (sent == true && context.mounted) {
-      ScaffoldMessenger.of(context)
-        ..hideCurrentSnackBar()
-        ..showSnackBar(SnackBar(content: Text(context.l10n.helpThanks)));
+      context.showTopNotice(context.l10n.helpThanks);
       viewModel.submit.clearResult();
     }
   }

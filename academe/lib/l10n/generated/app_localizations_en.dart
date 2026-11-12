@@ -563,7 +563,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get homeAskHintGotIt => 'Got it';
 
   @override
-  String get homeDashboardLoadError => 'Couldn’t load your dashboard.';
+  String get homeDashboardLoadError => 'You’re currently offline.';
 
   @override
   String get homeRetry => 'Retry';

@@ -6,6 +6,8 @@ import '../../../utils/result.dart';
 import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/app_button.dart';
+import '../../core/ui/pebby.dart';
+import '../../core/ui/top_notice.dart';
 import '../../me/widgets/account_screen.dart';
 import '../../me/widgets/appearance_screen.dart';
 import '../../me/widgets/appearance_switch_screen.dart';
@@ -19,11 +21,18 @@ import '../../progress/widgets/progress_screen.dart';
 import 'app_shell.dart';
 
 mixin MeNavigation on State<AppShell> {
-  void showMessage(String message);
+  void showMessage(
+    String message, {
+    TopNoticeKind kind = TopNoticeKind.success,
+    double? pose,
+  });
 
   void onLeft() {
     if (widget.me.deleteAccount.result case Ok(:final value)) {
-      showMessage(context.l10n.deleteScheduledSnack(longDate(value.toLocal())));
+      showMessage(
+        context.l10n.deleteScheduledSnack(longDate(value.toLocal())),
+        pose: PebbyPose.noticeGoodbye,
+      );
       widget.onLoggedOut?.call();
     } else if (widget.me.logOut.isCompleted) {
       widget.onLoggedOut?.call();
@@ -37,7 +46,9 @@ mixin MeNavigation on State<AppShell> {
     final message = await pushMe<String>(
       ClassBoardScreen(viewModel: widget.me),
     );
-    if (message != null) showMessage(message);
+    if (message != null) {
+      showMessage(message, pose: PebbyPose.noticeSaved);
+    }
   }
 
   Future<void> openLanguage() async {
@@ -50,11 +61,18 @@ mixin MeNavigation on State<AppShell> {
       LanguageSwitchScreen(viewModel: widget.me, language: picked),
     );
     if (!mounted) return;
-    showMessage(
-      switched == true
-          ? context.l10n.meLanguageSwitched(picked.greeting, picked.nativeName)
-          : context.l10n.meLanguageSwitchFailed,
-    );
+    if (switched == true) {
+      showMessage(
+        context.l10n.meLanguageSwitched(picked.greeting, picked.nativeName),
+        pose: PebbyPose.noticeLanguageDone,
+      );
+    } else {
+      showMessage(
+        context.l10n.meLanguageSwitchFailed,
+        kind: TopNoticeKind.error,
+        pose: PebbyPose.noticeError,
+      );
+    }
   }
 
   void openAppearance() => pushMe<void>(

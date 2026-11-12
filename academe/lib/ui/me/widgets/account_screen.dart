@@ -6,6 +6,8 @@ import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/app_button.dart';
 import '../../core/ui/light_field.dart';
+import '../../core/ui/pebby.dart';
+import '../../core/ui/top_notice.dart';
 import '../view_models/me_view_model.dart';
 import 'settings_list.dart';
 import 'settings_page.dart';
@@ -49,15 +51,19 @@ class _AccountScreenState extends State<AccountScreen> {
     final command = widget.viewModel.saveName;
     await command.execute((first: _first.text.trim(), last: _last.text.trim()));
     if (!mounted) return;
-    final message = switch (command.result) {
-      Ok() => context.l10n.accountNameSaved,
-      Error(:final error) => failureMessage(error, context.l10n),
-      null => null,
-    };
-    if (message != null) {
-      ScaffoldMessenger.of(context)
-        ..hideCurrentSnackBar()
-        ..showSnackBar(SnackBar(content: Text(message)));
+    switch (command.result) {
+      case Ok():
+        context.showTopNotice(
+          context.l10n.accountNameSaved,
+          pose: PebbyPose.noticeSaved,
+        );
+      case Error(:final error):
+        context.showTopNotice(
+          failureMessage(error, context.l10n),
+          kind: TopNoticeKind.error,
+        );
+      case null:
+        break;
     }
     setState(() {});
   }

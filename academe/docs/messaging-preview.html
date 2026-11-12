@@ -1,0 +1,742 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ACADEMe · Messaging preview · top notice</title>
+<style>
+  :root {
+    --bg: #f6f7fa;
+    --surface: #fff;
+    --text: #12141a;
+    --muted: #2f3542;
+    --faint: #3f4656;
+    --primary: #564cf1;
+    --error: #ff5c6a;
+    --error-ink: #8f1d2a;
+    --ok-ink: #0d5c3d;
+    --edge: #12141a;
+    --border: #d8dce6;
+    --lavender: #e7e6ff;
+    --rose: #ffd6d3;
+    --mint: #c8f0df;
+    --cream: #fff9e8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font: 15px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+  }
+  header.page {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 36px 24px 8px;
+  }
+  header.page h1 {
+    margin: 0 0 8px;
+    font-size: 28px;
+    letter-spacing: -.02em;
+  }
+  header.page p {
+    margin: 0;
+    color: var(--muted);
+    max-width: 68ch;
+  }
+  .badge {
+    display: inline-block;
+    margin-bottom: 12px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: var(--mint);
+    color: var(--ok-ink);
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .badge.keep {
+    background: var(--lavender);
+    color: #2c2780;
+  }
+  section {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 24px;
+  }
+  section h2 {
+    margin: 0 0 6px;
+    font-size: 22px;
+  }
+  section .lead {
+    margin: 0 0 20px;
+    color: var(--muted);
+  }
+  .rules {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  .rule {
+    background: #fff;
+    border: 2px solid var(--edge);
+    border-radius: 14px;
+    box-shadow: 0 3px 0 var(--edge);
+    padding: 12px 14px;
+  }
+  .rule strong {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 4px;
+  }
+  .rule span {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.45;
+  }
+  .swatches {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 12px 0 0;
+  }
+  .swatch {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .swatch i {
+    width: 28px;
+    height: 18px;
+    border-radius: 6px;
+    border: 2px solid var(--edge);
+    display: block;
+  }
+  .swatch .u { background: var(--lavender); }
+  .swatch .ok { background: var(--mint); }
+  .swatch .err { background: var(--rose); }
+  .swatch .off { background: #e8ebf2; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+  }
+  .card {
+    background: var(--surface);
+    border: 2px solid var(--edge);
+    border-radius: 20px;
+    box-shadow: 0 3px 0 var(--edge);
+    overflow: hidden;
+  }
+  .card-head {
+    padding: 14px 16px 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .card-head h3 {
+    margin: 0 0 4px;
+    font-size: 15px;
+  }
+  .card-head p {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+  .tag {
+    display: inline-block;
+    margin-top: 8px;
+    margin-right: 4px;
+    padding: 3px 9px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    background: #eef0f5;
+    color: #2f3542;
+  }
+  .tag.keep { background: var(--lavender); color: #2c2780; }
+  .tag.new { background: var(--mint); color: var(--ok-ink); }
+  .tag.err { background: var(--rose); color: var(--error-ink); }
+  .tag.off { background: #e8ebf2; color: #2f3542; }
+
+  .stage {
+    padding: 16px;
+    background: #eef0f5;
+    min-height: 300px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  .phone {
+    width: min(100%, 300px);
+    background: var(--surface);
+    border: 2px solid var(--edge);
+    border-radius: 28px;
+    box-shadow: 0 3px 0 var(--edge);
+    overflow: hidden;
+    position: relative;
+  }
+  .phone-bar {
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+  }
+  .phone-body {
+    padding: 12px 14px 12px;
+    min-height: 180px;
+  }
+  .phone-nav {
+    border-top: 2px solid var(--edge);
+    padding: 8px 10px 10px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+    background: #fafbfe;
+  }
+  .phone-nav span {
+    text-align: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--muted);
+  }
+  .phone-nav span.on { color: var(--primary); }
+
+  .pebby {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #c5c6ff, #8b8cf5 55%, #6e71d6);
+    flex: 0 0 auto;
+    border: 2px solid var(--edge);
+  }
+  .pebby.sad {
+    background: radial-gradient(circle at 35% 30%, #ffd0cc, #f08a84 55%, #d45a56);
+  }
+  .pebby.ok {
+    background: radial-gradient(circle at 35% 30%, #c8f5df, #5ecf9a 55%, #2f9f6f);
+  }
+  .pebby.off {
+    background: radial-gradient(circle at 35% 30%, #e4e7ef, #9aa3b5 55%, #6d7688);
+  }
+
+  /* Bottom soft update: unchanged */
+  .soft-banner {
+    margin: 0 10px 8px;
+    background: var(--lavender);
+    border: 2px solid var(--edge);
+    border-radius: 16px;
+    box-shadow: 0 3px 0 var(--edge);
+    padding: 6px 6px 6px 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .soft-banner .msg {
+    flex: 1;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--edge);
+  }
+  .soft-banner .act {
+    color: var(--primary);
+    font-size: 12px;
+    font-weight: 800;
+    background: none;
+    border: 0;
+    padding: 4px;
+  }
+  .soft-banner .x {
+    width: 28px;
+    height: 28px;
+    border: 0;
+    background: transparent;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  /* Top notice: proposed */
+  .top-notice {
+    margin: 10px 10px 0;
+    border: 2px solid var(--edge);
+    border-radius: 16px;
+    box-shadow: 0 3px 0 var(--edge);
+    padding: 6px 8px 6px 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    overflow: hidden;
+    animation: slide-in .35s ease-out;
+  }
+  .top-notice.success { background: var(--mint); }
+  .top-notice.error { background: var(--rose); }
+  .top-notice.offline { background: #e8ebf2; }
+  .top-notice .msg {
+    flex: 1;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--edge);
+  }
+  .top-notice .msg em {
+    display: block;
+    font-style: normal;
+    font-weight: 600;
+    color: var(--muted);
+    margin-top: 2px;
+    font-size: 11px;
+  }
+  .top-notice .timer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 3px;
+    background: rgba(18, 20, 26, .12);
+  }
+  .top-notice .timer > i {
+    display: block;
+    height: 100%;
+    width: 100%;
+    transform-origin: left center;
+    animation: drain 4s linear forwards;
+  }
+  .top-notice.success .timer > i { background: #1f8f5a; }
+  .top-notice.error .timer > i { background: var(--error-ink); }
+  .top-notice.offline .timer > i { background: #4a5366; }
+
+  @keyframes slide-in {
+    from { transform: translateY(-12px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  @keyframes drain {
+    from { transform: scaleX(1); }
+    to { transform: scaleX(0); }
+  }
+
+  .field { margin-bottom: 10px; }
+  .field label {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .field .box {
+    border: 2px solid var(--edge);
+    border-radius: 12px;
+    padding: 10px 12px;
+    background: #fff;
+    font-size: 14px;
+  }
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--edge);
+    border-radius: 12px;
+    box-shadow: 0 3px 0 var(--edge);
+    padding: 10px 14px;
+    font-weight: 700;
+    font-size: 13px;
+    background: var(--primary);
+    color: #fff;
+    width: 100%;
+  }
+  .skeleton {
+    height: 72px;
+    border: 2px solid var(--edge);
+    border-radius: 14px;
+    background: linear-gradient(90deg, #f0f2f7 25%, #fff 50%, #f0f2f7 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.4s infinite;
+    margin-bottom: 10px;
+  }
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+  .note {
+    margin-top: 0;
+    padding: 10px 12px;
+    background: #fafbfe;
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+  .note code {
+    font-size: 12px;
+    background: #eef0f5;
+    padding: 1px 5px;
+    border-radius: 4px;
+  }
+  .matrix {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-top: 8px;
+    background: #fff;
+    border: 2px solid var(--edge);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 3px 0 var(--edge);
+  }
+  .matrix th, .matrix td {
+    border-bottom: 1px solid var(--border);
+    padding: 10px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .matrix tr:last-child td { border-bottom: 0; }
+  .matrix th { background: #eef0f5; }
+  footer {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 8px 24px 40px;
+    color: var(--faint);
+    font-size: 12px;
+  }
+</style>
+</head>
+<body>
+<header class="page">
+  <div class="badge">Proposed direction · top Pebby notice</div>
+  <h1>One banner family, two slots</h1>
+  <p>
+    Soft update stays at the bottom (lavender, dismissible, with Update).
+    Everything else (success, error, offline) uses the same Pebby keycap style
+    from the top, tinted by meaning, and auto-dismisses with a short drain timer.
+    No Retry on every notice.
+  </p>
+  <p style="margin-top:10px">
+    <a href="rive-rating-preview.html" style="font-weight:800;color:#564cf1">
+      Open the Pebby Rive rating board
+    </a>
+    (15 new notice poses + language switch + every in-app pose).
+  </p>
+</header>
+
+<section>
+  <h2>Rules</h2>
+  <p class="lead">How we pick color, slot, and whether anything is tappable.</p>
+  <div class="rules">
+    <div class="rule">
+      <strong>Bottom · lavender</strong>
+      <span>App update only. Same SoftUpdateBanner as today. Update + dismiss. Stays until dismissed or build rises.</span>
+    </div>
+    <div class="rule">
+      <strong>Top · green</strong>
+      <span>Something worked: language changed, folder created, password saved, Google linked.</span>
+    </div>
+    <div class="rule">
+      <strong>Top · rose</strong>
+      <span>Something failed: wrong password, wrong credentials, network on an action, link failed.</span>
+    </div>
+    <div class="rule">
+      <strong>Top · grey</strong>
+      <span>Offline / can’t load home. Calm copy. No Retry button on the banner: pull-to-refresh or next navigation retries.</span>
+    </div>
+  </div>
+  <div class="swatches">
+    <div class="swatch"><i class="u"></i> Update (keep)</div>
+    <div class="swatch"><i class="ok"></i> Success</div>
+    <div class="swatch"><i class="err"></i> Error</div>
+    <div class="swatch"><i class="off"></i> Offline</div>
+  </div>
+</section>
+
+<section>
+  <h2>Keep · soft update (bottom)</h2>
+  <p class="lead">Unchanged. Purple / lavender. Above the tab bar only.</p>
+  <div class="grid">
+    <article class="card">
+      <div class="card-head">
+        <h3>Soft update banner</h3>
+        <p>recommendedBuild ahead of installed. Dismiss remembered until the next bump.</p>
+        <span class="tag keep">Keep as today</span>
+      </div>
+      <div class="stage">
+        <div class="phone">
+          <div class="phone-bar">Home</div>
+          <div class="phone-body">
+            <div style="font-size:20px;font-weight:800;margin-bottom:6px">Hi, Maya!</div>
+            <div style="height:36px;border:2px solid var(--edge);border-radius:12px;background:#fff;margin-bottom:10px;padding:8px 10px;color:var(--muted);font-size:12px">Ask anything…</div>
+            <div class="skeleton" style="animation:none;background:var(--cream)"></div>
+          </div>
+          <div class="soft-banner">
+            <div class="pebby" aria-hidden="true"></div>
+            <div class="msg">New version just dropped, you don't wanna miss this!</div>
+            <button class="act" type="button">Update</button>
+            <button class="x" type="button" aria-label="Not now">×</button>
+          </div>
+          <div class="phone-nav">
+            <span class="on">Home</span><span>ASKMe</span><span>Study</span><span>Me</span>
+          </div>
+        </div>
+      </div>
+      <div class="note">
+        Lavender only for updates. Not reused for errors or success; those go to the top slot.
+      </div>
+    </article>
+  </div>
+</section>
+
+<section>
+  <h2>Proposed · top Pebby notices</h2>
+  <p class="lead">
+    Same keycap + Pebby language as the soft banner. Slides in under the status bar,
+    drains a thin timer, then leaves. Watch the green bar shrink on each mock.
+  </p>
+
+  <div class="grid">
+    <!-- Success: language -->
+    <article class="card">
+      <div class="card-head">
+        <h3>1. Success · language switched</h3>
+        <p>Replaces today’s SnackBar. Auto-dismiss ~4s. No close button needed.</p>
+        <span class="tag new">Top · green</span>
+      </div>
+      <div class="stage">
+        <div class="phone">
+          <div class="phone-bar">Me</div>
+          <div class="top-notice success">
+            <div class="pebby ok" aria-hidden="true"></div>
+            <div class="msg">नमस्ते! Language set to हिन्दी.</div>
+            <div class="timer" aria-hidden="true"><i></i></div>
+          </div>
+          <div class="phone-body">
+            <div style="font-size:18px;font-weight:800;margin:8px 0 10px">Settings</div>
+            <div style="border:2px solid var(--edge);border-radius:14px;padding:10px 12px;margin-bottom:8px;font-size:13px;font-weight:700">App language · हिन्दी</div>
+            <div style="border:2px solid var(--edge);border-radius:14px;padding:10px 12px;font-size:13px;font-weight:700">Class and board</div>
+          </div>
+          <div class="phone-nav">
+            <span>Home</span><span>ASKMe</span><span>Study</span><span class="on">Me</span>
+          </div>
+        </div>
+      </div>
+      <div class="note">Also: folder created, password saved, feedback sent, Google linked.</div>
+    </article>
+
+    <!-- Error: wrong password -->
+    <article class="card">
+      <div class="card-head">
+        <h3>2. Error · wrong email or password</h3>
+        <p>Same top banner. Form stays clean: no red line under the fields, no SnackBar over the keyboard.</p>
+        <span class="tag err">Top · rose</span>
+      </div>
+      <div class="stage">
+        <div class="phone">
+          <div class="phone-bar">Log in</div>
+          <div class="top-notice error">
+            <div class="pebby sad" aria-hidden="true"></div>
+            <div class="msg">Wrong email or password.</div>
+            <div class="timer" aria-hidden="true"><i></i></div>
+          </div>
+          <div class="phone-body">
+            <div class="field">
+              <label>Email</label>
+              <div class="box">maya@school.com</div>
+            </div>
+            <div class="field">
+              <label>Password</label>
+              <div class="box">••••••••</div>
+            </div>
+            <div class="btn">Log in</div>
+          </div>
+        </div>
+      </div>
+      <div class="note">
+        Same pattern for wrong reset code, email taken on sign-up, password change failure,
+        Google link failure.
+      </div>
+    </article>
+
+    <!-- Offline dashboard -->
+    <article class="card">
+      <div class="card-head">
+        <h3>3. Offline · dashboard can’t load</h3>
+        <p>Calm copy. No “check your internet” nag. No Retry on the banner.</p>
+        <span class="tag off">Top · grey</span>
+      </div>
+      <div class="stage">
+        <div class="phone">
+          <div class="phone-bar">Home</div>
+          <div class="top-notice offline">
+            <div class="pebby off" aria-hidden="true"></div>
+            <div class="msg">
+              You’re currently offline.
+              <em>We’ll catch up when you’re back online.</em>
+            </div>
+            <div class="timer" aria-hidden="true"><i></i></div>
+          </div>
+          <div class="phone-body">
+            <div style="font-size:20px;font-weight:800;margin:8px 0 10px">Hi, Maya!</div>
+            <div class="skeleton"></div>
+            <div class="skeleton" style="height:48px"></div>
+          </div>
+          <div class="phone-nav">
+            <span class="on">Home</span><span>ASKMe</span><span>Study</span><span>Me</span>
+          </div>
+        </div>
+      </div>
+      <div class="note">
+        Banner auto-leaves. Home can keep a light skeleton or last-known cards underneath.
+        Coming back online (or pull-to-refresh) loads quietly, with no second toast required.
+      </div>
+    </article>
+
+    <!-- Network on action -->
+    <article class="card">
+      <div class="card-head">
+        <h3>4. Error · action while offline</h3>
+        <p>User taps Save / Send and the request fails. Short rose banner. Still no Retry chip.</p>
+        <span class="tag err">Top · rose</span>
+      </div>
+      <div class="stage">
+        <div class="phone">
+          <div class="phone-bar">Password</div>
+          <div class="top-notice error">
+            <div class="pebby sad" aria-hidden="true"></div>
+            <div class="msg">Couldn’t save. You’re offline right now.</div>
+            <div class="timer" aria-hidden="true"><i></i></div>
+          </div>
+          <div class="phone-body">
+            <div class="field">
+              <label>New password</label>
+              <div class="box">••••••••</div>
+            </div>
+            <div class="btn">Save password</div>
+          </div>
+        </div>
+      </div>
+      <div class="note">
+        The primary button is still there: user retries by tapping Save again when ready.
+        That removes the need for a separate Retry control on every failure.
+      </div>
+    </article>
+
+    <!-- Force update unchanged note -->
+    <article class="card">
+      <div class="card-head">
+        <h3>5. Force update screen</h3>
+        <p>Full-screen gate when minBuild is raised. Separate from both banners.</p>
+        <span class="tag keep">Keep as today</span>
+      </div>
+      <div class="stage">
+        <div class="phone">
+          <div class="phone-body" style="text-align:center;padding-top:28px">
+            <div class="pebby" style="width:72px;height:72px;margin:0 auto 12px"></div>
+            <div style="font-size:18px;font-weight:800;margin-bottom:6px">Hold up</div>
+            <div style="font-size:13px;font-weight:700;margin-bottom:6px">New version just dropped, you don't wanna miss this!</div>
+            <div style="font-size:12px;color:var(--muted);margin-bottom:14px">This build can’t talk to our servers anymore.</div>
+            <div class="btn">Update on Google Play</div>
+          </div>
+        </div>
+      </div>
+      <div class="note">Only when we deliberately raise <code>minBuild</code>. Soft banner stays the everyday path.</div>
+    </article>
+
+    <!-- Stacking note -->
+    <article class="card">
+      <div class="card-head">
+        <h3>6. Both slots at once</h3>
+        <p>Rare, but fine: top error while a soft update is also showing at the bottom.</p>
+        <span class="tag new">Top + bottom</span>
+      </div>
+      <div class="stage">
+        <div class="phone">
+          <div class="phone-bar">Home</div>
+          <div class="top-notice error">
+            <div class="pebby sad" aria-hidden="true"></div>
+            <div class="msg">Couldn’t refresh. You’re offline right now.</div>
+            <div class="timer" aria-hidden="true"><i></i></div>
+          </div>
+          <div class="phone-body">
+            <div style="font-size:18px;font-weight:800;margin:8px 0 10px">Hi, Maya!</div>
+            <div class="skeleton" style="height:56px"></div>
+          </div>
+          <div class="soft-banner">
+            <div class="pebby" aria-hidden="true"></div>
+            <div class="msg">New version just dropped…</div>
+            <button class="act" type="button">Update</button>
+            <button class="x" type="button">×</button>
+          </div>
+          <div class="phone-nav">
+            <span class="on">Home</span><span>ASKMe</span><span>Study</span><span>Me</span>
+          </div>
+        </div>
+      </div>
+      <div class="note">
+        Top notices never steal the bottom update slot. One top notice at a time:
+        a newer one replaces the previous and restarts the timer.
+      </div>
+    </article>
+  </div>
+</section>
+
+<section>
+  <h2>Placement matrix</h2>
+  <p class="lead">What replaces SnackBar / FailureLine / load-error rows.</p>
+  <table class="matrix">
+    <thead>
+      <tr>
+        <th>Event</th>
+        <th>Today</th>
+        <th>Proposed</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Soft update</td>
+        <td>Bottom SoftUpdateBanner</td>
+        <td><strong>Same</strong> (keep)</td>
+      </tr>
+      <tr>
+        <td>Force update</td>
+        <td>Full screen</td>
+        <td><strong>Same</strong> (keep)</td>
+      </tr>
+      <tr>
+        <td>Language / folder / saved</td>
+        <td>SnackBar</td>
+        <td>Top green Pebby notice · auto-dismiss</td>
+      </tr>
+      <tr>
+        <td>Wrong password / credentials</td>
+        <td>FailureLine or field error</td>
+        <td>Top rose Pebby notice · auto-dismiss</td>
+      </tr>
+      <tr>
+        <td>Dashboard offline</td>
+        <td>Inline error + Retry</td>
+        <td>Top grey notice · calm copy · no Retry on banner</td>
+      </tr>
+      <tr>
+        <td>Action failed (save/send)</td>
+        <td>SnackBar</td>
+        <td>Top rose notice · user retries via the same button</td>
+      </tr>
+      <tr>
+        <td>Logout</td>
+        <td>Silent</td>
+        <td><strong>Still silent</strong></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<footer>
+  Proposed messaging preview · ACADEMe · open
+  <code>academe/docs/messaging-preview.html</code>
+  · timers replay on refresh.
+</footer>
+</body>
+</html>
