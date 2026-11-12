@@ -429,7 +429,7 @@ paths:
               type: object
               additionalProperties: false
               properties:
-                language: { type: string, enum: [en, hi, te, ta, bn] }
+                language: { type: string, enum: [en, hi, te, ta, bn, as] }
                 birthYear: { type: integer }
                 class: { type: integer, minimum: 6, maximum: 12 }
                 board: { type: string, enum: [CBSE, ICSE] }

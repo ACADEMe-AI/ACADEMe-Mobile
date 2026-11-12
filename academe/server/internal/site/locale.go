@@ -9,14 +9,6 @@ import (
 
 const defaultLang = "en"
 
-var supportedLangs = map[string]bool{
-	"en": true,
-	"hi": true,
-	"te": true,
-	"ta": true,
-	"bn": true,
-}
-
 type chrome struct {
 	Privacy             string
 	Terms               string
@@ -91,6 +83,18 @@ var chromes = map[string]chrome{
 		DeleteYourAccount:   "আপনার অ্যাকাউন্ট মুছুন",
 		SupportAndGrievance: "সহায়তা ও অভিযোগ",
 	},
+	"as": {
+		Privacy:             "গোপনীয়তা",
+		Terms:               "নিয়মাৱলী",
+		DeleteAccount:       "একাউণ্ট মচি পেলাওক",
+		Support:             "সহায়",
+		FooterRunBy:         "ACADEMe পৰিচালনা কৰে ACADEMe, Hyderabad, Telangana, India।",
+		FooterQuestions:     "প্ৰশ্নসমূহ:",
+		PrivacyPolicy:       "গোপনীয়তা নীতি",
+		TermsOfUse:          "ব্যৱহাৰৰ চৰ্তসমূহ",
+		DeleteYourAccount:   "আপোনাৰ একাউণ্ট মচি পেলাওক",
+		SupportAndGrievance: "সহায় আৰু অভিযোগসমূহ",
+	},
 }
 
 type pageView struct {
@@ -102,7 +106,7 @@ type pageView struct {
 
 func resolveLang(r *http.Request) string {
 	if q := strings.TrimSpace(r.URL.Query().Get("lang")); q != "" {
-		if code := strings.ToLower(q); supportedLangs[code] {
+		if code := strings.ToLower(q); lang.Supported(code) {
 			return lang.Normalize(code)
 		}
 	}
@@ -112,7 +116,7 @@ func resolveLang(r *http.Request) string {
 		if i := strings.IndexByte(tag, '-'); i > 0 {
 			base = tag[:i]
 		}
-		if code := strings.ToLower(strings.TrimSpace(base)); supportedLangs[code] {
+		if code := strings.ToLower(strings.TrimSpace(base)); lang.Supported(code) {
 			return lang.Normalize(code)
 		}
 	}

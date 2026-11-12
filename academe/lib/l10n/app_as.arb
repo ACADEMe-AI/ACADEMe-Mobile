@@ -1,0 +1,4020 @@
+{
+  "@@locale": "as",
+  "appTitle": "ACADEMe",
+  "@appTitle": {
+    "description": "MaterialApp title and brand name"
+  },
+  "meAppLanguage": "এপৰ ভাষা",
+  "@meAppLanguage": {
+    "description": "Me settings row and language sheet title"
+  },
+  "meLanguageSheetBody": "Pebby আৰু Scan ৰ শিকোৱাৰ উত্তৰসমূহত এই ভাষা ব্যৱহাৰ কৰা হয়। অনুবাদ সম্পূৰ্ণ হোৱাৰ লগে লগে এপৰ বাকী অংশও সলনি হ'ব।",
+  "@meLanguageSheetBody": {
+    "description": "Language sheet explainer while remaining screens migrate"
+  },
+  "meMoreLanguagesComing": "আৰু অধিক ভাষা সোনকালেই আহি আছে",
+  "@meMoreLanguagesComing": {
+    "description": "Footer on language sheet for languages not yet shipped"
+  },
+  "languageSwitchingTo": "চিহ্নিত কৰা হৈছে {name}…",
+  "@languageSwitchingTo": {
+    "description": "Language switch screen primary line; name is native language name",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "हिन्दी"
+      }
+    }
+  },
+  "navHome": "মূল পৃষ্ঠা",
+  "@navHome": {
+    "description": "Bottom nav Home tab label"
+  },
+  "navAskMe": "ASKMe",
+  "@navAskMe": {
+    "description": "Bottom nav ASKMe tab label"
+  },
+  "navStudy": "পঢ়া-শুনা",
+  "@navStudy": {
+    "description": "Bottom nav Study tab label"
+  },
+  "navMe": "মই",
+  "@navMe": {
+    "description": "Bottom nav Me tab label"
+  },
+  "navScan": "স্কেন",
+  "@navScan": {
+    "description": "Semantics label for the Scan camera key"
+  },
+  "navSend": "প্ৰেৰণ কৰক",
+  "@navSend": {
+    "description": "Semantics label for the ask-bar send key"
+  },
+  "askAnythingHint": "যিকোনো কথা সোধক…",
+  "@askAnythingHint": {
+    "description": "Placeholder in the shell ask text field"
+  },
+  "askAttach": "সংলগ্ন কৰক",
+  "@askAttach": {
+    "description": "Tooltip for attach on the ask bar"
+  },
+  "softUpdateDefaultMessage": "নতুন সংস্কৰণ আহি গ’ল, আপুনি এইটো মিছ কৰিব নিবিচাৰিব!",
+  "@softUpdateDefaultMessage": {
+    "description": "Fallback soft-update banner copy when the server sends an empty message"
+  },
+  "softUpdateAction": "আপডেট",
+  "@softUpdateAction": {
+    "description": "Soft-update banner primary action"
+  },
+  "softUpdateDismiss": "এতিয়া নহয়",
+  "@softUpdateDismiss": {
+    "description": "Soft-update banner dismiss tooltip"
+  },
+  "updateRequiredTitle": "ৰাখক",
+  "@updateRequiredTitle": {
+    "description": "Force-update screen title"
+  },
+  "updateRequiredBody": "এই সংস্কৰণটোৱে এতিয়া আমাৰ চাৰ্ভাৰৰ সৈতে সংযোগ কৰিব নোৱাৰে। পঢ়া অব্যাহত ৰাবলৈ Play ত আপডেট কৰক।",
+  "@updateRequiredBody": {
+    "description": "Force-update explanation under the server message"
+  },
+  "updateRequiredBuild": "ইনষ্টল কৰা সংস্কৰণ {build}।",
+  "@updateRequiredBuild": {
+    "description": "Force-update footer showing the installed build number",
+    "placeholders": {
+      "build": {
+        "type": "String",
+        "example": "13"
+      }
+    }
+  },
+  "updateRequiredAction": "Google Play ত আপডেট কৰক",
+  "@updateRequiredAction": {
+    "description": "Force-update primary button"
+  },
+  "pebbySemantics": "Pebby",
+  "@pebbySemantics": {
+    "description": "Accessibility label for the Pebby mascot"
+  },
+  "welcomeHeadlineLead": "অধিক চতুৰতাৰে",
+  "@welcomeHeadlineLead": {
+    "description": "Welcome hero lead; keep the line break"
+  },
+  "welcomeHeadlineAccent": "পঢ়ক, বেছি সময় নহয়।",
+  "@welcomeHeadlineAccent": {
+    "description": "Welcome hero accent next to the lead"
+  },
+  "welcomeBody": "আপুনি আচলতে যি পঢ়ি আছে তাৰ পৰা বনোৱা টোকা, কুইজ আৰু ফ্লেশ্ব কাৰ্ড।",
+  "@welcomeBody": {
+    "description": "Welcome hero body under the headline"
+  },
+  "welcomeGetStarted": "আৰম্ভ কৰক",
+  "@welcomeGetStarted": {
+    "description": "Welcome start primary button"
+  },
+  "welcomeAlreadyHaveAccount": "ইতিমধ্যে একাউণ্ট আছে নেকি?",
+  "@welcomeAlreadyHaveAccount": {
+    "description": "Inline link lead on welcome start and sign-up sheet"
+  },
+  "welcomeNewUser": "নতুন ব্যৱহাৰকাৰী নেকি?",
+  "@welcomeNewUser": {
+    "description": "Inline link lead on welcome log-in sheet"
+  },
+  "welcomeLegal": "আগবাঢ়ি গ’লে আপুনি আমাৰ চৰ্ত আৰু গোপনীয়তা নীতি মানি লয়।",
+  "@welcomeLegal": {
+    "description": "Welcome legal footer under start actions"
+  },
+  "authSignUp": "ছাইন আপ",
+  "@authSignUp": {
+    "description": "Sign-up sheet title and footer action"
+  },
+  "authLogIn": "লগ ইন",
+  "@authLogIn": {
+    "description": "Log-in sheet title and footer action"
+  },
+  "authContinueGoogle": "Google ৰ সৈতে অব্যাহত ৰাখক",
+  "@authContinueGoogle": {
+    "description": "OAuth Google button on welcome account options"
+  },
+  "authContinueApple": "Apple ৰ সৈতে অব্যাহত ৰাখক",
+  "@authContinueApple": {
+    "description": "OAuth Apple button on welcome account options"
+  },
+  "authContinueEmail": "ইমেইলৰ সৈতে অব্যাহত ৰাখক",
+  "@authContinueEmail": {
+    "description": "Email auth button on welcome account options"
+  },
+  "loginHeadlineLead": "স্বাগতম",
+  "@loginHeadlineLead": {
+    "description": "Login email screen headline lead"
+  },
+  "loginHeadlineAccent": "পুনৰায়।",
+  "@loginHeadlineAccent": {
+    "description": "Login email screen headline accent"
+  },
+  "loginSubtitle": "য’ৰ পৰা এৰিছিলো তাৰ পৰাই পুনৰ আৰম্ভ কৰিবলৈ লগ ইন কৰক।",
+  "@loginSubtitle": {
+    "description": "Login email screen subtitle"
+  },
+  "authEmail": "ইমেইল",
+  "@authEmail": {
+    "description": "Email field label on auth screens"
+  },
+  "authPassword": "পাছৱৰ্ড",
+  "@authPassword": {
+    "description": "Default password field label"
+  },
+  "authShowPassword": "পাছৱৰ্ড দেখুৱাওক",
+  "@authShowPassword": {
+    "description": "Password field reveal tooltip"
+  },
+  "authHidePassword": "পাছৱৰ্ড লুকুৱাওক",
+  "@authHidePassword": {
+    "description": "Password field conceal tooltip"
+  },
+  "authForgotPassword": "পাছৱৰ্ড পাহৰি গ’ل়ে নেকি?",
+  "@authForgotPassword": {
+    "description": "Login link to password reset"
+  },
+  "authLoggingIn": "লগ ইন হৈ আছে…",
+  "@authLoggingIn": {
+    "description": "Login button while the request runs"
+  },
+  "authNewHere": "নতুন নেকি?",
+  "@authNewHere": {
+    "description": "Login footer lead linking to sign up"
+  },
+  "forgotPasswordLead": "আপোনাৰ",
+  "@forgotPasswordLead": {
+    "description": "Forgot-password headline lead"
+  },
+  "forgotPasswordAccent": "পাছৱৰ্ড পাহৰি গ’ল?",
+  "@forgotPasswordAccent": {
+    "description": "Forgot-password headline accent"
+  },
+  "forgotPasswordSubtitle": "আপোনাৰ ইমেইল লিখক আৰু মই এটা ৬-অংকৰ ক’ড পঠাম।",
+  "@forgotPasswordSubtitle": {
+    "description": "Forgot-password subtitle"
+  },
+  "authSending": "পঠিওৱা হৈছে…",
+  "@authSending": {
+    "description": "Send-code button while the request runs"
+  },
+  "authSendCode": "ক’ড পঠাওক",
+  "@authSendCode": {
+    "description": "Forgot-password primary action"
+  },
+  "resetCodeLead": "আপোনাৰ",
+  "@resetCodeLead": {
+    "description": "Reset-code headline lead"
+  },
+  "resetCodeAccent": "ইমেইল পৰীক্ষা কৰক।",
+  "@resetCodeAccent": {
+    "description": "Reset-code headline accent"
+  },
+  "resetCodeSubtitle": "যদি {email} ৰ এটা ACADEMe একাউণ্ট আছে, তেন্তে এটা ৬-অংকৰ ক’ড আহি আছে। ই ১৫ মিনিটৰ পিছত মেয়াদ শেষ হ’ব।",
+  "@resetCodeSubtitle": {
+    "description": "Reset-code subtitle including the target email",
+    "placeholders": {
+      "email": {
+        "type": "String",
+        "example": "ada@school.in"
+      }
+    }
+  },
+  "authPasteCode": "ক’ড পেষ্ট কৰক",
+  "@authPasteCode": {
+    "description": "Reset-code paste action"
+  },
+  "authChecking": "পৰীক্ষা কৰা হৈছে…",
+  "@authChecking": {
+    "description": "Verify button while the request runs"
+  },
+  "authVerify": "প্ৰমাণীকৰণ কৰক",
+  "@authVerify": {
+    "description": "Reset-code verify action"
+  },
+  "resetDidntGetIt": "নাপালে নেকি?",
+  "@resetDidntGetIt": {
+    "description": "Resend link lead when resend is available"
+  },
+  "resetSendNewCode": "এটা নতুন ক’ড পঠাওক",
+  "@resetSendNewCode": {
+    "description": "Resend link action"
+  },
+  "resetSendingNewCode": "নতুন ক’ড পঠিওৱা হৈছে…",
+  "@resetSendingNewCode": {
+    "description": "Resend status while the request runs"
+  },
+  "resetNewCodeSent": "নতুন ক’ড পঠিওৱা হ’ল। আপুনি 0:{seconds} ত আকৌ সুধিব পাৰে",
+  "@resetNewCodeSent": {
+    "description": "Resend cooldown after a successful resend",
+    "placeholders": {
+      "seconds": {
+        "type": "String",
+        "example": "30"
+      }
+    }
+  },
+  "resetAskAgainIn": "আপুনি 0:{seconds} ত নতুন ক’ডৰ বাবে অনুৰোধ কৰিব পাৰে",
+  "@resetAskAgainIn": {
+    "description": "Resend cooldown before the next request",
+    "placeholders": {
+      "seconds": {
+        "type": "String",
+        "example": "29"
+      }
+    }
+  },
+  "newPasswordLead": "এটা নতুন",
+  "@newPasswordLead": {
+    "description": "New-password headline lead"
+  },
+  "newPasswordAccent": "পাছৱৰ্ড বাছনি কৰক।",
+  "@newPasswordAccent": {
+    "description": "New-password headline accent"
+  },
+  "newPasswordSubtitle": "কমপক্ষে ৮ টা আখৰ। চিন্তা নকৰিব, মই নাচাওঁ।",
+  "@newPasswordSubtitle": {
+    "description": "New-password subtitle"
+  },
+  "authNewPassword": "নতুন পাছৱৰ্ড",
+  "@authNewPassword": {
+    "description": "New-password field label"
+  },
+  "authPasswordMinLength": "{count}+ আখৰ",
+  "@authPasswordMinLength": {
+    "description": "Password length checklist row",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "8"
+      }
+    }
+  },
+  "authStartAgain": "আকৌ আৰম্ভ কৰক",
+  "@authStartAgain": {
+    "description": "Expired reset primary action"
+  },
+  "authSaving": "সংৰক্ষণ কৰা হৈছে…",
+  "@authSaving": {
+    "description": "Save button while the request runs"
+  },
+  "authSaveAndLogIn": "সংৰক্ষণ কৰি লগ ইন কৰক",
+  "@authSaveAndLogIn": {
+    "description": "New-password primary action"
+  },
+  "authFailureEmailTaken": "এই ইমেইলটো ইতিমধ্যে এটা একাউণ্টত ব্যৱহাৰ কৰা হৈছে। তাৰ সলনি লগ ইন কৰক।",
+  "@authFailureEmailTaken": {
+    "description": "AuthFailure.emailTaken and sign-up email taken"
+  },
+  "authFailureWrongCredentials": "সেই ইমেইল আৰু পাছৱৰ্ড নিমিলে।",
+  "@authFailureWrongCredentials": {
+    "description": "AuthFailure.wrongCredentials"
+  },
+  "authFailureInvalidInput": "আপোনাৰ বিৱৰণ পৰীক্ষা কৰি আকৌ চেষ্টা কৰক।",
+  "@authFailureInvalidInput": {
+    "description": "AuthFailure.invalidInput"
+  },
+  "authFailureSignedOut": "আপোনাৰ ছেছন শেষ হ’ল। আকৌ লগ ইন কৰক।",
+  "@authFailureSignedOut": {
+    "description": "AuthFailure.signedOut"
+  },
+  "authFailureNetwork": "ACADEMe ৰ সৈতে সংযোগ স্থাপন কৰিব পৰা নাই। আপোনাৰ সংযোগ পৰীক্ষা কৰি আকৌ চেষ্টা কৰক।",
+  "@authFailureNetwork": {
+    "description": "AuthFailure.network"
+  },
+  "authFailureCanceled": "ছাইন-ইন বাতিল কৰা হৈছিল।",
+  "@authFailureCanceled": {
+    "description": "AuthFailure.canceled"
+  },
+  "authFailureProviderUnavailable": "এই ছাইন-ইন বিকল্পটো এতিয়াও প্ৰস্তুত হোৱা নাই। বৰ্তমান ইমেইল ব্যৱহাৰ কৰক।",
+  "@authFailureProviderUnavailable": {
+    "description": "AuthFailure.providerUnavailable"
+  },
+  "authFailureWrongCode": "কোডটো সঠিক নহয়। ইমেইলটো পৰীক্ষা কৰি আকৌ চেষ্টা কৰক।",
+  "@authFailureWrongCode": {
+    "description": "AuthFailure.wrongCode"
+  },
+  "authFailureTooManyAttempts": "বহুত বেছি ভুল চেষ্টা কৰা হ'ল। নিজকে এটা নতুন কোড পঠাওক।",
+  "@authFailureTooManyAttempts": {
+    "description": "AuthFailure.tooManyAttempts"
+  },
+  "authFailureCodeExpired": "সেই কোডটোৰ ম্যাদ শেষ হৈছে। নিজকে এটা নতুন কোড পঠাওক।",
+  "@authFailureCodeExpired": {
+    "description": "AuthFailure.codeExpired"
+  },
+  "authFailureResetExpired": "এই ৰিছেট লিংকটোৰ সময়সীমা শেষ হ'ল। পাছৱৰ্ড পাহৰি গ’ল তাৰ পৰা আকৌ আৰম্ভ কৰক।",
+  "@authFailureResetExpired": {
+    "description": "AuthFailure.resetExpired"
+  },
+  "authFailureTooManyRequests": "সেয়া বহুতো চেষ্টা হৈ গ’ল। অলপ অপেক্ষা কৰি আকৌ চেষ্টা কৰক।",
+  "@authFailureTooManyRequests": {
+    "description": "AuthFailure.tooManyRequests"
+  },
+  "authFailureWrongPassword": "সেয়া আপোনাৰ বৰ্তমানৰ পাছৱৰ্ড নহয়।",
+  "@authFailureWrongPassword": {
+    "description": "AuthFailure.wrongPassword"
+  },
+  "authFailureGoogleTaken": "সেই Google একাউণ্টটো আন এটা ACADEMe একাউণ্টৰ লগত সংলগ্ন হৈ আছে।",
+  "@authFailureGoogleTaken": {
+    "description": "AuthFailure.googleTaken"
+  },
+  "authFailurePasswordRequired": "প্ৰথমে এটা পাছৱৰ্ড ছেট কৰক, যাতে আপুনি Google অবিহনেও লগ ইন কৰিব পাৰে।",
+  "@authFailurePasswordRequired": {
+    "description": "AuthFailure.passwordRequired"
+  },
+  "signUpHiPebby": "নমস্কাৰ, মই Pebby!",
+  "@signUpHiPebby": {
+    "description": "Sign-up hello title for email or unnamed Google"
+  },
+  "signUpHiNamed": "নমস্কাৰ {name}, মই Pebby!",
+  "@signUpHiNamed": {
+    "description": "Sign-up hello title when Google already gave a first name",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Maya"
+      }
+    }
+  },
+  "signUpAskFirstName": "আৰম্ভ কৰাৰ আগতে, মই আপোনাক কি বুলি মাতিম?",
+  "@signUpAskFirstName": {
+    "description": "Sign-up first-name step title"
+  },
+  "signUpFirstName": "প্ৰথম নাম",
+  "@signUpFirstName": {
+    "description": "Sign-up first-name field label"
+  },
+  "signUpAskLastName": "আপোনাক লগ পাই ভাল লাগিল, {name}! আৰু আপোনাৰ উপাধি কি?",
+  "@signUpAskLastName": {
+    "description": "Sign-up last-name step title",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Maya"
+      }
+    }
+  },
+  "signUpLastName": "উপাধি",
+  "@signUpLastName": {
+    "description": "Sign-up last-name field label"
+  },
+  "signUpAskEmail": "আপোনাৰ ইমেইল কি, {name}?",
+  "@signUpAskEmail": {
+    "description": "Sign-up email step title",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Maya"
+      }
+    }
+  },
+  "signUpEmailHint": "আপুনি ইয়াকে লগ ইন কৰিবলৈ ব্যৱহাৰ কৰিব।",
+  "@signUpEmailHint": {
+    "description": "Sign-up email step subtitle"
+  },
+  "signUpEmailInvalid": "ইটো ইমেইলৰ দৰে দেখা হোৱা নাই।",
+  "@signUpEmailInvalid": {
+    "description": "Sign-up email field validation"
+  },
+  "signUpCreatePassword": "এটা পাছৱৰ্ড সৃষ্টি কৰক",
+  "@signUpCreatePassword": {
+    "description": "Sign-up password step title"
+  },
+  "signUpPasswordHint": "কমপক্ষে {count} টা আখৰ। চিন্তা নকৰিব, মই নাচাওঁ।",
+  "@signUpPasswordHint": {
+    "description": "Sign-up password step subtitle",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "8"
+      }
+    }
+  },
+  "signUpWelcomeBack": "স্বাগতম, {name}!",
+  "@signUpWelcomeBack": {
+    "description": "Sign-up done title for a returning account",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Maya"
+      }
+    }
+  },
+  "signUpAlreadyLoggedIn": "আপোনাৰ ইতিমধ্যে এটা একাউণ্ট আছে, গতিকে আপুনি লগ ইন হৈ আছে।",
+  "@signUpAlreadyLoggedIn": {
+    "description": "Sign-up done subtitle for a returning account"
+  },
+  "signUpYoureIn": "আপুনি সোমাইছে, {name}!",
+  "@signUpYoureIn": {
+    "description": "Sign-up done title for a new account",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Maya"
+      }
+    }
+  },
+  "signUpAccountReady": "আপোনাৰ একাউণ্ট প্ৰস্তুত হৈছে। ইয়াৰ পিছত, আপুনি কি পঢ়ে মোক কওক।",
+  "@signUpAccountReady": {
+    "description": "Sign-up done subtitle for a new account"
+  },
+  "signUpHelloEmail": "মই আপোনাক অধিক স্মাৰ্টভাৱে পঢ়াত সহায় কৰিম। আহক আপোনাৰ একাউণ্টটো ছেট আপ কৰোঁ, মাত্ৰ এটা মিনিট সময় লাগে।",
+  "@signUpHelloEmail": {
+    "description": "Sign-up hello subtitle for email method"
+  },
+  "signUpConnectingAccount": "আপোনাৰ একাউণ্ট সংযোগ কৰা হৈছে…",
+  "@signUpConnectingAccount": {
+    "description": "Sign-up hello subtitle while OAuth runs"
+  },
+  "signUpCheckName": "আহক আপোনাৰ নামটো পৰীক্ষা কৰোঁ, তাৰ পিছত আপুনি সোমাব পাৰিব।",
+  "@signUpCheckName": {
+    "description": "Sign-up hello subtitle after OAuth succeeds"
+  },
+  "signUpConnecting": "সংযোগ কৰা হৈছে…",
+  "@signUpConnecting": {
+    "description": "Sign-up primary button while OAuth runs"
+  },
+  "signUpHiPebbyAction": "নমস্কাৰ Pebby!",
+  "@signUpHiPebbyAction": {
+    "description": "Sign-up primary button on hello step"
+  },
+  "signUpCreatingAccount": "আপোনাৰ একাউণ্ট সৃষ্টি কৰা হৈছে…",
+  "@signUpCreatingAccount": {
+    "description": "Sign-up primary button while createAccount runs"
+  },
+  "signUpCreateAccount": "একাউণ্ট সৃষ্টি কৰক",
+  "@signUpCreateAccount": {
+    "description": "Sign-up primary button on password step"
+  },
+  "signUpLetsGo": "আহক যাওঁ",
+  "@signUpLetsGo": {
+    "description": "Sign-up primary button on done step"
+  },
+  "authContinue": "অব্যাহত ৰাখক",
+  "@authContinue": {
+    "description": "Generic continue primary button on sign-up steps"
+  },
+  "homeSetupTitle": "আপোনাৰ ডেশ্ববোৰ্ড ছেট আপ কৰক",
+  "@homeSetupTitle": {
+    "description": "Home setup checklist card title"
+  },
+  "homeSetupXpProgress": "{done} / {total} XP",
+  "@homeSetupXpProgress": {
+    "description": "Setup checklist XP progress pill",
+    "placeholders": {
+      "done": {
+        "type": "int",
+        "example": "25"
+      },
+      "total": {
+        "type": "int",
+        "example": "125"
+      }
+    }
+  },
+  "homeSetupTaskLanguage": "ভাষা",
+  "@homeSetupTaskLanguage": {
+    "description": "Setup checklist language row"
+  },
+  "homeSetupTaskAge": "আপোনাৰ বয়স",
+  "@homeSetupTaskAge": {
+    "description": "Setup checklist age row"
+  },
+  "homeSetupTaskClass": "আপোনাৰ শ্রেণী",
+  "@homeSetupTaskClass": {
+    "description": "Setup checklist class row"
+  },
+  "homeSetupTaskBoard": "আপোনাৰ বোৰ্ড",
+  "@homeSetupTaskBoard": {
+    "description": "Setup checklist board row"
+  },
+  "homeSetupTaskSubjects": "আপোনাৰ বিষয়সমূহ",
+  "@homeSetupTaskSubjects": {
+    "description": "Setup checklist subjects row"
+  },
+  "homeSetupXpDone": "✓ {xp} XP",
+  "@homeSetupXpDone": {
+    "description": "Setup checklist earned XP label",
+    "placeholders": {
+      "xp": {
+        "type": "int",
+        "example": "25"
+      }
+    }
+  },
+  "homeSetupXpEarn": "+{xp} XP",
+  "@homeSetupXpEarn": {
+    "description": "Setup checklist pending XP label",
+    "placeholders": {
+      "xp": {
+        "type": "int",
+        "example": "25"
+      }
+    }
+  },
+  "homeSolveHomework": "হোমৱৰ্ক সমাধান কৰক",
+  "@homeSolveHomework": {
+    "description": "Home quick action for Scan solve"
+  },
+  "homeCheckAnswer": "মোৰ উত্তৰ পৰীক্ষা কৰক",
+  "@homeCheckAnswer": {
+    "description": "Home quick action for Check"
+  },
+  "homeFlashcards": "ফ্লেছকাৰ্ডসমূহ",
+  "@homeFlashcards": {
+    "description": "Home quick action for flashcards"
+  },
+  "homePickSubjects": "আপোনাৰ বিষয়সমূহ বাছক",
+  "@homePickSubjects": {
+    "description": "Home card prompting subject selection"
+  },
+  "homePickSubjectsBody": "হোম আৰু ষ্টাডীত কেৱল আপুনি লোৱা বিষয়বোৰেই দেখুৱা হ’ব। +{xp} XP",
+  "@homePickSubjectsBody": {
+    "description": "Home pick-subjects card body with XP reward",
+    "placeholders": {
+      "xp": {
+        "type": "int",
+        "example": "25"
+      }
+    }
+  },
+  "setupLanguageTitle": "আপুনি কোনটো ভাষাত পঢ়ে?",
+  "@setupLanguageTitle": {
+    "description": "Setup language step title"
+  },
+  "setupChooseLanguage": "{name} বাছক",
+  "@setupChooseLanguage": {
+    "description": "Setup language/stream choose button",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "setupLanguageFootnote": "আপুনি চেটিংছত যিকোনো সময়তে ইয়াৰ সলনি কৰিব পাৰে।",
+  "@setupLanguageFootnote": {
+    "description": "Setup language footnote"
+  },
+  "setupAgeTitle": "আপোনাৰ জন্ম কেতিয়া হৈছিল?",
+  "@setupAgeTitle": {
+    "description": "Setup age step title"
+  },
+  "setupAgeSubtitle": "যাতে আমি আপোনাৰ বয়সৰ উপযোগী কৰি ৰাখিব পাৰোঁ।",
+  "@setupAgeSubtitle": {
+    "description": "Setup age step subtitle"
+  },
+  "setupBirthYear": "জন্মৰ বছৰ",
+  "@setupBirthYear": {
+    "description": "Birth year wheel semantics"
+  },
+  "setupYouAreAge": "আপোনাৰ বয়স {age} বছৰ।",
+  "@setupYouAreAge": {
+    "description": "Setup age confirmation",
+    "placeholders": {
+      "age": {
+        "type": "int"
+      }
+    }
+  },
+  "setupClassTitle": "আপোনাৰ শ্ৰেণীলৈ ঘূৰাওক",
+  "@setupClassTitle": {
+    "description": "Setup class step title"
+  },
+  "setupClassSubtitle": "ডায়েলটো ঘূৰাওক বা এটা নম্বৰত টিপক।",
+  "@setupClassSubtitle": {
+    "description": "Setup class step subtitle"
+  },
+  "setupImInClass": "মই ক্লাছ {level} ত আছোঁ",
+  "@setupImInClass": {
+    "description": "Setup class confirm button",
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "setupBoardTitle": "কোনটো বোৰ্ড?",
+  "@setupBoardTitle": {
+    "description": "Setup board step title"
+  },
+  "setupBoardSubtitle": "আমি আপোনাৰ বোৰ্ডৰ পাঠ্যক্ৰম অনুসৰণ কৰোঁ।",
+  "@setupBoardSubtitle": {
+    "description": "Setup board step subtitle"
+  },
+  "setupStateBoardsSoon": "ৰাজ্যিক বোৰ্ডসমূহ শীঘ্ৰেই আহি আছে।",
+  "@setupStateBoardsSoon": {
+    "description": "Setup board footnote"
+  },
+  "setupFinish": "ছেটআপ সম্পূৰ্ণ কৰক",
+  "@setupFinish": {
+    "description": "Setup last-step primary action"
+  },
+  "setupProgress": "ছেট আপ · {step}/{total}",
+  "@setupProgress": {
+    "description": "Setup sheet progress caption",
+    "placeholders": {
+      "step": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "setupLater": "পিছত",
+  "@setupLater": {
+    "description": "Setup sheet dismiss"
+  },
+  "setupChangeInMe": "আপুনি ‘মই’ (Me) ত যিকোনো সময়তে ইয়াৰ সলনি কৰিব পাৰে।",
+  "@setupChangeInMe": {
+    "description": "Subjects picker footnote"
+  },
+  "setupStreamTitle": "আপুনি ক্লাছ {level} ত কি কি পঢ়ে?",
+  "@setupStreamTitle": {
+    "description": "Setup stream pick title",
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "setupAnythingElse": "আৰু কিবা আছে নেকি?",
+  "@setupAnythingElse": {
+    "description": "Setup senior subjects title"
+  },
+  "setupWhichSubjects": "আপুনি কোনবোৰ বিষয় পঢ়ে?",
+  "@setupWhichSubjects": {
+    "description": "Setup junior subjects title"
+  },
+  "setupMainSubjectsIn": "{syllabus}। আপোনাৰ মূল বিষয়সমূহ অন্তৰ্ভুক্ত কৰা হৈছে।",
+  "@setupMainSubjectsIn": {
+    "description": "Setup senior subjects subtitle",
+    "placeholders": {
+      "syllabus": {
+        "type": "String"
+      }
+    }
+  },
+  "setupTapToRemove": "{syllabus}। যিকোনো নিলোৱা বিষয় বাদ দিবলৈ টিপক।",
+  "@setupTapToRemove": {
+    "description": "Setup junior subjects subtitle",
+    "placeholders": {
+      "syllabus": {
+        "type": "String"
+      }
+    }
+  },
+  "homeYourSubjects": "আপোনাৰ বিষয়সমূহ",
+  "@homeYourSubjects": {
+    "description": "Home subjects section header"
+  },
+  "homeEdit": "সম্পাদনা কৰক",
+  "@homeEdit": {
+    "description": "Home subjects edit button"
+  },
+  "homeSubjectsNeedSyllabus": "আপোনাৰ বিষয়সমূহ চাবলৈ আপোনাৰ শ্ৰেণী আৰু ব’ৰ্ড নিৰ্ধাৰণ কৰক",
+  "@homeSubjectsNeedSyllabus": {
+    "description": "Home subjects empty before syllabus"
+  },
+  "homeSubjectsLoading": "আপোনাৰ বিষয়সমূহ ল’ড হৈ আছে…",
+  "@homeSubjectsLoading": {
+    "description": "Home subjects loading"
+  },
+  "homeSubjectsSoon": "আপোনাৰ বিষয়সমূহ সোনকালে ইয়াত দেখুওৱা হ’ব।",
+  "@homeSubjectsSoon": {
+    "description": "Home subjects empty after load"
+  },
+  "homeNextChapter": "পৰৱৰ্তী: অধ্যায় {number} · {title}",
+  "@homeNextChapter": {
+    "description": "Home subject row next lesson",
+    "placeholders": {
+      "number": {
+        "type": "int"
+      },
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "homeAllLessonsDone": "আটাইবোৰ পাঠ সম্পূৰ্ণ হ’ল",
+  "@homeAllLessonsDone": {
+    "description": "Home subject row complete"
+  },
+  "homeLessonsComingSoon": "পাঠসমূহ সোনকালে আহি আছে",
+  "@homeLessonsComingSoon": {
+    "description": "Home subject row no lessons"
+  },
+  "homeTodayMinutes": "জিজ্ঞাসা · {minutes} মিনিট",
+  "@homeTodayMinutes": {
+    "description": "Today card title with minutes left",
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "homeTodayDone": "আজি · আটাইবোৰ সম্পূৰ্ণ হ’ল",
+  "@homeTodayDone": {
+    "description": "Today card title when done"
+  },
+  "homeFromFolders": "{count, plural, =1{১ টা ফ’ল্ডাৰৰ পৰা} other{{count} টা ফ’ল্ডাৰৰ পৰা}}",
+  "@homeFromFolders": {
+    "description": "Today card folder count",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeMoreInFolders": "আৰু আপোনাৰ ফ’ল্ডাৰত অধিক {count} টা",
+  "@homeMoreInFolders": {
+    "description": "Today card overflow",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeAskHintTitle": "Pebby-ক যিকোনো কথা সোধক",
+  "@homeAskHintTitle": {
+    "description": "Ask hint bubble title"
+  },
+  "homeAskHintBody": "এটা প্ৰশ্ন টাইপ কৰক,বা ফটো তুলিবলৈ গৃহকৰ্য সমাধানত টিপক।",
+  "@homeAskHintBody": {
+    "description": "Ask hint bubble body"
+  },
+  "homeAskHintGotIt": "বুজি পালোঁ",
+  "@homeAskHintGotIt": {
+    "description": "Ask hint dismiss"
+  },
+  "homeDashboardLoadError": "আপুনি বৰ্তমান অফলাইনত আছে।",
+  "@homeDashboardLoadError": {
+    "description": "Calm top notice when home can’t load"
+  },
+  "homeRetry": "পুনৰ চেষ্টা কৰক",
+  "@homeRetry": {
+    "description": "Dashboard retry"
+  },
+  "helloFallbackName": "তাতে",
+  "@helloFallbackName": {
+    "description": "Fallback first name in greeting"
+  },
+  "homeStreakSemantics": "{count, plural, =1{১ দিনৰ ষ্ট্ৰীক} other{{count} দিনৰ ষ্ট্ৰীক}}",
+  "@homeStreakSemantics": {
+    "description": "Home greeting streak semantics label",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "scanModeNotes": "এটা ফ’ল্ডাৰলৈ টোকা",
+  "@scanModeNotes": {
+    "description": "Scan mode tile title for notes"
+  },
+  "scanModeAsk": "ফটো এটাৰ বিষয়ে সোধক",
+  "@scanModeAsk": {
+    "description": "Scan mode tile title for ask"
+  },
+  "scanWhatsOnPaper": "কাগজখনত কি আছে?",
+  "@scanWhatsOnPaper": {
+    "description": "Scan tab subtitle under the Scan headline"
+  },
+  "scanHintSolve": "প্ৰথমতে ইংগিতসমূহ",
+  "@scanHintSolve": {
+    "description": "Scan solve mode tile caption"
+  },
+  "scanHintCheck": "ব’ৰ্ড-শৈলীৰ নম্বৰ",
+  "@scanHintCheck": {
+    "description": "Scan check mode tile caption"
+  },
+  "scanHintNotes": "পাঠ এটুলৈ পৃষ্ঠাসমূহ",
+  "@scanHintNotes": {
+    "description": "Scan notes mode tile caption"
+  },
+  "scanHintAsk": "অন্য যিকোনো কথা",
+  "@scanHintAsk": {
+    "description": "Scan ask mode tile caption"
+  },
+  "scanRecent": "শেহতীয়া স্কেনসমূহ",
+  "@scanRecent": {
+    "description": "Scan tab recent list section title"
+  },
+  "scanStatusRead": "পঢ়ক",
+  "@scanStatusRead": {
+    "description": "Recent scan subtitle when OCR finished but not opened in ASKMe"
+  },
+  "scanStatusSolvedInAskMe": "ASKMe-ত সমাধান কৰা হ’ল",
+  "@scanStatusSolvedInAskMe": {
+    "description": "Recent solve scan linked to an ASKMe thread"
+  },
+  "scanStatusAskedInAskMe": "ASKMe-ত সোধা হ’ল",
+  "@scanStatusAskedInAskMe": {
+    "description": "Recent ask scan linked to an ASKMe thread"
+  },
+  "scanStatusMarks": "{awarded}/{count, plural, =1{১ নম্বৰ} other{{count} নম্বৰ}}",
+  "@scanStatusMarks": {
+    "description": "Recent check scan marks summary",
+    "placeholders": {
+      "awarded": {
+        "type": "int",
+        "example": "2"
+      },
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "scanStatusNotMarked": "এতিয়ালৈকে নম্বৰ দিয়া হোৱা নাই",
+  "@scanStatusNotMarked": {
+    "description": "Recent check scan with no marking yet"
+  },
+  "scanStatusLessonInFolder": "ফ’ল্ডাৰত পাঠ",
+  "@scanStatusLessonInFolder": {
+    "description": "Recent notes scan saved as a lesson"
+  },
+  "scanStatusNotesInFolder": "ফ’ল্ডাৰত টোকা",
+  "@scanStatusNotesInFolder": {
+    "description": "Recent notes scan saved as text only"
+  },
+  "scanStatusNotSaved": "এতিয়ালৈকে ছেভ কৰা হোৱা নাই",
+  "@scanStatusNotSaved": {
+    "description": "Recent notes scan not yet filed"
+  },
+  "scanSourceNotesBlurb": "১০ টা পৃষ্ঠালৈকে। কেৱল পাঠখিনিহে ৰখা হয়, ফটোবোৰ নহয়।",
+  "@scanSourceNotesBlurb": {
+    "description": "Source sheet blurb for multi-page notes"
+  },
+  "scanSourceBlurb": "কেৱল পাঠখিনিহে ৰখা হয়, ফটোখন নহয়।",
+  "@scanSourceBlurb": {
+    "description": "Source sheet blurb for single-photo modes"
+  },
+  "scanTakePhoto": "এটা ফটো লওক",
+  "@scanTakePhoto": {
+    "description": "Source sheet camera button"
+  },
+  "scanChooseGallery": "গেলৰীৰ পৰা বাছক",
+  "@scanChooseGallery": {
+    "description": "Source sheet gallery button"
+  },
+  "scanCamera": "কেমেৰা",
+  "@scanCamera": {
+    "description": "Notes pages view add-from-camera button"
+  },
+  "scanGallery": "গেলৰী",
+  "@scanGallery": {
+    "description": "Notes pages view add-from-gallery button"
+  },
+  "scanYourPages": "আপোনাৰ পৃষ্ঠাসমূহ",
+  "@scanYourPages": {
+    "description": "Notes multi-page picker title"
+  },
+  "scanPagesOf": "{max} ৰ ভিতৰত {current}",
+  "@scanPagesOf": {
+    "description": "Notes page count progress under the title",
+    "placeholders": {
+      "current": {
+        "type": "int",
+        "example": "2"
+      },
+      "max": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
+  "scanReadPages": "{count, plural, =1{১ টা পৃষ্ঠা পঢ়া হ’ল} other{{count} টা পৃষ্ঠা পঢ়া হ’ল}}",
+  "@scanReadPages": {
+    "description": "Notes primary button to OCR the pages",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "2"
+      }
+    }
+  },
+  "scanRemovePage": "পৃষ্ঠা আতৰাওক",
+  "@scanRemovePage": {
+    "description": "Tooltip to remove a page thumbnail"
+  },
+  "scanYourNotes": "আপোনাৰ টোকাসমূহ",
+  "@scanYourNotes": {
+    "description": "Notes review title when page count is zero"
+  },
+  "scanPebbyReadPages": "{count, plural, =1{Pebby-য়ে ১ টা পৃষ্ঠা পঢ়িলে} other{Pebby-য়ে {count} টা পৃষ্ঠা পঢ়িলে}}",
+  "@scanPebbyReadPages": {
+    "description": "Notes review title after OCR",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "2"
+      }
+    }
+  },
+  "scanWhereShouldTheseGo": "এইবোৰ ক’লৈ যাব লাগে?",
+  "@scanWhereShouldTheseGo": {
+    "description": "Notes folder picker section title"
+  },
+  "scanChooseFolder": "এটা ফ’ল্ডাৰ বাছক",
+  "@scanChooseFolder": {
+    "description": "Notes folder row placeholder"
+  },
+  "scanChange": "সলনি কৰক",
+  "@scanChange": {
+    "description": "Notes folder row change action"
+  },
+  "scanMakeFromNotes": "আপোনাৰ টোকাসমূহৰ পৰা তৈয়াৰ কৰক",
+  "@scanMakeFromNotes": {
+    "description": "Notes save options section title"
+  },
+  "scanSwipeLesson": "পাঠ স্বাইপ কৰক",
+  "@scanSwipeLesson": {
+    "description": "Notes option to build a swipe lesson"
+  },
+  "scanSwipeLessonSubtitle": "কাৰ্ড আৰু দ্ৰুত পৰীক্ষাসমূহ, পৰিকল্পনাত যোগ কৰা হ’ল",
+  "@scanSwipeLessonSubtitle": {
+    "description": "Notes swipe-lesson option subtitle"
+  },
+  "scanKeepNotes": "কেৱল টোকাসমূহ ৰাখক",
+  "@scanKeepNotes": {
+    "description": "Notes option / Pro fallback to save text only"
+  },
+  "scanKeepNotesSubtitle": "পাঠখিনি ফ’ল্ডাৰটোত সোমাই যাব",
+  "@scanKeepNotesSubtitle": {
+    "description": "Notes keep-text option subtitle"
+  },
+  "scanReadingPages": "{count, plural, =1{আপোনাৰ পৃষ্ঠা পঢ়া হৈ আছে…} other{{count} টা পৃষ্ঠা পঢ়া হৈ আছে…}}",
+  "@scanReadingPages": {
+    "description": "OCR waiting title",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "2"
+      }
+    }
+  },
+  "scanReadingWait": "ইি কেইটামান ছেকেণ্ড লয়।",
+  "@scanReadingWait": {
+    "description": "OCR waiting subtitle"
+  },
+  "scanMakingLesson": "আপোনাৰ পাঠ তৈয়াৰ কৰা হৈ আছে…",
+  "@scanMakingLesson": {
+    "description": "Notes save waiting title when making a lesson"
+  },
+  "scanSavingNotes": "আপোনাৰ টোকাসমূহ সংৰক্ষণ কৰা হৈ আছে…",
+  "@scanSavingNotes": {
+    "description": "Notes save waiting title for text-only save"
+  },
+  "scanSavingWait": "ই আপোনাৰ ফ’ল্ডাৰত থাকিব।",
+  "@scanSavingWait": {
+    "description": "Notes save waiting subtitle"
+  },
+  "scanFailUnavailableTitle": "স্কেন এতিয়াও প্ৰস্তুত হোৱা নাই",
+  "@scanFailUnavailableTitle": {
+    "description": "Scan unavailable failure title"
+  },
+  "scanFailUnavailableBody": "Pebby-য়ে এতিয়া ফটো পঢ়িব নোৱাৰে। পিছত আকৌ চেষ্টা কৰক।",
+  "@scanFailUnavailableBody": {
+    "description": "Scan unavailable failure body"
+  },
+  "scanFailNoTextTitle": "ইয়াত কোনো শব্দ নাই",
+  "@scanFailNoTextTitle": {
+    "description": "Scan no-text failure title"
+  },
+  "scanFailNoTextBody": "আপোনাৰ গৃহকৰ্ম, পাঠ্যপুথিৰ পৃষ্ঠা বা টোকাত কেমেৰাটো নিৰ্দেশ কৰক।",
+  "@scanFailNoTextBody": {
+    "description": "Scan no-text failure body"
+  },
+  "scanFailTooLargeTitle": "বহুত বেছি ডাঙৰ ফটো",
+  "@scanFailTooLargeTitle": {
+    "description": "Scan too-large failure title"
+  },
+  "scanFailTooLargeBody": "এবাৰত কম পৃষ্ঠাযুক্ত চেষ্টা কৰক।",
+  "@scanFailTooLargeBody": {
+    "description": "Scan too-large failure body"
+  },
+  "scanFailNetworkTitle": "আপুনি অফলাইনত আছে",
+  "@scanFailNetworkTitle": {
+    "description": "Scan network failure title"
+  },
+  "scanFailNetworkBody": "আপোনাৰ ইণ্টাৰনেট পৰীক্ষা কৰি আকৌ চেষ্টা কৰক।",
+  "@scanFailNetworkBody": {
+    "description": "Scan network failure body"
+  },
+  "scanFailScanLimitTitle": "সেইটো হৈছে আজিৰ বিনামূলীয়া স্কেনসমূহ",
+  "@scanFailScanLimitTitle": {
+    "description": "Daily scan limit title"
+  },
+  "scanFailScanLimitBody": "সেইবোৰ মাজনিশা ঘূৰি আহিব। যিমান ইচ্ছা সিমান স্কেন কৰিবলৈ Pro লওক।",
+  "@scanFailScanLimitBody": {
+    "description": "Daily scan limit body"
+  },
+  "scanFailCheckLimitTitle": "সেইটো হৈছে আজিৰ বিনামূলীয়া পৰীক্ষা",
+  "@scanFailCheckLimitTitle": {
+    "description": "Daily check limit title"
+  },
+  "scanFailCheckLimitBody": "ই মাজনিশা ঘূৰি আহিব। প্ৰতিটো উত্তৰ পৰীক্ষা কৰিবলৈ Go Pro ব্যৱহাৰ কৰক।",
+  "@scanFailCheckLimitBody": {
+    "description": "Daily check limit body"
+  },
+  "scanFailProOnlyTitle": "ন'টৰ পৰা লোৱা পাঠসমূহ Pro",
+  "@scanFailProOnlyTitle": {
+    "description": "Pro-only lessons-from-notes title"
+  },
+  "scanFailProOnlyBody": "আপোনাৰ ন'টসমূহ বিনামূলীয়াকৈ ৰাখক, নতুবা Pro লৈ যাওক আৰু Pebby এ ইয়াক এটা পাঠে লৈ পৰিণত কৰিব।",
+  "@scanFailProOnlyBody": {
+    "description": "Pro-only lessons-from-notes body"
+  },
+  "scanFailUnknownTitle": "Pebby এটো পঢ়িব নোৱাৰিলে",
+  "@scanFailUnknownTitle": {
+    "description": "Unknown scan failure title"
+  },
+  "scanFailUnknownBody": "পুনৰ চেষ্টা কৰক, বা উন্নত পোহৰত ফটোখন আকৌ তুলক।",
+  "@scanFailUnknownBody": {
+    "description": "Unknown scan failure body"
+  },
+  "scanBackToAnswer": "আপোনাৰ উত্তৰলৈ ঘূৰি যাওক",
+  "@scanBackToAnswer": {
+    "description": "Check-limit secondary action"
+  },
+  "scanRetake": "পুনৰ তুলক",
+  "@scanRetake": {
+    "description": "Scan failure retake photo button"
+  },
+  "scanCameraOpenFailed": "কেমেৰাটো খুলিব পৰা নগ'ল। গেলেৰীটো চেষ্টা কৰক।",
+  "@scanCameraOpenFailed": {
+    "description": "Snack when camera open fails at scan start"
+  },
+  "scanPebbyReadThis": "Pebby এ এইটো পঢ়িলে",
+  "@scanPebbyReadThis": {
+    "description": "Solve/ask read review title"
+  },
+  "scanFixAnything": "যিকোনো ভুল থাকিলে ঠিক কৰক।",
+  "@scanFixAnything": {
+    "description": "Read review subtitle without chapter"
+  },
+  "scanChapterFix": "{chapter} · যিকোনো ভুল থাকিলে ঠিক কৰক।",
+  "@scanChapterFix": {
+    "description": "Read review subtitle with chapter",
+    "placeholders": {
+      "chapter": {
+        "type": "String",
+        "example": "Science · Ch 10"
+      }
+    }
+  },
+  "scanFromYourPhoto": "আপোনাৰ ফটোখনৰ পৰা",
+  "@scanFromYourPhoto": {
+    "description": "OCR text field label on read review"
+  },
+  "scanFromMyPhoto": "মোৰ ফটোখনৰ পৰা:",
+  "@scanFromMyPhoto": {
+    "description": "Prefix when sending ask photo text to ASKMe"
+  },
+  "scanWhatDoYouWant": "আপুনি কি জানিব বিচাৰে?",
+  "@scanWhatDoYouWant": {
+    "description": "Ask-mode extra question field label"
+  },
+  "scanSuggestExplain": "এইটো সহজভাৱে বুজাই দিয়ক",
+  "@scanSuggestExplain": {
+    "description": "Ask-mode suggestion chip and default question"
+  },
+  "scanSuggestSummarise": "এইটো সাৰাংশ কৰক",
+  "@scanSuggestSummarise": {
+    "description": "Ask-mode suggestion chip"
+  },
+  "scanSuggestKeyTerms": "মুখ্য শব্দবোৰ কি কি?",
+  "@scanSuggestKeyTerms": {
+    "description": "Ask-mode suggestion chip"
+  },
+  "scanSolveThis": "এইটো সমাধান কৰক",
+  "@scanSolveThis": {
+    "description": "Solve-mode primary action"
+  },
+  "scanAskPebby": "Pebby ক সোধক",
+  "@scanAskPebby": {
+    "description": "Ask-mode / check-result Ask Pebby button"
+  },
+  "scanHintFirst": "Pebby এ প্ৰথমে এটা ইঙ্গিত দিয়ে, তাৰ পিছত পদক্ষেপসমূহ দিয়ে।",
+  "@scanHintFirst": {
+    "description": "Solve-mode caption under the primary button"
+  },
+  "checkPebbyReadAnswer": "Pebby এ আপোনাৰ উত্তৰ পঢ়িলে",
+  "@checkPebbyReadAnswer": {
+    "description": "Check-mode read review title"
+  },
+  "checkTheQuestion": "প্ৰশ্নটো",
+  "@checkTheQuestion": {
+    "description": "Check-mode question field label"
+  },
+  "checkQuestionHint": "কেৱল যদি ই ফটোখনত নাথাকে",
+  "@checkQuestionHint": {
+    "description": "Check-mode question field hint"
+  },
+  "checkMarkIt": "চিহ্নিত কৰক",
+  "@checkMarkIt": {
+    "description": "Check-mode primary action"
+  },
+  "checkMarkingAnswer": "আপোনাৰ উত্তৰ চিহ্নিত কৰা হৈছে…",
+  "@checkMarkingAnswer": {
+    "description": "Check marking waiting title"
+  },
+  "checkMarkingScheme": "ব’ৰ্ডৰ নম্বৰ দিয়া পদ্ধতি ব্যৱহাৰ কৰি।",
+  "@checkMarkingScheme": {
+    "description": "Check marking waiting subtitle"
+  },
+  "checkFullMarks": "সম্পূৰ্ণ নম্বৰ!",
+  "@checkFullMarks": {
+    "description": "Check result verdict when full marks"
+  },
+  "checkNearlyThere": "প্ৰায় হৈ গ'ল",
+  "@checkNearlyThere": {
+    "description": "Check result verdict when at least half marks"
+  },
+  "checkKeepGoing": "আগবাঢ়ি যাওক",
+  "@checkKeepGoing": {
+    "description": "Check result verdict when under half marks"
+  },
+  "checkReportTitle": "এই নম্বৰসমূহ ৰিপ'ৰ্ট কৰক",
+  "@checkReportTitle": {
+    "description": "Check result report sheet title"
+  },
+  "checkReportThanks": "ধন্যবাদ। আমি এই নম্বৰসমূহ পৰ্যালোচনা কৰিম।",
+  "@checkReportThanks": {
+    "description": "Check result report thanks message"
+  },
+  "checkWhatGotMarks": "কিমান নম্বৰ পালে",
+  "@checkWhatGotMarks": {
+    "description": "Check result marking points section title"
+  },
+  "checkWellDone": "ভাল কাম কৰিলে",
+  "@checkWellDone": {
+    "description": "Check result remember box label on full marks"
+  },
+  "checkForFullMarks": "সম্পূৰ্ণ নম্বৰৰ বাবে",
+  "@checkForFullMarks": {
+    "description": "Check result remember box label when not full"
+  },
+  "checkAgain": "পুনৰ পৰীক্ষা কৰক",
+  "@checkAgain": {
+    "description": "Check result primary retake action"
+  },
+  "checkShowModelAnswer": "আদৰ্শ উত্তৰ দেখুৱক",
+  "@checkShowModelAnswer": {
+    "description": "Check result expand model answer"
+  },
+  "checkHideModelAnswer": "আদৰ্শ উত্তৰ লুকুৱক",
+  "@checkHideModelAnswer": {
+    "description": "Check result collapse model answer"
+  },
+  "checkAskQuestion": "প্ৰশ্ন: {question}",
+  "@checkAskQuestion": {
+    "description": "ASKMe prompt line with the marked question",
+    "placeholders": {
+      "question": {
+        "type": "String",
+        "example": "Define refraction"
+      }
+    }
+  },
+  "checkAskMyAnswer": "মোৰ উত্তৰ:\n{answer}",
+  "@checkAskMyAnswer": {
+    "description": "ASKMe prompt block with the student’s answer",
+    "placeholders": {
+      "answer": {
+        "type": "String",
+        "example": "Light bends when…"
+      }
+    }
+  },
+  "checkAskHowFullMarks": "মই {awarded}/{marks} পালোঁ। মই কেনেকৈ সম্পূৰ্ণ নম্বৰ পাব পাৰোঁ?",
+  "@checkAskHowFullMarks": {
+    "description": "ASKMe prompt asking how to reach full marks",
+    "placeholders": {
+      "awarded": {
+        "type": "int",
+        "example": "2"
+      },
+      "marks": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "meLearningSection": "শিকণ",
+  "@meLearningSection": {
+    "description": "Me settings Learning group title"
+  },
+  "meMyProgress": "মোৰ প্ৰগতি",
+  "@meMyProgress": {
+    "description": "Me row opening Progress"
+  },
+  "meClassAndBoard": "শ্ৰণী আৰু ব’ৰ্ড",
+  "@meClassAndBoard": {
+    "description": "Me and ClassBoard screen title"
+  },
+  "meAppearance": "চেহেৰা",
+  "@meAppearance": {
+    "description": "Me appearance row and screen title"
+  },
+  "meNotificationsSection": "নটিফিকেচন",
+  "@meNotificationsSection": {
+    "description": "Me notifications group title"
+  },
+  "meRemindersAndDailyGoal": "ৰিমেইণ্ডাৰ আৰু দৈনিক লক্ষ্য",
+  "@meRemindersAndDailyGoal": {
+    "description": "Me notifications row label"
+  },
+  "meAccountSection": "একাউণ্ট",
+  "@meAccountSection": {
+    "description": "Me account settings group title"
+  },
+  "meAccount": "একাউণ্ট",
+  "@meAccount": {
+    "description": "Me account row and Account screen title"
+  },
+  "meHelpAndFeedback": "সহায় আৰু মতামত",
+  "@meHelpAndFeedback": {
+    "description": "Me help row and Help screen title"
+  },
+  "mePrivacyAndTerms": "গোপনীয়তা আৰু চৰ্তাৱলী",
+  "@mePrivacyAndTerms": {
+    "description": "Me privacy row and Privacy screen title"
+  },
+  "meLogOut": "লগ আউট",
+  "@meLogOut": {
+    "description": "Me log out button and confirm primary"
+  },
+  "meLoggingOut": "লগ আউট হৈ আছে…",
+  "@meLoggingOut": {
+    "description": "Me log out button while running"
+  },
+  "meStudentFallback": "ছাত্ৰ-ছাত্ৰী",
+  "@meStudentFallback": {
+    "description": "Me profile name when empty"
+  },
+  "meDayStreak": "দিনৰ ষ্ট্ৰীক",
+  "@meDayStreak": {
+    "description": "Me stats streak caption"
+  },
+  "meLevelValue": "লেভেল {number}",
+  "@meLevelValue": {
+    "description": "Me stats level value",
+    "placeholders": {
+      "number": {
+        "type": "int",
+        "example": "2"
+      }
+    }
+  },
+  "meXpToNextLevel": "লেভেল {level} হ’বলৈ {xp} XP বাকী",
+  "@meXpToNextLevel": {
+    "description": "Me stats XP to next level",
+    "placeholders": {
+      "xp": {
+        "type": "int",
+        "example": "150"
+      },
+      "level": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "meXpLabel": "XP",
+  "@meXpLabel": {
+    "description": "Me stats XP caption"
+  },
+  "meOk": "ঠিক আছে",
+  "@meOk": {
+    "description": "Generic sheet confirm"
+  },
+  "meOkSwitchTo": "ঠিক আছে · {name} লৈ সলনি কৰক",
+  "@meOkSwitchTo": {
+    "description": "Language sheet confirm when switching",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "हिन्दी"
+      }
+    }
+  },
+  "meLanguageSwitched": "{greeting} Pebby এ এতিয়া {name} ত উত্তৰ দিব।",
+  "@meLanguageSwitched": {
+    "description": "Snack after language switch",
+    "placeholders": {
+      "greeting": {
+        "type": "String",
+        "example": "Hello!"
+      },
+      "name": {
+        "type": "String",
+        "example": "हिन्दी"
+      }
+    }
+  },
+  "meLanguageSwitchFailed": "ভাষা সলনি কৰিব পৰা নগ’ল। পুনৰ চেষ্টা কৰক।",
+  "@meLanguageSwitchFailed": {
+    "description": "Snack when language switch fails"
+  },
+  "meOpenInBrowser": "আপোনাৰ ব্ৰাউজাৰত {url} খোলক",
+  "@meOpenInBrowser": {
+    "description": "Fallback when url_launcher fails",
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+  "meNotSet": "নিৰ্ধাৰণ কৰা হোৱা নাই",
+  "@meNotSet": {
+    "description": "Unset class/board/stream value"
+  },
+  "meOff": "বন্ধ",
+  "@meOff": {
+    "description": "Notifications row when study reminder is off"
+  },
+  "meClassOnly": "শ্ৰেণী {level}",
+  "@meClassOnly": {
+    "description": "Syllabus chip without board",
+    "placeholders": {
+      "level": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
+  "meClassBoard": "শ্ৰেণী {level} · {board}",
+  "@meClassBoard": {
+    "description": "Syllabus chip with board code",
+    "placeholders": {
+      "level": {
+        "type": "int",
+        "example": "10"
+      },
+      "board": {
+        "type": "String",
+        "example": "CBSE"
+      }
+    }
+  },
+  "meLogOutTitle": "লগ আউট কৰিবনে?",
+  "@meLogOutTitle": {
+    "description": "Log out confirmation sheet title"
+  },
+  "meLogOutBody": "আপোনাৰ প্ৰগতি আপোনাৰ একাউণ্টত সংৰক্ষিত কৰা হৈছে। যিকোনো সময়তে আকৌ লগ ইন কৰক।",
+  "@meLogOutBody": {
+    "description": "Log out confirmation body"
+  },
+  "meLogOutStay": "থাকক",
+  "@meLogOutStay": {
+    "description": "Log out sheet dismiss"
+  },
+  "accountSaveName": "নাম ছেভ কৰক",
+  "@accountSaveName": {
+    "description": "Account screen save name button"
+  },
+  "accountNameSaved": "নাম ছেভ কৰা হ'ল",
+  "@accountNameSaved": {
+    "description": "Account name save success snack"
+  },
+  "accountDangerZone": "বিপদজনক অঞ্চল",
+  "@accountDangerZone": {
+    "description": "Account delete section title"
+  },
+  "accountDeleteMyAccount": "মোৰ একাউণ্ট ডিলিট কৰক",
+  "@accountDeleteMyAccount": {
+    "description": "Account delete row and delete button"
+  },
+  "accountDeleteGraceNote": "অনুরোধ কৰাৰ ৩০ দিনৰ পিছত আপোনাৰ একাউণ্ট ডিলিট কৰা হ'ব। ইয়াক ৰাখিবলৈ তাৰ আগতে লগ ইন কৰক।",
+  "@accountDeleteGraceNote": {
+    "description": "Account delete grace period note"
+  },
+  "accountSignIn": "লগ-ইন",
+  "@accountSignIn": {
+    "description": "Account sign-in group title"
+  },
+  "accountChangePassword": "পাছৱৰ্ড সলনি কৰক",
+  "@accountChangePassword": {
+    "description": "Password change row and screen title"
+  },
+  "accountSetPassword": "এটা পাছৱৰ্ড ছেট কৰক",
+  "@accountSetPassword": {
+    "description": "Password set row and screen title"
+  },
+  "accountLinkGoogle": "Google লিংক কৰক",
+  "@accountLinkGoogle": {
+    "description": "Link Google row label"
+  },
+  "accountGoogle": "Google",
+  "@accountGoogle": {
+    "description": "Linked Google row label"
+  },
+  "accountLinking": "লিংক কৰা হৈ আছে…",
+  "@accountLinking": {
+    "description": "Google link in progress"
+  },
+  "accountUnlinking": "আনলিংক কৰা হৈ আছে…",
+  "@accountUnlinking": {
+    "description": "Google unlink in progress"
+  },
+  "accountNotLinked": "লিংক কৰা হোৱা নাই",
+  "@accountNotLinked": {
+    "description": "Google not linked value"
+  },
+  "accountGoogleLinked": "Google লিংক কৰা হ’ল। আপুনি এতিয়া ইয়াৰ জৰিয়তে লগ ইন কৰিব পাৰিব।",
+  "@accountGoogleLinked": {
+    "description": "Google link success snack"
+  },
+  "accountGoogleUnlinked": "Google আনলিংক কৰা হ’ল। আপোনাৰ ইমেইল আৰু পাছৱৰ্ডেৰে লগ ইন কৰক।",
+  "@accountGoogleUnlinked": {
+    "description": "Google unlink success snack"
+  },
+  "accountUnlinkGoogleTitle": "Google আনলিংক কৰিবনে?",
+  "@accountUnlinkGoogleTitle": {
+    "description": "Unlink Google sheet title"
+  },
+  "accountUnlinkGoogleBody": "আপুনি আৰু {email} ব্যৱহাৰ কৰি লগ ইন কৰিব নোৱাৰিব। ইয়াৰ সলনি আপোনাৰ ইমেইল আৰু পাছৱৰ্ড ব্যৱহাৰ কৰক।",
+  "@accountUnlinkGoogleBody": {
+    "description": "Unlink Google sheet body",
+    "placeholders": {
+      "email": {
+        "type": "String",
+        "example": "ada@school.in"
+      }
+    }
+  },
+  "accountKeepGoogle": "Google ৰাখক",
+  "@accountKeepGoogle": {
+    "description": "Unlink sheet keep action"
+  },
+  "accountUnlink": "আনলিংক কৰক",
+  "@accountUnlink": {
+    "description": "Unlink sheet confirm"
+  },
+  "passwordSave": "পাছৱৰ্ড ছেভ কৰক",
+  "@passwordSave": {
+    "description": "Password screen save button"
+  },
+  "passwordChangeBody": "আপুনি ছাইন আপ কৰোঁতে ব্যৱহাৰ কৰা নিয়মবোৰেই পালন কৰক। ছেভ কৰাৰ পিছত অন্যান্য ডিভাইচৰ লগ-আউট হৈ যাব।",
+  "@passwordChangeBody": {
+    "description": "Change password explainer"
+  },
+  "passwordSetBody": "এটা পাছৱৰ্ড যোগ কৰক যাতে আপুনি কেৱল Google-য়েই নহয়, আপোনাৰ ইমেইলেৰেও লগ ইন কৰিব পাৰে।",
+  "@passwordSetBody": {
+    "description": "Set password explainer"
+  },
+  "passwordCurrent": "বৰ্তমানৰ পাছৱৰ্ড",
+  "@passwordCurrent": {
+    "description": "Current password field label"
+  },
+  "passwordChangedSnack": "পাছৱৰ্ড সলনি কৰা হ’ল। অন্যান্য ডিভাইচসমূহৰ লগ-আউট হৈ গৈছে।",
+  "@passwordChangedSnack": {
+    "description": "Password change success snack"
+  },
+  "passwordSetSnack": "পাছৱৰ্ড ছেট কৰা হ’ল। আপুনি এতিয়া আপোনাৰ ইমেইলেৰেও লগ ইন কৰিব পাৰিব।",
+  "@passwordSetSnack": {
+    "description": "Password set success snack"
+  },
+  "deleteAccountTitle": "একাউণ্ট ডিলিট কৰক",
+  "@deleteAccountTitle": {
+    "description": "Delete account screen title"
+  },
+  "deleteDeleting": "ডিলিট কৰা হৈ আছে…",
+  "@deleteDeleting": {
+    "description": "Delete account button while running"
+  },
+  "deleteSorryTitle": "আপুনি গুচি যোৱাত আমি দুঃখিত",
+  "@deleteSorryTitle": {
+    "description": "Delete account headline"
+  },
+  "deleteBody": "আপোনাৰ একাউণ্ট ৩০ দিনৰ ভিতৰত ডিলিট কৰা হ’ব। ইয়াক ৰাখিবলৈ তাৰ আগতে আকৌ লগ ইন কৰক। ৩০ দিনৰ পিছত আপোনাৰ প্ৰফাইল, চাট, প্ৰগ্ৰেছ আৰু XP চিৰদিনৰ বাবে মচি পেলোৱা হ’ব আৰু ঘূৰাই আনিব নোৱাৰি।",
+  "@deleteBody": {
+    "description": "Delete account body"
+  },
+  "deleteSubscription": "চাবস্ক্ৰিপশ্বন",
+  "@deleteSubscription": {
+    "description": "Delete account subscription group"
+  },
+  "deleteSubscriptionNotice": "Google Play ত কিনোৱা ACADEMe Pro চাবস্ক্ৰিপশ্বন আপোনাৰ একাউণ্ট ডিলিট কৰিলে কেনচেল নহয়। আপোনাক যাতে আকৌ চাৰ্জ কৰা নহয়, তাৰ বাবে Google Play ত ইয়াক কেনচেল কৰক।",
+  "@deleteSubscriptionNotice": {
+    "description": "Pro subscription notice on delete"
+  },
+  "deleteManageSubscription": "চাবস্ক্ৰিপশ্বন পৰিচালনা কৰক",
+  "@deleteManageSubscription": {
+    "description": "Open Play subscriptions row"
+  },
+  "deleteWhyLeaving": "আপুনি কিয় এৰি গৈছে? (ঐচ্ছিক)",
+  "@deleteWhyLeaving": {
+    "description": "Delete reason group title"
+  },
+  "deleteConfirmLabel": "নিশ্চিত কৰিবলৈ {word} টাইপ কৰক",
+  "@deleteConfirmLabel": {
+    "description": "Delete confirm field label",
+    "placeholders": {
+      "word": {
+        "type": "String",
+        "example": "DELETE"
+      }
+    }
+  },
+  "deleteReasonNotEnough": "মই ইয়াক পৰ্যাপ্তভাৱে ব্যৱহাৰ নকৰোঁ",
+  "@deleteReasonNotEnough": {
+    "description": "Delete reason"
+  },
+  "deleteReasonDidntHelp": "ই মোৰ পঢ়া-শুনাত সহায় কৰা নাই",
+  "@deleteReasonDidntHelp": {
+    "description": "Delete reason"
+  },
+  "deleteReasonTooManyNotifs": "অত্যন্ত বেছি জাননী",
+  "@deleteReasonTooManyNotifs": {
+    "description": "Delete reason"
+  },
+  "deleteReasonDataWorry": "মই মোৰ ডেটাক লৈ চিন্তিত",
+  "@deleteReasonDataWorry": {
+    "description": "Delete reason"
+  },
+  "deleteReasonOther": "অন্য কিছু",
+  "@deleteReasonOther": {
+    "description": "Delete reason"
+  },
+  "deleteScheduledSnack": "{date} তাৰিখে আপোনাৰ একাউণ্ট মচি পেলোৱা হ’ব। ইয়াক সক্ৰিয় কৰি ৰাখিবলৈ তাৰ আগতে লগ ইন কৰক।",
+  "@deleteScheduledSnack": {
+    "description": "Snack after scheduling deletion",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "notifRemindersAndGoalTitle": "স্মাৰক আৰু লক্ষ্য",
+  "@notifRemindersAndGoalTitle": {
+    "description": "Notifications screen title"
+  },
+  "notifStudyReminder": "পঢ়াৰ স্মাৰক",
+  "@notifStudyReminder": {
+    "description": "Study reminder group title"
+  },
+  "notifRemindMeToStudy": "মোক পঢ়িবলৈ সোঁৱৰাই দিয়ক",
+  "@notifRemindMeToStudy": {
+    "description": "Study reminder switch"
+  },
+  "notifTime": "সময়",
+  "@notifTime": {
+    "description": "Reminder time group title"
+  },
+  "notifRemindMeAt": "মোক সোঁৱৰাই দিয়ক যেতিয়া",
+  "@notifRemindMeAt": {
+    "description": "Reminder time row"
+  },
+  "notifAlsoTellMe": "মোক এইটোও কওক",
+  "@notifAlsoTellMe": {
+    "description": "Extra notification toggles group"
+  },
+  "notifStreakAboutToEnd": "যেতিয়া মোৰ ষ্ট্ৰীক শেষ হ’বলৈ ধৰিছে",
+  "@notifStreakAboutToEnd": {
+    "description": "Streak save switch"
+  },
+  "notifEveningBeforeTest": "পৰীক্ষাৰ আগৰ সন্ধিয়া",
+  "@notifEveningBeforeTest": {
+    "description": "Test warning switch"
+  },
+  "notifWhenLevelUp": "যেতিয়া মই লেভেল আপ কৰোঁ",
+  "@notifWhenLevelUp": {
+    "description": "Level-up celebration switch"
+  },
+  "notifNotifications": "জাননীসমূহ",
+  "@notifNotifications": {
+    "description": "Notification access group and row"
+  },
+  "notifAllowed": "অনুমতি দিয়া হৈছে",
+  "@notifAllowed": {
+    "description": "Notifications allowed value"
+  },
+  "notifNotAllowed": "অনুমতি দিয়া হোৱা নাই",
+  "@notifNotAllowed": {
+    "description": "Notifications not allowed value"
+  },
+  "notifTurnOn": "জাননীসমূহ অন কৰক",
+  "@notifTurnOn": {
+    "description": "Request notification permission"
+  },
+  "notifTurnOnInSettings": "ছেটিংছত অন কৰক",
+  "@notifTurnOnInSettings": {
+    "description": "Open system notification settings"
+  },
+  "reminderTimeTitle": "সোঁৱৰণিৰ সময়",
+  "@reminderTimeTitle": {
+    "description": "Reminder time sheet title"
+  },
+  "reminderHour": "ঘণ্টা",
+  "@reminderHour": {
+    "description": "Hour wheel semantics"
+  },
+  "reminderMinute": "মিনিট",
+  "@reminderMinute": {
+    "description": "Minute wheel semantics"
+  },
+  "reminderAmPm": "পুৱা বা সন্ধিয়া",
+  "@reminderAmPm": {
+    "description": "AM/PM wheel semantics"
+  },
+  "reminderAm": "ৰাতিপুৱা",
+  "@reminderAm": {
+    "description": "AM label"
+  },
+  "reminderPm": "আবেলি",
+  "@reminderPm": {
+    "description": "PM label"
+  },
+  "dailyGoalTitle": "দৈনিক লক্ষ্য",
+  "@dailyGoalTitle": {
+    "description": "Daily goal sheet and group title"
+  },
+  "dailyGoalNote": "ঘৰৰ আজিৰ পদক্ষেপসমূহ প্ৰায় {minutes, plural, =1{1 মিনিট} other{{minutes} মিনিট}} যোগ হ'ব।",
+  "@dailyGoalNote": {
+    "description": "Daily goal sheet note",
+    "placeholders": {
+      "minutes": {
+        "type": "int",
+        "example": "25"
+      }
+    }
+  },
+  "dailyGoalSemantics": "মিনিটত দৈনিক লক্ষ্য",
+  "@dailyGoalSemantics": {
+    "description": "Daily goal wheel semantics"
+  },
+  "dailyGoalMinutesLabel": "{minutes} মিনিট",
+  "@dailyGoalMinutesLabel": {
+    "description": "Daily goal wheel and row value",
+    "placeholders": {
+      "minutes": {
+        "type": "int",
+        "example": "25"
+      }
+    }
+  },
+  "dailyGoalStudyEachDay": "প্ৰতিদিনে পঢ়ক",
+  "@dailyGoalStudyEachDay": {
+    "description": "Daily goal settings row"
+  },
+  "appearanceTheme": "থিম",
+  "@appearanceTheme": {
+    "description": "Appearance theme section caption"
+  },
+  "appearanceLight": "পাতল",
+  "@appearanceLight": {
+    "description": "Light theme option"
+  },
+  "appearanceDark": "আন্ধাৰ",
+  "@appearanceDark": {
+    "description": "Dark theme option"
+  },
+  "appearanceDarkHint": "আন্ধাৰ ম’ডে নিশা আপোনাৰ চকুৰ বাবে আৰামদায়ক।",
+  "@appearanceDarkHint": {
+    "description": "Appearance dark mode hint"
+  },
+  "appearanceLightsOff": "বতি নিৰ্বাপিত হ’ল…",
+  "@appearanceLightsOff": {
+    "description": "Appearance switch to dark headline"
+  },
+  "appearanceGoodMorning": "সুপ্রভাত!",
+  "@appearanceGoodMorning": {
+    "description": "Appearance switch to light headline"
+  },
+  "appearanceDimming": "Pebby-য়ে কোঠাটোৰ পোহৰ কমাই দিছে",
+  "@appearanceDimming": {
+    "description": "Appearance switch to dark subtitle"
+  },
+  "appearanceOpeningCurtains": "Pebby-য়ে পৰ্দাখন খুলি আছে",
+  "@appearanceOpeningCurtains": {
+    "description": "Appearance switch to light subtitle"
+  },
+  "helpTellUs": "আমাক কওক",
+  "@helpTellUs": {
+    "description": "Help categories group title"
+  },
+  "helpEmailUs": "আমাক ইমেইল কৰক",
+  "@helpEmailUs": {
+    "description": "Help email row"
+  },
+  "helpThanks": "ধন্যবাদ, আমি আপোনাৰ বাৰ্তা পাইছো।",
+  "@helpThanks": {
+    "description": "Feedback sent snack"
+  },
+  "feedbackWrongAnswer": "এটা ভুল উত্তৰ ৰিপ'ৰ্ট কৰক",
+  "@feedbackWrongAnswer": {
+    "description": "Feedback category"
+  },
+  "feedbackBug": "কিবা এটা কাম কৰা নাই",
+  "@feedbackBug": {
+    "description": "Feedback category"
+  },
+  "feedbackFeature": "এটা ফিচাৰ পৰামৰ্শ দিয়ক",
+  "@feedbackFeature": {
+    "description": "Feedback category"
+  },
+  "feedbackHint": "কি হ’ল আমাক কওক (কমপক্ষে ১০ টা আখৰ)।",
+  "@feedbackHint": {
+    "description": "Feedback form hint"
+  },
+  "feedbackSend": "প্ৰেৰণ কৰক",
+  "@feedbackSend": {
+    "description": "Feedback send button"
+  },
+  "feedbackLimitNote": "আপুনি দিনে সৰ্বোচ্চ ২ টা আৰু সপ্তাহত ৫ টা বাৰ্তা পঠিয়াব পাৰে।",
+  "@feedbackLimitNote": {
+    "description": "Feedback rate limit note"
+  },
+  "feedbackFailGeneric": "পঠিওৱা নহ'ল। আকৌ চেষ্টা কৰক।",
+  "@feedbackFailGeneric": {
+    "description": "Feedback generic failure"
+  },
+  "feedbackFailDay": "আপুনি আজি গ্ৰহণ কৰিব পৰା সৰ্বোচ্চ ফিডবেক পঠিয়াইছে। কাইলৈ আকৌ চেষ্টা কৰক।",
+  "@feedbackFailDay": {
+    "description": "Feedback day rate limit"
+  },
+  "feedbackFailWeek": "আপুনি এই সপ্তাহত গ্ৰহণ কৰিব পৰা সৰ্বোচ্চ ফিডবেক পঠিয়াইছে। অহা সপ্তাহত আকৌ চেষ্টা কৰক।",
+  "@feedbackFailWeek": {
+    "description": "Feedback week rate limit"
+  },
+  "feedbackFailTooShort": "আমি সহায় কৰিব পৰা কৈ কমপক্ষে ১০ টা আখৰ লিখক।",
+  "@feedbackFailTooShort": {
+    "description": "Feedback too short"
+  },
+  "feedbackFailOffline": "আপুনি অফলাইনত আছে। আপোনাৰ সংযোগ পৰীক্ষা কৰি আকৌ চেষ্টা কৰক।",
+  "@feedbackFailOffline": {
+    "description": "Feedback offline"
+  },
+  "privacySummary1": "আপোনাৰ বাবে ACADEMe চলাবলენ আমি আপোনাৰ একাউণ্ট, ক্লাচ, ব'ৰ্ড আৰু বিষয়সমূহ, পঢ়া-শুনাৰ অগ্ৰগতি আৰু ষ্ট্ৰীক, ফোল্ডাৰ, টোকা আৰু Pebby-ৰ সৈতে হোৱা চাট সংৰক্ষণ কৰোঁ।",
+  "@privacySummary1": {
+    "description": "Privacy summary bullet 1"
+  },
+  "privacySummary2": "Pebby-য়ে উত্তৰ দিব পৰা কৈ আপোনাৰ প্ৰশ্ন আৰু স্কেন কৰা ফটোসমূহ ভাৰতৰ Sarvam AI লৈ যায়। আমি আপোনাৰ ফটোসমূহ সংৰক্ষণ নকৰোঁ, কেৱল তাৰ পৰা পঢ়া টেক্সটহে সংৰক্ষণ কৰোঁ।",
+  "@privacySummary2": {
+    "description": "Privacy summary bullet 2"
+  },
+  "privacySummary3": "কোনো বিজ্ঞাপন নাই, কোনো বিজ্ঞাপন আইডি নাই, কোনো অৱস্থান নাই, আৰু আমি কেতিয়াও আপোনাৰ তথ্য বিক্ৰী নকৰোঁ।",
+  "@privacySummary3": {
+    "description": "Privacy summary bullet 3"
+  },
+  "privacySummary4": "একাউণ্টত গৈ যিকোনো সময়তে আপোনাৰ একাউণ্ট ডিলিট কৰক। ৩০ দিনৰ পিছত সকলো মচি পেলোৱা হয়।",
+  "@privacySummary4": {
+    "description": "Privacy summary bullet 4"
+  },
+  "privacyDocuments": "নথি পত্ৰসমূহ",
+  "@privacyDocuments": {
+    "description": "Privacy documents group"
+  },
+  "privacyPolicy": "গোপনীয়তা নীতি",
+  "@privacyPolicy": {
+    "description": "Privacy policy row"
+  },
+  "privacyTermsOfUse": "ব্যৱহাৰৰ চৰ্তাৱলী",
+  "@privacyTermsOfUse": {
+    "description": "Terms of use row"
+  },
+  "privacyYourData": "আপোনাৰ তথ্য",
+  "@privacyYourData": {
+    "description": "Privacy your data group"
+  },
+  "privacyGetCopy": "মোৰ তথ্যৰ এটা কপি লওক",
+  "@privacyGetCopy": {
+    "description": "Data export row"
+  },
+  "privacyGrievanceOfficer": "অভিযোগ নিবারণ বিষয়া",
+  "@privacyGrievanceOfficer": {
+    "description": "Grievance officer row"
+  },
+  "classBoardSave": "সংৰক্ষণ কৰক · ক্লাচ {level} · {board}",
+  "@classBoardSave": {
+    "description": "Class board save button",
+    "placeholders": {
+      "level": {
+        "type": "int",
+        "example": "10"
+      },
+      "board": {
+        "type": "String",
+        "example": "CBSE"
+      }
+    }
+  },
+  "classBoardYourClass": "আপোনাৰ ক্লাচ",
+  "@classBoardYourClass": {
+    "description": "Class dial caption"
+  },
+  "classBoardYourBoard": "আপোনাৰ ব'ৰ্ড",
+  "@classBoardYourBoard": {
+    "description": "Board picker caption"
+  },
+  "classBoardSwitchNote": "আপোনাৰ বিষয় আৰু পৰিকল্পনা ক্লাচ {level} · {board} লৈ সলনি হ'ব। ইমানদিন আপুনি কৰা সকলো কাম সংৰক্ষিত হৈ থাকিব।",
+  "@classBoardSwitchNote": {
+    "description": "Class board change notice",
+    "placeholders": {
+      "level": {
+        "type": "int",
+        "example": "10"
+      },
+      "board": {
+        "type": "String",
+        "example": "CBSE"
+      }
+    }
+  },
+  "classBoardSubjects": "বিষয়সমূহ",
+  "@classBoardSubjects": {
+    "description": "Subjects settings group and row"
+  },
+  "classBoardStream": "স্ৰীম",
+  "@classBoardStream": {
+    "description": "Stream settings row"
+  },
+  "classBoardAllSubjects": "সকলো বিষয়",
+  "@classBoardAllSubjects": {
+    "description": "Subjects value when none filtered"
+  },
+  "classBoardSubjectCount": "{count} · {names}",
+  "@classBoardSubjectCount": {
+    "description": "Subjects value with names",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      },
+      "names": {
+        "type": "String",
+        "example": "Maths, Physics"
+      }
+    }
+  },
+  "classBoardSavedSnack": "এতিয়া শ্ৰেণী {level} · {board} ৰ বিষয়সমূহ দেখুওৱা হৈছে",
+  "@classBoardSavedSnack": {
+    "description": "Class board save success snack",
+    "placeholders": {
+      "level": {
+        "type": "int",
+        "example": "10"
+      },
+      "board": {
+        "type": "String",
+        "example": "CBSE"
+      }
+    }
+  },
+  "reminderPrimerTitle": "পৰীক্ষাৰ আগতে এটা জাননী বাৰ্তা পাওক",
+  "@reminderPrimerTitle": {
+    "description": "Notification primer sheet title"
+  },
+  "reminderPrimerPromise1": "প্ৰতিটো পৰীক্ষাৰ ৩ দিন আগতে, আগবেলা আৰু পৰীক্ষাৰ দিনাৰ পুৱা এটা আগতীয়া খবৰ",
+  "@reminderPrimerPromise1": {
+    "description": "Notification primer promise 1"
+  },
+  "reminderPrimerPromise2": "আপোনাৰ পঢ়া-শুনাৰ সোঁৱৰণি, কেৱল আপুনি বাছি লোৱা দিন আৰু সময়ত",
+  "@reminderPrimerPromise2": {
+    "description": "Notification primer promise 2"
+  },
+  "reminderPrimerPromise3": "আৰু একো নহয়। 'Me' ত ইয়াক যিকোনো সময়তে সলনি কৰক",
+  "@reminderPrimerPromise3": {
+    "description": "Notification primer promise 3"
+  },
+  "reminderPrimerAllow": "অনুমতি দিয়ক",
+  "@reminderPrimerAllow": {
+    "description": "Notification primer allow button"
+  },
+  "paywallWelcomeSnack": "ACADEMe Pro লৈ স্বাগতম",
+  "@paywallWelcomeSnack": {
+    "description": "Snack after successful Pro purchase"
+  },
+  "paywallTagline": "৩× দৈনিক আৰু সাপ্তাহিক সীমা। একে ৰিফিল ঘড়ী — পঢ়িবলৈ অধিক সুবিধা।",
+  "@paywallTagline": {
+    "description": "Paywall hero subtitle"
+  },
+  "paywallOpeningPlay": "Google Play খোল হৈছে…",
+  "@paywallOpeningPlay": {
+    "description": "Paywall purchase button while opening store"
+  },
+  "paywallRestoring": "পুনৰুদ্ধাৰ কৰা হৈছে…",
+  "@paywallRestoring": {
+    "description": "Restore purchases in progress"
+  },
+  "paywallRestore": "ক্ৰয়সমূহ পুনৰুদ্ধাৰ কৰক",
+  "@paywallRestore": {
+    "description": "Restore purchases action"
+  },
+  "paywallUnavailableTitle": "এই ডিভাইচত ক্ৰয়সমূহ উপলব্ধ নহয়",
+  "@paywallUnavailableTitle": {
+    "description": "Paywall when billing unavailable"
+  },
+  "paywallUnavailableBody": "Pro হ’বলৈ Google Play ৰ পৰা ACADEMe ইনষ্টল কৰক আৰু Play ত ছাইন ইন কৰক।",
+  "@paywallUnavailableBody": {
+    "description": "Paywall unavailable hint"
+  },
+  "paywallBenefitAskme": "প্ৰতিদিন ৩× ASKMe প্ৰশ্ন",
+  "@paywallBenefitAskme": {
+    "description": "Pro benefit ASKMe"
+  },
+  "paywallBenefitScan": "প্ৰতিদিন ৩× স্কেন",
+  "@paywallBenefitScan": {
+    "description": "Pro benefit Scan"
+  },
+  "paywallBenefitCheck": "প্ৰতিদিন ৩× উত্তৰ পৰীক্ষা",
+  "@paywallBenefitCheck": {
+    "description": "Pro benefit Check"
+  },
+  "paywallBenefitLessons": "আপোনাৰ টোকাৰ পৰা তৈয়াৰ কৰা চুইপ পাঠসমূহ",
+  "@paywallBenefitLessons": {
+    "description": "Pro benefit lessons from notes"
+  },
+  "paywallBenefitProgress": "মোৰ অগ্ৰগতি সাপ্তাহিক পঢ়া-শুনাৰ সাৰাংশ",
+  "@paywallBenefitProgress": {
+    "description": "Pro benefit progress"
+  },
+  "paywallMonthly": "মাহত",
+  "@paywallMonthly": {
+    "description": "Monthly plan title"
+  },
+  "paywallAnnual": "বাৰ্ষিক",
+  "@paywallAnnual": {
+    "description": "Annual plan title"
+  },
+  "paywallPlanSemantics": "{title} পৰিকল্পনা",
+  "@paywallPlanSemantics": {
+    "description": "Plan tile semantics label",
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "paywallPriceIntroMonth": "প্ৰথম মাহৰ বাবে {introPrice}, তাৰ পিছত {price}/মাহ",
+  "@paywallPriceIntroMonth": {
+    "description": "Monthly intro price line",
+    "placeholders": {
+      "introPrice": {
+        "type": "String"
+      },
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "paywallPriceMonth": "{price}/মাহ",
+  "@paywallPriceMonth": {
+    "description": "Monthly price line",
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "paywallPriceYear": "{price}/বছৰ",
+  "@paywallPriceYear": {
+    "description": "Annual price line",
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "paywallDetailAnnualMonthly": "প্ৰতি {monthlyPrice}/মাহ মান · ১৭% ৰাহি কৰক · আপোনা-আপুনি নৱীকৰণ হয়",
+  "@paywallDetailAnnualMonthly": {
+    "description": "Annual plan detail with monthly equivalent",
+    "placeholders": {
+      "monthlyPrice": {
+        "type": "String"
+      }
+    }
+  },
+  "paywallDetailAnnual": "১৭% ৰাহি কৰক · আপোনা-আপুনি নৱীকৰণ হয়",
+  "@paywallDetailAnnual": {
+    "description": "Annual plan detail without monthly equivalent"
+  },
+  "paywallDetailRenews": "আপোনা-আপুনি নৱীকৰণ হয়",
+  "@paywallDetailRenews": {
+    "description": "Monthly plan renews detail"
+  },
+  "paywallBestValue": "শ্ৰেষ্ঠ মূল্য",
+  "@paywallBestValue": {
+    "description": "Annual best-value badge"
+  },
+  "paywallSmallPrint": "আপোনা-আপুনি নৱীকৰণ হয়। Google Play ত যিকোনো সময়তে বাতিল কৰক।",
+  "@paywallSmallPrint": {
+    "description": "Paywall legal small print"
+  },
+  "paywallTerms": "চৰ্তাৱলী",
+  "@paywallTerms": {
+    "description": "Terms link"
+  },
+  "paywallPrivacy": "গোপনীয়তা",
+  "@paywallPrivacy": {
+    "description": "Privacy link"
+  },
+  "upgradeTitle": "Go Pro · ৩× সীমা",
+  "@upgradeTitle": {
+    "description": "Upgrade sheet and manage footer CTA"
+  },
+  "limitAskmeTitle": "সেয়া হৈছে আজিৰ বিনামূলীয়া প্ৰশ্নসমূহ",
+  "@limitAskmeTitle": {
+    "description": "ASKMe daily limit sheet title"
+  },
+  "limitAskmeBody": "বিনামূলীয়াত অন্তৰ্ভুক্ত আছে প্ৰতিদিন {count, plural, =1{1 টা ASKMe প্ৰশ্ন} other{{count} টা ASKMe প্ৰশ্ন}}। Pro য়ে প্ৰতিদিন ৩× দিয়ে।",
+  "@limitAskmeBody": {
+    "description": "ASKMe daily limit sheet body",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "limitScanTitle": "সেয়া হৈছে আজিৰ বিনামূলীয়া স্কেনসমূহ",
+  "@limitScanTitle": {
+    "description": "Scan daily limit sheet title"
+  },
+  "limitScanBody": "বিনামূলীয়াত প্রতিদিনে {count, plural, =1{১ টা স্কেন} other{{count} টা স্কেন}} আছে। Pro-ত প্ৰতিদিনে ৩ গুণ পোৱা যায়।",
+  "@limitScanBody": {
+    "description": "Scan daily limit sheet body",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "limitCheckTitle": "{count, plural, =1{এইটো হৈছে আজিৰ বিনামূলীয়া পৰীক্ষা} other{এইকেইটা হৈছে আজিৰ বিনামূলীয়া পৰীক্ষাসমূহ}}",
+  "@limitCheckTitle": {
+    "description": "Check daily limit sheet title",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "limitCheckBody": "বিনামূলীয়াত প্রতিদিনে {count, plural, =1{এটা উত্তৰ পৰীক্ষা} other{{count} টা উত্তৰ পৰীক্ষা}} আছে। Pro-ত প্ৰতিদিনে ৩ গুণ পোৱা যায়।",
+  "@limitCheckBody": {
+    "description": "Check daily limit sheet body",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "limitLessonsTitle": "ন'টৰ পৰা পাঠসমূহ Pro হয়",
+  "@limitLessonsTitle": {
+    "description": "Lessons-from-notes Pro gate title"
+  },
+  "limitLessonsBody": "আপোনাৰ ন'টসমূহ সুৰক্ষিত ৰখা বিনামূলীয়া। Pro-ৰ সৈতে, Pebby-য়ে কুৱিজৰ সৈতে সেইবোৰক স্বাইপ পাঠলৈ ৰূপান্তৰিত কৰে।",
+  "@limitLessonsBody": {
+    "description": "Lessons-from-notes Pro gate body"
+  },
+  "limitMaybeLater": "হয়তো পিছত",
+  "@limitMaybeLater": {
+    "description": "Limit sheet dismiss"
+  },
+  "proTitle": "ACADEMe Pro",
+  "@proTitle": {
+    "description": "Pro brand title"
+  },
+  "proPlanLimitsTitle": "প্নান আৰু সীমা",
+  "@proPlanLimitsTitle": {
+    "description": "Manage screen title when free"
+  },
+  "proCardSubtitleFree": "প্নান আৰু সীমা · Pro-ৰ সৈতে ৩×",
+  "@proCardSubtitleFree": {
+    "description": "Pro card subtitle for free users"
+  },
+  "proCardSubtitleMonthly": "Pro · মাহেকীয়া",
+  "@proCardSubtitleMonthly": {
+    "description": "Pro card subtitle monthly"
+  },
+  "proCardSubtitleAnnual": "Pro · বাৰ্ষিক",
+  "@proCardSubtitleAnnual": {
+    "description": "Pro card subtitle annual"
+  },
+  "proCardSubtitlePro": "Pro",
+  "@proCardSubtitlePro": {
+    "description": "Pro card subtitle without period"
+  },
+  "proManage": "মেনেজ কৰক",
+  "@proManage": {
+    "description": "Pro card manage action"
+  },
+  "proOnPro": "আপুনি Pro-ত আছে",
+  "@proOnPro": {
+    "description": "Manage hero when Pro"
+  },
+  "proOnFree": "আপুনি Free-ত আছে",
+  "@proOnFree": {
+    "description": "Manage hero when free"
+  },
+  "proMetaFree": "দৈনিক আৰু সাপ্তাহিক সীমা · পুৱা ১২:০০ বজা IST",
+  "@proMetaFree": {
+    "description": "Manage hero meta free"
+  },
+  "proMetaBillingIssue": "Pro বৰ্তাই ৰখախ Google Play-ত পৰিশোধ ঠিক কৰক",
+  "@proMetaBillingIssue": {
+    "description": "Manage hero billing issue"
+  },
+  "proMetaActiveNoExpiry": "৩× দৈনিক সীমা · সাপ্তাহিক সুৰক্ষা কেপ",
+  "@proMetaActiveNoExpiry": {
+    "description": "Manage hero Pro without expiry"
+  },
+  "proMetaAnnualRenews": "বাৰ্ষিক · নৱীকৰণ হয় {date} · ৩× সীমা",
+  "@proMetaAnnualRenews": {
+    "description": "Manage hero annual renewing",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "proMetaMonthlyRenews": "মাহেকীয়া · নৱীকৰণ হয় {date} · ৩× সীমা",
+  "@proMetaMonthlyRenews": {
+    "description": "Manage hero monthly renewing",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "proMetaEnds": "Pro শেষ হ’ব {date} তাৰিখে",
+  "@proMetaEnds": {
+    "description": "Manage hero Pro ending",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "proStatusActive": "সক্ৰিয়",
+  "@proStatusActive": {
+    "description": "Pro status pill"
+  },
+  "proStatusFree": "বিনামূল্যে",
+  "@proStatusFree": {
+    "description": "Free status pill"
+  },
+  "proDailyLimits": "দৈনিক সীমা",
+  "@proDailyLimits": {
+    "description": "Daily limits card heading"
+  },
+  "proResetsDaily": "প্ৰতিদিনে ৰাতি ১২:০০ বজা IST-ত ৰিছেট হয়",
+  "@proResetsDaily": {
+    "description": "Daily limits reset schedule"
+  },
+  "proFeatureAskme": "ASKMe",
+  "@proFeatureAskme": {
+    "description": "ASKMe feature meter label"
+  },
+  "proFeatureScan": "স্কেন",
+  "@proFeatureScan": {
+    "description": "Scan feature meter label"
+  },
+  "proFeatureCheck": "পৰীক্ষা কৰক",
+  "@proFeatureCheck": {
+    "description": "Check feature meter label"
+  },
+  "proFeatureLessons": "পাঠসমূহ",
+  "@proFeatureLessons": {
+    "description": "Lessons feature meter label"
+  },
+  "proWeeklyLimit": "সাপ্তাহিক সীমা",
+  "@proWeeklyLimit": {
+    "description": "Weekly limit card heading"
+  },
+  "proResetsMondays": "সোমবাৰে ৰিছেট হয় · ৰাতি ১২:০০ বজা IST",
+  "@proResetsMondays": {
+    "description": "Weekly reset when no date"
+  },
+  "proResetsOnDay": "ৰিছেট হয় {day} · ৰাতি ১২:০০ বজা IST",
+  "@proResetsOnDay": {
+    "description": "Weekly reset with day",
+    "placeholders": {
+      "day": {
+        "type": "String"
+      }
+    }
+  },
+  "proAllFeatures": "সকলো ফিচাৰ",
+  "@proAllFeatures": {
+    "description": "Weekly combined meter label"
+  },
+  "proManageInPlay": "Google Play-ত পৰিচালনা কৰক",
+  "@proManageInPlay": {
+    "description": "Manage subscription in Play"
+  },
+  "proResetsSoon": "শীঘ্ৰেই আহি আছে",
+  "@proResetsSoon": {
+    "description": "Reset chip when past due"
+  },
+  "proResetsInHours": "{count, plural, =1{১ ঘণ্টাৰ ভিতৰত} other{{count} ঘণ্টাৰ ভিতৰত}}",
+  "@proResetsInHours": {
+    "description": "Reset chip hours remaining",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "proNoticePending": "আপোনাৰ পেমেণ্ট বাকী আছে। Google Play-য়ে নিশ্চিত কৰাৰ লগে লগে Pro সক্ৰিয় হৈ যাব।",
+  "@proNoticePending": {
+    "description": "Billing pending notice"
+  },
+  "proNoticeNoPurchase": "এই Google একাউণ্টত কোনো ACADEMe Pro ক্ৰয় পোৱা নগ’ল।",
+  "@proNoticeNoPurchase": {
+    "description": "Restore found nothing"
+  },
+  "proNoticeNotAllowed": "এই Google একাউণ্টৰ বাবে ক্ৰয় কৰা কাৰ্য بند কৰা হৈছে।",
+  "@proNoticeNotAllowed": {
+    "description": "Billing not allowed"
+  },
+  "proNoticeAlreadyOwned": "এই Google একাউণ্টত ইতিমধ্যে Pro আছে। \"Restore purchases\" ত টিপক।",
+  "@proNoticeAlreadyOwned": {
+    "description": "Billing already owned"
+  },
+  "proNoticeUnavailable": "এই ডিভাইচত ক্ৰয় কৰিব নোৱাৰি।",
+  "@proNoticeUnavailable": {
+    "description": "Billing unavailable"
+  },
+  "proNoticeStoreError": "Google Play-য়ে সেয়া সম্পূৰ্ণ কৰিব নোৱাৰিলে। আকৌ চেষ্টা কৰক।",
+  "@proNoticeStoreError": {
+    "description": "Billing store error"
+  },
+  "askmeNewChat": "নতুন চাট",
+  "@askmeNewChat": {
+    "description": "ASKMe header new-chat tooltip"
+  },
+  "askmeStudying": "আজি আমি কি পঢ়িম, {name}?",
+  "@askmeStudying": {
+    "description": "ASKMe empty-state headline",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Riya"
+      }
+    }
+  },
+  "askmeModeExplainLine": "Pebby-য়ে ইয়াক সহজভাৱে, একে একে স্তৰত বুজাই দিয়ে।",
+  "@askmeModeExplainLine": {
+    "description": "ASKMe empty explain mode line"
+  },
+  "askmeModeSolveLine": "Pebby-য়ে ইংগিত দিয়ে। আপুনি নিজে সমাধান কৰক।",
+  "@askmeModeSolveLine": {
+    "description": "ASKMe empty solve mode line"
+  },
+  "askmeModeQuizLine": "Pebby-য়ে সুধিব, আপুনি উত্তৰ দিব, আৰু XP অৰ্জন কৰিব।",
+  "@askmeModeQuizLine": {
+    "description": "ASKMe empty quiz mode line"
+  },
+  "askmeSuggestExplain1": "পোহৰৰ প্ৰতিফলন সহজভাৱে বুজাই দিয়ক",
+  "@askmeSuggestExplain1": {
+    "description": "ASKMe explain suggestion 1"
+  },
+  "askmeSuggestExplain2": "আকাশখন কিয় নীলা?",
+  "@askmeSuggestExplain2": {
+    "description": "ASKMe explain suggestion 2"
+  },
+  "askmeSuggestExplain3": "সালোক সংশ্লেষণ (Photosynthesis) কি?",
+  "@askmeSuggestExplain3": {
+    "description": "ASKMe explain suggestion 3"
+  },
+  "askmeSuggestSolve1": "2x + 3y = 11 আৰু x − 2y = −12 সমাধান কৰাত মোক সহায় কৰক",
+  "@askmeSuggestSolve1": {
+    "description": "ASKMe solve suggestion 1"
+  },
+  "askmeSuggestSolve2": "r = 7 cm থকা এটা বৃত্তৰ কালি নিৰ্ণয় কৰক",
+  "@askmeSuggestSolve2": {
+    "description": "ASKMe solve suggestion 2"
+  },
+  "askmeSuggestSolve3": "H₂ + O₂ → H₂O সমীকৰণটো সমতা কৰক (Balance)",
+  "@askmeSuggestSolve3": {
+    "description": "ASKMe solve suggestion 3"
+  },
+  "askmeSuggestQuiz1": "পোহৰৰ ওপৰত মোক এটা কুইজ সোধক",
+  "@askmeSuggestQuiz1": {
+    "description": "ASKMe quiz suggestion 1"
+  },
+  "askmeSuggestQuiz2": "ৰৈখিক সমীকৰণৰ ওপৰত মোক ৫ টা প্ৰশ্ন দিয়ক",
+  "@askmeSuggestQuiz2": {
+    "description": "ASKMe quiz suggestion 2"
+  },
+  "askmeSuggestQuiz3": "ফ্ৰান্স বিপ্লৱৰ ওপৰত মোক কুইজ সোধক",
+  "@askmeSuggestQuiz3": {
+    "description": "ASKMe quiz suggestion 3"
+  },
+  "askmeModeExplain": "বুজাই দিয়ক",
+  "@askmeModeExplain": {
+    "description": "ASKMe mode bar Explain"
+  },
+  "askmeModeSolve": "সমাধান কৰক",
+  "@askmeModeSolve": {
+    "description": "ASKMe mode bar Solve"
+  },
+  "askmeModeQuiz": "মোক কুইজ সোধক",
+  "@askmeModeQuiz": {
+    "description": "ASKMe mode bar Quiz me"
+  },
+  "askmeFollowNextStep": "পৰৱৰ্তী স্তৰ",
+  "@askmeFollowNextStep": {
+    "description": "ASKMe solve follow-up chip"
+  },
+  "askmeFollowFullSolution": "সম্পূৰ্ণ সমাধান",
+  "@askmeFollowFullSolution": {
+    "description": "ASKMe solve follow-up chip"
+  },
+  "askmeFollowNextQuestion": "পৰৱৰ্তী প্ৰশ্ন",
+  "@askmeFollowNextQuestion": {
+    "description": "ASKMe quiz follow-up chip"
+  },
+  "askmeFollowQuizMe": "মোক কুইজ সোধক",
+  "@askmeFollowQuizMe": {
+    "description": "ASKMe explain follow-up chip"
+  },
+  "askmeFollowGoDeeper": "আৰু গভীৰভাৱে জানক",
+  "@askmeFollowGoDeeper": {
+    "description": "ASKMe explain follow-up chip"
+  },
+  "askmeSendNextStep": "পৰৱৰ্তী স্তৰ, অনুগ্ৰহ কৰি।",
+  "@askmeSendNextStep": {
+    "description": "ASKMe solve follow-up send text"
+  },
+  "askmeSendFullSolution": "মোক সম্পূৰ্ণ সমাধানটো দেখুৱাওক।",
+  "@askmeSendFullSolution": {
+    "description": "ASKMe solve follow-up send text"
+  },
+  "askmeSendNextQuestion": "পৰৱৰ্তী প্ৰশ্ন।",
+  "@askmeSendNextQuestion": {
+    "description": "ASKMe quiz follow-up send text"
+  },
+  "askmeSendGoDeeper": "আৰু গভীৰলৈ যাওক।",
+  "@askmeSendGoDeeper": {
+    "description": "ASKMe explain follow-up send text"
+  },
+  "askmeSendQuizMe": "এইটোৰ ওপৰত মোক কুইজ সোধক।",
+  "@askmeSendQuizMe": {
+    "description": "ASKMe explain quiz-me send text"
+  },
+  "askmeFailureUnavailable": "ASKMe এতিয়াও প্ৰস্তুত হোৱা নাই। Pebby সোনকালে আহিব।",
+  "@askmeFailureUnavailable": {
+    "description": "ASKMe send failure unavailable"
+  },
+  "askmeFailureSignedOut": "আপোনাক লগ আউট কৰা হৈছে। পুনৰ লগ ইন কৰক।",
+  "@askmeFailureSignedOut": {
+    "description": "ASKMe send failure signed out"
+  },
+  "askmeFailureLimitReached": "আজিৰ বাবে আপোনাৰ বিনামূলীয়া প্ৰশ্নসমূহ শেষ হ’ল। এইবোৰ মাজনিশা পুনر আহিব।",
+  "@askmeFailureLimitReached": {
+    "description": "ASKMe send failure limit"
+  },
+  "askmeThinking": "Pebby এ চিন্তা কৰি আছে",
+  "@askmeThinking": {
+    "description": "ASKMe thinking bubble semantics"
+  },
+  "historyTitle": "ইতিহাস",
+  "@historyTitle": {
+    "description": "ASKMe history screen title"
+  },
+  "historySearchHint": "আপোনাৰ প্ৰশ্নসমূহ বিচাৰক",
+  "@historySearchHint": {
+    "description": "ASKMe history search placeholder"
+  },
+  "historyLoadError": "আপোনাৰ চাটসমূহ লোড কৰিব পৰা নগ’ল। পুনر চেষ্টা কৰক",
+  "@historyLoadError": {
+    "description": "ASKMe history load error"
+  },
+  "historyEmpty": "Pebby লৈ কৰা আপোনাৰ প্ৰশ্নসমূহ এখানে দেখুওৱা হ’ব।",
+  "@historyEmpty": {
+    "description": "ASKMe history empty"
+  },
+  "historyThisWeek": "এই সপ্তাহত",
+  "@historyThisWeek": {
+    "description": "ASKMe history section this week"
+  },
+  "historyEarlier": "পূৰ্বৰ",
+  "@historyEarlier": {
+    "description": "ASKMe history section earlier"
+  },
+  "historyNow": "এতিয়া",
+  "@historyNow": {
+    "description": "ASKMe history relative now"
+  },
+  "historyHoursAgo": "{hours}ঘণ্টা",
+  "@historyHoursAgo": {
+    "description": "ASKMe history relative hours",
+    "placeholders": {
+      "hours": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "historyWeekdayMon": "সোম",
+  "@historyWeekdayMon": {
+    "description": "ASKMe history weekday Mon"
+  },
+  "historyWeekdayTue": "মঙ্গল",
+  "@historyWeekdayTue": {
+    "description": "ASKMe history weekday Tue"
+  },
+  "historyWeekdayWed": "বুধ",
+  "@historyWeekdayWed": {
+    "description": "ASKMe history weekday Wed"
+  },
+  "historyWeekdayThu": "বৃহস্পতি",
+  "@historyWeekdayThu": {
+    "description": "ASKMe history weekday Thu"
+  },
+  "historyWeekdayFri": "শুক্র",
+  "@historyWeekdayFri": {
+    "description": "ASKMe history weekday Fri"
+  },
+  "historyWeekdaySat": "শনি",
+  "@historyWeekdaySat": {
+    "description": "ASKMe history weekday Sat"
+  },
+  "historyWeekdaySun": "ৰবি",
+  "@historyWeekdaySun": {
+    "description": "ASKMe history weekday Sun"
+  },
+  "historyMonthJan": "জানুৱাৰী",
+  "@historyMonthJan": {
+    "description": "ASKMe history month Jan"
+  },
+  "historyMonthFeb": "ফেব্ৰুৱাৰী",
+  "@historyMonthFeb": {
+    "description": "ASKMe history month Feb"
+  },
+  "historyMonthMar": "মাৰ্চ",
+  "@historyMonthMar": {
+    "description": "ASKMe history month Mar"
+  },
+  "historyMonthApr": "এপ্ৰিল",
+  "@historyMonthApr": {
+    "description": "ASKMe history month Apr"
+  },
+  "historyMonthMay": "মে’",
+  "@historyMonthMay": {
+    "description": "ASKMe history month May"
+  },
+  "historyMonthJun": "জুন",
+  "@historyMonthJun": {
+    "description": "ASKMe history month Jun"
+  },
+  "historyMonthJul": "জুলাই",
+  "@historyMonthJul": {
+    "description": "ASKMe history month Jul"
+  },
+  "historyMonthAug": "আগষ্ট",
+  "@historyMonthAug": {
+    "description": "ASKMe history month Aug"
+  },
+  "historyMonthSep": "ছেপ্টেম্বৰ",
+  "@historyMonthSep": {
+    "description": "ASKMe history month Sep"
+  },
+  "historyMonthOct": "অক্টোবৰ",
+  "@historyMonthOct": {
+    "description": "ASKMe history month Oct"
+  },
+  "historyMonthNov": "নৱেম্বৰ",
+  "@historyMonthNov": {
+    "description": "ASKMe history month Nov"
+  },
+  "historyMonthDec": "ডিচেম্বৰ",
+  "@historyMonthDec": {
+    "description": "ASKMe history month Dec"
+  },
+  "historyDayMonth": "{day} {month}",
+  "@historyDayMonth": {
+    "description": "ASKMe history day+month",
+    "placeholders": {
+      "day": {
+        "type": "int"
+      },
+      "month": {
+        "type": "String"
+      }
+    }
+  },
+  "attachTitle": "আপোনাৰ প্ৰশ্নত যোগ কৰক",
+  "@attachTitle": {
+    "description": "Attach sheet title"
+  },
+  "attachCamera": "কেমেৰা",
+  "@attachCamera": {
+    "description": "Attach sheet camera option"
+  },
+  "attachPhotos": "ফ’টোগুলি",
+  "@attachPhotos": {
+    "description": "Attach sheet photos option"
+  },
+  "replyHelpful": "সহায়ক",
+  "@replyHelpful": {
+    "description": "Reply action helpful tooltip"
+  },
+  "replyNotHelpful": "সহায়ক নহ’ল",
+  "@replyNotHelpful": {
+    "description": "Reply action not helpful tooltip"
+  },
+  "replyCopy": "ক’পী কৰক",
+  "@replyCopy": {
+    "description": "Reply action copy tooltip"
+  },
+  "replyCopied": "ক’পী কৰা হ’ল",
+  "@replyCopied": {
+    "description": "Reply copied snackbar"
+  },
+  "replyReportTitle": "এই উত্তৰটো প্রতিবেদন কৰক",
+  "@replyReportTitle": {
+    "description": "Reply report sheet title"
+  },
+  "replyReportThanks": "ধন্যবাদ। আমি এই উত্তৰটো পৰ্যালোচনা কৰিম।",
+  "@replyReportThanks": {
+    "description": "Reply report thanks snackbar"
+  },
+  "reportTooltip": "প্রতিবেদন",
+  "@reportTooltip": {
+    "description": "Report button tooltip"
+  },
+  "reportSendFailed": "প্রতিবেদন পঠিয়াব নোৱাৰিলে। আকৌ চেষ্টা কৰক।",
+  "@reportSendFailed": {
+    "description": "Report send failure snackbar"
+  },
+  "reportBody": "আমি প্ৰতিটো প্রতিবেদন পঢ়োঁ আৰু Pebby অধিক সুৰক্ষিত কৰিবলৈ ইয়াক ব্যৱহাৰ কৰোঁ।",
+  "@reportBody": {
+    "description": "Report sheet body"
+  },
+  "reportReasonWrong": "ই ভুল",
+  "@reportReasonWrong": {
+    "description": "Report reason wrong"
+  },
+  "reportReasonHarmful": "ই ক্ষতিকারক বা অসুৰক্ষিত",
+  "@reportReasonHarmful": {
+    "description": "Report reason harmful"
+  },
+  "reportReasonOffensive": "ই অশিষ্ট বা আক্ৰমণাত্মক",
+  "@reportReasonOffensive": {
+    "description": "Report reason offensive"
+  },
+  "reportReasonOther": "অন্য কিবা",
+  "@reportReasonOther": {
+    "description": "Report reason other"
+  },
+  "progressTitle": "মোৰ অগ্ৰগতি",
+  "@progressTitle": {
+    "description": "Progress screen app bar"
+  },
+  "progressLoading": "এই সপ্তাহটো ল’ড হৈ আছে…",
+  "@progressLoading": {
+    "description": "Progress loading line"
+  },
+  "progressLoadError": "এই সপ্তাহৰ সাৰাংশ ল’ড কৰিব নোৱাৰিলে।",
+  "@progressLoadError": {
+    "description": "Progress load error"
+  },
+  "progressHoldTitle": "মোৰ অগ্ৰগতি Pro ৰ এটা অংশ",
+  "@progressHoldTitle": {
+    "description": "Progress Pro hold title"
+  },
+  "progressHoldBody": "ACADEMe Pro ৰ সৈতে ষ্ট্ৰীক, স্তৰ আৰু পঢ়াৰ অন্তৰ্দৃষ্টি চাওক।",
+  "@progressHoldBody": {
+    "description": "Progress Pro hold body"
+  },
+  "progressGoProLimits": "Go Pro · ৩× সীমা",
+  "@progressGoProLimits": {
+    "description": "Progress Pro hold CTA"
+  },
+  "progressStudyDays": "পঢ়া দিনসমূহ",
+  "@progressStudyDays": {
+    "description": "Progress study days card title"
+  },
+  "progressThisWeek": "এই সপ্তাহ",
+  "@progressThisWeek": {
+    "description": "Progress this week chip"
+  },
+  "progressTodayStudied": "আজি · পঢ়া হৈছে",
+  "@progressTodayStudied": {
+    "description": "Progress today studied"
+  },
+  "progressTodayNotYet": "আজি · এতিয়াও পঢ়া নাই",
+  "@progressTodayNotYet": {
+    "description": "Progress today not yet"
+  },
+  "progressTabSummary": "সাৰাংশ",
+  "@progressTabSummary": {
+    "description": "Progress board tab summary"
+  },
+  "progressTabProgress": "অগ্ৰগতি",
+  "@progressTabProgress": {
+    "description": "Progress board tab progress"
+  },
+  "progressTabActivity": "কাৰ্যকলাপ",
+  "@progressTabActivity": {
+    "description": "Progress board tab activity"
+  },
+  "progressSubjectsThisWeek": "এই সপ্তাহৰ বিষয়সমূহ",
+  "@progressSubjectsThisWeek": {
+    "description": "Progress summary subjects stat"
+  },
+  "progressCompleted": "সম্পূৰ্ণ হ’ল",
+  "@progressCompleted": {
+    "description": "Progress summary completed stat"
+  },
+  "progressOverallGrade": "সামগ্ৰিক গ্ৰেড",
+  "@progressOverallGrade": {
+    "description": "Progress overall grade label"
+  },
+  "progressKeepItUp": "এয়াই অব্যাহত ৰাখক",
+  "@progressKeepItUp": {
+    "description": "Progress grade ring with grade"
+  },
+  "progressStartJourney": "আপোনাৰ যাত্ৰা আৰম্ভ কৰক",
+  "@progressStartJourney": {
+    "description": "Progress grade ring without grade"
+  },
+  "progressCourseProgress": "কোৰ্চৰ অগ্ৰগতি",
+  "@progressCourseProgress": {
+    "description": "Progress pane empty title"
+  },
+  "progressLessonsEmpty": "আপুনি সম্পূৰ্ণ কৰা পাঠসমূহ ইয়াত দেখা যাব।",
+  "@progressLessonsEmpty": {
+    "description": "Progress pane empty body"
+  },
+  "progressSubjectLessons": "{name}: {count, plural, =1{১টা পাঠ} other{{count}টা পাঠ}}",
+  "@progressSubjectLessons": {
+    "description": "Progress subject lesson row",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "progressActivity": "কাৰ্যকলাপ",
+  "@progressActivity": {
+    "description": "Progress activity pane title"
+  },
+  "progressStudyDaysEmpty": "আপোনাৰ পঢ়া দিনসমূহ ইয়াত দেখা যাব।",
+  "@progressStudyDaysEmpty": {
+    "description": "Progress activity empty"
+  },
+  "progressActiveDays": "{count, plural, =1{এই সপ্তাহত ১ দিন সক্ৰিয়।} other{এই সপ্তাহত {count} দিন সক্ৰিয়।}}",
+  "@progressActiveDays": {
+    "description": "Progress activity count",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "progressCtaStart": "আপোনাৰ যাত্ৰা আৰম্ভ কৰাৰ সময় হ’ল!",
+  "@progressCtaStart": {
+    "description": "Progress gold CTA empty"
+  },
+  "progressCtaMomentum": "আপোনাৰ গতি বৰ্তাই ৰাখক",
+  "@progressCtaMomentum": {
+    "description": "Progress gold CTA with grade"
+  },
+  "progressCtaHabit": "আপুনি এটা অভ্যাস গঢ়ি তুলিছে",
+  "@progressCtaHabit": {
+    "description": "Progress gold CTA building"
+  },
+  "progressCtaNext": "পৰৱৰ্তী সময়ত কি কৰিব লাগিব চাওক",
+  "@progressCtaNext": {
+    "description": "Progress gold CTA subtitle"
+  },
+  "progressNextSteps": "পৰৱৰ্তী পদক্ষেপসমূহ",
+  "@progressNextSteps": {
+    "description": "Progress next steps sheet title"
+  },
+  "progressYourSetup": "আপোনাৰ চেটআপ",
+  "@progressYourSetup": {
+    "description": "Progress next steps setup section"
+  },
+  "progressWhatNext": "পৰৱৰ্তী সময়ত কি কৰিব",
+  "@progressWhatNext": {
+    "description": "Progress next steps advice section"
+  },
+  "progressNextWithStudy": "এই সপ্তাহত পাঠসমূহ শেষ কৰি থাকক। আপুনি সম্পূৰ্ণ কৰাৰ পিছত আপোনাৰ গ্ৰেড আপডেট হয়।",
+  "@progressNextWithStudy": {
+    "description": "Progress next steps with study"
+  },
+  "progressNextNoStudy": "Me ত, ক্লাছ আৰু বোৰ্ড নিশ্চিত কৰক। তাৰ পিছত Study খোলক আৰু আপোনাৰ প্ৰথম পাঠটো সম্পূৰ্ণ কৰক।",
+  "@progressNextNoStudy": {
+    "description": "Progress next steps without study"
+  },
+  "progressWeekEmpty": "এই সপ্তাহত এতিয়ালৈ কোনো পঢ়া ৰেকৰ্ড কৰা হোৱা নাই।",
+  "@progressWeekEmpty": {
+    "description": "Progress week line empty"
+  },
+  "progressWeekActiveDays": "{count, plural, =1{১ দিন সক্ৰিয়} other{{count} দিন সক্ৰিয়}}",
+  "@progressWeekActiveDays": {
+    "description": "Progress week line active days",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "progressWeekLessons": "{count, plural, =1{১ টা পাঠ} other{{count} টা পাঠ}}",
+  "@progressWeekLessons": {
+    "description": "Progress week line lessons",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "progressWeekChapterTests": "{count, plural, =1{১ টা চেপ্টাৰ টেষ্ট} other{{count} টা চেপ্টাৰ টেষ্ট}}",
+  "@progressWeekChapterTests": {
+    "description": "Progress week line chapter tests",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "progressWeekXp": "{count} XP",
+  "@progressWeekXp": {
+    "description": "Progress week line XP",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "progressWeekSummary": "এই সপ্তাহত: {parts}।",
+  "@progressWeekSummary": {
+    "description": "Progress week line summary",
+    "placeholders": {
+      "parts": {
+        "type": "String"
+      }
+    }
+  },
+  "progressWeekdayMon": "সো",
+  "@progressWeekdayMon": {
+    "description": "Progress weekday initial Mon"
+  },
+  "progressWeekdayTue": "ম",
+  "@progressWeekdayTue": {
+    "description": "Progress weekday initial Tue"
+  },
+  "progressWeekdayWed": "বু",
+  "@progressWeekdayWed": {
+    "description": "Progress weekday initial Wed"
+  },
+  "progressWeekdayThu": "বৃ",
+  "@progressWeekdayThu": {
+    "description": "Progress weekday initial Thu"
+  },
+  "progressWeekdayFri": "শু",
+  "@progressWeekdayFri": {
+    "description": "Progress weekday initial Fri"
+  },
+  "progressWeekdaySat": "শ",
+  "@progressWeekdaySat": {
+    "description": "Progress weekday initial Sat"
+  },
+  "progressWeekdaySun": "ৰ",
+  "@progressWeekdaySun": {
+    "description": "Progress weekday initial Sun"
+  },
+  "subjectsStreamTitle": "আপোনাৰ ষ্ট্ৰীম",
+  "@subjectsStreamTitle": {
+    "description": "Subjects sheet stream title"
+  },
+  "subjectsSave": "ছেভ কৰক",
+  "@subjectsSave": {
+    "description": "Subjects sheet save button"
+  },
+  "subjectsLoadError": "আপোনাৰ বিষয়সমূহ লোড কৰিব পৰা নগ’ল। পুনৰ চেষ্টা কৰক",
+  "@subjectsLoadError": {
+    "description": "Subjects picker load error"
+  },
+  "subjectsMain": "মুখ্য",
+  "@subjectsMain": {
+    "description": "Subjects picker main label"
+  },
+  "subjectsOptional": "বৈচ্ছিক",
+  "@subjectsOptional": {
+    "description": "Subjects picker optional label"
+  },
+  "streamSwipeFor": "{name} ৰ বাবে চুইপ কৰক। Me ত ইয়াক যিকোনো সময়তে সলনি কৰক।",
+  "@streamSwipeFor": {
+    "description": "Stream cards swipe hint",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "streamChangeInMe": "Me ত ইয়াক যিকোনো সময়তে সলনি কৰক।",
+  "@streamChangeInMe": {
+    "description": "Stream cards last-card hint"
+  },
+  "streamChoose": "{name} বাছক",
+  "@streamChoose": {
+    "description": "Subjects sheet choose stream button",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "classDialLabel": "ক্লাছ",
+  "@classDialLabel": {
+    "description": "Class dial center label"
+  },
+  "classDialSemantics": "ক্লাছ {level}",
+  "@classDialSemantics": {
+    "description": "Class dial semantics",
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "studyTitle": "অধ্যয়ন",
+  "@studyTitle": {
+    "description": "Study tab screen title"
+  },
+  "studyCourses": "কোৰ্চসমূহ",
+  "@studyCourses": {
+    "description": "Study Courses tab"
+  },
+  "studyFolders": "ফ'ল্ডাৰসমূহ",
+  "@studyFolders": {
+    "description": "Study Folders tab"
+  },
+  "studyDone": "সম্পূৰ্ণ",
+  "@studyDone": {
+    "description": "Done button"
+  },
+  "studyKeep": "ৰাখক",
+  "@studyKeep": {
+    "description": "Keep dialog action / card tool"
+  },
+  "studyDelete": "মচি পেলাওক",
+  "@studyDelete": {
+    "description": "Delete action"
+  },
+  "studySave": "সংৰক্ষণ কৰক",
+  "@studySave": {
+    "description": "Save action"
+  },
+  "studyCreate": "সৃষ্টি কৰক",
+  "@studyCreate": {
+    "description": "Create folder action"
+  },
+  "studyAdd": "যোগ কৰক",
+  "@studyAdd": {
+    "description": "Add tooltip"
+  },
+  "studyOptional": "ঐচ্ছিক",
+  "@studyOptional": {
+    "description": "Optional field hint"
+  },
+  "studyName": "নাম",
+  "@studyName": {
+    "description": "Folder name field label"
+  },
+  "studyToday": "আজি",
+  "@studyToday": {
+    "description": "Today section / due today"
+  },
+  "studyComingSoon": "শীঘ্ৰেই আহি আছে",
+  "@studyComingSoon": {
+    "description": "Coming soon label"
+  },
+  "studyXp": "XP",
+  "@studyXp": {
+    "description": "XP stat label"
+  },
+  "studyChTitle": "অধ্যায় {number} · {title}",
+  "@studyChTitle": {
+    "description": "Chapter abbreviation row title",
+    "placeholders": {
+      "number": {
+        "type": "int"
+      },
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "studyLessonsDoneOf": "{count, plural, =1{1 টা পাঠৰ} other{{count} টা পাঠৰ}} ভিতৰত {done} সম্পূৰ্ণ",
+  "@studyLessonsDoneOf": {
+    "description": "Lessons completed of total",
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "studyComingSoonCount": "{count, plural, =1{১ টা শীঘ্ৰেই আহি আছে} other{{count} টা শীঘ্ৰেই আহি আছে}}",
+  "@studyComingSoonCount": {
+    "description": "Count of coming-soon lessons",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "studyNotInBoardExam": "ব’ৰ্ড পৰীক্ষাত নাহে",
+  "@studyNotInBoardExam": {
+    "description": "Formative-only chapter note"
+  },
+  "studyCardsCount": "{count, plural, =1{১ টা কাৰ্ড} other{{count} টা কাৰ্ড}}",
+  "@studyCardsCount": {
+    "description": "Card count",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "studyQuickChecksCount": "{count, plural, =1{১ টা দ্ৰুত পৰীক্ষা} other{{count} টা দ্ৰুত পৰীক্ষা}}",
+  "@studyQuickChecksCount": {
+    "description": "Quick check count",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "studyQuestionsCount": "{count, plural, =1{১ টা প্ৰশ্ন} other{{count} টা প্ৰশ্ন}}",
+  "@studyQuestionsCount": {
+    "description": "Question count",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "studyChaptersCount": "{count, plural, =1{১ টা অধ্যায়} other{{count} টা অধ্যায়}}",
+  "@studyChaptersCount": {
+    "description": "Chapter count",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "studyLessonsCount": "{count, plural, =1{১ টা পাঠ} other{{count} টা পাঠ}}",
+  "@studyLessonsCount": {
+    "description": "Lesson count",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "studyMinutesShort": "{minutes} মিনিট",
+  "@studyMinutesShort": {
+    "description": "Short minutes label",
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "studyAboutMinutes": "প্ৰায় {minutes} মিনিট",
+  "@studyAboutMinutes": {
+    "description": "Approx lesson duration",
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "coursesNeedSyllabus": "আপোনাৰ পাঠ্যক্ৰম চাবলৈ হোম পেজত আপোনাৰ শ্ৰী আৰু ব’ৰ্ড ছেট কৰক।",
+  "@coursesNeedSyllabus": {
+    "description": "Courses empty without syllabus"
+  },
+  "coursesLoadError": "আপোনাৰ পাঠ্যক্ৰম ল’ড কৰিব পৰা নগ’ল। পুনৰ চেষ্টা কৰক",
+  "@coursesLoadError": {
+    "description": "Courses load failure"
+  },
+  "coursesComingSoon": "{syllabus} ৰ বাবে পাঠসমূহ আহি আছে। ইয়াৰ ভিতৰতে ASKMe ত Pebby ক যিকোনো প্রশ্ন সুধক।",
+  "@coursesComingSoon": {
+    "description": "Courses empty for syllabus",
+    "placeholders": {
+      "syllabus": {
+        "type": "String"
+      }
+    }
+  },
+  "coursesNoFilterMatch": "এই ফিল্টাৰসমূহৰ সৈতে কোনো অধ্যায় মিল খোৱা নাই।",
+  "@coursesNoFilterMatch": {
+    "description": "Filtered courses empty"
+  },
+  "coursesFinishedEmpty": "সম্পূৰ্ণ কৰা অধ্যায়সমূহ ইয়াত দেখা যাব।",
+  "@coursesFinishedEmpty": {
+    "description": "Done filter empty"
+  },
+  "coursesStartedEmpty": "আপুনি আৰম্ভ কৰা অধ্যায়সমূহ ইয়াত দেখা যাব।",
+  "@coursesStartedEmpty": {
+    "description": "In-progress filter empty"
+  },
+  "coursesGoAgain": "পুনৰ যাওক",
+  "@coursesGoAgain": {
+    "description": "Continue key when lesson done"
+  },
+  "coursesContinueCard": "আৰম্ভ কৰক · কাৰ্ড {current} / {total}",
+  "@coursesContinueCard": {
+    "description": "Continue key resume",
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "coursesStart": "আৰম্ভ কৰক",
+  "@coursesStart": {
+    "description": "Continue key start"
+  },
+  "filterAll": "সকলো",
+  "@filterAll": {
+    "description": "Chapter status filter All"
+  },
+  "filterInProgress": "চলিম আছে",
+  "@filterInProgress": {
+    "description": "Chapter status filter In progress"
+  },
+  "filterDone": "সম্পূৰ্ণ",
+  "@filterDone": {
+    "description": "Chapter status filter Done"
+  },
+  "filterFilters": "ফিল্টাৰসমূহ",
+  "@filterFilters": {
+    "description": "Filters button and sheet title"
+  },
+  "filterFiltersOn": "ফিল্টাৰসমূহ, {count} টা সক্ৰিয়",
+  "@filterFiltersOn": {
+    "description": "Filters semantics when active",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "filterClear": "মহাৰক",
+  "@filterClear": {
+    "description": "Clear filters"
+  },
+  "filterSort": "সজাওক",
+  "@filterSort": {
+    "description": "Sort section header"
+  },
+  "filterShowChapters": "{count, plural, =1{১ টা অধ্যায়} other{{count} টা অধ্যায়}} দেখুৱাওক",
+  "@filterShowChapters": {
+    "description": "Apply filters button",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "filterBoardExamOnly": "বোৰ্ড পৰীক্ষা কেৱল",
+  "@filterBoardExamOnly": {
+    "description": "Board exam filter title"
+  },
+  "filterBoardExamOnlyDesc": "স্কুলত মূল্যায়িত অধ্যায়সমূহ লুকুৱাওক",
+  "@filterBoardExamOnlyDesc": {
+    "description": "Board exam filter subtitle"
+  },
+  "filterReadyToStudy": "পঢ়িবলৈ প্ৰস্তুত",
+  "@filterReadyToStudy": {
+    "description": "Ready filter title"
+  },
+  "filterReadyToStudyDesc": "শীঘ্ৰেই আহি থকা অধ্যায়সমূহ লুকুৱাওক",
+  "@filterReadyToStudyDesc": {
+    "description": "Ready filter subtitle"
+  },
+  "filterRevisionDue": "ৰিভিজন বাকী আছে",
+  "@filterRevisionDue": {
+    "description": "Revision due filter title"
+  },
+  "filterRevisionDueDesc": "ৰিভিজন কৰিবলৈ ৰখা কাৰ্ড থকা অধ্যায়সমূহ",
+  "@filterRevisionDueDesc": {
+    "description": "Revision due filter subtitle"
+  },
+  "filterSortTextbook": "পাঠ্যপুথি",
+  "@filterSortTextbook": {
+    "description": "Sort by textbook order"
+  },
+  "filterSortMostMarks": "সাত্বাধিক নম্বৰ",
+  "@filterSortMostMarks": {
+    "description": "Sort by marks"
+  },
+  "filterSortRecent": "শেহতীয়া",
+  "@filterSortRecent": {
+    "description": "Sort by recent"
+  },
+  "filterFlagBoardExam": "বোৰ্ড পৰীক্ষা",
+  "@filterFlagBoardExam": {
+    "description": "Active chip board exam"
+  },
+  "filterFlagReady": "প্ৰস্তুত",
+  "@filterFlagReady": {
+    "description": "Active chip ready"
+  },
+  "filterFlagRevisionDue": "ৰিভিজন বাকী আছে",
+  "@filterFlagRevisionDue": {
+    "description": "Active chip revision due"
+  },
+  "filterRemove": "{label} আতৰাওক",
+  "@filterRemove": {
+    "description": "Remove filter chip semantics",
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
+  "folderNew": "নতুন ফ'ল্ডাৰ",
+  "@folderNew": {
+    "description": "New folder button"
+  },
+  "folderEdit": "ফ'ল্ডাৰ সম্পাদনা কৰক",
+  "@folderEdit": {
+    "description": "Edit folder sheet title"
+  },
+  "folderEmptyHint": "পৰীক্ষা, হোমৱৰ্ক বা যিকোনো প্ৰস্তুতিৰ বাবে এটা ফ'ল্ডাৰ বনাওক। এটা তাৰিখ যোগ কৰক আৰু ই আপোনাৰ দিনবোৰ পৰিকল্পনা কৰিব।",
+  "@folderEmptyHint": {
+    "description": "Folders empty state"
+  },
+  "folderEmpty": "খালী",
+  "@folderEmpty": {
+    "description": "Empty folder tile subtitle"
+  },
+  "folderNothingLeftToday": "আজি একো বাকী নাই",
+  "@folderNothingLeftToday": {
+    "description": "Folder tile when caught up"
+  },
+  "folderTodoToday": "আজি কৰিবলগীয়া {count} টা",
+  "@folderTodoToday": {
+    "description": "Folder tile todos left",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "folderNoDate": "তাৰিখ নাই",
+  "@folderNoDate": {
+    "description": "Folder header without due date"
+  },
+  "folderPercentReady": "{percent}% প্ৰস্তুত",
+  "@folderPercentReady": {
+    "description": "Folder progress",
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "folderWhatsFor": "এই ফ'ল্ডাৰটো কিহৰ বাবে?",
+  "@folderWhatsFor": {
+    "description": "Empty folder title"
+  },
+  "folderAddChaptersPlan": "অধ্যায়সমূহ যোগ কৰক আৰু Pebby এ আপোনাৰ দিনবোৰ পৰিকল্পনা কৰিব।",
+  "@folderAddChaptersPlan": {
+    "description": "Empty folder subtitle"
+  },
+  "folderAddChapters": "অধ্যায়সমূহ যোগ কৰক",
+  "@folderAddChapters": {
+    "description": "Add chapters action"
+  },
+  "folderFromSyllabus": "আপোনাৰ পাঠ্যক্ৰমৰ পৰা",
+  "@folderFromSyllabus": {
+    "description": "Add chapters subtitle"
+  },
+  "folderWriteNote": "এটা টোকা লিখক",
+  "@folderWriteNote": {
+    "description": "Write note action"
+  },
+  "folderNoteSubtitle": "আপুনি যি মনত ৰাখিব বিচাৰে",
+  "@folderNoteSubtitle": {
+    "description": "Write note subtitle"
+  },
+  "folderScanNotes": "টোকা স্কেন কৰক",
+  "@folderScanNotes": {
+    "description": "Scan notes action"
+  },
+  "folderScanNotesSubtitle": "পাঠৰ ছবি, এটা পাঠলৈ পৰিণত কৰা হৈছে",
+  "@folderScanNotesSubtitle": {
+    "description": "Scan notes subtitle"
+  },
+  "folderAddTodo": "এটা কৰণীয় কাম যোগ কৰক",
+  "@folderAddTodo": {
+    "description": "Todo field hint"
+  },
+  "folderAddDate": "তাৰিখ যোগ কৰক",
+  "@folderAddDate": {
+    "description": "Date picker placeholder"
+  },
+  "folderRemoveDate": "তাৰিখ আতৰ a",
+  "@folderRemoveDate": {
+    "description": "Remove due date tooltip"
+  },
+  "folderReminders": "এই ফোল্ডাৰটোৰ বাবে সোঁৱৰণি",
+  "@folderReminders": {
+    "description": "Folder reminders switch"
+  },
+  "folderDeleteTitle": "এই ফোল্ডাৰটো মচি পেলাব নেকি?",
+  "@folderDeleteTitle": {
+    "description": "Delete folder dialog title"
+  },
+  "folderDeleteBody": "ইয়াৰ টোকা আৰু কামবোৰো গুচি যাব। আপোনাৰ পাঠ আৰু প্ৰগতি থাকি যাব।",
+  "@folderDeleteBody": {
+    "description": "Delete folder dialog body"
+  },
+  "folderTitle": "ফোল্ডাৰ",
+  "@folderTitle": {
+    "description": "Folder screen title"
+  },
+  "folderEditRemindersTooltip": "সম্পাদনা আৰু সোঁৱৰণি",
+  "@folderEditRemindersTooltip": {
+    "description": "Folder edit tooltip"
+  },
+  "folderDeleteTooltip": "ফোল্ডাৰ মচি পেলাওক",
+  "@folderDeleteTooltip": {
+    "description": "Folder delete tooltip"
+  },
+  "folderLoadError": "এই ফোল্ডাৰটো ল'ড কৰিব পৰা নগ'ল। পুনৰ চেষ্টা কৰক",
+  "@folderLoadError": {
+    "description": "Folder load error"
+  },
+  "folderTodayMinutes": "আজি · {minutes} মিনিট",
+  "@folderTodayMinutes": {
+    "description": "Folder today with minutes",
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "folderSeePlan": "পিকল্প চাওক",
+  "@folderSeePlan": {
+    "description": "Open plan button"
+  },
+  "folderAddChaptersOrTodos": "অধ্যায় বা কৰণীয় কাম যোগ কৰক।",
+  "@folderAddChaptersOrTodos": {
+    "description": "Empty today no due"
+  },
+  "folderNothingLeftForToday": "আজিলৈ আৰু একো বাকী নাই।",
+  "@folderNothingLeftForToday": {
+    "description": "Empty today with content"
+  },
+  "folderInThisFolder": "এই ফোল্ডাৰত",
+  "@folderInThisFolder": {
+    "description": "Folder contents section"
+  },
+  "folderFromNotesDone": "আপোনাৰ টোকাৰ পৰা · সম্পূৰ্ণ হ'ল",
+  "@folderFromNotesDone": {
+    "description": "Notes lesson done"
+  },
+  "folderFromNotesMinutes": "আপোনাৰ টোকাৰ পৰা · {minutes} মিনিট",
+  "@folderFromNotesMinutes": {
+    "description": "Notes lesson duration",
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "folderNote": "টোকা",
+  "@folderNote": {
+    "description": "Note item subtitle"
+  },
+  "folderSaveNote": "টোকা ছেভ কৰক",
+  "@folderSaveNote": {
+    "description": "Note sheet action"
+  },
+  "folderTypeHere": "ইয়াত টাইপ কৰক…",
+  "@folderTypeHere": {
+    "description": "Note sheet hint"
+  },
+  "folderAddTo": "এটা ফোল্ডাৰত যোগ কৰক",
+  "@folderAddTo": {
+    "description": "Folder picker title / chapter action"
+  },
+  "folderCouldntMake": "ফোল্ডাৰটো বনাৰ নোৱাৰিলে। পুনৰ চেষ্টা কৰক।",
+  "@folderCouldntMake": {
+    "description": "Create folder error snackbar"
+  },
+  "folderAddedTo": "{name} লৈ যোগ কৰা হ'ল",
+  "@folderAddedTo": {
+    "description": "Added chapters snackbar",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "folderYourFolder": "আপোনাৰ ফোল্ডাৰ",
+  "@folderYourFolder": {
+    "description": "Fallback folder name"
+  },
+  "folderPlan": "পিকল্প",
+  "@folderPlan": {
+    "description": "Plan screen without due"
+  },
+  "folderPlanTo": "{date} লৈকে পৰিকল্পনা",
+  "@folderPlanTo": {
+    "description": "Plan screen with due",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "folderPlanBody": "এই ফোল্ডাৰৰ অধ্যায়সমূহৰ পৰা তৈয়াৰ কৰা হৈছে। কিবা বাদ পৰিল নেকি? ই নিজেই পিছৰ দিনালৈ গুচি যায়।",
+  "@folderPlanBody": {
+    "description": "Plan screen explainer"
+  },
+  "folderTestDay": "পৰীক্ষাৰ দিন · আপুনি প্ৰস্তুত",
+  "@folderTestDay": {
+    "description": "Plan due day line"
+  },
+  "folderRestDay": "বিশ্ৰামৰ দিন",
+  "@folderRestDay": {
+    "description": "Plan rest day"
+  },
+  "folderDueTomorrow": "কাইলৈ",
+  "@folderDueTomorrow": {
+    "description": "Due tomorrow"
+  },
+  "folderDueYesterday": "যোৱাকালী",
+  "@folderDueYesterday": {
+    "description": "Due yesterday"
+  },
+  "folderDueDaysAgo": "{count, plural, =1{১ দিন} other{{count} দিন}}ৰ আগতে",
+  "@folderDueDaysAgo": {
+    "description": "Due days ago",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "folderDueInDays": "{count, plural, =1{১ দিন} other{{count} দিন}}ৰ পিছত",
+  "@folderDueInDays": {
+    "description": "Due in days",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "chapterTitle": "অধ্যায় {number}",
+  "@chapterTitle": {
+    "description": "Chapter screen title",
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "chapterLessons": "পাঠসমূহ",
+  "@chapterLessons": {
+    "description": "Lessons section title"
+  },
+  "chapterTest": "অধ্যায় পৰীক্ষা",
+  "@chapterTest": {
+    "description": "Chapter test row"
+  },
+  "chapterTestLast": "যোৱাবাৰ {correct}/{total} · আকৌ চেষ্টা কৰক",
+  "@chapterTestLast": {
+    "description": "Chapter test with prior score",
+    "placeholders": {
+      "correct": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "chapterTestSubtitle": "প্ৰতিটো পাঠৰ পৰা {count, plural, =1{১ টা প্ৰশ্ন} other{{count} টা প্ৰশ্ন}}",
+  "@chapterTestSubtitle": {
+    "description": "Chapter test empty result",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "chapterKeptCards": "সংৰক্ষিত কাৰ্ডসমূহ",
+  "@chapterKeptCards": {
+    "description": "Kept cards row"
+  },
+  "chapterKeptEmpty": "ইয়াত ছেভ কৰিবলৈ যিকোনো কাৰ্ডত Keep টিপক",
+  "@chapterKeptEmpty": {
+    "description": "Kept cards empty"
+  },
+  "chapterKeptCount": "ৰিভিজন কৰিবলৈ {count} টা",
+  "@chapterKeptCount": {
+    "description": "Kept cards count",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "chapterAllDoneGoAgain": "সকলো পাঠ শেষ · আকৌ যাওক",
+  "@chapterAllDoneGoAgain": {
+    "description": "Chapter resume when done"
+  },
+  "chapterResumeCard": "পুনৰ আৰম্ভ কৰক · কাৰ্ড {current} / {total}",
+  "@chapterResumeCard": {
+    "description": "Chapter resume mid-lesson",
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "chapterNextLesson": "পৰৱৰ্তী পাঠ",
+  "@chapterNextLesson": {
+    "description": "Chapter resume next"
+  },
+  "chapterLessonMeta": "পাঠ {position} · {cards}",
+  "@chapterLessonMeta": {
+    "description": "Resume key subtitle",
+    "placeholders": {
+      "position": {
+        "type": "int"
+      },
+      "cards": {
+        "type": "String"
+      }
+    }
+  },
+  "chapterCardsRight": "{cards} · {correct}/{quizzes} টা সঠিক",
+  "@chapterCardsRight": {
+    "description": "Done lesson row subtitle",
+    "placeholders": {
+      "cards": {
+        "type": "String"
+      },
+      "correct": {
+        "type": "int"
+      },
+      "quizzes": {
+        "type": "int"
+      }
+    }
+  },
+  "chapterCardsChecks": "{cards} · {checks}",
+  "@chapterCardsChecks": {
+    "description": "Lesson row subtitle",
+    "placeholders": {
+      "cards": {
+        "type": "String"
+      },
+      "checks": {
+        "type": "String"
+      }
+    }
+  },
+  "chapterComingSoonLessons": "শীঘ্ৰেই আহি আছে · {lessons}",
+  "@chapterComingSoonLessons": {
+    "description": "Coming soon with planned lessons",
+    "placeholders": {
+      "lessons": {
+        "type": "String"
+      }
+    }
+  },
+  "chapterLessonsDoneTestNext": "পাঠসমূহ শেষ · পৰৱৰ্তী পৰীক্ষা",
+  "@chapterLessonsDoneTestNext": {
+    "description": "Chapter done awaiting test"
+  },
+  "chapterDoneTestPercent": "সম্পূৰ্ণ হ’ল · পৰীক্ষা {percent}%",
+  "@chapterDoneTestPercent": {
+    "description": "Chapter done with test score",
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "chapterComingSoonSuffix": "· {count} টা শীঘ্ৰেই আহি আছে",
+  "@chapterComingSoonSuffix": {
+    "description": "Suffix for partial coming soon",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "chapterNotInBoardExamSuffix": "· ব’ৰ্ড পৰীক্ষাত নাই",
+  "@chapterNotInBoardExamSuffix": {
+    "description": "Formative suffix"
+  },
+  "chapterReportGreat": "দৰ্শনীয় কাম",
+  "@chapterReportGreat": {
+    "description": "Chapter report high score"
+  },
+  "chapterReportGood": "ভাল চলিছে",
+  "@chapterReportGood": {
+    "description": "Chapter report mid score"
+  },
+  "chapterReportRetry": "আকৌ এটা চেষ্টাৰ যোগ্য",
+  "@chapterReportRetry": {
+    "description": "Chapter report low score"
+  },
+  "chapterReportByLesson": "পাঠ অনুসৰি",
+  "@chapterReportByLesson": {
+    "description": "Chapter report section"
+  },
+  "chapterReportXp": "{title} · +{xp} XP",
+  "@chapterReportXp": {
+    "description": "Chapter report subtitle",
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "xp": {
+        "type": "int"
+      }
+    }
+  },
+  "chapterReviseMissed": "আপুনি যিবোৰ বাদ দিছে সেইবোৰ ৰিভিজন কৰক",
+  "@chapterReviseMissed": {
+    "description": "Chapter report revise"
+  },
+  "chapterAddToFolderAction": "এটা ফ’ল্ডাৰত চেপ্টাৰ যোগ কৰক",
+  "@chapterAddToFolderAction": {
+    "description": "Chapter report add folder"
+  },
+  "chapterBackToChapter": "চেপ্টাৰলৈ ঘূৰি যাওক",
+  "@chapterBackToChapter": {
+    "description": "Back to chapter button"
+  },
+  "chapterNoChaptersYet": "আপোনাৰ শ্ৰেণীৰ বাবে এতিয়াও কোনো চেপ্টাৰ নাই।",
+  "@chapterNoChaptersYet": {
+    "description": "Add chapters empty"
+  },
+  "chapterAlreadyInFolder": "ইতিমধ্যে এই ফ’ল্ডাৰত আছে",
+  "@chapterAlreadyInFolder": {
+    "description": "Chapter already added"
+  },
+  "chapterLessonsDoneShort": "{lessons} · {done} টা শেষ",
+  "@chapterLessonsDoneShort": {
+    "description": "Add chapters subtitle",
+    "placeholders": {
+      "lessons": {
+        "type": "String"
+      },
+      "done": {
+        "type": "int"
+      }
+    }
+  },
+  "chapterPickChapters": "চেপ্টাৰ বাছনি কৰক",
+  "@chapterPickChapters": {
+    "description": "Add chapters empty pick"
+  },
+  "chapterAddCount": "{count, plural, =1{১ টা চেপ্টাৰ} other{{count} টা চেপ্টাৰ}} যোগ কৰক",
+  "@chapterAddCount": {
+    "description": "Add chapters confirm",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "chapterAddChaptersTitle": "চেপ্টাৰ যোগ কৰক",
+  "@chapterAddChaptersTitle": {
+    "description": "Add chapters screen title"
+  },
+  "deckReportTitle": "এই পাঠটো ৰিপ’ৰ্ট কৰক",
+  "@deckReportTitle": {
+    "description": "Report lesson sheet title"
+  },
+  "deckReportThanks": "ধন্যবাদ। আমি এই পাঠটো পৰীক্ষা কৰি চাম।",
+  "@deckReportThanks": {
+    "description": "Report lesson thanks"
+  },
+  "deckLoadError": "এই পাঠটো ল’ড কৰিব পৰা নগ’ল। পুনৰ চেষ্টা কৰক",
+  "@deckLoadError": {
+    "description": "Deck load error"
+  },
+  "deckPerfect": "পৰিপূৰ্ণ পাঠ!",
+  "@deckPerfect": {
+    "description": "Perfect lesson done"
+  },
+  "deckLessonDone": "পাঠ শেষ!",
+  "@deckLessonDone": {
+    "description": "Lesson done title"
+  },
+  "deckStatRight": "সঠিক",
+  "@deckStatRight": {
+    "description": "Correct answers stat"
+  },
+  "deckStatKept": "সংরক্ষণ কৰা হ’ল",
+  "@deckStatKept": {
+    "description": "Kept cards stat"
+  },
+  "deckNextTitle": "পৰৱৰ্তী: {title}",
+  "@deckNextTitle": {
+    "description": "Next lesson button",
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "deckStart": "আৰম্ভ কৰক",
+  "@deckStart": {
+    "description": "Deck start button"
+  },
+  "deckShowStep": "{step} নম্বৰ স্তৰ দেখুৱাওক",
+  "@deckShowStep": {
+    "description": "Reveal example step",
+    "placeholders": {
+      "step": {
+        "type": "int"
+      }
+    }
+  },
+  "deckCheck": "যাচাই কৰক",
+  "@deckCheck": {
+    "description": "Check answer button"
+  },
+  "deckNext": "পৰৱৰ্তী",
+  "@deckNext": {
+    "description": "Next card button"
+  },
+  "deckFinish": "শেষ কৰক",
+  "@deckFinish": {
+    "description": "Finish deck button"
+  },
+  "deckPreviousCard": "আগৰ কাৰ্ড",
+  "@deckPreviousCard": {
+    "description": "Previous card semantics"
+  },
+  "deckNewLesson": "নতুন পাঠ",
+  "@deckNewLesson": {
+    "description": "Start card kicker"
+  },
+  "deckByTheEnd": "শেষলৈ আপুনি পাৰিব:",
+  "@deckByTheEnd": {
+    "description": "Start card goals intro"
+  },
+  "deckMetaLine": "{cards} · {checks} · প্ৰায় {minutes} মিনিট",
+  "@deckMetaLine": {
+    "description": "Start card meta",
+    "placeholders": {
+      "cards": {
+        "type": "String"
+      },
+      "checks": {
+        "type": "String"
+      },
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "deckConcept": "ধাৰণা",
+  "@deckConcept": {
+    "description": "Concept card kicker"
+  },
+  "deckInOneLook": "এপলকত",
+  "@deckInOneLook": {
+    "description": "Table card kicker"
+  },
+  "deckSummary": "সাৰাংশ",
+  "@deckSummary": {
+    "description": "Summary card kicker"
+  },
+  "deckThreeLines": "তিনিশাৰীত পাঠটো",
+  "@deckThreeLines": {
+    "description": "Summary card title"
+  },
+  "deckKeptForRevision": "পুনৰালোচনাৰ বাবে সংৰক্ষিত",
+  "@deckKeptForRevision": {
+    "description": "Summary kept box label"
+  },
+  "deckKeptRevisionOne": "এই পাঠৰ পৰা ১ টা কাৰ্ড আপোনাৰ পুনৰালোচনালৈ ঘূৰি আহিব।",
+  "@deckKeptRevisionOne": {
+    "description": "Summary kept one card"
+  },
+  "deckKeptRevisionMany": "এই পাঠৰ পৰা {count} টা কাৰ্ড আপোনাৰ পুনৰালোচনালৈ ঘূৰি আহিব।",
+  "@deckKeptRevisionMany": {
+    "description": "Summary kept many cards",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "deckWorkedExample": "কৰা উদাহৰণ",
+  "@deckWorkedExample": {
+    "description": "Example card kicker"
+  },
+  "deckStepTryFirst": "স্তৰ {step} · প্ৰথমে চেষ্টা কৰক",
+  "@deckStepTryFirst": {
+    "description": "Hidden example step",
+    "placeholders": {
+      "step": {
+        "type": "int"
+      }
+    }
+  },
+  "deckRemember": "মনত ৰাখিব",
+  "@deckRemember": {
+    "description": "Remember box default label"
+  },
+  "deckKept": "সংৰক্ষিত",
+  "@deckKept": {
+    "description": "Card kept tool on"
+  },
+  "deckAskPebby": "Pebby-ক সোধক",
+  "@deckAskPebby": {
+    "description": "Ask Pebby tool"
+  },
+  "deckAskExplainSimply": "আপুনি ইয়াক আৰু সহজে বুজাব পাৰেনে? {title}: {body}",
+  "@deckAskExplainSimply": {
+    "description": "Ask prompt concept",
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "body": {
+        "type": "String"
+      }
+    }
+  },
+  "deckAskExplainExample": "আপুনি এটা উদাহৰণসহ \"{title}\" বুজাব পাৰেনে?",
+  "@deckAskExplainExample": {
+    "description": "Ask prompt table",
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "deckAskExplainSolve": "এইটো কেনেকৈ সমাধান কৰিব বুজাব পাৰেনে: {question}",
+  "@deckAskExplainSolve": {
+    "description": "Ask prompt example",
+    "placeholders": {
+      "question": {
+        "type": "String"
+      }
+    }
+  },
+  "deckAskWrongWhy": "মোৰ এইটো ভুল হ’ল: {question} কিয় এনে হ’ল: {why}",
+  "@deckAskWrongWhy": {
+    "description": "Ask prompt quiz",
+    "placeholders": {
+      "question": {
+        "type": "String"
+      },
+      "why": {
+        "type": "String"
+      }
+    }
+  },
+  "deckAskExplainLesson": "আপুনি এই পাঠটো বুজাব পাৰেনে?",
+  "@deckAskExplainLesson": {
+    "description": "Ask prompt fallback"
+  },
+  "deckGoals": "লক্ষ্যসমূহ",
+  "@deckGoals": {
+    "description": "Review start-card front"
+  },
+  "quizQuickCheck": "দুতীয়া পৰীক্ষা",
+  "@quizQuickCheck": {
+    "description": "Quiz card kicker"
+  },
+  "quizQuestionOf": "প্ৰশ্ন {current} / {total}",
+  "@quizQuestionOf": {
+    "description": "Chapter test question kicker",
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "quizPraise1": "ধুনীয়া! সেয়া সঠিক।",
+  "@quizPraise1": {
+    "description": "Quiz praise 1"
+  },
+  "quizPraise2": "একেবাৰে সঠিক!",
+  "@quizPraise2": {
+    "description": "Quiz praise 2"
+  },
+  "quizPraise3": "আপুনি বুজি পালে!",
+  "@quizPraise3": {
+    "description": "Quiz praise 3"
+  },
+  "quizPraise4": "শুদ্ধ, বৰ ভাল হ’ল!",
+  "@quizPraise4": {
+    "description": "Quiz praise 4"
+  },
+  "quizPraise5": "একেবাৰে সঠিক!",
+  "@quizPraise5": {
+    "description": "Quiz praise 5"
+  },
+  "quizHeresWhy": "ইয়াৰ কাৰণটো হ’ল",
+  "@quizHeresWhy": {
+    "description": "Why card kicker"
+  },
+  "quizYourAnswer": "আপোনাৰ উত্তৰ",
+  "@quizYourAnswer": {
+    "description": "Wrong option note"
+  },
+  "quizRightAnswer": "সঠিক উত্তৰ",
+  "@quizRightAnswer": {
+    "description": "Correct option note"
+  },
+  "quizKeptForYou": "আপোনাৰ বাবে সংৰক্ষিত",
+  "@quizKeptForYou": {
+    "description": "Why card remember label"
+  },
+  "quizComesBack": "এই প্ৰশ্নটো কাইলৈ আপোনাৰ সংশোধনী (revision) ত আকৌ আহিব।",
+  "@quizComesBack": {
+    "description": "Why card remember body"
+  },
+  "quizNotQuite": "অলপৰ বাবে মিল নহ’ল। পৰৱৰ্তী: কিয়।",
+  "@quizNotQuite": {
+    "description": "Wrong answer feedback"
+  },
+  "quizStreak": "{count} টা একেৰাহে",
+  "@quizStreak": {
+    "description": "Streak chip",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "quizXpTag": "+{xp} XP",
+  "@quizXpTag": {
+    "description": "XP chip",
+    "placeholders": {
+      "xp": {
+        "type": "int"
+      }
+    }
+  },
+  "studyRevision": "সংশোধনী (Revision)",
+  "@studyRevision": {
+    "description": "Revision screen title"
+  },
+  "studyRevisionEmptyTitle": "সংশোধন কৰিবলৈ একো নাই",
+  "@studyRevisionEmptyTitle": {
+    "description": "Revision empty title"
+  },
+  "studyRevisionEmptyBody": "পাঠ এটাত কাৰ্ডবোৰ ৰাখক, বা এটা প্ৰশ্ন বাদ পৰক, আৰু সিহঁত ইয়ালৈ ঘূৰি আহিব।",
+  "@studyRevisionEmptyBody": {
+    "description": "Revision empty body"
+  },
+  "studyRevisionDone": "সংশোধনী সম্পূৰ্ণ হ’ল",
+  "@studyRevisionDone": {
+    "description": "Revision finished title"
+  },
+  "studyRevisionSummary": "{knew} জানিছিলোঁ · {almost} প্ৰায় · {again} কাইলৈ আকৌ চাব লাগিব",
+  "@studyRevisionSummary": {
+    "description": "Revision finished summary",
+    "placeholders": {
+      "knew": {
+        "type": "int"
+      },
+      "almost": {
+        "type": "int"
+      },
+      "again": {
+        "type": "int"
+      }
+    }
+  },
+  "studyRevisionHint": "উত্তৰটো ভাবক, তাৰপিছত চাবলৈ টিপক।",
+  "@studyRevisionHint": {
+    "description": "Revision flip hint"
+  },
+  "studyRevisionShowAnswer": "উত্তৰ দেখুৱাওক",
+  "@studyRevisionShowAnswer": {
+    "description": "Reveal answer button"
+  },
+  "studyRevisionAgain": "নাজানিছিলোঁ",
+  "@studyRevisionAgain": {
+    "description": "Review rating again"
+  },
+  "studyRevisionAlmost": "প্ৰায়",
+  "@studyRevisionAlmost": {
+    "description": "Review rating almost"
+  },
+  "studyRevisionKnew": "জানিছিলোঁ",
+  "@studyRevisionKnew": {
+    "description": "Review rating knew"
+  },
+  "chapterTestDeckTitle": "অধ্যায় {number} পৰীক্ষা",
+  "@chapterTestDeckTitle": {
+    "description": "Chapter test deck top-bar title",
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "studyLessonsOf": "{count, plural, =1{১ টা পাঠ} other{{count} টা পাঠ}} ৰ ভিতৰত {done} টা",
+  "@studyLessonsOf": {
+    "description": "Lesson progress without done suffix",
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "actionTryAgain": "আকৌ চেষ্টা কৰক",
+  "@actionTryAgain": {
+    "description": "Shared try-again action"
+  },
+  "actionGoPro": "প্ৰ’ লৈ যাওক (Go Pro)",
+  "@actionGoPro": {
+    "description": "Shared Go Pro action"
+  },
+  "actionBack": "পিছুৱাই যাওক (Back)",
+  "@actionBack": {
+    "description": "Shared back action"
+  },
+  "actionClose": "বন্ধ কৰক",
+  "@actionClose": {
+    "description": "Shared close action"
+  },
+  "failureNetwork": "কোনো সংযোগ নাই। আপোনাৰ ইণ্টাৰনেট পৰীক্ষা কৰি আকৌ চেষ্টা কৰক।",
+  "@failureNetwork": {
+    "description": "Shared network failure"
+  },
+  "failureUnknown": "কিবা এটা ভুল হ’ল। আকৌ চেষ্টা কৰক।",
+  "@failureUnknown": {
+    "description": "Shared unknown failure"
+  }
+}

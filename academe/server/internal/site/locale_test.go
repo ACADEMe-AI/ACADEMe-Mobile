@@ -19,6 +19,7 @@ func TestResolveLang(t *testing.T) {
 		{"query te", "te", "", "te"},
 		{"query ta", "ta", "", "ta"},
 		{"query bn", "bn", "", "bn"},
+		{"query as", "as", "", "as"},
 		{"query en", "en", "", "en"},
 		{"unknown query falls back to accept", "fr", "hi", "hi"},
 		{"unknown both", "fr", "de", "en"},

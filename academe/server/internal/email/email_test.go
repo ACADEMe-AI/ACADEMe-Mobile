@@ -238,7 +238,7 @@ func TestNormalizeLanguage(t *testing.T) {
 		in, want string
 	}{
 		{"", "en"}, {"EN", "en"}, {"fr", "en"}, {"hi", "hi"}, {" HI ", "hi"},
-		{"te", "te"}, {"ta", "ta"}, {"bn", "bn"}, {"hi-IN", "en"},
+		{"te", "te"}, {"ta", "ta"}, {"bn", "bn"}, {"as", "as"}, {"hi-IN", "en"},
 	} {
 		if got := locale(tc.in).Lang; got != tc.want {
 			t.Errorf("locale(%q).Lang = %q, want %q", tc.in, got, tc.want)
@@ -247,7 +247,7 @@ func TestNormalizeLanguage(t *testing.T) {
 }
 
 func TestLocalesRenderSubjectHTMLText(t *testing.T) {
-	langs := []string{"en", "hi", "te", "ta", "bn"}
+	langs := []string{"en", "hi", "te", "ta", "bn", "as"}
 	for _, lang := range langs {
 		c := locale(lang)
 		t.Run("welcome/"+lang, func(t *testing.T) {

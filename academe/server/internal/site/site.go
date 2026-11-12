@@ -13,6 +13,7 @@ import (
 	"strings"
 
 	"academe/server/internal/httpx"
+	"academe/server/internal/lang"
 )
 
 //go:embed pages/*.html pages/*/*.html
@@ -87,12 +88,12 @@ func RegisterRoutes(mux *http.ServeMux, logger *slog.Logger, o Options) error {
 			return err
 		}
 	}
-	for lang := range supportedLangs {
-		if lang == defaultLang {
+	for _, code := range lang.Codes {
+		if code == defaultLang {
 			continue
 		}
 		for _, file := range legalFiles {
-			if err := s.parsePage(layout, lang, file); err != nil {
+			if err := s.parsePage(layout, code, file); err != nil {
 				return err
 			}
 		}

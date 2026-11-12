@@ -5,16 +5,9 @@ import (
 	"fmt"
 	"strings"
 
+	"academe/server/internal/lang"
 	"academe/server/internal/sarvam"
 )
-
-var languageNames = map[string]string{
-	"en": "English",
-	"hi": "Hindi",
-	"te": "Telugu",
-	"ta": "Tamil",
-	"bn": "Bengali",
-}
 
 type Sarvam struct {
 	client *sarvam.Client
@@ -37,10 +30,7 @@ func (s *Sarvam) Reply(ctx context.Context, brief Brief, history []Message) (str
 }
 
 func SystemPrompt(b Brief) string {
-	language := languageNames[b.Language]
-	if language == "" {
-		language = "English"
-	}
+	language := lang.EnglishName(b.Language)
 	var sb strings.Builder
 	sb.WriteString("You are Pebby, the friendly study buddy inside ACADEMe, a learning app for Indian school students. ")
 	fmt.Fprintf(&sb, "You are talking to %s", b.FirstName)

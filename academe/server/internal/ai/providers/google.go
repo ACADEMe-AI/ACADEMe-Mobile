@@ -193,6 +193,8 @@ func ocrLanguageHint(language string) string {
 	switch strings.ToLower(code) {
 	case "hi", "te", "ta", "bn":
 		return strings.ToLower(code)
+	case "as":
+		return "bn"
 	default:
 		return ""
 	}

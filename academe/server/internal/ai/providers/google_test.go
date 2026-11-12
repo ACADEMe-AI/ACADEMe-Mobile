@@ -98,6 +98,18 @@ func TestGoogleDigitiseSkipsEnglishHint(t *testing.T) {
 	}
 }
 
+func TestGoogleDigitiseAssameseUsesBengaliHint(t *testing.T) {
+	document := &fakeDocument{texts: []string{"page"}}
+	provider := NewGoogleForClients(nil, document, "processor", "gemini-test")
+	if _, err := provider.Digitise(t.Context(), []ai.Page{{Name: "one.jpg", Data: []byte("one")}}, "as"); err != nil {
+		t.Fatal(err)
+	}
+	hints := document.requests[0].GetProcessOptions().GetOcrConfig().GetHints().GetLanguageHints()
+	if len(hints) != 1 || hints[0] != "bn" {
+		t.Errorf("language hints = %v, want [bn]", hints)
+	}
+}
+
 func TestGoogleDigitiseError(t *testing.T) {
 	provider := NewGoogleForClients(nil, &fakeDocument{err: errors.New("boom")}, "processor", "gemini-test")
 	if _, err := provider.Digitise(t.Context(), []ai.Page{{Name: "one.jpg"}}, "en"); !errors.Is(err, ai.ErrUnavailable) {

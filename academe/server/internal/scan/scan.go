@@ -10,6 +10,7 @@ import (
 	"unicode/utf8"
 
 	"academe/server/internal/billing"
+	"academe/server/internal/lang"
 	"academe/server/internal/profile"
 	"academe/server/internal/sarvam"
 	"academe/server/internal/study"
@@ -161,18 +162,7 @@ func (b brief) student() string {
 }
 
 func (b brief) languageName() string {
-	switch b.language {
-	case "hi":
-		return "Hindi"
-	case "te":
-		return "Telugu"
-	case "ta":
-		return "Tamil"
-	case "bn":
-		return "Bengali"
-	default:
-		return "English"
-	}
+	return lang.EnglishName(b.language)
 }
 
 func ChapterPrompt(b brief) string {

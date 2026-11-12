@@ -5,7 +5,8 @@ enum AppLanguage {
   hindi('hi', 'हिन्दी', 'Hindi', 'नमस्ते!', 'आज हम क्या पढ़ें?'),
   telugu('te', 'తెలుగు', 'Telugu', 'నమస్తే!', 'ఈరోజు ఏం చదువుదాం?'),
   tamil('ta', 'தமிழ்', 'Tamil', 'வணக்கம்!', 'இன்று என்ன படிப்போம்?'),
-  bengali('bn', 'বাংলা', 'Bengali', 'নমস্কার!', 'আজ আমরা কী পড়ব?');
+  bengali('bn', 'বাংলা', 'Bengali', 'নমস্কার!', 'আজ আমরা কী পড়ব?'),
+  assamese('as', 'অসমীয়া', 'Assamese', 'নমস্কাৰ!', 'আজি আমি কি পঢ়িম?');
 
   const AppLanguage(
     this.code,

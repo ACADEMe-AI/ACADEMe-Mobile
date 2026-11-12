@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"slices"
 	"time"
+
+	"academe/server/internal/lang"
 )
 
 const (
@@ -17,10 +19,7 @@ const (
 	maxClass = 12
 )
 
-var (
-	Languages = []string{"en", "hi", "te", "ta", "bn"}
-	Boards    = []string{"CBSE", "ICSE"}
-)
+var Boards = []string{"CBSE", "ICSE"}
 
 type Profile struct {
 	Language  *string  `json:"language"`
@@ -124,7 +123,7 @@ func (s *Service) validate(u Update) error {
 	switch {
 	case u.Language == nil && u.BirthYear == nil && u.Class == nil && u.Board == nil && u.Subjects == nil:
 		return &ValidationError{"profile", "has nothing to update"}
-	case u.Language != nil && !slices.Contains(Languages, *u.Language):
+	case u.Language != nil && !lang.Supported(*u.Language):
 		return &ValidationError{"language", "is not supported"}
 	case u.BirthYear != nil && (*u.BirthYear < year-100 || *u.BirthYear > year-5):
 		return &ValidationError{"birthYear", "is out of range"}
