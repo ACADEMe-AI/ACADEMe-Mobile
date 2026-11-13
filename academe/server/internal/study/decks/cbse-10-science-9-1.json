@@ -1,0 +1,143 @@
+{
+  "id": "cbse-10-science-9-1",
+  "board": "CBSE",
+  "class": 10,
+  "subject": "science",
+  "chapterNumber": 9,
+  "chapterTitle": "Light – Reflection and Refraction",
+  "position": 1,
+  "title": "Spherical mirrors",
+  "language": "en",
+  "cards": [
+    {
+      "kind": "start",
+      "goals": [
+        "Tell a concave mirror from a convex one",
+        "Use pole, centre of curvature, focus and focal length",
+        "Say where each mirror is used"
+      ],
+      "minutes": 7
+    },
+    {
+      "kind": "concept",
+      "title": "Two kinds of spherical mirror",
+      "body": "A spherical mirror is part of a hollow sphere.\n- **Concave**: the shiny side curves inwards, like the inside of a spoon.\n- **Convex**: the shiny side bulges outwards, like the back of a spoon."
+    },
+    {
+      "kind": "table",
+      "title": "Words you'll need",
+      "rows": [
+        {
+          "term": "Pole (P)",
+          "value": "The centre of the mirror's surface"
+        },
+        {
+          "term": "Centre of curvature (C)",
+          "value": "The centre of the sphere the mirror is part of"
+        },
+        {
+          "term": "Radius of curvature (R)",
+          "value": "The distance from P to C"
+        },
+        {
+          "term": "Principal focus (F)",
+          "value": "Where rays parallel to the axis meet, or seem to come from"
+        },
+        {
+          "term": "Focal length (f)",
+          "value": "The distance from P to F"
+        }
+      ],
+      "remember": "f = R/2 for spherical mirrors."
+    },
+    {
+      "kind": "quiz",
+      "question": "A spherical mirror has a radius of curvature of 20 cm. What is its focal length?",
+      "options": [
+        "40 cm",
+        "20 cm",
+        "10 cm",
+        "5 cm"
+      ],
+      "answer": 2,
+      "why": "The focus lies halfway between the pole and the centre of curvature, so f = R/2 = 20/2 = 10 cm."
+    },
+    {
+      "kind": "concept",
+      "title": "Concave mirrors bring light together",
+      "body": "Rays parallel to the principal axis reflect off a concave mirror and meet at the principal focus F, in front of the mirror.\n\nThat's why a concave mirror is called a **converging** mirror."
+    },
+    {
+      "kind": "concept",
+      "title": "Convex mirrors spread light out",
+      "body": "Parallel rays reflect off a convex mirror and spread out. Traced backwards, they seem to come from a focus F **behind** the mirror.\n\nThat's why a convex mirror is called a **diverging** mirror."
+    },
+    {
+      "kind": "quiz",
+      "question": "Which mirror is used as the rear-view mirror in vehicles?",
+      "options": [
+        "Concave",
+        "Convex",
+        "Plane",
+        "Any of these"
+      ],
+      "answer": 1,
+      "why": "A convex mirror always gives an erect, smaller image and shows a much wider view than a plane mirror, so the driver sees more of the road behind."
+    },
+    {
+      "kind": "table",
+      "title": "Images from a concave mirror",
+      "rows": [
+        {
+          "term": "Object at infinity",
+          "value": "Real, inverted, point-sized, at F"
+        },
+        {
+          "term": "Beyond C",
+          "value": "Real, inverted, smaller, between F and C"
+        },
+        {
+          "term": "At C",
+          "value": "Real, inverted, same size, at C"
+        },
+        {
+          "term": "Between C and F",
+          "value": "Real, inverted, larger, beyond C"
+        },
+        {
+          "term": "At F",
+          "value": "Image at infinity"
+        },
+        {
+          "term": "Between F and P",
+          "value": "Virtual, erect, larger, behind the mirror"
+        }
+      ]
+    },
+    {
+      "kind": "concept",
+      "title": "Concave mirrors at work",
+      "body": "- **Shaving and make-up mirrors** and **dentists' mirrors**: held close, they give a larger, erect image.\n- **Torches and car headlights**: a bulb at F sends out a parallel beam.\n- **Solar furnaces**: they bring sunlight together at one point to make heat."
+    },
+    {
+      "kind": "quiz",
+      "question": "Where should an object be placed in front of a concave mirror to get a virtual, erect and magnified image?",
+      "options": [
+        "Beyond C",
+        "At C",
+        "Between F and P",
+        "At F"
+      ],
+      "answer": 2,
+      "why": "Only when the object is between the focus and the pole do the reflected rays spread out. They seem to meet behind the mirror, which gives a virtual, erect, magnified image, like a make-up mirror held close."
+    },
+    {
+      "kind": "summary",
+      "points": [
+        "Concave mirrors converge light; convex mirrors diverge it",
+        "f = R/2",
+        "Convex: rear-view mirrors. Concave: make-up mirrors, torches, solar furnaces"
+      ]
+    }
+  ]
+}

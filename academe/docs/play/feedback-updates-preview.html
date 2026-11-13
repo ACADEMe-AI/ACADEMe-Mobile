@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ACADEMe: feedback and update UI preview</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700&family=Noto+Sans:wght@400;600&display=swap">
+<style>
+:root {
+  --primary: #564cf1;
+  --on-primary: #fff;
+  --lavender-tint: #f0efff;
+  --edge: #12141a;
+  --muted: #374151;
+  --surface: #fff;
+  --surface-raised: #eef0f5;
+  --bg: #f6f7fa;
+  --ok: #0a7a55;
+  --warn: #92400e;
+  --radius: 14px;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); font: 15px/1.55 "Noto Sans", system-ui, sans-serif; color: var(--edge); }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 36px 20px 72px; }
+h1 { font-family: Archivo, sans-serif; font-size: 26px; margin: 0 0 8px; }
+.lead, .hint, aside, .review li { color: var(--muted); }
+.lead { max-width: 680px; margin: 0 0 24px; }
+.review { margin-bottom: 32px; padding: 20px 22px; background: var(--surface); border: 1px solid var(--surface-raised); border-radius: var(--radius); }
+.review h2 { font-family: Archivo; font-size: 16px; margin: 0 0 10px; color: var(--edge); }
+.review ul { margin: 0; padding-left: 20px; font-size: 14px; }
+.review li { margin: 8px 0; }
+.ok { font-weight: 600; color: var(--ok); list-style: none; margin-left: -20px; margin-bottom: 8px; color: var(--ok); }
+.warn { color: var(--warn); }
+nav { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 36px; }
+nav a { padding: 10px 16px; border-radius: 999px; background: var(--surface); border: 1px solid var(--surface-raised); text-decoration: none; color: var(--edge); font-weight: 600; font-size: 13px; }
+section { margin-top: 48px; padding-top: 20px; border-top: 2px solid var(--edge); }
+section > h2 { font-family: Archivo; font-size: 18px; margin: 0 0 8px; color: var(--edge); }
+.hint { font-size: 13px; margin: 0 0 24px; max-width: 640px; }
+.row { display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-start; }
+.device { width: 390px; flex-shrink: 0; border-radius: 28px; background: var(--surface); padding: 18px; box-shadow: 0 0 0 12px var(--edge), 0 16px 40px rgba(0,0,0,.12); }
+.banner-inline {
+  display: flex; align-items: center; gap: 8px;
+  min-height: 72px; padding: 8px 10px 8px 8px; margin-bottom: 16px;
+  background: var(--lavender-tint); border-radius: var(--radius);
+  box-shadow: 0 4px 0 var(--edge); font-size: 12px; color: var(--edge);
+}
+.banner-inline .pebby-slot { width: 64px; height: 64px; flex-shrink: 0; }
+.banner-inline .pebby-slot svg { width: 100%; height: 100%; }
+.banner-inline .msg { flex: 1; line-height: 1.35; }
+.banner-inline button { border: 0; background: none; cursor: pointer; padding: 8px; font: inherit; }
+.banner-inline .go { color: var(--primary); font-weight: 700; }
+.title { font-family: Archivo; font-size: 17px; margin: 0 0 12px; color: var(--edge); }
+.chip { background: var(--surface-raised); padding: 14px 16px; border-radius: var(--radius); font-size: 13px; margin-bottom: 10px; color: var(--muted); }
+.plain-bar { background: var(--surface-raised); padding: 14px 16px; border-radius: var(--radius); display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--edge); }
+.cta { margin-top: 28px; height: 52px; border: 0; border-radius: var(--radius); background: var(--primary); color: var(--on-primary); font-weight: 700; font-size: 15px; box-shadow: 0 4px 0 var(--edge); width: 100%; cursor: pointer; }
+.list { border: 1px solid var(--surface-raised); border-radius: var(--radius); margin-top: 16px; }
+.list div { padding: 15px 16px; border-bottom: 1px solid var(--surface-raised); font-size: 14px; color: var(--edge); }
+.list div:last-child { border-bottom: 0; }
+textarea { width: 100%; min-height: 110px; padding: 14px 16px; border-radius: 12px; border: 1px solid var(--surface-raised); font: inherit; margin-top: 16px; color: var(--edge); }
+aside { max-width: 300px; font-size: 13px; line-height: 1.55; padding-top: 8px; }
+table { width: 100%; border-collapse: collapse; background: var(--surface); border-radius: 12px; border: 1px solid var(--surface-raised); font-size: 14px; color: var(--edge); }
+th, td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--surface-raised); vertical-align: top; }
+th { background: var(--surface-raised); font-size: 11px; text-transform: uppercase; }
+code { background: var(--surface-raised); padding: 2px 6px; border-radius: 4px; font-size: 12px; color: var(--edge); }
+.label { font-size: 12px; font-weight: 600; color: var(--muted); margin-bottom: 10px; }
+.mono { margin-top: 12px; padding: 16px; background: var(--surface-raised); border-radius: var(--radius); font-size: 12px; font-family: ui-monospace, monospace; line-height: 1.6; color: var(--edge); }
+.force { text-align: center; padding: 40px 12px; min-height: 380px; display: flex; flex-direction: column; justify-content: center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Feedback and update UI preview</h1>
+  <p class="lead"><strong>Not the app.</strong> Static HTML for design review only. Students never see this file. Shipped UI: Flutter <code>soft_update_banner.dart</code>, <code>update_required_screen.dart</code>, Help/feedback screens.</p>
+  <div class="review">
+    <h2>Does it look good?</h2>
+    <p class="ok">One lavender keycap row: Pebby in a 64px slot on the left, copy and actions on the right.</p>
+    <ul>
+      <li class="warn">This HTML mascot is crude. Ship-quality is Rive <code>encourage</code> in <code>soft_update_banner.dart</code>.</li>
+      <li>Verify two-line messages and dark mode on a Pixel-class phone.</li>
+      <li>Before version was a flat grey bar (see compare section).</li>
+    </ul>
+  </div>
+  <nav>
+    <a href="#home">Soft banner</a>
+    <a href="#compare">Before / after</a>
+    <a href="#force">Force</a>
+    <a href="#help">Help</a>
+  </nav>
+  <section id="home">
+    <h2>Home + soft banner</h2>
+    <p class="hint">Single keycap (~72px tall): Pebby encourage in the left slot, message + Update + dismiss in the row.</p>
+    <div class="row">
+      <div class="device">
+        <div class="banner-inline">
+          <div class="pebby-slot"><svg viewBox="0 0 82 82"><rect x="14" y="28" width="54" height="46" rx="12" fill="#8b8cf5" stroke="#12141a" stroke-width="2"/><rect x="24" y="36" width="34" height="24" rx="7" fill="#fff" stroke="#12141a" stroke-width="2"/><ellipse cx="33" cy="46" rx="3" ry="4" fill="#12141a"/><ellipse cx="49" cy="46" rx="3" ry="4" fill="#12141a"/></svg></div>
+          <span class="msg">Bug fixes and faster ASKMe. Update on Play when you can.</span>
+          <button type="button" class="go">Update</button>
+          <button type="button" aria-label="Dismiss">×</button>
+        </div>
+        <p class="title">Today</p>
+        <div class="chip">Ask Pebby…</div>
+      </div>
+      <aside><p><strong>Good:</strong> playful, on-brand, clear CTA.</p><p><strong>Watch:</strong> dismiss target size and long copy wrapping.</p></aside>
+    </div>
+    <div class="mono">Row inside one Keycap: 64×64 Pebby · Expanded message · Update · ×</div>
+  </section>
+  <section id="compare">
+    <h2>Before vs after</h2>
+    <div class="row">
+      <div><p class="label">Before</p><div class="device" style="width:320px;padding:16px"><div class="plain-bar"><span class="msg">New version on Play.</span><button class="go">Update</button></div></div></div>
+      <div><p class="label">After</p><div class="device" style="width:320px;padding:16px"><div class="banner-inline"><div class="pebby-slot"><svg viewBox="0 0 82 82"><rect x="14" y="28" width="54" height="46" rx="12" fill="#8b8cf5" stroke="#12141a" stroke-width="2"/></svg></div><span class="msg">New version…</span><button class="go">Update</button></div></div></div>
+    </div>
+  </section>
+  <section id="force"><h2>Force update</h2><div class="device force"><p class="title">Update required</p><p class="hint">Only Play button. No tabs.</p><button class="cta">Update on Google Play</button></div></section>
+  <section id="help"><h2>Help + feedback form</h2><p class="hint">2/day, 5/week IST limits on server.</p></section>
+</div>
+</body>
+</html>

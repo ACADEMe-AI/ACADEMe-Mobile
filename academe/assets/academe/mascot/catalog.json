@@ -1,0 +1,37 @@
+{
+  "mascot": "pebby",
+  "version": "5.2.0",
+  "style": "flat-vector-rive",
+  "artSource": "source/pebby_3d_master.png",
+  "runtime": "rive",
+  "riv": "animations/pebby.riv",
+  "stateMachine": "PebbySM",
+  "inputs": {
+    "pose": "number 0-75",
+    "reduceMotion": "bool",
+    "appear": "number 0-100"
+  },
+  "widget": "lib/ui/core/ui/pebby.dart — Pebby(pose: PebbyPose.idle)",
+  "generator": "design/mascot/rive/",
+  "languagePose": {
+    "act_sing": 75,
+    "note": "LanguageSwitchScreen uses PebbyPose.singing; Scan still uses working/act_laptop"
+  },
+  "noticePoses": {
+    "notice_success": 60,
+    "notice_error": 61,
+    "notice_offline": 62,
+    "notice_saved": 63,
+    "notice_tip": 64,
+    "notice_limit": 65,
+    "notice_welcome": 66,
+    "notice_loading": 67,
+    "notice_fail_soft": 68,
+    "notice_celebrate": 69,
+    "notice_update_nudge": 70,
+    "notice_network_blip": 71,
+    "notice_language_done": 72,
+    "notice_goodbye": 73,
+    "notice_alert": 74
+  }
+}

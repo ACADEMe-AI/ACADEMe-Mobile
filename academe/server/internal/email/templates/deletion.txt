@@ -1,0 +1,11 @@
+{{define "content"}}{{.Heading}}
+
+{{.Lead}}
+
+{{.OpenTitle}}
+{{.Before}}{{.Emphasis}}{{.After}}
+
+{{.CantTitle}}
+{{.CantBody}}
+
+{{.Ignore}}{{end}}

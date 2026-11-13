@@ -1,0 +1,217 @@
+import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import '../../../config/links.dart';
+import '../../../domain/models/pro.dart';
+import '../../core/l10n/app_l10n.dart';
+import '../../core/themes/app_theme.dart';
+import '../../core/ui/keycap.dart';
+
+class ProBenefits extends StatelessWidget {
+  const ProBenefits({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    final items = [
+      (Icons.chat_bubble_rounded, l10n.paywallBenefitAskme),
+      (Icons.document_scanner_rounded, l10n.paywallBenefitScan),
+      (Icons.fact_check_rounded, l10n.paywallBenefitCheck),
+      (Icons.auto_stories_rounded, l10n.paywallBenefitLessons),
+      (Icons.insights_rounded, l10n.paywallBenefitProgress),
+    ];
+    return Column(
+      children: [
+        for (final (icon, label) in items)
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 4),
+            child: Row(
+              children: [
+                DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: context.palette.tintLavender,
+                    borderRadius: BorderRadius.circular(AppRadius.md),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: Icon(icon, size: 20, color: context.palette.text),
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Text(
+                    label,
+                    style: AppTextStyles.label.copyWith(
+                      color: context.palette.text,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+      ],
+    );
+  }
+}
+
+class PlanTile extends StatelessWidget {
+  const PlanTile({
+    super.key,
+    required this.offer,
+    required this.isSelected,
+    required this.onTap,
+  });
+
+  final ProOffer offer;
+  final bool isSelected;
+  final VoidCallback onTap;
+
+  static const height = 96.0;
+
+  String _title(AppLocalizations l10n) => offer.period == ProPeriod.monthly
+      ? l10n.paywallMonthly
+      : l10n.paywallAnnual;
+
+  String _price(AppLocalizations l10n) => switch (offer) {
+    ProOffer(period: ProPeriod.monthly, :final introPrice?, :final price) =>
+      l10n.paywallPriceIntroMonth(introPrice, price),
+    ProOffer(period: ProPeriod.monthly, :final price) => l10n.paywallPriceMonth(
+      price,
+    ),
+    ProOffer(:final price) => l10n.paywallPriceYear(price),
+  };
+
+  String _detail(AppLocalizations l10n) => switch (offer) {
+    ProOffer(period: ProPeriod.annual, :final monthlyPrice?) =>
+      l10n.paywallDetailAnnualMonthly(monthlyPrice),
+    ProOffer(period: ProPeriod.annual) => l10n.paywallDetailAnnual,
+    _ => l10n.paywallDetailRenews,
+  };
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    final title = _title(l10n);
+    final ink = isSelected ? AppColors.keycapEdge : context.palette.text;
+    return Semantics(
+      selected: isSelected,
+      label: l10n.paywallPlanSemantics(title),
+      child: Keycap(
+        face: isSelected ? AppColors.selected : context.palette.surface,
+        depth: AppKeycap.optionDepth,
+        height: height,
+        isLatched: isSelected,
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Row(
+            children: [
+              Icon(
+                isSelected
+                    ? Icons.radio_button_checked_rounded
+                    : Icons.radio_button_unchecked_rounded,
+                color: ink,
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: AppTextStyles.caption.copyWith(color: ink),
+                    ),
+                    Text(
+                      _price(l10n),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: AppTextStyles.labelStrong.copyWith(color: ink),
+                    ),
+                    Text(
+                      _detail(l10n),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: AppTextStyles.caption.copyWith(color: ink),
+                    ),
+                  ],
+                ),
+              ),
+              if (offer.period == ProPeriod.annual) const _BestValue(),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _BestValue extends StatelessWidget {
+  const _BestValue();
+
+  @override
+  Widget build(BuildContext context) {
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: AppColors.primary,
+        borderRadius: BorderRadius.circular(AppRadius.full),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+        child: Text(
+          context.l10n.paywallBestValue,
+          style: AppTextStyles.caption.copyWith(
+            color: AppColors.onPrimary,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class PaywallSmallPrint extends StatelessWidget {
+  const PaywallSmallPrint({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    final muted = AppTextStyles.caption.copyWith(
+      color: context.palette.textMuted,
+    );
+    return Column(
+      children: [
+        Text(l10n.paywallSmallPrint, textAlign: TextAlign.center, style: muted),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            _Link(label: l10n.paywallTerms, url: Links.terms),
+            Text('·', style: muted),
+            _Link(label: l10n.paywallPrivacy, url: Links.privacy),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+class _Link extends StatelessWidget {
+  const _Link({required this.label, required this.url});
+
+  final String label;
+  final Uri url;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: () => launchUrl(url, mode: LaunchMode.externalApplication),
+      style: TextButton.styleFrom(foregroundColor: context.palette.textMuted),
+      child: Text(
+        label,
+        style: AppTextStyles.caption.copyWith(
+          decoration: TextDecoration.underline,
+        ),
+      ),
+    );
+  }
+}

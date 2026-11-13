@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ACADEMe — force update preview</title>
+  <style>
+    :root {
+      --cream: #f6f1e8;
+      --surface: #fffdf8;
+      --ink: #1c1917;
+      --muted: #57534e;
+      --edge: #1c1917;
+      --primary: #6d28d9;
+      --primary-face: #7c3aed;
+      --lavender: #ddd6fe;
+      --radius: 24px;
+      --depth: 4px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 32px 16px 48px;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: #e7e5e4;
+      color: var(--ink);
+    }
+    .col { width: 360px; }
+    .label {
+      text-align: center;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .sub {
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+      margin: 0 0 12px;
+      line-height: 1.4;
+    }
+    .phone {
+      width: 360px;
+      height: 720px;
+      background: var(--cream);
+      border-radius: 36px;
+      border: 3px solid #292524;
+      box-shadow: 0 20px 50px rgba(0,0,0,.2);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .status {
+      height: 44px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding: 0 20px 8px;
+      font-size: 12px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    .screen {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 24px;
+    }
+    .mid {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 12px;
+    }
+    h1 {
+      margin: 0;
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+    .msg {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.35;
+      max-width: 280px;
+    }
+    .meta {
+      margin: 0;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.45;
+      max-width: 280px;
+    }
+    .btn {
+      display: block;
+      width: 100%;
+      height: 56px;
+      border: 2px solid var(--edge);
+      border-radius: var(--radius);
+      background: var(--primary-face);
+      color: #fff;
+      font-size: 16px;
+      font-weight: 700;
+      box-shadow: 0 var(--depth) 0 var(--edge);
+      cursor: default;
+    }
+    .pebby {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: #fde68a;
+      border: 2px solid var(--edge);
+      display: grid;
+      place-items: center;
+      font-size: 44px;
+      margin-bottom: 8px;
+      box-shadow: 0 3px 0 var(--edge);
+    }
+    .pill {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--lavender);
+      border: 1.5px solid var(--edge);
+      margin-bottom: 4px;
+    }
+    .note {
+      margin-top: 14px;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+    .note strong { color: var(--ink); }
+    .ghost {
+      opacity: 0.35;
+      pointer-events: none;
+      filter: grayscale(0.3);
+    }
+    .ghost .nav {
+      position: absolute;
+      left: 16px; right: 16px; bottom: 12px;
+      height: 56px;
+      border: 2px dashed #a8a29e;
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      font-size: 11px;
+      color: #78716c;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- A: as implemented today -->
+  <div class="col">
+    <div class="label">A · As built today</div>
+    <p class="sub">Full-screen gate after splash when<br><code>minBuild</code> &gt; installed build. No dismiss. No nav.</p>
+    <div class="phone">
+      <div class="status"><span>9:41</span><span>●●●</span></div>
+      <div class="screen">
+        <div class="mid">
+          <h1>Update required</h1>
+          <p class="msg">New version just dropped, you don't wanna miss this!</p>
+          <p class="meta">Installed build 12. This version no longer works with our servers.</p>
+        </div>
+        <button class="btn" type="button">Update on Google Play</button>
+      </div>
+    </div>
+    <p class="note">
+      Matches <strong>UpdateRequiredScreen</strong>: light cream, title, your new copy,
+      build note, one primary CTA. User cannot enter the app.
+    </p>
+  </div>
+
+  <!-- B: optional friendlier -->
+  <div class="col">
+    <div class="label">B · Optional (with Pebby)</div>
+    <p class="sub">Same force gate — warmer, same Gen Z line.<br>Only build this if you prefer it to A.</p>
+    <div class="phone">
+      <div class="status"><span>9:41</span><span>●●●</span></div>
+      <div class="screen">
+        <div class="mid">
+          <div class="pebby" aria-hidden="true">🐣</div>
+          <h1>Hold up</h1>
+          <p class="msg">New version just dropped, you don't wanna miss this!</p>
+          <p class="meta">This build can’t talk to our servers anymore. Update on Play to keep studying.</p>
+        </div>
+        <button class="btn" type="button">Update on Google Play</button>
+      </div>
+    </div>
+    <p class="note">
+      Still <strong>no “Not now”</strong> — force means blocked until Play update.
+      Soft banner (above nav) stays for recommended-only updates.
+    </p>
+  </div>
+
+</body>
+</html>

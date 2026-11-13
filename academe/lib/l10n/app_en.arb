@@ -1,0 +1,4020 @@
+{
+  "@@locale": "en",
+  "appTitle": "ACADEMe",
+  "@appTitle": {
+    "description": "MaterialApp title and brand name"
+  },
+  "meAppLanguage": "App language",
+  "@meAppLanguage": {
+    "description": "Me settings row and language sheet title"
+  },
+  "meLanguageSheetBody": "Pebby and Scan teaching replies use this language. App chrome follows it as we finish translating.",
+  "@meLanguageSheetBody": {
+    "description": "Language sheet explainer while remaining screens migrate"
+  },
+  "meMoreLanguagesComing": "More languages coming soon",
+  "@meMoreLanguagesComing": {
+    "description": "Footer on language sheet for languages not yet shipped"
+  },
+  "languageSwitchingTo": "Switching to {name}…",
+  "@languageSwitchingTo": {
+    "description": "Language switch screen primary line; name is native language name",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "हिन्दी"
+      }
+    }
+  },
+  "navHome": "Home",
+  "@navHome": {
+    "description": "Bottom nav Home tab label"
+  },
+  "navAskMe": "ASKMe",
+  "@navAskMe": {
+    "description": "Bottom nav ASKMe tab label"
+  },
+  "navStudy": "Study",
+  "@navStudy": {
+    "description": "Bottom nav Study tab label"
+  },
+  "navMe": "Me",
+  "@navMe": {
+    "description": "Bottom nav Me tab label"
+  },
+  "navScan": "Scan",
+  "@navScan": {
+    "description": "Semantics label for the Scan camera key"
+  },
+  "navSend": "Send",
+  "@navSend": {
+    "description": "Semantics label for the ask-bar send key"
+  },
+  "askAnythingHint": "Ask anything…",
+  "@askAnythingHint": {
+    "description": "Placeholder in the shell ask text field"
+  },
+  "askAttach": "Attach",
+  "@askAttach": {
+    "description": "Tooltip for attach on the ask bar"
+  },
+  "softUpdateDefaultMessage": "New version just dropped, you don't wanna miss this!",
+  "@softUpdateDefaultMessage": {
+    "description": "Fallback soft-update banner copy when the server sends an empty message"
+  },
+  "softUpdateAction": "Update",
+  "@softUpdateAction": {
+    "description": "Soft-update banner primary action"
+  },
+  "softUpdateDismiss": "Not now",
+  "@softUpdateDismiss": {
+    "description": "Soft-update banner dismiss tooltip"
+  },
+  "updateRequiredTitle": "Hold up",
+  "@updateRequiredTitle": {
+    "description": "Force-update screen title"
+  },
+  "updateRequiredBody": "This build can’t talk to our servers anymore. Update on Play to keep studying.",
+  "@updateRequiredBody": {
+    "description": "Force-update explanation under the server message"
+  },
+  "updateRequiredBuild": "Installed build {build}.",
+  "@updateRequiredBuild": {
+    "description": "Force-update footer showing the installed build number",
+    "placeholders": {
+      "build": {
+        "type": "String",
+        "example": "13"
+      }
+    }
+  },
+  "updateRequiredAction": "Update on Google Play",
+  "@updateRequiredAction": {
+    "description": "Force-update primary button"
+  },
+  "pebbySemantics": "Pebby",
+  "@pebbySemantics": {
+    "description": "Accessibility label for the Pebby mascot"
+  },
+  "welcomeHeadlineLead": "Study\nsmarter.",
+  "@welcomeHeadlineLead": {
+    "description": "Welcome hero lead; keep the line break"
+  },
+  "welcomeHeadlineAccent": "Not longer.",
+  "@welcomeHeadlineAccent": {
+    "description": "Welcome hero accent next to the lead"
+  },
+  "welcomeBody": "Notes, quizzes and flashcards made from what you are actually studying.",
+  "@welcomeBody": {
+    "description": "Welcome hero body under the headline"
+  },
+  "welcomeGetStarted": "Get started",
+  "@welcomeGetStarted": {
+    "description": "Welcome start primary button"
+  },
+  "welcomeAlreadyHaveAccount": "Already have an account? ",
+  "@welcomeAlreadyHaveAccount": {
+    "description": "Inline link lead on welcome start and sign-up sheet"
+  },
+  "welcomeNewUser": "New user? ",
+  "@welcomeNewUser": {
+    "description": "Inline link lead on welcome log-in sheet"
+  },
+  "welcomeLegal": "By continuing you agree to our Terms and Privacy Policy.",
+  "@welcomeLegal": {
+    "description": "Welcome legal footer under start actions"
+  },
+  "authSignUp": "Sign up",
+  "@authSignUp": {
+    "description": "Sign-up sheet title and footer action"
+  },
+  "authLogIn": "Log in",
+  "@authLogIn": {
+    "description": "Log-in sheet title and footer action"
+  },
+  "authContinueGoogle": "Continue with Google",
+  "@authContinueGoogle": {
+    "description": "OAuth Google button on welcome account options"
+  },
+  "authContinueApple": "Continue with Apple",
+  "@authContinueApple": {
+    "description": "OAuth Apple button on welcome account options"
+  },
+  "authContinueEmail": "Continue with email",
+  "@authContinueEmail": {
+    "description": "Email auth button on welcome account options"
+  },
+  "loginHeadlineLead": "Welcome",
+  "@loginHeadlineLead": {
+    "description": "Login email screen headline lead"
+  },
+  "loginHeadlineAccent": "back.",
+  "@loginHeadlineAccent": {
+    "description": "Login email screen headline accent"
+  },
+  "loginSubtitle": "Log in to pick up where you left off.",
+  "@loginSubtitle": {
+    "description": "Login email screen subtitle"
+  },
+  "authEmail": "Email",
+  "@authEmail": {
+    "description": "Email field label on auth screens"
+  },
+  "authPassword": "Password",
+  "@authPassword": {
+    "description": "Default password field label"
+  },
+  "authShowPassword": "Show password",
+  "@authShowPassword": {
+    "description": "Password field reveal tooltip"
+  },
+  "authHidePassword": "Hide password",
+  "@authHidePassword": {
+    "description": "Password field conceal tooltip"
+  },
+  "authForgotPassword": "Forgot password?",
+  "@authForgotPassword": {
+    "description": "Login link to password reset"
+  },
+  "authLoggingIn": "Logging in…",
+  "@authLoggingIn": {
+    "description": "Login button while the request runs"
+  },
+  "authNewHere": "New here? ",
+  "@authNewHere": {
+    "description": "Login footer lead linking to sign up"
+  },
+  "forgotPasswordLead": "Forgot your",
+  "@forgotPasswordLead": {
+    "description": "Forgot-password headline lead"
+  },
+  "forgotPasswordAccent": "password?",
+  "@forgotPasswordAccent": {
+    "description": "Forgot-password headline accent"
+  },
+  "forgotPasswordSubtitle": "Type your email and I'll send you a 6-digit code.",
+  "@forgotPasswordSubtitle": {
+    "description": "Forgot-password subtitle"
+  },
+  "authSending": "Sending…",
+  "@authSending": {
+    "description": "Send-code button while the request runs"
+  },
+  "authSendCode": "Send code",
+  "@authSendCode": {
+    "description": "Forgot-password primary action"
+  },
+  "resetCodeLead": "Check your",
+  "@resetCodeLead": {
+    "description": "Reset-code headline lead"
+  },
+  "resetCodeAccent": "email.",
+  "@resetCodeAccent": {
+    "description": "Reset-code headline accent"
+  },
+  "resetCodeSubtitle": "If {email} has an ACADEMe account, a 6-digit code is on its way. It expires in 15 minutes.",
+  "@resetCodeSubtitle": {
+    "description": "Reset-code subtitle including the target email",
+    "placeholders": {
+      "email": {
+        "type": "String",
+        "example": "ada@school.in"
+      }
+    }
+  },
+  "authPasteCode": "Paste code",
+  "@authPasteCode": {
+    "description": "Reset-code paste action"
+  },
+  "authChecking": "Checking…",
+  "@authChecking": {
+    "description": "Verify button while the request runs"
+  },
+  "authVerify": "Verify",
+  "@authVerify": {
+    "description": "Reset-code verify action"
+  },
+  "resetDidntGetIt": "Didn't get it? ",
+  "@resetDidntGetIt": {
+    "description": "Resend link lead when resend is available"
+  },
+  "resetSendNewCode": "Send a new code",
+  "@resetSendNewCode": {
+    "description": "Resend link action"
+  },
+  "resetSendingNewCode": "Sending a new code…",
+  "@resetSendingNewCode": {
+    "description": "Resend status while the request runs"
+  },
+  "resetNewCodeSent": "New code sent. You can ask again in 0:{seconds}",
+  "@resetNewCodeSent": {
+    "description": "Resend cooldown after a successful resend",
+    "placeholders": {
+      "seconds": {
+        "type": "String",
+        "example": "30"
+      }
+    }
+  },
+  "resetAskAgainIn": "You can ask for a new code in 0:{seconds}",
+  "@resetAskAgainIn": {
+    "description": "Resend cooldown before the next request",
+    "placeholders": {
+      "seconds": {
+        "type": "String",
+        "example": "29"
+      }
+    }
+  },
+  "newPasswordLead": "Choose a new",
+  "@newPasswordLead": {
+    "description": "New-password headline lead"
+  },
+  "newPasswordAccent": "password.",
+  "@newPasswordAccent": {
+    "description": "New-password headline accent"
+  },
+  "newPasswordSubtitle": "At least 8 characters. Don't worry, I won't look.",
+  "@newPasswordSubtitle": {
+    "description": "New-password subtitle"
+  },
+  "authNewPassword": "New password",
+  "@authNewPassword": {
+    "description": "New-password field label"
+  },
+  "authPasswordMinLength": "{count}+ characters",
+  "@authPasswordMinLength": {
+    "description": "Password length checklist row",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "8"
+      }
+    }
+  },
+  "authStartAgain": "Start again",
+  "@authStartAgain": {
+    "description": "Expired reset primary action"
+  },
+  "authSaving": "Saving…",
+  "@authSaving": {
+    "description": "Save button while the request runs"
+  },
+  "authSaveAndLogIn": "Save and log in",
+  "@authSaveAndLogIn": {
+    "description": "New-password primary action"
+  },
+  "authFailureEmailTaken": "An account already uses this email. Log in instead.",
+  "@authFailureEmailTaken": {
+    "description": "AuthFailure.emailTaken and sign-up email taken"
+  },
+  "authFailureWrongCredentials": "That email and password don't match.",
+  "@authFailureWrongCredentials": {
+    "description": "AuthFailure.wrongCredentials"
+  },
+  "authFailureInvalidInput": "Check your details and try again.",
+  "@authFailureInvalidInput": {
+    "description": "AuthFailure.invalidInput"
+  },
+  "authFailureSignedOut": "Your session ended. Log in again.",
+  "@authFailureSignedOut": {
+    "description": "AuthFailure.signedOut"
+  },
+  "authFailureNetwork": "Can't reach ACADEMe. Check your connection and try again.",
+  "@authFailureNetwork": {
+    "description": "AuthFailure.network"
+  },
+  "authFailureCanceled": "Sign-in was canceled.",
+  "@authFailureCanceled": {
+    "description": "AuthFailure.canceled"
+  },
+  "authFailureProviderUnavailable": "This sign-in option isn't ready yet. Use email for now.",
+  "@authFailureProviderUnavailable": {
+    "description": "AuthFailure.providerUnavailable"
+  },
+  "authFailureWrongCode": "That code isn't right. Check the email and try again.",
+  "@authFailureWrongCode": {
+    "description": "AuthFailure.wrongCode"
+  },
+  "authFailureTooManyAttempts": "Too many wrong tries. Send yourself a new code.",
+  "@authFailureTooManyAttempts": {
+    "description": "AuthFailure.tooManyAttempts"
+  },
+  "authFailureCodeExpired": "That code has expired. Send yourself a new one.",
+  "@authFailureCodeExpired": {
+    "description": "AuthFailure.codeExpired"
+  },
+  "authFailureResetExpired": "This reset link timed out. Start again from Forgot password.",
+  "@authFailureResetExpired": {
+    "description": "AuthFailure.resetExpired"
+  },
+  "authFailureTooManyRequests": "That's a lot of tries. Wait a little and try again.",
+  "@authFailureTooManyRequests": {
+    "description": "AuthFailure.tooManyRequests"
+  },
+  "authFailureWrongPassword": "That isn't your current password.",
+  "@authFailureWrongPassword": {
+    "description": "AuthFailure.wrongPassword"
+  },
+  "authFailureGoogleTaken": "That Google account is linked to another ACADEMe account.",
+  "@authFailureGoogleTaken": {
+    "description": "AuthFailure.googleTaken"
+  },
+  "authFailurePasswordRequired": "Set a password first, so you can still log in without Google.",
+  "@authFailurePasswordRequired": {
+    "description": "AuthFailure.passwordRequired"
+  },
+  "signUpHiPebby": "Hi, I'm Pebby!",
+  "@signUpHiPebby": {
+    "description": "Sign-up hello title for email or unnamed Google"
+  },
+  "signUpHiNamed": "Hi {name}, I'm Pebby!",
+  "@signUpHiNamed": {
+    "description": "Sign-up hello title when Google already gave a first name",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Maya"
+      }
+    }
+  },
+  "signUpAskFirstName": "Before we start, what should I call you?",
+  "@signUpAskFirstName": {
+    "description": "Sign-up first-name step title"
+  },
+  "signUpFirstName": "First name",
+  "@signUpFirstName": {
+    "description": "Sign-up first-name field label"
+  },
+  "signUpAskLastName": "Nice to meet you, {name}! And your last name?",
+  "@signUpAskLastName": {
+    "description": "Sign-up last-name step title",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Maya"
+      }
+    }
+  },
+  "signUpLastName": "Last name",
+  "@signUpLastName": {
+    "description": "Sign-up last-name field label"
+  },
+  "signUpAskEmail": "What's your email, {name}?",
+  "@signUpAskEmail": {
+    "description": "Sign-up email step title",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Maya"
+      }
+    }
+  },
+  "signUpEmailHint": "You'll use it to log in.",
+  "@signUpEmailHint": {
+    "description": "Sign-up email step subtitle"
+  },
+  "signUpEmailInvalid": "That doesn't look like an email yet.",
+  "@signUpEmailInvalid": {
+    "description": "Sign-up email field validation"
+  },
+  "signUpCreatePassword": "Create a password",
+  "@signUpCreatePassword": {
+    "description": "Sign-up password step title"
+  },
+  "signUpPasswordHint": "At least {count} characters. Don't worry, I won't look.",
+  "@signUpPasswordHint": {
+    "description": "Sign-up password step subtitle",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "8"
+      }
+    }
+  },
+  "signUpWelcomeBack": "Welcome back, {name}!",
+  "@signUpWelcomeBack": {
+    "description": "Sign-up done title for a returning account",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Maya"
+      }
+    }
+  },
+  "signUpAlreadyLoggedIn": "You already have an account, so you're logged in.",
+  "@signUpAlreadyLoggedIn": {
+    "description": "Sign-up done subtitle for a returning account"
+  },
+  "signUpYoureIn": "You're in, {name}!",
+  "@signUpYoureIn": {
+    "description": "Sign-up done title for a new account",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Maya"
+      }
+    }
+  },
+  "signUpAccountReady": "Your account is ready. Next, tell me what you study.",
+  "@signUpAccountReady": {
+    "description": "Sign-up done subtitle for a new account"
+  },
+  "signUpHelloEmail": "I'll help you study smarter. Let's set up your account, it takes a minute.",
+  "@signUpHelloEmail": {
+    "description": "Sign-up hello subtitle for email method"
+  },
+  "signUpConnectingAccount": "Connecting your account…",
+  "@signUpConnectingAccount": {
+    "description": "Sign-up hello subtitle while OAuth runs"
+  },
+  "signUpCheckName": "Let's check your name, then you're in.",
+  "@signUpCheckName": {
+    "description": "Sign-up hello subtitle after OAuth succeeds"
+  },
+  "signUpConnecting": "Connecting…",
+  "@signUpConnecting": {
+    "description": "Sign-up primary button while OAuth runs"
+  },
+  "signUpHiPebbyAction": "Hi Pebby!",
+  "@signUpHiPebbyAction": {
+    "description": "Sign-up primary button on hello step"
+  },
+  "signUpCreatingAccount": "Creating your account…",
+  "@signUpCreatingAccount": {
+    "description": "Sign-up primary button while createAccount runs"
+  },
+  "signUpCreateAccount": "Create account",
+  "@signUpCreateAccount": {
+    "description": "Sign-up primary button on password step"
+  },
+  "signUpLetsGo": "Let's go",
+  "@signUpLetsGo": {
+    "description": "Sign-up primary button on done step"
+  },
+  "authContinue": "Continue",
+  "@authContinue": {
+    "description": "Generic continue primary button on sign-up steps"
+  },
+  "homeSetupTitle": "Set up your dashboard",
+  "@homeSetupTitle": {
+    "description": "Home setup checklist card title"
+  },
+  "homeSetupXpProgress": "{done} / {total} XP",
+  "@homeSetupXpProgress": {
+    "description": "Setup checklist XP progress pill",
+    "placeholders": {
+      "done": {
+        "type": "int",
+        "example": "25"
+      },
+      "total": {
+        "type": "int",
+        "example": "125"
+      }
+    }
+  },
+  "homeSetupTaskLanguage": "Language",
+  "@homeSetupTaskLanguage": {
+    "description": "Setup checklist language row"
+  },
+  "homeSetupTaskAge": "Your age",
+  "@homeSetupTaskAge": {
+    "description": "Setup checklist age row"
+  },
+  "homeSetupTaskClass": "Your class",
+  "@homeSetupTaskClass": {
+    "description": "Setup checklist class row"
+  },
+  "homeSetupTaskBoard": "Your board",
+  "@homeSetupTaskBoard": {
+    "description": "Setup checklist board row"
+  },
+  "homeSetupTaskSubjects": "Your subjects",
+  "@homeSetupTaskSubjects": {
+    "description": "Setup checklist subjects row"
+  },
+  "homeSetupXpDone": "✓ {xp} XP",
+  "@homeSetupXpDone": {
+    "description": "Setup checklist earned XP label",
+    "placeholders": {
+      "xp": {
+        "type": "int",
+        "example": "25"
+      }
+    }
+  },
+  "homeSetupXpEarn": "+{xp} XP",
+  "@homeSetupXpEarn": {
+    "description": "Setup checklist pending XP label",
+    "placeholders": {
+      "xp": {
+        "type": "int",
+        "example": "25"
+      }
+    }
+  },
+  "homeSolveHomework": "Solve homework",
+  "@homeSolveHomework": {
+    "description": "Home quick action for Scan solve"
+  },
+  "homeCheckAnswer": "Check my answer",
+  "@homeCheckAnswer": {
+    "description": "Home quick action for Check"
+  },
+  "homeFlashcards": "Flashcards",
+  "@homeFlashcards": {
+    "description": "Home quick action for flashcards"
+  },
+  "homePickSubjects": "Pick your subjects",
+  "@homePickSubjects": {
+    "description": "Home card prompting subject selection"
+  },
+  "homePickSubjectsBody": "Home and Study show only the ones you take. +{xp} XP",
+  "@homePickSubjectsBody": {
+    "description": "Home pick-subjects card body with XP reward",
+    "placeholders": {
+      "xp": {
+        "type": "int",
+        "example": "25"
+      }
+    }
+  },
+  "setupLanguageTitle": "Which language do you learn in?",
+  "@setupLanguageTitle": {
+    "description": "Setup language step title"
+  },
+  "setupChooseLanguage": "Choose {name}",
+  "@setupChooseLanguage": {
+    "description": "Setup language/stream choose button",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "setupLanguageFootnote": "You can change it any time in Settings.",
+  "@setupLanguageFootnote": {
+    "description": "Setup language footnote"
+  },
+  "setupAgeTitle": "When were you born?",
+  "@setupAgeTitle": {
+    "description": "Setup age step title"
+  },
+  "setupAgeSubtitle": "So we keep things right for your age.",
+  "@setupAgeSubtitle": {
+    "description": "Setup age step subtitle"
+  },
+  "setupBirthYear": "Birth year",
+  "@setupBirthYear": {
+    "description": "Birth year wheel semantics"
+  },
+  "setupYouAreAge": "You’re {age}.",
+  "@setupYouAreAge": {
+    "description": "Setup age confirmation",
+    "placeholders": {
+      "age": {
+        "type": "int"
+      }
+    }
+  },
+  "setupClassTitle": "Spin to your class",
+  "@setupClassTitle": {
+    "description": "Setup class step title"
+  },
+  "setupClassSubtitle": "Turn the dial or tap a number.",
+  "@setupClassSubtitle": {
+    "description": "Setup class step subtitle"
+  },
+  "setupImInClass": "I’m in Class {level}",
+  "@setupImInClass": {
+    "description": "Setup class confirm button",
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "setupBoardTitle": "Which board?",
+  "@setupBoardTitle": {
+    "description": "Setup board step title"
+  },
+  "setupBoardSubtitle": "We follow your board’s syllabus.",
+  "@setupBoardSubtitle": {
+    "description": "Setup board step subtitle"
+  },
+  "setupStateBoardsSoon": "State boards are coming soon.",
+  "@setupStateBoardsSoon": {
+    "description": "Setup board footnote"
+  },
+  "setupFinish": "Finish setup",
+  "@setupFinish": {
+    "description": "Setup last-step primary action"
+  },
+  "setupProgress": "SET UP · {step}/{total}",
+  "@setupProgress": {
+    "description": "Setup sheet progress caption",
+    "placeholders": {
+      "step": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "setupLater": "Later",
+  "@setupLater": {
+    "description": "Setup sheet dismiss"
+  },
+  "setupChangeInMe": "You can change this any time in Me.",
+  "@setupChangeInMe": {
+    "description": "Subjects picker footnote"
+  },
+  "setupStreamTitle": "What do you study in Class {level}?",
+  "@setupStreamTitle": {
+    "description": "Setup stream pick title",
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "setupAnythingElse": "Anything else?",
+  "@setupAnythingElse": {
+    "description": "Setup senior subjects title"
+  },
+  "setupWhichSubjects": "Which subjects do you study?",
+  "@setupWhichSubjects": {
+    "description": "Setup junior subjects title"
+  },
+  "setupMainSubjectsIn": "{syllabus}. Your main subjects are in.",
+  "@setupMainSubjectsIn": {
+    "description": "Setup senior subjects subtitle",
+    "placeholders": {
+      "syllabus": {
+        "type": "String"
+      }
+    }
+  },
+  "setupTapToRemove": "{syllabus}. Tap to remove any you don’t take.",
+  "@setupTapToRemove": {
+    "description": "Setup junior subjects subtitle",
+    "placeholders": {
+      "syllabus": {
+        "type": "String"
+      }
+    }
+  },
+  "homeYourSubjects": "Your subjects",
+  "@homeYourSubjects": {
+    "description": "Home subjects section header"
+  },
+  "homeEdit": "Edit",
+  "@homeEdit": {
+    "description": "Home subjects edit button"
+  },
+  "homeSubjectsNeedSyllabus": "Set your class and board to see your subjects",
+  "@homeSubjectsNeedSyllabus": {
+    "description": "Home subjects empty before syllabus"
+  },
+  "homeSubjectsLoading": "Loading your subjects…",
+  "@homeSubjectsLoading": {
+    "description": "Home subjects loading"
+  },
+  "homeSubjectsSoon": "Your subjects show up here soon.",
+  "@homeSubjectsSoon": {
+    "description": "Home subjects empty after load"
+  },
+  "homeNextChapter": "Next: Ch {number} · {title}",
+  "@homeNextChapter": {
+    "description": "Home subject row next lesson",
+    "placeholders": {
+      "number": {
+        "type": "int"
+      },
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "homeAllLessonsDone": "All lessons done",
+  "@homeAllLessonsDone": {
+    "description": "Home subject row complete"
+  },
+  "homeLessonsComingSoon": "Lessons coming soon",
+  "@homeLessonsComingSoon": {
+    "description": "Home subject row no lessons"
+  },
+  "homeTodayMinutes": "Today · {minutes} min",
+  "@homeTodayMinutes": {
+    "description": "Today card title with minutes left",
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "homeTodayDone": "Today · all done",
+  "@homeTodayDone": {
+    "description": "Today card title when done"
+  },
+  "homeFromFolders": "{count, plural, =1{from 1 folder} other{from {count} folders}}",
+  "@homeFromFolders": {
+    "description": "Today card folder count",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeMoreInFolders": "and {count} more in your folders",
+  "@homeMoreInFolders": {
+    "description": "Today card overflow",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeAskHintTitle": "Ask Pebby anything",
+  "@homeAskHintTitle": {
+    "description": "Ask hint bubble title"
+  },
+  "homeAskHintBody": "Type a question, or tap Solve homework to snap one.",
+  "@homeAskHintBody": {
+    "description": "Ask hint bubble body"
+  },
+  "homeAskHintGotIt": "Got it",
+  "@homeAskHintGotIt": {
+    "description": "Ask hint dismiss"
+  },
+  "homeDashboardLoadError": "You’re currently offline.",
+  "@homeDashboardLoadError": {
+    "description": "Calm top notice when home can’t load"
+  },
+  "homeRetry": "Retry",
+  "@homeRetry": {
+    "description": "Dashboard retry"
+  },
+  "helloFallbackName": "there",
+  "@helloFallbackName": {
+    "description": "Fallback first name in greeting"
+  },
+  "homeStreakSemantics": "{count, plural, =1{1 day streak} other{{count} day streak}}",
+  "@homeStreakSemantics": {
+    "description": "Home greeting streak semantics label",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "scanModeNotes": "Notes to a folder",
+  "@scanModeNotes": {
+    "description": "Scan mode tile title for notes"
+  },
+  "scanModeAsk": "Ask about a photo",
+  "@scanModeAsk": {
+    "description": "Scan mode tile title for ask"
+  },
+  "scanWhatsOnPaper": "What’s on the paper?",
+  "@scanWhatsOnPaper": {
+    "description": "Scan tab subtitle under the Scan headline"
+  },
+  "scanHintSolve": "Hints first",
+  "@scanHintSolve": {
+    "description": "Scan solve mode tile caption"
+  },
+  "scanHintCheck": "Board-style marks",
+  "@scanHintCheck": {
+    "description": "Scan check mode tile caption"
+  },
+  "scanHintNotes": "Pages into a lesson",
+  "@scanHintNotes": {
+    "description": "Scan notes mode tile caption"
+  },
+  "scanHintAsk": "Anything else",
+  "@scanHintAsk": {
+    "description": "Scan ask mode tile caption"
+  },
+  "scanRecent": "Recent scans",
+  "@scanRecent": {
+    "description": "Scan tab recent list section title"
+  },
+  "scanStatusRead": "Read",
+  "@scanStatusRead": {
+    "description": "Recent scan subtitle when OCR finished but not opened in ASKMe"
+  },
+  "scanStatusSolvedInAskMe": "Solved in ASKMe",
+  "@scanStatusSolvedInAskMe": {
+    "description": "Recent solve scan linked to an ASKMe thread"
+  },
+  "scanStatusAskedInAskMe": "Asked in ASKMe",
+  "@scanStatusAskedInAskMe": {
+    "description": "Recent ask scan linked to an ASKMe thread"
+  },
+  "scanStatusMarks": "{awarded}/{count, plural, =1{1 mark} other{{count} marks}}",
+  "@scanStatusMarks": {
+    "description": "Recent check scan marks summary",
+    "placeholders": {
+      "awarded": {
+        "type": "int",
+        "example": "2"
+      },
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "scanStatusNotMarked": "Not marked yet",
+  "@scanStatusNotMarked": {
+    "description": "Recent check scan with no marking yet"
+  },
+  "scanStatusLessonInFolder": "Lesson in a folder",
+  "@scanStatusLessonInFolder": {
+    "description": "Recent notes scan saved as a lesson"
+  },
+  "scanStatusNotesInFolder": "Notes in a folder",
+  "@scanStatusNotesInFolder": {
+    "description": "Recent notes scan saved as text only"
+  },
+  "scanStatusNotSaved": "Not saved yet",
+  "@scanStatusNotSaved": {
+    "description": "Recent notes scan not yet filed"
+  },
+  "scanSourceNotesBlurb": "Up to 10 pages. Only the text is kept, not the photos.",
+  "@scanSourceNotesBlurb": {
+    "description": "Source sheet blurb for multi-page notes"
+  },
+  "scanSourceBlurb": "Only the text is kept, not the photo.",
+  "@scanSourceBlurb": {
+    "description": "Source sheet blurb for single-photo modes"
+  },
+  "scanTakePhoto": "Take a photo",
+  "@scanTakePhoto": {
+    "description": "Source sheet camera button"
+  },
+  "scanChooseGallery": "Choose from gallery",
+  "@scanChooseGallery": {
+    "description": "Source sheet gallery button"
+  },
+  "scanCamera": "Camera",
+  "@scanCamera": {
+    "description": "Notes pages view add-from-camera button"
+  },
+  "scanGallery": "Gallery",
+  "@scanGallery": {
+    "description": "Notes pages view add-from-gallery button"
+  },
+  "scanYourPages": "Your pages",
+  "@scanYourPages": {
+    "description": "Notes multi-page picker title"
+  },
+  "scanPagesOf": "{current} of {max}",
+  "@scanPagesOf": {
+    "description": "Notes page count progress under the title",
+    "placeholders": {
+      "current": {
+        "type": "int",
+        "example": "2"
+      },
+      "max": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
+  "scanReadPages": "{count, plural, =1{Read 1 page} other{Read {count} pages}}",
+  "@scanReadPages": {
+    "description": "Notes primary button to OCR the pages",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "2"
+      }
+    }
+  },
+  "scanRemovePage": "Remove page",
+  "@scanRemovePage": {
+    "description": "Tooltip to remove a page thumbnail"
+  },
+  "scanYourNotes": "Your notes",
+  "@scanYourNotes": {
+    "description": "Notes review title when page count is zero"
+  },
+  "scanPebbyReadPages": "{count, plural, =1{Pebby read 1 page} other{Pebby read {count} pages}}",
+  "@scanPebbyReadPages": {
+    "description": "Notes review title after OCR",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "2"
+      }
+    }
+  },
+  "scanWhereShouldTheseGo": "Where should these go?",
+  "@scanWhereShouldTheseGo": {
+    "description": "Notes folder picker section title"
+  },
+  "scanChooseFolder": "Choose a folder",
+  "@scanChooseFolder": {
+    "description": "Notes folder row placeholder"
+  },
+  "scanChange": "Change",
+  "@scanChange": {
+    "description": "Notes folder row change action"
+  },
+  "scanMakeFromNotes": "Make from your notes",
+  "@scanMakeFromNotes": {
+    "description": "Notes save options section title"
+  },
+  "scanSwipeLesson": "Swipe lesson",
+  "@scanSwipeLesson": {
+    "description": "Notes option to build a swipe lesson"
+  },
+  "scanSwipeLessonSubtitle": "Cards and quick checks, added to the plan",
+  "@scanSwipeLessonSubtitle": {
+    "description": "Notes swipe-lesson option subtitle"
+  },
+  "scanKeepNotes": "Just keep the notes",
+  "@scanKeepNotes": {
+    "description": "Notes option / Pro fallback to save text only"
+  },
+  "scanKeepNotesSubtitle": "The text goes into the folder",
+  "@scanKeepNotesSubtitle": {
+    "description": "Notes keep-text option subtitle"
+  },
+  "scanReadingPages": "{count, plural, =1{Reading your page…} other{Reading {count} pages…}}",
+  "@scanReadingPages": {
+    "description": "OCR waiting title",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "2"
+      }
+    }
+  },
+  "scanReadingWait": "This takes a few seconds.",
+  "@scanReadingWait": {
+    "description": "OCR waiting subtitle"
+  },
+  "scanMakingLesson": "Making your lesson…",
+  "@scanMakingLesson": {
+    "description": "Notes save waiting title when making a lesson"
+  },
+  "scanSavingNotes": "Saving your notes…",
+  "@scanSavingNotes": {
+    "description": "Notes save waiting title for text-only save"
+  },
+  "scanSavingWait": "It’ll be in your folder.",
+  "@scanSavingWait": {
+    "description": "Notes save waiting subtitle"
+  },
+  "scanFailUnavailableTitle": "Scan isn’t ready yet",
+  "@scanFailUnavailableTitle": {
+    "description": "Scan unavailable failure title"
+  },
+  "scanFailUnavailableBody": "Pebby can’t read photos right now. Try again later.",
+  "@scanFailUnavailableBody": {
+    "description": "Scan unavailable failure body"
+  },
+  "scanFailNoTextTitle": "No words here",
+  "@scanFailNoTextTitle": {
+    "description": "Scan no-text failure title"
+  },
+  "scanFailNoTextBody": "Point the camera at your homework, a textbook page or your notes.",
+  "@scanFailNoTextBody": {
+    "description": "Scan no-text failure body"
+  },
+  "scanFailTooLargeTitle": "Too many big photos",
+  "@scanFailTooLargeTitle": {
+    "description": "Scan too-large failure title"
+  },
+  "scanFailTooLargeBody": "Try fewer pages at a time.",
+  "@scanFailTooLargeBody": {
+    "description": "Scan too-large failure body"
+  },
+  "scanFailNetworkTitle": "You’re offline",
+  "@scanFailNetworkTitle": {
+    "description": "Scan network failure title"
+  },
+  "scanFailNetworkBody": "Check your internet and try again.",
+  "@scanFailNetworkBody": {
+    "description": "Scan network failure body"
+  },
+  "scanFailScanLimitTitle": "That’s today’s free scans",
+  "@scanFailScanLimitTitle": {
+    "description": "Daily scan limit title"
+  },
+  "scanFailScanLimitBody": "They come back at midnight. Go Pro to scan as much as you like.",
+  "@scanFailScanLimitBody": {
+    "description": "Daily scan limit body"
+  },
+  "scanFailCheckLimitTitle": "That’s today’s free check",
+  "@scanFailCheckLimitTitle": {
+    "description": "Daily check limit title"
+  },
+  "scanFailCheckLimitBody": "It comes back at midnight. Go Pro to check every answer.",
+  "@scanFailCheckLimitBody": {
+    "description": "Daily check limit body"
+  },
+  "scanFailProOnlyTitle": "Lessons from notes are Pro",
+  "@scanFailProOnlyTitle": {
+    "description": "Pro-only lessons-from-notes title"
+  },
+  "scanFailProOnlyBody": "Keep your notes for free, or go Pro and Pebby makes them a lesson.",
+  "@scanFailProOnlyBody": {
+    "description": "Pro-only lessons-from-notes body"
+  },
+  "scanFailUnknownTitle": "Pebby couldn’t read that",
+  "@scanFailUnknownTitle": {
+    "description": "Unknown scan failure title"
+  },
+  "scanFailUnknownBody": "Try again, or retake the photo in better light.",
+  "@scanFailUnknownBody": {
+    "description": "Unknown scan failure body"
+  },
+  "scanBackToAnswer": "Back to your answer",
+  "@scanBackToAnswer": {
+    "description": "Check-limit secondary action"
+  },
+  "scanRetake": "Retake",
+  "@scanRetake": {
+    "description": "Scan failure retake photo button"
+  },
+  "scanCameraOpenFailed": "Couldn’t open the camera. Try the gallery.",
+  "@scanCameraOpenFailed": {
+    "description": "Snack when camera open fails at scan start"
+  },
+  "scanPebbyReadThis": "Pebby read this",
+  "@scanPebbyReadThis": {
+    "description": "Solve/ask read review title"
+  },
+  "scanFixAnything": "Fix anything that’s wrong.",
+  "@scanFixAnything": {
+    "description": "Read review subtitle without chapter"
+  },
+  "scanChapterFix": "{chapter} · fix anything that’s wrong.",
+  "@scanChapterFix": {
+    "description": "Read review subtitle with chapter",
+    "placeholders": {
+      "chapter": {
+        "type": "String",
+        "example": "Science · Ch 10"
+      }
+    }
+  },
+  "scanFromYourPhoto": "From your photo",
+  "@scanFromYourPhoto": {
+    "description": "OCR text field label on read review"
+  },
+  "scanFromMyPhoto": "From my photo:",
+  "@scanFromMyPhoto": {
+    "description": "Prefix when sending ask photo text to ASKMe"
+  },
+  "scanWhatDoYouWant": "What do you want to know?",
+  "@scanWhatDoYouWant": {
+    "description": "Ask-mode extra question field label"
+  },
+  "scanSuggestExplain": "Explain this simply",
+  "@scanSuggestExplain": {
+    "description": "Ask-mode suggestion chip and default question"
+  },
+  "scanSuggestSummarise": "Summarise it",
+  "@scanSuggestSummarise": {
+    "description": "Ask-mode suggestion chip"
+  },
+  "scanSuggestKeyTerms": "What are the key terms?",
+  "@scanSuggestKeyTerms": {
+    "description": "Ask-mode suggestion chip"
+  },
+  "scanSolveThis": "Solve this",
+  "@scanSolveThis": {
+    "description": "Solve-mode primary action"
+  },
+  "scanAskPebby": "Ask Pebby",
+  "@scanAskPebby": {
+    "description": "Ask-mode / check-result Ask Pebby button"
+  },
+  "scanHintFirst": "Pebby gives you a hint first, then the steps.",
+  "@scanHintFirst": {
+    "description": "Solve-mode caption under the primary button"
+  },
+  "checkPebbyReadAnswer": "Pebby read your answer",
+  "@checkPebbyReadAnswer": {
+    "description": "Check-mode read review title"
+  },
+  "checkTheQuestion": "The question",
+  "@checkTheQuestion": {
+    "description": "Check-mode question field label"
+  },
+  "checkQuestionHint": "Only if it isn’t in the photo",
+  "@checkQuestionHint": {
+    "description": "Check-mode question field hint"
+  },
+  "checkMarkIt": "Mark it",
+  "@checkMarkIt": {
+    "description": "Check-mode primary action"
+  },
+  "checkMarkingAnswer": "Marking your answer…",
+  "@checkMarkingAnswer": {
+    "description": "Check marking waiting title"
+  },
+  "checkMarkingScheme": "Using the board’s marking scheme.",
+  "@checkMarkingScheme": {
+    "description": "Check marking waiting subtitle"
+  },
+  "checkFullMarks": "Full marks!",
+  "@checkFullMarks": {
+    "description": "Check result verdict when full marks"
+  },
+  "checkNearlyThere": "Nearly there",
+  "@checkNearlyThere": {
+    "description": "Check result verdict when at least half marks"
+  },
+  "checkKeepGoing": "Keep going",
+  "@checkKeepGoing": {
+    "description": "Check result verdict when under half marks"
+  },
+  "checkReportTitle": "Report these marks",
+  "@checkReportTitle": {
+    "description": "Check result report sheet title"
+  },
+  "checkReportThanks": "Thanks. We’ll review these marks.",
+  "@checkReportThanks": {
+    "description": "Check result report thanks message"
+  },
+  "checkWhatGotMarks": "What got marks",
+  "@checkWhatGotMarks": {
+    "description": "Check result marking points section title"
+  },
+  "checkWellDone": "Well done",
+  "@checkWellDone": {
+    "description": "Check result remember box label on full marks"
+  },
+  "checkForFullMarks": "For full marks",
+  "@checkForFullMarks": {
+    "description": "Check result remember box label when not full"
+  },
+  "checkAgain": "Check again",
+  "@checkAgain": {
+    "description": "Check result primary retake action"
+  },
+  "checkShowModelAnswer": "Show model answer",
+  "@checkShowModelAnswer": {
+    "description": "Check result expand model answer"
+  },
+  "checkHideModelAnswer": "Hide model answer",
+  "@checkHideModelAnswer": {
+    "description": "Check result collapse model answer"
+  },
+  "checkAskQuestion": "Question: {question}",
+  "@checkAskQuestion": {
+    "description": "ASKMe prompt line with the marked question",
+    "placeholders": {
+      "question": {
+        "type": "String",
+        "example": "Define refraction"
+      }
+    }
+  },
+  "checkAskMyAnswer": "My answer:\n{answer}",
+  "@checkAskMyAnswer": {
+    "description": "ASKMe prompt block with the student’s answer",
+    "placeholders": {
+      "answer": {
+        "type": "String",
+        "example": "Light bends when…"
+      }
+    }
+  },
+  "checkAskHowFullMarks": "I got {awarded}/{marks}. How do I get full marks?",
+  "@checkAskHowFullMarks": {
+    "description": "ASKMe prompt asking how to reach full marks",
+    "placeholders": {
+      "awarded": {
+        "type": "int",
+        "example": "2"
+      },
+      "marks": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "meLearningSection": "Learning",
+  "@meLearningSection": {
+    "description": "Me settings Learning group title"
+  },
+  "meMyProgress": "My Progress",
+  "@meMyProgress": {
+    "description": "Me row opening Progress"
+  },
+  "meClassAndBoard": "Class and board",
+  "@meClassAndBoard": {
+    "description": "Me and ClassBoard screen title"
+  },
+  "meAppearance": "Appearance",
+  "@meAppearance": {
+    "description": "Me appearance row and screen title"
+  },
+  "meNotificationsSection": "Notifications",
+  "@meNotificationsSection": {
+    "description": "Me notifications group title"
+  },
+  "meRemindersAndDailyGoal": "Reminders and daily goal",
+  "@meRemindersAndDailyGoal": {
+    "description": "Me notifications row label"
+  },
+  "meAccountSection": "Account",
+  "@meAccountSection": {
+    "description": "Me account settings group title"
+  },
+  "meAccount": "Account",
+  "@meAccount": {
+    "description": "Me account row and Account screen title"
+  },
+  "meHelpAndFeedback": "Help and feedback",
+  "@meHelpAndFeedback": {
+    "description": "Me help row and Help screen title"
+  },
+  "mePrivacyAndTerms": "Privacy and terms",
+  "@mePrivacyAndTerms": {
+    "description": "Me privacy row and Privacy screen title"
+  },
+  "meLogOut": "Log out",
+  "@meLogOut": {
+    "description": "Me log out button and confirm primary"
+  },
+  "meLoggingOut": "Logging out…",
+  "@meLoggingOut": {
+    "description": "Me log out button while running"
+  },
+  "meStudentFallback": "Student",
+  "@meStudentFallback": {
+    "description": "Me profile name when empty"
+  },
+  "meDayStreak": "day streak",
+  "@meDayStreak": {
+    "description": "Me stats streak caption"
+  },
+  "meLevelValue": "Lv {number}",
+  "@meLevelValue": {
+    "description": "Me stats level value",
+    "placeholders": {
+      "number": {
+        "type": "int",
+        "example": "2"
+      }
+    }
+  },
+  "meXpToNextLevel": "{xp} XP to Lv {level}",
+  "@meXpToNextLevel": {
+    "description": "Me stats XP to next level",
+    "placeholders": {
+      "xp": {
+        "type": "int",
+        "example": "150"
+      },
+      "level": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "meXpLabel": "XP",
+  "@meXpLabel": {
+    "description": "Me stats XP caption"
+  },
+  "meOk": "OK",
+  "@meOk": {
+    "description": "Generic sheet confirm"
+  },
+  "meOkSwitchTo": "OK · Switch to {name}",
+  "@meOkSwitchTo": {
+    "description": "Language sheet confirm when switching",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "हिन्दी"
+      }
+    }
+  },
+  "meLanguageSwitched": "{greeting} Pebby will now answer in {name}.",
+  "@meLanguageSwitched": {
+    "description": "Snack after language switch",
+    "placeholders": {
+      "greeting": {
+        "type": "String",
+        "example": "Hello!"
+      },
+      "name": {
+        "type": "String",
+        "example": "हिन्दी"
+      }
+    }
+  },
+  "meLanguageSwitchFailed": "Couldn’t switch the language. Try again.",
+  "@meLanguageSwitchFailed": {
+    "description": "Snack when language switch fails"
+  },
+  "meOpenInBrowser": "Open {url} in your browser",
+  "@meOpenInBrowser": {
+    "description": "Fallback when url_launcher fails",
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+  "meNotSet": "Not set",
+  "@meNotSet": {
+    "description": "Unset class/board/stream value"
+  },
+  "meOff": "Off",
+  "@meOff": {
+    "description": "Notifications row when study reminder is off"
+  },
+  "meClassOnly": "Class {level}",
+  "@meClassOnly": {
+    "description": "Syllabus chip without board",
+    "placeholders": {
+      "level": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
+  "meClassBoard": "Class {level} · {board}",
+  "@meClassBoard": {
+    "description": "Syllabus chip with board code",
+    "placeholders": {
+      "level": {
+        "type": "int",
+        "example": "10"
+      },
+      "board": {
+        "type": "String",
+        "example": "CBSE"
+      }
+    }
+  },
+  "meLogOutTitle": "Log out?",
+  "@meLogOutTitle": {
+    "description": "Log out confirmation sheet title"
+  },
+  "meLogOutBody": "Your progress is saved to your account. Log in again any time.",
+  "@meLogOutBody": {
+    "description": "Log out confirmation body"
+  },
+  "meLogOutStay": "Stay",
+  "@meLogOutStay": {
+    "description": "Log out sheet dismiss"
+  },
+  "accountSaveName": "Save name",
+  "@accountSaveName": {
+    "description": "Account screen save name button"
+  },
+  "accountNameSaved": "Name saved",
+  "@accountNameSaved": {
+    "description": "Account name save success snack"
+  },
+  "accountDangerZone": "Danger zone",
+  "@accountDangerZone": {
+    "description": "Account delete section title"
+  },
+  "accountDeleteMyAccount": "Delete my account",
+  "@accountDeleteMyAccount": {
+    "description": "Account delete row and delete button"
+  },
+  "accountDeleteGraceNote": "Your account is deleted 30 days after you ask. Log in before then to keep it.",
+  "@accountDeleteGraceNote": {
+    "description": "Account delete grace period note"
+  },
+  "accountSignIn": "Sign-in",
+  "@accountSignIn": {
+    "description": "Account sign-in group title"
+  },
+  "accountChangePassword": "Change password",
+  "@accountChangePassword": {
+    "description": "Password change row and screen title"
+  },
+  "accountSetPassword": "Set a password",
+  "@accountSetPassword": {
+    "description": "Password set row and screen title"
+  },
+  "accountLinkGoogle": "Link Google",
+  "@accountLinkGoogle": {
+    "description": "Link Google row label"
+  },
+  "accountGoogle": "Google",
+  "@accountGoogle": {
+    "description": "Linked Google row label"
+  },
+  "accountLinking": "Linking…",
+  "@accountLinking": {
+    "description": "Google link in progress"
+  },
+  "accountUnlinking": "Unlinking…",
+  "@accountUnlinking": {
+    "description": "Google unlink in progress"
+  },
+  "accountNotLinked": "Not linked",
+  "@accountNotLinked": {
+    "description": "Google not linked value"
+  },
+  "accountGoogleLinked": "Google linked. You can log in with it now.",
+  "@accountGoogleLinked": {
+    "description": "Google link success snack"
+  },
+  "accountGoogleUnlinked": "Google unlinked. Log in with your email and password.",
+  "@accountGoogleUnlinked": {
+    "description": "Google unlink success snack"
+  },
+  "accountUnlinkGoogleTitle": "Unlink Google?",
+  "@accountUnlinkGoogleTitle": {
+    "description": "Unlink Google sheet title"
+  },
+  "accountUnlinkGoogleBody": "You won’t be able to log in with {email} any more. Use your email and password instead.",
+  "@accountUnlinkGoogleBody": {
+    "description": "Unlink Google sheet body",
+    "placeholders": {
+      "email": {
+        "type": "String",
+        "example": "ada@school.in"
+      }
+    }
+  },
+  "accountKeepGoogle": "Keep Google",
+  "@accountKeepGoogle": {
+    "description": "Unlink sheet keep action"
+  },
+  "accountUnlink": "Unlink",
+  "@accountUnlink": {
+    "description": "Unlink sheet confirm"
+  },
+  "passwordSave": "Save password",
+  "@passwordSave": {
+    "description": "Password screen save button"
+  },
+  "passwordChangeBody": "Use the same rules as when you signed up. Other devices are logged out when you save.",
+  "@passwordChangeBody": {
+    "description": "Change password explainer"
+  },
+  "passwordSetBody": "Add a password so you can also log in with your email, not just Google.",
+  "@passwordSetBody": {
+    "description": "Set password explainer"
+  },
+  "passwordCurrent": "Current password",
+  "@passwordCurrent": {
+    "description": "Current password field label"
+  },
+  "passwordChangedSnack": "Password changed. Other devices have been logged out.",
+  "@passwordChangedSnack": {
+    "description": "Password change success snack"
+  },
+  "passwordSetSnack": "Password set. You can now log in with your email too.",
+  "@passwordSetSnack": {
+    "description": "Password set success snack"
+  },
+  "deleteAccountTitle": "Delete account",
+  "@deleteAccountTitle": {
+    "description": "Delete account screen title"
+  },
+  "deleteDeleting": "Deleting…",
+  "@deleteDeleting": {
+    "description": "Delete account button while running"
+  },
+  "deleteSorryTitle": "We’re sorry to see you go",
+  "@deleteSorryTitle": {
+    "description": "Delete account headline"
+  },
+  "deleteBody": "Your account will be deleted in 30 days. Log in again before then to keep it. After 30 days your profile, chats, progress and XP are erased for good and can’t be brought back.",
+  "@deleteBody": {
+    "description": "Delete account body"
+  },
+  "deleteSubscription": "Subscription",
+  "@deleteSubscription": {
+    "description": "Delete account subscription group"
+  },
+  "deleteSubscriptionNotice": "Deleting your account doesn’t cancel an ACADEMe Pro subscription bought on Google Play. Cancel it in Google Play so you aren’t charged again.",
+  "@deleteSubscriptionNotice": {
+    "description": "Pro subscription notice on delete"
+  },
+  "deleteManageSubscription": "Manage subscription",
+  "@deleteManageSubscription": {
+    "description": "Open Play subscriptions row"
+  },
+  "deleteWhyLeaving": "Why are you leaving? (optional)",
+  "@deleteWhyLeaving": {
+    "description": "Delete reason group title"
+  },
+  "deleteConfirmLabel": "Type {word} to confirm",
+  "@deleteConfirmLabel": {
+    "description": "Delete confirm field label",
+    "placeholders": {
+      "word": {
+        "type": "String",
+        "example": "DELETE"
+      }
+    }
+  },
+  "deleteReasonNotEnough": "I don’t use it enough",
+  "@deleteReasonNotEnough": {
+    "description": "Delete reason"
+  },
+  "deleteReasonDidntHelp": "It didn’t help with my studies",
+  "@deleteReasonDidntHelp": {
+    "description": "Delete reason"
+  },
+  "deleteReasonTooManyNotifs": "Too many notifications",
+  "@deleteReasonTooManyNotifs": {
+    "description": "Delete reason"
+  },
+  "deleteReasonDataWorry": "I’m worried about my data",
+  "@deleteReasonDataWorry": {
+    "description": "Delete reason"
+  },
+  "deleteReasonOther": "Something else",
+  "@deleteReasonOther": {
+    "description": "Delete reason"
+  },
+  "deleteScheduledSnack": "Your account will be deleted on {date}. Log in before then to keep it.",
+  "@deleteScheduledSnack": {
+    "description": "Snack after scheduling deletion",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "notifRemindersAndGoalTitle": "Reminders and goal",
+  "@notifRemindersAndGoalTitle": {
+    "description": "Notifications screen title"
+  },
+  "notifStudyReminder": "Study reminder",
+  "@notifStudyReminder": {
+    "description": "Study reminder group title"
+  },
+  "notifRemindMeToStudy": "Remind me to study",
+  "@notifRemindMeToStudy": {
+    "description": "Study reminder switch"
+  },
+  "notifTime": "Time",
+  "@notifTime": {
+    "description": "Reminder time group title"
+  },
+  "notifRemindMeAt": "Remind me at",
+  "@notifRemindMeAt": {
+    "description": "Reminder time row"
+  },
+  "notifAlsoTellMe": "Also tell me",
+  "@notifAlsoTellMe": {
+    "description": "Extra notification toggles group"
+  },
+  "notifStreakAboutToEnd": "When my streak is about to end",
+  "@notifStreakAboutToEnd": {
+    "description": "Streak save switch"
+  },
+  "notifEveningBeforeTest": "The evening before a test",
+  "@notifEveningBeforeTest": {
+    "description": "Test warning switch"
+  },
+  "notifWhenLevelUp": "When I level up",
+  "@notifWhenLevelUp": {
+    "description": "Level-up celebration switch"
+  },
+  "notifNotifications": "Notifications",
+  "@notifNotifications": {
+    "description": "Notification access group and row"
+  },
+  "notifAllowed": "Allowed",
+  "@notifAllowed": {
+    "description": "Notifications allowed value"
+  },
+  "notifNotAllowed": "Not allowed",
+  "@notifNotAllowed": {
+    "description": "Notifications not allowed value"
+  },
+  "notifTurnOn": "Turn on notifications",
+  "@notifTurnOn": {
+    "description": "Request notification permission"
+  },
+  "notifTurnOnInSettings": "Turn on in Settings",
+  "@notifTurnOnInSettings": {
+    "description": "Open system notification settings"
+  },
+  "reminderTimeTitle": "Reminder time",
+  "@reminderTimeTitle": {
+    "description": "Reminder time sheet title"
+  },
+  "reminderHour": "Hour",
+  "@reminderHour": {
+    "description": "Hour wheel semantics"
+  },
+  "reminderMinute": "Minute",
+  "@reminderMinute": {
+    "description": "Minute wheel semantics"
+  },
+  "reminderAmPm": "Morning or evening",
+  "@reminderAmPm": {
+    "description": "AM/PM wheel semantics"
+  },
+  "reminderAm": "am",
+  "@reminderAm": {
+    "description": "AM label"
+  },
+  "reminderPm": "pm",
+  "@reminderPm": {
+    "description": "PM label"
+  },
+  "dailyGoalTitle": "Daily goal",
+  "@dailyGoalTitle": {
+    "description": "Daily goal sheet and group title"
+  },
+  "dailyGoalNote": "Today’s steps on Home will add up to about {minutes, plural, =1{1 minute} other{{minutes} minutes}}.",
+  "@dailyGoalNote": {
+    "description": "Daily goal sheet note",
+    "placeholders": {
+      "minutes": {
+        "type": "int",
+        "example": "25"
+      }
+    }
+  },
+  "dailyGoalSemantics": "Daily goal in minutes",
+  "@dailyGoalSemantics": {
+    "description": "Daily goal wheel semantics"
+  },
+  "dailyGoalMinutesLabel": "{minutes} min",
+  "@dailyGoalMinutesLabel": {
+    "description": "Daily goal wheel and row value",
+    "placeholders": {
+      "minutes": {
+        "type": "int",
+        "example": "25"
+      }
+    }
+  },
+  "dailyGoalStudyEachDay": "Study each day",
+  "@dailyGoalStudyEachDay": {
+    "description": "Daily goal settings row"
+  },
+  "appearanceTheme": "THEME",
+  "@appearanceTheme": {
+    "description": "Appearance theme section caption"
+  },
+  "appearanceLight": "Light",
+  "@appearanceLight": {
+    "description": "Light theme option"
+  },
+  "appearanceDark": "Dark",
+  "@appearanceDark": {
+    "description": "Dark theme option"
+  },
+  "appearanceDarkHint": "Dark mode is easier on your eyes at night.",
+  "@appearanceDarkHint": {
+    "description": "Appearance dark mode hint"
+  },
+  "appearanceLightsOff": "Lights off…",
+  "@appearanceLightsOff": {
+    "description": "Appearance switch to dark headline"
+  },
+  "appearanceGoodMorning": "Good morning!",
+  "@appearanceGoodMorning": {
+    "description": "Appearance switch to light headline"
+  },
+  "appearanceDimming": "Pebby is dimming the room",
+  "@appearanceDimming": {
+    "description": "Appearance switch to dark subtitle"
+  },
+  "appearanceOpeningCurtains": "Pebby is opening the curtains",
+  "@appearanceOpeningCurtains": {
+    "description": "Appearance switch to light subtitle"
+  },
+  "helpTellUs": "Tell us",
+  "@helpTellUs": {
+    "description": "Help categories group title"
+  },
+  "helpEmailUs": "Email us",
+  "@helpEmailUs": {
+    "description": "Help email row"
+  },
+  "helpThanks": "Thanks, we got your message.",
+  "@helpThanks": {
+    "description": "Feedback sent snack"
+  },
+  "feedbackWrongAnswer": "Report a wrong answer",
+  "@feedbackWrongAnswer": {
+    "description": "Feedback category"
+  },
+  "feedbackBug": "Something isn’t working",
+  "@feedbackBug": {
+    "description": "Feedback category"
+  },
+  "feedbackFeature": "Suggest a feature",
+  "@feedbackFeature": {
+    "description": "Feedback category"
+  },
+  "feedbackHint": "Tell us what happened (at least 10 characters).",
+  "@feedbackHint": {
+    "description": "Feedback form hint"
+  },
+  "feedbackSend": "Send",
+  "@feedbackSend": {
+    "description": "Feedback send button"
+  },
+  "feedbackLimitNote": "You can send up to 2 messages a day and 5 a week.",
+  "@feedbackLimitNote": {
+    "description": "Feedback rate limit note"
+  },
+  "feedbackFailGeneric": "Couldn’t send that. Try again.",
+  "@feedbackFailGeneric": {
+    "description": "Feedback generic failure"
+  },
+  "feedbackFailDay": "You’ve sent the most feedback we can take today. Try again tomorrow.",
+  "@feedbackFailDay": {
+    "description": "Feedback day rate limit"
+  },
+  "feedbackFailWeek": "You’ve sent the most feedback we can take this week. Try again next week.",
+  "@feedbackFailWeek": {
+    "description": "Feedback week rate limit"
+  },
+  "feedbackFailTooShort": "Write at least 10 characters so we can help.",
+  "@feedbackFailTooShort": {
+    "description": "Feedback too short"
+  },
+  "feedbackFailOffline": "You’re offline. Check your connection and try again.",
+  "@feedbackFailOffline": {
+    "description": "Feedback offline"
+  },
+  "privacySummary1": "We keep your account, class, board and subjects, study progress and streak, folders, notes and chats with Pebby to run ACADEMe for you.",
+  "@privacySummary1": {
+    "description": "Privacy summary bullet 1"
+  },
+  "privacySummary2": "Your questions and scanned photos go to Sarvam AI in India so Pebby can answer. We don’t store your photos, only the text read from them.",
+  "@privacySummary2": {
+    "description": "Privacy summary bullet 2"
+  },
+  "privacySummary3": "No ads, no advertising ID, no location, and we never sell your data.",
+  "@privacySummary3": {
+    "description": "Privacy summary bullet 3"
+  },
+  "privacySummary4": "Delete your account any time in Account. Everything is erased after 30 days.",
+  "@privacySummary4": {
+    "description": "Privacy summary bullet 4"
+  },
+  "privacyDocuments": "Documents",
+  "@privacyDocuments": {
+    "description": "Privacy documents group"
+  },
+  "privacyPolicy": "Privacy policy",
+  "@privacyPolicy": {
+    "description": "Privacy policy row"
+  },
+  "privacyTermsOfUse": "Terms of use",
+  "@privacyTermsOfUse": {
+    "description": "Terms of use row"
+  },
+  "privacyYourData": "Your data",
+  "@privacyYourData": {
+    "description": "Privacy your data group"
+  },
+  "privacyGetCopy": "Get a copy of my data",
+  "@privacyGetCopy": {
+    "description": "Data export row"
+  },
+  "privacyGrievanceOfficer": "Grievance Officer",
+  "@privacyGrievanceOfficer": {
+    "description": "Grievance officer row"
+  },
+  "classBoardSave": "Save · Class {level} · {board}",
+  "@classBoardSave": {
+    "description": "Class board save button",
+    "placeholders": {
+      "level": {
+        "type": "int",
+        "example": "10"
+      },
+      "board": {
+        "type": "String",
+        "example": "CBSE"
+      }
+    }
+  },
+  "classBoardYourClass": "Your class",
+  "@classBoardYourClass": {
+    "description": "Class dial caption"
+  },
+  "classBoardYourBoard": "Your board",
+  "@classBoardYourBoard": {
+    "description": "Board picker caption"
+  },
+  "classBoardSwitchNote": "Your subjects and plan will switch to Class {level} · {board}. Everything you’ve done so far stays saved.",
+  "@classBoardSwitchNote": {
+    "description": "Class board change notice",
+    "placeholders": {
+      "level": {
+        "type": "int",
+        "example": "10"
+      },
+      "board": {
+        "type": "String",
+        "example": "CBSE"
+      }
+    }
+  },
+  "classBoardSubjects": "Subjects",
+  "@classBoardSubjects": {
+    "description": "Subjects settings group and row"
+  },
+  "classBoardStream": "Stream",
+  "@classBoardStream": {
+    "description": "Stream settings row"
+  },
+  "classBoardAllSubjects": "All subjects",
+  "@classBoardAllSubjects": {
+    "description": "Subjects value when none filtered"
+  },
+  "classBoardSubjectCount": "{count} · {names}",
+  "@classBoardSubjectCount": {
+    "description": "Subjects value with names",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      },
+      "names": {
+        "type": "String",
+        "example": "Maths, Physics"
+      }
+    }
+  },
+  "classBoardSavedSnack": "Now showing Class {level} · {board} subjects",
+  "@classBoardSavedSnack": {
+    "description": "Class board save success snack",
+    "placeholders": {
+      "level": {
+        "type": "int",
+        "example": "10"
+      },
+      "board": {
+        "type": "String",
+        "example": "CBSE"
+      }
+    }
+  },
+  "reminderPrimerTitle": "Get a nudge before your test",
+  "@reminderPrimerTitle": {
+    "description": "Notification primer sheet title"
+  },
+  "reminderPrimerPromise1": "A heads-up 3 days before, the evening before and the morning of each test",
+  "@reminderPrimerPromise1": {
+    "description": "Notification primer promise 1"
+  },
+  "reminderPrimerPromise2": "Your study reminder, only on the days and time you pick",
+  "@reminderPrimerPromise2": {
+    "description": "Notification primer promise 2"
+  },
+  "reminderPrimerPromise3": "Nothing else. Change it any time in Me",
+  "@reminderPrimerPromise3": {
+    "description": "Notification primer promise 3"
+  },
+  "reminderPrimerAllow": "Allow",
+  "@reminderPrimerAllow": {
+    "description": "Notification primer allow button"
+  },
+  "paywallWelcomeSnack": "Welcome to ACADEMe Pro",
+  "@paywallWelcomeSnack": {
+    "description": "Snack after successful Pro purchase"
+  },
+  "paywallTagline": "3× daily & weekly limits. Same refill clock — more room to study.",
+  "@paywallTagline": {
+    "description": "Paywall hero subtitle"
+  },
+  "paywallOpeningPlay": "Opening Google Play…",
+  "@paywallOpeningPlay": {
+    "description": "Paywall purchase button while opening store"
+  },
+  "paywallRestoring": "Restoring…",
+  "@paywallRestoring": {
+    "description": "Restore purchases in progress"
+  },
+  "paywallRestore": "Restore purchases",
+  "@paywallRestore": {
+    "description": "Restore purchases action"
+  },
+  "paywallUnavailableTitle": "Purchases aren’t available on this device",
+  "@paywallUnavailableTitle": {
+    "description": "Paywall when billing unavailable"
+  },
+  "paywallUnavailableBody": "Install ACADEMe from Google Play and sign in to Play to go Pro.",
+  "@paywallUnavailableBody": {
+    "description": "Paywall unavailable hint"
+  },
+  "paywallBenefitAskme": "3× ASKMe questions every day",
+  "@paywallBenefitAskme": {
+    "description": "Pro benefit ASKMe"
+  },
+  "paywallBenefitScan": "3× scans every day",
+  "@paywallBenefitScan": {
+    "description": "Pro benefit Scan"
+  },
+  "paywallBenefitCheck": "3× answer checks every day",
+  "@paywallBenefitCheck": {
+    "description": "Pro benefit Check"
+  },
+  "paywallBenefitLessons": "Swipe lessons made from your notes",
+  "@paywallBenefitLessons": {
+    "description": "Pro benefit lessons from notes"
+  },
+  "paywallBenefitProgress": "My Progress weekly study summary",
+  "@paywallBenefitProgress": {
+    "description": "Pro benefit progress"
+  },
+  "paywallMonthly": "Monthly",
+  "@paywallMonthly": {
+    "description": "Monthly plan title"
+  },
+  "paywallAnnual": "Annual",
+  "@paywallAnnual": {
+    "description": "Annual plan title"
+  },
+  "paywallPlanSemantics": "{title} plan",
+  "@paywallPlanSemantics": {
+    "description": "Plan tile semantics label",
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "paywallPriceIntroMonth": "{introPrice} for the first month, then {price}/month",
+  "@paywallPriceIntroMonth": {
+    "description": "Monthly intro price line",
+    "placeholders": {
+      "introPrice": {
+        "type": "String"
+      },
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "paywallPriceMonth": "{price}/month",
+  "@paywallPriceMonth": {
+    "description": "Monthly price line",
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "paywallPriceYear": "{price}/year",
+  "@paywallPriceYear": {
+    "description": "Annual price line",
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "paywallDetailAnnualMonthly": "About {monthlyPrice}/month · save 17% · renews automatically",
+  "@paywallDetailAnnualMonthly": {
+    "description": "Annual plan detail with monthly equivalent",
+    "placeholders": {
+      "monthlyPrice": {
+        "type": "String"
+      }
+    }
+  },
+  "paywallDetailAnnual": "Save 17% · renews automatically",
+  "@paywallDetailAnnual": {
+    "description": "Annual plan detail without monthly equivalent"
+  },
+  "paywallDetailRenews": "Renews automatically",
+  "@paywallDetailRenews": {
+    "description": "Monthly plan renews detail"
+  },
+  "paywallBestValue": "Best value",
+  "@paywallBestValue": {
+    "description": "Annual best-value badge"
+  },
+  "paywallSmallPrint": "Renews automatically. Cancel anytime in Google Play.",
+  "@paywallSmallPrint": {
+    "description": "Paywall legal small print"
+  },
+  "paywallTerms": "Terms",
+  "@paywallTerms": {
+    "description": "Terms link"
+  },
+  "paywallPrivacy": "Privacy",
+  "@paywallPrivacy": {
+    "description": "Privacy link"
+  },
+  "upgradeTitle": "Go Pro · 3× limits",
+  "@upgradeTitle": {
+    "description": "Upgrade sheet and manage footer CTA"
+  },
+  "limitAskmeTitle": "That’s today’s free questions",
+  "@limitAskmeTitle": {
+    "description": "ASKMe daily limit sheet title"
+  },
+  "limitAskmeBody": "Free includes {count, plural, =1{1 ASKMe question} other{{count} ASKMe questions}} a day. Pro gives 3× every day.",
+  "@limitAskmeBody": {
+    "description": "ASKMe daily limit sheet body",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "limitScanTitle": "That’s today’s free scans",
+  "@limitScanTitle": {
+    "description": "Scan daily limit sheet title"
+  },
+  "limitScanBody": "Free includes {count, plural, =1{1 scan} other{{count} scans}} a day. Pro gives 3× every day.",
+  "@limitScanBody": {
+    "description": "Scan daily limit sheet body",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "limitCheckTitle": "{count, plural, =1{That’s today’s free check} other{That’s today’s free checks}}",
+  "@limitCheckTitle": {
+    "description": "Check daily limit sheet title",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "limitCheckBody": "Free includes {count, plural, =1{one answer check} other{{count} answer checks}} a day. Pro gives 3× every day.",
+  "@limitCheckBody": {
+    "description": "Check daily limit sheet body",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "limitLessonsTitle": "Lessons from notes are Pro",
+  "@limitLessonsTitle": {
+    "description": "Lessons-from-notes Pro gate title"
+  },
+  "limitLessonsBody": "Keeping your notes is free. With Pro, Pebby turns them into swipe lessons with quizzes.",
+  "@limitLessonsBody": {
+    "description": "Lessons-from-notes Pro gate body"
+  },
+  "limitMaybeLater": "Maybe later",
+  "@limitMaybeLater": {
+    "description": "Limit sheet dismiss"
+  },
+  "proTitle": "ACADEMe Pro",
+  "@proTitle": {
+    "description": "Pro brand title"
+  },
+  "proPlanLimitsTitle": "Plan & limits",
+  "@proPlanLimitsTitle": {
+    "description": "Manage screen title when free"
+  },
+  "proCardSubtitleFree": "Plan & limits · 3× with Pro",
+  "@proCardSubtitleFree": {
+    "description": "Pro card subtitle for free users"
+  },
+  "proCardSubtitleMonthly": "Pro · monthly",
+  "@proCardSubtitleMonthly": {
+    "description": "Pro card subtitle monthly"
+  },
+  "proCardSubtitleAnnual": "Pro · annual",
+  "@proCardSubtitleAnnual": {
+    "description": "Pro card subtitle annual"
+  },
+  "proCardSubtitlePro": "Pro",
+  "@proCardSubtitlePro": {
+    "description": "Pro card subtitle without period"
+  },
+  "proManage": "Manage",
+  "@proManage": {
+    "description": "Pro card manage action"
+  },
+  "proOnPro": "You’re on Pro",
+  "@proOnPro": {
+    "description": "Manage hero when Pro"
+  },
+  "proOnFree": "You’re on Free",
+  "@proOnFree": {
+    "description": "Manage hero when free"
+  },
+  "proMetaFree": "Daily & weekly limits · 12:00 AM IST",
+  "@proMetaFree": {
+    "description": "Manage hero meta free"
+  },
+  "proMetaBillingIssue": "Fix payment in Google Play to keep Pro",
+  "@proMetaBillingIssue": {
+    "description": "Manage hero billing issue"
+  },
+  "proMetaActiveNoExpiry": "3× daily limits · weekly safety cap",
+  "@proMetaActiveNoExpiry": {
+    "description": "Manage hero Pro without expiry"
+  },
+  "proMetaAnnualRenews": "Annual · Renews {date} · 3× limits",
+  "@proMetaAnnualRenews": {
+    "description": "Manage hero annual renewing",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "proMetaMonthlyRenews": "Monthly · Renews {date} · 3× limits",
+  "@proMetaMonthlyRenews": {
+    "description": "Manage hero monthly renewing",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "proMetaEnds": "Pro ends on {date}",
+  "@proMetaEnds": {
+    "description": "Manage hero Pro ending",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "proStatusActive": "Active",
+  "@proStatusActive": {
+    "description": "Pro status pill"
+  },
+  "proStatusFree": "Free",
+  "@proStatusFree": {
+    "description": "Free status pill"
+  },
+  "proDailyLimits": "Daily limits",
+  "@proDailyLimits": {
+    "description": "Daily limits card heading"
+  },
+  "proResetsDaily": "Resets every day at 12:00 AM IST",
+  "@proResetsDaily": {
+    "description": "Daily limits reset schedule"
+  },
+  "proFeatureAskme": "ASKMe",
+  "@proFeatureAskme": {
+    "description": "ASKMe feature meter label"
+  },
+  "proFeatureScan": "Scan",
+  "@proFeatureScan": {
+    "description": "Scan feature meter label"
+  },
+  "proFeatureCheck": "Check",
+  "@proFeatureCheck": {
+    "description": "Check feature meter label"
+  },
+  "proFeatureLessons": "Lessons",
+  "@proFeatureLessons": {
+    "description": "Lessons feature meter label"
+  },
+  "proWeeklyLimit": "Weekly limit",
+  "@proWeeklyLimit": {
+    "description": "Weekly limit card heading"
+  },
+  "proResetsMondays": "Resets Mondays · 12:00 AM IST",
+  "@proResetsMondays": {
+    "description": "Weekly reset when no date"
+  },
+  "proResetsOnDay": "Resets {day} · 12:00 AM IST",
+  "@proResetsOnDay": {
+    "description": "Weekly reset with day",
+    "placeholders": {
+      "day": {
+        "type": "String"
+      }
+    }
+  },
+  "proAllFeatures": "All features",
+  "@proAllFeatures": {
+    "description": "Weekly combined meter label"
+  },
+  "proManageInPlay": "Manage in Google Play",
+  "@proManageInPlay": {
+    "description": "Manage subscription in Play"
+  },
+  "proResetsSoon": "soon",
+  "@proResetsSoon": {
+    "description": "Reset chip when past due"
+  },
+  "proResetsInHours": "{count, plural, =1{in 1 hour} other{in {count} hours}}",
+  "@proResetsInHours": {
+    "description": "Reset chip hours remaining",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "proNoticePending": "Your payment is pending. Pro turns on as soon as Google Play confirms it.",
+  "@proNoticePending": {
+    "description": "Billing pending notice"
+  },
+  "proNoticeNoPurchase": "No ACADEMe Pro purchase was found on this Google account.",
+  "@proNoticeNoPurchase": {
+    "description": "Restore found nothing"
+  },
+  "proNoticeNotAllowed": "Purchases are turned off for this Google account.",
+  "@proNoticeNotAllowed": {
+    "description": "Billing not allowed"
+  },
+  "proNoticeAlreadyOwned": "This Google account already has Pro. Tap Restore purchases.",
+  "@proNoticeAlreadyOwned": {
+    "description": "Billing already owned"
+  },
+  "proNoticeUnavailable": "Purchases aren’t available on this device.",
+  "@proNoticeUnavailable": {
+    "description": "Billing unavailable"
+  },
+  "proNoticeStoreError": "Google Play couldn’t finish that. Try again.",
+  "@proNoticeStoreError": {
+    "description": "Billing store error"
+  },
+  "askmeNewChat": "New chat",
+  "@askmeNewChat": {
+    "description": "ASKMe header new-chat tooltip"
+  },
+  "askmeStudying": "What are we studying, {name}?",
+  "@askmeStudying": {
+    "description": "ASKMe empty-state headline",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Riya"
+      }
+    }
+  },
+  "askmeModeExplainLine": "Pebby explains it simply, step by step.",
+  "@askmeModeExplainLine": {
+    "description": "ASKMe empty explain mode line"
+  },
+  "askmeModeSolveLine": "Pebby gives hints. You solve it.",
+  "@askmeModeSolveLine": {
+    "description": "ASKMe empty solve mode line"
+  },
+  "askmeModeQuizLine": "Pebby asks, you answer, you earn XP.",
+  "@askmeModeQuizLine": {
+    "description": "ASKMe empty quiz mode line"
+  },
+  "askmeSuggestExplain1": "Explain reflection of light simply",
+  "@askmeSuggestExplain1": {
+    "description": "ASKMe explain suggestion 1"
+  },
+  "askmeSuggestExplain2": "Why is the sky blue?",
+  "@askmeSuggestExplain2": {
+    "description": "ASKMe explain suggestion 2"
+  },
+  "askmeSuggestExplain3": "What is photosynthesis?",
+  "@askmeSuggestExplain3": {
+    "description": "ASKMe explain suggestion 3"
+  },
+  "askmeSuggestSolve1": "Help me solve 2x + 3y = 11 and x − 2y = −12",
+  "@askmeSuggestSolve1": {
+    "description": "ASKMe solve suggestion 1"
+  },
+  "askmeSuggestSolve2": "Find the area of a circle with r = 7 cm",
+  "@askmeSuggestSolve2": {
+    "description": "ASKMe solve suggestion 2"
+  },
+  "askmeSuggestSolve3": "Balance H₂ + O₂ → H₂O",
+  "@askmeSuggestSolve3": {
+    "description": "ASKMe solve suggestion 3"
+  },
+  "askmeSuggestQuiz1": "Quiz me on Light",
+  "@askmeSuggestQuiz1": {
+    "description": "ASKMe quiz suggestion 1"
+  },
+  "askmeSuggestQuiz2": "Give me 5 questions on linear equations",
+  "@askmeSuggestQuiz2": {
+    "description": "ASKMe quiz suggestion 2"
+  },
+  "askmeSuggestQuiz3": "Quiz me on the French Revolution",
+  "@askmeSuggestQuiz3": {
+    "description": "ASKMe quiz suggestion 3"
+  },
+  "askmeModeExplain": "Explain",
+  "@askmeModeExplain": {
+    "description": "ASKMe mode bar Explain"
+  },
+  "askmeModeSolve": "Solve",
+  "@askmeModeSolve": {
+    "description": "ASKMe mode bar Solve"
+  },
+  "askmeModeQuiz": "Quiz me",
+  "@askmeModeQuiz": {
+    "description": "ASKMe mode bar Quiz me"
+  },
+  "askmeFollowNextStep": "Next step",
+  "@askmeFollowNextStep": {
+    "description": "ASKMe solve follow-up chip"
+  },
+  "askmeFollowFullSolution": "Full solution",
+  "@askmeFollowFullSolution": {
+    "description": "ASKMe solve follow-up chip"
+  },
+  "askmeFollowNextQuestion": "Next question",
+  "@askmeFollowNextQuestion": {
+    "description": "ASKMe quiz follow-up chip"
+  },
+  "askmeFollowQuizMe": "Quiz me",
+  "@askmeFollowQuizMe": {
+    "description": "ASKMe explain follow-up chip"
+  },
+  "askmeFollowGoDeeper": "Go deeper",
+  "@askmeFollowGoDeeper": {
+    "description": "ASKMe explain follow-up chip"
+  },
+  "askmeSendNextStep": "Next step, please.",
+  "@askmeSendNextStep": {
+    "description": "ASKMe solve follow-up send text"
+  },
+  "askmeSendFullSolution": "Show me the full solution.",
+  "@askmeSendFullSolution": {
+    "description": "ASKMe solve follow-up send text"
+  },
+  "askmeSendNextQuestion": "Next question.",
+  "@askmeSendNextQuestion": {
+    "description": "ASKMe quiz follow-up send text"
+  },
+  "askmeSendGoDeeper": "Go deeper.",
+  "@askmeSendGoDeeper": {
+    "description": "ASKMe explain follow-up send text"
+  },
+  "askmeSendQuizMe": "Quiz me on this.",
+  "@askmeSendQuizMe": {
+    "description": "ASKMe explain quiz-me send text"
+  },
+  "askmeFailureUnavailable": "ASKMe isn’t ready yet. Pebby will be here soon.",
+  "@askmeFailureUnavailable": {
+    "description": "ASKMe send failure unavailable"
+  },
+  "askmeFailureSignedOut": "You’ve been logged out. Log in again.",
+  "@askmeFailureSignedOut": {
+    "description": "ASKMe send failure signed out"
+  },
+  "askmeFailureLimitReached": "That’s all your free questions for today. They come back at midnight.",
+  "@askmeFailureLimitReached": {
+    "description": "ASKMe send failure limit"
+  },
+  "askmeThinking": "Pebby is thinking",
+  "@askmeThinking": {
+    "description": "ASKMe thinking bubble semantics"
+  },
+  "historyTitle": "History",
+  "@historyTitle": {
+    "description": "ASKMe history screen title"
+  },
+  "historySearchHint": "Search your questions",
+  "@historySearchHint": {
+    "description": "ASKMe history search placeholder"
+  },
+  "historyLoadError": "Couldn’t load your chats. Retry",
+  "@historyLoadError": {
+    "description": "ASKMe history load error"
+  },
+  "historyEmpty": "Your questions to Pebby will show up here.",
+  "@historyEmpty": {
+    "description": "ASKMe history empty"
+  },
+  "historyThisWeek": "This week",
+  "@historyThisWeek": {
+    "description": "ASKMe history section this week"
+  },
+  "historyEarlier": "Earlier",
+  "@historyEarlier": {
+    "description": "ASKMe history section earlier"
+  },
+  "historyNow": "Now",
+  "@historyNow": {
+    "description": "ASKMe history relative now"
+  },
+  "historyHoursAgo": "{hours}h",
+  "@historyHoursAgo": {
+    "description": "ASKMe history relative hours",
+    "placeholders": {
+      "hours": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "historyWeekdayMon": "Mon",
+  "@historyWeekdayMon": {
+    "description": "ASKMe history weekday Mon"
+  },
+  "historyWeekdayTue": "Tue",
+  "@historyWeekdayTue": {
+    "description": "ASKMe history weekday Tue"
+  },
+  "historyWeekdayWed": "Wed",
+  "@historyWeekdayWed": {
+    "description": "ASKMe history weekday Wed"
+  },
+  "historyWeekdayThu": "Thu",
+  "@historyWeekdayThu": {
+    "description": "ASKMe history weekday Thu"
+  },
+  "historyWeekdayFri": "Fri",
+  "@historyWeekdayFri": {
+    "description": "ASKMe history weekday Fri"
+  },
+  "historyWeekdaySat": "Sat",
+  "@historyWeekdaySat": {
+    "description": "ASKMe history weekday Sat"
+  },
+  "historyWeekdaySun": "Sun",
+  "@historyWeekdaySun": {
+    "description": "ASKMe history weekday Sun"
+  },
+  "historyMonthJan": "Jan",
+  "@historyMonthJan": {
+    "description": "ASKMe history month Jan"
+  },
+  "historyMonthFeb": "Feb",
+  "@historyMonthFeb": {
+    "description": "ASKMe history month Feb"
+  },
+  "historyMonthMar": "Mar",
+  "@historyMonthMar": {
+    "description": "ASKMe history month Mar"
+  },
+  "historyMonthApr": "Apr",
+  "@historyMonthApr": {
+    "description": "ASKMe history month Apr"
+  },
+  "historyMonthMay": "May",
+  "@historyMonthMay": {
+    "description": "ASKMe history month May"
+  },
+  "historyMonthJun": "Jun",
+  "@historyMonthJun": {
+    "description": "ASKMe history month Jun"
+  },
+  "historyMonthJul": "Jul",
+  "@historyMonthJul": {
+    "description": "ASKMe history month Jul"
+  },
+  "historyMonthAug": "Aug",
+  "@historyMonthAug": {
+    "description": "ASKMe history month Aug"
+  },
+  "historyMonthSep": "Sep",
+  "@historyMonthSep": {
+    "description": "ASKMe history month Sep"
+  },
+  "historyMonthOct": "Oct",
+  "@historyMonthOct": {
+    "description": "ASKMe history month Oct"
+  },
+  "historyMonthNov": "Nov",
+  "@historyMonthNov": {
+    "description": "ASKMe history month Nov"
+  },
+  "historyMonthDec": "Dec",
+  "@historyMonthDec": {
+    "description": "ASKMe history month Dec"
+  },
+  "historyDayMonth": "{day} {month}",
+  "@historyDayMonth": {
+    "description": "ASKMe history day+month",
+    "placeholders": {
+      "day": {
+        "type": "int"
+      },
+      "month": {
+        "type": "String"
+      }
+    }
+  },
+  "attachTitle": "Add to your question",
+  "@attachTitle": {
+    "description": "Attach sheet title"
+  },
+  "attachCamera": "Camera",
+  "@attachCamera": {
+    "description": "Attach sheet camera option"
+  },
+  "attachPhotos": "Photos",
+  "@attachPhotos": {
+    "description": "Attach sheet photos option"
+  },
+  "replyHelpful": "Helpful",
+  "@replyHelpful": {
+    "description": "Reply action helpful tooltip"
+  },
+  "replyNotHelpful": "Not helpful",
+  "@replyNotHelpful": {
+    "description": "Reply action not helpful tooltip"
+  },
+  "replyCopy": "Copy",
+  "@replyCopy": {
+    "description": "Reply action copy tooltip"
+  },
+  "replyCopied": "Copied",
+  "@replyCopied": {
+    "description": "Reply copied snackbar"
+  },
+  "replyReportTitle": "Report this answer",
+  "@replyReportTitle": {
+    "description": "Reply report sheet title"
+  },
+  "replyReportThanks": "Thanks. We’ll review this answer.",
+  "@replyReportThanks": {
+    "description": "Reply report thanks snackbar"
+  },
+  "reportTooltip": "Report",
+  "@reportTooltip": {
+    "description": "Report button tooltip"
+  },
+  "reportSendFailed": "Couldn’t send the report. Try again.",
+  "@reportSendFailed": {
+    "description": "Report send failure snackbar"
+  },
+  "reportBody": "We read every report and use it to make Pebby safer.",
+  "@reportBody": {
+    "description": "Report sheet body"
+  },
+  "reportReasonWrong": "It’s wrong",
+  "@reportReasonWrong": {
+    "description": "Report reason wrong"
+  },
+  "reportReasonHarmful": "It’s harmful or unsafe",
+  "@reportReasonHarmful": {
+    "description": "Report reason harmful"
+  },
+  "reportReasonOffensive": "It’s rude or offensive",
+  "@reportReasonOffensive": {
+    "description": "Report reason offensive"
+  },
+  "reportReasonOther": "Something else",
+  "@reportReasonOther": {
+    "description": "Report reason other"
+  },
+  "progressTitle": "My Progress",
+  "@progressTitle": {
+    "description": "Progress screen app bar"
+  },
+  "progressLoading": "Loading this week…",
+  "@progressLoading": {
+    "description": "Progress loading line"
+  },
+  "progressLoadError": "Couldn’t load this week’s summary.",
+  "@progressLoadError": {
+    "description": "Progress load error"
+  },
+  "progressHoldTitle": "My Progress is part of Pro",
+  "@progressHoldTitle": {
+    "description": "Progress Pro hold title"
+  },
+  "progressHoldBody": "See streak, level and study insights with ACADEMe Pro.",
+  "@progressHoldBody": {
+    "description": "Progress Pro hold body"
+  },
+  "progressGoProLimits": "Go Pro · 3× limits",
+  "@progressGoProLimits": {
+    "description": "Progress Pro hold CTA"
+  },
+  "progressStudyDays": "Study days",
+  "@progressStudyDays": {
+    "description": "Progress study days card title"
+  },
+  "progressThisWeek": "This week",
+  "@progressThisWeek": {
+    "description": "Progress this week chip"
+  },
+  "progressTodayStudied": "Today · studied",
+  "@progressTodayStudied": {
+    "description": "Progress today studied"
+  },
+  "progressTodayNotYet": "Today · not yet",
+  "@progressTodayNotYet": {
+    "description": "Progress today not yet"
+  },
+  "progressTabSummary": "Summary",
+  "@progressTabSummary": {
+    "description": "Progress board tab summary"
+  },
+  "progressTabProgress": "Progress",
+  "@progressTabProgress": {
+    "description": "Progress board tab progress"
+  },
+  "progressTabActivity": "Activity",
+  "@progressTabActivity": {
+    "description": "Progress board tab activity"
+  },
+  "progressSubjectsThisWeek": "Subjects this week",
+  "@progressSubjectsThisWeek": {
+    "description": "Progress summary subjects stat"
+  },
+  "progressCompleted": "Completed",
+  "@progressCompleted": {
+    "description": "Progress summary completed stat"
+  },
+  "progressOverallGrade": "Overall grade",
+  "@progressOverallGrade": {
+    "description": "Progress overall grade label"
+  },
+  "progressKeepItUp": "Keep it up",
+  "@progressKeepItUp": {
+    "description": "Progress grade ring with grade"
+  },
+  "progressStartJourney": "Start your journey",
+  "@progressStartJourney": {
+    "description": "Progress grade ring without grade"
+  },
+  "progressCourseProgress": "Course progress",
+  "@progressCourseProgress": {
+    "description": "Progress pane empty title"
+  },
+  "progressLessonsEmpty": "Lessons you finish will show up here.",
+  "@progressLessonsEmpty": {
+    "description": "Progress pane empty body"
+  },
+  "progressSubjectLessons": "{name}: {count, plural, =1{1 lesson} other{{count} lessons}}",
+  "@progressSubjectLessons": {
+    "description": "Progress subject lesson row",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "progressActivity": "Activity",
+  "@progressActivity": {
+    "description": "Progress activity pane title"
+  },
+  "progressStudyDaysEmpty": "Your study days will show up here.",
+  "@progressStudyDaysEmpty": {
+    "description": "Progress activity empty"
+  },
+  "progressActiveDays": "{count, plural, =1{1 active day this week.} other{{count} active days this week.}}",
+  "@progressActiveDays": {
+    "description": "Progress activity count",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "progressCtaStart": "It’s time to start your journey!",
+  "@progressCtaStart": {
+    "description": "Progress gold CTA empty"
+  },
+  "progressCtaMomentum": "Keep your momentum going",
+  "@progressCtaMomentum": {
+    "description": "Progress gold CTA with grade"
+  },
+  "progressCtaHabit": "You’re building a habit",
+  "@progressCtaHabit": {
+    "description": "Progress gold CTA building"
+  },
+  "progressCtaNext": "See what to do next",
+  "@progressCtaNext": {
+    "description": "Progress gold CTA subtitle"
+  },
+  "progressNextSteps": "Next steps",
+  "@progressNextSteps": {
+    "description": "Progress next steps sheet title"
+  },
+  "progressYourSetup": "Your setup",
+  "@progressYourSetup": {
+    "description": "Progress next steps setup section"
+  },
+  "progressWhatNext": "What to do next",
+  "@progressWhatNext": {
+    "description": "Progress next steps advice section"
+  },
+  "progressNextWithStudy": "Keep finishing lessons this week. Your grade updates when you complete them.",
+  "@progressNextWithStudy": {
+    "description": "Progress next steps with study"
+  },
+  "progressNextNoStudy": "On Me, confirm class and board. Then open Study and finish your first lesson.",
+  "@progressNextNoStudy": {
+    "description": "Progress next steps without study"
+  },
+  "progressWeekEmpty": "No study logged this week yet.",
+  "@progressWeekEmpty": {
+    "description": "Progress week line empty"
+  },
+  "progressWeekActiveDays": "{count, plural, =1{1 active day} other{{count} active days}}",
+  "@progressWeekActiveDays": {
+    "description": "Progress week line active days",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "progressWeekLessons": "{count, plural, =1{1 lesson} other{{count} lessons}}",
+  "@progressWeekLessons": {
+    "description": "Progress week line lessons",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "progressWeekChapterTests": "{count, plural, =1{1 chapter test} other{{count} chapter tests}}",
+  "@progressWeekChapterTests": {
+    "description": "Progress week line chapter tests",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "progressWeekXp": "{count} XP",
+  "@progressWeekXp": {
+    "description": "Progress week line XP",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "progressWeekSummary": "This week: {parts}.",
+  "@progressWeekSummary": {
+    "description": "Progress week line summary",
+    "placeholders": {
+      "parts": {
+        "type": "String"
+      }
+    }
+  },
+  "progressWeekdayMon": "M",
+  "@progressWeekdayMon": {
+    "description": "Progress weekday initial Mon"
+  },
+  "progressWeekdayTue": "T",
+  "@progressWeekdayTue": {
+    "description": "Progress weekday initial Tue"
+  },
+  "progressWeekdayWed": "W",
+  "@progressWeekdayWed": {
+    "description": "Progress weekday initial Wed"
+  },
+  "progressWeekdayThu": "T",
+  "@progressWeekdayThu": {
+    "description": "Progress weekday initial Thu"
+  },
+  "progressWeekdayFri": "F",
+  "@progressWeekdayFri": {
+    "description": "Progress weekday initial Fri"
+  },
+  "progressWeekdaySat": "S",
+  "@progressWeekdaySat": {
+    "description": "Progress weekday initial Sat"
+  },
+  "progressWeekdaySun": "S",
+  "@progressWeekdaySun": {
+    "description": "Progress weekday initial Sun"
+  },
+  "subjectsStreamTitle": "Your stream",
+  "@subjectsStreamTitle": {
+    "description": "Subjects sheet stream title"
+  },
+  "subjectsSave": "Save",
+  "@subjectsSave": {
+    "description": "Subjects sheet save button"
+  },
+  "subjectsLoadError": "Couldn’t load your subjects. Retry",
+  "@subjectsLoadError": {
+    "description": "Subjects picker load error"
+  },
+  "subjectsMain": "Main",
+  "@subjectsMain": {
+    "description": "Subjects picker main label"
+  },
+  "subjectsOptional": "Optional",
+  "@subjectsOptional": {
+    "description": "Subjects picker optional label"
+  },
+  "streamSwipeFor": "Swipe for {name}. Change it any time in Me.",
+  "@streamSwipeFor": {
+    "description": "Stream cards swipe hint",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "streamChangeInMe": "Change it any time in Me.",
+  "@streamChangeInMe": {
+    "description": "Stream cards last-card hint"
+  },
+  "streamChoose": "Choose {name}",
+  "@streamChoose": {
+    "description": "Subjects sheet choose stream button",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "classDialLabel": "CLASS",
+  "@classDialLabel": {
+    "description": "Class dial center label"
+  },
+  "classDialSemantics": "Class {level}",
+  "@classDialSemantics": {
+    "description": "Class dial semantics",
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "studyTitle": "Study",
+  "@studyTitle": {
+    "description": "Study tab screen title"
+  },
+  "studyCourses": "Courses",
+  "@studyCourses": {
+    "description": "Study Courses tab"
+  },
+  "studyFolders": "Folders",
+  "@studyFolders": {
+    "description": "Study Folders tab"
+  },
+  "studyDone": "Done",
+  "@studyDone": {
+    "description": "Done button"
+  },
+  "studyKeep": "Keep",
+  "@studyKeep": {
+    "description": "Keep dialog action / card tool"
+  },
+  "studyDelete": "Delete",
+  "@studyDelete": {
+    "description": "Delete action"
+  },
+  "studySave": "Save",
+  "@studySave": {
+    "description": "Save action"
+  },
+  "studyCreate": "Create",
+  "@studyCreate": {
+    "description": "Create folder action"
+  },
+  "studyAdd": "Add",
+  "@studyAdd": {
+    "description": "Add tooltip"
+  },
+  "studyOptional": "optional",
+  "@studyOptional": {
+    "description": "Optional field hint"
+  },
+  "studyName": "Name",
+  "@studyName": {
+    "description": "Folder name field label"
+  },
+  "studyToday": "Today",
+  "@studyToday": {
+    "description": "Today section / due today"
+  },
+  "studyComingSoon": "Coming soon",
+  "@studyComingSoon": {
+    "description": "Coming soon label"
+  },
+  "studyXp": "XP",
+  "@studyXp": {
+    "description": "XP stat label"
+  },
+  "studyChTitle": "Ch {number} · {title}",
+  "@studyChTitle": {
+    "description": "Chapter abbreviation row title",
+    "placeholders": {
+      "number": {
+        "type": "int"
+      },
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "studyLessonsDoneOf": "{done} of {count, plural, =1{1 lesson} other{{count} lessons}} done",
+  "@studyLessonsDoneOf": {
+    "description": "Lessons completed of total",
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "studyComingSoonCount": "{count, plural, =1{1 coming soon} other{{count} coming soon}}",
+  "@studyComingSoonCount": {
+    "description": "Count of coming-soon lessons",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "studyNotInBoardExam": "Not in board exam",
+  "@studyNotInBoardExam": {
+    "description": "Formative-only chapter note"
+  },
+  "studyCardsCount": "{count, plural, =1{1 card} other{{count} cards}}",
+  "@studyCardsCount": {
+    "description": "Card count",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "studyQuickChecksCount": "{count, plural, =1{1 quick check} other{{count} quick checks}}",
+  "@studyQuickChecksCount": {
+    "description": "Quick check count",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "studyQuestionsCount": "{count, plural, =1{1 question} other{{count} questions}}",
+  "@studyQuestionsCount": {
+    "description": "Question count",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "studyChaptersCount": "{count, plural, =1{1 chapter} other{{count} chapters}}",
+  "@studyChaptersCount": {
+    "description": "Chapter count",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "studyLessonsCount": "{count, plural, =1{1 lesson} other{{count} lessons}}",
+  "@studyLessonsCount": {
+    "description": "Lesson count",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "studyMinutesShort": "{minutes} min",
+  "@studyMinutesShort": {
+    "description": "Short minutes label",
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "studyAboutMinutes": "about {minutes} min",
+  "@studyAboutMinutes": {
+    "description": "Approx lesson duration",
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "coursesNeedSyllabus": "Set your class and board on Home to see your courses.",
+  "@coursesNeedSyllabus": {
+    "description": "Courses empty without syllabus"
+  },
+  "coursesLoadError": "Couldn’t load your courses. Retry",
+  "@coursesLoadError": {
+    "description": "Courses load failure"
+  },
+  "coursesComingSoon": "Lessons for {syllabus} are on their way. Ask Pebby anything in ASKMe meanwhile.",
+  "@coursesComingSoon": {
+    "description": "Courses empty for syllabus",
+    "placeholders": {
+      "syllabus": {
+        "type": "String"
+      }
+    }
+  },
+  "coursesNoFilterMatch": "No chapters match these filters.",
+  "@coursesNoFilterMatch": {
+    "description": "Filtered courses empty"
+  },
+  "coursesFinishedEmpty": "Finished chapters show up here.",
+  "@coursesFinishedEmpty": {
+    "description": "Done filter empty"
+  },
+  "coursesStartedEmpty": "Chapters you’ve started show up here.",
+  "@coursesStartedEmpty": {
+    "description": "In-progress filter empty"
+  },
+  "coursesGoAgain": "Go again",
+  "@coursesGoAgain": {
+    "description": "Continue key when lesson done"
+  },
+  "coursesContinueCard": "Continue · card {current} of {total}",
+  "@coursesContinueCard": {
+    "description": "Continue key resume",
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "coursesStart": "Start",
+  "@coursesStart": {
+    "description": "Continue key start"
+  },
+  "filterAll": "All",
+  "@filterAll": {
+    "description": "Chapter status filter All"
+  },
+  "filterInProgress": "In progress",
+  "@filterInProgress": {
+    "description": "Chapter status filter In progress"
+  },
+  "filterDone": "Done",
+  "@filterDone": {
+    "description": "Chapter status filter Done"
+  },
+  "filterFilters": "Filters",
+  "@filterFilters": {
+    "description": "Filters button and sheet title"
+  },
+  "filterFiltersOn": "Filters, {count} on",
+  "@filterFiltersOn": {
+    "description": "Filters semantics when active",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "filterClear": "Clear",
+  "@filterClear": {
+    "description": "Clear filters"
+  },
+  "filterSort": "SORT",
+  "@filterSort": {
+    "description": "Sort section header"
+  },
+  "filterShowChapters": "Show {count, plural, =1{1 chapter} other{{count} chapters}}",
+  "@filterShowChapters": {
+    "description": "Apply filters button",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "filterBoardExamOnly": "Board exam only",
+  "@filterBoardExamOnly": {
+    "description": "Board exam filter title"
+  },
+  "filterBoardExamOnlyDesc": "Hide school-assessed chapters",
+  "@filterBoardExamOnlyDesc": {
+    "description": "Board exam filter subtitle"
+  },
+  "filterReadyToStudy": "Ready to study",
+  "@filterReadyToStudy": {
+    "description": "Ready filter title"
+  },
+  "filterReadyToStudyDesc": "Hide chapters still coming soon",
+  "@filterReadyToStudyDesc": {
+    "description": "Ready filter subtitle"
+  },
+  "filterRevisionDue": "Revision due",
+  "@filterRevisionDue": {
+    "description": "Revision due filter title"
+  },
+  "filterRevisionDueDesc": "Chapters with kept cards to revise",
+  "@filterRevisionDueDesc": {
+    "description": "Revision due filter subtitle"
+  },
+  "filterSortTextbook": "Textbook",
+  "@filterSortTextbook": {
+    "description": "Sort by textbook order"
+  },
+  "filterSortMostMarks": "Most marks",
+  "@filterSortMostMarks": {
+    "description": "Sort by marks"
+  },
+  "filterSortRecent": "Recent",
+  "@filterSortRecent": {
+    "description": "Sort by recent"
+  },
+  "filterFlagBoardExam": "Board exam",
+  "@filterFlagBoardExam": {
+    "description": "Active chip board exam"
+  },
+  "filterFlagReady": "Ready",
+  "@filterFlagReady": {
+    "description": "Active chip ready"
+  },
+  "filterFlagRevisionDue": "Revision due",
+  "@filterFlagRevisionDue": {
+    "description": "Active chip revision due"
+  },
+  "filterRemove": "Remove {label}",
+  "@filterRemove": {
+    "description": "Remove filter chip semantics",
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
+  "folderNew": "New folder",
+  "@folderNew": {
+    "description": "New folder button"
+  },
+  "folderEdit": "Edit folder",
+  "@folderEdit": {
+    "description": "Edit folder sheet title"
+  },
+  "folderEmptyHint": "Make a folder for a test, your homework, or anything you’re preparing. Add a date and it plans your days.",
+  "@folderEmptyHint": {
+    "description": "Folders empty state"
+  },
+  "folderEmpty": "Empty",
+  "@folderEmpty": {
+    "description": "Empty folder tile subtitle"
+  },
+  "folderNothingLeftToday": "Nothing left today",
+  "@folderNothingLeftToday": {
+    "description": "Folder tile when caught up"
+  },
+  "folderTodoToday": "{count} to do today",
+  "@folderTodoToday": {
+    "description": "Folder tile todos left",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "folderNoDate": "No date",
+  "@folderNoDate": {
+    "description": "Folder header without due date"
+  },
+  "folderPercentReady": "{percent}% ready",
+  "@folderPercentReady": {
+    "description": "Folder progress",
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "folderWhatsFor": "What’s this folder for?",
+  "@folderWhatsFor": {
+    "description": "Empty folder title"
+  },
+  "folderAddChaptersPlan": "Add chapters and Pebby plans your days.",
+  "@folderAddChaptersPlan": {
+    "description": "Empty folder subtitle"
+  },
+  "folderAddChapters": "Add chapters",
+  "@folderAddChapters": {
+    "description": "Add chapters action"
+  },
+  "folderFromSyllabus": "From your syllabus",
+  "@folderFromSyllabus": {
+    "description": "Add chapters subtitle"
+  },
+  "folderWriteNote": "Write a note",
+  "@folderWriteNote": {
+    "description": "Write note action"
+  },
+  "folderNoteSubtitle": "Anything you want to remember",
+  "@folderNoteSubtitle": {
+    "description": "Write note subtitle"
+  },
+  "folderScanNotes": "Scan notes",
+  "@folderScanNotes": {
+    "description": "Scan notes action"
+  },
+  "folderScanNotesSubtitle": "Photos of pages, made into a lesson",
+  "@folderScanNotesSubtitle": {
+    "description": "Scan notes subtitle"
+  },
+  "folderAddTodo": "Add a to-do",
+  "@folderAddTodo": {
+    "description": "Todo field hint"
+  },
+  "folderAddDate": "Add a date",
+  "@folderAddDate": {
+    "description": "Date picker placeholder"
+  },
+  "folderRemoveDate": "Remove date",
+  "@folderRemoveDate": {
+    "description": "Remove due date tooltip"
+  },
+  "folderReminders": "Reminders for this folder",
+  "@folderReminders": {
+    "description": "Folder reminders switch"
+  },
+  "folderDeleteTitle": "Delete this folder?",
+  "@folderDeleteTitle": {
+    "description": "Delete folder dialog title"
+  },
+  "folderDeleteBody": "Its notes and to-dos go too. Your lessons and progress stay.",
+  "@folderDeleteBody": {
+    "description": "Delete folder dialog body"
+  },
+  "folderTitle": "Folder",
+  "@folderTitle": {
+    "description": "Folder screen title"
+  },
+  "folderEditRemindersTooltip": "Edit and reminders",
+  "@folderEditRemindersTooltip": {
+    "description": "Folder edit tooltip"
+  },
+  "folderDeleteTooltip": "Delete folder",
+  "@folderDeleteTooltip": {
+    "description": "Folder delete tooltip"
+  },
+  "folderLoadError": "Couldn’t load this folder. Retry",
+  "@folderLoadError": {
+    "description": "Folder load error"
+  },
+  "folderTodayMinutes": "Today · {minutes} min",
+  "@folderTodayMinutes": {
+    "description": "Folder today with minutes",
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "folderSeePlan": "See plan",
+  "@folderSeePlan": {
+    "description": "Open plan button"
+  },
+  "folderAddChaptersOrTodos": "Add chapters or to-dos.",
+  "@folderAddChaptersOrTodos": {
+    "description": "Empty today no due"
+  },
+  "folderNothingLeftForToday": "Nothing left for today.",
+  "@folderNothingLeftForToday": {
+    "description": "Empty today with content"
+  },
+  "folderInThisFolder": "In this folder",
+  "@folderInThisFolder": {
+    "description": "Folder contents section"
+  },
+  "folderFromNotesDone": "From your notes · done",
+  "@folderFromNotesDone": {
+    "description": "Notes lesson done"
+  },
+  "folderFromNotesMinutes": "From your notes · {minutes} min",
+  "@folderFromNotesMinutes": {
+    "description": "Notes lesson duration",
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "folderNote": "Note",
+  "@folderNote": {
+    "description": "Note item subtitle"
+  },
+  "folderSaveNote": "Save note",
+  "@folderSaveNote": {
+    "description": "Note sheet action"
+  },
+  "folderTypeHere": "Type here…",
+  "@folderTypeHere": {
+    "description": "Note sheet hint"
+  },
+  "folderAddTo": "Add to a folder",
+  "@folderAddTo": {
+    "description": "Folder picker title / chapter action"
+  },
+  "folderCouldntMake": "Couldn’t make the folder. Try again.",
+  "@folderCouldntMake": {
+    "description": "Create folder error snackbar"
+  },
+  "folderAddedTo": "Added to {name}",
+  "@folderAddedTo": {
+    "description": "Added chapters snackbar",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "folderYourFolder": "your folder",
+  "@folderYourFolder": {
+    "description": "Fallback folder name"
+  },
+  "folderPlan": "Plan",
+  "@folderPlan": {
+    "description": "Plan screen without due"
+  },
+  "folderPlanTo": "Plan to {date}",
+  "@folderPlanTo": {
+    "description": "Plan screen with due",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "folderPlanBody": "Made from the chapters in this folder. Missed something? It moves to the next day on its own.",
+  "@folderPlanBody": {
+    "description": "Plan screen explainer"
+  },
+  "folderTestDay": "Test day · you’re ready",
+  "@folderTestDay": {
+    "description": "Plan due day line"
+  },
+  "folderRestDay": "Rest day",
+  "@folderRestDay": {
+    "description": "Plan rest day"
+  },
+  "folderDueTomorrow": "Tomorrow",
+  "@folderDueTomorrow": {
+    "description": "Due tomorrow"
+  },
+  "folderDueYesterday": "Yesterday",
+  "@folderDueYesterday": {
+    "description": "Due yesterday"
+  },
+  "folderDueDaysAgo": "{count, plural, =1{1 day} other{{count} days}} ago",
+  "@folderDueDaysAgo": {
+    "description": "Due days ago",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "folderDueInDays": "in {count, plural, =1{1 day} other{{count} days}}",
+  "@folderDueInDays": {
+    "description": "Due in days",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "chapterTitle": "Chapter {number}",
+  "@chapterTitle": {
+    "description": "Chapter screen title",
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "chapterLessons": "Lessons",
+  "@chapterLessons": {
+    "description": "Lessons section title"
+  },
+  "chapterTest": "Chapter test",
+  "@chapterTest": {
+    "description": "Chapter test row"
+  },
+  "chapterTestLast": "Last time {correct}/{total} · try again",
+  "@chapterTestLast": {
+    "description": "Chapter test with prior score",
+    "placeholders": {
+      "correct": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "chapterTestSubtitle": "{count, plural, =1{1 question} other{{count} questions}} from every lesson",
+  "@chapterTestSubtitle": {
+    "description": "Chapter test empty result",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "chapterKeptCards": "Kept cards",
+  "@chapterKeptCards": {
+    "description": "Kept cards row"
+  },
+  "chapterKeptEmpty": "Tap Keep on any card to save it here",
+  "@chapterKeptEmpty": {
+    "description": "Kept cards empty"
+  },
+  "chapterKeptCount": "{count} to revise",
+  "@chapterKeptCount": {
+    "description": "Kept cards count",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "chapterAllDoneGoAgain": "All lessons done · go again",
+  "@chapterAllDoneGoAgain": {
+    "description": "Chapter resume when done"
+  },
+  "chapterResumeCard": "Resume · card {current} of {total}",
+  "@chapterResumeCard": {
+    "description": "Chapter resume mid-lesson",
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "chapterNextLesson": "Next lesson",
+  "@chapterNextLesson": {
+    "description": "Chapter resume next"
+  },
+  "chapterLessonMeta": "Lesson {position} · {cards}",
+  "@chapterLessonMeta": {
+    "description": "Resume key subtitle",
+    "placeholders": {
+      "position": {
+        "type": "int"
+      },
+      "cards": {
+        "type": "String"
+      }
+    }
+  },
+  "chapterCardsRight": "{cards} · {correct}/{quizzes} right",
+  "@chapterCardsRight": {
+    "description": "Done lesson row subtitle",
+    "placeholders": {
+      "cards": {
+        "type": "String"
+      },
+      "correct": {
+        "type": "int"
+      },
+      "quizzes": {
+        "type": "int"
+      }
+    }
+  },
+  "chapterCardsChecks": "{cards} · {checks}",
+  "@chapterCardsChecks": {
+    "description": "Lesson row subtitle",
+    "placeholders": {
+      "cards": {
+        "type": "String"
+      },
+      "checks": {
+        "type": "String"
+      }
+    }
+  },
+  "chapterComingSoonLessons": "Coming soon · {lessons}",
+  "@chapterComingSoonLessons": {
+    "description": "Coming soon with planned lessons",
+    "placeholders": {
+      "lessons": {
+        "type": "String"
+      }
+    }
+  },
+  "chapterLessonsDoneTestNext": "Lessons done · test next",
+  "@chapterLessonsDoneTestNext": {
+    "description": "Chapter done awaiting test"
+  },
+  "chapterDoneTestPercent": "Done · test {percent}%",
+  "@chapterDoneTestPercent": {
+    "description": "Chapter done with test score",
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "chapterComingSoonSuffix": " · {count} coming soon",
+  "@chapterComingSoonSuffix": {
+    "description": "Suffix for partial coming soon",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "chapterNotInBoardExamSuffix": " · Not in board exam",
+  "@chapterNotInBoardExamSuffix": {
+    "description": "Formative suffix"
+  },
+  "chapterReportGreat": "Great work",
+  "@chapterReportGreat": {
+    "description": "Chapter report high score"
+  },
+  "chapterReportGood": "Good going",
+  "@chapterReportGood": {
+    "description": "Chapter report mid score"
+  },
+  "chapterReportRetry": "Worth another go",
+  "@chapterReportRetry": {
+    "description": "Chapter report low score"
+  },
+  "chapterReportByLesson": "By lesson",
+  "@chapterReportByLesson": {
+    "description": "Chapter report section"
+  },
+  "chapterReportXp": "{title} · +{xp} XP",
+  "@chapterReportXp": {
+    "description": "Chapter report subtitle",
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "xp": {
+        "type": "int"
+      }
+    }
+  },
+  "chapterReviseMissed": "Revise what you missed",
+  "@chapterReviseMissed": {
+    "description": "Chapter report revise"
+  },
+  "chapterAddToFolderAction": "Add chapter to a folder",
+  "@chapterAddToFolderAction": {
+    "description": "Chapter report add folder"
+  },
+  "chapterBackToChapter": "Back to chapter",
+  "@chapterBackToChapter": {
+    "description": "Back to chapter button"
+  },
+  "chapterNoChaptersYet": "No chapters for your class yet.",
+  "@chapterNoChaptersYet": {
+    "description": "Add chapters empty"
+  },
+  "chapterAlreadyInFolder": "Already in this folder",
+  "@chapterAlreadyInFolder": {
+    "description": "Chapter already added"
+  },
+  "chapterLessonsDoneShort": "{lessons} · {done} done",
+  "@chapterLessonsDoneShort": {
+    "description": "Add chapters subtitle",
+    "placeholders": {
+      "lessons": {
+        "type": "String"
+      },
+      "done": {
+        "type": "int"
+      }
+    }
+  },
+  "chapterPickChapters": "Pick chapters",
+  "@chapterPickChapters": {
+    "description": "Add chapters empty pick"
+  },
+  "chapterAddCount": "Add {count, plural, =1{1 chapter} other{{count} chapters}}",
+  "@chapterAddCount": {
+    "description": "Add chapters confirm",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "chapterAddChaptersTitle": "Add chapters",
+  "@chapterAddChaptersTitle": {
+    "description": "Add chapters screen title"
+  },
+  "deckReportTitle": "Report this lesson",
+  "@deckReportTitle": {
+    "description": "Report lesson sheet title"
+  },
+  "deckReportThanks": "Thanks. We’ll review this lesson.",
+  "@deckReportThanks": {
+    "description": "Report lesson thanks"
+  },
+  "deckLoadError": "Couldn’t load this lesson. Retry",
+  "@deckLoadError": {
+    "description": "Deck load error"
+  },
+  "deckPerfect": "Perfect lesson!",
+  "@deckPerfect": {
+    "description": "Perfect lesson done"
+  },
+  "deckLessonDone": "Lesson done!",
+  "@deckLessonDone": {
+    "description": "Lesson done title"
+  },
+  "deckStatRight": "right",
+  "@deckStatRight": {
+    "description": "Correct answers stat"
+  },
+  "deckStatKept": "kept",
+  "@deckStatKept": {
+    "description": "Kept cards stat"
+  },
+  "deckNextTitle": "Next: {title}",
+  "@deckNextTitle": {
+    "description": "Next lesson button",
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "deckStart": "Start",
+  "@deckStart": {
+    "description": "Deck start button"
+  },
+  "deckShowStep": "Show step {step}",
+  "@deckShowStep": {
+    "description": "Reveal example step",
+    "placeholders": {
+      "step": {
+        "type": "int"
+      }
+    }
+  },
+  "deckCheck": "Check",
+  "@deckCheck": {
+    "description": "Check answer button"
+  },
+  "deckNext": "Next",
+  "@deckNext": {
+    "description": "Next card button"
+  },
+  "deckFinish": "Finish",
+  "@deckFinish": {
+    "description": "Finish deck button"
+  },
+  "deckPreviousCard": "Previous card",
+  "@deckPreviousCard": {
+    "description": "Previous card semantics"
+  },
+  "deckNewLesson": "New lesson",
+  "@deckNewLesson": {
+    "description": "Start card kicker"
+  },
+  "deckByTheEnd": "By the end you can:",
+  "@deckByTheEnd": {
+    "description": "Start card goals intro"
+  },
+  "deckMetaLine": "{cards} · {checks} · about {minutes} min",
+  "@deckMetaLine": {
+    "description": "Start card meta",
+    "placeholders": {
+      "cards": {
+        "type": "String"
+      },
+      "checks": {
+        "type": "String"
+      },
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "deckConcept": "Concept",
+  "@deckConcept": {
+    "description": "Concept card kicker"
+  },
+  "deckInOneLook": "In one look",
+  "@deckInOneLook": {
+    "description": "Table card kicker"
+  },
+  "deckSummary": "Summary",
+  "@deckSummary": {
+    "description": "Summary card kicker"
+  },
+  "deckThreeLines": "The lesson in three lines",
+  "@deckThreeLines": {
+    "description": "Summary card title"
+  },
+  "deckKeptForRevision": "Kept for revision",
+  "@deckKeptForRevision": {
+    "description": "Summary kept box label"
+  },
+  "deckKeptRevisionOne": "1 card from this lesson comes back in your revision.",
+  "@deckKeptRevisionOne": {
+    "description": "Summary kept one card"
+  },
+  "deckKeptRevisionMany": "{count} cards from this lesson come back in your revision.",
+  "@deckKeptRevisionMany": {
+    "description": "Summary kept many cards",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "deckWorkedExample": "Worked example",
+  "@deckWorkedExample": {
+    "description": "Example card kicker"
+  },
+  "deckStepTryFirst": "Step {step} · try it first",
+  "@deckStepTryFirst": {
+    "description": "Hidden example step",
+    "placeholders": {
+      "step": {
+        "type": "int"
+      }
+    }
+  },
+  "deckRemember": "Remember",
+  "@deckRemember": {
+    "description": "Remember box default label"
+  },
+  "deckKept": "Kept",
+  "@deckKept": {
+    "description": "Card kept tool on"
+  },
+  "deckAskPebby": "Ask Pebby",
+  "@deckAskPebby": {
+    "description": "Ask Pebby tool"
+  },
+  "deckAskExplainSimply": "Can you explain this more simply? {title}: {body}",
+  "@deckAskExplainSimply": {
+    "description": "Ask prompt concept",
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "body": {
+        "type": "String"
+      }
+    }
+  },
+  "deckAskExplainExample": "Can you explain \"{title}\" with an example?",
+  "@deckAskExplainExample": {
+    "description": "Ask prompt table",
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "deckAskExplainSolve": "Can you explain how to solve: {question}",
+  "@deckAskExplainSolve": {
+    "description": "Ask prompt example",
+    "placeholders": {
+      "question": {
+        "type": "String"
+      }
+    }
+  },
+  "deckAskWrongWhy": "I got this wrong: {question} Why is it: {why}",
+  "@deckAskWrongWhy": {
+    "description": "Ask prompt quiz",
+    "placeholders": {
+      "question": {
+        "type": "String"
+      },
+      "why": {
+        "type": "String"
+      }
+    }
+  },
+  "deckAskExplainLesson": "Can you explain this lesson?",
+  "@deckAskExplainLesson": {
+    "description": "Ask prompt fallback"
+  },
+  "deckGoals": "Goals",
+  "@deckGoals": {
+    "description": "Review start-card front"
+  },
+  "quizQuickCheck": "Quick check",
+  "@quizQuickCheck": {
+    "description": "Quiz card kicker"
+  },
+  "quizQuestionOf": "Question {current} of {total}",
+  "@quizQuestionOf": {
+    "description": "Chapter test question kicker",
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "quizPraise1": "Nice! That’s right.",
+  "@quizPraise1": {
+    "description": "Quiz praise 1"
+  },
+  "quizPraise2": "Spot on!",
+  "@quizPraise2": {
+    "description": "Quiz praise 2"
+  },
+  "quizPraise3": "You got it!",
+  "@quizPraise3": {
+    "description": "Quiz praise 3"
+  },
+  "quizPraise4": "Correct, well done!",
+  "@quizPraise4": {
+    "description": "Quiz praise 4"
+  },
+  "quizPraise5": "Exactly right!",
+  "@quizPraise5": {
+    "description": "Quiz praise 5"
+  },
+  "quizHeresWhy": "Here’s why",
+  "@quizHeresWhy": {
+    "description": "Why card kicker"
+  },
+  "quizYourAnswer": "Your answer",
+  "@quizYourAnswer": {
+    "description": "Wrong option note"
+  },
+  "quizRightAnswer": "Right answer",
+  "@quizRightAnswer": {
+    "description": "Correct option note"
+  },
+  "quizKeptForYou": "Kept for you",
+  "@quizKeptForYou": {
+    "description": "Why card remember label"
+  },
+  "quizComesBack": "This question comes back in your revision tomorrow.",
+  "@quizComesBack": {
+    "description": "Why card remember body"
+  },
+  "quizNotQuite": "Not quite. Next: why.",
+  "@quizNotQuite": {
+    "description": "Wrong answer feedback"
+  },
+  "quizStreak": "{count} in a row",
+  "@quizStreak": {
+    "description": "Streak chip",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "quizXpTag": "+{xp} XP",
+  "@quizXpTag": {
+    "description": "XP chip",
+    "placeholders": {
+      "xp": {
+        "type": "int"
+      }
+    }
+  },
+  "studyRevision": "Revision",
+  "@studyRevision": {
+    "description": "Revision screen title"
+  },
+  "studyRevisionEmptyTitle": "Nothing to revise",
+  "@studyRevisionEmptyTitle": {
+    "description": "Revision empty title"
+  },
+  "studyRevisionEmptyBody": "Keep cards in a lesson, or miss a question, and they come back here.",
+  "@studyRevisionEmptyBody": {
+    "description": "Revision empty body"
+  },
+  "studyRevisionDone": "Revision done",
+  "@studyRevisionDone": {
+    "description": "Revision finished title"
+  },
+  "studyRevisionSummary": "{knew} knew it · {almost} almost · {again} to see again tomorrow",
+  "@studyRevisionSummary": {
+    "description": "Revision finished summary",
+    "placeholders": {
+      "knew": {
+        "type": "int"
+      },
+      "almost": {
+        "type": "int"
+      },
+      "again": {
+        "type": "int"
+      }
+    }
+  },
+  "studyRevisionHint": "Think of the answer, then tap to check.",
+  "@studyRevisionHint": {
+    "description": "Revision flip hint"
+  },
+  "studyRevisionShowAnswer": "Show answer",
+  "@studyRevisionShowAnswer": {
+    "description": "Reveal answer button"
+  },
+  "studyRevisionAgain": "Didn’t know",
+  "@studyRevisionAgain": {
+    "description": "Review rating again"
+  },
+  "studyRevisionAlmost": "Almost",
+  "@studyRevisionAlmost": {
+    "description": "Review rating almost"
+  },
+  "studyRevisionKnew": "Knew it",
+  "@studyRevisionKnew": {
+    "description": "Review rating knew"
+  },
+  "chapterTestDeckTitle": "Ch {number} test",
+  "@chapterTestDeckTitle": {
+    "description": "Chapter test deck top-bar title",
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "studyLessonsOf": "{done} of {count, plural, =1{1 lesson} other{{count} lessons}}",
+  "@studyLessonsOf": {
+    "description": "Lesson progress without done suffix",
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "actionTryAgain": "Try again",
+  "@actionTryAgain": {
+    "description": "Shared try-again action"
+  },
+  "actionGoPro": "Go Pro",
+  "@actionGoPro": {
+    "description": "Shared Go Pro action"
+  },
+  "actionBack": "Back",
+  "@actionBack": {
+    "description": "Shared back action"
+  },
+  "actionClose": "Close",
+  "@actionClose": {
+    "description": "Shared close action"
+  },
+  "failureNetwork": "No connection. Check your internet and try again.",
+  "@failureNetwork": {
+    "description": "Shared network failure"
+  },
+  "failureUnknown": "Something went wrong. Try again.",
+  "@failureUnknown": {
+    "description": "Shared unknown failure"
+  }
+}

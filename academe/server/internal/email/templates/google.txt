@@ -1,0 +1,9 @@
+{{define "content"}}{{.Heading}}
+
+{{.Lead}}
+
+{{.Body}}
+
+{{.Button.Label}}: {{.Button.URL}}
+
+{{.Ignore}}{{end}}
