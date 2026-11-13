@@ -88,6 +88,30 @@ void main() {
     expect(wentBack, 1);
   });
 
+  testWidgets('middle horizontal swipe cycles modes and hard-stops at ends', (
+    tester,
+  ) async {
+    await pump(tester);
+    expect(viewModel.mode, ChatMode.explain);
+
+    final body = find.text('What are we studying, Riya?');
+    await tester.drag(body, const Offset(-120, 0));
+    await tester.pumpAndSettle();
+    expect(viewModel.mode, ChatMode.solve);
+
+    await tester.drag(body, const Offset(-120, 0));
+    await tester.pumpAndSettle();
+    expect(viewModel.mode, ChatMode.quiz);
+
+    await tester.drag(body, const Offset(-120, 0));
+    await tester.pumpAndSettle();
+    expect(viewModel.mode, ChatMode.quiz); // hard stop
+
+    await tester.drag(body, const Offset(120, 0));
+    await tester.pumpAndSettle();
+    expect(viewModel.mode, ChatMode.solve);
+  });
+
   testWidgets('without a tutor the student sees why', (tester) async {
     await pump(tester);
     chats.nextFailure = ChatFailure.unavailable;

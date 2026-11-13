@@ -33,9 +33,12 @@ import '../../study/study_factory.dart';
 import '../../study/view_models/folders_view_model.dart';
 import '../../study/view_models/study_view_model.dart';
 import '../../study/widgets/study_screen.dart';
+import '../shell_tabs.dart';
 import 'app_nav_bar.dart';
 import 'me_navigation.dart';
 import 'scan_navigation.dart';
+import 'shell_edge_swipe.dart';
+import 'shell_tab_host.dart';
 import 'soft_update_banner.dart';
 import 'study_navigation.dart';
 
@@ -86,14 +89,18 @@ class AppShell extends StatefulWidget {
 }
 
 class _AppShellState extends State<AppShell>
-    with StudyNavigation, MeNavigation, ScanNavigation {
-  static const _askMeTab = 1;
-  static const _studyTab = 3;
+    with TickerProviderStateMixin, StudyNavigation, MeNavigation, ScanNavigation {
+  static const _askMeTab = ShellTabs.askMe;
+  static const _studyTab = ShellTabs.study;
+  static const _cardSwipe = Duration(milliseconds: 280);
 
   int _tab = 0;
   int _returnTab = 0;
   final _ask = TextEditingController();
   final _askFocus = FocusNode();
+  AnimationController? _card;
+  CurvedAnimation? _cardCurve;
+  ShellTabTransition? _cardTransition;
 
   HomeViewModel get _viewModel => widget.viewModel;
   AskMeViewModel get _askMe => widget.askMe;
@@ -108,8 +115,16 @@ class _AppShellState extends State<AppShell>
     widget.today.load.execute();
   }
 
+  void _disposeCard() {
+    _cardCurve?.dispose();
+    _cardCurve = null;
+    _card?.dispose();
+    _card = null;
+  }
+
   @override
   void dispose() {
+    _disposeCard();
     _me.logOut.removeListener(onLeft);
     _me.deleteAccount.removeListener(onLeft);
     _viewModel.dispose();
@@ -124,12 +139,51 @@ class _AppShellState extends State<AppShell>
     super.dispose();
   }
 
-  void _select(int index) {
-    if (index == _tab) return;
-    if (index == _askMeTab) _returnTab = _tab;
+  /// Shared side effects for pill/Scan tab changes (tap or edge).
+  void _applyTab(int to) {
+    if (to == _askMeTab) _returnTab = _tab;
     if (_isAsking) _askFocus.unfocus();
-    if (index == 0) widget.today.load.execute();
+    if (to == ShellTabs.home) widget.today.load.execute();
+  }
+
+  void _select(int index) {
+    if (index == _tab || _cardTransition != null) return;
+    _applyTab(index);
     setState(() => _tab = index);
+  }
+
+  void _onEdgeStep(int delta) {
+    final to = ShellTabs.step(_tab, delta);
+    if (to == null || _cardTransition != null) return;
+    final from = _tab;
+    _applyTab(to);
+    if (!ShellTabs.useCardSwipe(from, to)) {
+      setState(() => _tab = to);
+      return;
+    }
+    _disposeCard();
+    final controller = AnimationController(vsync: this, duration: _cardSwipe);
+    final curve = CurvedAnimation(
+      parent: controller,
+      curve: Curves.easeOutCubic,
+    );
+    _card = controller;
+    _cardCurve = curve;
+    setState(() {
+      _tab = to;
+      _cardTransition = ShellTabTransition(
+        from: from,
+        to: to,
+        delta: delta,
+        animation: curve,
+      );
+    });
+    controller.forward().whenComplete(() {
+      if (!mounted) return;
+      if (_card != controller) return;
+      _disposeCard();
+      setState(() => _cardTransition = null);
+    });
   }
 
   void _openSubject(String id) {
@@ -231,71 +285,75 @@ class _AppShellState extends State<AppShell>
                 alignment: Alignment.topCenter,
                 child: ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 600),
-                  child: IndexedStack(
-                    index: _tab,
-                    children: [
-                      HomeScreen(
-                        viewModel: _viewModel,
-                        opensSetup: widget.opensSetup,
-                        onAsk: _openAskMe,
-                        today: widget.today,
-                        onOpenTask: studyActions.openTask,
-                        onFlashcards: () => openReview(null),
-                        onSolve: () => startScan(ScanMode.solve),
-                        onCheck: () => startScan(ScanMode.check),
-                        study: widget.study,
-                        onOpenSubject: _openSubject,
-                      ),
-                      ListenableBuilder(
-                        listenable: _viewModel,
-                        builder: (context, _) => AskMeScreen(
-                          viewModel: _askMe,
-                          name:
-                              _viewModel.account?.firstName ??
-                              context.l10n.helloFallbackName,
-                          syllabus: syllabusLabelForProfile(
-                            context.l10n,
-                            _viewModel.profile,
-                          ),
-                          onBack: () => _select(_returnTab),
-                          onHistory: _history,
+                  child: ShellEdgeSwipe(
+                    onStep: _onEdgeStep,
+                    child: ShellTabHost(
+                      index: _tab,
+                      transition: _cardTransition,
+                      children: [
+                        HomeScreen(
+                          viewModel: _viewModel,
+                          opensSetup: widget.opensSetup,
+                          onAsk: _openAskMe,
+                          today: widget.today,
+                          onOpenTask: studyActions.openTask,
+                          onFlashcards: () => openReview(null),
+                          onSolve: () => startScan(ScanMode.solve),
+                          onCheck: () => startScan(ScanMode.check),
+                          study: widget.study,
+                          onOpenSubject: _openSubject,
                         ),
-                      ),
-                      ScanScreen(
-                        viewModel: widget.scan,
-                        onStart: startScan,
-                        onOpen: openScan,
-                      ),
-                      StudyScreen(
-                        viewModel: widget.study,
-                        folders: widget.folders,
-                        actions: studyActions,
-                        onNewFolder: newFolder,
-                      ),
-                      MeScreen(
-                        viewModel: _me,
-                        onClassAndBoard: openClassAndBoard,
-                        onLanguage: openLanguage,
-                        onAppearance: openAppearance,
-                        onNotifications: openNotifications,
-                        onAccount: openAccount,
-                        onHelp: () {
-                          final help = HelpViewModel(
-                            feedback: widget.feedbackRepository,
-                          );
-                          pushMe<void>(
-                            HelpScreen(viewModel: help),
-                          ).whenComplete(help.dispose);
-                        },
-                        onPrivacy: () => pushMe<void>(const PrivacyScreen()),
-                        onProgress: openProgress,
-                        onLogOut: confirmLogOut,
-                        pro: switch (widget.pro) {
-                          final pro? => ProCard(viewModel: pro),
-                          null => null,
-                        },
-                      ),
-                    ],
+                        ListenableBuilder(
+                          listenable: _viewModel,
+                          builder: (context, _) => AskMeScreen(
+                            viewModel: _askMe,
+                            name:
+                                _viewModel.account?.firstName ??
+                                context.l10n.helloFallbackName,
+                            syllabus: syllabusLabelForProfile(
+                              context.l10n,
+                              _viewModel.profile,
+                            ),
+                            onBack: () => _select(_returnTab),
+                            onHistory: _history,
+                          ),
+                        ),
+                        ScanScreen(
+                          viewModel: widget.scan,
+                          onStart: startScan,
+                          onOpen: openScan,
+                        ),
+                        StudyScreen(
+                          viewModel: widget.study,
+                          folders: widget.folders,
+                          actions: studyActions,
+                          onNewFolder: newFolder,
+                        ),
+                        MeScreen(
+                          viewModel: _me,
+                          onClassAndBoard: openClassAndBoard,
+                          onLanguage: openLanguage,
+                          onAppearance: openAppearance,
+                          onNotifications: openNotifications,
+                          onAccount: openAccount,
+                          onHelp: () {
+                            final help = HelpViewModel(
+                              feedback: widget.feedbackRepository,
+                            );
+                            pushMe<void>(
+                              HelpScreen(viewModel: help),
+                            ).whenComplete(help.dispose);
+                          },
+                          onPrivacy: () => pushMe<void>(const PrivacyScreen()),
+                          onProgress: openProgress,
+                          onLogOut: confirmLogOut,
+                          pro: switch (widget.pro) {
+                            final pro? => ProCard(viewModel: pro),
+                            null => null,
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

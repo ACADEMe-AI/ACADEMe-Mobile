@@ -1,7 +1,7 @@
 name: academe
 description: "ACADEMe: companion, scan, quiz, plan, notes."
 publish_to: 'none'
-version: 1.1.7+17
+version: 1.1.8+18
 
 environment:
   sdk: ^3.11.4

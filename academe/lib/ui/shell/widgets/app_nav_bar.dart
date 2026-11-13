@@ -5,6 +5,7 @@ import '../../core/themes/app_theme.dart';
 import '../../core/ui/ask_me_icon.dart';
 import '../../core/ui/keycap.dart';
 import '../../core/ui/tab_bar_layout.dart';
+import '../shell_tabs.dart';
 
 class AppNavBar extends StatelessWidget {
   const AppNavBar({
@@ -30,7 +31,7 @@ class AppNavBar extends StatelessWidget {
 
   static const morph = Duration(milliseconds: 280);
 
-  static const scanIndex = 2;
+  static const scanIndex = ShellTabs.scan;
   static const barHeight = TabBarLayout.barHeight;
   static const depth = TabBarLayout.depth;
 
@@ -139,18 +140,19 @@ class _Tabs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+    final labels = {
+      ShellTabs.home: (const Icon(Icons.home_rounded), l10n.navHome),
+      ShellTabs.askMe: (const AskMeIcon(), l10n.navAskMe),
+      ShellTabs.study: (const Icon(Icons.menu_book_rounded), l10n.navStudy),
+      ShellTabs.me: (const Icon(Icons.person_rounded), l10n.navMe),
+    };
     return Row(
       children: [
-        for (final (index, icon, label) in [
-          (0, const Icon(Icons.home_rounded), l10n.navHome),
-          (1, const AskMeIcon(), l10n.navAskMe),
-          (3, const Icon(Icons.menu_book_rounded), l10n.navStudy),
-          (4, const Icon(Icons.person_rounded), l10n.navMe),
-        ])
+        for (final index in ShellTabs.pillOrder)
           Expanded(
             child: _NavTab(
-              icon: icon,
-              label: label,
+              icon: labels[index]!.$1,
+              label: labels[index]!.$2,
               isSelected: selected == index,
               onTap: () => onSelect(index),
             ),

@@ -6,6 +6,7 @@ import '../../core/l10n/app_l10n.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/ui/appear.dart';
 import '../../core/ui/screen_scale.dart';
+import '../../core/ui/shell_edge.dart';
 import '../../core/ui/tab_bar_layout.dart';
 import '../../paywall/widgets/limit_sheet.dart';
 import '../view_models/askme_view_model.dart';
@@ -13,7 +14,7 @@ import 'askme_empty_state.dart';
 import 'chat_messages.dart';
 import 'mode_bar.dart';
 
-class AskMeScreen extends StatelessWidget {
+class AskMeScreen extends StatefulWidget {
   const AskMeScreen({
     super.key,
     required this.viewModel,
@@ -29,61 +30,115 @@ class AskMeScreen extends StatelessWidget {
   final VoidCallback onBack;
   final VoidCallback onHistory;
 
-  static const _emptyKey = ValueKey('empty');
-  static const _chatKey = ValueKey('chat');
+  @override
+  State<AskMeScreen> createState() => _AskMeScreenState();
+}
+
+class _AskMeScreenState extends State<AskMeScreen> {
+  /// `+1` when the new mode enters from the right.
+  int _modeDir = 1;
+  bool _ignoreModeDrag = false;
+  double _modeDx = 0;
+  double _modeDy = 0;
+
+  AskMeViewModel get _viewModel => widget.viewModel;
+
+  void _setMode(ChatMode mode) {
+    final from = _viewModel.mode;
+    if (from == mode) return;
+    setState(() => _modeDir = mode.index >= from.index ? 1 : -1);
+    _viewModel.setMode(mode);
+  }
+
+  void _onModeStep(int delta) {
+    final i = _viewModel.mode.index + delta;
+    if (i < 0 || i >= ChatMode.values.length) return; // hard stop
+    _setMode(ChatMode.values[i]);
+  }
 
   @override
   Widget build(BuildContext context) {
     final padding = ScreenScale.of(context).pagePadding;
     return ListenableBuilder(
-      listenable: viewModel,
+      listenable: _viewModel,
       builder: (context, _) => Column(
         children: [
           Padding(
             padding: EdgeInsets.fromLTRB(padding - 8, 4, padding - 8, 0),
             child: _Header(
-              onBack: onBack,
-              onHistory: onHistory,
-              onNew: viewModel.isEmpty ? null : viewModel.newChat,
+              onBack: widget.onBack,
+              onHistory: widget.onHistory,
+              onNew: _viewModel.isEmpty ? null : _viewModel.newChat,
             ),
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: padding),
-            child: ModeBar(mode: viewModel.mode, onSelect: viewModel.setMode),
+            child: ModeBar(mode: _viewModel.mode, onSelect: _setMode),
           ),
           const SizedBox(height: 4),
           Expanded(
-            child: AnimatedSwitcher(
-              duration: MediaQuery.disableAnimationsOf(context)
-                  ? Duration.zero
-                  : const Duration(milliseconds: 320),
-              switchInCurve: Curves.easeOutCubic,
-              switchOutCurve: Curves.easeInCubic,
-              transitionBuilder: (child, animation) => FadeTransition(
-                opacity: animation,
-                child: SlideTransition(
-                  position: animation.drive(
-                    Tween(
-                      begin: Offset(0, child.key == _emptyKey ? -.06 : .04),
-                      end: Offset.zero,
+            child: Builder(
+              builder: (swipeContext) => GestureDetector(
+              behavior: HitTestBehavior.translucent,
+              onHorizontalDragStart: (details) {
+                final box = swipeContext.findRenderObject() as RenderBox?;
+                final width = box?.size.width ?? 0;
+                _ignoreModeDrag =
+                    width <= 0 ||
+                    ShellEdge.contains(details.localPosition.dx, width);
+                _modeDx = 0;
+                _modeDy = 0;
+              },
+              onHorizontalDragUpdate: (details) {
+                if (_ignoreModeDrag) return;
+                _modeDx += details.delta.dx;
+                _modeDy += details.delta.dy;
+              },
+              onHorizontalDragEnd: (_) {
+                if (_ignoreModeDrag) return;
+                if (_modeDx.abs() < 40 || _modeDx.abs() <= _modeDy.abs()) {
+                  return;
+                }
+                _onModeStep(_modeDx < 0 ? 1 : -1);
+              },
+              child: AnimatedSwitcher(
+                duration: MediaQuery.disableAnimationsOf(context)
+                    ? Duration.zero
+                    : ModeBar.slide,
+                switchInCurve: Curves.easeOutCubic,
+                switchOutCurve: Curves.easeInCubic,
+                layoutBuilder: (current, previous) => Stack(
+                  fit: StackFit.expand,
+                  alignment: Alignment.topCenter,
+                  children: [...previous, ?current],
+                ),
+                transitionBuilder: (child, animation) {
+                  return SlideTransition(
+                    position: animation.drive(
+                      Tween(
+                        begin: Offset(_modeDir.toDouble(), 0),
+                        end: Offset.zero,
+                      ),
                     ),
-                  ),
-                  child: child,
+                    child: FadeTransition(opacity: animation, child: child),
+                  );
+                },
+                child: KeyedSubtree(
+                  key: ValueKey(_viewModel.mode),
+                  child: _viewModel.isEmpty
+                      ? AskMeEmptyState(
+                          name: widget.name,
+                          syllabus: widget.syllabus,
+                          mode: _viewModel.mode,
+                          onAsk: _viewModel.send.execute,
+                        )
+                      : _Conversation(
+                          viewModel: _viewModel,
+                          padding: padding,
+                        ),
                 ),
               ),
-              child: viewModel.isEmpty
-                  ? AskMeEmptyState(
-                      key: _emptyKey,
-                      name: name,
-                      syllabus: syllabus,
-                      mode: viewModel.mode,
-                      onAsk: viewModel.send.execute,
-                    )
-                  : _Conversation(
-                      key: _chatKey,
-                      viewModel: viewModel,
-                      padding: padding,
-                    ),
+            ),
             ),
           ),
         ],
@@ -142,7 +197,6 @@ class _Header extends StatelessWidget {
 
 class _Conversation extends StatelessWidget {
   const _Conversation({
-    super.key,
     required this.viewModel,
     required this.padding,
   });
