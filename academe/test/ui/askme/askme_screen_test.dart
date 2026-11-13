@@ -15,6 +15,7 @@ void main() {
   late FakeChatRepository chats;
   late AskMeViewModel viewModel;
   var wentBack = 0;
+  final shellSteps = <int>[];
 
   Future<void> pump(WidgetTester tester) async {
     tester.view.physicalSize = const Size(1080, 2400);
@@ -23,6 +24,8 @@ void main() {
     chats = FakeChatRepository();
     viewModel = AskMeViewModel(chatRepository: chats);
     addTearDown(viewModel.dispose);
+    shellSteps.clear();
+    wentBack = 0;
     await tester.pumpWidget(
       PebbyStandIn(
         child: MaterialApp(
@@ -37,6 +40,7 @@ void main() {
               syllabus: 'Class 10 · CBSE',
               onBack: () => wentBack++,
               onHistory: () {},
+              onShellStep: shellSteps.add,
             ),
           ),
         ),
@@ -88,13 +92,18 @@ void main() {
     expect(wentBack, 1);
   });
 
-  testWidgets('middle horizontal swipe cycles modes and hard-stops at ends', (
+  testWidgets('middle swipe cycles modes and leaves shell at the ends', (
     tester,
   ) async {
     await pump(tester);
     expect(viewModel.mode, ChatMode.explain);
 
     final body = find.text('What are we studying, Riya?');
+    await tester.drag(body, const Offset(120, 0));
+    await tester.pumpAndSettle();
+    expect(viewModel.mode, ChatMode.explain);
+    expect(shellSteps, [-1]);
+
     await tester.drag(body, const Offset(-120, 0));
     await tester.pumpAndSettle();
     expect(viewModel.mode, ChatMode.solve);
@@ -105,7 +114,8 @@ void main() {
 
     await tester.drag(body, const Offset(-120, 0));
     await tester.pumpAndSettle();
-    expect(viewModel.mode, ChatMode.quiz); // hard stop
+    expect(viewModel.mode, ChatMode.quiz);
+    expect(shellSteps, [-1, 1]);
 
     await tester.drag(body, const Offset(120, 0));
     await tester.pumpAndSettle();

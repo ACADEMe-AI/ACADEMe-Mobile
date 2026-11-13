@@ -51,11 +51,11 @@ void main() {
   }
 
   Future<void> expectEndAboveBar(WidgetTester tester, Finder last) async {
-    final list = find
-        .byWidgetPredicate(
-          (w) => w is Scrollable && w.axisDirection == AxisDirection.down,
-        )
-        .first;
+    final vertical = find.byWidgetPredicate(
+      (w) => w is Scrollable && w.axisDirection == AxisDirection.down,
+    );
+    final scoped = find.ancestor(of: last, matching: vertical);
+    final list = scoped.evaluate().isNotEmpty ? scoped.first : vertical.first;
     await tester.fling(list, const Offset(0, -4000), 4000);
     await tester.pumpAndSettle();
     final barTop = tester.getTopLeft(find.byType(AppNavBar)).dy;
@@ -75,19 +75,15 @@ void main() {
       tester,
     ) async {
       await pumpShell(tester, size, inset);
+      Finder nav(String label) => find.descendant(
+        of: find.byType(AppNavBar),
+        matching: find.text(label),
+      );
       await expectEndAboveBar(tester, find.byType(SubjectRows));
-      await tester.tap(find.text('ASKMe'));
-      await tester.pumpAndSettle();
-      await expectEndAboveBar(tester, find.text('What is photosynthesis?'));
-      await tester.pageBack();
-      await tester.pumpAndSettle();
-      await tester.tap(find.text('Me'));
+      await tester.tap(nav('Me'));
       await tester.pumpAndSettle();
       await expectEndAboveBar(tester, find.text(MeScreen.version));
-      await tester.tap(find.byIcon(Icons.photo_camera_rounded));
-      await tester.pumpAndSettle();
-      await expectEndAboveBar(tester, find.text('Anything else'));
-      await tester.tap(find.text('Study'));
+      await tester.tap(nav('Study'));
       await tester.pumpAndSettle();
       await expectEndAboveBar(tester, find.byType(ChapterRow));
       await tester.tap(find.text('Folders'));
@@ -96,6 +92,14 @@ void main() {
         tester,
         find.widgetWithText(AppButton, 'New folder'),
       );
+      await tester.tap(find.byIcon(Icons.photo_camera_rounded));
+      await tester.pumpAndSettle();
+      await expectEndAboveBar(tester, find.text('Anything else'));
+      await tester.tap(nav('ASKMe'));
+      await tester.pumpAndSettle();
+      await expectEndAboveBar(tester, find.text('What is photosynthesis?'));
+      await tester.tap(find.byTooltip('Back'));
+      await tester.pumpAndSettle();
     });
   }
 }

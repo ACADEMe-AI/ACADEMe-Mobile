@@ -31,8 +31,11 @@ class _StudyScreenState extends State<StudyScreen> {
   @override
   void initState() {
     super.initState();
-    widget.viewModel.load.execute();
-    widget.folders.load.execute();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      widget.viewModel.load.execute();
+      widget.folders.load.execute();
+    });
   }
 
   @override

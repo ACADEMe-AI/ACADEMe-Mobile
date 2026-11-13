@@ -22,6 +22,7 @@ class AskMeScreen extends StatefulWidget {
     required this.syllabus,
     required this.onBack,
     required this.onHistory,
+    this.onShellStep,
   });
 
   final AskMeViewModel viewModel;
@@ -29,15 +30,18 @@ class AskMeScreen extends StatefulWidget {
   final String? syllabus;
   final VoidCallback onBack;
   final VoidCallback onHistory;
+  final ValueChanged<int>? onShellStep;
 
   @override
   State<AskMeScreen> createState() => _AskMeScreenState();
 }
 
 class _AskMeScreenState extends State<AskMeScreen> {
-  /// `+1` when the new mode enters from the right.
+  static const _axisSlop = 12.0;
+
   int _modeDir = 1;
   bool _ignoreModeDrag = false;
+  bool? _modeHorizontal;
   double _modeDx = 0;
   double _modeDy = 0;
 
@@ -52,7 +56,10 @@ class _AskMeScreenState extends State<AskMeScreen> {
 
   void _onModeStep(int delta) {
     final i = _viewModel.mode.index + delta;
-    if (i < 0 || i >= ChatMode.values.length) return; // hard stop
+    if (i < 0 || i >= ChatMode.values.length) {
+      widget.onShellStep?.call(delta);
+      return;
+    }
     _setMode(ChatMode.values[i]);
   }
 
@@ -78,67 +85,79 @@ class _AskMeScreenState extends State<AskMeScreen> {
           const SizedBox(height: 4),
           Expanded(
             child: Builder(
-              builder: (swipeContext) => GestureDetector(
-              behavior: HitTestBehavior.translucent,
-              onHorizontalDragStart: (details) {
-                final box = swipeContext.findRenderObject() as RenderBox?;
-                final width = box?.size.width ?? 0;
-                _ignoreModeDrag =
-                    width <= 0 ||
-                    ShellEdge.contains(details.localPosition.dx, width);
-                _modeDx = 0;
-                _modeDy = 0;
-              },
-              onHorizontalDragUpdate: (details) {
-                if (_ignoreModeDrag) return;
-                _modeDx += details.delta.dx;
-                _modeDy += details.delta.dy;
-              },
-              onHorizontalDragEnd: (_) {
-                if (_ignoreModeDrag) return;
-                if (_modeDx.abs() < 40 || _modeDx.abs() <= _modeDy.abs()) {
-                  return;
-                }
-                _onModeStep(_modeDx < 0 ? 1 : -1);
-              },
-              child: AnimatedSwitcher(
-                duration: MediaQuery.disableAnimationsOf(context)
-                    ? Duration.zero
-                    : ModeBar.slide,
-                switchInCurve: Curves.easeOutCubic,
-                switchOutCurve: Curves.easeInCubic,
-                layoutBuilder: (current, previous) => Stack(
-                  fit: StackFit.expand,
-                  alignment: Alignment.topCenter,
-                  children: [...previous, ?current],
-                ),
-                transitionBuilder: (child, animation) {
-                  return SlideTransition(
-                    position: animation.drive(
-                      Tween(
-                        begin: Offset(_modeDir.toDouble(), 0),
-                        end: Offset.zero,
-                      ),
-                    ),
-                    child: FadeTransition(opacity: animation, child: child),
-                  );
+              builder: (swipeContext) => Listener(
+                behavior: HitTestBehavior.translucent,
+                onPointerDown: (e) {
+                  final box = swipeContext.findRenderObject() as RenderBox?;
+                  final width = box?.size.width ?? 0;
+                  _ignoreModeDrag =
+                      width <= 0 ||
+                      ShellEdge.contains(e.localPosition.dx, width);
+                  _modeHorizontal = null;
+                  _modeDx = 0;
+                  _modeDy = 0;
                 },
-                child: KeyedSubtree(
-                  key: ValueKey(_viewModel.mode),
-                  child: _viewModel.isEmpty
-                      ? AskMeEmptyState(
-                          name: widget.name,
-                          syllabus: widget.syllabus,
-                          mode: _viewModel.mode,
-                          onAsk: _viewModel.send.execute,
-                        )
-                      : _Conversation(
-                          viewModel: _viewModel,
-                          padding: padding,
+                onPointerMove: (e) {
+                  if (_ignoreModeDrag) return;
+                  _modeDx += e.delta.dx;
+                  _modeDy += e.delta.dy;
+                  if (_modeHorizontal == null) {
+                    if (_modeDx.abs() < _axisSlop &&
+                        _modeDy.abs() < _axisSlop) {
+                      return;
+                    }
+                    _modeHorizontal = _modeDx.abs() > _modeDy.abs();
+                  }
+                },
+                onPointerUp: (_) {
+                  if (_ignoreModeDrag || _modeHorizontal != true) return;
+                  if (_modeDx.abs() < 40) return;
+                  _onModeStep(_modeDx < 0 ? 1 : -1);
+                },
+                onPointerCancel: (_) {
+                  _ignoreModeDrag = true;
+                  _modeHorizontal = null;
+                  _modeDx = 0;
+                  _modeDy = 0;
+                },
+                child: AnimatedSwitcher(
+                  duration: MediaQuery.disableAnimationsOf(context)
+                      ? Duration.zero
+                      : ModeBar.slide,
+                  switchInCurve: Curves.easeOutCubic,
+                  switchOutCurve: Curves.easeInCubic,
+                  layoutBuilder: (current, previous) => Stack(
+                    fit: StackFit.expand,
+                    alignment: Alignment.topCenter,
+                    children: [...previous, ?current],
+                  ),
+                  transitionBuilder: (child, animation) {
+                    return SlideTransition(
+                      position: animation.drive(
+                        Tween(
+                          begin: Offset(_modeDir.toDouble(), 0),
+                          end: Offset.zero,
                         ),
+                      ),
+                      child: FadeTransition(opacity: animation, child: child),
+                    );
+                  },
+                  child: KeyedSubtree(
+                    key: ValueKey(_viewModel.mode),
+                    child: _viewModel.isEmpty
+                        ? AskMeEmptyState(
+                            name: widget.name,
+                            syllabus: widget.syllabus,
+                            mode: _viewModel.mode,
+                            onAsk: _viewModel.send.execute,
+                          )
+                        : _Conversation(
+                            viewModel: _viewModel,
+                            padding: padding,
+                          ),
+                  ),
                 ),
               ),
-            ),
             ),
           ),
         ],
