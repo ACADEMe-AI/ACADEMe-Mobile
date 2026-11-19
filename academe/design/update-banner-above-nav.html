@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ACADEMe — update banner above navbar</title>
+  <style>
+    :root {
+      --cream: #f6f1e8;
+      --ink: #1c1917;
+      --muted: #57534e;
+      --edge: #1c1917;
+      --lavender: #ddd6fe;
+      --primary: #6d28d9;
+      --surface: #fffdf8;
+      --radius: 24px; /* AppRadius.xl — same as nav pill */
+      --nav-h: 60px;
+      --depth: 4px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 32px 16px;
+      font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+      background: #e7e5e4;
+      color: var(--ink);
+    }
+    h2 { width: 100%; text-align: center; margin: 0 0 8px; font-size: 15px; font-weight: 600; color: var(--muted); }
+    .phone {
+      width: 360px;
+      height: 720px;
+      background: var(--cream);
+      border-radius: 36px;
+      border: 3px solid #292524;
+      box-shadow: 0 20px 50px rgba(0,0,0,.2);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .label {
+      text-align: center;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .status {
+      height: 44px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding: 0 20px 8px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .content {
+      flex: 1;
+      padding: 8px 16px 0;
+      overflow: hidden;
+    }
+    .card {
+      background: var(--surface);
+      border: 2px solid var(--edge);
+      border-radius: 16px;
+      padding: 14px;
+      margin-bottom: 10px;
+      box-shadow: 0 3px 0 var(--edge);
+    }
+    .card h3 { margin: 0 0 6px; font-size: 16px; }
+    .card p { margin: 0; font-size: 13px; color: var(--muted); line-height: 1.35; }
+
+    /* ——— CURRENT (bad): top banner pushes content ——— */
+    .banner-top {
+      margin: 4px 8px 6px;
+      height: 72px;
+      background: var(--lavender);
+      border: 2px solid var(--edge);
+      border-radius: 16px;
+      box-shadow: 0 3px 0 var(--edge);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 6px 4px 8px;
+      flex-shrink: 0;
+    }
+
+    /* ——— PROPOSED: floats just above nav ——— */
+    .chrome-bottom {
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      padding: 0 16px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      pointer-events: none;
+    }
+    .chrome-bottom > * { pointer-events: auto; }
+
+    .banner-above-nav {
+      height: 56px;
+      background: var(--lavender);
+      border: 2px solid var(--edge);
+      border-radius: var(--radius); /* same as nav */
+      box-shadow: 0 var(--depth) 0 var(--edge);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 6px 4px 10px;
+    }
+    .pebby {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: #fde68a;
+      border: 2px solid var(--edge);
+      flex-shrink: 0;
+      display: grid; place-items: center;
+      font-size: 18px;
+    }
+    .banner-msg {
+      flex: 1;
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.25;
+      max-height: 2.6em;
+      overflow: hidden;
+    }
+    .btn-update {
+      border: none;
+      background: transparent;
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 13px;
+      padding: 6px;
+      cursor: pointer;
+    }
+    .btn-x {
+      width: 32px; height: 32px;
+      border: none; background: transparent;
+      font-size: 18px; cursor: pointer; color: var(--ink);
+    }
+
+    .nav-row {
+      display: flex;
+      gap: 12px;
+      align-items: flex-end;
+    }
+    .nav-pill {
+      flex: 1;
+      height: calc(var(--nav-h) - var(--depth));
+      margin-bottom: var(--depth);
+      background: var(--surface);
+      border: 2px solid var(--edge);
+      border-radius: var(--radius);
+      box-shadow: 0 var(--depth) 0 var(--edge);
+      display: flex;
+    }
+    .nav-tab {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    .nav-tab.on { color: var(--primary); }
+    .scan {
+      width: var(--nav-h);
+      height: calc(var(--nav-h) - var(--depth));
+      margin-bottom: var(--depth);
+      background: var(--primary);
+      border: 2px solid var(--edge);
+      border-radius: var(--radius);
+      box-shadow: 0 var(--depth) 0 var(--edge);
+      display: grid; place-items: center;
+      color: white; font-size: 22px;
+    }
+    .fade {
+      position: absolute;
+      left: 0; right: 0;
+      bottom: 140px;
+      height: 48px;
+      background: linear-gradient(transparent, var(--cream));
+      pointer-events: none;
+    }
+    .note {
+      max-width: 360px;
+      font-size: 14px;
+      color: var(--muted);
+      margin-top: 10px;
+      line-height: 1.4;
+    }
+    .arrow { color: #b91c1c; font-size: 13px; font-weight: 700; margin: 0 8px 4px; }
+  </style>
+</head>
+<body>
+
+  <div>
+    <div class="label">NOW (what you dislike)</div>
+    <p class="arrow">↓ Banner at top pushes Home down</p>
+    <div class="phone">
+      <div class="status"><span>9:41</span><span>●●●</span></div>
+      <div class="banner-top">
+        <div class="pebby">🐣</div>
+        <div class="banner-msg">New version just dropped, you don't wanna miss this!</div>
+        <button class="btn-update">Update</button>
+        <button class="btn-x" aria-label="Not now">×</button>
+      </div>
+      <div class="content">
+        <div class="card"><h3>Class 10 · CBSE</h3><p>Home content starts lower — feels shoved.</p></div>
+        <div class="card"><h3>Ask Pebby</h3><p>Cards sit under the banner gap.</p></div>
+        <div class="card"><h3>Continue</h3><p>…</p></div>
+      </div>
+      <div class="chrome-bottom">
+        <div class="nav-row">
+          <div class="nav-pill">
+            <div class="nav-tab on">⌂<span>Home</span></div>
+            <div class="nav-tab">💬<span>ASKMe</span></div>
+            <div class="nav-tab">📖<span>Study</span></div>
+            <div class="nav-tab">☺<span>Me</span></div>
+          </div>
+          <div class="scan">📷</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="label">PROPOSED</div>
+    <p class="arrow" style="color:#15803d">↑ Banner docks just above nav · same 24px radius</p>
+    <div class="phone">
+      <div class="status"><span>9:41</span><span>●●●</span></div>
+      <div class="content">
+        <div class="card"><h3>Class 10 · CBSE</h3><p>Home stays at the top — nothing pushed.</p></div>
+        <div class="card"><h3>Ask Pebby</h3><p>Full screen for study content.</p></div>
+        <div class="card"><h3>Continue learning</h3><p>Scroll under the floating chrome.</p></div>
+        <div class="card"><h3>Today</h3><p>…</p></div>
+      </div>
+      <div class="fade"></div>
+      <div class="chrome-bottom">
+        <!-- Update banner: same radius as nav pill -->
+        <div class="banner-above-nav">
+          <div class="pebby">🐣</div>
+          <div class="banner-msg">New version just dropped, you don't wanna miss this!</div>
+          <button class="btn-update">Update</button>
+          <button class="btn-x" aria-label="Not now">×</button>
+        </div>
+        <div class="nav-row">
+          <div class="nav-pill">
+            <div class="nav-tab on">⌂<span>Home</span></div>
+            <div class="nav-tab">💬<span>ASKMe</span></div>
+            <div class="nav-tab">📖<span>Study</span></div>
+            <div class="nav-tab">☺<span>Me</span></div>
+          </div>
+          <div class="scan">📷</div>
+        </div>
+      </div>
+    </div>
+    <p class="note">
+      Banner sits in the bottom chrome stack (above the tab pill + Scan keycap),
+      uses <strong>border-radius: 24px</strong> like the navbar, lavender keycap face,
+      Update + ×. Home content is not shifted down.
+    </p>
+  </div>
+
+</body>
+</html>

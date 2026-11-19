@@ -1,0 +1,11 @@
+{{define "content"}}{{.Heading}}
+
+A signed-in student sent this from Help and feedback in the app.
+
+Ticket {{.TicketID}}
+From {{.StudentEmail}}
+Category {{.CategoryLabel}}
+
+{{.Message}}
+
+Reply to student: {{.Button.URL}}{{end}}

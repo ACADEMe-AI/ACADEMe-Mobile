@@ -1,0 +1,74 @@
+package auth
+
+import (
+	"math"
+	"net/http"
+	"net/netip"
+	"strconv"
+	"time"
+)
+
+const (
+	logInsPerEmailIP   = 10
+	logInsPerEmailHour = 20
+	logInsPerIPHour    = 50
+	signUpsPerIPHour   = 10
+	googlePerIPHour    = 30
+	logInEmailIPWindow = 15 * time.Minute
+)
+
+type entryLimits struct {
+	logInEmailIP *limiter
+	logInEmail   *limiter
+	logInIP      *limiter
+	signUpIP     *limiter
+	googleIP     *limiter
+}
+
+func newEntryLimits(scale int) entryLimits {
+	scale = max(scale, 1)
+	return entryLimits{
+		logInEmailIP: newLimiter(logInsPerEmailIP*scale, logInEmailIPWindow),
+		logInEmail:   newLimiter(logInsPerEmailHour*scale, time.Hour),
+		logInIP:      newLimiter(logInsPerIPHour*scale, time.Hour),
+		signUpIP:     newLimiter(signUpsPerIPHour*scale, time.Hour),
+		googleIP:     newLimiter(googlePerIPHour*scale, time.Hour),
+	}
+}
+
+type gate struct {
+	limiter *limiter
+	key     string
+}
+
+func admit(w http.ResponseWriter, gates ...gate) error {
+	for _, g := range gates {
+		if wait := g.limiter.wait(g.key); wait > 0 {
+			w.Header().Set("Retry-After", strconv.Itoa(int(math.Ceil(wait.Seconds()))))
+			return toHTTP(ErrThrottled)
+		}
+	}
+	return nil
+}
+
+func logInKey(email, ip string) string {
+	return emailKey(email) + " " + ip
+}
+
+func emailKey(email string) string {
+	email = normalizeEmail(email)
+	return email[:min(len(email), maxEmailLength)]
+}
+
+func clientIP(r *http.Request) string {
+	addr, err := netip.ParseAddrPort(r.RemoteAddr)
+	if err != nil {
+		return r.RemoteAddr
+	}
+	ip := addr.Addr().Unmap()
+	if ip.Is6() {
+		network, _ := ip.Prefix(64)
+		return network.String()
+	}
+	return ip.String()
+}

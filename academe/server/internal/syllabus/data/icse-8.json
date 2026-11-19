@@ -1,0 +1,4433 @@
+{
+  "board": "ICSE",
+  "class": 8,
+  "session": "2026-27",
+  "sources": [
+    {
+      "title": "CISCE (Council for the Indian School Certificate Examinations)",
+      "url": "https://cisce.org/"
+    },
+    {
+      "title": "Selina Publishers (publisher)",
+      "url": "https://www.selinapublishers.com/"
+    },
+    {
+      "title": "Goyal Brothers Prakashan (publisher)",
+      "url": "https://goyal-books.com/"
+    }
+  ],
+  "subjects": [
+    {
+      "subject": "english",
+      "name": "English",
+      "book": "CISCE English curriculum scope for Class 8 (grammar, vocabulary, composition); school readers vary, so no reader chapters are listed",
+      "chapters": [
+        {
+          "number": 1,
+          "title": "Parts of Speech Review",
+          "unit": "Grammar",
+          "outcomes": [
+            "Identify the eight parts of speech in context",
+            "Use determiners and articles correctly"
+          ],
+          "topics": [
+            "Nouns and their kinds",
+            "Pronouns and their kinds",
+            "Adjectives and degrees of comparison",
+            "Verbs: transitive and intransitive",
+            "Adverbs and their kinds",
+            "Prepositions, conjunctions and interjections",
+            "Articles",
+            "Other determiners"
+          ],
+          "lessons": [
+            {
+              "title": "Naming and describing words",
+              "topics": [
+                "Nouns and their kinds",
+                "Pronouns and their kinds",
+                "Adjectives and degrees of comparison"
+              ]
+            },
+            {
+              "title": "Action and linking words",
+              "topics": [
+                "Verbs: transitive and intransitive",
+                "Adverbs and their kinds",
+                "Prepositions, conjunctions and interjections"
+              ]
+            },
+            {
+              "title": "Determiners",
+              "topics": [
+                "Articles",
+                "Other determiners"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 2,
+          "title": "Tenses and Their Uses",
+          "unit": "Grammar",
+          "outcomes": [
+            "Use all twelve tense forms correctly",
+            "Avoid inappropriate tense shifts"
+          ],
+          "topics": [
+            "Present tense forms",
+            "Past tense forms",
+            "Future tense forms",
+            "Modal verbs",
+            "Sequence of tenses",
+            "Correcting tense shifts"
+          ],
+          "lessons": [
+            {
+              "title": "Present and past",
+              "topics": [
+                "Present tense forms",
+                "Past tense forms"
+              ]
+            },
+            {
+              "title": "Future and modals",
+              "topics": [
+                "Future tense forms",
+                "Modal verbs"
+              ]
+            },
+            {
+              "title": "Consistency",
+              "topics": [
+                "Sequence of tenses",
+                "Correcting tense shifts"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 3,
+          "title": "Active and Passive Voice",
+          "unit": "Grammar",
+          "outcomes": [
+            "Change sentences between active and passive voice",
+            "Choose the voice that suits the purpose"
+          ],
+          "topics": [
+            "Rules for changing voice",
+            "Passive in different tenses",
+            "Passive of questions and commands",
+            "Passive with modals",
+            "When to use the passive"
+          ],
+          "lessons": [
+            {
+              "title": "Forming the passive",
+              "topics": [
+                "Rules for changing voice",
+                "Passive in different tenses"
+              ]
+            },
+            {
+              "title": "Special cases",
+              "topics": [
+                "Passive of questions and commands",
+                "Passive with modals",
+                "When to use the passive"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 4,
+          "title": "Direct and Indirect Speech",
+          "unit": "Grammar",
+          "outcomes": [
+            "Report statements, questions and commands",
+            "Apply changes of tense, pronoun and time words"
+          ],
+          "topics": [
+            "Reporting verbs",
+            "Changes in tense",
+            "Changes in pronouns and time words",
+            "Reporting questions",
+            "Reporting commands and requests",
+            "Reporting exclamations"
+          ],
+          "lessons": [
+            {
+              "title": "Reporting statements",
+              "topics": [
+                "Reporting verbs",
+                "Changes in tense",
+                "Changes in pronouns and time words"
+              ]
+            },
+            {
+              "title": "Questions, commands and exclamations",
+              "topics": [
+                "Reporting questions",
+                "Reporting commands and requests",
+                "Reporting exclamations"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 5,
+          "title": "Phrases and Clauses",
+          "unit": "Grammar",
+          "outcomes": [
+            "Distinguish phrases from clauses",
+            "Identify noun, adjective and adverb clauses"
+          ],
+          "topics": [
+            "What a phrase is",
+            "Noun, adjective and adverb phrases",
+            "Main and subordinate clauses",
+            "Noun clauses",
+            "Adjective (relative) clauses",
+            "Adverb clauses"
+          ],
+          "lessons": [
+            {
+              "title": "Phrases",
+              "topics": [
+                "What a phrase is",
+                "Noun, adjective and adverb phrases"
+              ]
+            },
+            {
+              "title": "Clauses",
+              "topics": [
+                "Main and subordinate clauses",
+                "Noun clauses",
+                "Adjective (relative) clauses",
+                "Adverb clauses"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 6,
+          "title": "Sentence Transformation",
+          "unit": "Grammar",
+          "outcomes": [
+            "Identify simple, compound and complex sentences",
+            "Transform sentences without changing meaning"
+          ],
+          "topics": [
+            "Simple sentences",
+            "Compound sentences",
+            "Complex sentences",
+            "Simple to compound and back",
+            "Simple to complex and back",
+            "Joining sentences with linkers",
+            "Avoiding too, so and although errors"
+          ],
+          "lessons": [
+            {
+              "title": "Kinds of sentences",
+              "topics": [
+                "Simple sentences",
+                "Compound sentences",
+                "Complex sentences"
+              ]
+            },
+            {
+              "title": "Transforming sentences",
+              "topics": [
+                "Simple to compound and back",
+                "Simple to complex and back",
+                "Joining sentences with linkers",
+                "Avoiding too, so and although errors"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 7,
+          "title": "Idioms, Phrasal Verbs and Figures of Speech",
+          "unit": "Vocabulary",
+          "outcomes": [
+            "Use common idioms and phrasal verbs in context",
+            "Recognise figures of speech"
+          ],
+          "topics": [
+            "Common idioms",
+            "Phrasal verbs with get, put, take and look",
+            "Simile and metaphor",
+            "Personification and alliteration",
+            "Hyperbole and onomatopoeia"
+          ],
+          "lessons": [
+            {
+              "title": "Idioms and phrasal verbs",
+              "topics": [
+                "Common idioms",
+                "Phrasal verbs with get, put, take and look"
+              ]
+            },
+            {
+              "title": "Figures of speech",
+              "topics": [
+                "Simile and metaphor",
+                "Personification and alliteration",
+                "Hyperbole and onomatopoeia"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 8,
+          "title": "Vocabulary Skills",
+          "unit": "Vocabulary",
+          "outcomes": [
+            "Work out word meanings from context and word parts",
+            "Use a dictionary and thesaurus effectively"
+          ],
+          "topics": [
+            "Prefixes and suffixes",
+            "Root words",
+            "Compound words",
+            "Synonyms and antonyms",
+            "Homophones and homonyms",
+            "One-word substitution",
+            "Context clues",
+            "Dictionary and thesaurus skills"
+          ],
+          "lessons": [
+            {
+              "title": "Word building",
+              "topics": [
+                "Prefixes and suffixes",
+                "Root words",
+                "Compound words"
+              ]
+            },
+            {
+              "title": "Word meanings",
+              "topics": [
+                "Synonyms and antonyms",
+                "Homophones and homonyms",
+                "One-word substitution"
+              ]
+            },
+            {
+              "title": "Using references",
+              "topics": [
+                "Context clues",
+                "Dictionary and thesaurus skills"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 9,
+          "title": "Functional Writing: Letters, Notices and Emails",
+          "unit": "Writing",
+          "outcomes": [
+            "Write formal and informal letters in the correct format",
+            "Write notices and emails for a purpose"
+          ],
+          "topics": [
+            "Informal letter format",
+            "Formal letter format",
+            "Letters of request and complaint",
+            "Notice writing",
+            "Email writing"
+          ],
+          "lessons": [
+            {
+              "title": "Letters",
+              "topics": [
+                "Informal letter format",
+                "Formal letter format",
+                "Letters of request and complaint"
+              ]
+            },
+            {
+              "title": "Notices and emails",
+              "topics": [
+                "Notice writing",
+                "Email writing"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 10,
+          "title": "Creative Writing: Compositions and Narratives",
+          "unit": "Writing",
+          "outcomes": [
+            "Plan and write a composition of 250-300 words",
+            "Write stories and personal narratives",
+            "Revise and edit drafts"
+          ],
+          "topics": [
+            "Choosing and narrowing a topic",
+            "Descriptive compositions",
+            "Argumentative compositions",
+            "Story structure",
+            "Personal narratives",
+            "Writing across subjects",
+            "Drafting",
+            "Revising and editing",
+            "Using digital resources for research"
+          ],
+          "lessons": [
+            {
+              "title": "Planning a composition",
+              "topics": [
+                "Choosing and narrowing a topic",
+                "Descriptive compositions",
+                "Argumentative compositions"
+              ]
+            },
+            {
+              "title": "Stories and narratives",
+              "topics": [
+                "Story structure",
+                "Personal narratives",
+                "Writing across subjects"
+              ]
+            },
+            {
+              "title": "Process writing",
+              "topics": [
+                "Drafting",
+                "Revising and editing",
+                "Using digital resources for research"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        }
+      ]
+    },
+    {
+      "subject": "hindi",
+      "name": "Hindi",
+      "book": "Hindi grammar (vyakaran) and composition (rachna) units typical of ICSE Class 8 grammar books; CISCE does not prescribe one book and school readers vary, so no reader chapters are listed",
+      "chapters": [
+        {
+          "number": 1,
+          "title": "वर्ण-विचार (Letters and Sounds)",
+          "unit": "व्याकरण",
+          "outcomes": [
+            "स्वर और व्यंजन पहचानना",
+            "वर्तनी सही लिखना"
+          ],
+          "topics": [
+            "वर्णमाला",
+            "स्वर और उनके भेद",
+            "व्यंजन और उनके भेद",
+            "अनुस्वार और अनुनासिक",
+            "संयुक्त व्यंजन",
+            "वर्तनी की अशुद्धियाँ"
+          ],
+          "lessons": [
+            {
+              "title": "स्वर और व्यंजन",
+              "topics": [
+                "वर्णमाला",
+                "स्वर और उनके भेद",
+                "व्यंजन और उनके भेद"
+              ]
+            },
+            {
+              "title": "उच्चारण और वर्तनी",
+              "topics": [
+                "अनुस्वार और अनुनासिक",
+                "संयुक्त व्यंजन",
+                "वर्तनी की अशुद्धियाँ"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 2,
+          "title": "संधि (Sandhi)",
+          "unit": "व्याकरण",
+          "outcomes": [
+            "संधि के भेद पहचानना",
+            "संधि और संधि-विच्छेद करना"
+          ],
+          "topics": [
+            "संधि का अर्थ",
+            "दीर्घ और गुण संधि",
+            "वृद्धि, यण और अयादि संधि",
+            "व्यंजन संधि",
+            "विसर्ग संधि",
+            "संधि-विच्छेद"
+          ],
+          "lessons": [
+            {
+              "title": "स्वर संधि",
+              "topics": [
+                "संधि का अर्थ",
+                "दीर्घ और गुण संधि",
+                "वृद्धि, यण और अयादि संधि"
+              ]
+            },
+            {
+              "title": "व्यंजन और विसर्ग संधि",
+              "topics": [
+                "व्यंजन संधि",
+                "विसर्ग संधि",
+                "संधि-विच्छेद"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 3,
+          "title": "समास (Samas)",
+          "unit": "व्याकरण",
+          "outcomes": [
+            "समास के भेद पहचानना",
+            "समस्त पद और समास-विग्रह करना"
+          ],
+          "topics": [
+            "समास का अर्थ",
+            "अव्ययीभाव और तत्पुरुष समास",
+            "कर्मधारय और द्विगु समास",
+            "द्वंद्व और बहुव्रीहि समास",
+            "समास-विग्रह",
+            "संधि और समास में अंतर"
+          ],
+          "lessons": [
+            {
+              "title": "समास के भेद",
+              "topics": [
+                "समास का अर्थ",
+                "अव्ययीभाव और तत्पुरुष समास",
+                "कर्मधारय और द्विगु समास"
+              ]
+            },
+            {
+              "title": "अन्य भेद और विग्रह",
+              "topics": [
+                "द्वंद्व और बहुव्रीहि समास",
+                "समास-विग्रह",
+                "संधि और समास में अंतर"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 4,
+          "title": "शब्द-भंडार (Vocabulary)",
+          "unit": "शब्द-ज्ञान",
+          "outcomes": [
+            "पर्यायवाची और विलोम शब्दों का प्रयोग करना",
+            "अनेकार्थी शब्द और अनेक शब्दों के लिए एक शब्द जानना"
+          ],
+          "topics": [
+            "पर्यायवाची शब्द",
+            "विलोम शब्द",
+            "अनेकार्थी शब्द",
+            "अनेक शब्दों के लिए एक शब्द",
+            "श्रुतिसम भिन्नार्थक शब्द",
+            "तत्सम और तद्भव शब्द"
+          ],
+          "lessons": [
+            {
+              "title": "अर्थ के आधार पर शब्द",
+              "topics": [
+                "पर्यायवाची शब्द",
+                "विलोम शब्द",
+                "अनेकार्थी शब्द"
+              ]
+            },
+            {
+              "title": "शब्द-प्रयोग",
+              "topics": [
+                "अनेक शब्दों के लिए एक शब्द",
+                "श्रुतिसम भिन्नार्थक शब्द",
+                "तत्सम और तद्भव शब्द"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 5,
+          "title": "संज्ञा, सर्वनाम और विशेषण (Noun, Pronoun, Adjective)",
+          "unit": "व्याकरण",
+          "outcomes": [
+            "संज्ञा, सर्वनाम और विशेषण के भेद पहचानना",
+            "लिंग, वचन और कारक का सही प्रयोग करना"
+          ],
+          "topics": [
+            "संज्ञा के भेद",
+            "लिंग",
+            "वचन",
+            "कारक और विभक्तियाँ",
+            "सर्वनाम के भेद",
+            "विशेषण और विशेष्य",
+            "विशेषण की अवस्थाएँ"
+          ],
+          "lessons": [
+            {
+              "title": "संज्ञा",
+              "topics": [
+                "संज्ञा के भेद",
+                "लिंग",
+                "वचन"
+              ]
+            },
+            {
+              "title": "कारक",
+              "topics": [
+                "कारक और विभक्तियाँ"
+              ]
+            },
+            {
+              "title": "सर्वनाम और विशेषण",
+              "topics": [
+                "सर्वनाम के भेद",
+                "विशेषण और विशेष्य",
+                "विशेषण की अवस्थाएँ"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 6,
+          "title": "क्रिया, काल और वाच्य (Verb, Tense, Voice)",
+          "unit": "व्याकरण",
+          "outcomes": [
+            "क्रिया के भेद पहचानना",
+            "काल के भेदों का प्रयोग करना",
+            "वाच्य परिवर्तन करना"
+          ],
+          "topics": [
+            "सकर्मक और अकर्मक क्रिया",
+            "प्रेरणार्थक क्रिया",
+            "भूतकाल और उसके भेद",
+            "वर्तमान काल और उसके भेद",
+            "भविष्यत् काल",
+            "कर्तृवाच्य",
+            "कर्मवाच्य और भाववाच्य",
+            "वाच्य परिवर्तन"
+          ],
+          "lessons": [
+            {
+              "title": "क्रिया",
+              "topics": [
+                "सकर्मक और अकर्मक क्रिया",
+                "प्रेरणार्थक क्रिया"
+              ]
+            },
+            {
+              "title": "काल",
+              "topics": [
+                "भूतकाल और उसके भेद",
+                "वर्तमान काल और उसके भेद",
+                "भविष्यत् काल"
+              ]
+            },
+            {
+              "title": "वाच्य",
+              "topics": [
+                "कर्तृवाच्य",
+                "कर्मवाच्य और भाववाच्य",
+                "वाच्य परिवर्तन"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 7,
+          "title": "अव्यय (Indeclinables)",
+          "unit": "व्याकरण",
+          "outcomes": [
+            "अव्यय के भेद पहचानना",
+            "वाक्यों में अव्यय का सही प्रयोग करना"
+          ],
+          "topics": [
+            "अव्यय का अर्थ",
+            "क्रियाविशेषण और उसके भेद",
+            "संबंधबोधक",
+            "समुच्चयबोधक",
+            "विस्मयादिबोधक और निपात"
+          ],
+          "lessons": [
+            {
+              "title": "क्रियाविशेषण",
+              "topics": [
+                "अव्यय का अर्थ",
+                "क्रियाविशेषण और उसके भेद"
+              ]
+            },
+            {
+              "title": "अन्य अव्यय",
+              "topics": [
+                "संबंधबोधक",
+                "समुच्चयबोधक",
+                "विस्मयादिबोधक और निपात"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 8,
+          "title": "उपसर्ग और प्रत्यय (Prefixes and Suffixes)",
+          "unit": "शब्द-ज्ञान",
+          "outcomes": [
+            "उपसर्ग और प्रत्यय से नए शब्द बनाना",
+            "शब्दों में मूल शब्द, उपसर्ग और प्रत्यय अलग करना"
+          ],
+          "topics": [
+            "उपसर्ग का अर्थ",
+            "संस्कृत, हिंदी और उर्दू के उपसर्ग",
+            "प्रत्यय का अर्थ",
+            "कृत् और तद्धित प्रत्यय"
+          ],
+          "lessons": [
+            {
+              "title": "उपसर्ग",
+              "topics": [
+                "उपसर्ग का अर्थ",
+                "संस्कृत, हिंदी और उर्दू के उपसर्ग"
+              ]
+            },
+            {
+              "title": "प्रत्यय",
+              "topics": [
+                "प्रत्यय का अर्थ",
+                "कृत् और तद्धित प्रत्यय"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 9,
+          "title": "वाक्य-भेद और वाक्य-शुद्धि (Sentences)",
+          "unit": "व्याकरण",
+          "outcomes": [
+            "रचना और अर्थ के आधार पर वाक्य पहचानना",
+            "अशुद्ध वाक्यों को शुद्ध करना",
+            "विराम-चिह्नों का प्रयोग करना"
+          ],
+          "topics": [
+            "वाक्य के अंग: उद्देश्य और विधेय",
+            "रचना के आधार पर वाक्य-भेद",
+            "अर्थ के आधार पर वाक्य-भेद",
+            "वाक्य-शुद्धि",
+            "विराम-चिह्न"
+          ],
+          "lessons": [
+            {
+              "title": "वाक्य के भेद",
+              "topics": [
+                "वाक्य के अंग: उद्देश्य और विधेय",
+                "रचना के आधार पर वाक्य-भेद",
+                "अर्थ के आधार पर वाक्य-भेद"
+              ]
+            },
+            {
+              "title": "शुद्ध लेखन",
+              "topics": [
+                "वाक्य-शुद्धि",
+                "विराम-चिह्न"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 10,
+          "title": "मुहावरे और लोकोक्तियाँ (Idioms and Proverbs)",
+          "unit": "शब्द-ज्ञान",
+          "outcomes": [
+            "मुहावरों का अर्थ समझकर वाक्य में प्रयोग करना",
+            "मुहावरे और लोकोक्ति में अंतर करना"
+          ],
+          "topics": [
+            "मुहावरे का अर्थ",
+            "शरीर के अंगों से जुड़े मुहावरे",
+            "मुहावरों का वाक्य-प्रयोग",
+            "लोकोक्ति का अर्थ",
+            "प्रचलित लोकोक्तियाँ",
+            "मुहावरे और लोकोक्ति में अंतर"
+          ],
+          "lessons": [
+            {
+              "title": "मुहावरे",
+              "topics": [
+                "मुहावरे का अर्थ",
+                "शरीर के अंगों से जुड़े मुहावरे",
+                "मुहावरों का वाक्य-प्रयोग"
+              ]
+            },
+            {
+              "title": "लोकोक्तियाँ",
+              "topics": [
+                "लोकोक्ति का अर्थ",
+                "प्रचलित लोकोक्तियाँ",
+                "मुहावरे और लोकोक्ति में अंतर"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 11,
+          "title": "रचना (Writing)",
+          "unit": "रचना",
+          "outcomes": [
+            "औपचारिक और अनौपचारिक पत्र लिखना",
+            "निबंध, संवाद और विज्ञापन लिखना",
+            "अपठित गद्यांश समझना"
+          ],
+          "topics": [
+            "अनौपचारिक पत्र",
+            "औपचारिक पत्र",
+            "अनुच्छेद-लेखन",
+            "निबंध-लेखन",
+            "संवाद-लेखन",
+            "विज्ञापन-लेखन",
+            "अपठित गद्यांश"
+          ],
+          "lessons": [
+            {
+              "title": "पत्र-लेखन",
+              "topics": [
+                "अनौपचारिक पत्र",
+                "औपचारिक पत्र"
+              ]
+            },
+            {
+              "title": "निबंध और अनुच्छेद",
+              "topics": [
+                "अनुच्छेद-लेखन",
+                "निबंध-लेखन"
+              ]
+            },
+            {
+              "title": "अन्य लेखन",
+              "topics": [
+                "संवाद-लेखन",
+                "विज्ञापन-लेखन",
+                "अपठित गद्यांश"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        }
+      ]
+    },
+    {
+      "subject": "maths",
+      "name": "Maths",
+      "book": "Selina Concise Mathematics, Class 8 (2026-27)",
+      "chapters": [
+        {
+          "number": 1,
+          "title": "Rational Numbers",
+          "unit": "Number System",
+          "outcomes": [
+            "Represent rational numbers on a number line",
+            "Apply properties of operations on rational numbers",
+            "Find rational numbers between two given rational numbers"
+          ],
+          "topics": [
+            "Definition of a rational number",
+            "Standard form of a rational number",
+            "Representation on the number line",
+            "Closure, commutative and associative properties",
+            "Distributive property",
+            "Additive and multiplicative identity and inverse",
+            "Finding rational numbers between two rational numbers",
+            "Word problems on rational numbers"
+          ],
+          "lessons": [
+            {
+              "title": "What rational numbers are",
+              "topics": [
+                "Definition of a rational number",
+                "Standard form of a rational number",
+                "Representation on the number line"
+              ]
+            },
+            {
+              "title": "Properties of operations",
+              "topics": [
+                "Closure, commutative and associative properties",
+                "Distributive property",
+                "Additive and multiplicative identity and inverse"
+              ]
+            },
+            {
+              "title": "Rational numbers between two numbers",
+              "topics": [
+                "Finding rational numbers between two rational numbers",
+                "Word problems on rational numbers"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 2,
+          "title": "Exponents (Powers)",
+          "unit": "Number System",
+          "outcomes": [
+            "State and use the laws of exponents",
+            "Evaluate expressions with negative and zero exponents",
+            "Write numbers in standard form"
+          ],
+          "topics": [
+            "Revision of powers and bases",
+            "Product and quotient laws",
+            "Power of a power",
+            "Zero exponent",
+            "Negative integral exponents",
+            "Simplifying expressions with exponents",
+            "Expressing very large numbers in standard form",
+            "Expressing very small numbers in standard form"
+          ],
+          "lessons": [
+            {
+              "title": "Laws of exponents",
+              "topics": [
+                "Revision of powers and bases",
+                "Product and quotient laws",
+                "Power of a power"
+              ]
+            },
+            {
+              "title": "Zero and negative exponents",
+              "topics": [
+                "Zero exponent",
+                "Negative integral exponents",
+                "Simplifying expressions with exponents"
+              ]
+            },
+            {
+              "title": "Standard form",
+              "topics": [
+                "Expressing very large numbers in standard form",
+                "Expressing very small numbers in standard form"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 3,
+          "title": "Squares and Square Roots",
+          "unit": "Number System",
+          "outcomes": [
+            "Identify perfect squares and their properties",
+            "Find square roots by prime factorisation and division",
+            "Find square roots of decimals and fractions"
+          ],
+          "topics": [
+            "Perfect square numbers",
+            "Properties of square numbers",
+            "Pythagorean triplets",
+            "Square root by prime factorisation",
+            "Smallest multiplier or divisor for a perfect square",
+            "Square root by long division",
+            "Square roots of decimals",
+            "Square roots of fractions"
+          ],
+          "lessons": [
+            {
+              "title": "Perfect squares",
+              "topics": [
+                "Perfect square numbers",
+                "Properties of square numbers",
+                "Pythagorean triplets"
+              ]
+            },
+            {
+              "title": "Square roots by factorisation",
+              "topics": [
+                "Square root by prime factorisation",
+                "Smallest multiplier or divisor for a perfect square"
+              ]
+            },
+            {
+              "title": "Square roots by division",
+              "topics": [
+                "Square root by long division",
+                "Square roots of decimals",
+                "Square roots of fractions"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 4,
+          "title": "Cubes and Cube-Roots",
+          "unit": "Number System",
+          "outcomes": [
+            "Identify perfect cubes",
+            "Find cube roots by prime factorisation",
+            "Find cube roots of negative numbers and fractions"
+          ],
+          "topics": [
+            "Cube of a number",
+            "Properties of cubes",
+            "Testing a number for a perfect cube",
+            "Cube root by prime factorisation",
+            "Cube roots of negative numbers",
+            "Cube roots of fractions and decimals"
+          ],
+          "lessons": [
+            {
+              "title": "Perfect cubes",
+              "topics": [
+                "Cube of a number",
+                "Properties of cubes",
+                "Testing a number for a perfect cube"
+              ]
+            },
+            {
+              "title": "Cube roots",
+              "topics": [
+                "Cube root by prime factorisation",
+                "Cube roots of negative numbers",
+                "Cube roots of fractions and decimals"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 5,
+          "title": "Playing with Numbers",
+          "unit": "Number System",
+          "outcomes": [
+            "Write numbers in generalised form",
+            "Solve letter-for-digit puzzles",
+            "Apply divisibility tests with reasons"
+          ],
+          "topics": [
+            "Generalised form of two- and three-digit numbers",
+            "Games with reversed digits",
+            "Letters for digits puzzles",
+            "Tests of divisibility by 2, 3, 5, 9 and 10",
+            "Reasoning behind divisibility tests"
+          ],
+          "lessons": [
+            {
+              "title": "Numbers in general form",
+              "topics": [
+                "Generalised form of two- and three-digit numbers",
+                "Games with reversed digits"
+              ]
+            },
+            {
+              "title": "Puzzles and divisibility",
+              "topics": [
+                "Letters for digits puzzles",
+                "Tests of divisibility by 2, 3, 5, 9 and 10",
+                "Reasoning behind divisibility tests"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 6,
+          "title": "Sets",
+          "unit": "Sets",
+          "outcomes": [
+            "Describe sets in roster and set-builder forms",
+            "Identify types of sets and subsets",
+            "Perform union, intersection and difference of sets using Venn diagrams"
+          ],
+          "topics": [
+            "Revision of sets and their notation",
+            "Roster and set-builder forms",
+            "Finite, infinite, empty and singleton sets",
+            "Subsets and proper subsets",
+            "Number of subsets",
+            "Universal set and complement",
+            "Union of sets",
+            "Intersection of sets",
+            "Difference of sets",
+            "Venn diagrams"
+          ],
+          "lessons": [
+            {
+              "title": "Describing sets",
+              "topics": [
+                "Revision of sets and their notation",
+                "Roster and set-builder forms",
+                "Finite, infinite, empty and singleton sets"
+              ]
+            },
+            {
+              "title": "Subsets and universal set",
+              "topics": [
+                "Subsets and proper subsets",
+                "Number of subsets",
+                "Universal set and complement"
+              ]
+            },
+            {
+              "title": "Operations on sets",
+              "topics": [
+                "Union of sets",
+                "Intersection of sets",
+                "Difference of sets",
+                "Venn diagrams"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 7,
+          "title": "Percent and Percentage",
+          "unit": "Commercial Mathematics",
+          "outcomes": [
+            "Convert between fractions, decimals and percentages",
+            "Solve percentage increase and decrease problems",
+            "Apply percentages to real-life situations"
+          ],
+          "topics": [
+            "Meaning of percent",
+            "Converting fractions and decimals to percent",
+            "Finding a percentage of a quantity",
+            "Percentage increase",
+            "Percentage decrease",
+            "Word problems on percentage"
+          ],
+          "lessons": [
+            {
+              "title": "Percent basics",
+              "topics": [
+                "Meaning of percent",
+                "Converting fractions and decimals to percent",
+                "Finding a percentage of a quantity"
+              ]
+            },
+            {
+              "title": "Increase and decrease",
+              "topics": [
+                "Percentage increase",
+                "Percentage decrease",
+                "Word problems on percentage"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 8,
+          "title": "Profit, Loss and Discount",
+          "unit": "Commercial Mathematics",
+          "outcomes": [
+            "Calculate profit and loss percentage",
+            "Find marked price, discount and selling price",
+            "Apply GST/sales tax in simple bills"
+          ],
+          "topics": [
+            "Cost price and selling price",
+            "Profit and loss percentage",
+            "Finding cost price or selling price",
+            "Marked price and discount",
+            "Discount percentage",
+            "Successive discounts",
+            "Sales tax and GST on a bill",
+            "Overhead expenses"
+          ],
+          "lessons": [
+            {
+              "title": "Profit and loss",
+              "topics": [
+                "Cost price and selling price",
+                "Profit and loss percentage",
+                "Finding cost price or selling price"
+              ]
+            },
+            {
+              "title": "Discount",
+              "topics": [
+                "Marked price and discount",
+                "Discount percentage",
+                "Successive discounts"
+              ]
+            },
+            {
+              "title": "Tax on bills",
+              "topics": [
+                "Sales tax and GST on a bill",
+                "Overhead expenses"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 9,
+          "title": "Interest",
+          "unit": "Commercial Mathematics",
+          "outcomes": [
+            "Compute simple interest",
+            "Compute compound interest year by year and by formula",
+            "Compare simple and compound interest"
+          ],
+          "topics": [
+            "Principal, rate and time",
+            "Simple interest formula",
+            "Finding principal, rate or time",
+            "Meaning of compound interest",
+            "Compound interest year by year",
+            "Compound interest formula",
+            "Difference between simple and compound interest",
+            "Growth and depreciation problems"
+          ],
+          "lessons": [
+            {
+              "title": "Simple interest",
+              "topics": [
+                "Principal, rate and time",
+                "Simple interest formula",
+                "Finding principal, rate or time"
+              ]
+            },
+            {
+              "title": "Compound interest",
+              "topics": [
+                "Meaning of compound interest",
+                "Compound interest year by year",
+                "Compound interest formula"
+              ]
+            },
+            {
+              "title": "Applications",
+              "topics": [
+                "Difference between simple and compound interest",
+                "Growth and depreciation problems"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 10,
+          "title": "Direct and Inverse Variations",
+          "unit": "Commercial Mathematics",
+          "outcomes": [
+            "Identify direct and inverse variation",
+            "Solve problems using the unitary method and proportion",
+            "Solve time and work problems"
+          ],
+          "topics": [
+            "Meaning of direct variation",
+            "Problems on direct variation",
+            "Meaning of inverse variation",
+            "Problems on inverse variation",
+            "Time and work problems",
+            "Pipes and cisterns"
+          ],
+          "lessons": [
+            {
+              "title": "Direct variation",
+              "topics": [
+                "Meaning of direct variation",
+                "Problems on direct variation"
+              ]
+            },
+            {
+              "title": "Inverse variation",
+              "topics": [
+                "Meaning of inverse variation",
+                "Problems on inverse variation"
+              ]
+            },
+            {
+              "title": "Time and work",
+              "topics": [
+                "Time and work problems",
+                "Pipes and cisterns"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 11,
+          "title": "Algebraic Expressions",
+          "unit": "Algebra",
+          "outcomes": [
+            "Classify algebraic expressions by number of terms",
+            "Add, subtract, multiply and divide algebraic expressions"
+          ],
+          "topics": [
+            "Terms, factors and coefficients",
+            "Monomials, binomials and polynomials",
+            "Like and unlike terms",
+            "Addition of algebraic expressions",
+            "Subtraction of algebraic expressions",
+            "Multiplication of algebraic expressions",
+            "Division of a polynomial by a monomial",
+            "Division of a polynomial by a binomial"
+          ],
+          "lessons": [
+            {
+              "title": "Terms and expressions",
+              "topics": [
+                "Terms, factors and coefficients",
+                "Monomials, binomials and polynomials",
+                "Like and unlike terms"
+              ]
+            },
+            {
+              "title": "Adding and subtracting",
+              "topics": [
+                "Addition of algebraic expressions",
+                "Subtraction of algebraic expressions"
+              ]
+            },
+            {
+              "title": "Multiplying and dividing",
+              "topics": [
+                "Multiplication of algebraic expressions",
+                "Division of a polynomial by a monomial",
+                "Division of a polynomial by a binomial"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 12,
+          "title": "Identities",
+          "unit": "Algebra",
+          "outcomes": [
+            "State the standard algebraic identities",
+            "Use identities to expand and evaluate expressions"
+          ],
+          "topics": [
+            "(a + b) squared",
+            "(a - b) squared",
+            "(a + b)(a - b)",
+            "(x + a)(x + b)",
+            "Using identities for mental calculation",
+            "Finding values using a + b and ab",
+            "Simplifying expressions with identities"
+          ],
+          "lessons": [
+            {
+              "title": "Square identities",
+              "topics": [
+                "(a + b) squared",
+                "(a - b) squared",
+                "(a + b)(a - b)"
+              ]
+            },
+            {
+              "title": "More identities",
+              "topics": [
+                "(x + a)(x + b)",
+                "Using identities for mental calculation"
+              ]
+            },
+            {
+              "title": "Applying identities",
+              "topics": [
+                "Finding values using a + b and ab",
+                "Simplifying expressions with identities"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 13,
+          "title": "Factorisation",
+          "unit": "Algebra",
+          "outcomes": [
+            "Factorise expressions by common factors and grouping",
+            "Factorise using identities",
+            "Factorise quadratic trinomials"
+          ],
+          "topics": [
+            "Taking out common factors",
+            "Factorisation by grouping",
+            "Difference of two squares",
+            "Perfect square trinomials",
+            "Splitting the middle term",
+            "Division using factorisation"
+          ],
+          "lessons": [
+            {
+              "title": "Common factors and grouping",
+              "topics": [
+                "Taking out common factors",
+                "Factorisation by grouping"
+              ]
+            },
+            {
+              "title": "Using identities",
+              "topics": [
+                "Difference of two squares",
+                "Perfect square trinomials"
+              ]
+            },
+            {
+              "title": "Trinomials",
+              "topics": [
+                "Splitting the middle term",
+                "Division using factorisation"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 14,
+          "title": "Linear Equations in One Variable",
+          "unit": "Algebra",
+          "outcomes": [
+            "Solve linear equations with variables on both sides",
+            "Form and solve equations from word problems"
+          ],
+          "topics": [
+            "Equations with variables on one side",
+            "Equations with variables on both sides",
+            "Equations with fractions",
+            "Forming equations from statements",
+            "Problems on numbers and ages",
+            "Problems on money and geometry"
+          ],
+          "lessons": [
+            {
+              "title": "Solving equations",
+              "topics": [
+                "Equations with variables on one side",
+                "Equations with variables on both sides",
+                "Equations with fractions"
+              ]
+            },
+            {
+              "title": "Word problems",
+              "topics": [
+                "Forming equations from statements",
+                "Problems on numbers and ages",
+                "Problems on money and geometry"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 15,
+          "title": "Linear Inequations",
+          "unit": "Algebra",
+          "outcomes": [
+            "Distinguish equations from inequations",
+            "Solve linear inequations over a given replacement set",
+            "Represent solutions on a number line"
+          ],
+          "topics": [
+            "Inequality signs",
+            "Replacement set and solution set",
+            "Rules for solving inequations",
+            "Solving linear inequations",
+            "Representing solutions on the number line"
+          ],
+          "lessons": [
+            {
+              "title": "Inequations",
+              "topics": [
+                "Inequality signs",
+                "Replacement set and solution set",
+                "Rules for solving inequations"
+              ]
+            },
+            {
+              "title": "Solving and graphing",
+              "topics": [
+                "Solving linear inequations",
+                "Representing solutions on the number line"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 16,
+          "title": "Understanding Shapes",
+          "unit": "Geometry",
+          "outcomes": [
+            "Classify polygons",
+            "Find sums of interior and exterior angles of polygons",
+            "Solve problems on regular polygons"
+          ],
+          "topics": [
+            "Curves and polygons",
+            "Convex and concave polygons",
+            "Regular polygons",
+            "Sum of interior angles of a polygon",
+            "Sum of exterior angles of a polygon",
+            "Finding number of sides from angles"
+          ],
+          "lessons": [
+            {
+              "title": "Polygons",
+              "topics": [
+                "Curves and polygons",
+                "Convex and concave polygons",
+                "Regular polygons"
+              ]
+            },
+            {
+              "title": "Angle sums",
+              "topics": [
+                "Sum of interior angles of a polygon",
+                "Sum of exterior angles of a polygon",
+                "Finding number of sides from angles"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 17,
+          "title": "Special Types of Quadrilaterals",
+          "unit": "Geometry",
+          "outcomes": [
+            "State properties of parallelograms, rectangles, rhombuses and squares",
+            "Use properties to find unknown angles and sides"
+          ],
+          "topics": [
+            "Properties of a parallelogram",
+            "Diagonals of a parallelogram",
+            "Properties of a rectangle",
+            "Properties of a rhombus",
+            "Properties of a square",
+            "Trapezium and isosceles trapezium",
+            "Kite",
+            "Problems using properties"
+          ],
+          "lessons": [
+            {
+              "title": "Parallelogram",
+              "topics": [
+                "Properties of a parallelogram",
+                "Diagonals of a parallelogram"
+              ]
+            },
+            {
+              "title": "Rectangle, rhombus and square",
+              "topics": [
+                "Properties of a rectangle",
+                "Properties of a rhombus",
+                "Properties of a square"
+              ]
+            },
+            {
+              "title": "Trapezium and kite",
+              "topics": [
+                "Trapezium and isosceles trapezium",
+                "Kite",
+                "Problems using properties"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 18,
+          "title": "Constructions",
+          "unit": "Geometry",
+          "outcomes": [
+            "Construct quadrilaterals from given measurements",
+            "Construct special quadrilaterals"
+          ],
+          "topics": [
+            "Four sides and one diagonal",
+            "Three sides and two diagonals",
+            "Two adjacent sides and three angles",
+            "Constructing parallelograms",
+            "Constructing rectangles, rhombuses and squares",
+            "Constructing a trapezium"
+          ],
+          "lessons": [
+            {
+              "title": "Quadrilaterals from measurements",
+              "topics": [
+                "Four sides and one diagonal",
+                "Three sides and two diagonals",
+                "Two adjacent sides and three angles"
+              ]
+            },
+            {
+              "title": "Special quadrilaterals",
+              "topics": [
+                "Constructing parallelograms",
+                "Constructing rectangles, rhombuses and squares",
+                "Constructing a trapezium"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 19,
+          "title": "Representing 3-D in 2-D",
+          "unit": "Geometry",
+          "outcomes": [
+            "Draw nets of solids",
+            "Relate faces, edges and vertices using Euler's formula",
+            "Draw views of 3-D objects"
+          ],
+          "topics": [
+            "Polyhedrons, prisms and pyramids",
+            "Nets of solids",
+            "Front, side and top views",
+            "Faces, edges and vertices",
+            "Euler's formula"
+          ],
+          "lessons": [
+            {
+              "title": "Solids and nets",
+              "topics": [
+                "Polyhedrons, prisms and pyramids",
+                "Nets of solids"
+              ]
+            },
+            {
+              "title": "Views and Euler's formula",
+              "topics": [
+                "Front, side and top views",
+                "Faces, edges and vertices",
+                "Euler's formula"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 20,
+          "title": "Symmetry",
+          "unit": "Geometry",
+          "outcomes": [
+            "Identify lines of symmetry",
+            "Identify rotational symmetry and its order",
+            "Draw reflections of figures"
+          ],
+          "topics": [
+            "Line of symmetry",
+            "Symmetry in regular polygons and letters",
+            "Rotational symmetry and order",
+            "Reflection in a line",
+            "Figures with both line and rotational symmetry"
+          ],
+          "lessons": [
+            {
+              "title": "Line symmetry",
+              "topics": [
+                "Line of symmetry",
+                "Symmetry in regular polygons and letters"
+              ]
+            },
+            {
+              "title": "Rotation and reflection",
+              "topics": [
+                "Rotational symmetry and order",
+                "Reflection in a line",
+                "Figures with both line and rotational symmetry"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 21,
+          "title": "Circles",
+          "unit": "Geometry",
+          "outcomes": [
+            "Name the parts of a circle",
+            "Construct circles and related figures",
+            "Find circumference of a circle"
+          ],
+          "topics": [
+            "Centre, radius, diameter and chord",
+            "Arc, segment and sector",
+            "Interior and exterior of a circle",
+            "Circumference and pi",
+            "Problems on circumference",
+            "Constructions involving circles"
+          ],
+          "lessons": [
+            {
+              "title": "Parts of a circle",
+              "topics": [
+                "Centre, radius, diameter and chord",
+                "Arc, segment and sector",
+                "Interior and exterior of a circle"
+              ]
+            },
+            {
+              "title": "Measuring circles",
+              "topics": [
+                "Circumference and pi",
+                "Problems on circumference",
+                "Constructions involving circles"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 22,
+          "title": "Area of a Trapezium and a Polygon",
+          "unit": "Mensuration",
+          "outcomes": [
+            "Find the area of a trapezium",
+            "Find areas of general quadrilaterals and polygons by splitting",
+            "Find areas of circles and circular paths"
+          ],
+          "topics": [
+            "Area of a trapezium",
+            "Area of a general quadrilateral",
+            "Area of a rhombus using diagonals",
+            "Area of polygons by splitting into shapes",
+            "Area of paths",
+            "Area of a circle",
+            "Area of a circular ring"
+          ],
+          "lessons": [
+            {
+              "title": "Trapezium and quadrilaterals",
+              "topics": [
+                "Area of a trapezium",
+                "Area of a general quadrilateral",
+                "Area of a rhombus using diagonals"
+              ]
+            },
+            {
+              "title": "Polygons",
+              "topics": [
+                "Area of polygons by splitting into shapes",
+                "Area of paths"
+              ]
+            },
+            {
+              "title": "Circles",
+              "topics": [
+                "Area of a circle",
+                "Area of a circular ring"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 23,
+          "title": "Surface Area, Volume and Capacity",
+          "unit": "Mensuration",
+          "outcomes": [
+            "Find surface area and volume of cubes and cuboids",
+            "Find surface area and volume of cylinders",
+            "Convert between volume and capacity units"
+          ],
+          "topics": [
+            "Surface area of a cuboid",
+            "Surface area of a cube",
+            "Volume of cubes and cuboids",
+            "Curved and total surface area of a cylinder",
+            "Volume of a cylinder",
+            "Units of capacity",
+            "Converting between volume and capacity"
+          ],
+          "lessons": [
+            {
+              "title": "Cubes and cuboids",
+              "topics": [
+                "Surface area of a cuboid",
+                "Surface area of a cube",
+                "Volume of cubes and cuboids"
+              ]
+            },
+            {
+              "title": "Cylinders",
+              "topics": [
+                "Curved and total surface area of a cylinder",
+                "Volume of a cylinder"
+              ]
+            },
+            {
+              "title": "Capacity",
+              "topics": [
+                "Units of capacity",
+                "Converting between volume and capacity"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 24,
+          "title": "Data Handling",
+          "unit": "Data Handling",
+          "outcomes": [
+            "Organise raw data into frequency tables",
+            "Draw and read histograms and pie charts",
+            "Compute mean, median and mode"
+          ],
+          "topics": [
+            "Raw data and arrays",
+            "Tally marks and frequency tables",
+            "Grouped frequency distribution",
+            "Histograms",
+            "Pie charts",
+            "Mean of ungrouped data",
+            "Median of ungrouped data",
+            "Mode of ungrouped data"
+          ],
+          "lessons": [
+            {
+              "title": "Organising data",
+              "topics": [
+                "Raw data and arrays",
+                "Tally marks and frequency tables",
+                "Grouped frequency distribution"
+              ]
+            },
+            {
+              "title": "Graphs",
+              "topics": [
+                "Histograms",
+                "Pie charts"
+              ]
+            },
+            {
+              "title": "Central tendency",
+              "topics": [
+                "Mean of ungrouped data",
+                "Median of ungrouped data",
+                "Mode of ungrouped data"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 25,
+          "title": "Probability",
+          "unit": "Data Handling",
+          "outcomes": [
+            "Define experiment, outcome and event",
+            "Compute the probability of simple events"
+          ],
+          "topics": [
+            "Random experiments",
+            "Outcomes and sample space",
+            "Events",
+            "Probability of an event",
+            "Probability with coins, dice and cards",
+            "Sure and impossible events"
+          ],
+          "lessons": [
+            {
+              "title": "Chance and experiments",
+              "topics": [
+                "Random experiments",
+                "Outcomes and sample space",
+                "Events"
+              ]
+            },
+            {
+              "title": "Finding probability",
+              "topics": [
+                "Probability of an event",
+                "Probability with coins, dice and cards",
+                "Sure and impossible events"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        }
+      ]
+    },
+    {
+      "subject": "physics",
+      "name": "Physics",
+      "book": "Selina Concise Physics, Class 8 (2026-27)",
+      "chapters": [
+        {
+          "number": 1,
+          "title": "Matter",
+          "unit": "",
+          "outcomes": [
+            "Explain the particle nature of matter",
+            "Describe changes of state with temperature",
+            "Relate kinetic energy of particles to state"
+          ],
+          "topics": [
+            "Molecular model of matter",
+            "Intermolecular spaces and forces",
+            "Kinetic energy of molecules",
+            "Solids, liquids and gases by particle arrangement",
+            "Properties of the three states",
+            "Melting and freezing",
+            "Evaporation, boiling and condensation",
+            "Sublimation",
+            "Effect of heat on particle motion"
+          ],
+          "lessons": [
+            {
+              "title": "Particles of matter",
+              "topics": [
+                "Molecular model of matter",
+                "Intermolecular spaces and forces",
+                "Kinetic energy of molecules"
+              ]
+            },
+            {
+              "title": "States of matter",
+              "topics": [
+                "Solids, liquids and gases by particle arrangement",
+                "Properties of the three states"
+              ]
+            },
+            {
+              "title": "Change of state",
+              "topics": [
+                "Melting and freezing",
+                "Evaporation, boiling and condensation",
+                "Sublimation",
+                "Effect of heat on particle motion"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 2,
+          "title": "Physical Quantities and Measurement",
+          "unit": "",
+          "outcomes": [
+            "Measure volume of regular and irregular solids",
+            "Define density and relative density",
+            "Relate density to floating and sinking"
+          ],
+          "topics": [
+            "Units of volume",
+            "Volume of irregular solids by displacement",
+            "Measuring cylinder and overflow can",
+            "Density and its units",
+            "Density of solids, liquids and gases",
+            "Relative density",
+            "Why objects float or sink",
+            "Density and flotation"
+          ],
+          "lessons": [
+            {
+              "title": "Volume",
+              "topics": [
+                "Units of volume",
+                "Volume of irregular solids by displacement",
+                "Measuring cylinder and overflow can"
+              ]
+            },
+            {
+              "title": "Density",
+              "topics": [
+                "Density and its units",
+                "Density of solids, liquids and gases",
+                "Relative density"
+              ]
+            },
+            {
+              "title": "Floating and sinking",
+              "topics": [
+                "Why objects float or sink",
+                "Density and flotation"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 3,
+          "title": "Force and Pressure",
+          "unit": "",
+          "outcomes": [
+            "Explain turning effect of force and moment",
+            "Define pressure and relate it to area",
+            "Describe pressure in liquids and atmospheric pressure"
+          ],
+          "topics": [
+            "Moment of a force",
+            "Couple and its examples",
+            "Principle of moments",
+            "Thrust and pressure",
+            "Pressure and area",
+            "Units of pressure",
+            "Pressure exerted by liquids",
+            "Atmospheric pressure",
+            "Applications of atmospheric pressure"
+          ],
+          "lessons": [
+            {
+              "title": "Turning effect",
+              "topics": [
+                "Moment of a force",
+                "Couple and its examples",
+                "Principle of moments"
+              ]
+            },
+            {
+              "title": "Pressure",
+              "topics": [
+                "Thrust and pressure",
+                "Pressure and area",
+                "Units of pressure"
+              ]
+            },
+            {
+              "title": "Fluid pressure",
+              "topics": [
+                "Pressure exerted by liquids",
+                "Atmospheric pressure",
+                "Applications of atmospheric pressure"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 4,
+          "title": "Energy",
+          "unit": "",
+          "outcomes": [
+            "Define work, energy and power",
+            "Distinguish kinetic and potential energy",
+            "State the law of conservation of energy"
+          ],
+          "topics": [
+            "Work and its unit",
+            "Power and its unit",
+            "Energy and its unit",
+            "Kinetic energy",
+            "Potential energy",
+            "Transformation of energy",
+            "Law of conservation of energy",
+            "Energy in a swinging pendulum"
+          ],
+          "lessons": [
+            {
+              "title": "Work and power",
+              "topics": [
+                "Work and its unit",
+                "Power and its unit"
+              ]
+            },
+            {
+              "title": "Forms of energy",
+              "topics": [
+                "Energy and its unit",
+                "Kinetic energy",
+                "Potential energy"
+              ]
+            },
+            {
+              "title": "Energy conversions",
+              "topics": [
+                "Transformation of energy",
+                "Law of conservation of energy",
+                "Energy in a swinging pendulum"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 5,
+          "title": "Light Energy",
+          "unit": "",
+          "outcomes": [
+            "State the laws of reflection",
+            "Explain refraction and dispersion",
+            "Describe images formed by plane and spherical mirrors"
+          ],
+          "topics": [
+            "Laws of reflection",
+            "Regular and diffused reflection",
+            "Images in plane mirrors",
+            "Concave and convex mirrors",
+            "Terms used for spherical mirrors",
+            "Uses of spherical mirrors",
+            "Refraction of light",
+            "Dispersion by a prism",
+            "Spectrum of white light"
+          ],
+          "lessons": [
+            {
+              "title": "Reflection",
+              "topics": [
+                "Laws of reflection",
+                "Regular and diffused reflection",
+                "Images in plane mirrors"
+              ]
+            },
+            {
+              "title": "Spherical mirrors",
+              "topics": [
+                "Concave and convex mirrors",
+                "Terms used for spherical mirrors",
+                "Uses of spherical mirrors"
+              ]
+            },
+            {
+              "title": "Refraction and dispersion",
+              "topics": [
+                "Refraction of light",
+                "Dispersion by a prism",
+                "Spectrum of white light"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 6,
+          "title": "Heat Transfer",
+          "unit": "",
+          "outcomes": [
+            "Distinguish conduction, convection and radiation",
+            "Explain thermal expansion of solids, liquids and gases",
+            "Relate heat transfer to everyday applications"
+          ],
+          "topics": [
+            "Heat and temperature difference",
+            "Thermal expansion of solids",
+            "Expansion of liquids and gases",
+            "Conduction",
+            "Convection",
+            "Radiation",
+            "Conductors and insulators",
+            "Land and sea breezes",
+            "Vacuum flask"
+          ],
+          "lessons": [
+            {
+              "title": "Heat and temperature",
+              "topics": [
+                "Heat and temperature difference",
+                "Thermal expansion of solids",
+                "Expansion of liquids and gases"
+              ]
+            },
+            {
+              "title": "Modes of heat transfer",
+              "topics": [
+                "Conduction",
+                "Convection",
+                "Radiation"
+              ]
+            },
+            {
+              "title": "Applications",
+              "topics": [
+                "Conductors and insulators",
+                "Land and sea breezes",
+                "Vacuum flask"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 7,
+          "title": "Sound",
+          "unit": "",
+          "outcomes": [
+            "Explain production and propagation of sound",
+            "Relate pitch and loudness to frequency and amplitude",
+            "Describe the human ear and hearing range"
+          ],
+          "topics": [
+            "Vibrations produce sound",
+            "Sound needs a medium",
+            "Speed of sound in different media",
+            "Amplitude and loudness",
+            "Frequency and pitch",
+            "Quality of sound",
+            "Structure of the human ear",
+            "Audible range, infrasound and ultrasound",
+            "Noise pollution"
+          ],
+          "lessons": [
+            {
+              "title": "Producing sound",
+              "topics": [
+                "Vibrations produce sound",
+                "Sound needs a medium",
+                "Speed of sound in different media"
+              ]
+            },
+            {
+              "title": "Characteristics of sound",
+              "topics": [
+                "Amplitude and loudness",
+                "Frequency and pitch",
+                "Quality of sound"
+              ]
+            },
+            {
+              "title": "Hearing",
+              "topics": [
+                "Structure of the human ear",
+                "Audible range, infrasound and ultrasound",
+                "Noise pollution"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 8,
+          "title": "Household Electricity",
+          "unit": "Electricity",
+          "outcomes": [
+            "Identify parts of a household wiring circuit",
+            "Explain the role of fuses and earthing",
+            "Calculate electrical energy consumed"
+          ],
+          "topics": [
+            "Electric current and potential difference",
+            "Series and parallel connections",
+            "Live, neutral and earth wires",
+            "Fuse and miniature circuit breaker",
+            "Earthing",
+            "Electrical power and energy",
+            "Kilowatt hour",
+            "Electrical safety rules"
+          ],
+          "lessons": [
+            {
+              "title": "Current and circuits",
+              "topics": [
+                "Electric current and potential difference",
+                "Series and parallel connections"
+              ]
+            },
+            {
+              "title": "House wiring",
+              "topics": [
+                "Live, neutral and earth wires",
+                "Fuse and miniature circuit breaker",
+                "Earthing"
+              ]
+            },
+            {
+              "title": "Energy and safety",
+              "topics": [
+                "Electrical power and energy",
+                "Kilowatt hour",
+                "Electrical safety rules"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 9,
+          "title": "Static Electricity",
+          "unit": "Electricity",
+          "outcomes": [
+            "Explain charging by friction",
+            "Describe the gold-leaf electroscope",
+            "Explain lightning and protection from it"
+          ],
+          "topics": [
+            "Charging by friction",
+            "Positive and negative charges",
+            "Attraction and repulsion",
+            "Charging by conduction and induction",
+            "Gold-leaf electroscope",
+            "Lightning as an electric discharge",
+            "Lightning conductor",
+            "Safety during thunderstorms"
+          ],
+          "lessons": [
+            {
+              "title": "Electric charges",
+              "topics": [
+                "Charging by friction",
+                "Positive and negative charges",
+                "Attraction and repulsion"
+              ]
+            },
+            {
+              "title": "Detecting charge",
+              "topics": [
+                "Charging by conduction and induction",
+                "Gold-leaf electroscope"
+              ]
+            },
+            {
+              "title": "Lightning",
+              "topics": [
+                "Lightning as an electric discharge",
+                "Lightning conductor",
+                "Safety during thunderstorms"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        }
+      ]
+    },
+    {
+      "subject": "chemistry",
+      "name": "Chemistry",
+      "book": "Selina Concise Chemistry, Class 8 (2026-27)",
+      "chapters": [
+        {
+          "number": 1,
+          "title": "Matter",
+          "unit": "",
+          "outcomes": [
+            "Explain the kinetic theory of matter",
+            "Relate interparticle forces to states of matter",
+            "Describe changes of state"
+          ],
+          "topics": [
+            "Main postulates of kinetic theory",
+            "Interparticle space and attraction",
+            "Kinetic energy of particles",
+            "Characteristics of solids, liquids and gases",
+            "Change of state on heating and cooling",
+            "Law of conservation of mass"
+          ],
+          "lessons": [
+            {
+              "title": "Kinetic theory",
+              "topics": [
+                "Main postulates of kinetic theory",
+                "Interparticle space and attraction",
+                "Kinetic energy of particles"
+              ]
+            },
+            {
+              "title": "States and changes",
+              "topics": [
+                "Characteristics of solids, liquids and gases",
+                "Change of state on heating and cooling",
+                "Law of conservation of mass"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 2,
+          "title": "Physical and Chemical Changes",
+          "unit": "",
+          "outcomes": [
+            "Distinguish physical and chemical changes",
+            "Identify energy changes in chemical reactions"
+          ],
+          "topics": [
+            "Physical changes",
+            "Chemical changes",
+            "Differences between physical and chemical changes",
+            "Exothermic changes",
+            "Endothermic changes",
+            "Changes involving light and electricity"
+          ],
+          "lessons": [
+            {
+              "title": "Types of change",
+              "topics": [
+                "Physical changes",
+                "Chemical changes",
+                "Differences between physical and chemical changes"
+              ]
+            },
+            {
+              "title": "Energy in changes",
+              "topics": [
+                "Exothermic changes",
+                "Endothermic changes",
+                "Changes involving light and electricity"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 3,
+          "title": "Elements, Compounds and Mixtures",
+          "unit": "",
+          "outcomes": [
+            "Classify substances as elements, compounds or mixtures",
+            "Choose separation methods for mixtures"
+          ],
+          "topics": [
+            "Elements: metals, non-metals and metalloids",
+            "Compounds",
+            "Differences between compounds and mixtures",
+            "Homogeneous and heterogeneous mixtures",
+            "Types of mixtures",
+            "Sublimation and magnetic separation",
+            "Fractional distillation",
+            "Solvent extraction and chromatography",
+            "Separating funnel"
+          ],
+          "lessons": [
+            {
+              "title": "Pure substances",
+              "topics": [
+                "Elements: metals, non-metals and metalloids",
+                "Compounds",
+                "Differences between compounds and mixtures"
+              ]
+            },
+            {
+              "title": "Mixtures",
+              "topics": [
+                "Homogeneous and heterogeneous mixtures",
+                "Types of mixtures"
+              ]
+            },
+            {
+              "title": "Separation",
+              "topics": [
+                "Sublimation and magnetic separation",
+                "Fractional distillation",
+                "Solvent extraction and chromatography",
+                "Separating funnel"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 4,
+          "title": "Atomic Structure",
+          "unit": "",
+          "outcomes": [
+            "Describe subatomic particles",
+            "Write electronic configurations of the first 20 elements",
+            "Explain valency, isotopes and isobars"
+          ],
+          "topics": [
+            "Dalton's atomic theory",
+            "Electrons, protons and neutrons",
+            "Atomic number and mass number",
+            "Bohr's model of the atom",
+            "Electronic configuration",
+            "Valence electrons and valency",
+            "Isotopes",
+            "Isobars"
+          ],
+          "lessons": [
+            {
+              "title": "Inside the atom",
+              "topics": [
+                "Dalton's atomic theory",
+                "Electrons, protons and neutrons",
+                "Atomic number and mass number"
+              ]
+            },
+            {
+              "title": "Electron arrangement",
+              "topics": [
+                "Bohr's model of the atom",
+                "Electronic configuration",
+                "Valence electrons and valency"
+              ]
+            },
+            {
+              "title": "Isotopes and isobars",
+              "topics": [
+                "Isotopes",
+                "Isobars"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 5,
+          "title": "Language of Chemistry",
+          "unit": "",
+          "outcomes": [
+            "Write symbols and formulae",
+            "Balance chemical equations",
+            "Interpret information from an equation"
+          ],
+          "topics": [
+            "Symbols of elements",
+            "Valency and radicals",
+            "Variable valency",
+            "Writing chemical formulae",
+            "Molecular mass",
+            "Word and chemical equations",
+            "Balancing chemical equations",
+            "Information from a balanced equation"
+          ],
+          "lessons": [
+            {
+              "title": "Symbols and valency",
+              "topics": [
+                "Symbols of elements",
+                "Valency and radicals",
+                "Variable valency"
+              ]
+            },
+            {
+              "title": "Formulae",
+              "topics": [
+                "Writing chemical formulae",
+                "Molecular mass"
+              ]
+            },
+            {
+              "title": "Equations",
+              "topics": [
+                "Word and chemical equations",
+                "Balancing chemical equations",
+                "Information from a balanced equation"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 6,
+          "title": "Chemical Reactions",
+          "unit": "",
+          "outcomes": [
+            "Classify chemical reactions",
+            "Identify conditions that bring about reactions",
+            "Recognise indicators of reactions"
+          ],
+          "topics": [
+            "Contact, heat, light and electricity",
+            "Catalysts and pressure",
+            "Combination and decomposition",
+            "Displacement and double displacement",
+            "Neutralisation",
+            "Colour change, gas and precipitate",
+            "Energy changes in reactions",
+            "Reactivity series"
+          ],
+          "lessons": [
+            {
+              "title": "Conditions for reactions",
+              "topics": [
+                "Contact, heat, light and electricity",
+                "Catalysts and pressure"
+              ]
+            },
+            {
+              "title": "Types of reactions",
+              "topics": [
+                "Combination and decomposition",
+                "Displacement and double displacement",
+                "Neutralisation"
+              ]
+            },
+            {
+              "title": "Signs of change",
+              "topics": [
+                "Colour change, gas and precipitate",
+                "Energy changes in reactions",
+                "Reactivity series"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 7,
+          "title": "Hydrogen",
+          "unit": "",
+          "outcomes": [
+            "Describe preparation of hydrogen",
+            "State properties and uses of hydrogen",
+            "Explain oxidation and reduction"
+          ],
+          "topics": [
+            "Occurrence of hydrogen",
+            "Preparation from water and acids",
+            "Laboratory preparation and collection",
+            "Physical properties of hydrogen",
+            "Chemical properties of hydrogen",
+            "Uses of hydrogen",
+            "Oxidation",
+            "Reduction",
+            "Redox reactions"
+          ],
+          "lessons": [
+            {
+              "title": "Preparation",
+              "topics": [
+                "Occurrence of hydrogen",
+                "Preparation from water and acids",
+                "Laboratory preparation and collection"
+              ]
+            },
+            {
+              "title": "Properties and uses",
+              "topics": [
+                "Physical properties of hydrogen",
+                "Chemical properties of hydrogen",
+                "Uses of hydrogen"
+              ]
+            },
+            {
+              "title": "Oxidation and reduction",
+              "topics": [
+                "Oxidation",
+                "Reduction",
+                "Redox reactions"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 8,
+          "title": "Water",
+          "unit": "",
+          "outcomes": [
+            "Describe water as a universal solvent",
+            "Distinguish saturated, unsaturated and supersaturated solutions",
+            "Explain hardness of water"
+          ],
+          "topics": [
+            "Solution, solute and solvent",
+            "Solubility and temperature",
+            "Saturated and unsaturated solutions",
+            "Crystals and water of crystallisation",
+            "Hygroscopic, deliquescent and efflorescent substances",
+            "Hard and soft water",
+            "Removing hardness",
+            "Water pollution and treatment"
+          ],
+          "lessons": [
+            {
+              "title": "Water as a solvent",
+              "topics": [
+                "Solution, solute and solvent",
+                "Solubility and temperature",
+                "Saturated and unsaturated solutions"
+              ]
+            },
+            {
+              "title": "Water of crystallisation",
+              "topics": [
+                "Crystals and water of crystallisation",
+                "Hygroscopic, deliquescent and efflorescent substances"
+              ]
+            },
+            {
+              "title": "Hard and soft water",
+              "topics": [
+                "Hard and soft water",
+                "Removing hardness",
+                "Water pollution and treatment"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 9,
+          "title": "Carbon and Its Compounds",
+          "unit": "",
+          "outcomes": [
+            "Describe allotropes of carbon",
+            "State properties of carbon dioxide and carbon monoxide",
+            "Explain the carbon cycle"
+          ],
+          "topics": [
+            "Occurrence of carbon",
+            "Crystalline allotropes: diamond, graphite, fullerene",
+            "Amorphous forms of carbon",
+            "Preparation of carbon dioxide",
+            "Properties and uses of carbon dioxide",
+            "Carbon monoxide",
+            "Carbon cycle",
+            "Greenhouse effect and global warming"
+          ],
+          "lessons": [
+            {
+              "title": "Carbon and its forms",
+              "topics": [
+                "Occurrence of carbon",
+                "Crystalline allotropes: diamond, graphite, fullerene",
+                "Amorphous forms of carbon"
+              ]
+            },
+            {
+              "title": "Oxides of carbon",
+              "topics": [
+                "Preparation of carbon dioxide",
+                "Properties and uses of carbon dioxide",
+                "Carbon monoxide"
+              ]
+            },
+            {
+              "title": "Carbon in nature",
+              "topics": [
+                "Carbon cycle",
+                "Greenhouse effect and global warming"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        }
+      ]
+    },
+    {
+      "subject": "biology",
+      "name": "Biology",
+      "book": "Selina Concise Biology, Class 8 (2026-27)",
+      "chapters": [
+        {
+          "number": 1,
+          "title": "Transport in Plants",
+          "unit": "",
+          "outcomes": [
+            "Explain diffusion, osmosis and active transport",
+            "Describe absorption of water by roots",
+            "Explain transpiration and its significance"
+          ],
+          "topics": [
+            "Diffusion",
+            "Osmosis",
+            "Active transport",
+            "Root hairs and absorption",
+            "Ascent of sap through xylem",
+            "Transport of food through phloem",
+            "Transpiration and stomata",
+            "Factors affecting transpiration",
+            "Significance of transpiration"
+          ],
+          "lessons": [
+            {
+              "title": "Movement of substances",
+              "topics": [
+                "Diffusion",
+                "Osmosis",
+                "Active transport"
+              ]
+            },
+            {
+              "title": "Absorption and conduction",
+              "topics": [
+                "Root hairs and absorption",
+                "Ascent of sap through xylem",
+                "Transport of food through phloem"
+              ]
+            },
+            {
+              "title": "Transpiration",
+              "topics": [
+                "Transpiration and stomata",
+                "Factors affecting transpiration",
+                "Significance of transpiration"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 2,
+          "title": "Reproduction in Plants",
+          "unit": "",
+          "outcomes": [
+            "Distinguish asexual and sexual reproduction in plants",
+            "Describe pollination and fertilisation",
+            "Explain seed and fruit dispersal"
+          ],
+          "topics": [
+            "Fission, budding and spore formation",
+            "Vegetative propagation",
+            "Artificial propagation methods",
+            "Parts of a flower",
+            "Self and cross pollination",
+            "Agents of pollination",
+            "Fertilisation in flowering plants",
+            "Formation of seed and fruit",
+            "Seed dispersal"
+          ],
+          "lessons": [
+            {
+              "title": "Asexual reproduction",
+              "topics": [
+                "Fission, budding and spore formation",
+                "Vegetative propagation",
+                "Artificial propagation methods"
+              ]
+            },
+            {
+              "title": "Sexual reproduction",
+              "topics": [
+                "Parts of a flower",
+                "Self and cross pollination",
+                "Agents of pollination"
+              ]
+            },
+            {
+              "title": "Fertilisation and dispersal",
+              "topics": [
+                "Fertilisation in flowering plants",
+                "Formation of seed and fruit",
+                "Seed dispersal"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 3,
+          "title": "Reproduction in Humans",
+          "unit": "",
+          "outcomes": [
+            "Identify organs of the human reproductive systems",
+            "Describe fertilisation and development of the embryo"
+          ],
+          "topics": [
+            "Male reproductive system",
+            "Female reproductive system",
+            "Gametes: sperm and ovum",
+            "Fertilisation",
+            "Implantation and development of the embryo",
+            "Role of the placenta"
+          ],
+          "lessons": [
+            {
+              "title": "Reproductive systems",
+              "topics": [
+                "Male reproductive system",
+                "Female reproductive system",
+                "Gametes: sperm and ovum"
+              ]
+            },
+            {
+              "title": "Fertilisation and development",
+              "topics": [
+                "Fertilisation",
+                "Implantation and development of the embryo",
+                "Role of the placenta"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 4,
+          "title": "Ecosystems",
+          "unit": "",
+          "outcomes": [
+            "Identify biotic and abiotic components",
+            "Construct food chains and food webs",
+            "Explain energy flow and ecological balance"
+          ],
+          "topics": [
+            "What an ecosystem is",
+            "Biotic and abiotic components",
+            "Producers, consumers and decomposers",
+            "Food chains",
+            "Food webs",
+            "Energy flow and pyramids",
+            "Types of ecosystems",
+            "Human impact on ecosystems"
+          ],
+          "lessons": [
+            {
+              "title": "Components",
+              "topics": [
+                "What an ecosystem is",
+                "Biotic and abiotic components",
+                "Producers, consumers and decomposers"
+              ]
+            },
+            {
+              "title": "Feeding relationships",
+              "topics": [
+                "Food chains",
+                "Food webs",
+                "Energy flow and pyramids"
+              ]
+            },
+            {
+              "title": "Balance in nature",
+              "topics": [
+                "Types of ecosystems",
+                "Human impact on ecosystems"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 5,
+          "title": "Endocrine System and Adolescence",
+          "unit": "",
+          "outcomes": [
+            "Name the major endocrine glands and hormones",
+            "Describe changes during adolescence",
+            "Explain adolescent health and hygiene"
+          ],
+          "topics": [
+            "Exocrine and endocrine glands",
+            "Pituitary, thyroid and adrenal glands",
+            "Pancreas and gonads",
+            "Effects of excess and deficiency of hormones",
+            "Goitre, diabetes and dwarfism",
+            "Puberty and secondary sexual characters",
+            "Health and hygiene during adolescence"
+          ],
+          "lessons": [
+            {
+              "title": "Endocrine glands",
+              "topics": [
+                "Exocrine and endocrine glands",
+                "Pituitary, thyroid and adrenal glands",
+                "Pancreas and gonads"
+              ]
+            },
+            {
+              "title": "Hormonal disorders",
+              "topics": [
+                "Effects of excess and deficiency of hormones",
+                "Goitre, diabetes and dwarfism"
+              ]
+            },
+            {
+              "title": "Adolescence",
+              "topics": [
+                "Puberty and secondary sexual characters",
+                "Health and hygiene during adolescence"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 6,
+          "title": "The Circulatory System",
+          "unit": "",
+          "outcomes": [
+            "Describe components of blood",
+            "Explain the structure and working of the heart",
+            "Distinguish arteries, veins and capillaries"
+          ],
+          "topics": [
+            "Plasma",
+            "Red and white blood cells",
+            "Platelets and clotting",
+            "Blood groups",
+            "Structure of the heart",
+            "Double circulation",
+            "Heartbeat, pulse and blood pressure",
+            "Arteries, veins and capillaries",
+            "Lymphatic system"
+          ],
+          "lessons": [
+            {
+              "title": "Blood",
+              "topics": [
+                "Plasma",
+                "Red and white blood cells",
+                "Platelets and clotting",
+                "Blood groups"
+              ]
+            },
+            {
+              "title": "Heart",
+              "topics": [
+                "Structure of the heart",
+                "Double circulation",
+                "Heartbeat, pulse and blood pressure"
+              ]
+            },
+            {
+              "title": "Blood vessels and lymph",
+              "topics": [
+                "Arteries, veins and capillaries",
+                "Lymphatic system"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 7,
+          "title": "Nervous System",
+          "unit": "",
+          "outcomes": [
+            "Describe the structure of a neuron",
+            "Identify parts of the brain and their functions",
+            "Explain reflex actions and sense organs"
+          ],
+          "topics": [
+            "Structure of a neuron",
+            "Nerve impulse",
+            "Parts of the brain and their functions",
+            "Spinal cord",
+            "Peripheral nervous system",
+            "Reflex action and reflex arc",
+            "Structure of the eye",
+            "Structure of the ear"
+          ],
+          "lessons": [
+            {
+              "title": "Neurons",
+              "topics": [
+                "Structure of a neuron",
+                "Nerve impulse"
+              ]
+            },
+            {
+              "title": "Central nervous system",
+              "topics": [
+                "Parts of the brain and their functions",
+                "Spinal cord",
+                "Peripheral nervous system"
+              ]
+            },
+            {
+              "title": "Reflexes and senses",
+              "topics": [
+                "Reflex action and reflex arc",
+                "Structure of the eye",
+                "Structure of the ear"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 8,
+          "title": "Diseases and First Aid",
+          "unit": "",
+          "outcomes": [
+            "Classify diseases by cause",
+            "Explain immunity and vaccination",
+            "Describe first aid for common emergencies"
+          ],
+          "topics": [
+            "Communicable and non-communicable diseases",
+            "Diseases caused by bacteria, viruses and protozoa",
+            "Deficiency diseases",
+            "Modes of transmission",
+            "Immunity and vaccination",
+            "Personal and community hygiene",
+            "Principles of first aid",
+            "First aid for cuts, burns and fractures",
+            "First aid for fainting and snake bite"
+          ],
+          "lessons": [
+            {
+              "title": "Types of diseases",
+              "topics": [
+                "Communicable and non-communicable diseases",
+                "Diseases caused by bacteria, viruses and protozoa",
+                "Deficiency diseases"
+              ]
+            },
+            {
+              "title": "Prevention",
+              "topics": [
+                "Modes of transmission",
+                "Immunity and vaccination",
+                "Personal and community hygiene"
+              ]
+            },
+            {
+              "title": "First aid",
+              "topics": [
+                "Principles of first aid",
+                "First aid for cuts, burns and fractures",
+                "First aid for fainting and snake bite"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        },
+        {
+          "number": 9,
+          "title": "Food Production",
+          "unit": "",
+          "outcomes": [
+            "Describe steps in crop production",
+            "Explain methods of crop protection and storage",
+            "Describe animal husbandry practices"
+          ],
+          "topics": [
+            "Kharif and rabi crops",
+            "Soil preparation and sowing",
+            "Manures and fertilisers",
+            "Irrigation methods",
+            "Weeding and weedicides",
+            "Pests and pesticides",
+            "Harvesting and storage",
+            "Dairy farming",
+            "Poultry farming",
+            "Fisheries and bee-keeping"
+          ],
+          "lessons": [
+            {
+              "title": "Crop production",
+              "topics": [
+                "Kharif and rabi crops",
+                "Soil preparation and sowing",
+                "Manures and fertilisers",
+                "Irrigation methods"
+              ]
+            },
+            {
+              "title": "Protecting crops",
+              "topics": [
+                "Weeding and weedicides",
+                "Pests and pesticides",
+                "Harvesting and storage"
+              ]
+            },
+            {
+              "title": "Animal husbandry",
+              "topics": [
+                "Dairy farming",
+                "Poultry farming",
+                "Fisheries and bee-keeping"
+              ]
+            }
+          ],
+          "source": "https://www.selinapublishers.com/"
+        }
+      ]
+    },
+    {
+      "subject": "history-civics",
+      "name": "History & Civics",
+      "book": "Kundra History & Civics, Class 8 (2026-27)",
+      "chapters": [
+        {
+          "number": 1,
+          "title": "A Period of Transition",
+          "unit": "History",
+          "outcomes": [
+            "Explain the end of the medieval period in Europe",
+            "Describe the Renaissance and Reformation",
+            "Explain the Industrial Revolution and its impact"
+          ],
+          "topics": [
+            "End of the medieval age in Europe",
+            "Decline of feudalism",
+            "Fall of Constantinople",
+            "Causes and spread of the Renaissance",
+            "Renaissance art, literature and science",
+            "Reformation and Counter-Reformation",
+            "Geographical explorations",
+            "Industrial Revolution",
+            "Capitalism and colonialism"
+          ],
+          "lessons": [
+            {
+              "title": "Decline of feudalism",
+              "topics": [
+                "End of the medieval age in Europe",
+                "Decline of feudalism",
+                "Fall of Constantinople"
+              ]
+            },
+            {
+              "title": "Renaissance and Reformation",
+              "topics": [
+                "Causes and spread of the Renaissance",
+                "Renaissance art, literature and science",
+                "Reformation and Counter-Reformation"
+              ]
+            },
+            {
+              "title": "Discoveries and industry",
+              "topics": [
+                "Geographical explorations",
+                "Industrial Revolution",
+                "Capitalism and colonialism"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 2,
+          "title": "The Growth of Nationalism: The Age of Revolutions",
+          "unit": "History",
+          "outcomes": [
+            "Explain causes and results of the American War of Independence",
+            "Explain causes and results of the French Revolution"
+          ],
+          "topics": [
+            "British colonies in America",
+            "Causes of the American War of Independence",
+            "Declaration of Independence and results",
+            "Conditions in France before the Revolution",
+            "Main events of the French Revolution",
+            "Ideas of liberty, equality and fraternity"
+          ],
+          "lessons": [
+            {
+              "title": "American War of Independence",
+              "topics": [
+                "British colonies in America",
+                "Causes of the American War of Independence",
+                "Declaration of Independence and results"
+              ]
+            },
+            {
+              "title": "French Revolution",
+              "topics": [
+                "Conditions in France before the Revolution",
+                "Main events of the French Revolution",
+                "Ideas of liberty, equality and fraternity"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 3,
+          "title": "The American Civil War",
+          "unit": "History",
+          "outcomes": [
+            "Explain causes of the American Civil War",
+            "Describe the role of Abraham Lincoln",
+            "Assess results of the war"
+          ],
+          "topics": [
+            "North and South differences",
+            "Issue of slavery",
+            "Secession of southern states",
+            "Course of the war",
+            "Abraham Lincoln and emancipation",
+            "Results of the Civil War"
+          ],
+          "lessons": [
+            {
+              "title": "Causes",
+              "topics": [
+                "North and South differences",
+                "Issue of slavery",
+                "Secession of southern states"
+              ]
+            },
+            {
+              "title": "War and results",
+              "topics": [
+                "Course of the war",
+                "Abraham Lincoln and emancipation",
+                "Results of the Civil War"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 4,
+          "title": "India in the Eighteenth Century",
+          "unit": "History",
+          "outcomes": [
+            "Explain causes of the decline of the Mughal Empire",
+            "Describe the rise of independent regional kingdoms"
+          ],
+          "topics": [
+            "Later Mughals",
+            "Causes of the decline of the Mughal Empire",
+            "Invasions of Nadir Shah and Ahmad Shah Abdali",
+            "Hyderabad, Awadh and Bengal",
+            "Rise of the Marathas",
+            "Rise of the Sikhs and Mysore"
+          ],
+          "lessons": [
+            {
+              "title": "Mughal decline",
+              "topics": [
+                "Later Mughals",
+                "Causes of the decline of the Mughal Empire",
+                "Invasions of Nadir Shah and Ahmad Shah Abdali"
+              ]
+            },
+            {
+              "title": "Regional powers",
+              "topics": [
+                "Hyderabad, Awadh and Bengal",
+                "Rise of the Marathas",
+                "Rise of the Sikhs and Mysore"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 5,
+          "title": "Traders to Rulers",
+          "unit": "History",
+          "outcomes": [
+            "Describe the arrival of European trading companies",
+            "Explain how the English East India Company gained power",
+            "Describe British expansion policies"
+          ],
+          "topics": [
+            "Arrival of the Portuguese, Dutch, English and French",
+            "Anglo-French rivalry and Carnatic wars",
+            "Battle of Plassey",
+            "Battle of Buxar",
+            "Dual government in Bengal",
+            "Subsidiary Alliance",
+            "Doctrine of Lapse",
+            "Annexation of Punjab and Awadh"
+          ],
+          "lessons": [
+            {
+              "title": "European traders",
+              "topics": [
+                "Arrival of the Portuguese, Dutch, English and French",
+                "Anglo-French rivalry and Carnatic wars"
+              ]
+            },
+            {
+              "title": "Company becomes ruler",
+              "topics": [
+                "Battle of Plassey",
+                "Battle of Buxar",
+                "Dual government in Bengal"
+              ]
+            },
+            {
+              "title": "Expansion",
+              "topics": [
+                "Subsidiary Alliance",
+                "Doctrine of Lapse",
+                "Annexation of Punjab and Awadh"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 6,
+          "title": "British Policies and Impacts",
+          "unit": "History",
+          "outcomes": [
+            "Describe British land revenue systems",
+            "Explain the effects of British rule on Indian economy and society"
+          ],
+          "topics": [
+            "Permanent Settlement",
+            "Ryotwari and Mahalwari systems",
+            "Decline of Indian industries and crafts",
+            "Commercialisation of agriculture",
+            "Drain of wealth",
+            "Civil services, army and police",
+            "Introduction of English education",
+            "Railways and communication"
+          ],
+          "lessons": [
+            {
+              "title": "Land revenue",
+              "topics": [
+                "Permanent Settlement",
+                "Ryotwari and Mahalwari systems"
+              ]
+            },
+            {
+              "title": "Economic impact",
+              "topics": [
+                "Decline of Indian industries and crafts",
+                "Commercialisation of agriculture",
+                "Drain of wealth"
+              ]
+            },
+            {
+              "title": "Administration and education",
+              "topics": [
+                "Civil services, army and police",
+                "Introduction of English education",
+                "Railways and communication"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 7,
+          "title": "The Great Uprising of 1857",
+          "unit": "History",
+          "outcomes": [
+            "Explain causes of the uprising of 1857",
+            "Describe its main centres and leaders",
+            "Assess its results"
+          ],
+          "topics": [
+            "Political causes",
+            "Economic and social causes",
+            "Military causes and the immediate cause",
+            "Beginning at Meerut",
+            "Main centres and leaders",
+            "Reasons for failure",
+            "End of Company rule and Queen's Proclamation"
+          ],
+          "lessons": [
+            {
+              "title": "Causes",
+              "topics": [
+                "Political causes",
+                "Economic and social causes",
+                "Military causes and the immediate cause"
+              ]
+            },
+            {
+              "title": "Course of the uprising",
+              "topics": [
+                "Beginning at Meerut",
+                "Main centres and leaders"
+              ]
+            },
+            {
+              "title": "Results",
+              "topics": [
+                "Reasons for failure",
+                "End of Company rule and Queen's Proclamation"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 8,
+          "title": "Socio-Religious Reform Movements",
+          "unit": "History",
+          "outcomes": [
+            "Identify major reformers and their movements",
+            "Explain the impact of reform movements on society"
+          ],
+          "topics": [
+            "Raja Ram Mohan Roy and the Brahmo Samaj",
+            "Ishwar Chandra Vidyasagar",
+            "Swami Dayanand Saraswati and the Arya Samaj",
+            "Ramakrishna Mission and Swami Vivekananda",
+            "Jyotiba Phule and Satyashodhak Samaj",
+            "Sir Syed Ahmed Khan and the Aligarh Movement",
+            "Impact of reform movements"
+          ],
+          "lessons": [
+            {
+              "title": "Reform in Bengal",
+              "topics": [
+                "Raja Ram Mohan Roy and the Brahmo Samaj",
+                "Ishwar Chandra Vidyasagar"
+              ]
+            },
+            {
+              "title": "Other movements",
+              "topics": [
+                "Swami Dayanand Saraswati and the Arya Samaj",
+                "Ramakrishna Mission and Swami Vivekananda",
+                "Jyotiba Phule and Satyashodhak Samaj"
+              ]
+            },
+            {
+              "title": "Muslim reform and impact",
+              "topics": [
+                "Sir Syed Ahmed Khan and the Aligarh Movement",
+                "Impact of reform movements"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 9,
+          "title": "Struggle for Freedom (I)",
+          "unit": "History",
+          "outcomes": [
+            "Explain the rise of Indian nationalism",
+            "Describe the early phase of the Indian National Congress",
+            "Explain the Partition of Bengal and Swadeshi movement"
+          ],
+          "topics": [
+            "Causes of the rise of nationalism",
+            "Formation of the Indian National Congress",
+            "Early nationalists and their methods",
+            "Assertive nationalists",
+            "Partition of Bengal",
+            "Swadeshi and Boycott Movement",
+            "Muslim League and Morley-Minto reforms"
+          ],
+          "lessons": [
+            {
+              "title": "Rise of nationalism",
+              "topics": [
+                "Causes of the rise of nationalism",
+                "Formation of the Indian National Congress"
+              ]
+            },
+            {
+              "title": "Moderates and radicals",
+              "topics": [
+                "Early nationalists and their methods",
+                "Assertive nationalists"
+              ]
+            },
+            {
+              "title": "Swadeshi era",
+              "topics": [
+                "Partition of Bengal",
+                "Swadeshi and Boycott Movement",
+                "Muslim League and Morley-Minto reforms"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 10,
+          "title": "Struggle for Freedom (II)",
+          "unit": "History",
+          "outcomes": [
+            "Describe Gandhi's mass movements",
+            "Explain the events leading to independence and partition"
+          ],
+          "topics": [
+            "Arrival of Gandhi and early satyagrahas",
+            "Jallianwala Bagh massacre",
+            "Non-Cooperation Movement",
+            "Civil Disobedience and Dandi March",
+            "Quit India Movement",
+            "Subhas Chandra Bose and the INA",
+            "Mountbatten Plan",
+            "Independence and Partition"
+          ],
+          "lessons": [
+            {
+              "title": "Gandhian movements",
+              "topics": [
+                "Arrival of Gandhi and early satyagrahas",
+                "Jallianwala Bagh massacre",
+                "Non-Cooperation Movement"
+              ]
+            },
+            {
+              "title": "Towards freedom",
+              "topics": [
+                "Civil Disobedience and Dandi March",
+                "Quit India Movement",
+                "Subhas Chandra Bose and the INA"
+              ]
+            },
+            {
+              "title": "Independence",
+              "topics": [
+                "Mountbatten Plan",
+                "Independence and Partition"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 11,
+          "title": "The Union Legislature",
+          "unit": "Civics",
+          "outcomes": [
+            "Describe the composition of Parliament",
+            "Explain how a bill becomes a law",
+            "State powers of the two Houses"
+          ],
+          "topics": [
+            "Lok Sabha: composition and term",
+            "Rajya Sabha: composition and term",
+            "Qualifications of members",
+            "Speaker and Chairman",
+            "Sessions, quorum and question hour",
+            "Passage of an ordinary bill",
+            "Money bill",
+            "Powers and functions of Parliament"
+          ],
+          "lessons": [
+            {
+              "title": "Parliament",
+              "topics": [
+                "Lok Sabha: composition and term",
+                "Rajya Sabha: composition and term",
+                "Qualifications of members"
+              ]
+            },
+            {
+              "title": "Officers and sessions",
+              "topics": [
+                "Speaker and Chairman",
+                "Sessions, quorum and question hour"
+              ]
+            },
+            {
+              "title": "Law making",
+              "topics": [
+                "Passage of an ordinary bill",
+                "Money bill",
+                "Powers and functions of Parliament"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 12,
+          "title": "The Union Executive",
+          "unit": "Civics",
+          "outcomes": [
+            "Describe the election and powers of the President",
+            "Explain the role of the Prime Minister and Council of Ministers"
+          ],
+          "topics": [
+            "Election of the President",
+            "Powers of the President",
+            "Vice-President",
+            "Appointment of the Prime Minister",
+            "Council of Ministers",
+            "Collective responsibility"
+          ],
+          "lessons": [
+            {
+              "title": "President and Vice-President",
+              "topics": [
+                "Election of the President",
+                "Powers of the President",
+                "Vice-President"
+              ]
+            },
+            {
+              "title": "Prime Minister and ministers",
+              "topics": [
+                "Appointment of the Prime Minister",
+                "Council of Ministers",
+                "Collective responsibility"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 13,
+          "title": "The Judiciary",
+          "unit": "Civics",
+          "outcomes": [
+            "Describe the structure of the Indian judiciary",
+            "Explain the powers of the Supreme Court and High Courts",
+            "Explain independence of the judiciary"
+          ],
+          "topics": [
+            "Composition of the Supreme Court",
+            "Jurisdiction of the Supreme Court",
+            "Judicial review",
+            "High Courts",
+            "Subordinate courts",
+            "Lok Adalats",
+            "Features ensuring judicial independence",
+            "Public interest litigation"
+          ],
+          "lessons": [
+            {
+              "title": "Supreme Court",
+              "topics": [
+                "Composition of the Supreme Court",
+                "Jurisdiction of the Supreme Court",
+                "Judicial review"
+              ]
+            },
+            {
+              "title": "Other courts",
+              "topics": [
+                "High Courts",
+                "Subordinate courts",
+                "Lok Adalats"
+              ]
+            },
+            {
+              "title": "Independence of the judiciary",
+              "topics": [
+                "Features ensuring judicial independence",
+                "Public interest litigation"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 14,
+          "title": "The United Nations",
+          "unit": "Civics",
+          "outcomes": [
+            "State the aims of the United Nations",
+            "Describe its main organs",
+            "Identify major UN agencies and their work"
+          ],
+          "topics": [
+            "Formation of the United Nations",
+            "Aims and principles of the UN",
+            "General Assembly",
+            "Security Council",
+            "Other principal organs",
+            "UNICEF",
+            "WHO",
+            "UNESCO"
+          ],
+          "lessons": [
+            {
+              "title": "Origin and aims",
+              "topics": [
+                "Formation of the United Nations",
+                "Aims and principles of the UN"
+              ]
+            },
+            {
+              "title": "Main organs",
+              "topics": [
+                "General Assembly",
+                "Security Council",
+                "Other principal organs"
+              ]
+            },
+            {
+              "title": "Agencies",
+              "topics": [
+                "UNICEF",
+                "WHO",
+                "UNESCO"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        }
+      ]
+    },
+    {
+      "subject": "geography",
+      "name": "Geography",
+      "book": "Veena Bhargava Geography, Class 8, Goyal Brothers Prakashan (2026-27)",
+      "chapters": [
+        {
+          "number": 1,
+          "title": "Representation of Geographical Features",
+          "unit": "Map Work",
+          "outcomes": [
+            "Read topographical maps",
+            "Interpret contours, conventional signs and grid references"
+          ],
+          "topics": [
+            "What topographical maps show",
+            "Scale and direction",
+            "Conventional signs and symbols",
+            "Contours and relief",
+            "Identifying landforms from contours",
+            "Four- and six-figure grid references"
+          ],
+          "lessons": [
+            {
+              "title": "Topographical maps",
+              "topics": [
+                "What topographical maps show",
+                "Scale and direction",
+                "Conventional signs and symbols"
+              ]
+            },
+            {
+              "title": "Relief and grids",
+              "topics": [
+                "Contours and relief",
+                "Identifying landforms from contours",
+                "Four- and six-figure grid references"
+              ]
+            }
+          ],
+          "source": "https://goyal-books.com/"
+        },
+        {
+          "number": 2,
+          "title": "Population Dynamics",
+          "unit": "Human Geography",
+          "outcomes": [
+            "Explain factors affecting population distribution",
+            "Describe population growth and its problems",
+            "Interpret population composition"
+          ],
+          "topics": [
+            "World population distribution",
+            "Factors affecting distribution",
+            "Population density",
+            "Birth rate, death rate and growth rate",
+            "Causes of rapid growth",
+            "Problems of overpopulation",
+            "Age and sex composition",
+            "Literacy and occupation",
+            "Population as a resource"
+          ],
+          "lessons": [
+            {
+              "title": "Distribution and density",
+              "topics": [
+                "World population distribution",
+                "Factors affecting distribution",
+                "Population density"
+              ]
+            },
+            {
+              "title": "Growth",
+              "topics": [
+                "Birth rate, death rate and growth rate",
+                "Causes of rapid growth",
+                "Problems of overpopulation"
+              ]
+            },
+            {
+              "title": "Composition",
+              "topics": [
+                "Age and sex composition",
+                "Literacy and occupation",
+                "Population as a resource"
+              ]
+            }
+          ],
+          "source": "https://goyal-books.com/"
+        },
+        {
+          "number": 3,
+          "title": "Migration",
+          "unit": "Human Geography",
+          "outcomes": [
+            "Classify types of migration",
+            "Explain causes and effects of migration"
+          ],
+          "topics": [
+            "Meaning of migration",
+            "Internal and international migration",
+            "Rural-urban migration",
+            "Push and pull factors",
+            "Effects on source and destination areas"
+          ],
+          "lessons": [
+            {
+              "title": "Types",
+              "topics": [
+                "Meaning of migration",
+                "Internal and international migration",
+                "Rural-urban migration"
+              ]
+            },
+            {
+              "title": "Causes and effects",
+              "topics": [
+                "Push and pull factors",
+                "Effects on source and destination areas"
+              ]
+            }
+          ],
+          "source": "https://goyal-books.com/"
+        },
+        {
+          "number": 4,
+          "title": "Urbanisation",
+          "unit": "Human Geography",
+          "outcomes": [
+            "Explain causes of urbanisation",
+            "Describe problems of urban areas and their solutions"
+          ],
+          "topics": [
+            "Meaning of urbanisation",
+            "Causes of urbanisation",
+            "Towns, cities and megacities",
+            "Housing and slums",
+            "Transport, water and waste problems",
+            "Planned cities and solutions"
+          ],
+          "lessons": [
+            {
+              "title": "Growth of cities",
+              "topics": [
+                "Meaning of urbanisation",
+                "Causes of urbanisation",
+                "Towns, cities and megacities"
+              ]
+            },
+            {
+              "title": "Urban problems",
+              "topics": [
+                "Housing and slums",
+                "Transport, water and waste problems",
+                "Planned cities and solutions"
+              ]
+            }
+          ],
+          "source": "https://goyal-books.com/"
+        },
+        {
+          "number": 5,
+          "title": "Natural and Man-Made Disasters",
+          "unit": "Human Geography",
+          "outcomes": [
+            "Distinguish natural and man-made disasters",
+            "Describe causes and effects of major disasters",
+            "Explain disaster preparedness"
+          ],
+          "topics": [
+            "Earthquakes and tsunamis",
+            "Floods and droughts",
+            "Cyclones and landslides",
+            "Industrial accidents",
+            "Fires and pollution disasters",
+            "Disaster preparedness",
+            "Mitigation and relief",
+            "Role of individuals and agencies"
+          ],
+          "lessons": [
+            {
+              "title": "Natural disasters",
+              "topics": [
+                "Earthquakes and tsunamis",
+                "Floods and droughts",
+                "Cyclones and landslides"
+              ]
+            },
+            {
+              "title": "Man-made disasters",
+              "topics": [
+                "Industrial accidents",
+                "Fires and pollution disasters"
+              ]
+            },
+            {
+              "title": "Management",
+              "topics": [
+                "Disaster preparedness",
+                "Mitigation and relief",
+                "Role of individuals and agencies"
+              ]
+            }
+          ],
+          "source": "https://goyal-books.com/"
+        },
+        {
+          "number": 6,
+          "title": "Asia: Location and Physical Features",
+          "unit": "Regional Geography",
+          "outcomes": [
+            "Locate Asia and its political divisions",
+            "Describe the major physical divisions of Asia",
+            "Identify major rivers of Asia"
+          ],
+          "topics": [
+            "Location and extent of Asia",
+            "Political divisions of Asia",
+            "Northern lowlands",
+            "Central mountain ranges and plateaus",
+            "Southern plateaus and river valleys",
+            "Island groups",
+            "Major river systems of Asia",
+            "Important lakes and seas"
+          ],
+          "lessons": [
+            {
+              "title": "Location",
+              "topics": [
+                "Location and extent of Asia",
+                "Political divisions of Asia"
+              ]
+            },
+            {
+              "title": "Physical divisions",
+              "topics": [
+                "Northern lowlands",
+                "Central mountain ranges and plateaus",
+                "Southern plateaus and river valleys",
+                "Island groups"
+              ]
+            },
+            {
+              "title": "Rivers and lakes",
+              "topics": [
+                "Major river systems of Asia",
+                "Important lakes and seas"
+              ]
+            }
+          ],
+          "source": "https://goyal-books.com/"
+        },
+        {
+          "number": 7,
+          "title": "Asia: Climate, Natural Vegetation and Wildlife",
+          "unit": "Regional Geography",
+          "outcomes": [
+            "Explain factors affecting climate of Asia",
+            "Describe natural vegetation belts",
+            "Relate wildlife to vegetation regions"
+          ],
+          "topics": [
+            "Factors affecting the climate of Asia",
+            "Climatic regions",
+            "Monsoon in Asia",
+            "Tundra and taiga",
+            "Temperate grasslands and deserts",
+            "Tropical forests",
+            "Wildlife of Asia"
+          ],
+          "lessons": [
+            {
+              "title": "Climate",
+              "topics": [
+                "Factors affecting the climate of Asia",
+                "Climatic regions",
+                "Monsoon in Asia"
+              ]
+            },
+            {
+              "title": "Vegetation and wildlife",
+              "topics": [
+                "Tundra and taiga",
+                "Temperate grasslands and deserts",
+                "Tropical forests",
+                "Wildlife of Asia"
+              ]
+            }
+          ],
+          "source": "https://goyal-books.com/"
+        },
+        {
+          "number": 8,
+          "title": "India: Geographical Features",
+          "unit": "Regional Geography",
+          "outcomes": [
+            "Locate India and its neighbours",
+            "Describe India's physical divisions",
+            "Identify major rivers of India"
+          ],
+          "topics": [
+            "Location and extent of India",
+            "Neighbouring countries",
+            "States and union territories",
+            "Himalayan mountains",
+            "Northern plains",
+            "Peninsular plateau",
+            "Coastal plains and islands",
+            "Thar desert",
+            "Himalayan rivers",
+            "Peninsular rivers"
+          ],
+          "lessons": [
+            {
+              "title": "Location",
+              "topics": [
+                "Location and extent of India",
+                "Neighbouring countries",
+                "States and union territories"
+              ]
+            },
+            {
+              "title": "Physical divisions",
+              "topics": [
+                "Himalayan mountains",
+                "Northern plains",
+                "Peninsular plateau",
+                "Coastal plains and islands",
+                "Thar desert"
+              ]
+            },
+            {
+              "title": "Drainage",
+              "topics": [
+                "Himalayan rivers",
+                "Peninsular rivers"
+              ]
+            }
+          ],
+          "source": "https://goyal-books.com/"
+        },
+        {
+          "number": 9,
+          "title": "India: Climate, Flora and Fauna",
+          "unit": "Regional Geography",
+          "outcomes": [
+            "Explain the monsoon climate of India",
+            "Describe seasons of India",
+            "Describe natural vegetation and wildlife conservation"
+          ],
+          "topics": [
+            "Factors influencing India's climate",
+            "Monsoon mechanism",
+            "Seasons of India",
+            "Distribution of rainfall",
+            "Types of natural vegetation in India",
+            "Importance of forests",
+            "Wildlife of India",
+            "National parks and wildlife sanctuaries",
+            "Conservation projects"
+          ],
+          "lessons": [
+            {
+              "title": "Climate",
+              "topics": [
+                "Factors influencing India's climate",
+                "Monsoon mechanism",
+                "Seasons of India",
+                "Distribution of rainfall"
+              ]
+            },
+            {
+              "title": "Flora",
+              "topics": [
+                "Types of natural vegetation in India",
+                "Importance of forests"
+              ]
+            },
+            {
+              "title": "Fauna",
+              "topics": [
+                "Wildlife of India",
+                "National parks and wildlife sanctuaries",
+                "Conservation projects"
+              ]
+            }
+          ],
+          "source": "https://goyal-books.com/"
+        },
+        {
+          "number": 10,
+          "title": "India: Human Resources",
+          "unit": "Regional Geography",
+          "outcomes": [
+            "Describe India's population distribution and density",
+            "Explain the importance of human resource development"
+          ],
+          "topics": [
+            "Size and growth of India's population",
+            "Distribution and density",
+            "Population composition",
+            "Population as a human resource",
+            "Literacy, health and skill development"
+          ],
+          "lessons": [
+            {
+              "title": "Population",
+              "topics": [
+                "Size and growth of India's population",
+                "Distribution and density",
+                "Population composition"
+              ]
+            },
+            {
+              "title": "Human resources",
+              "topics": [
+                "Population as a human resource",
+                "Literacy, health and skill development"
+              ]
+            }
+          ],
+          "source": "https://goyal-books.com/"
+        }
+      ]
+    },
+    {
+      "subject": "computer",
+      "name": "Computer Applications",
+      "book": "CISCE Computer Studies curriculum topics for Class 8; school textbooks such as Understanding Computer Studies or Logix follow these topics",
+      "chapters": [
+        {
+          "number": 1,
+          "title": "Operating System and Graphical User Interface",
+          "unit": "",
+          "outcomes": [
+            "Explain the role of an operating system",
+            "Distinguish character and graphical user interfaces",
+            "Describe booting and resource management"
+          ],
+          "topics": [
+            "Need for an operating system",
+            "Functions of an operating system",
+            "Types of operating systems",
+            "Character user interface",
+            "Graphical user interface",
+            "Elements of a windows interface",
+            "Booting: cold and warm boot",
+            "Managing files and folders",
+            "Managing memory, processor and devices"
+          ],
+          "lessons": [
+            {
+              "title": "What an operating system does",
+              "topics": [
+                "Need for an operating system",
+                "Functions of an operating system",
+                "Types of operating systems"
+              ]
+            },
+            {
+              "title": "User interfaces",
+              "topics": [
+                "Character user interface",
+                "Graphical user interface",
+                "Elements of a windows interface"
+              ]
+            },
+            {
+              "title": "Working with the system",
+              "topics": [
+                "Booting: cold and warm boot",
+                "Managing files and folders",
+                "Managing memory, processor and devices"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 2,
+          "title": "Spreadsheets — Functions and Charts",
+          "unit": "",
+          "outcomes": [
+            "Use built-in spreadsheet functions",
+            "Create and format charts",
+            "Sort and filter data"
+          ],
+          "topics": [
+            "Cell references: relative and absolute",
+            "Built-in functions: SUM, AVERAGE, MAX, MIN, COUNT",
+            "Logical function IF",
+            "Sorting data",
+            "Filtering data",
+            "Conditional formatting",
+            "Types of charts",
+            "Creating a chart",
+            "Editing and formatting charts"
+          ],
+          "lessons": [
+            {
+              "title": "Formulas and functions",
+              "topics": [
+                "Cell references: relative and absolute",
+                "Built-in functions: SUM, AVERAGE, MAX, MIN, COUNT",
+                "Logical function IF"
+              ]
+            },
+            {
+              "title": "Managing data",
+              "topics": [
+                "Sorting data",
+                "Filtering data",
+                "Conditional formatting"
+              ]
+            },
+            {
+              "title": "Charts",
+              "topics": [
+                "Types of charts",
+                "Creating a chart",
+                "Editing and formatting charts"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 3,
+          "title": "Algorithms and Flowcharts",
+          "unit": "",
+          "outcomes": [
+            "Write algorithms for simple problems",
+            "Draw flowcharts with standard symbols",
+            "Use decisions and loops in flowcharts"
+          ],
+          "topics": [
+            "Problem solving steps",
+            "Characteristics of a good algorithm",
+            "Writing algorithms",
+            "Flowchart symbols",
+            "Drawing sequential flowcharts",
+            "Decision making in flowcharts",
+            "Loops in flowcharts"
+          ],
+          "lessons": [
+            {
+              "title": "Algorithms",
+              "topics": [
+                "Problem solving steps",
+                "Characteristics of a good algorithm",
+                "Writing algorithms"
+              ]
+            },
+            {
+              "title": "Flowcharts",
+              "topics": [
+                "Flowchart symbols",
+                "Drawing sequential flowcharts",
+                "Decision making in flowcharts",
+                "Loops in flowcharts"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 4,
+          "title": "Program Coding",
+          "unit": "",
+          "outcomes": [
+            "Explain the need for programming languages",
+            "Use variables, operators and input/output",
+            "Write programs with selection and repetition"
+          ],
+          "topics": [
+            "What a program is",
+            "Low-level and high-level languages",
+            "Compiler and interpreter",
+            "Variables and data types",
+            "Operators and expressions",
+            "Input and output statements",
+            "Sequence",
+            "Selection with if-else",
+            "Repetition with loops"
+          ],
+          "lessons": [
+            {
+              "title": "Programming basics",
+              "topics": [
+                "What a program is",
+                "Low-level and high-level languages",
+                "Compiler and interpreter"
+              ]
+            },
+            {
+              "title": "Building blocks",
+              "topics": [
+                "Variables and data types",
+                "Operators and expressions",
+                "Input and output statements"
+              ]
+            },
+            {
+              "title": "Control structures",
+              "topics": [
+                "Sequence",
+                "Selection with if-else",
+                "Repetition with loops"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 5,
+          "title": "App Development",
+          "unit": "",
+          "outcomes": [
+            "Explain what a mobile app is",
+            "Plan a simple app",
+            "Build a simple app with a block-based tool"
+          ],
+          "topics": [
+            "What an app is",
+            "Types of apps",
+            "Stages of app development",
+            "Planning an app's screens",
+            "Components and blocks in a block-based app builder",
+            "Testing an app"
+          ],
+          "lessons": [
+            {
+              "title": "Understanding apps",
+              "topics": [
+                "What an app is",
+                "Types of apps",
+                "Stages of app development"
+              ]
+            },
+            {
+              "title": "Building an app",
+              "topics": [
+                "Planning an app's screens",
+                "Components and blocks in a block-based app builder",
+                "Testing an app"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        },
+        {
+          "number": 6,
+          "title": "Networks",
+          "unit": "",
+          "outcomes": [
+            "Define a computer network and its uses",
+            "Distinguish LAN, MAN and WAN",
+            "Identify network topologies and devices"
+          ],
+          "topics": [
+            "What a computer network is",
+            "Advantages of networking",
+            "Shared resources",
+            "LAN, MAN and WAN",
+            "Bus, star, ring and mesh topologies",
+            "Wired and wireless communication media",
+            "Network devices: modem, router, switch",
+            "Internet as a network of networks"
+          ],
+          "lessons": [
+            {
+              "title": "Network basics",
+              "topics": [
+                "What a computer network is",
+                "Advantages of networking",
+                "Shared resources"
+              ]
+            },
+            {
+              "title": "Types and topologies",
+              "topics": [
+                "LAN, MAN and WAN",
+                "Bus, star, ring and mesh topologies"
+              ]
+            },
+            {
+              "title": "Connecting networks",
+              "topics": [
+                "Wired and wireless communication media",
+                "Network devices: modem, router, switch",
+                "Internet as a network of networks"
+              ]
+            }
+          ],
+          "source": "https://cisce.org/"
+        }
+      ]
+    }
+  ]
+}

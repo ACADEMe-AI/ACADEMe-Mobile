@@ -1,0 +1,7 @@
+{
+  "issues": [
+    "card 9: the option “Both A and D” and the why (“Reaction D”, “Reaction A”) point at options by letter, but the app shuffles options, so the letters mean nothing to a student. Caught by the lessons-v3 option check after this lesson was approved under lessons-v2."
+  ],
+  "rounds": 1,
+  "checkedAt": "2026-09-25T16:05:00Z"
+}

@@ -1,0 +1,4146 @@
+{
+  "board": "CBSE",
+  "class": 9,
+  "session": "2026-27",
+  "sources": [
+    {
+      "title": "CBSE Curriculum 2026-27 index",
+      "url": "https://cbseacademic.nic.in/curriculum_2027.html"
+    },
+    {
+      "title": "CBSE Mathematics Class IX 2026-27",
+      "url": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/Maths_SecP1IX_2026-27.pdf"
+    },
+    {
+      "title": "CBSE Science (Standard) Class IX 2026-27",
+      "url": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/ScienceSt_SecP1_2026-27.pdf"
+    },
+    {
+      "title": "CBSE Social Science Class IX 2026-27",
+      "url": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/SocialScience_SecP1IX_2026-27.pdf"
+    },
+    {
+      "title": "CBSE English Language and Literature Class IX 2026-27",
+      "url": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/English_LL_SecP1IX_2026-27.pdf"
+    },
+    {
+      "title": "CBSE Hindi Class IX 2026-27",
+      "url": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/Hindi_SecP1IX_2026-27.pdf"
+    },
+    {
+      "title": "CBSE Sanskrit Class IX 2026-27",
+      "url": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/Sanskrit_SecP1IX_2026-27.pdf"
+    },
+    {
+      "title": "CBSE Computer Applications Class IX 2026-27",
+      "url": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/Computer_Applications_SecP1IX_2026-27.pdf"
+    },
+    {
+      "title": "NCERT textbooks index",
+      "url": "https://ncert.nic.in/textbook.php"
+    },
+    {
+      "title": "NCERT Ganita Manjari Part I prelims",
+      "url": "https://ncert.nic.in/textbook/pdf/iemh1ps.pdf"
+    },
+    {
+      "title": "NCERT Kaveri prelims",
+      "url": "https://ncert.nic.in/textbook/pdf/iebe1ps.pdf"
+    },
+    {
+      "title": "NCERT Understanding Society Part 1 prelims",
+      "url": "https://ncert.nic.in/textbook/pdf/iest1ps.pdf"
+    },
+    {
+      "title": "NCERT Ganga prelims",
+      "url": "https://ncert.nic.in/textbook/pdf/ihga1ps.pdf"
+    },
+    {
+      "title": "NCERT Sharada prelims",
+      "url": "https://ncert.nic.in/textbook/pdf/ihsh1ps.pdf"
+    }
+  ],
+  "subjects": [
+    {
+      "subject": "maths",
+      "name": "Maths",
+      "book": "Ganita Manjari: Textbook of Mathematics for Grade 9, Part I (NCERT, 2026-27)",
+      "chapters": [
+        {
+          "number": 1,
+          "title": "Orienting Yourself: The Use of Coordinates",
+          "unit": "Unit III: Coordinate Geometry",
+          "outcomes": [
+            "Locate points on the Cartesian plane",
+            "Compute the distance between two points and the midpoint of a segment",
+            "Use coordinates to test collinearity and right-angled triangles"
+          ],
+          "topics": [
+            "Introduction: describing position",
+            "Settling in: locating places on a grid and floor plans",
+            "Brief history of coordinate geometry",
+            "The 2-D Cartesian coordinate system: axes, origin, quadrants",
+            "Plotting and reading points",
+            "Distance between two points in the 2-D plane",
+            "Checking collinearity of three points",
+            "Checking whether a triangle is right-angled",
+            "Midpoint of a line segment"
+          ],
+          "lessons": [
+            {
+              "title": "Settling in on a grid",
+              "topics": [
+                "Introduction: describing position",
+                "Settling in: locating places on a grid and floor plans",
+                "Brief history of coordinate geometry"
+              ]
+            },
+            {
+              "title": "The Cartesian plane",
+              "topics": [
+                "The 2-D Cartesian coordinate system: axes, origin, quadrants",
+                "Plotting and reading points"
+              ]
+            },
+            {
+              "title": "Distance and midpoint",
+              "topics": [
+                "Distance between two points in the 2-D plane",
+                "Checking collinearity of three points",
+                "Checking whether a triangle is right-angled",
+                "Midpoint of a line segment"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/iemh101.pdf",
+          "marks": 4
+        },
+        {
+          "number": 2,
+          "title": "Introduction to Linear Polynomials",
+          "unit": "Unit II: Algebra",
+          "outcomes": [
+            "Identify polynomials, their degree, terms and coefficients",
+            "Model linear growth and decay",
+            "Interpret slope and y-intercept of y = ax + b"
+          ],
+          "topics": [
+            "Algebraic expressions",
+            "Definition of a polynomial",
+            "Degree, terms and coefficients",
+            "Linear polynomials",
+            "Exploring linear patterns",
+            "Linear growth and linear decay",
+            "Linear relationships in daily life",
+            "Visualising linear relationships on a graph",
+            "Slope and y-intercept of y = ax + b"
+          ],
+          "lessons": [
+            {
+              "title": "Polynomials",
+              "topics": [
+                "Algebraic expressions",
+                "Definition of a polynomial",
+                "Degree, terms and coefficients",
+                "Linear polynomials"
+              ]
+            },
+            {
+              "title": "Linear patterns",
+              "topics": [
+                "Exploring linear patterns",
+                "Linear growth and linear decay"
+              ]
+            },
+            {
+              "title": "Linear relationships",
+              "topics": [
+                "Linear relationships in daily life",
+                "Visualising linear relationships on a graph",
+                "Slope and y-intercept of y = ax + b"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/iemh102.pdf"
+        },
+        {
+          "number": 3,
+          "title": "The World of Numbers",
+          "unit": "Unit I: Number System",
+          "outcomes": [
+            "Represent rational numbers on the number line and explain their density",
+            "Prove the irrationality of √2 and √3",
+            "Relate decimal expansions to rational and irrational numbers"
+          ],
+          "topics": [
+            "The dawn of mathematics: counting and tally marks",
+            "The Indian context: trade and astronomy",
+            "The revolution of śhūnya (zero)",
+            "The Bakhśhālī manuscript and Brahmagupta's rules",
+            "Integers and their arithmetic",
+            "Fractions and rational numbers",
+            "Representing rational numbers on the number line",
+            "Density of rational numbers",
+            "Irrational numbers",
+            "Proof of irrationality of √2 and √3",
+            "Constructing lengths √2, √3 and the square root spiral",
+            "The story of π and Madhava's infinite series",
+            "Terminating and repeating decimals",
+            "Cyclic numbers",
+            "Non-terminating non-repeating decimals",
+            "The never-ending journey of numbers"
+          ],
+          "lessons": [
+            {
+              "title": "How numbers began",
+              "topics": [
+                "The dawn of mathematics: counting and tally marks",
+                "The Indian context: trade and astronomy",
+                "The revolution of śhūnya (zero)",
+                "The Bakhśhālī manuscript and Brahmagupta's rules"
+              ]
+            },
+            {
+              "title": "Integers and rationals",
+              "topics": [
+                "Integers and their arithmetic",
+                "Fractions and rational numbers",
+                "Representing rational numbers on the number line",
+                "Density of rational numbers"
+              ]
+            },
+            {
+              "title": "Irrational numbers",
+              "topics": [
+                "Irrational numbers",
+                "Proof of irrationality of √2 and √3",
+                "Constructing lengths √2, √3 and the square root spiral",
+                "The story of π and Madhava's infinite series"
+              ]
+            },
+            {
+              "title": "Real numbers and decimals",
+              "topics": [
+                "Terminating and repeating decimals",
+                "Cyclic numbers",
+                "Non-terminating non-repeating decimals",
+                "The never-ending journey of numbers"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/iemh103.pdf",
+          "marks": 7
+        },
+        {
+          "number": 4,
+          "title": "Exploring Algebraic Identities",
+          "unit": "Unit II: Algebra",
+          "outcomes": [
+            "Visualise algebraic identities with geometric models",
+            "Factorise expressions using identities and algebra tiles",
+            "Simplify rational expressions"
+          ],
+          "topics": [
+            "Revisiting algebraic identities",
+            "Visualising identities with geometric models",
+            "Factorisation using identities",
+            "Identities for (x + y + z)², (x ± y)³ and x³ ± y³",
+            "Factorisation using algebra tiles",
+            "Factorisation without algebra tiles",
+            "Finding new identities",
+            "Simplifying rational expressions"
+          ],
+          "lessons": [
+            {
+              "title": "Seeing identities",
+              "topics": [
+                "Revisiting algebraic identities",
+                "Visualising identities with geometric models",
+                "Factorisation using identities"
+              ]
+            },
+            {
+              "title": "More identities",
+              "topics": [
+                "Identities for (x + y + z)², (x ± y)³ and x³ ± y³",
+                "Factorisation using algebra tiles",
+                "Factorisation without algebra tiles"
+              ]
+            },
+            {
+              "title": "New identities and rational expressions",
+              "topics": [
+                "Finding new identities",
+                "Simplifying rational expressions"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/iemh104.pdf"
+        },
+        {
+          "number": 5,
+          "title": "I'm Up and Down, and Round and Round",
+          "unit": "Unit IV: Geometry",
+          "outcomes": [
+            "Define a circle and its parts",
+            "Reason about chords, their distances from the centre and subtended angles",
+            "Determine when four points are concyclic"
+          ],
+          "topics": [
+            "Definitions: centre, radius, diameter, chord, arc, segment, sector",
+            "Uses of circles and circular motifs",
+            "Symmetries of a circle",
+            "How many circles pass through given points",
+            "Chords and the angles they subtend at the centre",
+            "Midpoints and perpendicular bisectors of chords",
+            "Distance of chords from the centre",
+            "Angle subtended by an arc at the centre and on the circle",
+            "Angles in the same segment and angle in a semicircle",
+            "Concyclic points and cyclic quadrilaterals"
+          ],
+          "lessons": [
+            {
+              "title": "Circles and their parts",
+              "topics": [
+                "Definitions: centre, radius, diameter, chord, arc, segment, sector",
+                "Uses of circles and circular motifs",
+                "Symmetries of a circle",
+                "How many circles pass through given points"
+              ]
+            },
+            {
+              "title": "Chords",
+              "topics": [
+                "Chords and the angles they subtend at the centre",
+                "Midpoints and perpendicular bisectors of chords",
+                "Distance of chords from the centre"
+              ]
+            },
+            {
+              "title": "Angles and concyclic points",
+              "topics": [
+                "Angle subtended by an arc at the centre and on the circle",
+                "Angles in the same segment and angle in a semicircle",
+                "Concyclic points and cyclic quadrilaterals"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/iemh105.pdf"
+        },
+        {
+          "number": 6,
+          "title": "Measuring Space: Perimeter and Area",
+          "unit": "Unit V: Mensuration",
+          "outcomes": [
+            "Compute perimeters, arc lengths and areas of plane figures",
+            "Use Heron's formula",
+            "Find the area of a circle and a sector"
+          ],
+          "topics": [
+            "Perimeter of a shape",
+            "Perimeter of a circle: the C/D ratio and π",
+            "Historical approximations of π",
+            "Length of an arc",
+            "Problems, puzzles and paradoxes on perimeter",
+            "Area of a rectangle and a parallelogram",
+            "Area of a triangle; a median halves the area",
+            "Heron's formula",
+            "Squaring a rectangle (Baudhayana's Sulbasutras)",
+            "Area of a circle",
+            "Area of a sector and segment",
+            "Brahmagupta's formula for a cyclic quadrilateral"
+          ],
+          "lessons": [
+            {
+              "title": "Perimeter",
+              "topics": [
+                "Perimeter of a shape",
+                "Perimeter of a circle: the C/D ratio and π",
+                "Historical approximations of π",
+                "Length of an arc",
+                "Problems, puzzles and paradoxes on perimeter"
+              ]
+            },
+            {
+              "title": "Area of polygons",
+              "topics": [
+                "Area of a rectangle and a parallelogram",
+                "Area of a triangle; a median halves the area",
+                "Heron's formula",
+                "Squaring a rectangle (Baudhayana's Sulbasutras)"
+              ]
+            },
+            {
+              "title": "Area of a circle",
+              "topics": [
+                "Area of a circle",
+                "Area of a sector and segment",
+                "Brahmagupta's formula for a cyclic quadrilateral"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/iemh106.pdf"
+        },
+        {
+          "number": 7,
+          "title": "The Mathematics of Maybe: Introduction to Probability",
+          "unit": "Unit VI: Statistics and Probability",
+          "outcomes": [
+            "Describe randomness and the probability scale",
+            "Estimate experimental probability from data",
+            "Compute theoretical probability using sample spaces, tables and tree diagrams"
+          ],
+          "topics": [
+            "What is randomness",
+            "The probability scale",
+            "Experimental probability from observations and experiments",
+            "Theoretical probability",
+            "Analysing statistical data using probability",
+            "Sample space",
+            "Events",
+            "Tree diagrams and tables"
+          ],
+          "lessons": [
+            {
+              "title": "What is probability",
+              "topics": [
+                "What is randomness",
+                "The probability scale"
+              ]
+            },
+            {
+              "title": "Measuring probability",
+              "topics": [
+                "Experimental probability from observations and experiments",
+                "Theoretical probability",
+                "Analysing statistical data using probability"
+              ]
+            },
+            {
+              "title": "Sample spaces and trees",
+              "topics": [
+                "Sample space",
+                "Events",
+                "Tree diagrams and tables"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/iemh107.pdf"
+        },
+        {
+          "number": 8,
+          "title": "Predicting What Comes Next: Exploring Sequences and Progressions",
+          "unit": "Unit II: Algebra",
+          "outcomes": [
+            "Find explicit and recursive rules of sequences",
+            "Find the nth term of an AP and a GP",
+            "Relate GPs to fractals and the Tower of Hanoi"
+          ],
+          "topics": [
+            "Introduction to sequences",
+            "Explicit rule for a sequence",
+            "Recursive rule for a sequence",
+            "Arithmetic progressions and the nth term",
+            "Visualising an AP",
+            "Sum of the first n natural numbers",
+            "Geometric progressions and the nth term",
+            "Fun with fractals",
+            "Visualising a GP",
+            "Tower of Hanoi puzzle"
+          ],
+          "lessons": [
+            {
+              "title": "Sequences",
+              "topics": [
+                "Introduction to sequences",
+                "Explicit rule for a sequence",
+                "Recursive rule for a sequence"
+              ]
+            },
+            {
+              "title": "Arithmetic progressions",
+              "topics": [
+                "Arithmetic progressions and the nth term",
+                "Visualising an AP",
+                "Sum of the first n natural numbers"
+              ]
+            },
+            {
+              "title": "Geometric progressions",
+              "topics": [
+                "Geometric progressions and the nth term",
+                "Fun with fractals",
+                "Visualising a GP",
+                "Tower of Hanoi puzzle"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/iemh108.pdf"
+        },
+        {
+          "number": 9,
+          "title": "Linear Equations in Two Variables",
+          "unit": "Unit II: Algebra (Ganita Manjari Part II not yet published; chapter number provisional)",
+          "outcomes": [
+            "Represent a linear equation in two variables graphically",
+            "Solve a pair of linear equations graphically and algebraically",
+            "Decide the nature of solutions"
+          ],
+          "topics": [
+            "Linear equations in two variables through practical examples",
+            "Solutions and their graph",
+            "Slope-intercept form",
+            "Graphs when x and y take only certain values",
+            "Pair of linear equations in two variables",
+            "Graphical method of solution",
+            "Consistency and inconsistency",
+            "Substitution method",
+            "Elimination method",
+            "Modelling real-life problems"
+          ],
+          "lessons": [
+            {
+              "title": "One equation",
+              "topics": [
+                "Linear equations in two variables through practical examples",
+                "Solutions and their graph",
+                "Slope-intercept form",
+                "Graphs when x and y take only certain values"
+              ]
+            },
+            {
+              "title": "A pair of equations",
+              "topics": [
+                "Pair of linear equations in two variables",
+                "Graphical method of solution",
+                "Consistency and inconsistency"
+              ]
+            },
+            {
+              "title": "Algebraic methods",
+              "topics": [
+                "Substitution method",
+                "Elimination method",
+                "Modelling real-life problems"
+              ]
+            }
+          ],
+          "source": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/Maths_SecP1IX_2026-27.pdf"
+        },
+        {
+          "number": 10,
+          "title": "Introduction to Euclid's Geometry: Axioms and Postulates",
+          "unit": "Unit IV: Geometry (Ganita Manjari Part II not yet published; chapter number provisional)",
+          "outcomes": [
+            "Describe how geometry grew in India, Egypt and Greece",
+            "Distinguish definitions, axioms and postulates",
+            "State Euclid's five postulates"
+          ],
+          "topics": [
+            "History of geometry",
+            "Constructing a square from Baudhayana's Sulbasutras",
+            "Discovering Euclid's definitions",
+            "Axioms of measurement and rules for geometric objects",
+            "Euclid's five postulates and parallel lines"
+          ],
+          "lessons": [
+            {
+              "title": "History of geometry",
+              "topics": [
+                "History of geometry",
+                "Constructing a square from Baudhayana's Sulbasutras"
+              ]
+            },
+            {
+              "title": "Euclid's system",
+              "topics": [
+                "Discovering Euclid's definitions",
+                "Axioms of measurement and rules for geometric objects",
+                "Euclid's five postulates and parallel lines"
+              ]
+            }
+          ],
+          "source": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/Maths_SecP1IX_2026-27.pdf"
+        },
+        {
+          "number": 11,
+          "title": "Lines and Angles",
+          "unit": "Unit IV: Geometry (Ganita Manjari Part II not yet published; chapter number provisional)",
+          "outcomes": [
+            "Classify angles and pairs of angles",
+            "Prove the linear pair and vertically opposite angle theorems",
+            "Apply angle relations for parallel lines"
+          ],
+          "topics": [
+            "Rays and angles",
+            "Measures and types of angles",
+            "Intersecting lines and pairs of angles",
+            "Linear pair theorem and its converse",
+            "Vertically opposite angles",
+            "Parallel lines and a transversal",
+            "Transitivity of parallelism"
+          ],
+          "lessons": [
+            {
+              "title": "Angles",
+              "topics": [
+                "Rays and angles",
+                "Measures and types of angles",
+                "Intersecting lines and pairs of angles"
+              ]
+            },
+            {
+              "title": "Theorems",
+              "topics": [
+                "Linear pair theorem and its converse",
+                "Vertically opposite angles",
+                "Parallel lines and a transversal",
+                "Transitivity of parallelism"
+              ]
+            }
+          ],
+          "source": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/Maths_SecP1IX_2026-27.pdf"
+        },
+        {
+          "number": 12,
+          "title": "Triangles: Congruence Theorems",
+          "unit": "Unit IV: Geometry (Ganita Manjari Part II not yet published; chapter number provisional)",
+          "outcomes": [
+            "Explain triangle rigidity",
+            "Apply SAS, SSS, ASA, AAS and RHS congruence",
+            "Prove properties of isosceles triangles and form converses"
+          ],
+          "topics": [
+            "Practical applications and rigidity of triangles",
+            "Meaning of congruence and correspondence",
+            "SAS congruence axiom",
+            "SSS, ASA, AAS and RHS conditions",
+            "Why SSA fails in general",
+            "Properties of isosceles triangles",
+            "Propositions and converses",
+            "Problems on triangle theorems"
+          ],
+          "lessons": [
+            {
+              "title": "Rigidity and congruence",
+              "topics": [
+                "Practical applications and rigidity of triangles",
+                "Meaning of congruence and correspondence"
+              ]
+            },
+            {
+              "title": "Congruence conditions",
+              "topics": [
+                "SAS congruence axiom",
+                "SSS, ASA, AAS and RHS conditions",
+                "Why SSA fails in general"
+              ]
+            },
+            {
+              "title": "Theorems and converses",
+              "topics": [
+                "Properties of isosceles triangles",
+                "Propositions and converses",
+                "Problems on triangle theorems"
+              ]
+            }
+          ],
+          "source": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/Maths_SecP1IX_2026-27.pdf"
+        },
+        {
+          "number": 13,
+          "title": "4-gons (Quadrilaterals)",
+          "unit": "Unit IV: Geometry (Ganita Manjari Part II not yet published; chapter number provisional)",
+          "outcomes": [
+            "Prove characterisations of a parallelogram",
+            "Prove and apply the midpoint theorem",
+            "Explain central symmetry of parallelograms"
+          ],
+          "topics": [
+            "Definition of a 4-gon",
+            "Properties of parallelograms",
+            "Theorems on parallelograms",
+            "Midpoint theorem and its converse",
+            "Medians of a triangle and the centroid",
+            "Midpoint 4-gon is a parallelogram",
+            "Central symmetry and tiling"
+          ],
+          "lessons": [
+            {
+              "title": "Parallelograms",
+              "topics": [
+                "Definition of a 4-gon",
+                "Properties of parallelograms",
+                "Theorems on parallelograms"
+              ]
+            },
+            {
+              "title": "Midpoint theorem",
+              "topics": [
+                "Midpoint theorem and its converse",
+                "Medians of a triangle and the centroid",
+                "Midpoint 4-gon is a parallelogram",
+                "Central symmetry and tiling"
+              ]
+            }
+          ],
+          "source": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/Maths_SecP1IX_2026-27.pdf"
+        },
+        {
+          "number": 14,
+          "title": "Surface Area and Volume",
+          "unit": "Unit V: Mensuration (Ganita Manjari Part II not yet published; chapter number provisional)",
+          "outcomes": [
+            "Compute surface areas and volumes of cuboids, cubes and cylinders",
+            "Compute surface areas and volumes of cones, pyramids and spheres"
+          ],
+          "topics": [
+            "Cuboid and cube",
+            "Right circular cylinder",
+            "Right circular cone",
+            "Pyramid",
+            "Sphere and hemisphere"
+          ],
+          "lessons": [
+            {
+              "title": "Prisms and cylinders",
+              "topics": [
+                "Cuboid and cube",
+                "Right circular cylinder"
+              ]
+            },
+            {
+              "title": "Cones, pyramids and spheres",
+              "topics": [
+                "Right circular cone",
+                "Pyramid",
+                "Sphere and hemisphere"
+              ]
+            }
+          ],
+          "source": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/Maths_SecP1IX_2026-27.pdf"
+        },
+        {
+          "number": 15,
+          "title": "Statistics",
+          "unit": "Unit VI: Statistics and Probability (Ganita Manjari Part II not yet published; chapter number provisional)",
+          "outcomes": [
+            "Collect, organise and represent data",
+            "Compute mean, median, mode and weighted average",
+            "Read stacked bar graphs"
+          ],
+          "topics": [
+            "Statistical investigative questions",
+            "Graphical representation of data",
+            "Stacked and 100% stacked bar graphs",
+            "Mean, median and mode",
+            "Weighted average"
+          ],
+          "lessons": [
+            {
+              "title": "Data display",
+              "topics": [
+                "Statistical investigative questions",
+                "Graphical representation of data",
+                "Stacked and 100% stacked bar graphs"
+              ]
+            },
+            {
+              "title": "Central tendency",
+              "topics": [
+                "Mean, median and mode",
+                "Weighted average"
+              ]
+            }
+          ],
+          "source": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/Maths_SecP1IX_2026-27.pdf"
+        }
+      ]
+    },
+    {
+      "subject": "science",
+      "name": "Science",
+      "book": "Exploration: Textbook of Science for Grade 9 (NCERT, 2026-27)",
+      "chapters": [
+        {
+          "number": 1,
+          "title": "Exploration: Entering the World of Secondary Science",
+          "unit": "",
+          "outcomes": [
+            "Describe how science models the world",
+            "Explain why standard units and measurement matter",
+            "Use mathematics as a language of science"
+          ],
+          "topics": [
+            "Curiosity and asking questions",
+            "Modelling by ignoring details",
+            "Meghnad Saha and simplifying the stars",
+            "Standard units and measurement",
+            "Mathematics as the language of science"
+          ],
+          "lessons": [
+            {
+              "title": "How science works",
+              "topics": [
+                "Curiosity and asking questions",
+                "Modelling by ignoring details",
+                "Meghnad Saha and simplifying the stars"
+              ]
+            },
+            {
+              "title": "Measurement and maths",
+              "topics": [
+                "Standard units and measurement",
+                "Mathematics as the language of science"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/iesc101.pdf"
+        },
+        {
+          "number": 2,
+          "title": "Cell: The Building Block of Life",
+          "unit": "Unit I: World of Living",
+          "outcomes": [
+            "Describe plant and animal cells",
+            "Explain the functions of organelles",
+            "Explain cell division and cell theory"
+          ],
+          "topics": [
+            "How to study cells: microscopes",
+            "Prokaryotic and eukaryotic cells",
+            "Structure of a cell",
+            "Cell membrane and permeability",
+            "Cell wall",
+            "Nucleus",
+            "Mitochondria and chloroplasts",
+            "Endoplasmic reticulum, Golgi apparatus and vacuoles",
+            "Cell growth and division: mitosis and meiosis",
+            "Uncontrolled division and cancer",
+            "Cell theory"
+          ],
+          "lessons": [
+            {
+              "title": "Studying cells",
+              "topics": [
+                "How to study cells: microscopes",
+                "Prokaryotic and eukaryotic cells",
+                "Structure of a cell"
+              ]
+            },
+            {
+              "title": "Cell boundary",
+              "topics": [
+                "Cell membrane and permeability",
+                "Cell wall"
+              ]
+            },
+            {
+              "title": "Organelles",
+              "topics": [
+                "Nucleus",
+                "Mitochondria and chloroplasts",
+                "Endoplasmic reticulum, Golgi apparatus and vacuoles"
+              ]
+            },
+            {
+              "title": "Division and cell theory",
+              "topics": [
+                "Cell growth and division: mitosis and meiosis",
+                "Uncontrolled division and cancer",
+                "Cell theory"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/iesc102.pdf"
+        },
+        {
+          "number": 3,
+          "title": "Tissues in Action",
+          "unit": "Unit I: World of Living",
+          "outcomes": [
+            "Compare plant and animal tissues",
+            "Describe meristematic and permanent tissues",
+            "Describe the four animal tissues and the musculoskeletal system"
+          ],
+          "topics": [
+            "Why plant and animal tissues differ",
+            "Apical, lateral and intercalary meristems",
+            "Permanent tissues",
+            "Epithelial tissue",
+            "Connective tissue",
+            "Muscular tissue",
+            "Nervous tissue",
+            "The musculoskeletal system in action",
+            "Joints: ball and socket, hinge, pivot, fixed",
+            "Skeletal system"
+          ],
+          "lessons": [
+            {
+              "title": "Plant tissues",
+              "topics": [
+                "Why plant and animal tissues differ",
+                "Apical, lateral and intercalary meristems",
+                "Permanent tissues"
+              ]
+            },
+            {
+              "title": "Animal tissues",
+              "topics": [
+                "Epithelial tissue",
+                "Connective tissue",
+                "Muscular tissue",
+                "Nervous tissue"
+              ]
+            },
+            {
+              "title": "Musculoskeletal system",
+              "topics": [
+                "The musculoskeletal system in action",
+                "Joints: ball and socket, hinge, pivot, fixed",
+                "Skeletal system"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/iesc103.pdf"
+        },
+        {
+          "number": 4,
+          "title": "Describing Motion Around Us",
+          "unit": "Unit III: Motion, Force, Work and Sound",
+          "outcomes": [
+            "Distinguish distance and displacement, speed and velocity",
+            "Draw and interpret position-time and velocity-time graphs",
+            "Use kinematic equations and describe uniform circular motion"
+          ],
+          "topics": [
+            "Describing position",
+            "Distance and displacement",
+            "Average speed and average velocity",
+            "Average acceleration",
+            "Plotting graphs",
+            "Position-time graphs",
+            "Velocity-time graphs",
+            "Kinematic equations for straight-line motion",
+            "Motion in a plane",
+            "Uniform circular motion"
+          ],
+          "lessons": [
+            {
+              "title": "Motion in a straight line",
+              "topics": [
+                "Describing position",
+                "Distance and displacement",
+                "Average speed and average velocity",
+                "Average acceleration"
+              ]
+            },
+            {
+              "title": "Graphs of motion",
+              "topics": [
+                "Plotting graphs",
+                "Position-time graphs",
+                "Velocity-time graphs"
+              ]
+            },
+            {
+              "title": "Equations and circular motion",
+              "topics": [
+                "Kinematic equations for straight-line motion",
+                "Motion in a plane",
+                "Uniform circular motion"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/iesc104.pdf"
+        },
+        {
+          "number": 5,
+          "title": "Exploring Mixtures and their Separation",
+          "unit": "Unit II: Matter – Its Nature and Behaviour",
+          "outcomes": [
+            "Classify mixtures",
+            "Express concentration of solutions",
+            "Choose methods to separate mixtures",
+            "Distinguish solutions, suspensions and colloids"
+          ],
+          "topics": [
+            "Classifying mixtures",
+            "Solutions",
+            "Concentration and how to express it",
+            "Solubility",
+            "Crystallisation",
+            "Distillation",
+            "Paper chromatography",
+            "Separating immiscible liquids",
+            "Sublimation",
+            "Suspensions",
+            "Colloids and the Tyndall effect"
+          ],
+          "lessons": [
+            {
+              "title": "Mixtures and solutions",
+              "topics": [
+                "Classifying mixtures",
+                "Solutions",
+                "Concentration and how to express it",
+                "Solubility"
+              ]
+            },
+            {
+              "title": "Separating homogeneous mixtures",
+              "topics": [
+                "Crystallisation",
+                "Distillation",
+                "Paper chromatography"
+              ]
+            },
+            {
+              "title": "Heterogeneous mixtures",
+              "topics": [
+                "Separating immiscible liquids",
+                "Sublimation",
+                "Suspensions",
+                "Colloids and the Tyndall effect"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/iesc105.pdf"
+        },
+        {
+          "number": 6,
+          "title": "How Forces Affect Motion",
+          "unit": "Unit III: Motion, Force, Work and Sound",
+          "outcomes": [
+            "Distinguish balanced and unbalanced forces",
+            "State and apply Newton's three laws",
+            "Explain friction and forces on systems"
+          ],
+          "topics": [
+            "The concept of force",
+            "Measuring force",
+            "Balanced and unbalanced forces",
+            "Friction",
+            "Newton's first law and inertia",
+            "Newton's second law and momentum",
+            "Newton's third law",
+            "Forces on a system of objects"
+          ],
+          "lessons": [
+            {
+              "title": "Forces",
+              "topics": [
+                "The concept of force",
+                "Measuring force",
+                "Balanced and unbalanced forces",
+                "Friction"
+              ]
+            },
+            {
+              "title": "Newton's laws",
+              "topics": [
+                "Newton's first law and inertia",
+                "Newton's second law and momentum",
+                "Newton's third law"
+              ]
+            },
+            {
+              "title": "Systems of objects",
+              "topics": [
+                "Forces on a system of objects"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/iesc106.pdf"
+        },
+        {
+          "number": 7,
+          "title": "Work, Energy and Simple Machines",
+          "unit": "Unit III: Motion, Force, Work and Sound",
+          "outcomes": [
+            "Calculate work done by a constant force",
+            "Apply the work-energy theorem and conservation of mechanical energy",
+            "Explain power and simple machines"
+          ],
+          "topics": [
+            "Work done by a constant force",
+            "Zero, positive and negative work",
+            "Work-energy theorem",
+            "Forms of energy",
+            "Kinetic and potential energy",
+            "Conservation of mechanical energy",
+            "Power",
+            "Pulley",
+            "Inclined plane",
+            "Lever"
+          ],
+          "lessons": [
+            {
+              "title": "Work",
+              "topics": [
+                "Work done by a constant force",
+                "Zero, positive and negative work",
+                "Work-energy theorem"
+              ]
+            },
+            {
+              "title": "Energy and power",
+              "topics": [
+                "Forms of energy",
+                "Kinetic and potential energy",
+                "Conservation of mechanical energy",
+                "Power"
+              ]
+            },
+            {
+              "title": "Simple machines",
+              "topics": [
+                "Pulley",
+                "Inclined plane",
+                "Lever"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/iesc107.pdf"
+        },
+        {
+          "number": 8,
+          "title": "Journey Inside the Atom",
+          "unit": "Unit II: Matter – Its Nature and Behaviour",
+          "outcomes": [
+            "Trace the history of atomic models",
+            "Describe subatomic particles, atomic and mass number",
+            "Write electron distribution and valency",
+            "Define isotopes and isobars"
+          ],
+          "topics": [
+            "Roots of atomic theory",
+            "Thomson's model",
+            "Gold foil experiment",
+            "Bohr's model",
+            "Subatomic particles and the neutron",
+            "Symbols of elements",
+            "Atomic number and mass number",
+            "Distribution of electrons in shells",
+            "Valency",
+            "Isotopes and isobars"
+          ],
+          "lessons": [
+            {
+              "title": "Atomic models",
+              "topics": [
+                "Roots of atomic theory",
+                "Thomson's model",
+                "Gold foil experiment",
+                "Bohr's model"
+              ]
+            },
+            {
+              "title": "Inside the atom",
+              "topics": [
+                "Subatomic particles and the neutron",
+                "Symbols of elements",
+                "Atomic number and mass number"
+              ]
+            },
+            {
+              "title": "Electrons and valency",
+              "topics": [
+                "Distribution of electrons in shells",
+                "Valency",
+                "Isotopes and isobars"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/iesc108.pdf"
+        },
+        {
+          "number": 9,
+          "title": "Atomic Foundations of Matter",
+          "unit": "Unit II: Matter – Its Nature and Behaviour",
+          "outcomes": [
+            "State the laws of chemical combination",
+            "Explain Dalton's atomic theory",
+            "Write formulae of covalent and ionic compounds",
+            "Calculate molecular and formula unit mass"
+          ],
+          "topics": [
+            "Law of conservation of mass",
+            "Law of constant proportions",
+            "Dalton's atomic theory",
+            "Covalent bond by sharing electrons",
+            "Ionic bond by electron transfer",
+            "Properties of ionic and covalent compounds",
+            "Writing chemical formulae",
+            "Molecular mass",
+            "Formula unit mass"
+          ],
+          "lessons": [
+            {
+              "title": "Laws and Dalton",
+              "topics": [
+                "Law of conservation of mass",
+                "Law of constant proportions",
+                "Dalton's atomic theory"
+              ]
+            },
+            {
+              "title": "Bonding",
+              "topics": [
+                "Covalent bond by sharing electrons",
+                "Ionic bond by electron transfer",
+                "Properties of ionic and covalent compounds"
+              ]
+            },
+            {
+              "title": "Formulae and mass",
+              "topics": [
+                "Writing chemical formulae",
+                "Molecular mass",
+                "Formula unit mass"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/iesc109.pdf"
+        },
+        {
+          "number": 10,
+          "title": "Sound Waves: Characteristics and Applications",
+          "unit": "Unit III: Motion, Force, Work and Sound",
+          "outcomes": [
+            "Explain production and propagation of sound",
+            "Relate wavelength, frequency, amplitude and speed",
+            "Explain echo, reverberation and ultrasound uses"
+          ],
+          "topics": [
+            "Production of sound; tuning fork",
+            "Sound needs a medium",
+            "Sound waves and their energy",
+            "Graph of a sound wave",
+            "Wavelength, frequency and time period",
+            "Amplitude and intensity",
+            "Speed of sound and human hearing",
+            "Echo",
+            "Reverberation",
+            "Ultrasonic and infrasonic waves",
+            "Echolocation"
+          ],
+          "lessons": [
+            {
+              "title": "Producing sound",
+              "topics": [
+                "Production of sound; tuning fork",
+                "Sound needs a medium",
+                "Sound waves and their energy"
+              ]
+            },
+            {
+              "title": "Characteristics",
+              "topics": [
+                "Graph of a sound wave",
+                "Wavelength, frequency and time period",
+                "Amplitude and intensity",
+                "Speed of sound and human hearing"
+              ]
+            },
+            {
+              "title": "Reflection and uses",
+              "topics": [
+                "Echo",
+                "Reverberation",
+                "Ultrasonic and infrasonic waves",
+                "Echolocation"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/iesc110.pdf"
+        },
+        {
+          "number": 11,
+          "title": "Reproduction: How Life Continues",
+          "unit": "Unit I: World of Living",
+          "outcomes": [
+            "Compare asexual and sexual reproduction",
+            "Describe reproduction in flowering plants",
+            "Describe human reproduction and reproductive health"
+          ],
+          "topics": [
+            "Modes of asexual reproduction",
+            "Vegetative propagation",
+            "Meiosis and variation",
+            "Flowers and pollination",
+            "Fertilisation and seed formation",
+            "Sexual reproduction in animals",
+            "Human reproductive systems",
+            "Fertilisation, pregnancy and childbirth",
+            "Mother's health in pregnancy",
+            "Sexual maturity",
+            "Preventing unwanted pregnancies and infections"
+          ],
+          "lessons": [
+            {
+              "title": "Asexual reproduction",
+              "topics": [
+                "Modes of asexual reproduction",
+                "Vegetative propagation"
+              ]
+            },
+            {
+              "title": "Sexual reproduction in plants",
+              "topics": [
+                "Meiosis and variation",
+                "Flowers and pollination",
+                "Fertilisation and seed formation"
+              ]
+            },
+            {
+              "title": "Animals and humans",
+              "topics": [
+                "Sexual reproduction in animals",
+                "Human reproductive systems",
+                "Fertilisation, pregnancy and childbirth"
+              ]
+            },
+            {
+              "title": "Reproductive health",
+              "topics": [
+                "Mother's health in pregnancy",
+                "Sexual maturity",
+                "Preventing unwanted pregnancies and infections"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/iesc111.pdf"
+        },
+        {
+          "number": 12,
+          "title": "Patterns in Life: Diversity and Classification",
+          "unit": "Unit I: World of Living",
+          "outcomes": [
+            "Explain the need for classification",
+            "Describe the five-kingdom system",
+            "Use binomial names and explain threats to biodiversity"
+          ],
+          "topics": [
+            "India as a biodiversity hotspot",
+            "Evolution of biodiversity",
+            "Criteria and need for classification",
+            "Classification systems over time",
+            "Monera and Protista",
+            "Fungi",
+            "Plantae and Animalia",
+            "Adaptations and hierarchy",
+            "Binomial nomenclature",
+            "Fossils",
+            "Biodiversity under threat"
+          ],
+          "lessons": [
+            {
+              "title": "Diversity",
+              "topics": [
+                "India as a biodiversity hotspot",
+                "Evolution of biodiversity",
+                "Criteria and need for classification"
+              ]
+            },
+            {
+              "title": "Five kingdoms",
+              "topics": [
+                "Classification systems over time",
+                "Monera and Protista",
+                "Fungi",
+                "Plantae and Animalia"
+              ]
+            },
+            {
+              "title": "Naming and conservation",
+              "topics": [
+                "Adaptations and hierarchy",
+                "Binomial nomenclature",
+                "Fossils",
+                "Biodiversity under threat"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/iesc112.pdf"
+        },
+        {
+          "number": 13,
+          "title": "Earth as a System: Energy, Matter, and Life",
+          "unit": "Unit IV: Earth as a System",
+          "outcomes": [
+            "Explain uneven heating of the Earth",
+            "Describe winds and ocean currents",
+            "Describe biogeochemical cycles and human impact"
+          ],
+          "topics": [
+            "Solar radiation",
+            "Latitude and the Earth's shape",
+            "Role of the atmosphere",
+            "Local winds",
+            "Planetary winds",
+            "Ocean currents",
+            "Water cycle",
+            "Carbon cycle",
+            "Nitrogen and oxygen cycles",
+            "Human impact"
+          ],
+          "lessons": [
+            {
+              "title": "Heating",
+              "topics": [
+                "Solar radiation",
+                "Latitude and the Earth's shape",
+                "Role of the atmosphere"
+              ]
+            },
+            {
+              "title": "Winds and currents",
+              "topics": [
+                "Local winds",
+                "Planetary winds",
+                "Ocean currents"
+              ]
+            },
+            {
+              "title": "Cycles",
+              "topics": [
+                "Water cycle",
+                "Carbon cycle",
+                "Nitrogen and oxygen cycles",
+                "Human impact"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/iesc113.pdf",
+          "marks": 5
+        }
+      ]
+    },
+    {
+      "subject": "social-science",
+      "name": "Social Science",
+      "book": "Understanding Society: India and Beyond, Grade 9 (NCERT, 2026-27)",
+      "chapters": [
+        {
+          "number": 1,
+          "title": "Understanding Social Science",
+          "unit": "Understanding Society: India and Beyond, Part 1 – Introduction",
+          "outcomes": [
+            "Explain the meaning, scope and relevance of Social Science",
+            "Relate history, geography, political science and economics",
+            "Understand Social Science from an Indian perspective"
+          ],
+          "topics": [
+            "Social Science in everyday life",
+            "Meaning and scope of Social Science",
+            "Disciplines and their interconnections",
+            "Society through time and traditions",
+            "Values of diversity, inclusivity, sustainability and equity"
+          ],
+          "lessons": [
+            {
+              "title": "What is Social Science",
+              "topics": [
+                "Social Science in everyday life",
+                "Meaning and scope of Social Science",
+                "Disciplines and their interconnections"
+              ]
+            },
+            {
+              "title": "An Indian perspective",
+              "topics": [
+                "Society through time and traditions",
+                "Values of diversity, inclusivity, sustainability and equity"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/iest101.pdf"
+        },
+        {
+          "number": 2,
+          "title": "Shaping of the Earth's Surface",
+          "unit": "Understanding Society: India and Beyond, Part 1 – Geography",
+          "outcomes": [
+            "Explain plate tectonics and the Earth's interior",
+            "Describe weathering, erosion and agents of gradation",
+            "Explain landform-related disasters and mitigation"
+          ],
+          "topics": [
+            "Interior of the Earth",
+            "Theory of plate tectonics",
+            "Effects of plate movement",
+            "Weathering and erosion",
+            "Rivers, waves and currents",
+            "Wind, glaciers and underground water",
+            "Classification of landforms",
+            "Earthquakes",
+            "Landslides and avalanches",
+            "Glacial lake outburst floods and dust storms"
+          ],
+          "lessons": [
+            {
+              "title": "Inside the Earth",
+              "topics": [
+                "Interior of the Earth",
+                "Theory of plate tectonics",
+                "Effects of plate movement"
+              ]
+            },
+            {
+              "title": "Shaping landforms",
+              "topics": [
+                "Weathering and erosion",
+                "Rivers, waves and currents",
+                "Wind, glaciers and underground water",
+                "Classification of landforms"
+              ]
+            },
+            {
+              "title": "Landforms and disasters",
+              "topics": [
+                "Earthquakes",
+                "Landslides and avalanches",
+                "Glacial lake outburst floods and dust storms"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/iest102.pdf"
+        },
+        {
+          "number": 3,
+          "title": "Atmosphere and Climate",
+          "unit": "Understanding Society: India and Beyond, Part 1 – Geography",
+          "outcomes": [
+            "Describe atmospheric structure",
+            "Explain the Indian monsoon",
+            "Explain climate change, floods and carbon footprint"
+          ],
+          "topics": [
+            "Composition of the atmosphere",
+            "Layers of the atmosphere",
+            "Elements of weather and climate",
+            "Seasons of India",
+            "Mechanism of the monsoon",
+            "Local winds",
+            "Climate change",
+            "Floods",
+            "Carbon footprint"
+          ],
+          "lessons": [
+            {
+              "title": "Atmosphere",
+              "topics": [
+                "Composition of the atmosphere",
+                "Layers of the atmosphere",
+                "Elements of weather and climate"
+              ]
+            },
+            {
+              "title": "Indian climate",
+              "topics": [
+                "Seasons of India",
+                "Mechanism of the monsoon",
+                "Local winds"
+              ]
+            },
+            {
+              "title": "Change and risk",
+              "topics": [
+                "Climate change",
+                "Floods",
+                "Carbon footprint"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/iest103.pdf"
+        },
+        {
+          "number": 4,
+          "title": "Early Humans and Beginning of Civilisation",
+          "unit": "Understanding Society: India and Beyond, Part 1 – History",
+          "outcomes": [
+            "Describe prehistoric periodisation",
+            "Explain the shift to farming",
+            "Compare early civilisations"
+          ],
+          "topics": [
+            "Archaeological ages",
+            "Human ancestors",
+            "Palaeolithic hunter-gatherers and tools",
+            "Communication before writing",
+            "Mesolithic transition",
+            "Neolithic farming and domestication",
+            "Harappan civilisation",
+            "Mesopotamia, Egypt and China",
+            "Crafts, trade and food"
+          ],
+          "lessons": [
+            {
+              "title": "Early humans",
+              "topics": [
+                "Archaeological ages",
+                "Human ancestors",
+                "Palaeolithic hunter-gatherers and tools",
+                "Communication before writing"
+              ]
+            },
+            {
+              "title": "Settled life",
+              "topics": [
+                "Mesolithic transition",
+                "Neolithic farming and domestication"
+              ]
+            },
+            {
+              "title": "Civilisations",
+              "topics": [
+                "Harappan civilisation",
+                "Mesopotamia, Egypt and China",
+                "Crafts, trade and food"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/iest104.pdf"
+        },
+        {
+          "number": 5,
+          "title": "State and Society up to 1000 CE",
+          "unit": "Understanding Society: India and Beyond, Part 1 – History",
+          "outcomes": [
+            "Describe Vedic society",
+            "Explain early empires",
+            "Describe knowledge traditions and trade"
+          ],
+          "topics": [
+            "Geography and texts",
+            "Rituals, institutions and social order",
+            "Administration of early empires",
+            "Educational heritage and institutions",
+            "Knowledge traditions",
+            "Trade routes",
+            "Guilds and merchants",
+            "Crafts and industries"
+          ],
+          "lessons": [
+            {
+              "title": "Vedic age",
+              "topics": [
+                "Geography and texts",
+                "Rituals, institutions and social order"
+              ]
+            },
+            {
+              "title": "Empires and knowledge",
+              "topics": [
+                "Administration of early empires",
+                "Educational heritage and institutions",
+                "Knowledge traditions"
+              ]
+            },
+            {
+              "title": "Economy",
+              "topics": [
+                "Trade routes",
+                "Guilds and merchants",
+                "Crafts and industries"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/iest105.pdf"
+        },
+        {
+          "number": 6,
+          "title": "Democracy",
+          "unit": "Understanding Society: India and Beyond, Part 1 – Political Science",
+          "outcomes": [
+            "Explain features and types of democracy",
+            "Trace roots of democracy in India",
+            "Compare parliamentary and presidential systems"
+          ],
+          "topics": [
+            "Evolution of the idea",
+            "Features and types",
+            "Roots of democracy in India",
+            "Challenges in India",
+            "Parliamentary and presidential systems",
+            "Examples from different countries"
+          ],
+          "lessons": [
+            {
+              "title": "Meaning of democracy",
+              "topics": [
+                "Evolution of the idea",
+                "Features and types",
+                "Roots of democracy in India"
+              ]
+            },
+            {
+              "title": "Democracy today",
+              "topics": [
+                "Challenges in India",
+                "Parliamentary and presidential systems",
+                "Examples from different countries"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/iest106.pdf"
+        },
+        {
+          "number": 7,
+          "title": "Elections",
+          "unit": "Understanding Society: India and Beyond, Part 1 – Political Science",
+          "outcomes": [
+            "Explain why elections matter",
+            "Compare electoral systems",
+            "Describe the Election Commission and party system"
+          ],
+          "topics": [
+            "Importance of elections",
+            "Types of electoral systems",
+            "Laws and Representation of the People Acts",
+            "Delimitation",
+            "Election Commission of India",
+            "Constituencies, electoral rolls and enumerators",
+            "Party system in India",
+            "Coalition governments",
+            "Anti-defection law"
+          ],
+          "lessons": [
+            {
+              "title": "Why elections",
+              "topics": [
+                "Importance of elections",
+                "Types of electoral systems"
+              ]
+            },
+            {
+              "title": "Machinery",
+              "topics": [
+                "Laws and Representation of the People Acts",
+                "Delimitation",
+                "Election Commission of India",
+                "Constituencies, electoral rolls and enumerators"
+              ]
+            },
+            {
+              "title": "Parties",
+              "topics": [
+                "Party system in India",
+                "Coalition governments",
+                "Anti-defection law"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/iest107.pdf"
+        },
+        {
+          "number": 8,
+          "title": "Building Blocks in Economics: The Problem of Choice",
+          "unit": "Understanding Society: India and Beyond, Part 1 – Economics",
+          "outcomes": [
+            "Explain scarcity and opportunity cost",
+            "Describe the central problems of an economy",
+            "Compare economic systems"
+          ],
+          "topics": [
+            "Scarcity",
+            "Opportunity cost",
+            "What economists do",
+            "What, how and for whom to produce",
+            "Market, planned and mixed economies",
+            "Welfare economy"
+          ],
+          "lessons": [
+            {
+              "title": "Scarcity and choice",
+              "topics": [
+                "Scarcity",
+                "Opportunity cost",
+                "What economists do"
+              ]
+            },
+            {
+              "title": "Economic systems",
+              "topics": [
+                "What, how and for whom to produce",
+                "Market, planned and mixed economies",
+                "Welfare economy"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/iest108.pdf"
+        },
+        {
+          "number": 9,
+          "title": "The Price Puzzle: What Drives the Market",
+          "unit": "Understanding Society: India and Beyond, Part 1 – Economics",
+          "outcomes": [
+            "Explain the laws of demand and supply",
+            "Find market equilibrium",
+            "Explain price ceilings and market failures"
+          ],
+          "topics": [
+            "Law of demand",
+            "Law of supply",
+            "Deviations from theory",
+            "Equilibrium price and quantity",
+            "Surplus and shortage",
+            "Price ceilings",
+            "Market failures",
+            "Public goods"
+          ],
+          "lessons": [
+            {
+              "title": "Demand and supply",
+              "topics": [
+                "Law of demand",
+                "Law of supply",
+                "Deviations from theory"
+              ]
+            },
+            {
+              "title": "Equilibrium",
+              "topics": [
+                "Equilibrium price and quantity",
+                "Surplus and shortage"
+              ]
+            },
+            {
+              "title": "Market limits",
+              "topics": [
+                "Price ceilings",
+                "Market failures",
+                "Public goods"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/iest109.pdf"
+        },
+        {
+          "number": 10,
+          "title": "Oceans and Life",
+          "unit": "Understanding Society: India and Beyond, Part 2 (book not yet published; number provisional) – Geography",
+          "outcomes": [
+            "Explain ocean movements",
+            "Describe marine resources",
+            "Explain cyclones, tsunamis and maritime rules"
+          ],
+          "topics": [
+            "Ocean relief",
+            "Waves, tides and currents",
+            "Marine resources and livelihoods",
+            "Cyclones and tsunamis",
+            "International maritime rules"
+          ],
+          "lessons": [
+            {
+              "title": "Oceans",
+              "topics": [
+                "Ocean relief",
+                "Waves, tides and currents"
+              ]
+            },
+            {
+              "title": "Resources and risks",
+              "topics": [
+                "Marine resources and livelihoods",
+                "Cyclones and tsunamis",
+                "International maritime rules"
+              ]
+            }
+          ],
+          "source": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/SocialScience_SecP1IX_2026-27.pdf"
+        },
+        {
+          "number": 11,
+          "title": "Life on Earth",
+          "unit": "Understanding Society: India and Beyond, Part 2 (book not yet published; number provisional) – Geography",
+          "outcomes": [
+            "Describe biomes",
+            "Explain biosphere reserves",
+            "Discuss forest dwellers and conservation"
+          ],
+          "topics": [
+            "Major biomes",
+            "Biosphere reserves in India",
+            "Ecotourism",
+            "Forest dwellers",
+            "Conservation and government efforts"
+          ],
+          "lessons": [
+            {
+              "title": "Biomes",
+              "topics": [
+                "Major biomes",
+                "Biosphere reserves in India"
+              ]
+            },
+            {
+              "title": "Forests and people",
+              "topics": [
+                "Ecotourism",
+                "Forest dwellers",
+                "Conservation and government efforts"
+              ]
+            }
+          ],
+          "source": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/SocialScience_SecP1IX_2026-27.pdf"
+        },
+        {
+          "number": 12,
+          "title": "Resistance and Resilience (1000 CE – 1700 CE)",
+          "unit": "Understanding Society: India and Beyond, Part 2 (book not yet published; number provisional) – History",
+          "outcomes": [
+            "Explain regional kingdoms",
+            "Describe cultural developments",
+            "Analyse civilisational continuity"
+          ],
+          "topics": [
+            "Resistance, alliances and confederacies",
+            "Forts and fortifications",
+            "Art and architecture",
+            "Languages and literature",
+            "Bhakti tradition",
+            "Economy and state"
+          ],
+          "lessons": [
+            {
+              "title": "Sovereignty",
+              "topics": [
+                "Resistance, alliances and confederacies",
+                "Forts and fortifications"
+              ]
+            },
+            {
+              "title": "Culture and economy",
+              "topics": [
+                "Art and architecture",
+                "Languages and literature",
+                "Bhakti tradition",
+                "Economy and state"
+              ]
+            }
+          ],
+          "source": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/SocialScience_SecP1IX_2026-27.pdf"
+        },
+        {
+          "number": 13,
+          "title": "India and the World-I (1900 BCE – 1200 CE)",
+          "unit": "Understanding Society: India and Beyond, Part 2 (book not yet published; number provisional) – History",
+          "outcomes": [
+            "Describe India's early trade",
+            "Explain cultural connections",
+            "Appreciate Indian knowledge systems"
+          ],
+          "topics": [
+            "Trade with Mesopotamia, Greece and Rome",
+            "Trade with China and Southeast Asia",
+            "Cultural connections",
+            "Influence on Southeast Asia",
+            "Knowledge systems"
+          ],
+          "lessons": [
+            {
+              "title": "Trade",
+              "topics": [
+                "Trade with Mesopotamia, Greece and Rome",
+                "Trade with China and Southeast Asia"
+              ]
+            },
+            {
+              "title": "Culture and knowledge",
+              "topics": [
+                "Cultural connections",
+                "Influence on Southeast Asia",
+                "Knowledge systems"
+              ]
+            }
+          ],
+          "source": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/SocialScience_SecP1IX_2026-27.pdf"
+        },
+        {
+          "number": 14,
+          "title": "Authority",
+          "unit": "Understanding Society: India and Beyond, Part 2 (book not yet published; number provisional) – Political Science",
+          "outcomes": [
+            "Explain roots of authority",
+            "Relate danda and nyaya",
+            "Describe citizens' role"
+          ],
+          "topics": [
+            "Kautilya and Shukraniti",
+            "Danda, nyaya and bala",
+            "Constitutional status of justice and security",
+            "Citizens and institutions",
+            "Types of authority"
+          ],
+          "lessons": [
+            {
+              "title": "Roots",
+              "topics": [
+                "Kautilya and Shukraniti",
+                "Danda, nyaya and bala"
+              ]
+            },
+            {
+              "title": "Authority today",
+              "topics": [
+                "Constitutional status of justice and security",
+                "Citizens and institutions",
+                "Types of authority"
+              ]
+            }
+          ],
+          "source": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/SocialScience_SecP1IX_2026-27.pdf"
+        },
+        {
+          "number": 15,
+          "title": "From Ideas to Startups",
+          "unit": "Understanding Society: India and Beyond, Part 2 (book not yet published; number provisional) – Economics",
+          "outcomes": [
+            "Define entrepreneurship",
+            "Describe India's startup ecosystem",
+            "Outline a business plan"
+          ],
+          "topics": [
+            "Meaning and resources",
+            "Case studies",
+            "Creative destruction",
+            "Startup ecosystem",
+            "Make in India and MSMEs",
+            "Business plans",
+            "Basic accounting"
+          ],
+          "lessons": [
+            {
+              "title": "Entrepreneurship",
+              "topics": [
+                "Meaning and resources",
+                "Case studies",
+                "Creative destruction"
+              ]
+            },
+            {
+              "title": "Ecosystem and planning",
+              "topics": [
+                "Startup ecosystem",
+                "Make in India and MSMEs",
+                "Business plans",
+                "Basic accounting"
+              ]
+            }
+          ],
+          "source": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/SocialScience_SecP1IX_2026-27.pdf"
+        },
+        {
+          "number": 16,
+          "title": "Smart Ways to Manage Your Finances",
+          "unit": "Understanding Society: India and Beyond, Part 2 (book not yet published; number provisional) – Economics",
+          "outcomes": [
+            "Explain personal finance",
+            "Compare simple and compound interest",
+            "Prepare a budget and compare investments"
+          ],
+          "topics": [
+            "Personal finance",
+            "Inflation",
+            "Simple and compound interest",
+            "Budgeting",
+            "Savings and investments",
+            "Risk and insurance",
+            "Income tax"
+          ],
+          "lessons": [
+            {
+              "title": "Money basics",
+              "topics": [
+                "Personal finance",
+                "Inflation",
+                "Simple and compound interest"
+              ]
+            },
+            {
+              "title": "Planning",
+              "topics": [
+                "Budgeting",
+                "Savings and investments",
+                "Risk and insurance",
+                "Income tax"
+              ]
+            }
+          ],
+          "source": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/SocialScience_SecP1IX_2026-27.pdf"
+        }
+      ]
+    },
+    {
+      "subject": "english",
+      "name": "English",
+      "book": "Kaveri: Textbook of English for Grade 9 (NCERT, 2026-27)",
+      "chapters": [
+        {
+          "number": 1,
+          "title": "How I Taught My Grandmother to Read",
+          "unit": "Kaveri – Unit 1 (prose)",
+          "outcomes": [
+            "Explain the text's central idea",
+            "Discuss its themes",
+            "Use its vocabulary and grammar"
+          ],
+          "topics": [
+            "Sudha Murty's memoir",
+            "A grandmother learns to read",
+            "Lifelong learning",
+            "Grandparents and grandchildren",
+            "Prefixes un-, ir-, in-",
+            "Past perfect tense"
+          ],
+          "lessons": [
+            {
+              "title": "About the text",
+              "topics": [
+                "Sudha Murty's memoir",
+                "A grandmother learns to read"
+              ]
+            },
+            {
+              "title": "Themes",
+              "topics": [
+                "Lifelong learning",
+                "Grandparents and grandchildren"
+              ]
+            },
+            {
+              "title": "Language focus",
+              "topics": [
+                "Prefixes un-, ir-, in-",
+                "Past perfect tense"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/iebe101.pdf"
+        },
+        {
+          "number": 2,
+          "title": "Bharat Our Land",
+          "unit": "Kaveri – Unit 1 (poem)",
+          "outcomes": [
+            "Explain the text's central idea",
+            "Discuss its themes",
+            "Use its vocabulary and grammar"
+          ],
+          "topics": [
+            "Praise of the motherland",
+            "Patriotism",
+            "Unity in diversity",
+            "Repetition and refrain",
+            "Imagery"
+          ],
+          "lessons": [
+            {
+              "title": "About the text",
+              "topics": [
+                "Praise of the motherland"
+              ]
+            },
+            {
+              "title": "Themes",
+              "topics": [
+                "Patriotism",
+                "Unity in diversity"
+              ]
+            },
+            {
+              "title": "Language focus",
+              "topics": [
+                "Repetition and refrain",
+                "Imagery"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/iebe101.pdf"
+        },
+        {
+          "number": 3,
+          "title": "The Pot Maker",
+          "unit": "Kaveri – Unit 2 (prose)",
+          "outcomes": [
+            "Explain the text's central idea",
+            "Discuss its themes",
+            "Use its vocabulary and grammar"
+          ],
+          "topics": [
+            "A Naga girl wants to learn pottery",
+            "Passion and tradition",
+            "Skills across generations",
+            "Craft vocabulary",
+            "Reflective writing"
+          ],
+          "lessons": [
+            {
+              "title": "About the text",
+              "topics": [
+                "A Naga girl wants to learn pottery"
+              ]
+            },
+            {
+              "title": "Themes",
+              "topics": [
+                "Passion and tradition",
+                "Skills across generations"
+              ]
+            },
+            {
+              "title": "Language focus",
+              "topics": [
+                "Craft vocabulary",
+                "Reflective writing"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/iebe102.pdf"
+        },
+        {
+          "number": 4,
+          "title": "Gifts of Grace: Honouring Our Vocations",
+          "unit": "Kaveri – Unit 2 (poem)",
+          "outcomes": [
+            "Explain the text's central idea",
+            "Discuss its themes",
+            "Use its vocabulary and grammar"
+          ],
+          "topics": [
+            "Tribute to everyday workers",
+            "Dignity of labour",
+            "Sensory imagery"
+          ],
+          "lessons": [
+            {
+              "title": "About the text",
+              "topics": [
+                "Tribute to everyday workers"
+              ]
+            },
+            {
+              "title": "Themes",
+              "topics": [
+                "Dignity of labour"
+              ]
+            },
+            {
+              "title": "Language focus",
+              "topics": [
+                "Sensory imagery"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/iebe102.pdf"
+        },
+        {
+          "number": 5,
+          "title": "Winds of Change",
+          "unit": "Kaveri – Unit 3 (prose)",
+          "outcomes": [
+            "Explain the text's central idea",
+            "Discuss its themes",
+            "Use its vocabulary and grammar"
+          ],
+          "topics": [
+            "Hand fans of India",
+            "Crafts and heritage",
+            "Changing times",
+            "Descriptive vocabulary",
+            "Describing an artefact"
+          ],
+          "lessons": [
+            {
+              "title": "About the text",
+              "topics": [
+                "Hand fans of India"
+              ]
+            },
+            {
+              "title": "Themes",
+              "topics": [
+                "Crafts and heritage",
+                "Changing times"
+              ]
+            },
+            {
+              "title": "Language focus",
+              "topics": [
+                "Descriptive vocabulary",
+                "Describing an artefact"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/iebe103.pdf"
+        },
+        {
+          "number": 6,
+          "title": "Canvas of Soil",
+          "unit": "Kaveri – Unit 3 (poem)",
+          "outcomes": [
+            "Explain the text's central idea",
+            "Discuss its themes",
+            "Use its vocabulary and grammar"
+          ],
+          "topics": [
+            "Gardening as art",
+            "Nature and creativity",
+            "Comparisons and metaphor"
+          ],
+          "lessons": [
+            {
+              "title": "About the text",
+              "topics": [
+                "Gardening as art"
+              ]
+            },
+            {
+              "title": "Themes",
+              "topics": [
+                "Nature and creativity"
+              ]
+            },
+            {
+              "title": "Language focus",
+              "topics": [
+                "Comparisons and metaphor"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/iebe103.pdf"
+        },
+        {
+          "number": 7,
+          "title": "Vitamin-M",
+          "unit": "Kaveri – Unit 4 (prose)",
+          "outcomes": [
+            "Explain the text's central idea",
+            "Discuss its themes",
+            "Use its vocabulary and grammar"
+          ],
+          "topics": [
+            "A grandfather's day out",
+            "Care for the elderly",
+            "Independence",
+            "Reported speech",
+            "Story writing"
+          ],
+          "lessons": [
+            {
+              "title": "About the text",
+              "topics": [
+                "A grandfather's day out"
+              ]
+            },
+            {
+              "title": "Themes",
+              "topics": [
+                "Care for the elderly",
+                "Independence"
+              ]
+            },
+            {
+              "title": "Language focus",
+              "topics": [
+                "Reported speech",
+                "Story writing"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/iebe104.pdf"
+        },
+        {
+          "number": 8,
+          "title": "I Cannot Remember My Mother",
+          "unit": "Kaveri – Unit 4 (poem)",
+          "outcomes": [
+            "Explain the text's central idea",
+            "Discuss its themes",
+            "Use its vocabulary and grammar"
+          ],
+          "topics": [
+            "Tagore on memories of his mother",
+            "Loss and memory",
+            "Sensory words"
+          ],
+          "lessons": [
+            {
+              "title": "About the text",
+              "topics": [
+                "Tagore on memories of his mother"
+              ]
+            },
+            {
+              "title": "Themes",
+              "topics": [
+                "Loss and memory"
+              ]
+            },
+            {
+              "title": "Language focus",
+              "topics": [
+                "Sensory words"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/iebe104.pdf"
+        },
+        {
+          "number": 9,
+          "title": "The World of Limitless Possibilities",
+          "unit": "Kaveri – Unit 5 (prose)",
+          "outcomes": [
+            "Explain the text's central idea",
+            "Discuss its themes",
+            "Use its vocabulary and grammar"
+          ],
+          "topics": [
+            "Interview with para-archer Sheetal Devi",
+            "Determination",
+            "Inclusion",
+            "Interview format",
+            "Notice writing"
+          ],
+          "lessons": [
+            {
+              "title": "About the text",
+              "topics": [
+                "Interview with para-archer Sheetal Devi"
+              ]
+            },
+            {
+              "title": "Themes",
+              "topics": [
+                "Determination",
+                "Inclusion"
+              ]
+            },
+            {
+              "title": "Language focus",
+              "topics": [
+                "Interview format",
+                "Notice writing"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/iebe105.pdf"
+        },
+        {
+          "number": 10,
+          "title": "Nine Gold Medals",
+          "unit": "Kaveri – Unit 5 (poem)",
+          "outcomes": [
+            "Explain the text's central idea",
+            "Discuss its themes",
+            "Use its vocabulary and grammar"
+          ],
+          "topics": [
+            "Special Olympics race",
+            "Compassion over winning",
+            "Collocations",
+            "Narrative poem"
+          ],
+          "lessons": [
+            {
+              "title": "About the text",
+              "topics": [
+                "Special Olympics race"
+              ]
+            },
+            {
+              "title": "Themes",
+              "topics": [
+                "Compassion over winning"
+              ]
+            },
+            {
+              "title": "Language focus",
+              "topics": [
+                "Collocations",
+                "Narrative poem"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/iebe105.pdf"
+        },
+        {
+          "number": 11,
+          "title": "Twin Melodies",
+          "unit": "Kaveri – Unit 6 (prose)",
+          "outcomes": [
+            "Explain the text's central idea",
+            "Discuss its themes",
+            "Use its vocabulary and grammar"
+          ],
+          "topics": [
+            "Music and a family",
+            "Music and bonds",
+            "Idioms",
+            "Story completion"
+          ],
+          "lessons": [
+            {
+              "title": "About the text",
+              "topics": [
+                "Music and a family"
+              ]
+            },
+            {
+              "title": "Themes",
+              "topics": [
+                "Music and bonds"
+              ]
+            },
+            {
+              "title": "Language focus",
+              "topics": [
+                "Idioms",
+                "Story completion"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/iebe106.pdf"
+        },
+        {
+          "number": 12,
+          "title": "A Friend Found in Music",
+          "unit": "Kaveri – Unit 6 (poem)",
+          "outcomes": [
+            "Explain the text's central idea",
+            "Discuss its themes",
+            "Use its vocabulary and grammar"
+          ],
+          "topics": [
+            "Music as companion",
+            "Comfort in music",
+            "Emotion words",
+            "Invitations"
+          ],
+          "lessons": [
+            {
+              "title": "About the text",
+              "topics": [
+                "Music as companion"
+              ]
+            },
+            {
+              "title": "Themes",
+              "topics": [
+                "Comfort in music"
+              ]
+            },
+            {
+              "title": "Language focus",
+              "topics": [
+                "Emotion words",
+                "Invitations"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/iebe106.pdf"
+        },
+        {
+          "number": 13,
+          "title": "Carrier of Words",
+          "unit": "Kaveri – Unit 7 (prose)",
+          "outcomes": [
+            "Explain the text's central idea",
+            "Discuss its themes",
+            "Use its vocabulary and grammar"
+          ],
+          "topics": [
+            "India Post in remote areas",
+            "Service and connection",
+            "Passive voice",
+            "Condolence messages"
+          ],
+          "lessons": [
+            {
+              "title": "About the text",
+              "topics": [
+                "India Post in remote areas"
+              ]
+            },
+            {
+              "title": "Themes",
+              "topics": [
+                "Service and connection"
+              ]
+            },
+            {
+              "title": "Language focus",
+              "topics": [
+                "Passive voice",
+                "Condolence messages"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/iebe107.pdf"
+        },
+        {
+          "number": 14,
+          "title": "Words",
+          "unit": "Kaveri – Unit 7 (poem)",
+          "outcomes": [
+            "Explain the text's central idea",
+            "Discuss its themes",
+            "Use its vocabulary and grammar"
+          ],
+          "topics": [
+            "Power of words",
+            "Responsible speech",
+            "Essay on a quotation"
+          ],
+          "lessons": [
+            {
+              "title": "About the text",
+              "topics": [
+                "Power of words"
+              ]
+            },
+            {
+              "title": "Themes",
+              "topics": [
+                "Responsible speech"
+              ]
+            },
+            {
+              "title": "Language focus",
+              "topics": [
+                "Essay on a quotation"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/iebe107.pdf"
+        },
+        {
+          "number": 15,
+          "title": "Follow That Dream",
+          "unit": "Kaveri – Unit 8 (prose)",
+          "outcomes": [
+            "Explain the text's central idea",
+            "Discuss its themes",
+            "Use its vocabulary and grammar"
+          ],
+          "topics": [
+            "A mother's letter to her daughter",
+            "Dreams and perseverance",
+            "Tenses",
+            "Email writing"
+          ],
+          "lessons": [
+            {
+              "title": "About the text",
+              "topics": [
+                "A mother's letter to her daughter"
+              ]
+            },
+            {
+              "title": "Themes",
+              "topics": [
+                "Dreams and perseverance"
+              ]
+            },
+            {
+              "title": "Language focus",
+              "topics": [
+                "Tenses",
+                "Email writing"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/iebe108.pdf"
+        },
+        {
+          "number": 16,
+          "title": "Believe in Yourself",
+          "unit": "Kaveri – Unit 8 (poem)",
+          "outcomes": [
+            "Explain the text's central idea",
+            "Discuss its themes",
+            "Use its vocabulary and grammar"
+          ],
+          "topics": [
+            "Encouragement to believe",
+            "Self-confidence",
+            "Tone and message"
+          ],
+          "lessons": [
+            {
+              "title": "About the text",
+              "topics": [
+                "Encouragement to believe"
+              ]
+            },
+            {
+              "title": "Themes",
+              "topics": [
+                "Self-confidence"
+              ]
+            },
+            {
+              "title": "Language focus",
+              "topics": [
+                "Tone and message"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/iebe108.pdf"
+        },
+        {
+          "number": 17,
+          "title": "Reading Skills",
+          "unit": "Section A – Reading",
+          "outcomes": [
+            "Comprehend unseen passages",
+            "Interpret data-based passages"
+          ],
+          "topics": [
+            "Descriptive or discursive passage",
+            "Main idea and inference",
+            "Case-based passage with data",
+            "Vocabulary in context"
+          ],
+          "lessons": [
+            {
+              "title": "Discursive passages",
+              "topics": [
+                "Descriptive or discursive passage",
+                "Main idea and inference"
+              ]
+            },
+            {
+              "title": "Case-based passages",
+              "topics": [
+                "Case-based passage with data",
+                "Vocabulary in context"
+              ]
+            }
+          ],
+          "source": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/English_LL_SecP1IX_2026-27.pdf",
+          "marks": 20
+        },
+        {
+          "number": 18,
+          "title": "Grammar",
+          "unit": "Section B – Grammar",
+          "outcomes": [
+            "Use tenses, modals and reported speech",
+            "Apply concord, determiners and clauses"
+          ],
+          "topics": [
+            "Sequence of tenses",
+            "Modal auxiliaries",
+            "Reported statements, questions, commands and requests",
+            "Conditional clause type 1",
+            "Subject-verb concord",
+            "Determiners",
+            "Noun and relative clauses",
+            "Editing and omission",
+            "Sentence rearrangement",
+            "Sentence transformation"
+          ],
+          "lessons": [
+            {
+              "title": "Tenses and modals",
+              "topics": [
+                "Sequence of tenses",
+                "Modal auxiliaries"
+              ]
+            },
+            {
+              "title": "Reported speech",
+              "topics": [
+                "Reported statements, questions, commands and requests"
+              ]
+            },
+            {
+              "title": "Sentences",
+              "topics": [
+                "Conditional clause type 1",
+                "Subject-verb concord",
+                "Determiners",
+                "Noun and relative clauses"
+              ]
+            },
+            {
+              "title": "Practice",
+              "topics": [
+                "Editing and omission",
+                "Sentence rearrangement",
+                "Sentence transformation"
+              ]
+            }
+          ],
+          "source": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/English_LL_SecP1IX_2026-27.pdf",
+          "marks": 10
+        },
+        {
+          "number": 19,
+          "title": "Writing Skills",
+          "unit": "Section B – Writing",
+          "outcomes": [
+            "Write notices and invitations",
+            "Write formal letters and emails",
+            "Write articles, descriptions and essays"
+          ],
+          "topics": [
+            "Notice",
+            "Informal invitation",
+            "Letter to the editor",
+            "Formal email",
+            "Factual description",
+            "Magazine article",
+            "Descriptive and narrative essays"
+          ],
+          "lessons": [
+            {
+              "title": "Short writing",
+              "topics": [
+                "Notice",
+                "Informal invitation"
+              ]
+            },
+            {
+              "title": "Formal writing",
+              "topics": [
+                "Letter to the editor",
+                "Formal email"
+              ]
+            },
+            {
+              "title": "Long writing",
+              "topics": [
+                "Factual description",
+                "Magazine article",
+                "Descriptive and narrative essays"
+              ]
+            }
+          ],
+          "source": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/English_LL_SecP1IX_2026-27.pdf",
+          "marks": 20
+        }
+      ]
+    },
+    {
+      "subject": "hindi",
+      "name": "Hindi",
+      "book": "गंगा: कक्षा 9 की हिंदी पाठ्यपुस्तक (NCERT, 2026-27)",
+      "chapters": [
+        {
+          "number": 1,
+          "title": "दो बैलों की कथा",
+          "unit": "गंगा – गद्य खंड",
+          "outcomes": [
+            "पाठ का मूल भाव समझाना",
+            "रचनाकार की शैली पहचानना",
+            "पाठ के शब्द और भाषा-बिंदु प्रयोग करना"
+          ],
+          "topics": [
+            "प्रेमचंद",
+            "कहानी",
+            "हीरा-मोती की मित्रता",
+            "स्वतंत्रता",
+            "मुहावरे",
+            "प्रतीक"
+          ],
+          "lessons": [
+            {
+              "title": "परिचय",
+              "topics": [
+                "प्रेमचंद",
+                "कहानी"
+              ]
+            },
+            {
+              "title": "विषय-वस्तु",
+              "topics": [
+                "हीरा-मोती की मित्रता",
+                "स्वतंत्रता"
+              ]
+            },
+            {
+              "title": "भाषा और शिल्प",
+              "topics": [
+                "मुहावरे",
+                "प्रतीक"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/ihga101.pdf"
+        },
+        {
+          "number": 2,
+          "title": "क्या लिखूँ",
+          "unit": "गंगा – गद्य खंड",
+          "outcomes": [
+            "पाठ का मूल भाव समझाना",
+            "रचनाकार की शैली पहचानना",
+            "पाठ के शब्द और भाषा-बिंदु प्रयोग करना"
+          ],
+          "topics": [
+            "पदुमलाल पुन्नालाल बख्शी",
+            "निबंध",
+            "निबंध-लेखन की दुविधा",
+            "व्यंग्य",
+            "निबंध शैली"
+          ],
+          "lessons": [
+            {
+              "title": "परिचय",
+              "topics": [
+                "पदुमलाल पुन्नालाल बख्शी",
+                "निबंध"
+              ]
+            },
+            {
+              "title": "विषय-वस्तु",
+              "topics": [
+                "निबंध-लेखन की दुविधा"
+              ]
+            },
+            {
+              "title": "भाषा और शिल्प",
+              "topics": [
+                "व्यंग्य",
+                "निबंध शैली"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/ihga102.pdf"
+        },
+        {
+          "number": 3,
+          "title": "संवादहीन",
+          "unit": "गंगा – गद्य खंड",
+          "outcomes": [
+            "पाठ का मूल भाव समझाना",
+            "रचनाकार की शैली पहचानना",
+            "पाठ के शब्द और भाषा-बिंदु प्रयोग करना"
+          ],
+          "topics": [
+            "शेखर जोशी",
+            "कहानी",
+            "वृद्ध स्त्री का अकेलापन",
+            "ताई और मिट्ठू",
+            "संवेदना",
+            "ग्रामीण शब्द"
+          ],
+          "lessons": [
+            {
+              "title": "परिचय",
+              "topics": [
+                "शेखर जोशी",
+                "कहानी"
+              ]
+            },
+            {
+              "title": "विषय-वस्तु",
+              "topics": [
+                "वृद्ध स्त्री का अकेलापन",
+                "ताई और मिट्ठू"
+              ]
+            },
+            {
+              "title": "भाषा और शिल्प",
+              "topics": [
+                "संवेदना",
+                "ग्रामीण शब्द"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/ihga103.pdf"
+        },
+        {
+          "number": 4,
+          "title": "ऐसी भी बातें होती हैं",
+          "unit": "गंगा – गद्य खंड",
+          "outcomes": [
+            "पाठ का मूल भाव समझाना",
+            "रचनाकार की शैली पहचानना",
+            "पाठ के शब्द और भाषा-बिंदु प्रयोग करना"
+          ],
+          "topics": [
+            "लता मंगेशकर से यतींद्र मिश्र का साक्षात्कार",
+            "संगीत-यात्रा",
+            "साक्षात्कार विधा"
+          ],
+          "lessons": [
+            {
+              "title": "परिचय",
+              "topics": [
+                "लता मंगेशकर से यतींद्र मिश्र का साक्षात्कार"
+              ]
+            },
+            {
+              "title": "विषय-वस्तु",
+              "topics": [
+                "संगीत-यात्रा"
+              ]
+            },
+            {
+              "title": "भाषा और शिल्प",
+              "topics": [
+                "साक्षात्कार विधा"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/ihga104.pdf"
+        },
+        {
+          "number": 5,
+          "title": "आखिरी चट्टान तक",
+          "unit": "गंगा – गद्य खंड",
+          "outcomes": [
+            "पाठ का मूल भाव समझाना",
+            "रचनाकार की शैली पहचानना",
+            "पाठ के शब्द और भाषा-बिंदु प्रयोग करना"
+          ],
+          "topics": [
+            "मोहन राकेश",
+            "यात्रा-वृत्तांत",
+            "कन्याकुमारी की यात्रा",
+            "चित्रात्मक वर्णन"
+          ],
+          "lessons": [
+            {
+              "title": "परिचय",
+              "topics": [
+                "मोहन राकेश",
+                "यात्रा-वृत्तांत"
+              ]
+            },
+            {
+              "title": "विषय-वस्तु",
+              "topics": [
+                "कन्याकुमारी की यात्रा"
+              ]
+            },
+            {
+              "title": "भाषा और शिल्प",
+              "topics": [
+                "चित्रात्मक वर्णन"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/ihga105.pdf"
+        },
+        {
+          "number": 6,
+          "title": "रीढ़ की हड्डी",
+          "unit": "गंगा – गद्य खंड",
+          "outcomes": [
+            "पाठ का मूल भाव समझाना",
+            "रचनाकार की शैली पहचानना",
+            "पाठ के शब्द और भाषा-बिंदु प्रयोग करना"
+          ],
+          "topics": [
+            "जगदीश चंद्र माथुर",
+            "एकांकी",
+            "स्त्री-शिक्षा",
+            "विवाह की रूढ़ियाँ",
+            "संवाद",
+            "व्यंग्य"
+          ],
+          "lessons": [
+            {
+              "title": "परिचय",
+              "topics": [
+                "जगदीश चंद्र माथुर",
+                "एकांकी"
+              ]
+            },
+            {
+              "title": "विषय-वस्तु",
+              "topics": [
+                "स्त्री-शिक्षा",
+                "विवाह की रूढ़ियाँ"
+              ]
+            },
+            {
+              "title": "भाषा और शिल्प",
+              "topics": [
+                "संवाद",
+                "व्यंग्य"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/ihga106.pdf"
+        },
+        {
+          "number": 7,
+          "title": "मैं और मेरा देश",
+          "unit": "गंगा – गद्य खंड",
+          "outcomes": [
+            "पाठ का मूल भाव समझाना",
+            "रचनाकार की शैली पहचानना",
+            "पाठ के शब्द और भाषा-बिंदु प्रयोग करना"
+          ],
+          "topics": [
+            "कन्हैयालाल मिश्र 'प्रभाकर'",
+            "निबंध",
+            "व्यक्ति और राष्ट्र",
+            "विचारात्मक शैली"
+          ],
+          "lessons": [
+            {
+              "title": "परिचय",
+              "topics": [
+                "कन्हैयालाल मिश्र 'प्रभाकर'",
+                "निबंध"
+              ]
+            },
+            {
+              "title": "विषय-वस्तु",
+              "topics": [
+                "व्यक्ति और राष्ट्र"
+              ]
+            },
+            {
+              "title": "भाषा और शिल्प",
+              "topics": [
+                "विचारात्मक शैली"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/ihga107.pdf"
+        },
+        {
+          "number": 8,
+          "title": "रैदास के पद",
+          "unit": "गंगा – काव्य खंड",
+          "outcomes": [
+            "पाठ का मूल भाव समझाना",
+            "रचनाकार की शैली पहचानना",
+            "पाठ के शब्द और भाषा-बिंदु प्रयोग करना"
+          ],
+          "topics": [
+            "संत रैदास",
+            "भक्तिकाल",
+            "भक्ति और समानता",
+            "पद",
+            "ब्रजभाषा"
+          ],
+          "lessons": [
+            {
+              "title": "परिचय",
+              "topics": [
+                "संत रैदास",
+                "भक्तिकाल"
+              ]
+            },
+            {
+              "title": "विषय-वस्तु",
+              "topics": [
+                "भक्ति और समानता"
+              ]
+            },
+            {
+              "title": "भाषा और शिल्प",
+              "topics": [
+                "पद",
+                "ब्रजभाषा"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/ihga108.pdf"
+        },
+        {
+          "number": 9,
+          "title": "राम-लक्ष्मण-परशुराम संवाद",
+          "unit": "गंगा – काव्य खंड",
+          "outcomes": [
+            "पाठ का मूल भाव समझाना",
+            "रचनाकार की शैली पहचानना",
+            "पाठ के शब्द और भाषा-बिंदु प्रयोग करना"
+          ],
+          "topics": [
+            "तुलसीदास",
+            "परशुराम का क्रोध",
+            "राम की विनम्रता",
+            "अवधी",
+            "वीर रस"
+          ],
+          "lessons": [
+            {
+              "title": "परिचय",
+              "topics": [
+                "तुलसीदास"
+              ]
+            },
+            {
+              "title": "विषय-वस्तु",
+              "topics": [
+                "परशुराम का क्रोध",
+                "राम की विनम्रता"
+              ]
+            },
+            {
+              "title": "भाषा और शिल्प",
+              "topics": [
+                "अवधी",
+                "वीर रस"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/ihga109.pdf"
+        },
+        {
+          "number": 10,
+          "title": "भारति, जय, विजय करे!",
+          "unit": "गंगा – काव्य खंड",
+          "outcomes": [
+            "पाठ का मूल भाव समझाना",
+            "रचनाकार की शैली पहचानना",
+            "पाठ के शब्द और भाषा-बिंदु प्रयोग करना"
+          ],
+          "topics": [
+            "सूर्यकांत त्रिपाठी 'निराला'",
+            "देशप्रेम",
+            "वंदना गीत"
+          ],
+          "lessons": [
+            {
+              "title": "परिचय",
+              "topics": [
+                "सूर्यकांत त्रिपाठी 'निराला'"
+              ]
+            },
+            {
+              "title": "विषय-वस्तु",
+              "topics": [
+                "देशप्रेम"
+              ]
+            },
+            {
+              "title": "भाषा और शिल्प",
+              "topics": [
+                "वंदना गीत"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/ihga110.pdf"
+        },
+        {
+          "number": 11,
+          "title": "झाँसी की रानी",
+          "unit": "गंगा – काव्य खंड",
+          "outcomes": [
+            "पाठ का मूल भाव समझाना",
+            "रचनाकार की शैली पहचानना",
+            "पाठ के शब्द और भाषा-बिंदु प्रयोग करना"
+          ],
+          "topics": [
+            "सुभद्रा कुमारी चौहान",
+            "1857 और लक्ष्मीबाई",
+            "वीर रस",
+            "गेयता"
+          ],
+          "lessons": [
+            {
+              "title": "परिचय",
+              "topics": [
+                "सुभद्रा कुमारी चौहान"
+              ]
+            },
+            {
+              "title": "विषय-वस्तु",
+              "topics": [
+                "1857 और लक्ष्मीबाई"
+              ]
+            },
+            {
+              "title": "भाषा और शिल्प",
+              "topics": [
+                "वीर रस",
+                "गेयता"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/ihga111.pdf"
+        },
+        {
+          "number": 12,
+          "title": "घर की याद",
+          "unit": "गंगा – काव्य खंड",
+          "outcomes": [
+            "पाठ का मूल भाव समझाना",
+            "रचनाकार की शैली पहचानना",
+            "पाठ के शब्द और भाषा-बिंदु प्रयोग करना"
+          ],
+          "topics": [
+            "भवानीप्रसाद मिश्र",
+            "जेल में घर की स्मृति",
+            "स्मृति-बिंब"
+          ],
+          "lessons": [
+            {
+              "title": "परिचय",
+              "topics": [
+                "भवानीप्रसाद मिश्र"
+              ]
+            },
+            {
+              "title": "विषय-वस्तु",
+              "topics": [
+                "जेल में घर की स्मृति"
+              ]
+            },
+            {
+              "title": "भाषा और शिल्प",
+              "topics": [
+                "स्मृति-बिंब"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/ihga112.pdf"
+        },
+        {
+          "number": 13,
+          "title": "अपठित बोध",
+          "unit": "खंड क – अपठित बोध",
+          "outcomes": [
+            "अपठित गद्यांश और काव्यांश समझना",
+            "प्रश्नों के सटीक उत्तर देना"
+          ],
+          "topics": [
+            "लगभग 200 शब्दों का गद्यांश",
+            "मुख्य विचार",
+            "80-100 शब्दों का काव्यांश",
+            "भाव और सराहना"
+          ],
+          "lessons": [
+            {
+              "title": "गद्यांश",
+              "topics": [
+                "लगभग 200 शब्दों का गद्यांश",
+                "मुख्य विचार"
+              ]
+            },
+            {
+              "title": "काव्यांश",
+              "topics": [
+                "80-100 शब्दों का काव्यांश",
+                "भाव और सराहना"
+              ]
+            }
+          ],
+          "source": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/Hindi_SecP1IX_2026-27.pdf",
+          "marks": 14
+        },
+        {
+          "number": 14,
+          "title": "व्याकरण",
+          "unit": "खंड ख – व्यावहारिक व्याकरण",
+          "outcomes": [
+            "शब्द-निर्माण करना",
+            "पद पहचानना",
+            "वाक्य-भेद और शब्दालंकार पहचानना"
+          ],
+          "topics": [
+            "उपसर्ग",
+            "प्रत्यय",
+            "संज्ञा और सर्वनाम",
+            "विशेषण और क्रिया",
+            "अर्थ की दृष्टि से वाक्य-भेद",
+            "अनुप्रास, यमक, श्लेष"
+          ],
+          "lessons": [
+            {
+              "title": "शब्द-निर्माण",
+              "topics": [
+                "उपसर्ग",
+                "प्रत्यय"
+              ]
+            },
+            {
+              "title": "पद",
+              "topics": [
+                "संज्ञा और सर्वनाम",
+                "विशेषण और क्रिया"
+              ]
+            },
+            {
+              "title": "वाक्य और अलंकार",
+              "topics": [
+                "अर्थ की दृष्टि से वाक्य-भेद",
+                "अनुप्रास, यमक, श्लेष"
+              ]
+            }
+          ],
+          "source": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/Hindi_SecP1IX_2026-27.pdf",
+          "marks": 16
+        },
+        {
+          "number": 15,
+          "title": "रचनात्मक लेखन",
+          "unit": "खंड घ – रचनात्मक लेखन",
+          "outcomes": [
+            "अनुच्छेद और अनौपचारिक पत्र लिखना",
+            "संवाद और सूचना लिखना"
+          ],
+          "topics": [
+            "अनुच्छेद लेखन",
+            "अनौपचारिक पत्र",
+            "संवाद लेखन",
+            "सूचना लेखन"
+          ],
+          "lessons": [
+            {
+              "title": "अनुच्छेद और पत्र",
+              "topics": [
+                "अनुच्छेद लेखन",
+                "अनौपचारिक पत्र"
+              ]
+            },
+            {
+              "title": "संवाद और सूचना",
+              "topics": [
+                "संवाद लेखन",
+                "सूचना लेखन"
+              ]
+            }
+          ],
+          "source": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/Hindi_SecP1IX_2026-27.pdf",
+          "marks": 20
+        }
+      ]
+    },
+    {
+      "subject": "sanskrit",
+      "name": "Sanskrit",
+      "book": "शारदा: कक्षा 9 की संस्कृत पाठ्यपुस्तक (NCERT, 2026-27)",
+      "chapters": [
+        {
+          "number": 1,
+          "title": "सत्यं शिवं सुन्दरं संस्कृतम्",
+          "unit": "शारदा – पाठ 1",
+          "outcomes": [
+            "पाठ का भाव समझाना",
+            "संस्कृत में उत्तर देना",
+            "व्याकरण-बिंदु प्रयोग करना"
+          ],
+          "topics": [
+            "संस्कृत का महत्त्व",
+            "भारतीय ज्ञान-परंपरा",
+            "सन्धि"
+          ],
+          "lessons": [
+            {
+              "title": "पाठ-परिचय",
+              "topics": [
+                "संस्कृत का महत्त्व"
+              ]
+            },
+            {
+              "title": "कथ्य",
+              "topics": [
+                "भारतीय ज्ञान-परंपरा"
+              ]
+            },
+            {
+              "title": "शब्द और व्याकरण",
+              "topics": [
+                "सन्धि"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/ihsh101.pdf"
+        },
+        {
+          "number": 2,
+          "title": "सुखस्य मूलं धर्मः धर्मस्य मूलम् अर्थः",
+          "unit": "शारदा – पाठ 2",
+          "outcomes": [
+            "पाठ का भाव समझाना",
+            "संस्कृत में उत्तर देना",
+            "व्याकरण-बिंदु प्रयोग करना"
+          ],
+          "topics": [
+            "धन और धर्म",
+            "धन का सदुपयोग",
+            "दान और सेवा",
+            "अव्यय"
+          ],
+          "lessons": [
+            {
+              "title": "पाठ-परिचय",
+              "topics": [
+                "धन और धर्म"
+              ]
+            },
+            {
+              "title": "कथ्य",
+              "topics": [
+                "धन का सदुपयोग",
+                "दान और सेवा"
+              ]
+            },
+            {
+              "title": "शब्द और व्याकरण",
+              "topics": [
+                "अव्यय"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/ihsh102.pdf"
+        },
+        {
+          "number": 3,
+          "title": "आत्मवत्सर्वभूतेषु यः पश्यति सः पण्डितः",
+          "unit": "शारदा – पाठ 3",
+          "outcomes": [
+            "पाठ का भाव समझाना",
+            "संस्कृत में उत्तर देना",
+            "व्याकरण-बिंदु प्रयोग करना"
+          ],
+          "topics": [
+            "कपिल और माधवी की कथा",
+            "जीवों पर दया",
+            "कारक"
+          ],
+          "lessons": [
+            {
+              "title": "पाठ-परिचय",
+              "topics": [
+                "कपिल और माधवी की कथा"
+              ]
+            },
+            {
+              "title": "कथ्य",
+              "topics": [
+                "जीवों पर दया"
+              ]
+            },
+            {
+              "title": "शब्द और व्याकरण",
+              "topics": [
+                "कारक"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/ihsh103.pdf"
+        },
+        {
+          "number": 4,
+          "title": "न खलु वयस्तेजसो हेतुः",
+          "unit": "शारदा – पाठ 4",
+          "outcomes": [
+            "पाठ का भाव समझाना",
+            "संस्कृत में उत्तर देना",
+            "व्याकरण-बिंदु प्रयोग करना"
+          ],
+          "topics": [
+            "खुदीराम बोस",
+            "युवा क्रान्तिकारी का साहस",
+            "शब्दरूप"
+          ],
+          "lessons": [
+            {
+              "title": "पाठ-परिचय",
+              "topics": [
+                "खुदीराम बोस"
+              ]
+            },
+            {
+              "title": "कथ्य",
+              "topics": [
+                "युवा क्रान्तिकारी का साहस"
+              ]
+            },
+            {
+              "title": "शब्द और व्याकरण",
+              "topics": [
+                "शब्दरूप"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/ihsh104.pdf"
+        },
+        {
+          "number": 5,
+          "title": "एषा सा कृतकबुद्धिः मानवबुद्धेः सहकरी",
+          "unit": "शारदा – पाठ 5",
+          "outcomes": [
+            "पाठ का भाव समझाना",
+            "संस्कृत में उत्तर देना",
+            "व्याकरण-बिंदु प्रयोग करना"
+          ],
+          "topics": [
+            "कृत्रिम बुद्धि",
+            "तकनीक मानव की सहायक",
+            "नवीन शब्दावली"
+          ],
+          "lessons": [
+            {
+              "title": "पाठ-परिचय",
+              "topics": [
+                "कृत्रिम बुद्धि"
+              ]
+            },
+            {
+              "title": "कथ्य",
+              "topics": [
+                "तकनीक मानव की सहायक"
+              ]
+            },
+            {
+              "title": "शब्द और व्याकरण",
+              "topics": [
+                "नवीन शब्दावली"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/ihsh105.pdf"
+        },
+        {
+          "number": 6,
+          "title": "मनःपूतं समाचरेत्",
+          "unit": "शारदा – पाठ 6",
+          "outcomes": [
+            "पाठ का भाव समझाना",
+            "संस्कृत में उत्तर देना",
+            "व्याकरण-बिंदु प्रयोग करना"
+          ],
+          "topics": [
+            "आचार्य-छात्र संवाद",
+            "विचारपूर्वक कार्य",
+            "धातुरूप"
+          ],
+          "lessons": [
+            {
+              "title": "पाठ-परिचय",
+              "topics": [
+                "आचार्य-छात्र संवाद"
+              ]
+            },
+            {
+              "title": "कथ्य",
+              "topics": [
+                "विचारपूर्वक कार्य"
+              ]
+            },
+            {
+              "title": "शब्द और व्याकरण",
+              "topics": [
+                "धातुरूप"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/ihsh106.pdf"
+        },
+        {
+          "number": 7,
+          "title": "उपायं चिन्तयेत् प्राज्ञस्तथापायं च चिन्तयेत्",
+          "unit": "शारदा – पाठ 7",
+          "outcomes": [
+            "पाठ का भाव समझाना",
+            "संस्कृत में उत्तर देना",
+            "व्याकरण-बिंदु प्रयोग करना"
+          ],
+          "topics": [
+            "माता-पुत्र संवाद",
+            "ईमानदारी",
+            "परिणाम पर विचार",
+            "प्रत्यय"
+          ],
+          "lessons": [
+            {
+              "title": "पाठ-परिचय",
+              "topics": [
+                "माता-पुत्र संवाद"
+              ]
+            },
+            {
+              "title": "कथ्य",
+              "topics": [
+                "ईमानदारी",
+                "परिणाम पर विचार"
+              ]
+            },
+            {
+              "title": "शब्द और व्याकरण",
+              "topics": [
+                "प्रत्यय"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/ihsh107.pdf"
+        },
+        {
+          "number": 8,
+          "title": "अन्नाद् आनन्दं प्रति",
+          "unit": "शारदा – पाठ 8",
+          "outcomes": [
+            "पाठ का भाव समझाना",
+            "संस्कृत में उत्तर देना",
+            "व्याकरण-बिंदु प्रयोग करना"
+          ],
+          "topics": [
+            "भृगु-वरुण संवाद",
+            "अन्न से आनन्द तक",
+            "समास"
+          ],
+          "lessons": [
+            {
+              "title": "पाठ-परिचय",
+              "topics": [
+                "भृगु-वरुण संवाद"
+              ]
+            },
+            {
+              "title": "कथ्य",
+              "topics": [
+                "अन्न से आनन्द तक"
+              ]
+            },
+            {
+              "title": "शब्द और व्याकरण",
+              "topics": [
+                "समास"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/ihsh108.pdf"
+        },
+        {
+          "number": 9,
+          "title": "कृतं प्रतिकृतं भूयादेष धर्मः सनातनः",
+          "unit": "शारदा – पाठ 9",
+          "outcomes": [
+            "पाठ का भाव समझाना",
+            "संस्कृत में उत्तर देना",
+            "व्याकरण-बिंदु प्रयोग करना"
+          ],
+          "topics": [
+            "एकचक्रम् रूपक",
+            "बकासुर-वध",
+            "कृतज्ञता",
+            "नाट्यांश"
+          ],
+          "lessons": [
+            {
+              "title": "पाठ-परिचय",
+              "topics": [
+                "एकचक्रम् रूपक"
+              ]
+            },
+            {
+              "title": "कथ्य",
+              "topics": [
+                "बकासुर-वध",
+                "कृतज्ञता"
+              ]
+            },
+            {
+              "title": "शब्द और व्याकरण",
+              "topics": [
+                "नाट्यांश"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/ihsh109.pdf"
+        },
+        {
+          "number": 10,
+          "title": "णमो अरिहन्ताणम्",
+          "unit": "शारदा – पाठ 10",
+          "outcomes": [
+            "पाठ का भाव समझाना",
+            "संस्कृत में उत्तर देना",
+            "व्याकरण-बिंदु प्रयोग करना"
+          ],
+          "topics": [
+            "ऋषभदेव",
+            "जैन परंपरा",
+            "प्राकृत-संस्कृत शब्द"
+          ],
+          "lessons": [
+            {
+              "title": "पाठ-परिचय",
+              "topics": [
+                "ऋषभदेव"
+              ]
+            },
+            {
+              "title": "कथ्य",
+              "topics": [
+                "जैन परंपरा"
+              ]
+            },
+            {
+              "title": "शब्द और व्याकरण",
+              "topics": [
+                "प्राकृत-संस्कृत शब्द"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/ihsh110.pdf"
+        },
+        {
+          "number": 11,
+          "title": "वर्णोच्चारण-शिक्षा २",
+          "unit": "शारदा – पाठ 11",
+          "outcomes": [
+            "पाठ का भाव समझाना",
+            "संस्कृत में उत्तर देना",
+            "व्याकरण-बिंदु प्रयोग करना"
+          ],
+          "topics": [
+            "वर्णों का उच्चारण",
+            "उच्चारण-स्थान",
+            "प्रयत्न",
+            "उच्चारण अभ्यास"
+          ],
+          "lessons": [
+            {
+              "title": "पाठ-परिचय",
+              "topics": [
+                "वर्णों का उच्चारण"
+              ]
+            },
+            {
+              "title": "कथ्य",
+              "topics": [
+                "उच्चारण-स्थान",
+                "प्रयत्न"
+              ]
+            },
+            {
+              "title": "शब्द और व्याकरण",
+              "topics": [
+                "उच्चारण अभ्यास"
+              ]
+            }
+          ],
+          "source": "https://ncert.nic.in/textbook/pdf/ihsh111.pdf"
+        },
+        {
+          "number": 12,
+          "title": "अपठितावबोधनम्",
+          "unit": "खण्डः क",
+          "outcomes": [
+            "अपठित गद्यांश समझना",
+            "भाषिक कार्य करना"
+          ],
+          "topics": [
+            "80-100 शब्दों का गद्यांश",
+            "एकपदेन-पूर्णवाक्येन उत्तर",
+            "शीर्षक",
+            "कर्तृ-क्रिया",
+            "पर्याय-विलोम"
+          ],
+          "lessons": [
+            {
+              "title": "गद्यांश",
+              "topics": [
+                "80-100 शब्दों का गद्यांश",
+                "एकपदेन-पूर्णवाक्येन उत्तर"
+              ]
+            },
+            {
+              "title": "भाषिक कार्य",
+              "topics": [
+                "शीर्षक",
+                "कर्तृ-क्रिया",
+                "पर्याय-विलोम"
+              ]
+            }
+          ],
+          "source": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/Sanskrit_SecP1IX_2026-27.pdf",
+          "marks": 10
+        },
+        {
+          "number": 13,
+          "title": "रचनात्मककार्यम्",
+          "unit": "खण्डः ख",
+          "outcomes": [
+            "संस्कृत में पत्र लिखना",
+            "चित्रवर्णन, संवाद और कथा पूरी करना"
+          ],
+          "topics": [
+            "औपचारिक पत्र",
+            "अनौपचारिक पत्र",
+            "चित्रवर्णन अथवा अनुच्छेद",
+            "संवादपूर्ति अथवा कथापूर्ति"
+          ],
+          "lessons": [
+            {
+              "title": "पत्र",
+              "topics": [
+                "औपचारिक पत्र",
+                "अनौपचारिक पत्र"
+              ]
+            },
+            {
+              "title": "वर्णन",
+              "topics": [
+                "चित्रवर्णन अथवा अनुच्छेद",
+                "संवादपूर्ति अथवा कथापूर्ति"
+              ]
+            }
+          ],
+          "source": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/Sanskrit_SecP1IX_2026-27.pdf",
+          "marks": 15
+        },
+        {
+          "number": 14,
+          "title": "अनुप्रयुक्तव्याकरणम्",
+          "unit": "खण्डः ग",
+          "outcomes": [
+            "सन्धि और समास करना",
+            "शब्दरूप, धातुरूप और प्रत्यय प्रयोग करना",
+            "संख्या, उच्चारणस्थान और अव्यय पहचानना"
+          ],
+          "topics": [
+            "स्वर सन्धि",
+            "व्यञ्जन सन्धि",
+            "विसर्ग सन्धि",
+            "कारक-उपपद विभक्ति",
+            "शब्दरूप",
+            "धातुरूप",
+            "कृत् प्रत्यय",
+            "तत्पुरुष समास",
+            "संख्या 1-100",
+            "उच्चारणस्थान",
+            "अव्यय"
+          ],
+          "lessons": [
+            {
+              "title": "सन्धि",
+              "topics": [
+                "स्वर सन्धि",
+                "व्यञ्जन सन्धि",
+                "विसर्ग सन्धि"
+              ]
+            },
+            {
+              "title": "विभक्ति",
+              "topics": [
+                "कारक-उपपद विभक्ति"
+              ]
+            },
+            {
+              "title": "रूप",
+              "topics": [
+                "शब्दरूप",
+                "धातुरूप"
+              ]
+            },
+            {
+              "title": "प्रत्यय और समास",
+              "topics": [
+                "कृत् प्रत्यय",
+                "तत्पुरुष समास"
+              ]
+            },
+            {
+              "title": "अन्य",
+              "topics": [
+                "संख्या 1-100",
+                "उच्चारणस्थान",
+                "अव्यय"
+              ]
+            }
+          ],
+          "source": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/Sanskrit_SecP1IX_2026-27.pdf",
+          "marks": 25
+        }
+      ]
+    },
+    {
+      "subject": "computer",
+      "name": "Computer Applications",
+      "book": "CBSE Computer Applications (165) syllabus",
+      "chapters": [
+        {
+          "number": 1,
+          "title": "Basics of Information Technology",
+          "unit": "Unit 1",
+          "outcomes": [
+            "Identify computer components",
+            "Classify software",
+            "Describe networks and multimedia"
+          ],
+          "topics": [
+            "Characteristics of a computer",
+            "Components: CPU, memory, storage, I/O",
+            "Primary memory: RAM and ROM",
+            "Secondary memory and storage devices",
+            "Input and output devices",
+            "System software",
+            "Application software and mobile apps",
+            "PAN, LAN, MAN, WAN",
+            "Wired and wireless: Wi-Fi, Bluetooth",
+            "Cloud computing",
+            "Multimedia"
+          ],
+          "lessons": [
+            {
+              "title": "Computer systems",
+              "topics": [
+                "Characteristics of a computer",
+                "Components: CPU, memory, storage, I/O",
+                "Primary memory: RAM and ROM",
+                "Secondary memory and storage devices",
+                "Input and output devices"
+              ]
+            },
+            {
+              "title": "Software",
+              "topics": [
+                "System software",
+                "Application software and mobile apps"
+              ]
+            },
+            {
+              "title": "Networks and multimedia",
+              "topics": [
+                "PAN, LAN, MAN, WAN",
+                "Wired and wireless: Wi-Fi, Bluetooth",
+                "Cloud computing",
+                "Multimedia"
+              ]
+            }
+          ],
+          "source": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/Computer_Applications_SecP1IX_2026-27.pdf",
+          "marks": 20
+        },
+        {
+          "number": 2,
+          "title": "Cyber Safety",
+          "unit": "Unit 2",
+          "outcomes": [
+            "Browse safely",
+            "Protect identity",
+            "Recognise malware"
+          ],
+          "topics": [
+            "Identity protection",
+            "Passwords",
+            "Privacy and confidentiality",
+            "Cyber stalking",
+            "Reporting cybercrimes",
+            "Viruses and adware"
+          ],
+          "lessons": [
+            {
+              "title": "Safe browsing",
+              "topics": [
+                "Identity protection",
+                "Passwords",
+                "Privacy and confidentiality"
+              ]
+            },
+            {
+              "title": "Threats",
+              "topics": [
+                "Cyber stalking",
+                "Reporting cybercrimes",
+                "Viruses and adware"
+              ]
+            }
+          ],
+          "source": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/Computer_Applications_SecP1IX_2026-27.pdf",
+          "marks": 15
+        },
+        {
+          "number": 3,
+          "title": "Office Tools",
+          "unit": "Unit 3",
+          "outcomes": [
+            "Create documents",
+            "Build presentations",
+            "Use spreadsheets"
+          ],
+          "topics": [
+            "Creating documents",
+            "Formatting text",
+            "Tables and pictures",
+            "Review tools",
+            "Slides and layouts",
+            "Formatting slides",
+            "Animation and sound",
+            "Worksheets and workbooks",
+            "Formulas",
+            "Functions: SUM, AVERAGE, MAX, MIN, IF",
+            "Charts"
+          ],
+          "lessons": [
+            {
+              "title": "Word processor",
+              "topics": [
+                "Creating documents",
+                "Formatting text",
+                "Tables and pictures",
+                "Review tools"
+              ]
+            },
+            {
+              "title": "Presentations",
+              "topics": [
+                "Slides and layouts",
+                "Formatting slides",
+                "Animation and sound"
+              ]
+            },
+            {
+              "title": "Spreadsheets",
+              "topics": [
+                "Worksheets and workbooks",
+                "Formulas",
+                "Functions: SUM, AVERAGE, MAX, MIN, IF",
+                "Charts"
+              ]
+            }
+          ],
+          "source": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/Computer_Applications_SecP1IX_2026-27.pdf",
+          "marks": 15
+        },
+        {
+          "number": 4,
+          "title": "Lab Exercises",
+          "unit": "Practicals",
+          "outcomes": [
+            "Create documents and presentations for real tasks",
+            "Use spreadsheets to calculate and chart data"
+          ],
+          "topics": [
+            "Secure browser settings",
+            "File system navigation",
+            "Letters, reports and cards",
+            "Document in an Indian language",
+            "Animated presentations",
+            "Spreadsheet calculations",
+            "Spreadsheet charts"
+          ],
+          "lessons": [
+            {
+              "title": "Documents",
+              "topics": [
+                "Secure browser settings",
+                "File system navigation",
+                "Letters, reports and cards",
+                "Document in an Indian language"
+              ]
+            },
+            {
+              "title": "Presentations and sheets",
+              "topics": [
+                "Animated presentations",
+                "Spreadsheet calculations",
+                "Spreadsheet charts"
+              ]
+            }
+          ],
+          "source": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/Computer_Applications_SecP1IX_2026-27.pdf",
+          "marks": 50
+        }
+      ]
+    }
+  ]
+}

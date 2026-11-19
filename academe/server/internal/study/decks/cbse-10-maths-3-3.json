@@ -1,0 +1,124 @@
+{
+  "id": "cbse-10-maths-3-3",
+  "board": "CBSE",
+  "class": 10,
+  "subject": "maths",
+  "chapterNumber": 3,
+  "chapterTitle": "Pair of Linear Equations in Two Variables",
+  "position": 3,
+  "title": "Solving by substitution",
+  "language": "en",
+  "cards": [
+    {
+      "kind": "start",
+      "goals": [
+        "Solve a pair of equations by substitution",
+        "Check your answer in both equations"
+      ],
+      "minutes": 6
+    },
+    {
+      "kind": "concept",
+      "title": "The idea",
+      "body": "Make one variable the subject of one equation, then put that expression into the other equation. You're left with one equation in one variable, which you can solve."
+    },
+    {
+      "kind": "table",
+      "title": "The steps",
+      "rows": [
+        {
+          "term": "Step 1",
+          "value": "From one equation, write y in terms of x (or x in terms of y)"
+        },
+        {
+          "term": "Step 2",
+          "value": "Substitute it into the other equation"
+        },
+        {
+          "term": "Step 3",
+          "value": "Solve for the one variable left"
+        },
+        {
+          "term": "Step 4",
+          "value": "Put that value back to find the other"
+        },
+        {
+          "term": "Step 5",
+          "value": "Check in both equations"
+        }
+      ]
+    },
+    {
+      "kind": "quiz",
+      "question": "From x + y = 7, what is y in terms of x?",
+      "options": [
+        "y = x − 7",
+        "y = 7 − x",
+        "y = 7x",
+        "y = x + 7"
+      ],
+      "answer": 1,
+      "why": "Move x to the other side: y = 7 − x."
+    },
+    {
+      "kind": "example",
+      "question": "Solve x + y = 7 and x − y = 1 by substitution.",
+      "steps": [
+        "From the first: y = 7 − x",
+        "Substitute: x − (7 − x) = 1",
+        "2x − 7 = 1, so 2x = 8 and x = 4",
+        "y = 7 − 4 = 3",
+        "Check: 4 + 3 = 7 and 4 − 3 = 1"
+      ]
+    },
+    {
+      "kind": "example",
+      "question": "Solve 2x + 3y = 13 and x − 2y = −4.",
+      "steps": [
+        "From the second: x = 2y − 4",
+        "Substitute: 2(2y − 4) + 3y = 13",
+        "4y − 8 + 3y = 13, so 7y = 21 and y = 3",
+        "x = 2(3) − 4 = 2",
+        "Check: 2(2) + 3(3) = 13 and 2 − 6 = −4"
+      ]
+    },
+    {
+      "kind": "quiz",
+      "question": "Solving x = 2y and x + y = 9, what is y?",
+      "options": [
+        "2",
+        "3",
+        "6",
+        "9"
+      ],
+      "answer": 1,
+      "why": "Substitute x = 2y into x + y = 9: 2y + y = 9, so 3y = 9 and y = 3. Then x = 6."
+    },
+    {
+      "kind": "concept",
+      "title": "Pick the easy variable",
+      "body": "Choose the variable with a coefficient of 1 or −1 to make the subject. It avoids fractions and keeps the working short.",
+      "remember": "Always check your answer in both original equations."
+    },
+    {
+      "kind": "quiz",
+      "question": "For 3x + y = 10 and 2x − 5y = 1, which is the easiest first step?",
+      "options": [
+        "x = (10 − y)/3",
+        "y = 10 − 3x",
+        "x = (1 + 5y)/2",
+        "y = (2x − 1)/5"
+      ],
+      "answer": 1,
+      "why": "y has a coefficient of 1 in the first equation, so y = 10 − 3x needs no fractions."
+    },
+    {
+      "kind": "summary",
+      "points": [
+        "Make one variable the subject, substitute, solve, then back-substitute",
+        "Pick a variable with coefficient 1 or −1",
+        "Check in both equations"
+      ]
+    }
+  ]
+}

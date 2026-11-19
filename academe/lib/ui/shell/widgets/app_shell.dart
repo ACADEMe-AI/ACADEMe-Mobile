@@ -1,0 +1,338 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import '../../../data/repositories/billing_repository.dart';
+import '../../../data/repositories/feedback_repository.dart';
+import '../../../data/repositories/progress_repository.dart';
+import '../../../domain/models/app_config.dart';
+import '../../../domain/models/chat.dart';
+import '../../../domain/models/scan.dart';
+import '../../askme/view_models/askme_view_model.dart';
+import '../../askme/widgets/askme_history_screen.dart';
+import '../../askme/widgets/askme_screen.dart';
+import '../../askme/widgets/attach_sheet.dart';
+import '../../core/l10n/app_l10n.dart';
+import '../../core/l10n/syllabus_label.dart';
+import '../../core/themes/app_theme.dart';
+import '../../core/ui/top_notice.dart';
+import '../../home/view_models/home_view_model.dart';
+import '../../home/view_models/today_view_model.dart';
+import '../../home/widgets/home_screen.dart';
+import '../../me/view_models/help_view_model.dart';
+import '../../me/view_models/me_view_model.dart';
+import '../../me/widgets/help_screen.dart';
+import '../../me/widgets/me_screen.dart';
+import '../../me/widgets/privacy_screen.dart';
+import '../../paywall/view_models/pro_view_model.dart';
+import '../../paywall/widgets/pro_card.dart';
+import '../../scan/scan_factory.dart';
+import '../../scan/view_models/scan_view_model.dart';
+import '../../scan/widgets/scan_flow_screen.dart';
+import '../../scan/widgets/scan_screen.dart';
+import '../../study/study_factory.dart';
+import '../../study/view_models/folders_view_model.dart';
+import '../../study/view_models/study_view_model.dart';
+import '../../study/widgets/study_screen.dart';
+import '../shell_tabs.dart';
+import 'app_nav_bar.dart';
+import 'me_navigation.dart';
+import 'scan_navigation.dart';
+import 'shell_pager.dart';
+import 'soft_update_banner.dart';
+import 'study_navigation.dart';
+
+class AppShell extends StatefulWidget {
+  const AppShell({
+    super.key,
+    required this.viewModel,
+    required this.askMe,
+    required this.me,
+    required this.study,
+    required this.folders,
+    required this.today,
+    required this.factory,
+    required this.scan,
+    required this.scans,
+    this.pro,
+    required this.feedbackRepository,
+    required this.progressRepository,
+    required this.billingRepository,
+    this.onRemindersWanted,
+    this.opensSetup = false,
+    this.onLoggedOut,
+    this.softUpdate,
+    this.onDismissSoftUpdate,
+  });
+
+  final HomeViewModel viewModel;
+  final AskMeViewModel askMe;
+  final MeViewModel me;
+  final StudyViewModel study;
+  final FoldersViewModel folders;
+  final TodayViewModel today;
+  final StudyFactory factory;
+  final ScanViewModel scan;
+  final ScanFactory scans;
+  final ProViewModel? pro;
+  final FeedbackRepository feedbackRepository;
+  final ProgressRepository progressRepository;
+  final BillingRepository billingRepository;
+  final VoidCallback? onRemindersWanted;
+  final bool opensSetup;
+  final VoidCallback? onLoggedOut;
+  final AppConfig? softUpdate;
+  final VoidCallback? onDismissSoftUpdate;
+
+  @override
+  State<AppShell> createState() => _AppShellState();
+}
+
+class _AppShellState extends State<AppShell>
+    with StudyNavigation, MeNavigation, ScanNavigation {
+  static const _askMeTab = ShellTabs.askMe;
+  static const _studyTab = ShellTabs.study;
+
+  int _tab = 0;
+  int _returnTab = 0;
+  final _ask = TextEditingController();
+  final _askFocus = FocusNode();
+
+  HomeViewModel get _viewModel => widget.viewModel;
+  AskMeViewModel get _askMe => widget.askMe;
+  MeViewModel get _me => widget.me;
+  bool get _isAsking => _tab == _askMeTab;
+
+  @override
+  void initState() {
+    super.initState();
+    _me.logOut.addListener(onLeft);
+    _me.deleteAccount.addListener(onLeft);
+    widget.today.load.execute();
+  }
+
+  @override
+  void dispose() {
+    _me.logOut.removeListener(onLeft);
+    _me.deleteAccount.removeListener(onLeft);
+    _viewModel.dispose();
+    _me.dispose();
+    widget.study.dispose();
+    widget.folders.dispose();
+    widget.today.dispose();
+    widget.scan.dispose();
+    _askMe.dispose();
+    _ask.dispose();
+    _askFocus.dispose();
+    super.dispose();
+  }
+
+  void _select(int index) {
+    if (index == _tab) return;
+    if (index == _askMeTab) _returnTab = _tab;
+    if (_isAsking) _askFocus.unfocus();
+    if (index == ShellTabs.home) widget.today.load.execute();
+    setState(() => _tab = index);
+  }
+
+  void _openSubject(String id) {
+    widget.study.openSubject(id);
+    _select(_studyTab);
+  }
+
+  void _openAskMe() {
+    _select(_askMeTab);
+    _askFocus.requestFocus();
+  }
+
+  void _send() {
+    final text = _ask.text.trim();
+    if (text.isEmpty || _askMe.isThinking) return;
+    _ask.clear();
+    _askMe.send.execute(text);
+  }
+
+  void _attach() {
+    _askFocus.unfocus();
+    AttachSheet.show(
+      context,
+      onPick: (source) => startScan(ScanMode.ask, source: source),
+    );
+  }
+
+  @override
+  void scanNotes(FolderChoice folder) =>
+      startScan(ScanMode.notes, folder: folder);
+
+  @override
+  Future<void> askPebby(
+    ChatMode mode,
+    String text, {
+    ValueChanged<String>? onThread,
+  }) async {
+    Navigator.of(context).popUntil((r) => r.isFirst);
+    _askMe
+      ..newChat()
+      ..setMode(mode);
+    _select(_askMeTab);
+    await _askMe.send.execute(text);
+    final threadId = _askMe.threadId;
+    if (threadId != null) onThread?.call(threadId);
+  }
+
+  @override
+  void openThread(ChatThread thread) {
+    Navigator.of(context).popUntil((r) => r.isFirst);
+    _askMe.open.execute(thread);
+    _select(_askMeTab);
+  }
+
+  void _history() {
+    _askFocus.unfocus();
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => AskMeHistoryScreen(viewModel: _askMe),
+      ),
+    );
+  }
+
+  @override
+  void showMessage(
+    String message, {
+    TopNoticeKind kind = TopNoticeKind.success,
+    double? pose,
+  }) {
+    context.showTopNotice(message, kind: kind, pose: pose);
+  }
+
+  @override
+  void askAbout(String question) {
+    Navigator.of(context).popUntil((r) => r.isFirst);
+    _ask.text = question;
+    _openAskMe();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final softUpdate = widget.softUpdate;
+    return SoftUpdateInset(
+      height: softUpdate == null ? 0 : SoftUpdateBanner.reservedHeight,
+      child: AnnotatedRegion<SystemUiOverlayStyle>(
+        value: context.palette.systemBars,
+        child: PopScope(
+          canPop: _tab == 0,
+          onPopInvokedWithResult: (didPop, _) {
+            if (!didPop) _select(_isAsking ? _returnTab : 0);
+          },
+          child: Scaffold(
+            extendBody: true,
+            resizeToAvoidBottomInset: false,
+            backgroundColor: context.palette.surface,
+            body: SafeArea(
+              bottom: false,
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 600),
+                  child: ShellPager(
+                    tabIndex: _tab,
+                    onTabIndex: _select,
+                    children: [
+                      HomeScreen(
+                        viewModel: _viewModel,
+                        opensSetup: widget.opensSetup,
+                        onAsk: _openAskMe,
+                        today: widget.today,
+                        onOpenTask: studyActions.openTask,
+                        onFlashcards: () => openReview(null),
+                        onSolve: () => startScan(ScanMode.solve),
+                        onCheck: () => startScan(ScanMode.check),
+                        study: widget.study,
+                        onOpenSubject: _openSubject,
+                      ),
+                      ListenableBuilder(
+                        listenable: _viewModel,
+                        builder: (context, _) => AskMeScreen(
+                          viewModel: _askMe,
+                          name:
+                              _viewModel.account?.firstName ??
+                              context.l10n.helloFallbackName,
+                          syllabus: syllabusLabelForProfile(
+                            context.l10n,
+                            _viewModel.profile,
+                          ),
+                          onBack: () => _select(_returnTab),
+                          onHistory: _history,
+                          onShellStep: (delta) {
+                            final to = ShellTabs.step(ShellTabs.askMe, delta);
+                            if (to != null) _select(to);
+                          },
+                        ),
+                      ),
+                      StudyScreen(
+                        viewModel: widget.study,
+                        folders: widget.folders,
+                        actions: studyActions,
+                        onNewFolder: newFolder,
+                      ),
+                      MeScreen(
+                        viewModel: _me,
+                        onClassAndBoard: openClassAndBoard,
+                        onLanguage: openLanguage,
+                        onAppearance: openAppearance,
+                        onNotifications: openNotifications,
+                        onAccount: openAccount,
+                        onHelp: () {
+                          final help = HelpViewModel(
+                            feedback: widget.feedbackRepository,
+                          );
+                          pushMe<void>(
+                            HelpScreen(viewModel: help),
+                          ).whenComplete(help.dispose);
+                        },
+                        onPrivacy: () => pushMe<void>(const PrivacyScreen()),
+                        onProgress: openProgress,
+                        onLogOut: confirmLogOut,
+                        pro: switch (widget.pro) {
+                          final pro? => ProCard(viewModel: pro),
+                          null => null,
+                        },
+                      ),
+                      ScanScreen(
+                        viewModel: widget.scan,
+                        onStart: startScan,
+                        onOpen: openScan,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            bottomNavigationBar: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                if (softUpdate case final config?)
+                  SoftUpdateBanner(
+                    config: config,
+                    onDismiss: widget.onDismissSoftUpdate ?? () {},
+                  ),
+                ListenableBuilder(
+                  listenable: Listenable.merge([_ask, _askMe]),
+                  builder: (context, _) => AppNavBar(
+                    selected: _tab,
+                    onSelect: _select,
+                    isAsking: _isAsking,
+                    askController: _ask,
+                    askFocus: _askFocus,
+                    canSend: _ask.text.trim().isNotEmpty && !_askMe.isThinking,
+                    onSend: _send,
+                    onAttach: _attach,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Subjects and Filters</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700&family=Baloo+2:wght@800&family=Noto+Sans:wght@400;600;700&family=Material+Symbols+Rounded:opsz,wght,FILL@24,500,0..1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F6F7FA;--surface:#FFFFFF;--raised:#EEF0F5;--border:#D8DCE6;--text:#12141A;--muted:#5C6578;
+  --primary:#564CF1;--edge:#12141A;--amber:#F5A800;--ok:#0D9F6E;
+  --lav:#E7E6FF;--amb:#FFE7A3;--mint:#D9F4EA;--pink:#FFE0EC;--sky:#DCEBFF;--cream:#FFF9E8;--rose:#FFE3E0;
+  --page:#E9ECF3;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--page);color:var(--text);font:15px/1.5 "Noto Sans",system-ui,sans-serif;padding:32px 16px 80px}
+main{max-width:1320px;margin:0 auto}
+h1{font:800 40px/1.1 "Baloo 2",sans-serif}
+h2{font:800 28px/1.15 "Baloo 2",sans-serif;margin:56px 0 6px}
+.lead{color:var(--muted);max-width:780px;margin-top:8px}
+.toc{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.toc a{padding:6px 12px;border-radius:99px;border:2px solid var(--edge);background:#fff;color:var(--text);text-decoration:none;font-weight:600;font-size:13px;box-shadow:0 2px 0 var(--edge)}
+.strip{display:flex;gap:26px;flex-wrap:wrap;margin-top:20px;align-items:flex-start}
+figure{width:330px}
+figcaption{margin-top:10px}
+figcaption b{font:700 14px Archivo,sans-serif;display:block}
+figcaption span{color:var(--muted);font-size:13px}
+.badge{display:inline-block;font:700 10px Archivo,sans-serif;letter-spacing:.4px;text-transform:uppercase;padding:2px 8px;border-radius:99px;vertical-align:middle;margin-left:6px}
+.b-now{background:#DDE1EA;color:var(--muted)}
+.b-new{background:var(--amber);color:#12141A}
+.b-pick{background:var(--primary);color:#fff}
+.shot{width:330px;height:740px;border-radius:30px;border:3px solid #C9CEDA;overflow:hidden;background:#fff}
+.shot img{width:100%;display:block}
+.ic{font-family:"Material Symbols Rounded";font-weight:normal;font-style:normal;font-size:20px;line-height:1;display:inline-block;vertical-align:middle;font-variation-settings:"FILL" 1}
+.phone{width:330px;height:740px;border-radius:30px;border:3px solid #C9CEDA;overflow:hidden;background:var(--bg);position:relative;display:flex;flex-direction:column}
+.status{height:34px;display:flex;justify-content:space-between;align-items:center;padding:0 20px;font-size:12.5px;font-weight:600}
+.scr{flex:1;overflow:hidden;padding:6px 18px 0}
+.big{font:800 29px/1.1 "Baloo 2",sans-serif}
+.cap{font-size:12px;color:var(--muted);font-weight:600}
+.muted{color:var(--muted)}
+.row{display:flex;align-items:center;gap:8px}
+.seg{display:flex;background:var(--raised);border-radius:14px;padding:4px;margin:10px 0 12px}
+.seg>span{flex:1;display:flex;justify-content:center;align-items:center;gap:6px;height:36px;border-radius:11px;font-weight:600;font-size:14px;color:var(--text)}
+.seg>span.on{background:#fff;color:var(--primary)}
+.seg>span .ic{font-size:18px}
+.pills{display:flex;flex-wrap:wrap;gap:7px}
+.pills.one{flex-wrap:nowrap;overflow:hidden}
+.pill{display:inline-flex;align-items:center;gap:5px;white-space:nowrap;padding:5px 13px;border-radius:99px;border:2px solid var(--edge);box-shadow:0 2px 0 var(--edge);font-size:13.5px;font-weight:600;background:#fff}
+.pill.on{background:var(--amber)}
+.pill.ghost{border-style:dashed;box-shadow:none;background:var(--raised);color:var(--muted)}
+.pill .ic{font-size:17px}
+.pill.icon{margin-left:auto;padding:5px 9px}
+.ic.o{font-variation-settings:"FILL" 0}
+.pill .n{background:var(--primary);color:#fff;border-radius:99px;font-size:10.5px;padding:0 6px;font-weight:700}
+.x{display:inline-flex;align-items:center;gap:3px;white-space:nowrap;padding:3px 10px;border-radius:99px;background:var(--lav);font-size:12px;font-weight:600;color:var(--text)}
+.x .ic{font-size:15px}
+.cont{background:var(--primary);color:#fff;border:2.5px solid var(--edge);border-radius:16px;box-shadow:0 4px 0 var(--edge);height:84px;display:flex;align-items:center;padding:0 14px;gap:10px;margin:14px 0}
+.cont .k{font-size:12px;font-weight:600}
+.cont .t{font:800 20px/1.1 "Baloo 2",sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cont .s{font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cont .play{width:40px;height:40px;background:#fff;color:var(--primary);border-radius:12px;display:grid;place-items:center;flex:none}
+.ch{display:flex;align-items:center;gap:12px;padding:9px 0}
+.ch .num{width:40px;height:40px;border-radius:12px;background:var(--raised);display:grid;place-items:center;font:800 17px "Baloo 2";flex:none}
+.ch .t{font-weight:600;font-size:14.5px;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ch .s{font-size:12px;color:var(--muted)}
+.ch.soon .t,.ch.soon .num{color:var(--muted)}
+.ring{--p:0;width:28px;height:28px;border-radius:50%;flex:none;background:conic-gradient(var(--ok) calc(var(--p)*1%),var(--raised) 0);display:grid;place-items:center}
+.ring::after{content:"";width:20px;height:20px;border-radius:50%;background:var(--bg)}
+.card .ring::after{background:#fff}
+.nav{display:flex;gap:10px;margin:0 12px 14px;align-items:center}
+.nav .pillnav{flex:1;height:60px;border:2.5px solid var(--edge);border-radius:22px;background:#fff;display:flex;justify-content:space-around;align-items:center;font-size:11px;font-weight:600;box-shadow:0 3px 0 var(--edge)}
+.nav .pillnav div{display:flex;flex-direction:column;align-items:center;color:var(--muted)}
+.nav .pillnav div.on{color:var(--primary)}
+.nav .cam{width:60px;height:60px;border-radius:20px;background:var(--primary);border:2.5px solid var(--edge);box-shadow:0 3px 0 var(--edge);color:#fff;display:grid;place-items:center}
+.greet{font:800 29px/1.1 "Baloo 2",sans-serif}
+.chip{white-space:nowrap;display:inline-flex;align-items:center;gap:3px;padding:1px 8px;border-radius:99px;font-size:12px;font-weight:700;border:2px solid var(--edge);background:var(--amber)}
+.ask{height:48px;border:2.5px solid var(--edge);border-radius:16px;box-shadow:0 3px 0 var(--edge);background:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 12px;color:var(--muted);font-size:14px;margin:12px 0}
+.ask .mic{width:30px;height:30px;border-radius:9px;background:var(--raised);display:grid;place-items:center;color:var(--text)}
+.qa{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.qa div{background:var(--raised);border-radius:14px;height:66px;display:flex;flex-direction:column;justify-content:center;align-items:center;font-size:12px;font-weight:600;text-align:center;line-height:1.2}
+.today{background:var(--cream);border:2.5px solid var(--edge);border-radius:18px;box-shadow:0 3px 0 var(--edge);padding:10px 12px;margin-top:12px}
+.today .h{display:flex;justify-content:space-between;align-items:baseline}
+.today .h b{font:800 18px "Baloo 2"}
+.task{display:flex;align-items:center;gap:10px;padding:5px 0;font-size:13.5px;font-weight:600}
+.task .bx{width:26px;height:26px;border-radius:8px;border:2px solid var(--edge);display:grid;place-items:center;flex:none}
+.task small{display:block;font-weight:400;color:var(--muted);font-size:11.5px}
+.sect{display:flex;justify-content:space-between;align-items:baseline;margin:14px 0 8px}
+.sect b{font:700 16px Archivo,sans-serif}
+.sect a{color:var(--primary);font-weight:600;font-size:13px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.tile{border-radius:16px;padding:10px 12px;height:62px;display:flex;flex-direction:column;justify-content:center;font-weight:600;font-size:14px}
+.tile.tap{height:74px;border:2px solid var(--edge);box-shadow:0 3px 0 var(--edge);justify-content:space-between;padding:9px 11px}
+.tile .nm{display:flex;align-items:center;gap:6px}
+.tile .nm .ic{font-size:18px}
+.bar{height:5px;border-radius:5px;background:rgba(18,20,26,.12);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ok)}
+.tile .m{font-size:11px;color:var(--muted);font-weight:400;margin-top:2px}
+.srow{display:flex;align-items:center;gap:11px;padding:8px 0;border-bottom:1px solid var(--border)}
+.srow:last-child{border:none}
+.srow .sq{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;flex:none}
+.srow .t{font-weight:600;font-size:14.5px}
+.srow .s{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card{background:#fff;border:2px solid var(--border);border-radius:18px;padding:4px 12px}
+.dim{position:absolute;inset:0;background:rgba(18,20,26,.32)}
+.sheet{position:absolute;left:0;right:0;bottom:0;background:#fff;border-top-left-radius:28px;border-top-right-radius:28px;padding:10px 18px 22px}
+.handle{width:40px;height:4px;border-radius:4px;background:var(--border);margin:0 auto 12px}
+.sh{display:flex;justify-content:space-between;align-items:center}
+.sh .l{font-size:12px;font-weight:700;letter-spacing:.5px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.sh a{color:var(--primary);font-weight:700;font-size:14px}
+.q{font:800 23px/1.15 "Baloo 2",sans-serif;margin:10px 0 4px}
+.btn{height:52px;border-radius:14px;border:2.5px solid var(--edge);box-shadow:0 4px 0 var(--edge);background:var(--primary);color:#fff;display:flex;justify-content:center;align-items:center;gap:6px;font:700 16px Archivo,sans-serif;margin-top:14px}
+.btn.ghost{background:#fff;color:var(--text)}
+.lbl{font-size:12px;font-weight:700;letter-spacing:.5px;color:var(--muted);text-transform:uppercase;margin:12px 0 6px}
+.cards{display:flex;gap:12px;overflow:hidden;margin-top:10px}
+.bigcard{flex:none;width:160px;height:176px;border:2.5px solid var(--edge);border-radius:20px;box-shadow:0 4px 0 var(--edge);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:10px}
+.bigcard .ic{font-size:38px}
+.bigcard b{font:800 19px/1.1 "Baloo 2";margin-top:6px}
+.bigcard span{font-size:11.5px;color:var(--muted);margin-top:2px}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:10px}
+.dots i{width:8px;height:8px;border-radius:8px;background:var(--border)}
+.dots i.on{width:22px;background:var(--primary)}
+.seg2{display:flex;background:var(--raised);border-radius:12px;padding:3px;gap:3px}
+.seg2 span{flex:1;text-align:center;white-space:nowrap;padding:6px 0;border-radius:9px;font-size:12px;font-weight:600;color:var(--muted)}
+.seg2 span.on{background:#fff;color:var(--text);border:2px solid var(--edge);box-shadow:0 2px 0 var(--edge)}
+.tog{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-weight:600}
+.tog small{display:block;font-weight:400;color:var(--muted);font-size:11.5px}
+.sw{width:42px;height:24px;border-radius:24px;background:var(--border);position:relative;flex:none}
+.sw::after{content:"";position:absolute;left:3px;top:3px;width:18px;height:18px;border-radius:50%;background:#fff}
+.sw.on{background:var(--primary)}
+.sw.on::after{left:21px}
+.folder{display:flex;align-items:center;gap:12px;padding:10px 12px;border:2px solid var(--border);border-radius:16px;background:#fff;margin-bottom:10px}
+.folder .fi{width:44px;height:44px;border-radius:12px;background:var(--lav);color:var(--primary);display:grid;place-items:center;flex:none}
+.folder .fi .ic{font-size:24px}
+.folder b{font-size:15px}
+.due{font-size:11px;font-weight:700;padding:2px 8px;border-radius:99px;background:var(--amb);color:#8A6100}
+.top{display:flex;align-items:center;gap:10px;height:44px;font-weight:600;font-size:15px}
+.set{background:#fff;border:2px solid var(--border);border-radius:16px}
+.set>div{display:flex;align-items:center;gap:12px;padding:12px}
+.set>div+div{border-top:1px solid var(--border)}
+.set small{display:block;color:var(--muted);font-size:12px;font-weight:400}
+.note{background:#fff;border:2px solid var(--border);border-radius:16px;padding:14px 16px}
+.note ul{margin:6px 0 0 18px}
+.note li{margin:3px 0}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-top:18px}
+.cols h3{font:700 16px Archivo,sans-serif}
+</style>
+</head>
+<body>
+<main>
+<h1>Subjects and filters</h1>
+<p class="lead">These designs build on the app as it is today. Each section starts with a real Pixel 10 screenshot (grey frame, <span class="badge b-now">Today</span>), followed by proposals (<span class="badge b-new">New</span>) made from the same pieces: the Courses / Folders toggle, the amber pills, the purple Continue keycap, the chapter rows with green progress rings, and the setup sheet.</p>
+<div class="toc"><a href="#home">1 · Home subjects</a><a href="#setup">2 · Pick subjects in setup</a><a href="#courses">3 · Study → Courses + filters</a><a href="#folders">4 · Study → Folders</a><a href="#me">5 · Change later</a><a href="#build">6 · What gets built</a></div>
+
+<section id="home"><h2>1 · Home subjects</h2>
+<p class="lead">Today the tiles are plain labels for every subject on the board. In both proposals Home shows only the student's subjects, each one opens Study → Courses with that subject selected, and there's an <b>Edit</b> link. A keeps the current tinted tiles and adds progress. C turns them into rows with the next lesson.</p>
+<div class="strip" id="home-strip"></div></section>
+
+<section id="setup"><h2>2 · Pick subjects in setup</h2>
+<p class="lead">A fifth step in the existing setup sheet, in the same style (SET UP · n/5, +25 XP, Later, a big question and a primary button). Class 6–10 comes with everything selected. Class 11–12 first picks a stream on swipe cards, just like the language step.</p>
+<div class="strip" id="setup-strip"></div></section>
+
+<section id="courses"><h2>3 · Study → Courses, with filters</h2>
+<p class="lead">Same page as today, with three changes. The subject pills show only the student's subjects, so they fit in one row. The All / In progress / Done row gets a <b>Filters</b> key (the tune icon) at the end, which opens a sheet. Active filters show as removable chips above the list.</p>
+<div class="strip" id="courses-strip"></div></section>
+
+<section id="folders"><h2>4 · Study → Folders</h2>
+<p class="lead">The Folders tab stays as it is. Adding chapters to a folder now offers only the student's subjects, and the same Filters pill works there too.</p>
+<div class="strip" id="folders-strip"></div></section>
+
+<section id="me"><h2>5 · Change later</h2>
+<p class="lead">Me → Class and board gets Stream and Subjects rows. They open the same picker as setup, as a sheet.</p>
+<div class="strip" id="me-strip"></div></section>
+
+<section id="build"><h2>6 · What gets built</h2>
+<div class="cols">
+<div class="note"><h3>Server</h3><ul>
+<li>A <code>subjects</code> list on the profile (migration 0023). <code>PATCH /me/profile</code> checks each code against the class and board.</li>
+<li><code>GET /catalog/streams</code> returns the Class 11–12 streams with their main and optional subjects.</li>
+<li>The catalogue adds per-subject counts, lesson minutes and whether each chapter has revision due, which the filters need. The change is additive only.</li>
+</ul></div>
+<div class="note"><h3>App</h3><ul>
+<li>A fifth setup step and a Subjects row in Me → Class and board.</li>
+<li>Home subjects: either A (tiles with progress) or C (rows), both tappable.</li>
+<li>Courses: pills for the student's subjects only, a Filters pill and sheet (board exam only, ready to study, revision due, sort by marks or recent), and active-filter chips.</li>
+<li>Add chapters uses the same subject list. Students with no picks saved see every subject plus a one-time "Pick your subjects" card.</li>
+</ul></div>
+</div></section>
+</main>
+<script>
+const I=n=>`<span class="ic">${n}</span>`;
+const icon={maths:'calculate',science:'science','social-science':'public',english:'menu_book',hindi:'translate',sanskrit:'history_edu',computer:'computer'};
+const nm={maths:'Maths',science:'Science','social-science':'Social Science',english:'English',hindi:'Hindi',sanskrit:'Sanskrit',computer:'Computer Applications'};
+const tint={maths:'lav',science:'amb','social-science':'mint',english:'pink',hindi:'sky',sanskrit:'lav',computer:'amb'};
+const shot=src=>`<div class="shot"><img src="subjects/${src}"></div>`;
+const fig=(t,s,h,b='b-new',bl='New')=>`<figure>${h}<figcaption><b>${t}<span class="badge ${b}">${bl}</span></b><span>${s}</span></figcaption></figure>`;
+const nav=tab=>`<div class="nav"><div class="pillnav">${[['home','Home'],['forum','ASKMe'],['auto_stories','Study'],['person','Me']].map(([i,l])=>`<div class="${l===tab?'on':''}">${I(i)}${l}</div>`).join('')}</div><div class="cam">${I('photo_camera')}</div></div>`;
+const phone=(inner,tab,overlay='')=>`<div class="phone"><div class="status"><span>10:44</span><span>${I('signal_cellular_alt')}${I('wifi')}${I('battery_full')}</span></div><div class="scr">${inner}</div>${tab?nav(tab):''}${overlay}</div>`;
+const pill=(l,on,ic,ghost)=>`<span class="pill ${on?'on':''} ${ghost?'ghost':''}">${ic?I(ic):''}${l}</span>`;
+const ring=p=>`<div class="ring" style="--p:${p}"></div>`;
+const ch=(n,t,s,right)=>`<div class="ch ${right==='soon'?'soon':''}"><div class="num">${n}</div><div style="flex:1;min-width:0"><div class="t">${t}</div><div class="s">${s}</div></div>${right==='soon'?`<span class="ic o muted">schedule</span>`:typeof right==='number'?ring(right):right}</div>`;
+const homeTop=`<div class="row" style="justify-content:space-between;margin-top:6px"><div><div class="greet">Hi, Asha!</div><div class="cap">Class 10 · CBSE</div></div><div class="row"><span class="muted" style="font-size:13px;font-weight:700">${I('local_fire_department')} 0</span><span class="chip">${I('bolt')} 100 XP</span></div></div>
+<div class="ask">Ask anything…<span class="mic">${I('mic')}</span></div>
+<div class="qa"><div>${I('photo_camera')}Solve<br>homework</div><div>${I('fact_check')}Check my<br>answer</div><div>${I('style')}Flashcards</div></div>
+<div class="today"><div class="h"><b>Today · 6 min</b><span class="cap">from 1 folder</span></div><div class="task"><span class="bx" style="background:var(--lav)">${I('menu_book')}</span><div style="flex:1">Mirror formula<small>Maths unit test</small></div><span class="cap">6 min</span></div></div>`;
+const picks=['maths','science','social-science','english','hindi'];
+const prog={maths:[3,6,48],science:[5,9,52],'social-science':[0,0,66],english:[0,0,34],hindi:[0,0,40]};
+const next={maths:'Ch 3 · Solving by substitution',science:'Ch 9 · Mirror formula','social-science':'Lessons coming soon',english:'Lessons coming soon',hindi:'Lessons coming soon'};
+
+const tilesA=phone(`${homeTop}<div class="sect"><b>Your subjects</b><a>Edit</a></div><div class="grid">${picks.map(c=>{const [d,r,t]=prog[c];return `<div class="tile tap" style="background:var(--${tint[c]})"><div class="nm">${I(icon[c])}${nm[c]}</div><div><div class="bar"><i style="width:${r?Math.max(d/r*100,4):0}%"></i></div><div class="m">${r?`${d} of ${r} lessons`:`Soon · ${t} planned`}</div></div></div>`}).join('')}</div>`,'Home');
+const rowsC=phone(`${homeTop}<div class="sect"><b>Your subjects</b><a>Edit</a></div><div class="card">${picks.map(c=>{const [d,r]=prog[c];return `<div class="srow"><div class="sq" style="background:var(--${tint[c]})">${I(icon[c])}</div><div style="flex:1;min-width:0"><div class="t">${nm[c]}</div><div class="s">${r?'Next: '+next[c]:next[c]}</div></div>${r?ring(Math.round(d/r*100)):`<span class="ic o muted">schedule</span>`}</div>`}).join('')}</div>`,'Home');
+document.getElementById('home-strip').innerHTML=
+ fig('Home today','Seven tinted labels, one per board subject; they can’t be tapped.',shot('today-home.png'),'b-now','Today')+
+ fig('A · Same tiles, now useful','Only the picked subjects, with an icon, keycap edge, progress bar and "3 of 6 lessons"; tap to open.',tilesA)+
+ fig('C · Subject rows','One row each with the next lesson and the same green ring as the chapter rows; tap to open that subject.',rowsC,'b-pick','My pick');
+
+const sheetTop=(n,cta,body)=>`<div class="dim"></div><div class="sheet"><div class="handle"></div><div class="sh"><span class="l">SET UP · ${n}/5 <span class="chip" style="font-size:11px">+25 XP</span></span><a>Later</a></div>${body}<div class="btn">${cta}</div></div>`;
+const setupHome=`<div class="row" style="justify-content:space-between;margin-top:6px"><div class="greet">Hi, Asha!</div><span class="chip">${I('bolt')} 75 XP</span></div><div class="ask">Ask anything…<span class="mic">${I('mic')}</span></div>`;
+const step10=phone(setupHome,'',sheetTop(5,'Finish setup',`<div class="q">Which subjects do you study?</div><div class="cap" style="font-weight:400">Class 10 · CBSE. Tap to remove any you don’t take.</div>
+<div class="pills" style="margin-top:14px">${pill('English',false,'lock',true)}${['maths','science','social-science','hindi'].map(c=>pill(nm[c],true,icon[c])).join('')}${pill('Sanskrit',false,'history_edu')}${pill('Computer Applications',false,'computer')}</div>
+<div class="cap" style="font-weight:400;margin-top:12px">You can change this any time in Me.</div>`));
+const stream=phone(setupHome,'',sheetTop(5,'Choose Science · PCM',`<div class="q">What do you study in Class 11?</div>
+<div class="cards">${[['bolt','Science · PCM','Physics, Chemistry, Maths','lav'],['eco','Science · PCB','Physics, Chemistry, Biology','mint'],['receipt_long','Commerce','Accounts, Business, Economics','amb']].map(([i,t,s,c])=>`<div class="bigcard" style="background:var(--${c})">${I(i)}<b>${t}</b><span>${s}</span></div>`).join('')}</div>
+<div class="dots"><i class="on"></i><i></i><i></i><i></i></div><div class="cap" style="font-weight:400;text-align:center;margin-top:8px">Swipe for Humanities. Change it any time in Me.</div>`));
+const opt=phone(setupHome,'',sheetTop(5,'Finish setup',`<div class="q">Anything else?</div><div class="cap" style="font-weight:400">Science · PCM. Your main subjects are in.</div>
+<div class="lbl">Main</div><div class="pills">${pill('English',false,'lock',true)}${pill('Physics',true,'bolt')}${pill('Chemistry',true,'experiment')}${pill('Maths',true,'calculate')}</div>
+<div class="lbl">Optional</div><div class="pills">${pill('Computer Science',true,'terminal')}${pill('Physical Education',false,'sports_soccer')}${pill('Psychology',false,'psychology')}${pill('Economics',false,'trending_up')}</div>`));
+document.getElementById('setup-strip').innerHTML=
+ fig('Setup today','Four steps: language, age, class and board. This is step 1.',shot('today-setup.png'),'b-now','Today')+
+ fig('Step 5 · Class 6–10','Same sheet and pills. English is locked, the usual subjects are on, and one tap finishes.',step10)+
+ fig('Step 5 · Class 11–12 stream','Swipe cards like the language step; picking one fills in the main subjects.',stream)+
+ fig('Step 5 · Optional subjects','The main subjects are already on; add the optional ones and finish.',opt);
+
+const studyHead=(tab='Courses')=>`<div class="big" style="margin-top:6px">Study</div><div class="seg"><span class="${tab==='Courses'?'on':''}">${I('menu_book')}Courses</span><span class="${tab==='Folders'?'on':''}">${I('folder')}Folders</span></div>`;
+const subjPills=sel=>`<div class="cap">Class 10 · CBSE</div><div class="pills one" style="margin-top:8px">${picks.map(c=>pill(nm[c],c===sel)).join('')}</div>`;
+const statusRow=(sel,n)=>`<div class="pills one">${['All','In progress','Done'].map(l=>pill(l,l===sel)).join('')}<span class="pill icon">${I('tune')}${n?`<span class="n">${n}</span>`:''}</span></div>`;
+const cont=(k,t,s)=>`<div class="cont"><div style="flex:1;min-width:0"><div class="k">${k}</div><div class="t">${t}</div><div class="s">${s}</div></div><div class="play">${I('play_arrow')}</div></div>`;
+const sciCont=cont('Continue · card 4 of 9','Mirror formula','Ch 9 · Light – Reflection and Refraction');
+const courses=phone(`${studyHead()}${subjPills('science')}${sciCont}${statusRow('All')}<div style="margin-top:6px">${ch(1,'Chemical Reactions and Equations','1 of 3 lessons · 2 coming soon',33)+ch(2,'Acids, Bases and Salts','Coming soon · 4 lessons','soon')+ch(3,'Metals and Non-metals','Coming soon · 4 lessons','soon')+ch(9,'Light – Reflection and Refraction','1 of 2 lessons · 2 coming soon',50)}</div>`,'Study');
+const filterSheet=phone(`${studyHead()}${subjPills('science')}`,'Study',`<div class="dim"></div><div class="sheet"><div class="handle"></div><div class="sh"><span class="q" style="margin:0">Filters</span><a>Clear</a></div>
+<div class="tog"><div>Board exam only<small>Hide school-assessed chapters</small></div><span class="sw on"></span></div>
+<div class="tog"><div>Ready to study<small>Hide chapters still coming soon</small></div><span class="sw on"></span></div>
+<div class="tog"><div>Revision due<small>Chapters with kept cards to revise</small></div><span class="sw"></span></div>
+<div class="lbl">Sort</div><div class="seg2"><span class="on">Textbook</span><span>Most marks</span><span>Recent</span></div>
+<div class="btn">Show 4 chapters</div></div>`);
+const filtered=phone(`${studyHead()}${subjPills('science')}${sciCont}${statusRow('All',2)}
+<div class="row" style="margin:10px 0 2px;gap:6px"><span class="x">Board exam ${I('close')}</span><span class="x">Ready ${I('close')}</span><span class="cap" style="margin-left:auto">4 chapters</span></div>
+${ch(1,'Chemical Reactions and Equations','1 of 3 lessons · 2 coming soon',33)+ch(9,'Light – Reflection and Refraction','1 of 2 lessons · 2 coming soon',50)+ch(10,'The Human Eye','2 of 3 lessons',66)+ch(12,'Electricity','0 of 4 lessons',0)}`,'Study');
+const fromHome=phone(`${studyHead()}${subjPills('maths')}${cont('Continue · card 2 of 10','Solving by substitution','Ch 3 · Pair of Linear Equations')}${statusRow('All')}<div style="margin-top:6px">${ch(1,'Real Numbers','Lessons done · test next',100)+ch(2,'Polynomials','Coming soon · 3 lessons','soon')+ch(3,'Pair of Linear Equations in Two Variables','0 of 1 lessons · 3 coming soon',10)+ch(4,'Quadratic Equations','Coming soon · 4 lessons','soon')}</div>`,'Study');
+document.getElementById('courses-strip').innerHTML=
+ fig('Courses today','The subject pills wrap to three rows, then Continue (when there is one), All / In progress / Done and the chapters.',shot('today-study.png'),'b-now','Today')+
+ fig('Courses · your subjects','One row of pills for the picked subjects, then Continue, the status pills and a new Filters key on the right.',courses)+
+ fig('Filters sheet','Board exam only, Ready to study and Revision due as switches, plus a Sort option. The button shows the live count.',filterSheet)+
+ fig('Filtered','Active filters appear as chips you can clear, the Filters key shows the count, and the list shrinks.',filtered)+
+ fig('Opened from Home','Tapping Maths on Home lands here with Maths already selected.',fromHome);
+
+const box=on=>`<span class="ic" style="color:${on?'var(--primary)':'var(--muted)'}">${on?'check_box':'check_box_outline_blank'}</span>`;
+const foldersTab=phone(`${studyHead('Folders')}<div class="folder"><div class="fi">${I('folder')}</div><div style="flex:1"><b>Maths unit test</b><div class="cap" style="font-weight:400">Fri 2 Oct · 3 chapters</div></div><span class="due">7 days</span></div><div class="folder"><div class="fi">${I('folder')}</div><div style="flex:1"><b>Board exams</b><div class="cap" style="font-weight:400">Maths · Science</div></div></div><div class="btn ghost" style="height:48px">${I('create_new_folder')} New folder</div>`,'Study');
+const addCh=phone(`<div class="top">${I('chevron_left')}Add chapters</div><div class="pills one">${picks.slice(0,4).map(c=>pill(nm[c],c==='maths')).join('')}</div><div class="pills one" style="margin-top:8px">${pill('All',true)}${pill('In progress',false)}${pill('Done',false)}<span class="pill icon">${I('tune')}</span></div><div style="margin-top:6px">${ch(1,'Real Numbers','2 lessons',box(true))+ch(3,'Pair of Linear Equations','1 lesson',box(true))+ch(5,'Arithmetic Progressions','3 lessons',box(false))}</div><div class="btn" style="margin-top:20px">Add 2 chapters</div>`,'');
+document.getElementById('folders-strip').innerHTML=
+ fig('Folder today','An empty folder with Add chapters, Write a note and Scan notes.',shot('today-folder.png'),'b-now','Today')+
+ fig('Folders tab','Unchanged: the same toggle and folder rows with due tags.',foldersTab)+
+ fig('Add chapters','Only the picked subjects, with the same status pills and Filters.',addCh);
+
+const meRows=phone(`<div class="top">${I('chevron_left')}Class and board</div><div class="set">${[['school','Class','10'],['account_balance','Board','CBSE'],['library_books','Subjects','5 · Maths, Science, Social Science…']].map(([i,t,s])=>`<div>${I(i)}<div style="flex:1;font-weight:600">${t}<small>${s}</small></div>${I('chevron_right')}</div>`).join('')}</div><div class="cap" style="font-weight:400;margin-top:10px">Class 11–12 also shows a Stream row.</div>`,'Me');
+const meSheet=phone(`<div class="top">${I('chevron_left')}Class and board</div>`,'Me',`<div class="dim"></div><div class="sheet"><div class="handle"></div><div class="q" style="margin-top:0">Your subjects</div><div class="cap" style="font-weight:400">Class 10 · CBSE</div>
+<div class="pills" style="margin-top:12px">${pill('English',false,'lock',true)}${['maths','science','social-science','hindi'].map(c=>pill(nm[c],true,icon[c])).join('')}${pill('Sanskrit',true,'history_edu')}${pill('Computer Applications',false,'computer')}</div><div class="btn">Save</div></div>`);
+document.getElementById('me-strip').innerHTML=
+ fig('Me → Class and board','A new Subjects row under Class and Board, plus Stream for Class 11–12.',meRows)+
+ fig('Edit subjects','The same pills as setup; Save updates Home and Study straight away.',meSheet);
+</script>
+</body>
+</html>

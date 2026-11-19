@@ -1,0 +1,19 @@
+Subject: ACADEMe feedback (feature)
+
+New in-app feedback
+
+A signed-in student sent this from Help and feedback in the app.
+
+Ticket t1
+From s@ex.com
+Category Suggest a feature
+
+Dark mode
+
+Reply to student: mailto:s@ex.com?subject=Re%3A+your+ACADEMe+feedback
+
+--
+You're getting this email because a student sent feedback from the ACADEMe app.
+Questions? Write to support@academe.cc
+
+ACADEMe · https://api.academe.cc

@@ -1,0 +1,6 @@
+{{define "content"}}{{template "heading" .Heading}}
+{{template "text" .Lead}}
+<p class="muted" style="margin:0 0 24px;font-size:16px;line-height:24px;color:#5C6578;">{{.Before}}<strong class="ink" style="color:#12141A;">{{.Emphasis}}</strong>{{.After}}</p>
+{{template "button" .Button}}
+<p class="muted" style="margin:32px 0 0;font-size:14px;line-height:22px;color:#5C6578;">{{.Ignore}}</p>
+{{end}}

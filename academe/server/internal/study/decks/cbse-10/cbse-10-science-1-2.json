@@ -1,0 +1,124 @@
+{
+  "id": "cbse-10-science-1-2",
+  "board": "CBSE",
+  "class": 10,
+  "subject": "science",
+  "chapterNumber": 1,
+  "chapterTitle": "Chemical Reactions and Equations",
+  "position": 2,
+  "title": "Types of reactions",
+  "language": "en",
+  "cards": [
+    {
+      "kind": "start",
+      "goals": [
+        "Identify combination reactions",
+        "Classify decomposition reactions as thermal, electrolytic, or photolytic",
+        "Recognise displacement, double displacement, and precipitation reactions",
+        "Distinguish exothermic and endothermic reactions"
+      ],
+      "minutes": 8
+    },
+    {
+      "kind": "concept",
+      "title": "Combination Reaction",
+      "body": "In a combination reaction, two or more reactants join to form a single product.\n\nFor example, calcium oxide reacts with water to form calcium hydroxide: CaO + H₂O → Ca(OH)₂."
+    },
+    {
+      "kind": "concept",
+      "title": "Decomposition Reaction",
+      "body": "A decomposition reaction is the opposite. One reactant breaks into two or more simpler products.\n\nThermal decomposition uses heat. Electrolytic decomposition uses electricity. Photolytic decomposition uses light."
+    },
+    {
+      "kind": "table",
+      "title": "Types of Decomposition",
+      "remember": "Decomposition reactions need an external energy source to break the bonds.",
+      "rows": [
+        {
+          "term": "Thermal",
+          "value": "Requires heat, like CaCO₃ → CaO + CO₂"
+        },
+        {
+          "term": "Electrolytic",
+          "value": "Uses electricity, like 2H₂O → 2H₂ + O₂"
+        },
+        {
+          "term": "Photolytic",
+          "value": "Uses light, like 2AgCl → 2Ag + Cl₂"
+        }
+      ]
+    },
+    {
+      "kind": "quiz",
+      "question": "Which reaction is a photolytic decomposition?",
+      "options": [
+        "2H₂O → 2H₂ + O₂",
+        "CaCO₃ → CaO + CO₂",
+        "2AgCl → 2Ag + Cl₂ (in sunlight)",
+        "Zn + CuSO₄ → ZnSO₄ + Cu"
+      ],
+      "answer": 2,
+      "why": "Photolytic decomposition is caused by light. Silver chloride breaks down into silver and chlorine when exposed to sunlight. The other options are thermal and electrolytic decompositions and a displacement reaction."
+    },
+    {
+      "kind": "concept",
+      "title": "Displacement and Double Displacement Reactions",
+      "body": "In a displacement reaction, a more reactive element replaces a less reactive element in a compound.\n\nIn a double displacement reaction, the ions of two compounds exchange places. If a solid forms, it is a precipitation reaction."
+    },
+    {
+      "kind": "example",
+      "steps": [
+        "A student mixes aqueous solutions of lead nitrate and potassium iodide.",
+        "The balanced equation is Pb(NO₃)₂ + 2KI → PbI₂ + 2KNO₃.",
+        "Lead iodide is a yellow solid that precipitates out of the solution.",
+        "This is a double displacement reaction because the ions exchange partners, and it is also a precipitation reaction because a solid forms."
+      ],
+      "question": "What happens when aqueous lead nitrate and potassium iodide are mixed?"
+    },
+    {
+      "kind": "quiz",
+      "question": "What type of reaction is Zn + CuSO₄ → ZnSO₄ + Cu?",
+      "options": [
+        "Double displacement",
+        "Precipitation",
+        "Combination",
+        "Displacement"
+      ],
+      "answer": 3,
+      "why": "Zinc displaces copper from copper sulphate because zinc is more reactive than copper. This is a single displacement reaction."
+    },
+    {
+      "kind": "concept",
+      "title": "Exothermic and Endothermic Reactions",
+      "body": "An exothermic reaction releases heat into the surroundings.\n\nAn endothermic reaction absorbs heat from the surroundings to proceed, making the surroundings feel cold."
+    },
+    {
+      "kind": "quiz",
+      "question": "Which reaction is endothermic?",
+      "options": [
+        "Rusting of iron",
+        "Burning of coal",
+        "Neutralisation of acid with base",
+        "Decomposition of calcium carbonate"
+      ],
+      "answer": 3,
+      "why": "Endothermic reactions absorb heat. Calcium carbonate breaks down only while it keeps absorbing heat, so its decomposition is endothermic. Rusting, burning coal and neutralisation all release heat, so they are exothermic."
+    },
+    {
+      "kind": "summary",
+      "points": [
+        "Combination reactions form one product from two or more reactants.",
+        "Decomposition reactions break one reactant into two or more products using heat, electricity, or light.",
+        "Displacement reactions involve a more reactive element replacing a less reactive one.",
+        "Double displacement reactions involve ion exchange and often result in a precipitate.",
+        "Exothermic reactions release heat, while endothermic reactions absorb heat."
+      ]
+    }
+  ],
+  "status": "approved",
+  "generatedBy": {
+    "model": "sarvam-105b",
+    "promptVersion": "lessons-v2",
+    "checkedAt": "2026-09-25T15:30:32Z"
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "id": "cbse-10-science-1-3",
+  "board": "CBSE",
+  "class": 10,
+  "subject": "science",
+  "chapterNumber": 1,
+  "chapterTitle": "Chemical Reactions and Equations",
+  "position": 3,
+  "title": "Oxidation and reduction",
+  "language": "en",
+  "cards": [
+    {
+      "kind": "start",
+      "goals": [
+        "Define oxidation and reduction using oxygen and hydrogen",
+        "Identify redox reactions",
+        "Explain corrosion and rancidity in daily life"
+      ],
+      "minutes": 7
+    },
+    {
+      "kind": "concept",
+      "title": "Oxidation and Reduction",
+      "body": "In chemistry, **oxidation** means gaining oxygen or losing hydrogen. **Reduction** means losing oxygen or gaining hydrogen. These two processes always happen together in a **redox reaction**.",
+      "remember": "Focus on oxygen and hydrogen to keep the definition simple."
+    },
+    {
+      "kind": "table",
+      "title": "Oxidation and Reduction",
+      "remember": "You cannot have oxidation without reduction in a single chemical equation.",
+      "rows": [
+        {
+          "term": "Oxidation",
+          "value": "Gain of oxygen or loss of hydrogen"
+        },
+        {
+          "term": "Reduction",
+          "value": "Loss of oxygen or gain of hydrogen"
+        },
+        {
+          "term": "Redox Reaction",
+          "value": "A reaction where oxidation and reduction occur simultaneously"
+        }
+      ]
+    },
+    {
+      "kind": "quiz",
+      "question": "In the reaction 2H₂ + O₂ → 2H₂O, which substance is oxidised and which is reduced?",
+      "options": [
+        "Both are oxidised",
+        "Neither is oxidised",
+        "Hydrogen is oxidised and oxygen is reduced",
+        "Oxygen is oxidised and hydrogen is reduced"
+      ],
+      "answer": 2,
+      "why": "Hydrogen gains oxygen to form water, so it is oxidised. Oxygen gains hydrogen to form water, so it is reduced."
+    },
+    {
+      "kind": "concept",
+      "title": "Corrosion",
+      "body": "Corrosion is the gradual destruction of metals by slow chemical reactions with oxygen. It is a type of oxidation. Rusting is the common example of iron corrosion, where iron reacts with oxygen and water.",
+      "remember": "Keeping iron dry and applying paint prevents rust."
+    },
+    {
+      "kind": "example",
+      "steps": [
+        "Identify the reactants: Iron (Fe), Oxygen (O₂), and Water (H₂O).",
+        "Write the skeletal equation: Fe + O₂ + H₂O → Fe₂O₃·xH₂O.",
+        "Balance the iron atoms: 4Fe + 3O₂ + 2xH₂O → 2Fe₂O₃·xH₂O.",
+        "Balance the remaining oxygen and hydrogen atoms to get the final balanced equation 4Fe + 3O₂ + 2xH₂O → 2Fe₂O₃·xH₂O."
+      ],
+      "question": "Write the balanced chemical equation for the rusting of iron."
+    },
+    {
+      "kind": "concept",
+      "title": "Rancidity",
+      "body": "Rancidity is the oxidation of fats and oils in food. It makes the food smell and taste bad. To prevent rancidity, we add antioxidants like BHT, or store food in airtight containers.",
+      "remember": "Storing potato chips in a sealed packet keeps them fresh."
+    },
+    {
+      "kind": "quiz",
+      "question": "Why do we add antioxidants to food items like chips and biscuits?",
+      "options": [
+        "To improve the colour",
+        "To prevent corrosion",
+        "To increase the shelf life",
+        "To prevent rancidity"
+      ],
+      "answer": 3,
+      "why": "Antioxidants prevent the oxidation of fats and oils, which is called rancidity. This keeps the food fresh and is the primary reason for their addition."
+    },
+    {
+      "kind": "quiz",
+      "question": "Which of the following is an example of a redox reaction?",
+      "options": [
+        "H₂ + Cl₂ → 2HCl",
+        "Both A and D",
+        "AgNO₃ + NaCl → AgCl + NaNO₃",
+        "Zn + CuSO₄ → ZnSO₄ + Cu"
+      ],
+      "answer": 1,
+      "why": "Reaction D shows zinc displacing copper, which is a redox reaction. Reaction A shows hydrogen combining with chlorine, which is also a redox reaction. Reaction C is a double displacement reaction."
+    },
+    {
+      "kind": "summary",
+      "points": [
+        "Oxidation is the gain of oxygen or loss of hydrogen",
+        "Reduction is the loss of oxygen or gain of hydrogen",
+        "A redox reaction involves both oxidation and reduction",
+        "Corrosion is the slow oxidation of metals like iron",
+        "Rancidity is the oxidation of fats in food"
+      ]
+    }
+  ],
+  "status": "draft",
+  "generatedBy": {
+    "model": "sarvam-105b",
+    "promptVersion": "lessons-v2",
+    "checkedAt": "2026-09-25T15:35:06Z"
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "id": "cbse-10-maths-1-2",
+  "board": "CBSE",
+  "class": 10,
+  "subject": "maths",
+  "chapterNumber": 1,
+  "chapterTitle": "Real Numbers",
+  "position": 2,
+  "title": "Revisiting irrational numbers",
+  "language": "en",
+  "cards": [
+    {
+      "kind": "start",
+      "goals": [
+        "Use the rule that a prime dividing a square divides its base",
+        "Prove √2 is irrational by contradiction",
+        "Prove √3 and √5 are irrational by contradiction",
+        "Prove an expression like 3 + 2√5 is irrational"
+      ],
+      "minutes": 7
+    },
+    {
+      "kind": "concept",
+      "title": "Prime divisors and squares",
+      "body": "If a prime number p divides a², then p must also divide a. This means a prime factor of a square number must appear in the original number itself. For example, if 2 divides a², then 2 must divide a.\n\nThis rule is the key to proving that certain square roots are irrational numbers."
+    },
+    {
+      "kind": "concept",
+      "title": "Proof by contradiction",
+      "body": "A proof by contradiction starts by assuming the opposite of what you want to prove. You then use logic and known facts to show this assumption leads to a mathematical impossibility.\n\nWe use this method to prove that √2 is not a rational number."
+    },
+    {
+      "kind": "example",
+      "steps": [
+        "Assume √2 is rational, so √2 = a/b where a and b have no common factors",
+        "Square both sides: 2 = a²/b², so 2b² = a²",
+        "Since 2 divides a², 2 must divide a. Let a = 2c",
+        "Substitute: 2b² = (2c)² = 4c², so b² = 2c²",
+        "This means 2 divides b², so 2 divides b",
+        "Now a and b are both divisible by 2, which contradicts our initial assumption that they had no common factors"
+      ],
+      "question": "Prove that √2 is irrational."
+    },
+    {
+      "kind": "quiz",
+      "question": "In the proof that √2 is irrational, why does 2 divide a?",
+      "options": [
+        "Because a² is even",
+        "Because a is a multiple of 3",
+        "Because b is even",
+        "Because the fraction is in simplest form"
+      ],
+      "answer": 0,
+      "why": "From 2b² = a², the right side a² is even. By the rule that if a prime divides a square it divides the base, 2 must divide a. The other options do not follow from the equation."
+    },
+    {
+      "kind": "concept",
+      "title": "Irrationality of √3 and √5",
+      "body": "The exact same proof by contradiction works for √3 and √5. Assume the root is a/b, square both sides to get 3b² = a², and show that 3 (or 5) must divide both a and b.\n\nThis method also works for expressions like 3 + 2√5."
+    },
+    {
+      "kind": "quiz",
+      "question": "To prove that √3 is irrational, which prime number must divide both a and b in the contradiction step?",
+      "options": [
+        "6",
+        "5",
+        "3",
+        "2"
+      ],
+      "answer": 2,
+      "why": "Assuming √3 = a/b gives 3b² = a². Since 3 divides a², the prime 3 must divide a, and substituting back shows 3 divides b."
+    },
+    {
+      "kind": "example",
+      "steps": [
+        "Assume 3 + 2√5 = a/b where a and b have no common factors",
+        "Rearrange to isolate √5: 2√5 = (a - 3b)/b",
+        "So √5 = (a - 3b)/(2b)",
+        "This shows √5 is rational, which contradicts the fact that √5 is irrational",
+        "Therefore, 3 + 2√5 is irrational"
+      ],
+      "question": "Prove that 3 + 2√5 is irrational."
+    },
+    {
+      "kind": "quiz",
+      "question": "When proving 3 + 2√5 is irrational, what is the first step after assuming it equals a/b?",
+      "options": [
+        "Check if 5 divides a",
+        "Find the HCF of 3 and 2",
+        "Rearrange to isolate √5",
+        "Square both sides immediately"
+      ],
+      "answer": 2,
+      "why": "The first step is to rearrange the equation to isolate √5 on one side. This shows √5 would be rational, leading to the contradiction. Squaring both sides is not needed."
+    },
+    {
+      "kind": "summary",
+      "points": [
+        "If a prime divides a², then it divides the base",
+        "Proof by contradiction assumes a number is rational and finds a logical conflict",
+        "√2, √3, and √5 are irrational because their rational forms lead to a prime dividing both numerator and denominator",
+        "An expression like 3 + 2√5 is irrational because assuming it is rational forces √5 to be rational"
+      ]
+    }
+  ],
+  "status": "approved",
+  "generatedBy": {
+    "model": "sarvam-105b",
+    "promptVersion": "lessons-v2",
+    "checkedAt": "2026-09-25T15:30:49Z"
+  }
+}
